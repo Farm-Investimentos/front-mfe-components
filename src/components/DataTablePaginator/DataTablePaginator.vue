@@ -58,11 +58,7 @@ export default {
     },
 };
 </script>
-<style >
-section {
-    display: none;
-}
-</style>
+
 <style lang="scss">
 .v-data-table-custom-footer {
     
