@@ -58,3 +58,40 @@ export default {
     },
 };
 </script>
+<style >
+section {
+    display: none;
+}
+</style>
+<style lang="scss">
+.v-data-table-custom-footer {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 1.5rem 0;
+    .v-pagination.theme--light {
+        .v-pagination__item--active,
+        .v-pagination__navigation,
+        .v-pagination__item,
+        .v-pagination__more {
+            box-shadow: none;
+            border: 1px solid var(--v-gray-lighten2);
+            border-right: 0;
+            border-radius: 0;
+            height: 2rem;
+            margin: 0;
+        }
+        li:first-child .v-pagination__navigation {
+            border-radius: 0.25rem 0 0 0.25rem;
+        }
+        li:last-child .v-pagination__navigation {
+            border-right: 1px solid var(--v-gray-lighten2);
+            border-radius: 0 0.25rem 0.25rem 0;
+        }
+        .v-pagination__item {
+            font-size: 0.75rem;
+        }
+    }
+}
+</style>

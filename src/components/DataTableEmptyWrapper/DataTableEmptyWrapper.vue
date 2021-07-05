@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div align="center">
         <v-icon>mdi-magnify</v-icon>
         <p>{{ title }}</p>
         <p>{{ subtitle }}</p>
