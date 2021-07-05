@@ -1,8 +1,11 @@
 {
-  "name": "front-mfe-components",
-  "version": "0.0.1",
-  "private": true,
-  "main": "dist/front-mfe-components.common.js",
+  "name": "@farm-investimentos/farm-front-mfe-components",
+  "version": "0.0.3",
+  "author": "farm investimentos",
+  "private": false,
+  "main": "./dist/front-mfe-components.common.js",
+  "unpkg": "dist/front-mfe-components.umd.min.js",
+  "jsdelivr": "dist/front-mfe-components.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name front-mfe-components src/main.js",
@@ -47,5 +50,12 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Farm-Investimentos/front-mfe-components.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
