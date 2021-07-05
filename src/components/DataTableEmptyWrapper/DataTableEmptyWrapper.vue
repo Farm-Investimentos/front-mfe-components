@@ -6,6 +6,7 @@
     </div>
 </template>
 <script>
+import { VIcon } from 'vuetify/lib/components/VIcon';
 export default {
     name: 'DataTableEmptyWrapper',
     props: {
@@ -18,6 +19,9 @@ export default {
             default:
                 'Tente filtrar novamente sua pesquisa ou faça uma importação para ver mais resultados',
         },
+    },
+    components: {
+        VIcon,
     },
 };
 </script>
