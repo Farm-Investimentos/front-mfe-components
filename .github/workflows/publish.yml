@@ -3,7 +3,7 @@ name: publish Vue Package
 on:
   push:
     branches:
-      - feature-package
+      - main
 
 jobs:
   build:
