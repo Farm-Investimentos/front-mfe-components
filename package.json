@@ -1,7 +1,8 @@
 {
-  "name": "farm-front-mfe-components",
+  "name": "@farm-investimentos/farm-front-mfe-components",
   "version": "0.0.1",
-  "private": true,
+  "author": "farm investimentos",
+  "private": false,
   "main": "./dist/front-mfe-components.common.js",
   "unpkg": "dist/front-mfe-components.umd.min.js",
   "jsdelivr": "dist/front-mfe-components.umd.min.js",
