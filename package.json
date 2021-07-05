@@ -1,14 +1,16 @@
 {
   "name": "front-mfe-components",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name front-mfe-components src/main.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
