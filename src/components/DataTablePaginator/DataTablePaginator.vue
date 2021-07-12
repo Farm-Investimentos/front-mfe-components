@@ -1,7 +1,7 @@
 
   <template>
     <section class="v-data-table-custom-footer">
-        <div>
+        <div v-if="limitPerPage">
             <v-select outlined v-model="selectedLimit" :items="perPageBuiltItems" dense></v-select>
         </div>
         <v-pagination
@@ -28,6 +28,10 @@ export default {
         disabled: {
             type: Boolean,
             default: false,
+        },
+        limitPerPage: {
+            type: Boolean,
+            default: true,
         },
     },
     data() {
@@ -61,7 +65,6 @@ export default {
 
 <style lang="scss">
 .v-data-table-custom-footer {
-    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
