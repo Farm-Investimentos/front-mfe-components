@@ -1,7 +1,9 @@
-
-  <template>
-    <section class="v-data-table-custom-footer">
-        <div>
+<template>
+    <section
+        class="v-data-table-custom-footer"
+        :class="{ 'hidden-perpageoptions': hidePerPageOptions }"
+    >
+        <div v-if="!hidePerPageOptions">
             <v-select outlined v-model="selectedLimit" :items="perPageBuiltItems" dense></v-select>
         </div>
         <v-pagination
@@ -29,6 +31,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        hidePerPageOptions: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -37,7 +43,7 @@ export default {
         };
     },
     computed: {
-        perPageBuiltItems: function () {
+        perPageBuiltItems: function() {
             return this.perPageOptions.map(value => ({
                 text: value + ' registros por página',
                 value,
@@ -51,6 +57,9 @@ export default {
         currentPage(newValue) {
             this.$emit('onChangePage', newValue);
         },
+        page(newValue) {
+            this.currentPage = newValue;
+        },
     },
     components: {
         VSelect,
@@ -61,7 +70,6 @@ export default {
 
 <style lang="scss">
 .v-data-table-custom-footer {
-    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -88,6 +96,9 @@ export default {
         .v-pagination__item {
             font-size: 0.75rem;
         }
+    }
+    &.hidden-perpageoptions {
+        justify-content: flex-end;
     }
 }
 </style>

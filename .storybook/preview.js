@@ -33,7 +33,7 @@ export const globalTypes = {
                     lighten1: '#467D7E',
                     lighten2: '#1A3738',
                     lighten3: '#0B1A1B',
-                    ligthen4: '#FADD9E',
+                    lighten4: '#FADD9E',
                     lighten5: '#F8CC6B',
                 },
                 gray: {
@@ -41,7 +41,7 @@ export const globalTypes = {
                     lighten1: '#858585',
                     lighten2: '#D6D6D6',
                     lighten3: '#0B1A1B',
-                    ligthen4: '#F5F5F5',
+                    lighten4: '#F5F5F5',
                     lighten5: '#FFFFFF',
                 },
             },
