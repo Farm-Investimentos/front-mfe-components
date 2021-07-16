@@ -1,4 +1,4 @@
-name: publish Vue Package
+name: Generate & deploy storybook
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-storybook:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -23,10 +23,10 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Build storybook
+      - name: Build
         run: npm run build-storybook
 
-      - name: Copy storybook
+      - name: Copy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -35,21 +35,3 @@ jobs:
             --recursive \
             --region us-east-1 \
             ./storybook-static s3://front-farm-storybook/
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@windix'
-      - run: npm install
-      - run: git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && git config --global user.name "$GITHUB_ACTOR"
-      - run: npm run build
-      - run: git push --tags && git push
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GH_TOKEN}}
