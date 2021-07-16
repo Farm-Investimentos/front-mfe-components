@@ -1,7 +1,9 @@
-
-  <template>
-    <section class="v-data-table-custom-footer">
-        <div v-if="limitPerPage">
+<template>
+    <section
+        class="v-data-table-custom-footer"
+        :class="{ 'hidden-perpageoptions': hidePerPageOptions }"
+    >
+        <div v-if="!hidePerPageOptions">
             <v-select outlined v-model="selectedLimit" :items="perPageBuiltItems" dense></v-select>
         </div>
         <v-pagination
@@ -29,9 +31,9 @@ export default {
             type: Boolean,
             default: false,
         },
-        limitPerPage: {
+        hidePerPageOptions: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
     data() {
@@ -41,7 +43,7 @@ export default {
         };
     },
     computed: {
-        perPageBuiltItems: function () {
+        perPageBuiltItems: function() {
             return this.perPageOptions.map(value => ({
                 text: value + ' registros por página',
                 value,
@@ -54,6 +56,9 @@ export default {
         },
         currentPage(newValue) {
             this.$emit('onChangePage', newValue);
+        },
+        page(newValue) {
+            this.currentPage = newValue;
         },
     },
     components: {
@@ -91,6 +96,9 @@ export default {
         .v-pagination__item {
             font-size: 0.75rem;
         }
+    }
+    &.hidden-perpageoptions {
+        justify-content: flex-end;
     }
 }
 </style>
