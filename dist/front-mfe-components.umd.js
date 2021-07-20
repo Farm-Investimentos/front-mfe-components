@@ -2116,6 +2116,7 @@ __webpack_require__.d(__webpack_exports__, "MainFilter", function() { return /* 
 __webpack_require__.d(__webpack_exports__, "Loader", function() { return /* reexport */ components_Loader; });
 __webpack_require__.d(__webpack_exports__, "FilePicker", function() { return /* reexport */ components_FilePicker; });
 __webpack_require__.d(__webpack_exports__, "Tabs", function() { return /* reexport */ components_Tabs; });
+__webpack_require__.d(__webpack_exports__, "DialogFooter", function() { return /* reexport */ components_DialogFooter; });
 
 // NAMESPACE OBJECT: ./node_modules/vuetify/lib/services/goto/easing-patterns.js
 var easing_patterns_namespaceObject = {};
@@ -14456,7 +14457,105 @@ var Tabs_component = normalizeComponent(
 // CONCATENATED MODULE: ./src/components/Tabs/index.js
 
 /* harmony default export */ var components_Tabs = (Tabs);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"473733c7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=39d7293f&
+var DialogFootervue_type_template_id_39d7293f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-dialog__footer d-flex flex-column flex-sm-row justify-end"},[_c('v-btn',{staticClass:"v-btn-responsive",attrs:{"v-if":_vm.hasCancel,"color":"primary","outlined":""},on:{"click":function($event){return _vm.$emit('onClose')}}},[_vm._v(" "+_vm._s(_vm.closeLabel)+" ")]),_vm._l((_vm.extraButtons),function(button){return _c('v-btn',{key:button.label,staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":button.color,"outlined":button.outlined,"depressed":button.outlined},on:{"click":function($event){return _vm.$emit(button.listener ? button.listener : '')}}},[_vm._v(" "+_vm._s(button.label)+" ")])}),_c('v-btn',{staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":"secondary","v-if":_vm.hasConfirm,"disabled":_vm.isConfirmDisabled},on:{"click":function($event){return _vm.$emit('onConfirm')}}},[_vm._v(" "+_vm._s(_vm.confirmLabel)+" ")])],2)}
+var DialogFootervue_type_template_id_39d7293f_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=39d7293f&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DialogFooter/DialogFooter.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var DialogFootervue_type_script_lang_js_ = ({
+  name: 'DialogFooter',
+  components: {
+    VBtn: VBtn_VBtn
+  },
+  props: {
+    confirmLabel: {
+      type: String,
+      default: 'Confirmar'
+    },
+    closeLabel: {
+      type: String,
+      default: 'Fechar'
+    },
+    hasConfirm: {
+      type: Boolean,
+      default: true
+    },
+    hasCancel: {
+      type: Boolean,
+      default: true
+    },
+    isConfirmDisabled: {
+      type: Boolean,
+      default: false
+    },
+    extraButtons: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    }
+  },
+  methods: {}
+});
+// CONCATENATED MODULE: ./src/components/DialogFooter/DialogFooter.vue?vue&type=script&lang=js&
+ /* harmony default export */ var DialogFooter_DialogFootervue_type_script_lang_js_ = (DialogFootervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/components/DialogFooter/DialogFooter.vue
+
+
+
+
+
+/* normalize component */
+
+var DialogFooter_component = normalizeComponent(
+  DialogFooter_DialogFootervue_type_script_lang_js_,
+  DialogFootervue_type_template_id_39d7293f_render,
+  DialogFootervue_type_template_id_39d7293f_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var DialogFooter = (DialogFooter_component.exports);
+// CONCATENATED MODULE: ./src/components/DialogFooter/index.js
+
+/* harmony default export */ var components_DialogFooter = (DialogFooter);
 // CONCATENATED MODULE: ./src/main.js
+
 
 
 

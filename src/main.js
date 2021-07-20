@@ -4,5 +4,14 @@ import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
 import Tabs from './components/Tabs';
+import DialogFooter from './components/DialogFooter';
 
-export { DataTableEmptyWrapper, DataTablePaginator, MainFilter, Loader, FilePicker, Tabs };
+export {
+    DataTableEmptyWrapper,
+    DataTablePaginator,
+    MainFilter,
+    Loader,
+    FilePicker,
+    Tabs,
+    DialogFooter,
+};
