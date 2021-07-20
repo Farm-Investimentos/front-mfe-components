@@ -17,7 +17,7 @@
         <v-btn
             @click="$emit('onConfirm')"
             color="secondary"
-            :v-if="hasConfirm"
+            v-if="hasConfirm"
             :disabled="isConfirmDisabled"
             class="ml-sm-3 mt-3 mt-sm-0"
         >
