@@ -7,6 +7,8 @@ import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 
+import currency from './helpers/currency';
+
 export {
     DataTableEmptyWrapper,
     DataTablePaginator,
@@ -16,4 +18,5 @@ export {
     Tabs,
     DialogHeader,
     DialogFooter,
+    currency,
 };
