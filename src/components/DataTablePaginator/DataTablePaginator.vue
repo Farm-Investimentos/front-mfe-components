@@ -4,7 +4,13 @@
         :class="{ 'hidden-perpageoptions': hidePerPageOptions }"
     >
         <div v-if="!hidePerPageOptions">
-            <v-select outlined v-model="selectedLimit" :items="perPageBuiltItems" dense></v-select>
+            <v-select
+                outlined
+                v-model="selectedLimit"
+                :disabled="!totalPages || totalPages < 1"
+                :items="perPageBuiltItems"
+                dense
+            ></v-select>
         </div>
         <v-pagination
             :disabled="disabled"
