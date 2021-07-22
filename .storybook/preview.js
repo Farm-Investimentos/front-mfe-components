@@ -3,6 +3,12 @@ import {
     withThemeProvider,
 } from '@socheatsok78/storybook-addon-vuetify/dist/decorators';
 
+import "../src/scss/ButtonOverrides.scss";
+import "../src/scss/DefaultModal.scss";
+import "../src/scss/FormOverrides.scss";
+import "../src/scss/Status-Chip.scss";
+import "../src/scss/utils.scss";
+
 export const globalTypes = {
     theme: {
         name: 'Theme',
@@ -43,6 +49,12 @@ export const globalTypes = {
                     lighten3: '#0B1A1B',
                     lighten4: '#F5F5F5',
                     lighten5: '#FFFFFF',
+                },
+                accent: {
+                    base: '#5089DE',
+                },
+                yellow: {
+                    base: '#F8CC6B',
                 },
             },
         },

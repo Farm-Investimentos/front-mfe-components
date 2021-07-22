@@ -7,6 +7,10 @@ import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 
+import currency from './helpers/currency';
+
+import ExportButton from './components/Buttons/Export';
+
 export {
     DataTableEmptyWrapper,
     DataTablePaginator,
@@ -16,4 +20,6 @@ export {
     Tabs,
     DialogHeader,
     DialogFooter,
+    currency,
+    ExportButton,
 };

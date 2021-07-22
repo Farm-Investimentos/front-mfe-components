@@ -1,7 +1,7 @@
 import DialogFooter from './DialogFooter.vue';
 
 export default {
-    title: 'Example/DialogFooter',
+    title: 'Example/Dialog/DialogFooter',
     component: DialogFooter,
 };
 
