@@ -9,6 +9,8 @@ import DialogFooter from './components/DialogFooter';
 
 import currency from './helpers/currency';
 
+import ExportButton from './components/Buttons/Export';
+
 export {
     DataTableEmptyWrapper,
     DataTablePaginator,
@@ -19,4 +21,5 @@ export {
     DialogHeader,
     DialogFooter,
     currency,
+    ExportButton,
 };
