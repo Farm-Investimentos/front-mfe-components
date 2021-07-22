@@ -10,6 +10,7 @@ import DialogFooter from './components/DialogFooter';
 import currency from './helpers/currency';
 
 import ExportButton from './components/Buttons/Export';
+import ImportButton from './components/Buttons/Import';
 
 export {
     DataTableEmptyWrapper,
@@ -22,4 +23,5 @@ export {
     DialogFooter,
     currency,
     ExportButton,
+    ImportButton,
 };
