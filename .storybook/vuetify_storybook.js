@@ -1,17 +1,11 @@
-import {
-    withVuetify,
-    withThemeProvider,
-} from '@socheatsok78/storybook-addon-vuetify/dist/decorators';
-/*
+// .storybook/vuetify_storybook.js
+import Vue from 'vue';
+import Vuetify from 'vuetify'; // loads all components
+import 'vuetify/dist/vuetify.min.css'; // all the css for components
+//import config from '../src/plugins/vuetifyConfig'; // basic config with theme
 
-
-
-
-export const globalTypes = {
+const config = {
     theme: {
-        name: 'Theme',
-        description: 'Global theme for components',
-        defaultValue: 'light',
         themes: {
             light: {
                 primary: '#1C1C1C',
@@ -52,29 +46,12 @@ export const globalTypes = {
                 },
             },
         },
+        options: {
+            customProperties: true,
+        },
     },
 };
 
-export const decorators = [withThemeProvider, withVuetify];
-*/
-import { addDecorator } from '@storybook/vue';
-import vuetify from './vuetify_storybook';
+Vue.use(Vuetify);
 
-import "../src/scss/ButtonOverrides.scss";
-import "../src/scss/DefaultModal.scss";
-import "../src/scss/FormOverrides.scss";
-import "../src/scss/Status-Chip.scss";
-import "../src/scss/utils.scss";
-
-addDecorator(() => ({
-  vuetify,
-  template: `
-    <v-app>
-      <v-main>
-        <v-container fluid >
-          <story/>
-        </v-container>
-      </v-main>
-    </v-app>
-    `,
-}));
+export default new Vuetify(config);

@@ -14,24 +14,6 @@ module.exports = {
 
         // Make whatever fine-grained changes you need
 
-        /*
-        config.module.rules.push({
-            test: /\.(sass|less|scss)$/,
-            use: [
-                'style-loader',
-                'css-loader',
-                'sass-loader',
-                {
-                    loader: 'sass-loader',
-                    options: {
-                        additionalData: "@import '@/scss/ButtonOverrides.scss';",
-                    },
-                },
-            ],
-            include: path.resolve(__dirname, '../'),
-        });
-        */
-
         config.module.rules.push({
             test: /\.(sass|less|scss)$/,
             use: ['style-loader', 'css-loader', 'sass-loader'],
