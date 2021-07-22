@@ -1,0 +1,43 @@
+
+.v-btn {
+    
+    .v-btn__content {
+        text-transform: none;
+        letter-spacing: 0;
+        font-weight: 700;
+    }
+    &.v-size--default {
+        font-size: 0.75rem !important;
+        .v-icon {
+            font-size: 1rem;
+        }
+    }
+    &.v-btn-outlined-noborder {
+        border: 0;
+    }
+
+    &.v-btn-rounded {
+        border-radius: 2rem;
+    }
+}
+
+.v-btn.v-btn-noeffect {
+    &:hover {
+        opacity: 0.8;
+    }
+    &:before {
+        opacity: 0 !important;
+    }
+    .v-ripple__container {
+        opacity: 0 !important;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .v-btn.v-btn-responsive,
+    .v-btn.v-btn--responsive {
+        width: 100%;
+        margin: 0;
+    }
+}
