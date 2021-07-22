@@ -11,6 +11,7 @@ import currency from './helpers/currency';
 
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
+import ToggleButton from './components/Buttons/Toggle';
 
 export {
     DataTableEmptyWrapper,
@@ -24,4 +25,5 @@ export {
     currency,
     ExportButton,
     ImportButton,
+    ToggleButton,
 };
