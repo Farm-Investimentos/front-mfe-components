@@ -1,6 +1,6 @@
 <template>
     <div class="v-dialog__footer d-flex flex-column flex-sm-row justify-end">
-        <v-btn @click="$emit('onClose')" :v-if="hasCancel" color="primary" outlined class="v-btn-responsive">
+        <v-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined class="v-btn-responsive">
             {{ closeLabel }}
         </v-btn>
         <v-btn
