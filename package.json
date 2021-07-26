@@ -1,6 +1,6 @@
 {
   "name": "@farm-investimentos/front-mfe-components",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "farm investimentos",
   "private": false,
   "main": "./dist/front-mfe-components.common.js",
@@ -62,9 +62,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Farm-Investimentos/front-mfe-components.git"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "url": "git://github.com/Farm-Investimentos/front-mfe-components.git"
   }
 }
