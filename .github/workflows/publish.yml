@@ -42,10 +42,12 @@ jobs:
       #      --region us-east-1 \
       #      ./storybook-static s3://front-farm-storybook/
         
+      - name: Build
+        run: npm run build
+        
       - name: Publish to NPM
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run build
         run: npm publish --access public --registry https://registry.npmjs.org
 
       
