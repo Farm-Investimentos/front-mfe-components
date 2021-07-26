@@ -16,7 +16,7 @@
         border: 0;
     }
 
-    &.v-btn-rounded {
+    &.v-btn-rounded, &.v-btn--rounded {
         border-radius: 2rem;
     }
 }

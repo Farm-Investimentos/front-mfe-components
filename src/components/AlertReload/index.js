@@ -1,3 +1,3 @@
-import DataTablePaginator from './DataTablePaginator.vue';
+import AlertReload from './AlertReload';
 
-export default DataTablePaginator;
+export default AlertReload;

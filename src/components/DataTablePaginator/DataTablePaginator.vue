@@ -17,6 +17,7 @@
             v-model="currentPage"
             :length="totalPages"
             :total-visible="7"
+            color="secondary"
         ></v-pagination>
     </section>
 </template>
