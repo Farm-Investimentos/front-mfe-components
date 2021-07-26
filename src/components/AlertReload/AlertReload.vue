@@ -14,8 +14,21 @@
     </v-alert>
 </template>
 <script>
+import VBtn from 'vuetify/lib/components/VBtn';
+import VIcon from 'vuetify/lib/components/VIcon';
+import VAlert from 'vuetify/lib/components/VAlert';
+import { VRow, VCol } from 'vuetify/lib/components/VGrid';
+
 export default {
     name: 'AlertReload',
+    components: {
+        VBtn,
+        VIcon,
+        VAlert,
+        VRow,
+        VCol,
+    },
+
     props: {
         label: {
             type: String,
