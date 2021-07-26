@@ -1,5 +1,6 @@
 import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 import DataTablePaginator from './components/DataTablePaginator';
+import AlertReload from './components/AlertReload';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
@@ -26,4 +27,5 @@ export {
     ExportButton,
     ImportButton,
     ToggleButton,
+    AlertReload
 };
