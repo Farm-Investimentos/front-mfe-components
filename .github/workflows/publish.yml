@@ -5,12 +5,20 @@ on:
     branches:
       - main
 
+env: 
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@master
+      
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -43,14 +51,12 @@ jobs:
       #      ./storybook-static s3://front-farm-storybook/
         
       - name: Build
-        run: npm run build
+        run: npm run build 
 
       - name: Publish to NPM
-        env:
+        run: npm publish --access public 
+        env: 
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public
-
-      
   #    - run: git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && git config --global user.name "$GITHUB_ACTOR"
   #    - run: npm run build
   #    - run: git push --tags && git push
