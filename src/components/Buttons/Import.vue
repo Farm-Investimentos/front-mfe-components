@@ -1,5 +1,5 @@
 <template>
-    <v-btn @click="onClick" dense class="v-btn--responsive" outlined title="Importar">
+    <v-btn @click="onClick" dense class="v-btn--responsive v-btn--import" outlined title="Importar">
         <v-icon>mdi-upload</v-icon>
         Importar
     </v-btn>
@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.v-btn {
+.v-btn.v-btn--import {
     background: var(--v-extra-lighten2);
     color: var(--v-gray-lighten5);
     .v-icon {
