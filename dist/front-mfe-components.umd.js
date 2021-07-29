@@ -166,6 +166,13 @@ exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDes
 
 /***/ }),
 
+/***/ "0b61":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "0bc6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -301,6 +308,17 @@ module.exports = function (R, S) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "1754":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Remove_vue_vue_type_style_index_0_id_2a3fa89b_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("0b61");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Remove_vue_vue_type_style_index_0_id_2a3fa89b_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Remove_vue_vue_type_style_index_0_id_2a3fa89b_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
 
 /***/ }),
 
@@ -2749,6 +2767,7 @@ __webpack_require__.d(__webpack_exports__, "currency", function() { return /* re
 __webpack_require__.d(__webpack_exports__, "ExportButton", function() { return /* reexport */ Export; });
 __webpack_require__.d(__webpack_exports__, "ImportButton", function() { return /* reexport */ Import; });
 __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return /* reexport */ Toggle; });
+__webpack_require__.d(__webpack_exports__, "RemoveButton", function() { return /* reexport */ Remove; });
 __webpack_require__.d(__webpack_exports__, "AlertReload", function() { return /* reexport */ components_AlertReload; });
 
 // NAMESPACE OBJECT: ./node_modules/vuetify/lib/services/goto/easing-patterns.js
@@ -16127,7 +16146,68 @@ var Toggle_component = normalizeComponent(
 )
 
 /* harmony default export */ var Toggle = (Toggle_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4913e4d2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Buttons/Remove.vue?vue&type=template&id=2a3fa89b&scoped=true&
+var Removevue_type_template_id_2a3fa89b_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-btn',{staticClass:"v-btn--responsive",attrs:{"dense":"","color":"error","title":_vm.label},on:{"click":_vm.onClick}},[_c('v-icon',[_vm._v("mdi-trash-can-outline")]),_vm._v(" "+_vm._s(_vm.label)+" ")],1)}
+var Removevue_type_template_id_2a3fa89b_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Buttons/Remove.vue?vue&type=template&id=2a3fa89b&scoped=true&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Buttons/Remove.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var Removevue_type_script_lang_js_ = ({
+  name: 'RemoveButton',
+  props: {
+    label: {
+      type: String,
+      default: 'Remover'
+    }
+  },
+  components: {
+    VBtn: components_VBtn,
+    VIcon: components_VIcon
+  },
+  methods: {
+    onClick: function onClick() {
+      this.$emit('onClick');
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/Buttons/Remove.vue?vue&type=script&lang=js&
+ /* harmony default export */ var Buttons_Removevue_type_script_lang_js_ = (Removevue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./src/components/Buttons/Remove.vue?vue&type=style&index=0&id=2a3fa89b&scoped=true&lang=scss&
+var Removevue_type_style_index_0_id_2a3fa89b_scoped_true_lang_scss_ = __webpack_require__("1754");
+
+// CONCATENATED MODULE: ./src/components/Buttons/Remove.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Remove_component = normalizeComponent(
+  Buttons_Removevue_type_script_lang_js_,
+  Removevue_type_template_id_2a3fa89b_scoped_true_render,
+  Removevue_type_template_id_2a3fa89b_scoped_true_staticRenderFns,
+  false,
+  null,
+  "2a3fa89b",
+  null
+  
+)
+
+/* harmony default export */ var Remove = (Remove_component.exports);
 // CONCATENATED MODULE: ./src/main.js
+
 
 
 
