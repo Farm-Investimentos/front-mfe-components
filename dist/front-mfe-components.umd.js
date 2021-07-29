@@ -15805,19 +15805,14 @@ var DialogHeader_component = normalizeComponent(
 // CONCATENATED MODULE: ./src/components/DialogHeader/index.js
 
 /* harmony default export */ var components_DialogHeader = (DialogHeader);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4913e4d2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=7ece500d&
-var DialogFootervue_type_template_id_7ece500d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-dialog__footer d-flex flex-column flex-sm-row justify-end"},[(_vm.hasCancel)?_c('v-btn',{attrs:{"color":"primary","outlined":""},on:{"click":function($event){return _vm.$emit('onClose')}}},[_vm._v(" "+_vm._s(_vm.closeLabel)+" ")]):_vm._e(),_vm._l((_vm.extraButtons),function(button){return _c('v-btn',{key:button.label,staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":button.color,"outlined":button.outlined,"depressed":button.outlined,"disabled":button.disabled},on:{"click":function($event){return _vm.$emit(button.listener ? button.listener : '')}}},[_vm._v(" "+_vm._s(button.label)+" ")])}),(_vm.hasConfirm)?_c('v-btn',{staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":"secondary","disabled":_vm.isConfirmDisabled},on:{"click":function($event){return _vm.$emit('onConfirm')}}},[_vm._v(" "+_vm._s(_vm.confirmLabel)+" ")]):_vm._e()],2)}
-var DialogFootervue_type_template_id_7ece500d_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4913e4d2-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=0c618af1&
+var DialogFootervue_type_template_id_0c618af1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-dialog__footer d-flex flex-column flex-sm-row justify-end"},[(_vm.hasCancel)?_c('v-btn',{attrs:{"color":"primary","outlined":""},on:{"click":function($event){return _vm.$emit('onClose')}}},[_vm._v(" "+_vm._s(_vm.closeLabel)+" ")]):_vm._e(),_vm._l((_vm.extraButtons),function(button){return _c('v-btn',{key:button.label,staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":button.color,"outlined":button.outlined,"depressed":button.outlined,"disabled":button.disabled},on:{"click":function($event){return _vm.$emit(button.listener ? button.listener : '')}}},[_vm._v(" "+_vm._s(button.label)+" ")])}),(_vm.hasConfirm)?_c('v-btn',{staticClass:"ml-sm-3 mt-3 mt-sm-0",attrs:{"color":_vm.confirmColor,"disabled":_vm.isConfirmDisabled},on:{"click":function($event){return _vm.$emit('onConfirm')}}},[_vm._v(" "+_vm._s(_vm.confirmLabel)+" ")]):_vm._e()],2)}
+var DialogFootervue_type_template_id_0c618af1_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=7ece500d&
+// CONCATENATED MODULE: ./src/components/DialogFooter/DialogFooter.vue?vue&type=template&id=0c618af1&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/DialogFooter/DialogFooter.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
 //
 //
 //
@@ -15870,6 +15865,10 @@ var DialogFootervue_type_template_id_7ece500d_staticRenderFns = []
       type: Boolean,
       default: true
     },
+    confirmColor: {
+      type: String,
+      default: 'secondary'
+    },
     isConfirmDisabled: {
       type: Boolean,
       default: false
@@ -15895,8 +15894,8 @@ var DialogFootervue_type_template_id_7ece500d_staticRenderFns = []
 
 var DialogFooter_component = normalizeComponent(
   DialogFooter_DialogFootervue_type_script_lang_js_,
-  DialogFootervue_type_template_id_7ece500d_render,
-  DialogFootervue_type_template_id_7ece500d_staticRenderFns,
+  DialogFootervue_type_template_id_0c618af1_render,
+  DialogFootervue_type_template_id_0c618af1_staticRenderFns,
   false,
   null,
   null,
