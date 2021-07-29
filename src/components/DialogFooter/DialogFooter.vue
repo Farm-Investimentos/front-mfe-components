@@ -1,6 +1,6 @@
 <template>
     <div class="v-dialog__footer d-flex flex-column flex-sm-row justify-end">
-        <v-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined class="v-btn-responsive">
+        <v-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined>
             {{ closeLabel }}
         </v-btn>
         <v-btn
@@ -10,13 +10,14 @@
             :color="button.color"
             :outlined="button.outlined"
             :depressed="button.outlined"
+            :disabled="button.disabled"
             class="ml-sm-3 mt-3 mt-sm-0"
         >
             {{ button.label }}
         </v-btn>
         <v-btn
             @click="$emit('onConfirm')"
-            color="secondary"
+            :color="confirmColor"
             v-if="hasConfirm"
             :disabled="isConfirmDisabled"
             class="ml-sm-3 mt-3 mt-sm-0"
@@ -50,6 +51,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        confirmColor: {
+            type: String,
+            default: 'secondary',
+        },
         isConfirmDisabled: {
             type: Boolean,
             default: false,
@@ -59,8 +64,6 @@ export default {
             default: () => [],
         },
     },
-    methods: {
-        
-    },
+    methods: {},
 };
 </script>
