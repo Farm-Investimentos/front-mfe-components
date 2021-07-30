@@ -9,10 +9,12 @@ import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 
 import currency from './helpers/currency';
+import toClipboard from './helpers/to-clipboard';
 
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
 import ToggleButton from './components/Buttons/Toggle';
+import RemoveButton from './components/Buttons/Remove';
 
 export {
     DataTableEmptyWrapper,
@@ -27,5 +29,7 @@ export {
     ExportButton,
     ImportButton,
     ToggleButton,
-    AlertReload
+    RemoveButton,
+    AlertReload,
+    toClipboard,
 };
