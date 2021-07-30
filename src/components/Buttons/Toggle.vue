@@ -3,12 +3,17 @@
         @click="onClick"
         dense
         class="v-btn--responsive"
+        :class="{
+            'v-btn_icon--prepend': prepend,
+            'v-btn_icon--apppend': !prepend,
+        }"
         :color="color"
-        :outlined="open"
+        :outlined="!open"
         :title="label"
     >
+        <v-icon v-if="prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
         {{ label }}
-        <v-icon>{{ `mdi-chevron-${open ? 'down' : 'up'}` }}</v-icon>
+        <v-icon v-if="!prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
     </v-btn>
 </template>
 <script>
@@ -36,6 +41,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        position: {
+            type: String,
+            default: 'left',
+        },
     },
     methods: {
         onClick() {
@@ -50,12 +59,21 @@ export default {
     created() {
         this.open = this.pressed;
     },
+    computed: {
+        prepend() {
+            return this.position === 'left';
+        },
+    },
 };
 </script>
 <style scoped lang="scss">
 .v-btn {
-    .v-icon {
+    &.v-btn_icon--apppend .v-icon {
         margin-left: 1rem;
+        margin-right: 0;
+    }
+    &.v-btn_icon--prepend .v-icon {
+        margin-left: 0;
     }
 }
 </style>
