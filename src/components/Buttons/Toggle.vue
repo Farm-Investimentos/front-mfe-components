@@ -8,12 +8,12 @@
             'v-btn_icon--apppend': !prepend,
         }"
         :color="color"
-        :outlined="open"
+        :outlined="!open"
         :title="label"
     >
-        <v-icon v-if="prepend">{{ `mdi-chevron-${open ? 'down' : 'up'}` }}</v-icon>
+        <v-icon v-if="prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
         {{ label }}
-        <v-icon v-if="!prepend">{{ `mdi-chevron-${open ? 'down' : 'up'}` }}</v-icon>
+        <v-icon v-if="!prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
     </v-btn>
 </template>
 <script>
