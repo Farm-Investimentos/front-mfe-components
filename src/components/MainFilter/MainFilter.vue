@@ -1,11 +1,11 @@
 <template>
     <section :class="{ 'justify-end': justifyEnd === true }">
         <fieldset class="fieldset-default" v-if="hasInitialInput">
-            <label for=""
-                >Quer localizar um cliente?
+            <label for="form-main-filter-search"
+                >{{ label }}
                 <v-icon style="vertical-align: middle"> mdi-file-find </v-icon></label
             >
-            <v-text-field color="secondary" @keyup="onKeyUp" outlined dense> </v-text-field>
+            <v-text-field color="secondary" @keyup="onKeyUp" id="form-main-filter-search" outlined dense> </v-text-field>
         </fieldset>
         <v-btn
             v-if="hasExtraFilters"
@@ -37,6 +37,10 @@ export default {
         justifyEnd: {
             type: Boolean,
             default: false,
+        },
+        label: {
+            type: String,
+            default: 'Quer localizar um cliente?'
         }
     },
     data: () => {
