@@ -2,7 +2,7 @@
     <v-col cols="12" sm="12" :md="item.md ? item.md : 2" class="v-col-fieldset-default pl-0">
         <label :for="`${forKey}-${item.key}`">{{ item.label }}</label>
         <v-text-field
-             :id="`${forKey}-${item.key}`"
+            :id="`${forKey}-${item.key}`"
             color="secondary"
             v-model="inputVal"
             outlined
@@ -13,6 +13,8 @@
     </v-col>
 </template>
 <script>
+import { VTextField } from 'vuetify/lib/components/VTextField';
+import { VCol } from 'vuetify/lib/components/VGrid';
 export default {
     props: {
         item: {
@@ -34,6 +36,10 @@ export default {
             required: false,
         },
     },
+    components: {
+        VCol,
+        VTextField,
+    },
     computed: {
         inputVal: {
             get() {
@@ -44,6 +50,5 @@ export default {
             },
         },
     },
-
 };
 </script>
