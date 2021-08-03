@@ -32,5 +32,6 @@ export {
     ToggleButton,
     RemoveButton,
     AlertReload,
+    DefaultTextField,
     toClipboard,
 };
