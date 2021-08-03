@@ -7,6 +7,7 @@ import FilePicker from './components/FilePicker';
 import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
+import DefaultTextField from './components/DefaultTextField';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
@@ -31,5 +32,6 @@ export {
     ToggleButton,
     RemoveButton,
     AlertReload,
+    DefaultTextField,
     toClipboard,
 };
