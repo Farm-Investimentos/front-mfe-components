@@ -11,6 +11,7 @@ import DefaultTextField from './components/DefaultTextField';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
+import percentage from './helpers/percentage';
 
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
@@ -18,20 +19,21 @@ import ToggleButton from './components/Buttons/Toggle';
 import RemoveButton from './components/Buttons/Remove';
 
 export {
-    DataTableEmptyWrapper,
-    DataTablePaginator,
-    MainFilter,
-    Loader,
-    FilePicker,
-    Tabs,
-    DialogHeader,
-    DialogFooter,
-    currency,
-    ExportButton,
-    ImportButton,
-    ToggleButton,
-    RemoveButton,
-    AlertReload,
-    DefaultTextField,
-    toClipboard,
+	DataTableEmptyWrapper,
+	DataTablePaginator,
+	MainFilter,
+	Loader,
+	FilePicker,
+	Tabs,
+	DialogHeader,
+	DialogFooter,
+	ExportButton,
+	ImportButton,
+	ToggleButton,
+	RemoveButton,
+	AlertReload,
+	DefaultTextField,
+	currency,
+	toClipboard,
+	percentage,
 };
