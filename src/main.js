@@ -12,6 +12,7 @@ import DefaultTextField from './components/DefaultTextField';
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
 import percentage from './helpers/percentage';
+import axiosWrapper from './helpers/axios-wrapper';
 
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
@@ -36,4 +37,5 @@ export {
 	currency,
 	toClipboard,
 	percentage,
+	axiosWrapper,
 };
