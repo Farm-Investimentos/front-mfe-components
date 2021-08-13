@@ -12,7 +12,7 @@ export const Primary = () => ({
 
 export const List = () => ({
 	components: { Export },
-	template: `<Export :optionsList="[{ key: 1, label: 'teste'}]" />`,
+	template: `<Export :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
 });
 
 Primary.storyName = 'Básico';

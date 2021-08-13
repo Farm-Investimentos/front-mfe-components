@@ -10,7 +10,13 @@
 		<v-icon class="mr-2">mdi-file-export-outline</v-icon>
 		Exportar
 	</v-btn>
-	<v-menu v-else v-model="togglePopover">
+	<v-menu
+		v-else
+		content-class="elevation-1"
+		v-model="togglePopover"
+		:offset-y="16"
+		:rounded="'b t-0'"
+	>
 		<template v-slot:activator="{ on, attrs }">
 			<v-btn
 				v-bind="attrs"
@@ -28,7 +34,7 @@
 			</v-btn>
 		</template>
 
-		<v-list dense class="pa-0 mt-9">
+		<v-list dense class="pa-0">
 			<v-list-item
 				v-for="item in optionsList"
 				:key="item.key"
@@ -47,9 +53,16 @@ import VIcon from 'vuetify/lib/components/VIcon';
 import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
+/**
+ * Botão de Exportação, com opção de gerar menu dropdown
+ */
 export default {
 	name: 'ExportButton',
 	props: {
+		/**
+		 * Lista de opções para o menu dropdown
+		 * Se não informado, o botão emite evento no clique
+		 */
 		optionsList: {
 			type: Array,
 			default: () => [],
@@ -77,6 +90,12 @@ export default {
 <style scoped lang="scss">
 .v-btn {
 	color: var(--v-extra-lighten2);
+}
+.v-list-item {
+	border-bottom: 1px solid var(--v-gray-lighten2);
+	&:last-child {
+		border-bottom: none;
+	}
 }
 .v-list-item--link {
 	font-size: 0.875rem;
