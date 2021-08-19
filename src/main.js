@@ -8,6 +8,7 @@ import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 import DefaultTextField from './components/DefaultTextField';
+import RangeDatePicker from './components/RangeDatePicker';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
@@ -34,6 +35,7 @@ export {
 	RemoveButton,
 	AlertReload,
 	DefaultTextField,
+	RangeDatePicker,
 	currency,
 	toClipboard,
 	percentage,

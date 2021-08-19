@@ -14,7 +14,7 @@
 		v-else
 		content-class="elevation-1"
 		v-model="togglePopover"
-		:offset-y="16"
+		:offset-y="true"
 		:rounded="'b t-0'"
 	>
 		<template v-slot:activator="{ on, attrs }">
