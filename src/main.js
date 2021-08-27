@@ -9,6 +9,7 @@ import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 import DefaultTextField from './components/DefaultTextField';
 import RangeDatePicker from './components/RangeDatePicker';
+import DatePicker from './components/DatePicker';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
@@ -36,6 +37,7 @@ export {
 	AlertReload,
 	DefaultTextField,
 	RangeDatePicker,
+	DatePicker,
 	currency,
 	toClipboard,
 	percentage,
