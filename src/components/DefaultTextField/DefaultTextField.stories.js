@@ -10,4 +10,10 @@ export const Primary = () => ({
     template: '<DefaultTextField :item="{ label: \'Nome do campo\'}" />',
 });
 
+export const Secondary = () => ({
+    components: { DefaultTextField },
+    template: '<DefaultTextField :item="{ label: \'Nome do campo\'} :required="true" />',
+});
+
 Primary.storyName = 'Básico';
+Secondary.storyName = 'Label de obrigatório';
