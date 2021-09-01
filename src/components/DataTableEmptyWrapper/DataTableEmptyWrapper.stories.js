@@ -1,7 +1,7 @@
 import DataTableEmptyWrapper from './DataTableEmptyWrapper.vue';
 
 export default {
-    title: 'Example/DataTableEmptyWrapper',
+    title: 'Example/Table/DataTableEmptyWrapper',
     component: DataTableEmptyWrapper,
 };
 
@@ -10,4 +10,12 @@ export const Primary = () => ({
     template: '<DataTableEmptyWrapper />',
 });
 
+
+export const CustomTitles = () => ({
+    components: { DataTableEmptyWrapper },
+    template: '<DataTableEmptyWrapper title="Título customizado" subtitle="Subtítulo customizado" />',
+});
+
+
 Primary.storyName = 'Básico';
+CustomTitles.storyName = "Títulos"

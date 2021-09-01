@@ -24,20 +24,38 @@
 <script>
 import { VSelect } from 'vuetify/lib/components/VSelect';
 import { VPagination } from 'vuetify/lib/components/VPagination';
-
+/**
+ * Componente de paginação usado em tabelas e listas
+ * com opção de itens por página
+ */
 export default {
 	name: 'DataTablePaginator',
 	props: {
+		/**
+		 * Lista de opções para o controle de registros por página
+		 */
 		perPageOptions: {
 			type: Array,
 			default: () => [5, 10, 20, 50, 100],
 		},
+		/**
+		 * Páginas atual
+		 */
 		page: null,
+		/**
+		 * Total de páginas
+		 */
 		totalPages: null,
+		/**
+		 * Desabilita controles
+		 */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Esconde controle de registros por página
+		 */
 		hidePerPageOptions: {
 			type: Boolean,
 			default: false,
