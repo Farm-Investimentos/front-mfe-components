@@ -45,7 +45,9 @@ import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
-
+/**
+ * Componente de input com datepicker para range de data
+ */
 export default {
 	components: {
 		VTextField,
@@ -54,10 +56,16 @@ export default {
 		VDatePicker,
 	},
 	props: {
+		/**
+		 * String usada no como id do input e for do label
+		 */
 		inputId: {
 			type: String,
 			required: true,
 		},
+		/**
+		 * Variável usada como v-model
+		 */
 		value: {
 			type: Array,
 			default: () => {
