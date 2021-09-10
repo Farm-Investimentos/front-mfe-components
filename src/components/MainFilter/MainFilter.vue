@@ -57,13 +57,14 @@ export default {
 			this.$emit('onClick');
 		},
 		onKeyUp(event) {
+
 			const keyCode = event.keyCode;
 			if (keyCode === 13) {
 				this.$emit('onEnter', event.target.value);
 				return false;
 			}
 
-			if (keyCode < 48 || (keyCode > 90 && keyCode < 186)) {
+			if ((keyCode < 48 && keyCode !== 8 && keyCode !== 46) || (keyCode > 90 && keyCode < 186)) {
 				return false;
 			}
 			if (this.timer) {
