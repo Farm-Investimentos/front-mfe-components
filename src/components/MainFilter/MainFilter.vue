@@ -58,14 +58,14 @@ export default {
 		},
 		onKeyUp(event) {
 			const keyCode = event.keyCode;
-
-			if ((keyCode < 65 && keyCode != 32 && keyCode != 8) || keyCode > 90) {
-				if (keyCode === 13) {
-					this.$emit('onEnter', event.target.value);
-				}
+			if (keyCode === 13) {
+				this.$emit('onEnter', event.target.value);
 				return false;
 			}
 
+			if (keyCode < 48 || (keyCode > 90 && keyCode < 186)) {
+				return false;
+			}
 			if (this.timer) {
 				clearTimeout(this.timer);
 				this.timer = null;
