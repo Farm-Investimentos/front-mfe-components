@@ -31,8 +31,12 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<v-btn outlined color="primary" @click="menuField = false"> Cancelar </v-btn>
-			<v-btn color="secondary" @click="save()"> Salvar </v-btn>
+			<v-btn outlined color="primary" @click="menuField = false" title="Cancelar">
+				Cancelar
+			</v-btn>
+			<v-btn color="secondary" @click="save()" title="Salvar">
+				Salvar
+			</v-btn>
 		</v-date-picker>
 	</v-menu>
 </template>
@@ -54,14 +58,14 @@ export default {
 	},
 	props: {
 		/**
-		 * String usada no como id do input e for do label 
+		 * String usada no como id do input e for do label
 		 */
 		inputId: {
 			type: String,
 			required: true,
 		},
 		/**
-		 * Variável usada como v-model 
+		 * Variável usada como v-model
 		 */
 		value: {
 			type: String,
@@ -69,11 +73,11 @@ export default {
 		},
 		max: {
 			type: String,
-			default: undefined,
+			default: null,
 		},
 		min: {
 			type: String,
-			default: undefined,
+			default: null,
 		},
 	},
 	data() {
