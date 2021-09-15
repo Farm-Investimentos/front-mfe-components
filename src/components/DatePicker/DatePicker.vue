@@ -26,6 +26,8 @@
 			v-model="dateField"
 			no-title
 			scrollable
+			:max="max"
+			:min="min"
 			color="secondary"
 			locale="pt-br"
 		>
@@ -64,6 +66,14 @@ export default {
 		value: {
 			type: String,
 			default: '',
+		},
+		max: {
+			type: String,
+			default: undefined,
+		},
+		min: {
+			type: String,
+			default: undefined,
 		},
 	},
 	data() {
