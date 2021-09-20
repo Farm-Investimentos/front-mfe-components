@@ -2,7 +2,7 @@
 	<v-col cols="12" sm="12" :md="item.md ? item.md : 2" class="v-col-fieldset-default pl-0">
 		<label :for="`${forKey}-${item.key}`">
 			{{ item.label }}
-			<span class="required" v-if="required">*</span>
+			<span class="required" v-if="required && !disabled">*</span>
 		</label>
 		<v-text-field
 			:id="`${forKey}-${item.key}`"
@@ -10,8 +10,8 @@
 			v-model="inputVal"
 			outlined
 			dense
-            v-mask="`${ mask ? mask : '' }`"
-			:rules="rules && rules.length ? rules : []"
+			v-mask="`${mask ? mask : ''}`"
+			:rules="inputRules"
 			:disabled="disabled"
 		></v-text-field>
 	</v-col>
@@ -44,10 +44,10 @@ export default {
 			default: false,
 			required: false,
 		},
-        mask: {
-            type: String,
-            default: null,
-        },
+		mask: {
+			type: String,
+			default: null,
+		},
 	},
 	components: {
 		VCol,
@@ -61,6 +61,15 @@ export default {
 			set(val) {
 				this.$emit('input', val);
 			},
+		},
+		inputRules() {
+			if (this.disabled) {
+				return [];
+			}
+			if (this.rules && this.rules.length) {
+				return this.rules;
+			}
+			return [];
 		},
 	},
 };
