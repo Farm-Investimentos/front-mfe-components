@@ -10,6 +10,7 @@ import DialogFooter from './components/DialogFooter';
 import DefaultTextField from './components/DefaultTextField';
 import RangeDatePicker from './components/RangeDatePicker';
 import DatePicker from './components/DatePicker';
+import ManagersList from './components/ManagersList';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
@@ -38,6 +39,7 @@ export {
 	DefaultTextField,
 	RangeDatePicker,
 	DatePicker,
+	ManagersList,
 	currency,
 	toClipboard,
 	percentage,
