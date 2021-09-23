@@ -21,5 +21,5 @@ export const List = () => ({
 });
 
 Primary.storyName = 'Básico';
-
+Disabled.storyName = 'Desabilitado'
 List.storyName = 'Lista';
