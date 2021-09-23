@@ -1,13 +1,13 @@
-import Import from './Import.vue';
+import ImportButton from './Import.vue';
 
 export default {
     title: 'Example/Buttons/Import',
-    component: Import,
+    component: ImportButton,
 };
 
 export const Primary = () => ({
-    components: { Import },
-    template: '<Import />',
+    components: { ImportButton },
+    template: '<ImportButton />',
 });
 
 Primary.storyName = 'Básico';
