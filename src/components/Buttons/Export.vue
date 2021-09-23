@@ -6,6 +6,7 @@
 		class="v-btn--responsive"
 		outlined
 		title="Exportar"
+		:disabled="disabled"
 	>
 		<v-icon class="mr-2">mdi-file-export-outline</v-icon>
 		Exportar
@@ -26,6 +27,7 @@
 				outlined
 				title="Exportar"
 				@onClick="togglePopover = true"
+				:disabled="disabled"
 			>
 				Exportar
 				<v-icon class="ml-2 mr-0">
@@ -66,6 +68,13 @@ export default {
 		optionsList: {
 			type: Array,
 			default: () => [],
+		},
+		/**
+		 * Desabilita o botão
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {

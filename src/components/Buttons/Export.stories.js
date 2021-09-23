@@ -1,18 +1,23 @@
-import Export from './Export.vue';
+import ExportButton from './Export.vue';
 
 export default {
 	title: 'Example/Buttons/Export',
-	component: Export,
+	component: ExportButton,
 };
 
 export const Primary = () => ({
-	components: { Export },
-	template: '<Export />',
+	components: { ExportButton },
+	template: '<ExportButton />',
+});
+
+export const Disabled = () => ({
+	components: { ExportButton },
+	template: '<ExportButton :disabled="true" />',
 });
 
 export const List = () => ({
-	components: { Export },
-	template: `<Export :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
+	components: { ExportButton },
+	template: `<ExportButton :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
 });
 
 Primary.storyName = 'Básico';
