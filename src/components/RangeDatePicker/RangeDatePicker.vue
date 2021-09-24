@@ -81,6 +81,12 @@ export default {
 			fieldRange: s,
 		};
 	},
+	watch: {
+		value(newValue) {
+			this.dateField = newValue;
+			this.fieldRange = this.formatDateRange(newValue);
+		},
+	},
 	methods: {
 		formatDateRange(date) {
 			if (!date || date.length === 0) return '';
