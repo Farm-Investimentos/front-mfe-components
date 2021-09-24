@@ -60,10 +60,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Valor inicial de limite por página
+		 */
+		initialLimitPerPage: {
+			type: Number,
+			default: 10,
+		},
 	},
 	data() {
 		return {
-			selectedLimit: 10,
+			selectedLimit: this.initialLimitPerPage,
 			currentPage: this.page,
 		};
 	},
@@ -84,6 +91,9 @@ export default {
 		},
 		page(newValue) {
 			this.currentPage = newValue;
+		},
+		initialLimitPerPage(newValue) {
+			this.selectedLimit = newValue;
 		},
 	},
 	components: {
