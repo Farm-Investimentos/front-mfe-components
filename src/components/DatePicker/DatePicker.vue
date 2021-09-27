@@ -31,11 +31,12 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<v-btn outlined color="primary" @click="menuField = false" title="Cancelar">
-				Cancelar
+			<v-btn outlined color="primary" @click="menuField = false" title="Fechar">
+				Fechar
 			</v-btn>
-			<v-btn color="secondary" @click="save()" title="Salvar">
-				Salvar
+			<v-btn outlined color="secondary" @click="clear"> Limpar </v-btn>
+			<v-btn color="secondary" :disabled="!dateField.length" @click="save()" title="Confirmar">
+				Confirmar
 			</v-btn>
 		</v-date-picker>
 	</v-menu>
@@ -98,9 +99,8 @@ export default {
 			this.inputVal = this.dateField;
 		},
 		clear() {
-			this.dateField = null;
-			this.fieldRange = null;
-			this.inputVal = null;
+			this.dateField = '';
+			this.save();
 		},
 	},
 	computed: {

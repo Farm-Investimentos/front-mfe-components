@@ -30,11 +30,12 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<v-btn outlined color="primary" @click="menuField = false">
-				Cancelar
+			<v-btn outlined color="primary" @click="menuField = false" tutle="Fechar">
+				Fechar
 			</v-btn>
-			<v-btn color="secondary" @click="save()">
-				Salvar
+			<v-btn outlined color="secondary" @click="clear()" title="Limpar"> Limpar </v-btn>
+			<v-btn color="secondary" :disabled="canConfirm" @click="save()" title="Confirmar">
+				Confirmar
 			</v-btn>
 		</v-date-picker>
 	</v-menu>
@@ -97,11 +98,11 @@ export default {
 		save() {
 			this.$refs.menuField.save(this.formatDateRange(this.dateField));
 			this.inputVal = this.dateField;
+			this.menuField = false;
 		},
 		clear() {
-			this.dateField = null;
-			this.fieldRange = null;
-			this.inputVal = null;
+			this.dateField = [];
+			this.save();
 		},
 	},
 	computed: {
@@ -112,6 +113,12 @@ export default {
 			set(val) {
 				this.$emit('input', val);
 			},
+		},
+		canConfirm() {
+			if (!this.dateField || this.dateField.length == 1) {
+				return true;
+			}
+			return false;
 		},
 	},
 };
