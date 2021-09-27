@@ -5,7 +5,14 @@
 				{{ label }}
 				<v-icon style="vertical-align: middle"> mdi-file-find </v-icon>
 			</label>
-			<v-text-field color="secondary" @keyup="onKeyUp" :id="elementId" outlined dense />
+			<v-text-field
+				color="secondary"
+				@keyup="onKeyUp"
+				:id="elementId"
+				outlined
+				dense
+				v-model="inputValue"
+			/>
 		</fieldset>
 		<v-btn
 			v-if="hasExtraFilters"
@@ -25,6 +32,11 @@ import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VIcon } from 'vuetify/lib/components/VIcon';
 export default {
 	name: 'MainFilter',
+	components: {
+		VTextField,
+		VBtn,
+		VIcon,
+	},
 	props: {
 		hasExtraFilters: {
 			type: Boolean,
@@ -46,10 +58,22 @@ export default {
 			type: String,
 			default: 'form-main-filter-search',
 		},
+		initialValue: {
+			type: String,
+			default: () => '',
+		},
+	},
+
+	watch: {
+		initialValue(newValue) {
+			//this.$refs[this.elementId + 'input'].value = newValue;
+			this.inputValue = newValue;
+		},
 	},
 	data: () => {
 		return {
 			timer: null,
+			inputValue: '',
 		};
 	},
 	methods: {
@@ -57,14 +81,16 @@ export default {
 			this.$emit('onClick');
 		},
 		onKeyUp(event) {
-
 			const keyCode = event.keyCode;
 			if (keyCode === 13) {
 				this.$emit('onEnter', event.target.value);
 				return false;
 			}
 
-			if ((keyCode < 48 && keyCode !== 8 && keyCode !== 46) || (keyCode > 90 && keyCode < 186)) {
+			if (
+				(keyCode < 48 && keyCode !== 8 && keyCode !== 46) ||
+				(keyCode > 90 && keyCode < 186)
+			) {
 				return false;
 			}
 			if (this.timer) {
@@ -75,11 +101,6 @@ export default {
 				this.$emit('onInputChange', event.target.value);
 			}, 400);
 		},
-	},
-	components: {
-		VTextField,
-		VBtn,
-		VIcon,
 	},
 };
 </script>

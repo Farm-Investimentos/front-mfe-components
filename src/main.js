@@ -19,14 +19,20 @@ import axiosWrapper from './helpers/axios-wrapper';
 
 import routeRole from './mixins/routeRole';
 
+import userAccessStore from './stores/userAccess';
+
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
 import ToggleButton from './components/Buttons/Toggle';
 import RemoveButton from './components/Buttons/Remove';
 
 const mixins = {
-	routeRole
-}
+	routeRole,
+};
+
+const stores = {
+	userAccess: userAccessStore,
+};
 
 export {
 	DataTableEmptyWrapper,
@@ -50,5 +56,6 @@ export {
 	toClipboard,
 	percentage,
 	axiosWrapper,
-	mixins
+	mixins,
+	stores,
 };
