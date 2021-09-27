@@ -34,7 +34,7 @@
 			<v-btn outlined color="primary" @click="menuField = false" title="Cancelar">
 				Cancelar
 			</v-btn>
-			<v-btn outlined color="secondary" @click="dateField = ''"> Limpar </v-btn>
+			<v-btn outlined color="secondary" @click="clear"> Limpar </v-btn>
 			<v-btn color="secondary" :disabled="!dateField.length" @click="save()" title="Salvar">
 				Salvar
 			</v-btn>
@@ -99,9 +99,9 @@ export default {
 			this.inputVal = this.dateField;
 		},
 		clear() {
-			this.dateField = null;
-			this.fieldRange = null;
-			this.inputVal = null;
+			this.dateField = '';
+			this.fieldRange = '';
+			this.inputVal = '';
 		},
 	},
 	computed: {
