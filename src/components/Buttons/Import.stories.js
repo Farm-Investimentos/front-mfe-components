@@ -10,4 +10,10 @@ export const Primary = () => ({
     template: '<ImportButton />',
 });
 
+export const CustomLabel = () => ({
+    components: { ImportButton },
+    template: '<ImportButton label="Label custom" />',
+});
+
 Primary.storyName = 'Básico';
+CustomLabel.storyName = 'Label customizado';
