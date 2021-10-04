@@ -1,10 +1,10 @@
 <template>
 	<v-form v-model="formVal" autocomplete="off">
-		{{ title }}
+		<div v-html="title"></div>
 		<v-row>
 			<v-col cols="12" sm="12" class="mt-3 v-col-fieldset-default">
 				<v-text-field
-					id="form-baixas-numero"
+					id="form-confirm-remove"
 					color="secondary"
 					v-model="matchInput"
 					outlined
@@ -67,6 +67,9 @@ export default {
 				this.$emit('input', val);
 			},
 		},
+	},
+	mounted() {
+		this.matchInput = null;
 	},
 };
 </script>
