@@ -11,6 +11,7 @@ import DefaultTextField from './components/DefaultTextField';
 import RangeDatePicker from './components/RangeDatePicker';
 import DatePicker from './components/DatePicker';
 import ManagersList from './components/ManagersList';
+import PromptUserToConfirm from './components/PromptUserToConfirm';
 
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
@@ -52,6 +53,7 @@ export {
 	RangeDatePicker,
 	DatePicker,
 	ManagersList,
+	PromptUserToConfirm,
 	currency,
 	toClipboard,
 	percentage,
