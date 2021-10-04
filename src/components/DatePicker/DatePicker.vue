@@ -35,7 +35,12 @@
 				Fechar
 			</v-btn>
 			<v-btn outlined color="secondary" @click="clear"> Limpar </v-btn>
-			<v-btn color="secondary" :disabled="!dateField.length" @click="save()" title="Confirmar">
+			<v-btn
+				color="secondary"
+				:disabled="!dateField.length"
+				@click="save()"
+				title="Confirmar"
+			>
 				Confirmar
 			</v-btn>
 		</v-date-picker>
@@ -88,6 +93,12 @@ export default {
 			dateField: this.value,
 			fieldRange: s,
 		};
+	},
+	watch: {
+		value(newValue) {
+			this.dateField = newValue;
+			this.fieldRange = this.formatDateRange(newValue);
+		},
 	},
 	methods: {
 		formatDateRange(date) {
