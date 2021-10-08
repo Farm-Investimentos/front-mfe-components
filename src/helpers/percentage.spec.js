@@ -1,4 +1,6 @@
-import { calculateWithDecimals } from './percentage';
+import percentage from './percentage';
+
+const { calculateWithDecimals } = percentage;
 
 describe('calculateWithDecimals', () => {
 	it('Should return 100', () => {
@@ -10,15 +12,14 @@ describe('calculateWithDecimals', () => {
 	});
 
 	it('Should return decimals', () => {
-		expect(calculateWithDecimals(8, 9)).toEqual("88.9");
+		expect(calculateWithDecimals(8, 9)).toEqual('88.9');
 	});
 
 	it('Should not return decimals', () => {
-		expect(calculateWithDecimals(8, 9, 0)).toEqual("89");
+		expect(calculateWithDecimals(8, 9, 0)).toEqual('89');
 	});
 
 	it('Should not 0 for any invalid calculation', () => {
-		expect(calculateWithDecimals("a", 9)).toEqual("0");
+		expect(calculateWithDecimals('a', 9)).toEqual('0');
 	});
-
 });
