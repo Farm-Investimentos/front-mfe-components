@@ -1,6 +1,6 @@
 const path = require('path');
 
-const constantsFiles = ['consts/RequestStatusEnum', 'errorBuilder', 'axiosWrapper'];
+const constantsFiles = ['consts/RequestStatusEnum', 'errorBuilder', 'axiosWrapper', 'mixins/routeRole'];
 
 let entry = {};
 constantsFiles.forEach(file => {
