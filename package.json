@@ -14,7 +14,8 @@
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test:helpers": "jest --config=jest.config.helpers.js"
+    "test:helpers": "jest --config=jest.config.helpers.js",
+    "jsdoc:helpers": "jsdoc src/helpers/**/*.js -d jsdocs-static"
   },
   "files": [
     "dist/*",
@@ -43,7 +44,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^27.2.5",
-    "jsdoc-to-markdown": "^7.0.1",
+    "jsdoc": "^3.6.7",
     "vue-template-compiler": "^2.6.11",
     "webpack-cli": "^4.9.0"
   },
