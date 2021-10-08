@@ -17,8 +17,6 @@ import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
 import percentage from './helpers/percentage';
 
-import routeRole from './mixins/routeRole';
-
 import userAccessStore from './stores/userAccess';
 
 import ExportButton from './components/Buttons/Export';
