@@ -1,7 +1,7 @@
 /**
  * Receives an http error and returns an error parsed and ready to be used in the views,
  * because that are backends with that throws errors with different structures
- * @function
+ * @module
  * @param {error} - an http error (from axios or other that implements same interface)
  * @return {Object} error parsed and ready to be used in the views/components
  */
