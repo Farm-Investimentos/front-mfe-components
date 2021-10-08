@@ -1,3 +1,13 @@
+/**
+ * Wrapper for axios (or other http client that implements same interface)
+ * The wrapper adds business logic, such as request & responso interceptors, bearer token, etc..
+ * And returns an axios instace ready to be used in the microfrontends
+ * @module
+ * @param {httpClient} - http client object (axios)
+ * @param {notification} - notification function called inside interceptors to add communication between microfrontends
+ * @param {baseURL} - the default base url used in the requests
+ * @return {Object} axios client ready for use
+ */
 export default (httpClient, notification, baseURL) => {
 	const fullfilledRequest = config => {
 		notification('LOADING_START');
