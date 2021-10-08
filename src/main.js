@@ -16,9 +16,6 @@ import PromptUserToConfirm from './components/PromptUserToConfirm';
 import currency from './helpers/currency';
 import toClipboard from './helpers/to-clipboard';
 import percentage from './helpers/percentage';
-import axiosWrapper from './helpers/axios-wrapper';
-
-import routeRole from './mixins/routeRole';
 
 import userAccessStore from './stores/userAccess';
 
@@ -27,9 +24,6 @@ import ImportButton from './components/Buttons/Import';
 import ToggleButton from './components/Buttons/Toggle';
 import RemoveButton from './components/Buttons/Remove';
 
-const mixins = {
-	routeRole,
-};
 
 const stores = {
 	userAccess: userAccessStore,
@@ -57,7 +51,5 @@ export {
 	currency,
 	toClipboard,
 	percentage,
-	axiosWrapper,
-	mixins,
 	stores,
 };
