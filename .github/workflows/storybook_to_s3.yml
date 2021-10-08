@@ -32,7 +32,7 @@ jobs:
         run: npm run build-storybook
 
       - name: Build jsdoc
-        run: npx jsdoc src/helpers/**/*.js -d jsdocs-static 
+        run: npm run jsdoc:helpers
 
       - name: Move jsdoc output to storybook
         run: mv jsdocs-static/ storybook-static 
