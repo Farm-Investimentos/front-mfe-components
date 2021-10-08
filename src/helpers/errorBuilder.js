@@ -1,0 +1,39 @@
+export default error => {
+    let err = {
+        type: RequestStatusEnum.ERROR,
+    };
+    if (error.code === 'ECONNABORTED') {
+        err.message = 'timeout';
+        return err;
+    }
+    if (error.response) {
+        err.httpStatus = error.response.status;
+
+        if (error.response.data) {
+            const data = error.response.data;
+            if (data && data.data) {
+                err.message = data.data;
+            }
+            if (data && data.message) {
+                err.message = data.message;
+            }
+            if (data.errors && data.errors.length === 1) {
+                err.message = data.errors[0];
+            }
+            if (data.errors && data.errors.length > 1) {
+                err.message = data.errors
+                    .map(item => {
+                        if (!item) return 'Erro inesperado';
+
+                        if (item.defaultMessage) return item.defaultMessage;
+                        return item;
+                    })
+                    .join('. ');
+            }
+        }
+    }
+    if (err.message && err.message.message) {
+        err.message = err.message.message;
+    }
+    return err;
+};
