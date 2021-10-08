@@ -26,13 +26,13 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
       - name: Install
-        run: npm install && npm i jsdoc
+        run: npm install
 
       - name: Build storybook
         run: npm run build-storybook
 
       - name: Build jsdoc
-        run: npm run jsdoc:helpers
+        run: npx jsdoc src/helpers/**/*.js -d jsdocs-static 
 
       - name: Move jsdoc output to storybook
         run: mv jsdocs-static/ storybook-static 
