@@ -1,6 +1,6 @@
 export default error => {
     let err = {
-        type: RequestStatusEnum.ERROR,
+        type: 'ERROR',
     };
     if (error.code === 'ECONNABORTED') {
         err.message = 'timeout';
