@@ -44,7 +44,9 @@
 				:title="item.label"
 				@click="onClick(item.key)"
 			>
-				{{ item.label }}
+				<v-list-item-title>
+					{{ item.label }}
+				</v-list-item-title>
 			</v-list-item>
 		</v-list>
 	</v-menu>
