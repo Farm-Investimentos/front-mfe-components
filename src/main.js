@@ -13,21 +13,11 @@ import DatePicker from './components/DatePicker';
 import ManagersList from './components/ManagersList';
 import PromptUserToConfirm from './components/PromptUserToConfirm';
 
-import currency from './helpers/currency';
-import toClipboard from './helpers/to-clipboard';
-import percentage from './helpers/percentage';
-
-import userAccessStore from './stores/userAccess';
-
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
 import ToggleButton from './components/Buttons/Toggle';
 import RemoveButton from './components/Buttons/Remove';
 
-
-const stores = {
-	userAccess: userAccessStore,
-};
 
 export {
 	DataTableEmptyWrapper,
@@ -48,8 +38,4 @@ export {
 	DatePicker,
 	ManagersList,
 	PromptUserToConfirm,
-	currency,
-	toClipboard,
-	percentage,
-	stores,
 };
