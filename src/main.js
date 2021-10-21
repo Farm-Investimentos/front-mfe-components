@@ -18,6 +18,8 @@ import ImportButton from './components/Buttons/Import';
 import ToggleButton from './components/Buttons/Toggle';
 import RemoveButton from './components/Buttons/Remove';
 
+import TableContextMenu from './components/TableContextMenu';
+
 
 export {
 	DataTableEmptyWrapper,
@@ -38,4 +40,5 @@ export {
 	DatePicker,
 	ManagersList,
 	PromptUserToConfirm,
+	TableContextMenu,
 };
