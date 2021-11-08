@@ -66,7 +66,6 @@ export default {
 
 	watch: {
 		initialValue(newValue) {
-			//this.$refs[this.elementId + 'input'].value = newValue;
 			this.inputValue = newValue;
 		},
 	},
@@ -89,7 +88,7 @@ export default {
 
 			if (
 				(keyCode < 48 && keyCode !== 8 && keyCode !== 46) ||
-				(keyCode > 90 && keyCode < 186)
+				(keyCode > 90 && keyCode < 186 && keyCode !== 91)
 			) {
 				return false;
 			}
@@ -98,6 +97,7 @@ export default {
 				this.timer = null;
 			}
 			this.timer = setTimeout(() => {
+				console.log('change me');
 				this.$emit('onInputChange', event.target.value);
 			}, 400);
 		},
