@@ -104,6 +104,7 @@ export default {
 <style scoped lang="scss">
 .v-btn {
 	color: var(--v-extra-lighten2);
+	background: white;
 }
 .v-list-item {
 	border-bottom: 1px solid var(--v-gray-lighten2);
