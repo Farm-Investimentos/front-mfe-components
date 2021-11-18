@@ -97,7 +97,6 @@ export default {
 				this.timer = null;
 			}
 			this.timer = setTimeout(() => {
-				console.log('change me');
 				this.$emit('onInputChange', event.target.value);
 			}, 400);
 		},
