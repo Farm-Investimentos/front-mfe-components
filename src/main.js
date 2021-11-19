@@ -12,6 +12,7 @@ import RangeDatePicker from './components/RangeDatePicker';
 import DatePicker from './components/DatePicker';
 import ManagersList from './components/ManagersList';
 import PromptUserToConfirm from './components/PromptUserToConfirm';
+import ModalPromptUser from './components/ModalPromptUser';
 
 import ExportButton from './components/Buttons/Export';
 import ImportButton from './components/Buttons/Import';
@@ -41,4 +42,5 @@ export {
 	ManagersList,
 	PromptUserToConfirm,
 	TableContextMenu,
+	ModalPromptUser,
 };
