@@ -44,7 +44,9 @@
 				:title="item.label"
 				@click="onClick(item.key)"
 			>
-				{{ item.label }}
+				<v-list-item-content>
+					<v-list-item-title v-text="item.label" />
+				</v-list-item-content>
 			</v-list-item>
 		</v-list>
 	</v-menu>
@@ -55,6 +57,7 @@ import VIcon from 'vuetify/lib/components/VIcon';
 import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
+import { VListItemContent, VListItemTitle } from 'vuetify/lib';
 /**
  * Botão de Exportação, com opção de gerar menu dropdown
  */
@@ -88,6 +91,8 @@ export default {
 		VList,
 		VListItem,
 		VMenu,
+		VListItemContent,
+		VListItemTitle,
 	},
 	methods: {
 		onClick(key) {
@@ -99,6 +104,7 @@ export default {
 <style scoped lang="scss">
 .v-btn {
 	color: var(--v-extra-lighten2);
+	background: white;
 }
 .v-list-item {
 	border-bottom: 1px solid var(--v-gray-lighten2);
