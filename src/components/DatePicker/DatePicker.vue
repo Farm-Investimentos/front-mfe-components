@@ -12,14 +12,16 @@
 		<template v-slot:activator="{ on }">
 			<v-text-field
 				color="secondary"
-				v-model="fieldRange"
 				append-icon="mdi-calendar"
 				readonly
-				v-on="on"
 				outlined
 				dense
+				v-on="on"
+				v-model="fieldRange"
 				:id="inputId"
-			></v-text-field>
+				:rules="required ? [requiredRule] : []"
+			>
+			</v-text-field>
 		</template>
 		<v-date-picker
 			v-if="menuField"
@@ -85,6 +87,13 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Required field (inside form)
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -92,6 +101,9 @@ export default {
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
+			requiredRule: value => {
+				return !!value || value != '' || 'Campo obrigatório';
+			},
 		};
 	},
 	watch: {
