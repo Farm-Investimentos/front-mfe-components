@@ -22,6 +22,7 @@
 			:disabled="isConfirmDisabled"
 			class="ml-sm-3 mt-3 mt-sm-0"
 		>
+			<v-icon v-if="confirmIcon">mdi-{{ confirmIcon }}</v-icon>
 			{{ confirmLabel }}
 		</v-btn>
 	</div>
@@ -58,10 +59,10 @@ export default {
 		hasConfirm: {
 			type: Boolean,
 			default: true,
-		}
+		},
 		/**
 		 * Exibe/esconde botão de cancelar
-		 */,
+		 */
 		hasCancel: {
 			type: Boolean,
 			default: true,
@@ -74,7 +75,14 @@ export default {
 			default: 'secondary',
 		},
 		/**
-		 * Deaabilita botão de confirmação
+		 * Ícone no botão Confirmar
+		 */
+		confirmIcon: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Desabilita botão de confirmação
 		 */
 		isConfirmDisabled: {
 			type: Boolean,
