@@ -52,6 +52,7 @@
 	</v-menu>
 </template>
 <script>
+import Vue from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VList from 'vuetify/lib/components/VList/VList';
@@ -61,8 +62,8 @@ import { VListItemContent, VListItemTitle } from 'vuetify/lib';
 /**
  * Botão de Exportação, com opção de gerar menu dropdown
  */
-export default {
-	name: 'ExportButton',
+export default Vue.extend({
+	name: 'farm-btn-export',
 	props: {
 		/**
 		 * Lista de opções para o menu dropdown
@@ -99,7 +100,7 @@ export default {
 			this.$emit('onClick', key);
 		},
 	},
-};
+});
 </script>
 <style scoped lang="scss">
 .v-btn {
