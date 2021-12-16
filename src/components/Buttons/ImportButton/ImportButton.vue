@@ -1,21 +1,19 @@
 <template>
-	<v-btn
-		@click="onClick"
-		dense
-		class="v-btn--responsive"
-		color="error"
-		:title="label"
-		:disabled="disabled"
-	>
-		<v-icon>mdi-trash-can-outline</v-icon>
+	<v-btn @click="onClick" dense class="v-btn--responsive v-btn--import" outlined title="Importar">
+		<v-icon>mdi-upload</v-icon>
 		{{ label }}
 	</v-btn>
 </template>
 <script>
+import Vue from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
-export default {
-	name: 'RemoveButton',
+export default Vue.extend({
+	name: 'farm-btn-import',
+	components: {
+		VBtn,
+		VIcon,
+	},
 	props: {
 		/**
 		 * Label do botão
@@ -24,27 +22,18 @@ export default {
 			type: String,
 			default: 'Importar',
 		},
-		/**
-		 * Desabilita o botão
-		 */
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-	},
-	components: {
-		VBtn,
-		VIcon,
 	},
 	methods: {
 		onClick() {
 			this.$emit('onClick');
 		},
 	},
-};
+});
 </script>
 <style scoped lang="scss">
-.v-btn {
+.v-btn.v-btn--import {
+	background: var(--v-extra-lighten2);
+	color: var(--v-gray-lighten5);
 	.v-icon {
 		margin-right: 1rem;
 	}

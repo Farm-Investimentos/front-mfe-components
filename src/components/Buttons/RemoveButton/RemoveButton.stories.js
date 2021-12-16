@@ -1,4 +1,4 @@
-import RemoveButton from './Remove.vue';
+import RemoveButton from './RemoveButton.vue';
 
 export default {
     title: 'Example/Buttons/Remove',

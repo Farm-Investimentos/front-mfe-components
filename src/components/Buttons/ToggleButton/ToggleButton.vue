@@ -17,13 +17,14 @@
 	</v-btn>
 </template>
 <script>
+import Vue from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 /**
  * Botão de Toggle, emitindo e guardando status
  */
-export default {
-	name: 'ImportButton',
+export default Vue.extend({
+	name: 'farm-btn-toggle',
 	components: {
 		VBtn,
 		VIcon,
@@ -79,7 +80,7 @@ export default {
 			return this.position === 'left';
 		},
 	},
-};
+});
 </script>
 <style scoped lang="scss">
 .v-btn {
