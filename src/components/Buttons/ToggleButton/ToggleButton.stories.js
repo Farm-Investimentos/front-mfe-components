@@ -1,4 +1,4 @@
-import ToggleButton from './Toggle.vue';
+import ToggleButton from './ToggleButton.vue';
 
 export default {
     title: 'Example/Buttons/ToggleButton',
