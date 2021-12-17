@@ -22,7 +22,14 @@ export const Props = () => ({
 
 export const Listener = () => ({
 	components: { DefaultButton },
-	template: '<DefaultButton color="error" @click="alert(1)">click me</DefaultButton>',
+	data() {
+		return {
+			x: 1,
+		};
+	},
+	template: `
+		<DefaultButton color="error" @click="x = 2">click me to change: {{ x }}</DefaultButton>
+	`,
 });
 
 Primary.storyName = 'Básico';
