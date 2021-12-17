@@ -1,4 +1,5 @@
 # front-mfe-components
+[![codecov](https://codecov.io/gh/Farm-Investimentos/front-mfe-components/branch/main/graph/badge.svg?token=9ERJ107152)](https://codecov.io/gh/Farm-Investimentos/front-mfe-components)
 
 ## Project setup
 ```
