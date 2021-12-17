@@ -1,9 +1,9 @@
-name: publish Vue Package
+name: Test
 
 on:
   push:
     branches:
-      - main
+      - develop
 
 env: 
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -32,11 +32,11 @@ jobs:
       - name: Install
         run: npm install
         
-      - name: Build
-        run: npm run build 
+      - name: Test & collect coverage
+        run: npm run test:coverage 
 
-      - name: Publish to NPM
-        run: npm publish --access public 
-        env: 
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 

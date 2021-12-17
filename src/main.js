@@ -14,13 +14,8 @@ import ManagersList from './components/ManagersList';
 import PromptUserToConfirm from './components/PromptUserToConfirm';
 import ModalPromptUser from './components/ModalPromptUser';
 
-import ExportButton from './components/Buttons/Export';
-import ImportButton from './components/Buttons/Import';
-import ToggleButton from './components/Buttons/Toggle';
-import RemoveButton from './components/Buttons/Remove';
-
 import TableContextMenu from './components/TableContextMenu';
-
+import DefaultButton from './components/Buttons/DefaultButton/DefaultButton.vue';
 
 export {
 	DataTableEmptyWrapper,
@@ -31,10 +26,6 @@ export {
 	Tabs,
 	DialogHeader,
 	DialogFooter,
-	ExportButton,
-	ImportButton,
-	ToggleButton,
-	RemoveButton,
 	AlertReload,
 	DefaultTextField,
 	RangeDatePicker,
@@ -43,4 +34,13 @@ export {
 	PromptUserToConfirm,
 	TableContextMenu,
 	ModalPromptUser,
+	DefaultButton,
 };
+
+export * from './components/Buttons/DefaultButton/';
+export * from './components/Buttons/DangerButton/';
+export * from './components/Buttons/ConfirmButton';
+export * from './components/Buttons/ExportButton/';
+export * from './components/Buttons/ImportButton/';
+export * from './components/Buttons/ToggleButton/';
+export * from './components/Buttons/RemoveButton/';

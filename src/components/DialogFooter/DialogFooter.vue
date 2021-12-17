@@ -30,6 +30,7 @@
 
 <script>
 import { VBtn } from 'vuetify/lib/components/VBtn';
+import { VIcon } from 'vuetify/lib/components/VIcon';
 /**
  * Footer de dialog/modal
  */
@@ -37,6 +38,7 @@ export default {
 	name: 'DialogFooter',
 	components: {
 		VBtn,
+		VIcon,
 	},
 	props: {
 		/**
