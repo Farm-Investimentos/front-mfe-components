@@ -37,7 +37,7 @@ export default Vue.extend({
 	computed: {
 		iconPath() {
 			if (!this.customIcon) {
-				return 'mdi-trash-can';
+				return 'mdi-trash-can-outline';
 			}
 			return `mdi-${this.customIcon}`;
 		},
