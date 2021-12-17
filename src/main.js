@@ -38,6 +38,7 @@ export {
 };
 
 export * from './components/Buttons/DefaultButton/';
+export * from './components/Buttons/ConfirmButton';
 export * from './components/Buttons/ExportButton/';
 export * from './components/Buttons/ImportButton/';
 export * from './components/Buttons/ToggleButton/';
