@@ -52,7 +52,7 @@ export default Vue.extend({
 			type: Array,
 			require: true,
 		},
-		fistSelected: {
+		firstSelected: {
 			type: Boolean,
 			default: () => false,
 		},
