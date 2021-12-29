@@ -29,4 +29,4 @@ export const CustomPerPage = () => ({
 Primary.storyName = 'Básico';
 Secondary.storyName = 'Sem limite por páginas';
 Disabled.storyName = 'Desabilitado';
-CustomPerPage.storyName = 'Lista de registrois por página customizada';
+CustomPerPage.storyName = 'Lista de registros por página customizada';

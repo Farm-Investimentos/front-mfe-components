@@ -5,4 +5,37 @@ export default {
 	component: DataTableHeader,
 };
 
+export const Primary = () => ({
+	components: { DataTableHeader },
+	data() {
+		return {
+			headers: [
+				{
+					text: 'Grupo',
+					sortable: true,
+					value: 'name',
+					align: 'left',
+				},
+				{
+					text: 'Aprovado',
+					sortable: true,
+					value: 'approvedAmount',
+					align: 'center',
+					width: 160,
+				},
+				{
+					text: 'Disponível',
+					sortable: false,
+					value: 'availableAmount',
+					align: 'center',
+					width: 160,
+				},
+			],
+			sortClick: [],
+			fistSelected: false,
+		};
+	},
+	template: `<DataTableHeader :headers="headers" :sortClick="sortClick" :firstSelected="firstSelected" />`,
+});
+
 Primary.storyName = 'Básico';
