@@ -32,7 +32,7 @@ export const Primary = () => ({
 				},
 			],
 			sortClick: [],
-			fistSelected: false,
+			firstSelected: false,
 		};
 	},
 	template: `<DataTableHeader :headers="headers" :sortClick="sortClick" :firstSelected="firstSelected" />`,
