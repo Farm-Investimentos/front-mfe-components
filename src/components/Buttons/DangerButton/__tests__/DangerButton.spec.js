@@ -19,7 +19,7 @@ describe('DangerButton component', () => {
 			wrapper.setProps({
 				icon: true,
 			});
-			expect(component.iconPath).toEqual('mdi-trash-can');
+			expect(component.iconPath).toEqual('mdi-trash-can-outline');
 		});
 
 		it('Should return custom icon', async () => {

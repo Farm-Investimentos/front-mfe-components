@@ -1,5 +1,6 @@
 import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 import DataTablePaginator from './components/DataTablePaginator';
+import DataTableHeader from './components/DataTableHeader';
 import AlertReload from './components/AlertReload';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
@@ -20,6 +21,7 @@ import DefaultButton from './components/Buttons/DefaultButton/DefaultButton.vue'
 export {
 	DataTableEmptyWrapper,
 	DataTablePaginator,
+	DataTableHeader,
 	MainFilter,
 	Loader,
 	FilePicker,
