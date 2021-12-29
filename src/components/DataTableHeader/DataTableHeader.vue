@@ -90,7 +90,7 @@ export default Vue.extend({
 		},
 		checkFistSelected(index) {
 			if (index === 0) {
-				return this.fistSelected;
+				return this.firstSelected;
 			}
 			return false;
 		},
