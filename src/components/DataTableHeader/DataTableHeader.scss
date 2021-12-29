@@ -20,9 +20,3 @@ th.sortable:not(.active) {
 		}
 	}
 }
-
-@media screen and (max-width: 600px) {
-	thead {
-		display: none;
-	}
-}
