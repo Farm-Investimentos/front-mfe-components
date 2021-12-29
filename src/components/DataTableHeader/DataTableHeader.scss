@@ -1,0 +1,22 @@
+.header-text {
+	position: relative;
+	i {
+		position: absolute;
+		right: -20px;
+		top: -1px;
+	}
+
+	.v-icon {
+		&.v-icon--asc {
+			transform: rotateX(180deg);
+		}
+	}
+}
+
+th.sortable:not(.active) {
+	&:hover {
+		.v-icon {
+			opacity: 0.5 !important;
+		}
+	}
+}
