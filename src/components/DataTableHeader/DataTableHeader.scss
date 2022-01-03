@@ -13,10 +13,13 @@
 	}
 }
 
-th.sortable:not(.active) {
-	&:hover {
-		.v-icon {
-			opacity: 0.5 !important;
+th.sortable {
+	cursor: pointer;
+	&:not(.active) {
+		&:hover {
+			.v-icon {
+				opacity: 0.5 !important;
+			}
 		}
 	}
 }
