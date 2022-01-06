@@ -4,6 +4,7 @@
 		{{ title }}
 
 		<v-icon
+			v-if="hasCloseIcon"
 			role="button"
 			title="Fechar"
 			class="dialog-header__close-icon"
@@ -35,6 +36,14 @@ export default {
 		iconTitle: {
 			type: String,
 			default: null,
+			required: false,
+		},
+		/**
+		 * Ícone - se possui o ícone de fechar
+		 */
+		hasCloseIcon: {
+			type: Boolean,
+			default: true,
 			required: false,
 		},
 	},

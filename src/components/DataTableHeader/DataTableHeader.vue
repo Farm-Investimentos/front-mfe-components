@@ -44,17 +44,33 @@ export default Vue.extend({
 		VIcon,
 	},
 	props: {
+		/**
+		 * Cabeçalho
+		 */
 		headers: {
 			type: Array,
 			require: true,
 		},
+		/**
+		 * Array para controle da exibição da ordenação
+		 */
 		sortClick: {
 			type: Array,
 			require: true,
 		},
+		/**
+		 * Começar selecionado
+		 */
 		firstSelected: {
 			type: Boolean,
-			default: () => false,
+			default: false,
+		},
+		/**
+		 * Index do item do cabeçalho que deve começar selecionado
+		 */
+		selectedIndex: {
+			type: Number,
+			default: 0,
 		},
 	},
 	methods: {
@@ -88,9 +104,9 @@ export default Vue.extend({
 				this.sortClick[i].show = false;
 			}
 		},
-		checkFistSelected(index) {
-			if (index === 0) {
-				return this.fistSelected;
+		checkFirstSelected(index) {
+			if (index === this.selectedIndex) {
+				return this.firstSelected;
 			}
 			return false;
 		},
@@ -104,8 +120,8 @@ export default Vue.extend({
 				[this.headers[i].value]: false,
 				descending: 'ASC',
 				field: this.headers[i].value,
-				clicked: this.checkFistSelected(i),
-				show: this.checkFistSelected(i),
+				clicked: this.checkFirstSelected(i),
+				show: this.checkFirstSelected(i),
 			});
 		}
 	},
