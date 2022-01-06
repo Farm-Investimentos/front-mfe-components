@@ -16,7 +16,7 @@ import PromptUserToConfirm from './components/PromptUserToConfirm';
 import ModalPromptUser from './components/ModalPromptUser';
 
 import TableContextMenu from './components/TableContextMenu';
-import DefaultButton from './components/Buttons/DefaultButton/DefaultButton.vue';
+import DefaultButton from './components/Buttons/DefaultButton/DefaultButton';
 
 export {
 	DataTableEmptyWrapper,
@@ -46,3 +46,5 @@ export * from './components/Buttons/ExportButton/';
 export * from './components/Buttons/ImportButton/';
 export * from './components/Buttons/ToggleButton/';
 export * from './components/Buttons/RemoveButton/';
+export * from './components/Logos/ProductLogo/';
+export * from './components/Logos/OriginatorLogo/';
