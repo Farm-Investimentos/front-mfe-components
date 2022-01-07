@@ -15,14 +15,13 @@
 			<Loader size="small" />
 		</div>
 		<div class="card-context-loding-or-error" v-if="isError">
-			<AlertReload label="Ocorreu um erro" @onClick="$emit('onLoad')" />
+			<AlertReload :label="errorLabel" @onClick="$emit('onLoad')" />
 		</div>
 	</div>
 </template>
 
 <script>
 import Vue from 'vue';
-
 import { Loader, AlertReload, IconBox } from '../../main.js';
 
 export default Vue.extend({
@@ -33,25 +32,48 @@ export default Vue.extend({
 		Loader,
 	},
 	props: {
+		/**
+		 * Title
+		 */
 		title: {
 			type: String,
 			require: true,
 		},
+		/**
+		 * Set bold text
+		 */
 		bold: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Icon (from Material Icons)
+		 * Example: mdi-chart-bar
+		 */
 		icon: {
 			type: String,
 			require: true,
 		},
+		/**
+		 * Show loader
+		 */
 		isLoading: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show error alert
+		 */
 		isError: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Label to be shown in error alert
+		 */
+		errorLabel: {
+			type: String,
+			default: 'Ocorreu um erro',
 		},
 	},
 
