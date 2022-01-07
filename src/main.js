@@ -16,6 +16,9 @@ import PromptUserToConfirm from './components/PromptUserToConfirm';
 import ModalPromptUser from './components/ModalPromptUser';
 
 import TableContextMenu from './components/TableContextMenu';
+import IconBox from './components/IconBox';
+import CardContext from './components/CardContext';
+
 import DefaultButton from './components/Buttons/DefaultButton/DefaultButton';
 
 export {
@@ -37,6 +40,8 @@ export {
 	TableContextMenu,
 	ModalPromptUser,
 	DefaultButton,
+	IconBox,
+	CardContext,
 };
 
 export * from './components/Buttons/DefaultButton/';
