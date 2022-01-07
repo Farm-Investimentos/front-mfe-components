@@ -7,17 +7,17 @@
 				v-bind:class="[
 					item.sortable ? 'sortable' : '',
 					sortClick[$index].clicked ? 'active' : '',
-					item.sortable && sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC',
+					item.sortable ? (sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC') : '',
 				]"
 				v-bind:style="{
-					textAlign: item.align,
+					textAlign: item.align ? item.align : '',
 					width: thWidth(item),
 				}"
 				@click="item.sortable ? clickSort(item.value, $index) : ''"
 				@mouseover="changeShow($index)"
 				@mouseout="changeHidden($index)"
 			>
-				<span class="header-text">
+				<span class="header-text" v-if="!isTHDataTableSelect(item)">
 					{{ item.text }}
 
 					<v-icon
@@ -111,7 +111,13 @@ export default Vue.extend({
 			return false;
 		},
 		thWidth(item) {
+			if (this.isTHDataTableSelect(item)) {
+				return '64px';
+			}
 			return item.width ? item.width + 'px' : 'auto';
+		},
+		isTHDataTableSelect(item) {
+			return item.value === 'data-table-select';
 		},
 	},
 	created() {
