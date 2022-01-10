@@ -12,6 +12,7 @@
 				v-bind:style="{
 					textAlign: item.align ? item.align : '',
 					width: thWidth(item),
+					minWidth: thWidth(item),
 				}"
 				@click="item.sortable ? clickSort(item.value, $index) : ''"
 				@mouseover="changeShow($index)"
