@@ -31,6 +31,14 @@
 						mdi-sort-descending
 					</v-icon>
 				</span>
+
+				<span v-if="isTHDataTableSelect(item)">
+					<v-simple-checkbox
+						:indeterminate="headerProps.someItems && !headerProps.everyItem"
+						v-model="inputVal"
+						@input="selectAll"
+					></v-simple-checkbox>
+				</span>
 			</th>
 		</tr>
 	</thead>
@@ -39,10 +47,13 @@
 <script>
 import Vue from 'vue';
 import VIcon from 'vuetify/lib/components/VIcon';
+import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
+
 export default Vue.extend({
 	name: 'farm-datatable-header',
 	components: {
 		VIcon,
+		VSimpleCheckbox,
 	},
 	props: {
 		/**
@@ -72,6 +83,28 @@ export default Vue.extend({
 		selectedIndex: {
 			type: Number,
 			default: 0,
+		},
+		/**
+		 * v-model for data-table-select
+		 */
+		value: {
+			required: true,
+		},
+		/**
+		 * Original header props
+		 */
+		headerProps: {
+			type: Object,
+		},
+	},
+	computed: {
+		inputVal: {
+			get() {
+				return this.value;
+			},
+			set(val) {
+				this.$emit('input', val);
+			},
 		},
 	},
 	methods: {
@@ -119,6 +152,10 @@ export default Vue.extend({
 		},
 		isTHDataTableSelect(item) {
 			return item.value === 'data-table-select';
+		},
+		selectAll(value) {
+			this.$emit('toggleSelectAll', value);
+			this.inputVal = value;
 		},
 	},
 	created() {
