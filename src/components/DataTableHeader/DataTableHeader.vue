@@ -1,4 +1,4 @@
-<template>
+<template #header="{ props, on }">
 	<thead>
 		<tr>
 			<th
@@ -29,6 +29,14 @@
 					>
 						mdi-sort-descending
 					</v-icon>
+				</span>
+
+				<span v-if="isTHDataTableSelect(item)">
+					<v-simple-checkbox
+						:v-model="item"
+						:indeterminate="item.isSelected && !item"
+						:@input="on['toggle-select-all']"
+					></v-simple-checkbox>
 				</span>
 			</th>
 		</tr>
