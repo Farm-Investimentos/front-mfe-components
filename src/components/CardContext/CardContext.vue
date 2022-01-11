@@ -1,5 +1,5 @@
 <template>
-	<div class="card-context">
+	<div :class="isHeightFull">
 		<div class="card-context-header" v-if="isSuccess">
 			<IconBox :icon="icon" />
 			<div class="card-context-content">
@@ -12,7 +12,7 @@
 			<slot></slot>
 		</div>
 		<div class="card-context-loding-or-error" v-if="isLoading">
-			<Loader size="small" />
+			<Loader :size="isLargeLoading" />
 		</div>
 		<div class="card-context-loding-or-error" v-if="isError">
 			<AlertReload :label="errorLabel" @onClick="$emit('onLoad')" />
@@ -61,6 +61,10 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		largeLoading: {
+			type: Boolean,
+			default: false,
+		},
 		/**
 		 * Show error alert
 		 */
@@ -75,8 +79,11 @@ export default Vue.extend({
 			type: String,
 			default: 'Ocorreu um erro',
 		},
+		full: {
+			type: Boolean,
+			default: false,
+		},
 	},
-
 	computed: {
 		isBold() {
 			if (this.bold) {
@@ -84,8 +91,20 @@ export default Vue.extend({
 			}
 			return 'card-context-title';
 		},
+		isHeightFull() {
+			if (this.full) {
+				return 'card-context height-full';
+			}
+			return 'card-context';
+		},
 		isSuccess() {
 			return !this.isLoading && !this.isError;
+		},
+		isLargeLoading() {
+			if (this.largeLoading) {
+				return 'normal';
+			}
+			return 'small';
 		},
 	},
 });
