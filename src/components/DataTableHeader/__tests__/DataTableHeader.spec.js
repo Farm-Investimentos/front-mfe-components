@@ -25,6 +25,7 @@ describe('DataTableHeader component', () => {
 				],
 				selectedIndex: 0,
 				firstSelected: true,
+				value: false,
 			},
 		});
 		component = wrapper.vm;
@@ -84,6 +85,11 @@ describe('DataTableHeader component', () => {
 			component.changeHidden(1);
 			await new Promise(r => setTimeout(r, 30));
 			expect(component.sortClick[1].show).toBeFalsy();
+		});
+
+		it('Should emit new value when selectAll checkbox is clicked', () => {
+			component.selectAll(true);
+			expect(wrapper.emitted().toggleSelectAll).toBeDefined();
 		});
 	});
 });
