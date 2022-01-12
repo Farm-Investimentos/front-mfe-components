@@ -32,7 +32,7 @@
 					</v-icon>
 				</span>
 
-				<span v-if="isTHDataTableSelect(item)">
+				<span v-if="isTHDataTableSelect(item) && showCheckbox">
 					<v-simple-checkbox
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
 						v-model="inputVal"
@@ -95,6 +95,12 @@ export default Vue.extend({
 		 */
 		headerProps: {
 			type: Object,
+		},
+		/**
+		 * Hide/show checkbox
+		 */
+		showCheckbox: {
+			default: true,
 		},
 	},
 	computed: {
