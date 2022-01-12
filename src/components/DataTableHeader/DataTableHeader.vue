@@ -87,9 +87,7 @@ export default Vue.extend({
 		/**
 		 * v-model for data-table-select
 		 */
-		value: {
-			required: true,
-		},
+		value: {},
 		/**
 		 * Original header props
 		 */
@@ -100,7 +98,7 @@ export default Vue.extend({
 	computed: {
 		inputVal: {
 			get() {
-				return this.value;
+				return this.value ? this.value : '';
 			},
 			set(val) {
 				this.$emit('input', val);
