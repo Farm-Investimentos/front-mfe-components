@@ -27,6 +27,8 @@
 			no-title
 			scrollable
 			range
+			:max="max"
+			:min="min"
 			color="secondary"
 			locale="pt-br"
 		>
@@ -72,6 +74,20 @@ export default {
 			default: () => {
 				return [];
 			},
+		},
+		/**
+		 * Variável usada para definir a data máxima (yyyy-mm-dd)
+		 */
+		max: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Variável usada para definir a data minima (yyyy-mm-dd)
+		 */
+		min: {
+			type: String,
+			default: null,
 		},
 	},
 	data() {
