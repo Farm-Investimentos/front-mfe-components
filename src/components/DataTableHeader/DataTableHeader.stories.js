@@ -21,7 +21,7 @@ export const Primary = () => ({
 					sortable: true,
 					value: 'approvedAmount',
 					align: 'center',
-					width: 160,
+					width: 320,
 				},
 				{
 					text: 'Disponível',

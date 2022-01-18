@@ -7,17 +7,18 @@
 				v-bind:class="[
 					item.sortable ? 'sortable' : '',
 					sortClick[$index].clicked ? 'active' : '',
-					item.sortable && sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC',
+					item.sortable ? (sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC') : '',
 				]"
 				v-bind:style="{
-					textAlign: item.align,
+					textAlign: item.align ? item.align : '',
 					width: thWidth(item),
+					minWidth: thWidth(item),
 				}"
 				@click="item.sortable ? clickSort(item.value, $index) : ''"
 				@mouseover="changeShow($index)"
 				@mouseout="changeHidden($index)"
 			>
-				<span class="header-text">
+				<span class="header-text" v-if="!isTHDataTableSelect(item)">
 					{{ item.text }}
 
 					<v-icon
@@ -30,6 +31,14 @@
 						mdi-sort-descending
 					</v-icon>
 				</span>
+
+				<span v-if="isTHDataTableSelect(item) && showCheckbox">
+					<v-simple-checkbox
+						:indeterminate="headerProps.someItems && !headerProps.everyItem"
+						v-model="inputVal"
+						@input="selectAll"
+					></v-simple-checkbox>
+				</span>
 			</th>
 		</tr>
 	</thead>
@@ -38,10 +47,13 @@
 <script>
 import Vue from 'vue';
 import VIcon from 'vuetify/lib/components/VIcon';
+import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
+
 export default Vue.extend({
 	name: 'farm-datatable-header',
 	components: {
 		VIcon,
+		VSimpleCheckbox,
 	},
 	props: {
 		/**
@@ -71,6 +83,34 @@ export default Vue.extend({
 		selectedIndex: {
 			type: Number,
 			default: 0,
+		},
+		/**
+		 * v-model for data-table-select
+		 */
+		value: {
+			default: false,
+		},
+		/**
+		 * Original header props
+		 */
+		headerProps: {
+			type: Object,
+		},
+		/**
+		 * Hide/show checkbox
+		 */
+		showCheckbox: {
+			default: true,
+		},
+	},
+	computed: {
+		inputVal: {
+			get() {
+				return this.value;
+			},
+			set(val) {
+				this.$emit('input', val);
+			},
 		},
 	},
 	methods: {
@@ -111,7 +151,17 @@ export default Vue.extend({
 			return false;
 		},
 		thWidth(item) {
+			if (this.isTHDataTableSelect(item)) {
+				return '64px';
+			}
 			return item.width ? item.width + 'px' : 'auto';
+		},
+		isTHDataTableSelect(item) {
+			return item.value === 'data-table-select';
+		},
+		selectAll(value) {
+			this.$emit('toggleSelectAll', value);
+			this.inputVal = value;
 		},
 	},
 	created() {

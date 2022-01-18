@@ -2,7 +2,7 @@
 	<v-menu>
 		<template v-slot:activator="{ on, attrs }">
 			<v-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
-				<v-icon class="ml-3">mdi-dots-horizontal</v-icon>
+				<v-icon>mdi-dots-horizontal</v-icon>
 			</v-btn>
 		</template>
 
@@ -11,7 +11,7 @@
 				v-for="item in items"
 				:key="item.label"
 				:title="item.label"
-				@click="$emit(item.handler)"
+				@click="onClick(item.handler)"
 			>
 				<v-list-item-content>
 					<v-list-item-title>
@@ -29,13 +29,16 @@
 	</v-menu>
 </template>
 <script>
+import Vue from 'vue';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VIcon } from 'vuetify/lib/components/VIcon';
 import { VList } from 'vuetify/lib/components/VList';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
-export default {
+
+export default Vue.extend({
+	name: 'farm-context-menu',
 	components: {
 		VBtn,
 		VIcon,
@@ -51,5 +54,12 @@ export default {
 			required: true,
 		},
 	},
-};
+	methods: {
+		onClick(handler) {
+			if (handler !== undefined) {
+				this.$emit(handler);
+			}
+		},
+	},
+});
 </script>

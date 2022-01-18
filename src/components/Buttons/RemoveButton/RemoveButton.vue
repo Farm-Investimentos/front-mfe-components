@@ -23,7 +23,7 @@ export default Vue.extend({
 		 */
 		label: {
 			type: String,
-			default: 'Importar',
+			default: 'Remover',
 		},
 		/**
 		 * Desabilita o botão
