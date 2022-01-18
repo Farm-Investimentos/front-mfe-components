@@ -53,3 +53,4 @@ export * from './components/Buttons/ToggleButton/';
 export * from './components/Buttons/RemoveButton/';
 export * from './components/Logos/ProductLogo/';
 export * from './components/Logos/OriginatorLogo/';
+export * from './components/ResetTableRowSelection/';

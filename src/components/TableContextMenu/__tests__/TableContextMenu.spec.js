@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import TableContextMenu from '../TableContextMenu';
-import VListItem from 'vuetify/lib/components/VList/VListItem';
 const items = [{ label: 'Remover', icon: { color: 'error', type: 'delete' }, handler: 'test' }];
 
 describe('TableContextMenu component', () => {
