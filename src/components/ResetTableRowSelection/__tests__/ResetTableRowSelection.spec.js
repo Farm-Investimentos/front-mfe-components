@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import ResetTableRowSelection from '../ResetTableRowSelection';
-const items = [1, 2, 3];
 
 describe('ResetTableRowSelection component', () => {
 	let wrapper;
@@ -9,7 +8,7 @@ describe('ResetTableRowSelection component', () => {
 	beforeEach(() => {
 		wrapper = shallowMount(ResetTableRowSelection, {
 			propsData: {
-				value: items,
+				length: 2,
 			},
 		});
 		component = wrapper.vm;
@@ -28,7 +27,7 @@ describe('ResetTableRowSelection component', () => {
 	describe('methods', () => {
 		it('Should reset', () => {
 			component.reset();
-			expect(wrapper.emitted().input).toBeDefined();
+			expect(wrapper.emitted().onReset).toBeDefined();
 		});
 	});
 });
