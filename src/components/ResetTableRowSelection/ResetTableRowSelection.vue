@@ -12,7 +12,7 @@ import Vue from 'vue';
 import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 export default Vue.extend({
-	// name: 'farm-tablerowselection',
+	name: 'farm-tablerowselection',
 	components: {
 		VBtn,
 		VIcon,
