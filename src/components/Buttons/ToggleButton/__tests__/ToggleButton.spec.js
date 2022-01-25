@@ -11,4 +11,11 @@ describe('ToggleButton component', () => {
 	test('Created hook', () => {
 		expect(wrapper).toBeDefined();
 	});
+
+	describe('Methods', () => {
+		it('Should handle click', () => {
+			wrapper.vm.onClick();
+			expect(wrapper.vm.open).toBeTruthy();
+		});
+	});
 });
