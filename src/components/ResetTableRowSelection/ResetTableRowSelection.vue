@@ -3,7 +3,7 @@
 		Total de linhas selecionadas: {{ length }}
 		<v-btn color="error" @click="reset" small dense class="ml-3" v-if="length > 0">
 			<v-icon small> mdi-trash-can </v-icon>
-			Limpar
+			Desmarcar
 		</v-btn>
 	</div>
 </template>
