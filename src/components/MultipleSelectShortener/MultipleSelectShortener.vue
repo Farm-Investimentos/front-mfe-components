@@ -14,28 +14,28 @@ import Vue from 'vue';
 export default Vue.extend({
 	name: 'farm-multiple-select-shortener',
 	props: {
-        /**
-         * Key used to get value from item
-         */
+		/**
+		 * Key used to get value from item
+		 */
 		labelKey: {
 			type: String,
 			default: 'label',
 		},
-        /**
-         * Item from v-select
-         */
+		/**
+		 * Item from v-select
+		 */
 		item: {
 			type: Object,
 		},
-        /**
-         * Index from slot
-         */
+		/**
+		 * Index from slot
+		 */
 		index: {
 			type: Number,
 		},
-        /**
-         * Items count
-         */
+		/**
+		 * Items count
+		 */
 		itemsLength: {
 			type: Number,
 		},
