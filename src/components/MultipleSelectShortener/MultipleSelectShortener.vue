@@ -43,6 +43,6 @@ export default Vue.extend({
 
 <style scoped>
 .label {
-	font-size: 0.825rem;
+	font-size: 0.75rem;
 }
 </style>
