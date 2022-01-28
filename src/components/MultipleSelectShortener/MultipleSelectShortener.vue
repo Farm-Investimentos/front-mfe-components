@@ -1,11 +1,9 @@
 <template>
 	<div class="align-center">
-		<div>
-			<span class="mr-1" v-if="index === 0">{{ item[labelKey] }}</span>
-			<span v-if="index === 1">
-				(+{{ itemsLength - 1 }} {{ itemsLength > 2 ? 'outros' : 'outro' }} )
-			</span>
-		</div>
+		<span class="mr-1 label" v-if="index === 0">{{ item[labelKey] }}</span>
+		<span class="label" v-if="index === 1">
+			(+{{ itemsLength - 1 }} {{ itemsLength > 2 ? 'outros' : 'outro' }} )
+		</span>
 	</div>
 </template>
 
@@ -42,3 +40,9 @@ export default Vue.extend({
 	},
 });
 </script>
+
+<style scoped>
+.label {
+	font-size: 0.75rem;
+}
+</style>
