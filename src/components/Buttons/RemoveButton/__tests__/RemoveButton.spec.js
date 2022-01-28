@@ -13,4 +13,11 @@ describe('RemoveButton component', () => {
 	test('Created hook', () => {
 		expect(wrapper).toBeDefined();
 	});
+
+	describe('Methods', () => {
+		it('Should emit event', () => {
+			component.onClick();
+			expect(wrapper.emitted().onClick).toBeDefined();
+		});
+	});
 });

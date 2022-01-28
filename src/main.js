@@ -54,3 +54,4 @@ export * from './components/Buttons/RemoveButton/';
 export * from './components/Logos/ProductLogo/';
 export * from './components/Logos/OriginatorLogo/';
 export * from './components/ResetTableRowSelection/';
+export * from './components/MultipleSelectShortener/';
