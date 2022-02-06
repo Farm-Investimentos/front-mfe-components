@@ -3,14 +3,16 @@ import DefaultTextField from '../DefaultTextField';
 
 describe('DefaultTextField component', () => {
 	let wrapper;
+	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(DefaultTextField, {
 			propsData: {
-				item: {},
+				item: { key: 'key' },
 				value: false,
 			},
 		});
+		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
@@ -20,6 +22,12 @@ describe('DefaultTextField component', () => {
 	describe('mount component', () => {
 		it('renders correctly', () => {
 			expect(wrapper.element).toMatchSnapshot();
+		});
+	});
+
+	describe('Computed properties', () => {
+		it('Should have inputId', () => {
+			expect(component.inputId).toEqual('form-key');
 		});
 	});
 });
