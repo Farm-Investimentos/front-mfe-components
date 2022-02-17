@@ -1,0 +1,26 @@
+.status-chip--onboarding {
+	font-weight: bold;
+	.status-chip-yellow {
+		color: black;
+	}
+	&.status-chip.status-chip-accent {
+		color: var(--v-accent-base) !important;
+		border: 2px solid var(--v-accent-base) !important;
+		background-color: white !important;
+	}
+	&.status-chip.status-chip-yellow {
+		color: black !important;
+		border: 2px solid var(--v-yellow-lighten1) !important;
+		background-color: white !important;
+	}
+	&.status-chip.status-chip-error {
+		color: var(--v-error-base) !important;
+		border: 2px solid var(--v-error-base) !important;
+		background-color: white !important;
+	}
+	&.status-chip.status-chip-success {
+		color: var(--v-secondary-base) !important;
+		border: 2px solid var(--v-success-base) !important;
+		background-color: white !important;
+	}
+}
