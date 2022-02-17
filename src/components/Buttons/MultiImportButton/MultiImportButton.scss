@@ -1,0 +1,17 @@
+.v-btn.v-btn--import {
+	background: var(--v-extra-lighten2);
+	color: var(--v-gray-lighten5);
+	.v-icon {
+		margin-right: 1rem;
+	}
+}
+
+.v-list-item {
+	border-bottom: 1px solid var(--v-gray-lighten2);
+	&:last-child {
+		border-bottom: none;
+	}
+}
+.v-list-item--link {
+	font-size: 0.875rem;
+}
