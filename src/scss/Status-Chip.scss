@@ -24,7 +24,11 @@ $statusList: 'primary', 'secondary', 'accent', 'error', 'info', 'success', 'warn
     }
     &.status-chip-yellow {
         background-color: var(--v-yellow-base) !important;
-        color: var(--v-gray-lighten5);
+        color: var(--v-gray-lighten3) !important;
     }
 
+    &.status-chip--fullwidth {
+        width: 100%;
+        justify-content: center;
+    }
 }
