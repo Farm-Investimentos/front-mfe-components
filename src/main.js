@@ -57,3 +57,4 @@ export * from './components/Logos/OriginatorLogo/';
 export * from './components/ResetTableRowSelection/';
 export * from './components/MultipleSelectShortener/';
 export * from './components/SelectModalOptions/';
+export * from './components/ChipInviteStatus/';
