@@ -1,7 +1,7 @@
 import MultiImport from './MultiImportButton.vue';
 
 export default {
-	title: 'Example/Buttons/MultiImport',
+	title: 'API/Buttons/MultiImport',
 	component: MultiImport,
 };
 

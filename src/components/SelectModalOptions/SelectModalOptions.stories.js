@@ -1,7 +1,7 @@
 import SelectModalOptions from './SelectModalOptions';
 
 export default {
-	title: 'Example/SelectModalOptions',
+	title: 'API/SelectModalOptions',
 	component: SelectModalOptions,
 };
 

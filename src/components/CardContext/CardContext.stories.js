@@ -1,7 +1,7 @@
 import CardContext from './CardContext.vue';
 
 export default {
-	title: 'Example/CardContext',
+	title: 'API/CardContext',
 	component: CardContext,
 };
 

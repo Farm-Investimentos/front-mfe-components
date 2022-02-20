@@ -1,7 +1,7 @@
 import DialogHeader from './DialogHeader.vue';
 
 export default {
-    title: 'Example/Dialog/DialogHeader',
+    title: 'API/Dialog/DialogHeader',
     component: DialogHeader,
 };
 

@@ -1,7 +1,7 @@
 import AlertReload from './AlertReload.vue';
 
 export default {
-    title: 'Example/AlertReload',
+    title: 'API/AlertReload',
     component: AlertReload,
 };
 

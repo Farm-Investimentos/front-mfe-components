@@ -1,7 +1,7 @@
 import IconBox from './IconBox.vue';
 
 export default {
-	title: 'Example/IconBox',
+	title: 'API/IconBox',
 	component: IconBox,
 };
 

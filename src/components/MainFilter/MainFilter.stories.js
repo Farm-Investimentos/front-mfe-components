@@ -1,7 +1,7 @@
 import MainFilter from './MainFilter.vue';
 
 export default {
-	title: 'Example/MainFilter',
+	title: 'API/MainFilter',
 	component: MainFilter,
 };
 
