@@ -1,7 +1,7 @@
 import DataTablePaginator from './DataTablePaginator.vue';
 
 export default {
-	title: 'Example/Table/DataTablePaginator',
+	title: 'API/Table/DataTablePaginator',
 	component: DataTablePaginator,
 };
 

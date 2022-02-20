@@ -1,7 +1,7 @@
 import ProductLogo from './ProductLogo.vue';
 
 export default {
-	title: 'Example/Logos/ProductLogo',
+	title: 'API/Logos/ProductLogo',
 	component: ProductLogo,
 };
 

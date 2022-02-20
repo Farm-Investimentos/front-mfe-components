@@ -1,7 +1,7 @@
 import FilePicker from './FilePicker.vue';
 
 export default {
-    title: 'Example/FilePicker',
+    title: 'API/FilePicker',
     component: FilePicker,
 };
 

@@ -1,7 +1,7 @@
 import Loader from './Loader.vue';
 
 export default {
-    title: 'Example/Loader',
+    title: 'API/Loader',
     component: Loader,
 };
 

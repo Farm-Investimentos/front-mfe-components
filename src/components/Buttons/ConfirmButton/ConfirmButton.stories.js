@@ -1,7 +1,7 @@
 import ConfirmButton from './ConfirmButton.vue';
 
 export default {
-	title: 'Example/Buttons/Confirm',
+	title: 'API/Buttons/Confirm',
 	component: ConfirmButton,
 };
 

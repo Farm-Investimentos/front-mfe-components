@@ -1,7 +1,7 @@
 import RangeDatePicker from './RangeDatePicker';
 
 export default {
-	title: 'Example/Form/RangeDatePicker',
+	title: 'API/Form/RangeDatePicker',
 	component: RangeDatePicker,
 };
 

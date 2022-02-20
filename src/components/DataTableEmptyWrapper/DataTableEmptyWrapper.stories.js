@@ -1,7 +1,7 @@
 import DataTableEmptyWrapper from './DataTableEmptyWrapper.vue';
 
 export default {
-    title: 'Example/Table/DataTableEmptyWrapper',
+    title: 'API/Table/DataTableEmptyWrapper',
     component: DataTableEmptyWrapper,
 };
 

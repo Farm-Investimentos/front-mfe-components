@@ -1,7 +1,7 @@
 import ModalPromptUser from './ModalPromptUser.vue';
 
 export default {
-	title: 'Example/ModalPromptUser',
+	title: 'API/ModalPromptUser',
 	component: ModalPromptUser,
 };
 
