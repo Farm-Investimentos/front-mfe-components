@@ -1,7 +1,7 @@
 import DataTableHeader from './DataTableHeader.vue';
 
 export default {
-	title: 'Example/Table/DataTableHeader',
+	title: 'API/Table/DataTableHeader',
 	component: DataTableHeader,
 };
 

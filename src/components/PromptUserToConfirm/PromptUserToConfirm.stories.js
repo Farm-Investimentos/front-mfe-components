@@ -1,7 +1,7 @@
 import PromptUserToConfirm from './PromptUserToConfirm';
 
 export default {
-	title: 'Example/PromptUserToConfirm',
+	title: 'API/PromptUserToConfirm',
 	component: PromptUserToConfirm,
 };
 

@@ -1,7 +1,7 @@
 import MultipleSelectShortener from './MultipleSelectShortener';
 
 export default {
-	title: 'Example/MultipleSelectShortener',
+	title: 'API/MultipleSelectShortener',
 	component: MultipleSelectShortener,
 };
 

@@ -1,7 +1,7 @@
 import ChipInviteStatus from './ChipInviteStatus.vue';
 
 export default {
-	title: 'Example/Onboarding/ChipInviteStatus',
+	title: 'API/Onboarding/ChipInviteStatus',
 	component: ChipInviteStatus,
 };
 

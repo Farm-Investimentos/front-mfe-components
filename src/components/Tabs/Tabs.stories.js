@@ -1,7 +1,7 @@
 import Tabs from './Tabs.vue';
 
 export default {
-    title: 'Example/Tabs',
+    title: 'API/Tabs',
     component: Tabs,
 };
 

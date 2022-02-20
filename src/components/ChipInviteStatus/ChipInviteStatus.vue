@@ -26,7 +26,9 @@ import VChip from 'vuetify/lib/components/VChip/';
 
 export default Vue.extend({
 	name: 'farm-chip-invite',
-	components: VChip,
+	components: {
+		VChip,
+	},
 	props: {
 		/**
 		 * Invite status

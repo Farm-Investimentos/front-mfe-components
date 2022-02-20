@@ -1,7 +1,7 @@
 import OriginatorLogo from './OriginatorLogo.vue';
 
 export default {
-	title: 'Example/Logos/OriginatorLogo',
+	title: 'API/Logos/OriginatorLogo',
 	component: OriginatorLogo,
 };
 
