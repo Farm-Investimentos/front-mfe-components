@@ -26,7 +26,27 @@ export const CustomPerPage = () => ({
 		'<DataTablePaginator :perPageOptions="[1, 2, 4, 12, 27]" :totalPages="19" :page="1" />',
 });
 
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Sem limite por páginas';
-Disabled.storyName = 'Desabilitado';
-CustomPerPage.storyName = 'Lista de registros por página customizada';
+const parameters = {
+	design: {
+		type: 'figma',
+		url:
+			'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1503%3A921',
+	},
+};
+
+Primary.story = {
+	name: 'Básico',
+	parameters,
+};
+Secondary.story = {
+	name: 'Sem limite por páginas',
+	parameters,
+};
+Disabled.story = {
+	name: 'Desabilitado',
+	parameters,
+};
+CustomPerPage.story = {
+	name: 'Lista de registros por página customizada',
+	parameters,
+};
