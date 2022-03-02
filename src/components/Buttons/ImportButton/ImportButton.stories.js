@@ -1,7 +1,7 @@
 import ImportButton from './ImportButton.vue';
 
 export default {
-    title: 'Example/Buttons/Import',
+    title: 'API/Buttons/Import',
     component: ImportButton,
 };
 

@@ -14,12 +14,24 @@
 </template>
 <script>
 import Vue from 'vue';
+const StatusLabel = {
+	10: 'CONVIDAR',
+	11: 'CONVIDADO',
+	12: 'INCOMPLETO',
+	13: 'CONCLUÍDO',
+	14: 'FALHA/ERRO',
+	15: 'EM ANÁLISE',
+	16: 'EM ANDAMENTO',
+};
+
 const StatusColor = {
-	CONVIDAR: 'secondary',
-	CONVIDADO: 'yellow',
-	INCOMPLETO: 'yellow',
-	CONCLUIDO: 'success',
-	'FALHA/ERRO': 'error',
+	10: 'secondary',
+	11: 'yellow',
+	12: 'yellow',
+	13: 'success',
+	14: 'error',
+	15: 'accent',
+	16: 'primary',
 };
 
 import VChip from 'vuetify/lib/components/VChip/';
@@ -34,8 +46,8 @@ export default Vue.extend({
 		 * Invite status
 		 */
 		status: {
-			type: String,
-			default: '',
+			type: Number,
+			default: 10,
 		},
 		/**
 		 * Full width (from parent)
@@ -47,13 +59,13 @@ export default Vue.extend({
 	},
 	computed: {
 		textColor() {
-			return this.status === 'CONVIDAR' ? '' : StatusColor[this.status];
+			return this.status === 10 || this.status === 16 ? '' : StatusColor[this.status];
 		},
 		color() {
 			return !this.status ? '' : StatusColor[this.status];
 		},
 		label() {
-			return this.status;
+			return StatusLabel[this.status];
 		},
 	},
 });

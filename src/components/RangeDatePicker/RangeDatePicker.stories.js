@@ -1,8 +1,10 @@
+import { withDesign } from 'storybook-addon-designs';
 import RangeDatePicker from './RangeDatePicker';
 
 export default {
-	title: 'Example/Form/RangeDatePicker',
+	title: 'API/Form/RangeDatePicker',
 	component: RangeDatePicker,
+	decorators: [withDesign],
 };
 
 export const Primary = () => ({
@@ -20,6 +22,23 @@ export const MinMax = () => ({
 	template: `<RangeDatePicker inputId="input-custom-id" min="2022-01-17" max="2022-02-15" />`,
 });
 
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Data inicial';
-MinMax.storyName = 'Data Mínima e Máxima';
+const parameters = {
+	design: {
+		type: 'figma',
+		url:
+			'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1503%3A810',
+	},
+};
+
+Primary.story = {
+	name: 'Básico',
+	parameters
+};
+Secondary.story = {
+	name: 'Data Inicial',
+	parameters
+};
+MinMax.story = {
+	name: 'Data Mínima e Máxima',
+	parameters
+};

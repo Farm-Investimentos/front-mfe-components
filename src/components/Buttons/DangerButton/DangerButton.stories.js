@@ -1,7 +1,7 @@
 import DangerButton from './DangerButton.vue';
 
 export default {
-	title: 'Example/Buttons/DangerButton',
+	title: 'API/Buttons/DangerButton',
 	component: DangerButton,
 };
 

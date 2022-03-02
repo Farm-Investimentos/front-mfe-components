@@ -1,7 +1,7 @@
 import ResetTableRowSelection from './ResetTableRowSelection';
 
 export default {
-	title: 'Example/ResetTableRowSelection',
+	title: 'API/ResetTableRowSelection',
 	component: ResetTableRowSelection,
 };
 

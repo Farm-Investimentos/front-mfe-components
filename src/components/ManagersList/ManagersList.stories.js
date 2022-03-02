@@ -1,7 +1,7 @@
 import ManagersList from './ManagersList';
 
 export default {
-    title: 'Example/ManagersList',
+    title: 'API/ManagersList',
     component: ManagersList,
 };
 

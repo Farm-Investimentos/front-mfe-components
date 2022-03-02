@@ -1,7 +1,7 @@
 import TableContextMenu from './TableContextMenu';
 
 export default {
-	title: 'Example/TableContextMenu',
+	title: 'API/TableContextMenu',
 	component: TableContextMenu,
 };
 

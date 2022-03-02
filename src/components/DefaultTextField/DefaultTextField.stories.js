@@ -1,7 +1,7 @@
 import DefaultTextField from './DefaultTextField.vue';
 
 export default {
-	title: 'Example/Form/DefaultTextField',
+	title: 'API/Form/DefaultTextField',
 	component: DefaultTextField,
 };
 
