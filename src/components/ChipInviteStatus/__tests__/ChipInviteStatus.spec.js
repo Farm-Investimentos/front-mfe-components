@@ -7,7 +7,7 @@ describe('ChipInviteStatus component', () => {
 	beforeEach(() => {
 		wrapper = shallowMount(ChipInviteStatus, {
 			propsData: {
-				status: 'CONVIDAR',
+				status: 10,
 			},
 		});
 		component = wrapper.vm;
