@@ -28,7 +28,7 @@ Primary.story = {
 		design: {
 			type: 'figma',
 			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2293%3A9180',
+				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=3516%3A11516',
 		},
 	},
 };
@@ -39,7 +39,7 @@ Icons.story = {
 		design: {
 			type: 'figma',
 			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2293%3A9180',
+				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=3516%3A11516',
 		},
 	},
 };
@@ -50,7 +50,7 @@ Multi.story = {
 		design: {
 			type: 'figma',
 			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2293%3A9180',
+				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=3516%3A11516',
 		},
 	},
 };
