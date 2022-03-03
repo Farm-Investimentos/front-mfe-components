@@ -7,12 +7,12 @@ export default {
 
 export const Primary = () => ({
 	components: { PromptUserToConfirm },
-	template: '<PromptUserToConfirm />',
+	template: '<div style="max-width: 320px"><PromptUserToConfirm /></div>',
 });
 
 export const CustomTitle = () => ({
 	components: { PromptUserToConfirm },
-	template: '<PromptUserToConfirm title="Custom" /> ',
+	template: '<div style="max-width: 320px"><PromptUserToConfirm title="Custom" /></div>',
 });
 
 Primary.storyName = 'Básico';

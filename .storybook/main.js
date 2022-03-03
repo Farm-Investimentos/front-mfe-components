@@ -5,7 +5,7 @@ module.exports = {
 	addons: [
 		//'@storybook/addon-links',
 		//'@storybook/addon-essentials',
-        '@storybook/addon-docs',
+		'@storybook/addon-docs',
 		'@socheatsok78/storybook-addon-vuetify',
 		'storybook-addon-designs/register',
 	],
