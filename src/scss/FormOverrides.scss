@@ -3,11 +3,10 @@
     .v-col-fieldset-default {
         border: 0;
         label {
-            font-weight: 500;
+            font-weight: bold;
             display: block;
             margin-bottom: 0.5rem;
         }
-
     }
 
     &.v-input {
@@ -15,6 +14,7 @@
             .v-input__slot {
                 min-height: 36px !important;
                 height: 36px;
+                background: white;
                 fieldset {
                     border-color: var(--v-gray-lighten2);
                 }
@@ -37,13 +37,12 @@
                     border-width: 1px;
                 }
                 &:after {
-                    content: "\F0028";
+                    content: '\F0028';
                     position: absolute;
-                    font: normal normal normal 24px/1 "Material Design Icons";
+                    font: normal normal normal 24px/1 'Material Design Icons';
                     right: 6px;
                     top: 6px;
                 }
-                
             }
         }
     }
@@ -76,6 +75,15 @@
             color: var(--v-error-base);
         }
     }
+    .row.form__footer-buttons--right {
+        margin: 0;
+        margin-top: 1rem;
+        padding: 0;
+        justify-content: flex-end;
+        .v-btn {
+            margin-left: 1rem;
+        }
+    }
 }
 .v-form.v-form-importfile {
     > .row:first-child {
@@ -102,7 +110,6 @@
             input,
             label {
                 color: var(--v-primary-base);
-
                 font-size: 1rem !important;
             }
         }
@@ -113,4 +120,37 @@
 }
 .v-text-field.v-text-field--solo .v-input__control {
     min-height: 30px;
+}
+
+.theme--light.v-input--switch {
+    .v-input--switch__thumb {
+        color: #ffffff !important;
+    }
+    .v-input--switch__track.theme--light {
+        background: #f0643b;
+
+        &.secondary--text {
+            background-color: var(--v-secondary-base);
+        }
+    }
+    label {
+        font-size: 0.5rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .v-form {
+        .row.form__footer-buttons--right {
+            justify-content: unset;
+            .v-btn {
+                margin-left: 0;
+            }
+            .v-btn:not(:first-child) {
+                margin-top: 1rem;
+            }
+        }
+    }
 }

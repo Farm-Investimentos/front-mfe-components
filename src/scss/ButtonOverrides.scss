@@ -16,8 +16,14 @@
         border: 0;
     }
 
-    &.v-btn-rounded, &.v-btn--rounded {
+    &.v-btn-rounded {
         border-radius: 2rem;
+    }
+
+    &.v-btn--no-min-width {
+        min-width: 0 !important;
+        padding: 0.125rem 0.35rem !important;
+        height: auto !important;
     }
 }
 
