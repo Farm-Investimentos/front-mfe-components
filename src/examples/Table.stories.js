@@ -9,11 +9,30 @@ const headers = [
 		width: 80,
 		align: 'left',
 	},
+	{
+		text: 'Name',
+		sortable: false,
+		value: 'id',
+		width: 160,
+		align: 'left',
+	},
 ];
 
 export default {
 	title: 'Examples/Table',
 	decorators: [withDesign],
+	parameters: {
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1505%3A372',
+		},
+		viewMode: 'docs',
+		docs: {
+			description: {
+				component: `Data Table (inherit from Vuetify)`,
+			},
+		},
+	},
 };
 
 export const TableNoData = () => ({
@@ -26,8 +45,10 @@ export const TableNoData = () => ({
 		};
 	},
 	template: `<div>
+	
 	<v-data-table
         hide-default-footer
+		id="v-data-table--default"
 		:headers="headers"
 	>
     <template slot="no-data">
@@ -46,12 +67,17 @@ export const TableSampleData = () => ({
 	data() {
 		return {
 			headers,
-			items: [{ id: 1 }, { id: 2 }, { id: 3 }],
+			items: [
+				{ id: 1, name: 'name 1' },
+				{ id: 2, name: 'name 2' },
+				{ id: 3, name: 'name 3' },
+			],
 		};
 	},
 	template: `<div>
 	<v-data-table
         hide-default-footer
+		id="v-data-table--default"
 		:headers="headers"
         :items="items"
 	>
@@ -62,23 +88,8 @@ export const TableSampleData = () => ({
 
 TableNoData.story = {
 	name: 'No data',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2867%3A10594',
-		},
-	},
 };
 
 TableSampleData.story = {
 	name: 'With data',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2867%3A10594',
-		},
-	},
 };
-
