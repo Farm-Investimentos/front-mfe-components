@@ -3,6 +3,16 @@ import ConfirmButton from './ConfirmButton.vue';
 export default {
 	title: 'API/Buttons/Confirm',
 	component: ConfirmButton,
+	parameters: {
+		docs: {
+			description: {
+				component: `Confirm button<br />
+				selector: <em>farm-btn-confirm</em>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({

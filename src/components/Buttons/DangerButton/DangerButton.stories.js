@@ -3,6 +3,16 @@ import DangerButton from './DangerButton.vue';
 export default {
 	title: 'API/Buttons/DangerButton',
 	component: DangerButton,
+	parameters: {
+		docs: {
+			description: {
+				component: `Danger button<br />
+				selector: <em>farm-btn-fanger</em>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({

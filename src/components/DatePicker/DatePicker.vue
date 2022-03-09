@@ -49,6 +49,7 @@
 	</v-menu>
 </template>
 <script>
+import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
@@ -57,7 +58,8 @@ import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 /**
  * Componente de input com datepicker para data
  */
-export default {
+export default Vue.extend({
+	name: 'farm-input-datepicker',
 	components: {
 		VTextField,
 		VMenu,
@@ -136,5 +138,5 @@ export default {
 			},
 		},
 	},
-};
+});
 </script>

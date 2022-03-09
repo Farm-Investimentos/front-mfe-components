@@ -37,7 +37,6 @@ export const Password = () => ({
     `,
 });
 
-// Modal.storyName = 'Básico';
 Password.story = {
 	name: 'Básico',
 };

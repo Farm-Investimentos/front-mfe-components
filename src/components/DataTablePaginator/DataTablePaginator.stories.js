@@ -1,8 +1,24 @@
+import { withDesign } from 'storybook-addon-designs';
 import DataTablePaginator from './DataTablePaginator.vue';
 
 export default {
 	title: 'API/Table/DataTablePaginator',
 	component: DataTablePaginator,
+	decorators: [withDesign],
+	parameters: {
+		docs: {
+			description: {
+				component: `Paginator with items per page select<br />
+				selector: <em>farm-datatable-paginator</em>
+				`,
+			},
+		},
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1503%3A921',
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({
@@ -29,8 +45,7 @@ export const CustomPerPage = () => ({
 const parameters = {
 	design: {
 		type: 'figma',
-		url:
-			'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1503%3A921',
+		url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1503%3A921',
 	},
 };
 
