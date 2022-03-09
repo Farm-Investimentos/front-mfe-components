@@ -3,6 +3,16 @@ import DefaultButton from './DefaultButton.vue';
 export default {
 	title: 'API/Buttons/Default',
 	component: DefaultButton,
+	parameters: {
+		docs: {
+			description: {
+				component: `Default button (inherit from Vuetify)<br />
+				selector: <em>farm-btn</em>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({

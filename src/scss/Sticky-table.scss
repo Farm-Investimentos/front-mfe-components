@@ -1,0 +1,69 @@
+$defaultLefts: 0, 4rem, 4rem;
+@mixin stickytable($selector, $columns: 1, $lefts: $defaultLefts) {
+	#{$selector} {
+		tbody {
+			font-size: 0.75rem;
+		}
+		tbody tr:nth-of-type(odd) td {
+			background-color: #f0f0f0;
+		}
+		tr td {
+			background-color: white;
+		}
+		tr th {
+			color: var(--v-primary-base);
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+		tr:not(:last-child) td,
+		tr th {
+			border-bottom: none;
+		}
+		.v-data-table__wrapper {
+			border-top: 1px solid var(--v-gray-lighten2);
+			border-bottom: 1px solid var(--v-gray-lighten2);
+		}
+		tr td:first-child,
+		th:first-child {
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -2px;
+				width: 100%;
+			}
+		}
+
+		@if $columns > 0 {
+			@for $i from 1 through $columns {
+				tr td:nth-child(#{$i}),
+				th:nth-child(#{$i}) {
+					position: sticky;
+					z-index: 4;
+					background-color: white;
+				}
+			}
+
+			@for $i from 1 through $columns {
+				tr td:nth-child(#{$i}),
+				th:nth-child(#{$i}) {
+					left: nth($lefts, $i);
+				}
+			}
+		}
+
+		.v-chip {
+			font-size: 0.75rem;
+			padding: 0 1.5rem;
+		}
+
+		.v-pagination {
+			li button:not([disabled]):not(.v-pagination__item--active):hover {
+				opacity: 0.6;
+			}
+			li button.v-pagination__item--active:hover {
+				cursor: default;
+			}
+		}
+	}
+}

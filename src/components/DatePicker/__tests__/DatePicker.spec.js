@@ -3,6 +3,7 @@ import DatePicker from '../DatePicker';
 
 describe('DatePicker component', () => {
 	let wrapper;
+	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(DatePicker, {
@@ -10,6 +11,7 @@ describe('DatePicker component', () => {
 				inputId: 'someid',
 			},
 		});
+		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
@@ -19,6 +21,17 @@ describe('DatePicker component', () => {
 	describe('mount component', () => {
 		it('renders correctly', () => {
 			expect(wrapper.element).toMatchSnapshot();
+		});
+	});
+
+	describe('computed properties', () => {
+		it('get inputVal', () => {
+			expect(component.inputVal).toBeFalsy();
+		});
+
+		it('get inputVal', () => {
+			component.inputVal = 'teste';
+			expect(wrapper.emitted().input).toBeDefined();
 		});
 	});
 });
