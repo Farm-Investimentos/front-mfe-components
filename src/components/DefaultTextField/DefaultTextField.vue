@@ -29,9 +29,15 @@ export default {
 		value: {
 			required: true,
 		},
+		/**
+		 * Array of rules
+		 */
 		rules: {
 			type: Array,
 		},
+		/**
+		 * Input is disabled or not
+		 */
 		disabled: {
 			type: Boolean,
 			default: false,
@@ -41,10 +47,16 @@ export default {
 			required: false,
 			default: 'form',
 		},
+		/**
+		 * Input is required or not
+		 */
 		required: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Mask (v-mask)
+		 */
 		mask: {
 			type: String,
 			default: null,
