@@ -49,4 +49,13 @@ describe('FilePicker component', () => {
 			});
 		});
 	});
+
+	describe('Computed properties', () => {
+		it('Should return maxSizeReachMsg', () => {
+			wrapper.setProps({
+				maxFileSize: 5,
+			});
+			expect(wrapper.vm.maxSizeReachMsg).toContain('Arquivo ultrapassou o tamanho máximo');
+		});
+	});
 });
