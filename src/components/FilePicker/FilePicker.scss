@@ -1,14 +1,11 @@
 section {
-    //outline: 1px dashed grey;
-    //outline-offset: -0.5rem;
     border: 2px dashed var(--v-gray-lighten1);
     border-radius: 2rem;
     background-color: var(--v-gray-lighten4);
-    //color: var(--v-primary-base);
     padding: 1rem;
     position: relative;
     cursor: pointer;
-    height: 8rem;
+    height: 12rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,6 +42,10 @@ section {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        > p {
+            margin-bottom: 0;
+            font-size: 0.75rem;
+        }
         .v-btn {
             margin-top: 1rem;
         }

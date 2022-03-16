@@ -22,14 +22,16 @@
 	</section>
 </template>
 <script>
+import Vue from 'vue';
 import { VSelect } from 'vuetify/lib/components/VSelect';
 import { VPagination } from 'vuetify/lib/components/VPagination';
+
 /**
  * Componente de paginação usado em tabelas e listas
  * com opção de itens por página
  */
-export default {
-	name: 'DataTablePaginator',
+export default Vue.extend({
+	name: 'farm-datatable-paginator',
 	props: {
 		/**
 		 * Lista de opções para o controle de registros por página
@@ -100,7 +102,7 @@ export default {
 		VSelect,
 		VPagination,
 	},
-};
+});
 </script>
 
 <style lang="scss">
