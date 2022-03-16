@@ -23,6 +23,14 @@ describe('FilePicker component', () => {
 				wrapper.vm.fileChange([]);
 				expect(wrapper.emitted().onFileChange).toBeUndefined();
 			});
+
+			it('Should handle max file size', async () => {
+				await wrapper.setProps({
+					maxFileSize: 5,
+				});
+				wrapper.vm.fileChange([{ size: 6 * 1024 * 1024 }]);
+				expect(wrapper.vm.maxSizeReach).toBeTruthy();
+			});
 		});
 
 		describe('handlerFunctionHighlight', () => {
@@ -47,6 +55,15 @@ describe('FilePicker component', () => {
 				wrapper.vm.addListeners();
 				expect(spyObj).toHaveBeenCalled();
 			});
+		});
+	});
+
+	describe('Computed properties', () => {
+		it('Should return maxSizeReachMsg', () => {
+			wrapper.setProps({
+				maxFileSize: 5,
+			});
+			expect(wrapper.vm.maxSizeReachMsg).toContain('Arquivo ultrapassou o tamanho máximo');
 		});
 	});
 });
