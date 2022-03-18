@@ -18,14 +18,20 @@
 	</v-col>
 </template>
 <script>
+import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VCol } from 'vuetify/lib/components/VGrid';
-export default {
+
+export default Vue.extend({
+	name: 'farm-textfield-labelled',
 	props: {
 		item: {
 			type: Object,
 			required: true,
 		},
+		/**
+		 * v-model
+		 */
 		value: {
 			required: true,
 		},
@@ -61,6 +67,9 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Input is readonly or not
+		 */
 		readonly: {
 			type: Boolean,
 			default: false,
@@ -92,5 +101,5 @@ export default {
 			return `${this.forKey}-${this.item.key}`;
 		},
 	},
-};
+});
 </script>
