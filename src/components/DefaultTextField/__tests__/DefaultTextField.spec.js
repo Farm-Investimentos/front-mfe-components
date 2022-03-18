@@ -29,5 +29,26 @@ describe('DefaultTextField component', () => {
 		it('Should have inputId', () => {
 			expect(component.inputId).toEqual('form-key');
 		});
+
+		it('Should have default inputRules', () => {
+			expect(component.inputRules).toEqual([]);
+		});
+
+		it('Should have inputRules from prop', async () => {
+			expect(component.inputRules).toEqual([]);
+			await wrapper.setProps({
+				rules: [jest.fn()],
+			});
+			expect(component.inputRules.length).toEqual(1);
+		});
+
+		it('Should not have inputRules if disabled', async () => {
+			expect(component.inputRules).toEqual([]);
+			await wrapper.setProps({
+				rules: [jest.fn()],
+				disabled: true,
+			});
+			expect(component.inputRules.length).toEqual(0);
+		});
 	});
 });
