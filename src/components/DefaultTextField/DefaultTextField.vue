@@ -10,6 +10,7 @@
 			outlined
 			dense
 			v-mask="`${mask ? mask : ''}`"
+			:placeholder="placeholder"
 			:id="inputId"
 			:rules="inputRules"
 			:disabled="disabled"
@@ -73,6 +74,13 @@ export default Vue.extend({
 		readonly: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Placeholder is helper text for input
+		 */
+		placeholder: {
+			type: String,
+			default: null,
 		},
 	},
 	components: {
