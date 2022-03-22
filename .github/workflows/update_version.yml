@@ -1,0 +1,51 @@
+name: Upgrade version
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: Make a choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: "us-east-1"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - run: git config user.name "$GITHUB_ACTOR"
+
+      - name: Update version in package.json
+        run: npm version ${{ github.event.inputs.choice }} --no-git-tag-version -m "v%s"
+
+      - name: package-version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+
+      - name: New version in package.json
+        run: echo ${{ env.PACKAGE_VERSION }}
+        
+      - name: Push new package.json to develop
+        run: |
+          touch package.json
+          git add -A
+          git commit -m "Update package.json - new version"
+          git push -u origin develop:chore-newversion_${{ env.PACKAGE_VERSION }}
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "chore-newversion_${{ env.PACKAGE_VERSION }}"
+          destination_branch: "develop"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automerge,triggered pr"
+          pr_title: "Pulling new version v${{ env.PACKAGE_VERSION }} [skip ci]"
