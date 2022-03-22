@@ -66,7 +66,19 @@ export const Masked = () => ({
 	`,
 });
 
+export const Placeholder = () => ({
+	components: { DefaultTextField },
+	data() {
+		return {
+			model: '',
+			item: { label: 'Nome do campo', key: 'key', md: 4 },
+		};
+	},
+	template: '<DefaultTextField v-model="model" :item="item" placeholder="your text" />',
+});
+
 Primary.storyName = 'Basic';
 Secondary.storyName = 'Required field';
 ReadOnly.storyName = 'Readonly input';
 Masked.storyName = 'Masked';
+Placeholder.storyName = 'Placeholder'
