@@ -1,5 +1,6 @@
 import { withDesign } from 'storybook-addon-designs';
 import { DataTableEmptyWrapper } from '../main';
+import { DataTablePaginator } from '../main';
 
 const headers = [
 	{
@@ -90,6 +91,7 @@ export const TableSampleData = () => ({
 export const TableSampleLocalPagination = () => ({
 	components: {
 		DataTableEmptyWrapper,
+		DataTablePaginator,
 	},
 	data() {
 		return {
@@ -111,8 +113,14 @@ export const TableSampleLocalPagination = () => ({
 			pagination: {
 				page: 1,
 				itemsPerPage: 10,
+				pages: 2,
 			},
 		};
+	},
+	methods: {
+		onChangePage(newPage) {
+			this.pagination.page = newPage;
+		},
 	},
 	template: `<div>
 	<v-data-table
@@ -122,7 +130,16 @@ export const TableSampleLocalPagination = () => ({
         :items="items"
 		:options.sync="pagination"
 	>
-    
+    	<template v-slot:footer>
+			<DataTablePaginator
+				class="my-6"
+				hidePerPageOptions
+				:initialLimitPerPage="pagination.itemsPerPage"
+				:page="pagination.page"
+				:totalPages="pagination.pages"
+				@onChangePage="onChangePage"
+			/>
+		</template>
     </v-data-table>
 	</div>`,
 });
