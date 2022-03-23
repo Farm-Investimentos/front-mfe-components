@@ -35,6 +35,15 @@ export const MinMaxDates = () => ({
     </div>`,
 });
 
+export const RequiredDates = () => ({
+	components: { DatePicker },
+
+	template: `<div style='max-width: 320px'>
+        <DatePicker inputId="input-custom-id-requreid" max="2021-12-02" />
+    </div>`,
+});
+
 Primary.storyName = 'Básico';
 InitValue.storyName = 'Data inicial';
 MinMaxDates.storyName = 'Data mínima e máxima';
+RequiredDates.storyName = 'Obrigatório';

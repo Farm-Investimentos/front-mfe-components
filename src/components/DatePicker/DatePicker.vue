@@ -140,3 +140,8 @@ export default Vue.extend({
 	},
 });
 </script>
+<style lang="sass">
+.theme--light.v-input.v-input--dense.v-text-field.v-text-field--outlined.error--text:after {
+	content: '' !important;
+}
+</style>
