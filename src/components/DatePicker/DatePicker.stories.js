@@ -39,7 +39,7 @@ export const RequiredDates = () => ({
 	components: { DatePicker },
 
 	template: `<div style='max-width: 320px'>
-        <DatePicker inputId="input-custom-id-requreid" max="2021-12-02" />
+        <DatePicker inputId="input-custom-id-3" :required="true" />
     </div>`,
 });
 
