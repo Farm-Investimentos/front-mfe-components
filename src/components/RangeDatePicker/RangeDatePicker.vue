@@ -19,6 +19,7 @@
 				outlined
 				dense
 				:id="inputId"
+				:rules="required ? [requiredRule] : []"
 			></v-text-field>
 		</template>
 		<v-date-picker
@@ -89,6 +90,13 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Required field (inside form)
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -96,6 +104,9 @@ export default {
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
+			requiredRule: value => {
+				return !!value || value != '' || 'Campo obrigatório';
+			},
 		};
 	},
 	watch: {
@@ -139,3 +150,8 @@ export default {
 	},
 };
 </script>
+<style lang="scss" scoped>
+.theme--light.v-input.v-input--dense.v-text-field.v-text-field--outlined.error--text:after {
+	content: '' !important;
+}
+</style>
