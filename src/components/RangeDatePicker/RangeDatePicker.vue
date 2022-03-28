@@ -19,6 +19,7 @@
 				outlined
 				dense
 				:id="inputId"
+				:rules="required ? [requiredRule] : []"
 			></v-text-field>
 		</template>
 		<v-date-picker
@@ -43,6 +44,7 @@
 	</v-menu>
 </template>
 <script>
+import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
@@ -51,7 +53,8 @@ import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 /**
  * Componente de input com datepicker para range de data
  */
-export default {
+export default Vue.extend({
+	name: 'farm-input-rangedatepicker',
 	components: {
 		VTextField,
 		VMenu,
@@ -89,6 +92,13 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Required field (inside form)
+		 */
+		required: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -96,6 +106,9 @@ export default {
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
+			requiredRule: value => {
+				return !!value || value != '' || 'Campo obrigatório';
+			},
 		};
 	},
 	watch: {
@@ -137,5 +150,10 @@ export default {
 			return false;
 		},
 	},
-};
+});
 </script>
+<style lang="scss" scoped>
+.theme--light.v-input.v-input--dense.v-text-field.v-text-field--outlined.error--text:after {
+	content: '' !important;
+}
+</style>
