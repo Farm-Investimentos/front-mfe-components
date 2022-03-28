@@ -44,9 +44,7 @@ const config = {
 				accent: {
 					base: '#5089DE',
 				},
-				yellow: {
-					base: '#F8CC6B',
-				},
+				yellow: '#F8CC6B',
 			},
 		},
 		options: {
