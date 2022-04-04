@@ -69,10 +69,10 @@ export default {
 			this.inputValue = newValue;
 		},
 	},
-	data: () => {
+	data() {
 		return {
 			timer: null,
-			inputValue: '',
+			inputValue: this.initialValue,
 		};
 	},
 	methods: {
@@ -105,21 +105,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-section {
-	display: flex;
-	flex-direction: row;
-	.v-btn {
-		margin-left: 1rem;
-	}
-}
-@media screen and (max-width: 600px) {
-	section {
-		flex-direction: column;
-		margin-bottom: 1rem;
-		.v-btn {
-			margin-left: 0;
-			margin-top: 0 !important;
-		}
-	}
-}
+@import './MainFilter.scss';
 </style>
