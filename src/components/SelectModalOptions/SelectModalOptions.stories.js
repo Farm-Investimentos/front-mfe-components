@@ -26,4 +26,26 @@ export const Primary = () => ({
 	</div>`,
 });
 
-Primary.storyName = 'Básico';
+export const InitialValue = () => ({
+	components: { SelectModalOptions },
+	data() {
+		return {
+			items: [
+				{ id: 1, name: 'name 1' },
+				{ id: 2, name: 'name 2' },
+			],
+			selectedValue: 23123,
+		};
+	},
+	template: `<div>
+	<SelectModalOptions
+		:items="items"
+		v-model="selectedValue"
+		label="label"
+		inputId="some-id" />
+		<br />selected value: {{ selectedValue }}
+	</div>`,
+});
+
+Primary.storyName = 'Basic';
+InitialValue.storyName = 'Initial value';
