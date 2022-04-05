@@ -13,7 +13,7 @@
 			:id="inputId"
 			:value="selectedValueText"
 			@click="openModal"
-		></v-text-field>
+		/>
 
 		<v-dialog content-class="modal-default modal-default-small" v-model="showModal">
 			<DialogHeader class="dialog-header" :title="modalTitle" @onClose="closeModal" />
@@ -228,6 +228,9 @@ export default Vue.extend({
 		items(newValue) {
 			this.pagination.pages = Math.ceil(newValue.length / 10);
 		},
+	},
+	mounted() {
+		this.selectedItem = { [this.itemLabelFormatter]: this.value };
 	},
 	methods: {
 		handlePagination(tablePagination) {

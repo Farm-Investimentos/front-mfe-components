@@ -23,6 +23,7 @@ describe('SelectModalOptions component', () => {
 
 	test('SelectModalOptions created', () => {
 		expect(wrapper).toBeDefined();
+		expect(component.selectedValueText).toEqual(1);
 	});
 
 	describe('Methods', () => {
