@@ -268,16 +268,20 @@ export default Vue.extend({
 			const label = this.getItemLabel(item);
 			return label.toLowerCase().includes(search.toLowerCase());
 		},
-		clearTextField(event)  {
-			if (event.key === "Delete" || event.key === "Backspace") {
+		clearTextField(event) {
+			if (event.key === 'Delete' || event.key === 'Backspace') {
 				this.selectedItem = null;
 			}
-		}
+		},
 	},
 });
 </script>
 <style lang="scss" scoped>
-.v-text-field::v-deep input  {
-	cursor: pointer;
+.v-text-field::v-deep {
+	margin-top: 0;
+	padding-top: 0;
+	input {
+		cursor: pointer;
+	}
 }
 </style>
