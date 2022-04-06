@@ -9,6 +9,7 @@
 				append-icon="mdi-magnify "
 				color="secondary"
 				outlined
+				v-on:keyup="clearTextField"
 				dense
 				readonly
 				:id="inputId"
@@ -267,6 +268,11 @@ export default Vue.extend({
 			const label = this.getItemLabel(item);
 			return label.toLowerCase().includes(search.toLowerCase());
 		},
+		clearTextField(event)  {
+			if (event.key === "Delete" || event.key === "Backspace") {
+				this.selectedItem = null;
+			}
+		}
 	},
 });
 </script>
