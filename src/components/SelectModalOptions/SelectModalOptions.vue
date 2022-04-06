@@ -1,20 +1,22 @@
 <template>
 	<v-col cols="12" sm="12" :md="config.md ? config.md : 2" class="v-col-fieldset-default">
-		<label :for="inputId">
-			{{ label }}
-			<span class="required" v-if="config.required">*</span>
-		</label>
-		<v-text-field
-			append-icon="mdi-magnify "
-			color="secondary"
-			outlined
-			dense
-			readonly
-			:id="inputId"
-			:value="selectedValueText"
-			@click="openModal"
-		/>
-
+		<div class="v-text-field">
+			<label :for="inputId">
+				{{ label }}
+				<span class="required" v-if="config.required">*</span>
+			</label>
+			<v-text-field
+				append-icon="mdi-magnify "
+				color="secondary"
+				outlined
+				v-on:keyup="clearTextField"
+				dense
+				readonly
+				:id="inputId"
+				:value="selectedValueText"
+				@click="openModal"
+			/>
+		</div>
 		<v-dialog content-class="modal-default modal-default-small" v-model="showModal">
 			<DialogHeader class="dialog-header" :title="modalTitle" @onClose="closeModal" />
 
@@ -266,11 +268,16 @@ export default Vue.extend({
 			const label = this.getItemLabel(item);
 			return label.toLowerCase().includes(search.toLowerCase());
 		},
+		clearTextField(event)  {
+			if (event.key === "Delete" || event.key === "Backspace") {
+				this.selectedItem = null;
+			}
+		}
 	},
 });
 </script>
 <style lang="scss" scoped>
-.v-text-field {
+.v-text-field::v-deep input  {
 	cursor: pointer;
 }
 </style>
