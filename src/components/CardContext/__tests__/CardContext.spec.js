@@ -21,16 +21,6 @@ describe('CardContext component', () => {
 	});
 
 	describe('Computed properties', () => {
-		it('Should compute isBold for false', () => {
-			expect(component.isBold).toEqual('card-context-title');
-		});
-
-		it('Should compute isBold for true', async () => {
-			await wrapper.setProps({
-				bold: true,
-			});
-			expect(component.isBold).toEqual('card-context-title bold');
-		});
 
 		it('Should compute isHeightFull for false', () => {
 			expect(component.isHeightFull).toEqual('card-context');
