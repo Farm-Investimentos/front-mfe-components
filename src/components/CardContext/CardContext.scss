@@ -29,12 +29,11 @@
 	color: #5c5c5c;
 	margin: 0;
 	font-size: 0.75rem;
-}
-
-.card-context-title.bold {
-	font-size: 0.875rem;
-	font-weight: bold;
-	color: #1c1c1c;
+	&.card-context-content--bold {
+		font-size: 0.875rem;
+		font-weight: bold;
+		color: #1c1c1c;
+	}
 }
 
 .card-context-body {
