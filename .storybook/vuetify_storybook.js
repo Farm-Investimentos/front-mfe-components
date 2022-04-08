@@ -2,9 +2,11 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify'; // loads all components
 import 'vuetify/dist/vuetify.min.css'; // all the css for components
+import VuetifyDialog from 'vuetify-dialog';
 //import config from '../src/plugins/vuetifyConfig'; // basic config with theme
 
 import VueMask from 'v-mask';
+
 Vue.use(VueMask);
 
 const config = {
@@ -52,7 +54,12 @@ const config = {
 		},
 	},
 };
-
+const vuetify = new Vuetify(config);
+Vue.use(VuetifyDialog, {
+	context: {
+		vuetify,
+	},
+});
 Vue.use(Vuetify);
 
 export default new Vuetify(config);
