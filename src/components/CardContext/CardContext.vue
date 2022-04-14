@@ -1,6 +1,12 @@
 <template>
-	<div :class="isHeightFull">
-		<div class="card-context-header" v-if="isSuccess">
+	<div
+		:class="{
+			'card-context': true,
+			'height-full': this.full,
+			'card-context--outlined': this.outlined,
+		}"
+	>
+		<div class="card-context-header" v-if="isSuccess && title">
 			<IconBox :icon="icon" v-if="icon" />
 			<div class="card-context-content">
 				<p :class="{ 'card-context-title': true, 'card-context-content--bold': bold }">
@@ -86,11 +92,15 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Is outlined
+		 */
+		outlined: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	computed: {
-		isHeightFull() {
-			return this.full ? 'card-context height-full' : 'card-context';
-		},
 		isSuccess() {
 			return !this.isLoading && !this.isError;
 		},

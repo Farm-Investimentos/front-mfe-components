@@ -22,17 +22,6 @@ describe('CardContext component', () => {
 
 	describe('Computed properties', () => {
 
-		it('Should compute isHeightFull for false', () => {
-			expect(component.isHeightFull).toEqual('card-context');
-		});
-
-		it('Should compute isHeightFull for true', async () => {
-			await wrapper.setProps({
-				full: true,
-			});
-			expect(component.isHeightFull).toEqual('card-context height-full');
-		});
-
 		it('Should compute isLargeLoading for false', () => {
 			expect(component.isLargeLoading).toEqual('small');
 		});
