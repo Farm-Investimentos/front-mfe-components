@@ -13,7 +13,10 @@
 			<v-text-field
 				color="secondary"
 				append-icon="mdi-calendar"
-				readonly
+				v-mask="`${readonly ? '' : '##/##/####'}`"
+				@keyup="keyUpInput"
+				:readonly="readonly"
+				autocomplete="off"
 				outlined
 				dense
 				v-on="on"
@@ -96,6 +99,10 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		readonly: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -127,6 +134,18 @@ export default Vue.extend({
 			this.dateField = '';
 			this.save();
 		},
+		validation(date){
+			const pattern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm;
+			return pattern.test(date);	
+		},
+		keyUpInput(event) {
+			let newValue = event.target.value;
+			if(this.validation(newValue) && newValue.length === 10) {
+				const [day, month, year] = newValue.split('/');
+				this.dateField = `${year}-${month}-${day}`;
+				this.save();
+			}
+		}
 	},
 	computed: {
 		inputVal: {
