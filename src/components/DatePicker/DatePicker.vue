@@ -13,13 +13,16 @@
 			<v-text-field
 				color="secondary"
 				append-icon="mdi-calendar"
-				readonly
+				v-mask="`${readonly ? '' : '##/##/####'}`"
+				@keyup="keyUpInput"
+				:readonly="readonly"
+				autocomplete="off"
 				outlined
 				dense
 				v-on="on"
 				v-model="fieldRange"
 				:id="inputId"
-				:rules="required ? [requiredRule] : []"
+				:rules="[checkMax, checkMin, checkRequire]"
 			>
 			</v-text-field>
 		</template>
@@ -54,7 +57,7 @@ import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
+import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 /**
  * Componente de input com datepicker para data
  */
@@ -96,6 +99,10 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		readonly: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -103,9 +110,15 @@ export default Vue.extend({
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
-			requiredRule: value => {
-				return !!value || value != '' || 'Campo obrigatório';
+			checkRequire: value => {
+				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
+			checkMax: value => {
+				return this.max && new Date(convertDate(value)) > new Date(this.max) ? 'A data está fora do período permitido' : true;
+			},
+			checkMin: value => {
+				return this.min && new Date(convertDate(value)) < new Date(this.min) ? 'A data está fora do período permitido' : true;
+			}
 		};
 	},
 	watch: {
@@ -126,6 +139,18 @@ export default Vue.extend({
 		clear() {
 			this.dateField = '';
 			this.save();
+		},
+		validation(date){
+			const pattern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm;
+			return pattern.test(date);	
+		},
+		keyUpInput(event) {
+			let newValue = event.target.value;
+			if(this.validation(newValue) && newValue.length === 10) {
+				const [day, month, year] = newValue.split('/');
+				this.dateField = `${year}-${month}-${day}`;
+				this.save();
+			}
 		},
 	},
 	computed: {
