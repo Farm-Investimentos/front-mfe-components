@@ -22,7 +22,7 @@
 				v-on="on"
 				v-model="fieldRange"
 				:id="inputId"
-				:rules="required ? [requiredRule] : []"
+				:rules="[checkMax, checkMin, checkRequire]"
 			>
 			</v-text-field>
 		</template>
@@ -57,7 +57,7 @@ import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
+import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 /**
  * Componente de input com datepicker para data
  */
@@ -101,7 +101,7 @@ export default Vue.extend({
 		},
 		readonly: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 	},
 	data() {
@@ -110,9 +110,15 @@ export default Vue.extend({
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
-			requiredRule: value => {
-				return !!value || value != '' || 'Campo obrigatório';
+			checkRequire: value => {
+				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
+			checkMax: value => {
+				return this.max && new Date(convertDate(value)) > new Date(this.max) ? 'A data está fora do período permitido' : true;
+			},
+			checkMin: value => {
+				return this.min && new Date(convertDate(value)) < new Date(this.min) ? 'A data está fora do período permitido' : true;
+			}
 		};
 	},
 	watch: {
@@ -145,7 +151,7 @@ export default Vue.extend({
 				this.dateField = `${year}-${month}-${day}`;
 				this.save();
 			}
-		}
+		},
 	},
 	computed: {
 		inputVal: {
