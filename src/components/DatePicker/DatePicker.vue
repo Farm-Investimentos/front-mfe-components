@@ -1,7 +1,6 @@
 <template>
 	<v-menu
 		ref="menuField"
-		content-class="calendar__container"
 		v-model="menuField"
 		:close-on-content-click="false"
 		:return-value.sync="fieldRange"
@@ -168,8 +167,5 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .theme--light.v-input.v-input--dense.v-text-field.v-text-field--outlined.error--text:after {
 	content: '' !important;
-}
-.calendar__container {
-	top: 56px !important;
 }
 </style>
