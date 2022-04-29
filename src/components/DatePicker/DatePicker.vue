@@ -3,7 +3,6 @@
 		ref="menuField"
 		v-model="menuField"
 		:close-on-content-click="false"
-		:nudge-right="40"
 		:return-value.sync="fieldRange"
 		transition="scale-transition"
 		offset-y
