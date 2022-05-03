@@ -100,7 +100,7 @@ export default Vue.extend({
 		},
 		readonly: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 	data() {
