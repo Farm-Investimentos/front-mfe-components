@@ -23,4 +23,9 @@
 		border: 2px solid var(--v-success-base) !important;
 		background-color: white !important;
 	}
+	&.status-chip.status-chip-on-wait {
+		color: white !important;
+		border: 2px solid #467d7e !important;
+		background-color: #467d7e !important;
+	}
 }
