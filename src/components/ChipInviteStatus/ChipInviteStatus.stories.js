@@ -15,6 +15,7 @@ export const Primary = () => ({
         <ChipInviteStatus :status="14" />
         <ChipInviteStatus :status="15" />
         <ChipInviteStatus :status="16" />
+        <ChipInviteStatus :status="17" />
     </div>`,
 });
 

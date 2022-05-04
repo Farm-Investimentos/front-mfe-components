@@ -22,6 +22,7 @@ const StatusLabel = {
 	14: 'FALHA/ERRO',
 	15: 'EM ANÁLISE',
 	16: 'EM ANDAMENTO',
+	17: 'EM ESPERA',
 };
 
 const StatusColor = {
@@ -32,6 +33,7 @@ const StatusColor = {
 	14: 'error',
 	15: 'accent',
 	16: 'primary',
+	17: 'on-wait',
 };
 
 import VChip from 'vuetify/lib/components/VChip/';
@@ -59,7 +61,9 @@ export default Vue.extend({
 	},
 	computed: {
 		textColor() {
-			return this.status === 10 || this.status === 16 ? '' : StatusColor[this.status];
+			return this.status === 10 || this.status === 16 || this.status === 17
+				? ''
+				: StatusColor[this.status];
 		},
 		color() {
 			return !this.status ? '' : StatusColor[this.status];
