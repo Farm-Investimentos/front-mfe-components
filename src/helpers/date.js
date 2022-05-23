@@ -4,3 +4,8 @@ export const defaultFormat = (data, UTCTimeZone = true) => {
 	};
 	return data ? new Date(data).toLocaleDateString('pt-BR', UTCTimeZone ? options : {}) : null;
 };
+
+export const convertDate = (data) => {
+	let newdate = data.split("/").reverse().join("-");
+	return newdate;
+}

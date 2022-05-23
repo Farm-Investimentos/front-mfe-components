@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "3.4.7",
+	"version": "3.5.3",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -25,7 +25,8 @@
 		"sass": "1.32.13",
 		"sass-loader": "^10.1.1",
 		"vue": "^2.6.11",
-		"vuetify": "^2.5.7"
+		"vuetify": "^2.5.7",
+		"vuetify-dialog": "^2.0.16"
 	},
 	"devDependencies": {
 		"@socheatsok78/storybook-addon-vuetify": "^0.1.8",
