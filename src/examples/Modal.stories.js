@@ -35,9 +35,6 @@ export const Modal = () => ({
 });
 
 export const ModalSmall = () => ({
-	/*
-	 * How to create the default modal following FARM's Design System guideline
-	 */
 	components: {
 		DialogHeader,
 		DialogFooter,
@@ -62,9 +59,6 @@ export const ModalSmall = () => ({
 });
 
 export const ModalScrollVertical = () => ({
-	/*
-	 * How to create the default modal following FARM's Design System guideline
-	 */
 	components: {
 		DialogHeader,
 		DialogFooter,
@@ -91,9 +85,6 @@ export const ModalScrollVertical = () => ({
 });
 
 export const ModalScrollHorizontal = () => ({
-	/*
-	 * How to create the default modal following FARM's Design System guideline
-	 */
 	components: {
 		DialogHeader,
 		DialogFooter,
