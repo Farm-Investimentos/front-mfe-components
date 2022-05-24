@@ -20,17 +20,19 @@
 			class="v-btn--responsive mt-14 mt-sm-8"
 			@click="onFilterClick"
 		>
-			<v-icon color="white" class="mr-2">mdi-filter</v-icon>
-			Filtrar
+			<v-icon color="white" class="mr-2">{{ extraFiltersBtnIcon }}</v-icon>
+			{{ extraFiltersBtnLabel }}
 		</v-btn>
 	</section>
 </template>
 
 <script>
+import Vue from 'vue';
 import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VIcon } from 'vuetify/lib/components/VIcon';
-export default {
+
+export default Vue.extend({
 	name: 'MainFilter',
 	components: {
 		VTextField,
@@ -62,11 +64,23 @@ export default {
 			type: String,
 			default: () => '',
 		},
+		showFilters: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	watch: {
 		initialValue(newValue) {
 			this.inputValue = newValue;
+		},
+	},
+	computed: {
+		extraFiltersBtnLabel() {
+			return this.showFilters ? 'Esconder filtros' : 'Ver filtros';
+		},
+		extraFiltersBtnIcon() {
+			return this.showFilters ? 'mdi-filter-off' : 'mdi-filter';
 		},
 	},
 	data() {
@@ -101,9 +115,8 @@ export default {
 			}, 400);
 		},
 	},
-};
+});
 </script>
-
 <style scoped lang="scss">
 @import './MainFilter.scss';
 </style>
