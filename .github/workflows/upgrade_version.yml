@@ -4,6 +4,7 @@ on:
     inputs:
       choice:
         type: choice
+        required: true
         description: Make a choice
         options:
           - patch
