@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import AlertReload from '../AlertReload';
+import AlertReload from '../AlertReload.vue';
 
 describe('AlertReload component', () => {
 	let wrapper;

@@ -21,7 +21,7 @@
 		</v-main>
 	</v-dialog>
 </template>
-<script>
+<script lang="ts">
 import { DialogHeader, DialogFooter, PromptUserToConfirm } from '../../main.js';
 import { VDialog } from 'vuetify/lib/components/VDialog';
 import { VMain } from 'vuetify/lib/components/VMain';

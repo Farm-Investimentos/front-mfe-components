@@ -45,6 +45,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Vue from 'vue';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';

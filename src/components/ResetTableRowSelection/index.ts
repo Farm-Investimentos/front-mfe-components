@@ -1,4 +1,4 @@
-import ResetTableRowSelection from './ResetTableRowSelection';
+import ResetTableRowSelection from './ResetTableRowSelection.vue';
 
 export { ResetTableRowSelection };
 export default ResetTableRowSelection;
