@@ -22,6 +22,7 @@
 <script>
 import { VTabs, VTab } from 'vuetify/lib/components/VTabs';
 export default {
+	name: 'farm-tabs',
 	data: () => ({
 		selected: 0,
 	}),

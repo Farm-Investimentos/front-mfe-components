@@ -1,4 +1,4 @@
-import DangerButton from './DangerButton';
+import DangerButton from './DangerButton.vue';
 
 export { DangerButton };
 export default DangerButton;

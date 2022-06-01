@@ -45,6 +45,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Vue from 'vue';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
@@ -61,14 +62,14 @@ export default Vue.extend({
 		 */
 		headers: {
 			type: Array,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Array para controle da exibição da ordenação
 		 */
 		sortClick: {
 			type: Array,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Começar selecionado

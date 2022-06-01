@@ -1,4 +1,4 @@
-import ImportButton from './ImportButton';
+import ImportButton from './ImportButton.vue';
 
 export { ImportButton };
 export default ImportButton;
