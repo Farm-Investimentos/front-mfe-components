@@ -1,6 +1,6 @@
-import DataTableEmptyWrapper from './components/DataTableEmptyWrapper/';
+import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 
-import DataTablePaginator from './components/DataTablePaginator/';
+import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
 import AlertReload from './components/AlertReload';
 import MainFilter from './components/MainFilter';

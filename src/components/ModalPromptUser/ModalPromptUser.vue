@@ -22,11 +22,13 @@
 	</v-dialog>
 </template>
 <script lang="ts">
-import { DialogHeader, DialogFooter, PromptUserToConfirm } from '../../main.js';
+import Vue from 'vue';
+import { DialogHeader, DialogFooter, PromptUserToConfirm } from '../../main';
 import { VDialog } from 'vuetify/lib/components/VDialog';
 import { VMain } from 'vuetify/lib/components/VMain';
-export default {
-	name: 'ModalPromptUser',
+
+export default Vue.extend({
+	name: 'farm-prompt-user',
 	components: {
 		DialogHeader,
 		DialogFooter,
@@ -100,6 +102,6 @@ export default {
 			this.$emit('onConfirm');
 			this.inputVal = false;
 		},
-	},
-};
+	}
+});
 </script>

@@ -62,14 +62,14 @@ export default Vue.extend({
 		 */
 		headers: {
 			type: Array,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Array para controle da exibição da ordenação
 		 */
 		sortClick: {
 			type: Array,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Começar selecionado

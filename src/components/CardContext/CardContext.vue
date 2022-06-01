@@ -28,7 +28,7 @@
 
 <script>
 import Vue from 'vue';
-import { Loader, AlertReload, IconBox } from '../../main.js';
+import { Loader, AlertReload, IconBox } from '../../main.ts';
 
 export default Vue.extend({
 	name: 'farm-card-context',
