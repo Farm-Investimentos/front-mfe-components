@@ -16,7 +16,7 @@
 import { VOverlay } from 'vuetify/lib/components/VOverlay';
 import { VProgressCircular } from 'vuetify/lib/components/VProgressCircular';
 export default {
-    name: 'Loader',
+    name: 'farm-loader',
     components: {
         VOverlay,
         VProgressCircular,
