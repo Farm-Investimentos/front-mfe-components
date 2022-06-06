@@ -44,10 +44,23 @@ import IStep from './IStep';
 export default Vue.extend({
 	name: 'farm-stepper-header',
 	props: {
+		/**
+		 * Steps
+		 * Implements IStep
+		 */
 		steps: Array as PropType<Array<IStep>>,
-		vertical: Boolean,
-		currentStep: Number,
-		errorCurrentStepStatus: Boolean,
+		/**
+		 * Vertical or horizontal
+		 */
+		vertical: { type: Boolean, default: false },
+		/**
+		 * Current step
+		 */
+		currentStep: { type: Number },
+		/**
+		 * Is current step in error status?
+		 */
+		errorCurrentStepStatus: { type: Boolean, default: false },
 	},
 	methods: {
 		isStepCurrent(index: number): boolean {

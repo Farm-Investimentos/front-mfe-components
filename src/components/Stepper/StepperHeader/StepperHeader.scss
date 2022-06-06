@@ -12,12 +12,15 @@ $step-height: 64px;
 		flex-direction: column;
 		align-items: center;
 		border: 1px solid gray;
+
 		&.stepper__header-step--previous {
-			border-color: green;
+			border-color: #009900;
 		}
+
 		&.stepper__header-step--current {
 			border-color: yellow;
 		}
+
 		&.stepper__header-step--error {
 			border-color: red;
 			color: red;
