@@ -102,6 +102,6 @@ export default Vue.extend({
 			this.$emit('onConfirm');
 			this.inputVal = false;
 		},
-	}
+	},
 });
 </script>
