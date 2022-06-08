@@ -18,4 +18,4 @@ export const CustomTitles = () => ({
 
 
 Primary.storyName = 'Básico';
-CustomTitles.storyName = "Títulos"
+CustomTitles.storyName = "Títulos";
