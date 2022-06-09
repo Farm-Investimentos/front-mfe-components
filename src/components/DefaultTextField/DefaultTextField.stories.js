@@ -81,4 +81,4 @@ Primary.storyName = 'Basic';
 Secondary.storyName = 'Required field';
 ReadOnly.storyName = 'Readonly input';
 Masked.storyName = 'Masked';
-Placeholder.storyName = 'Placeholder'
+Placeholder.storyName = 'Placeholder';

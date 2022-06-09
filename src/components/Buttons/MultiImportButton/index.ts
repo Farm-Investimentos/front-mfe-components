@@ -1,4 +1,4 @@
-import MultiImportButton from './MultiImportButton';
+import MultiImportButton from './MultiImportButton.vue';
 
 export { MultiImportButton };
 export default MultiImportButton;

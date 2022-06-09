@@ -8,4 +8,4 @@ export const defaultFormat = (data, UTCTimeZone = true) => {
 export const convertDate = (data) => {
 	let newdate = data.split("/").reverse().join("-");
 	return newdate;
-}
+};
