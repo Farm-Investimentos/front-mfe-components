@@ -10,14 +10,16 @@
 				}"
 				:key="step.label"
 			>
-				{{ step.label }}
 				<i
 					:class="{
 						mdi: true,
 						['mdi-' + step.icon]: true,
 					}"
 					v-if="step.icon"
-				></i>
+				/>
+				<span>
+					{{ step.label }}
+				</span>
 			</div>
 			<hr
 				:class="{

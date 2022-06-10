@@ -1,10 +1,10 @@
 import { StepperHeader } from '../../main';
 
 const steps = [
-	{ label: 'Step 1', icon: '' },
-	{ label: 'Step 2', icon: 'monitor' },
-	{ label: 'Step 3', icon: 'book' },
-	{ label: 'Step 4', icon: '' },
+	{ label: 'Solicitação de limite', icon: 'book' },
+	{ label: 'Lista impeditiva', icon: 'monitor' },
+	{ label: 'Lista pré-elegíveis', icon: 'book' },
+	{ label: 'Fila de compliance', icon: 'logout' },
 ];
 
 export default {
