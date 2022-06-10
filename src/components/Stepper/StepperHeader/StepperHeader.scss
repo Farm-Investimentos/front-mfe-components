@@ -65,18 +65,26 @@ $vertical-step-width: 160px;
 
 
 
-	hr {
+	.stepper__divider--horizontal {
 		display: block;
 		flex: 1 1 0px;
 		max-width: 100%;
-		height: 0;
-		max-height: 0;
+		height: 1px;
+
 		border: none;
-		border-bottom: 1px solid $line-color;
 		margin: 16px -16px 0;
+		background: $line-color;
 
 		&.stepper__divider--previous {
-			border-color: $previous-color;
+			background: $previous-color;
+		}
+
+		&.stepper__divider--previous-to-current {
+			background: linear-gradient(to right, $previous-color, $current-color);
+		}
+
+		&.stepper__divider--previous-to-error {
+			background: linear-gradient(to right, $previous-color, $error-color);
 		}
 	}
 
@@ -112,10 +120,21 @@ $vertical-step-width: 160px;
 			float: left;
 			clear: both;
 			height: 32px;
-			border-left: 1px solid $line-color;
+			//border-left: 1px solid $line-color;
 			margin: -24px 0 8px 16px;
+			width: 2px;
+			background-color: $line-color;
+
 			&.stepper__divider--previous {
-				border-color: $previous-color;
+				background-color: $previous-color;
+			}
+
+			&.stepper__divider--previous-to-current {
+				background: linear-gradient(to bottom, $previous-color, $current-color);
+			}
+
+			&.stepper__divider--previous-to-error {
+				background: linear-gradient(to bottom, $previous-color, $error-color);
 			}
 		}
 	}

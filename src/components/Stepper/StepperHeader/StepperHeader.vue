@@ -21,9 +21,12 @@
 					{{ step.label }}
 				</span>
 			</div>
-			<hr
+			<div
 				:class="{
+					'stepper__divider--horizontal': true,
 					'stepper__divider--previous': isStepPrevious(index),
+					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
+					'stepper__divider--previous-to-error': isStepPreviousToError(index),
 				}"
 				v-if="!vertical && hasDivider(index)"
 				:key="'divider_' + step.label"
@@ -32,6 +35,8 @@
 				:class="{
 					'stepper__divider--vertical': true,
 					'stepper__divider--previous': isStepPrevious(index),
+					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
+					'stepper__divider--previous-to-error': isStepPreviousToError(index),
 				}"
 				v-if="vertical && hasDivider(index)"
 				:key="'divider_' + step.label"
@@ -76,6 +81,20 @@ export default Vue.extend({
 		},
 		hasDivider(index: number): boolean {
 			return index < this.steps.length - 1;
+		},
+		isStepPreviousToCurrent(index: number): boolean {
+			return (
+				index + 2 == this.currentStep &&
+				this.isStepCurrent(index + 1) &&
+				!this.isStepError(index + 1)
+			);
+		},
+		isStepPreviousToError(index: number): boolean {
+			return (
+				index + 2 == this.currentStep &&
+				this.isStepCurrent(index + 1) &&
+				this.isStepError(index + 1)
+			);
 		},
 	},
 });

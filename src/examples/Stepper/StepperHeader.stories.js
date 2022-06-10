@@ -54,6 +54,17 @@ export const Vertical = () => ({
 	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical />',
 });
 
+export const VerticalError = () => ({
+	components: { StepperHeader },
+	data() {
+		return {
+			steps,
+			currentStep: 3,
+		};
+	},
+	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+});
+
 Primary.story = {
 	name: 'Básico',
 };
@@ -62,4 +73,7 @@ Vertical.story = {
 };
 Error.story = {
 	name: 'Error',
+};
+VerticalError.story = {
+	name: 'Vertical Error',
 };
