@@ -10,28 +10,26 @@
 				}"
 				:key="step.label"
 			>
-				{{ step.label }}
 				<i
 					:class="{
 						mdi: true,
 						['mdi-' + step.icon]: true,
 					}"
 					v-if="step.icon"
-				></i>
+				/>
+				<span>
+					{{ step.label }}
+				</span>
 			</div>
-			<hr
-				:class="{
-					'stepper__divider--previous': isStepCurrent(index),
-				}"
-				v-if="!vertical && hasDivider(index)"
-				:key="'divider_' + step.label"
-			/>
 			<div
 				:class="{
-					'stepper__divider--vertical': true,
-					'stepper__divider--previous': isStepCurrent(index),
+					'stepper__divider--horizontal': !vertical,
+					'stepper__divider--vertical': vertical,
+					'stepper__divider--previous': isStepPrevious(index),
+					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
+					'stepper__divider--previous-to-error': isStepPreviousToError(index),
 				}"
-				v-if="vertical && hasDivider(index)"
+				v-if="hasDivider(index)"
 				:key="'divider_' + step.label"
 			/>
 		</template>
@@ -74,6 +72,20 @@ export default Vue.extend({
 		},
 		hasDivider(index: number): boolean {
 			return index < this.steps.length - 1;
+		},
+		isStepPreviousToCurrent(index: number): boolean {
+			return (
+				index + 2 == this.currentStep &&
+				this.isStepCurrent(index + 1) &&
+				!this.isStepError(index + 1)
+			);
+		},
+		isStepPreviousToError(index: number): boolean {
+			return (
+				index + 2 == this.currentStep &&
+				this.isStepCurrent(index + 1) &&
+				this.isStepError(index + 1)
+			);
 		},
 	},
 });
