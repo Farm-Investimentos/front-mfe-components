@@ -1,10 +1,10 @@
 import { StepperHeader } from '../../main';
 
 const steps = [
-	{ label: 'Step 1', icon: '' },
-	{ label: 'Step 2', icon: 'monitor' },
-	{ label: 'Step 3', icon: 'book' },
-	{ label: 'Step 4', icon: '' },
+	{ label: 'Solicitação de limite', icon: 'book' },
+	{ label: 'Lista impeditiva', icon: 'monitor' },
+	{ label: 'Lista pré-elegíveis', icon: 'book' },
+	{ label: 'Fila de compliance', icon: 'logout' },
 ];
 
 export default {
@@ -54,6 +54,17 @@ export const Vertical = () => ({
 	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical />',
 });
 
+export const VerticalError = () => ({
+	components: { StepperHeader },
+	data() {
+		return {
+			steps,
+			currentStep: 3,
+		};
+	},
+	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+});
+
 Primary.story = {
 	name: 'Básico',
 };
@@ -62,4 +73,7 @@ Vertical.story = {
 };
 Error.story = {
 	name: 'Error',
+};
+VerticalError.story = {
+	name: 'Vertical Error',
 };
