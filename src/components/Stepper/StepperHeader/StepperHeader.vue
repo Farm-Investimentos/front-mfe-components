@@ -23,22 +23,13 @@
 			</div>
 			<div
 				:class="{
-					'stepper__divider--horizontal': true,
+					'stepper__divider--horizontal': !vertical,
+					'stepper__divider--vertical': vertical,
 					'stepper__divider--previous': isStepPrevious(index),
 					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
 					'stepper__divider--previous-to-error': isStepPreviousToError(index),
 				}"
-				v-if="!vertical && hasDivider(index)"
-				:key="'divider_' + step.label"
-			/>
-			<div
-				:class="{
-					'stepper__divider--vertical': true,
-					'stepper__divider--previous': isStepPrevious(index),
-					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
-					'stepper__divider--previous-to-error': isStepPreviousToError(index),
-				}"
-				v-if="vertical && hasDivider(index)"
+				v-if="hasDivider(index)"
 				:key="'divider_' + step.label"
 			/>
 		</template>
