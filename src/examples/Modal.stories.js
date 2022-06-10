@@ -179,6 +179,6 @@ ModalSmall.story = {
 	},
 };
 
-ModalScrollVertical.storyName = 'Rolagem vertical'
+ModalScrollVertical.storyName = 'Rolagem vertical';
 
-ModalScrollHorizontal.storyName = 'Rolagem horizontal'
+ModalScrollHorizontal.storyName = 'Rolagem horizontal';
