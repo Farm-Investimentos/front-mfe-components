@@ -120,9 +120,8 @@ $vertical-step-width: 160px;
 			float: left;
 			clear: both;
 			height: 32px;
-			//border-left: 1px solid $line-color;
 			margin: -24px 0 8px 16px;
-			width: 2px;
+			width: 1px;
 			background-color: $line-color;
 
 			&.stepper__divider--previous {
