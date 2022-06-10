@@ -23,7 +23,7 @@
 			</div>
 			<hr
 				:class="{
-					'stepper__divider--previous': isStepCurrent(index),
+					'stepper__divider--previous': isStepPrevious(index),
 				}"
 				v-if="!vertical && hasDivider(index)"
 				:key="'divider_' + step.label"
@@ -31,7 +31,7 @@
 			<div
 				:class="{
 					'stepper__divider--vertical': true,
-					'stepper__divider--previous': isStepCurrent(index),
+					'stepper__divider--previous': isStepPrevious(index),
 				}"
 				v-if="vertical && hasDivider(index)"
 				:key="'divider_' + step.label"

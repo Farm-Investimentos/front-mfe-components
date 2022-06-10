@@ -1,6 +1,9 @@
 $step-height: 64px;
 $line-color : #D6D6D6;
 $fore-color: #858585;
+$current-color: #5089DE;
+$previous-color: #00B493;
+$error-color: #EA5455;
 $vertical-step-width: 160px;
 
 .stepper__header {
@@ -18,20 +21,41 @@ $vertical-step-width: 160px;
 		font-size: 14px;
 		font-weight: 700;
 
-		/*
 		&.stepper__header-step--previous {
-			border-color: #009900;
+			color: $previous-color;
+
+			i.mdi {
+				border-color: $previous-color;
+			}
+
+			i.mdi:before {
+				color: $previous-color;
+			}
 		}
 
 		&.stepper__header-step--current {
-			border-color: yellow;
+			color: $current-color;
+
+			i.mdi {
+				border-color: $current-color;
+			}
+
+			i.mdi:before {
+				color: $current-color;
+			}
 		}
 
 		&.stepper__header-step--error {
-			border-color: red;
-			color: red;
+			color: $error-color;
+
+			i.mdi {
+				border-color: $error-color;
+			}
+
+			i.mdi:before {
+				color: $error-color;
+			}
 		}
-		*/
 
 		span {
 			margin-top: 8px;
@@ -39,9 +63,7 @@ $vertical-step-width: 160px;
 		}
 	}
 
-	.stepper__divider--previous {
-		// border-color: green;
-	}
+
 
 	hr {
 		display: block;
@@ -52,6 +74,10 @@ $vertical-step-width: 160px;
 		border: none;
 		border-bottom: 1px solid $line-color;
 		margin: 16px -16px 0;
+
+		&.stepper__divider--previous {
+			border-color: $previous-color;
+		}
 	}
 
 	&.stepper__header--vertical {
@@ -88,6 +114,9 @@ $vertical-step-width: 160px;
 			height: 32px;
 			border-left: 1px solid $line-color;
 			margin: -24px 0 8px 16px;
+			&.stepper__divider--previous {
+				border-color: $previous-color;
+			}
 		}
 	}
 }
