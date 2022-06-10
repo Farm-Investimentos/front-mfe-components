@@ -7,7 +7,13 @@ export default {
 
 export const Default = () => ({
 	components: { Collapsible },
-	template: '<Collapsible title="test" icon="home">Text or Components</Collapsible>',
+	template: '<Collapsible title="Example" icon="home">Text or Components</Collapsible>',
+});
+
+export const WithoutIcon = () => ({
+	components: { Collapsible },
+	template: '<Collapsible title="Example without icon">Text or Components</Collapsible>',
 });
 
 Default.storyName = 'Básico';
+WithoutIcon.storyName = 'Sem ícone';
