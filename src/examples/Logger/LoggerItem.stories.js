@@ -20,7 +20,6 @@ export const Primary = () => ({
 	data() {
 		return {
 			item: {
-				icon: 'book',
 				message: 'Recusado entre as pré elegíveis',
 				userName: 'Cleyton Rasta',
 				formattedDate: '13/06/2022  20:40',
@@ -35,7 +34,21 @@ export const Success = () => ({
 	data() {
 		return {
 			item: {
-				icon: 'book',
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+				status: 'success',
+			},
+		};
+	},
+	template: `<LoggerItem :item="item" />`,
+});
+
+export const Error = () => ({
+	components: { LoggerItem },
+	data() {
+		return {
+			item: {
 				message: 'Recusado entre as pré elegíveis',
 				userName: 'Cleyton Rasta',
 				formattedDate: '13/06/2022  20:40',
@@ -46,7 +59,7 @@ export const Success = () => ({
 	template: `<LoggerItem :item="item" />`,
 });
 
-export const Error = () => ({
+export const CustomIcon = () => ({
 	components: { LoggerItem },
 	data() {
 		return {
@@ -65,3 +78,4 @@ export const Error = () => ({
 Primary.storyName = 'Basic';
 Success.storyName = 'Success';
 Error.storyName = 'Error';
+CustomIcon.storyName = 'Custom Icon';

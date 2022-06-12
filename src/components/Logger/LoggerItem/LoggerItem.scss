@@ -1,21 +1,45 @@
 $line-color : #D6D6D6;
 $fore-color: #858585;
 $current-color: #5089DE;
-$previous-color: #00B493;
+$success-color: #00B493;
 $error-color: #EA5455;
+
+@mixin loggerMessage($color) {
+    >i.mdi {
+        border-color: $color;
+        background-color: $color;
+    }
+
+    .logger__message {
+        color: $color;
+    }
+}
 
 .logger__item {
     display: flex;
     flex-direction: row;
+    height: 64px;
+    align-items: center;
 
-
-    > div {
+    >div {
         display: flex;
         flex-direction: column;
+        padding-left: 8px;
+    }
+
+    &.logger__item--error {
+        @include loggerMessage($error-color);
+    }
+
+    &.logger__item--success {
+        @include loggerMessage($success-color);
+
     }
 }
 
-i.mdi {
+
+
+.logger__item>i.mdi {
     border: 1px solid $line-color;
     border-radius: 50%;
     width: 32px;
@@ -26,9 +50,22 @@ i.mdi {
     align-items: center;
     justify-content: center;
 
+    border-color: $fore-color;
+    background-color: $fore-color;
 
     &:before {
         font-size: 16px;
-        color: $fore-color;
+        color: white;
     }
+}
+
+.logger__date,
+.logger__username {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.logger__message {
+    font-size: 14px;
+    font-weight: 700;
 }

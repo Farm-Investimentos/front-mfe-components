@@ -21,22 +21,19 @@ export const Primary = () => ({
 		return {
 			items: [
 				{
-					icon: 'book',
 					message: 'Recusado entre as pré elegíveis',
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
 					status: 'error',
 				},
 				{
-					icon: 'book',
-					message: 'Recusado entre as pré elegíveis',
+					message: 'Aprovado entre as pré elegíveis',
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
 					status: 'success',
 				},
 				{
-					icon: 'book',
-					message: 'Recusado entre as pré elegíveis',
+					message: 'Aprovado entre as pré elegíveis',
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
 					status: 'success',

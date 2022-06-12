@@ -9,9 +9,8 @@
 		<i
 			:class="{
 				mdi: true,
-				['mdi-' + item.icon]: true,
+				[mdiIconName]: true,
 			}"
-			v-if="item.icon"
 		/>
 		<div>
 			<span class="logger__date">
@@ -21,6 +20,7 @@
 				{{ item.message }}
 			</span>
 			<span class="logger__username">
+				<i class="mdi mdi-account-circle" />
 				{{ item.userName }}
 			</span>
 		</div>
@@ -35,7 +35,17 @@ export default Vue.extend({
 	props: {
 		item: { required: true, type: Object as PropType<ILoggerItem> },
 	},
-	methods: {},
+	computed: {
+		mdiIconName() {
+			if (this.item.icon) {
+				return `mdi-${this.item.icon}`;
+			}
+			if(!this.item.status) {
+				return '';
+			}
+			return `mdi-${this.item.status === 'success' ? 'check' : 'close'}`;
+		},
+	},
 });
 </script>
 <style lang="sass" scoped>
