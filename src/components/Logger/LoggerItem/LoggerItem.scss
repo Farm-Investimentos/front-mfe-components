@@ -1,0 +1,34 @@
+$line-color : #D6D6D6;
+$fore-color: #858585;
+$current-color: #5089DE;
+$previous-color: #00B493;
+$error-color: #EA5455;
+
+.logger__item {
+    display: flex;
+    flex-direction: row;
+
+
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+i.mdi {
+    border: 1px solid $line-color;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: block;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &:before {
+        font-size: 16px;
+        color: $fore-color;
+    }
+}

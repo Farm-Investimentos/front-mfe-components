@@ -1,0 +1,19 @@
+$fore-color: #858585;
+
+.logger {
+    display: block;
+
+    .logger__item {
+        float: left;
+        clear: both;
+    }
+}
+
+.logger__divider {
+    float: left;
+    clear: both;
+    height: 32px;
+    margin: -24px 0 8px 16px;
+    width: 1px;
+    background-color: $fore-color;
+}
