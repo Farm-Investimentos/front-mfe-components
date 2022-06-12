@@ -90,10 +90,7 @@ $vertical-step-width: 160px;
 
 	&.stepper__header--vertical {
 		display: block;
-		align-items: center;
-		flex-direction: column;
 		width: $vertical-step-width;
-
 
 		div.stepper__header-step {
 			width: 100%;
