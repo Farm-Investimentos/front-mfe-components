@@ -11,6 +11,11 @@ export default {
 				`,
 			},
 		},
+
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/XDwOALFs1s9uXPFVE7BP9B/%E2%9C%8D---Cr%C3%A9dito?node-id=4029%3A28672',
+		},
 		viewMode: 'docs',
 	},
 };
