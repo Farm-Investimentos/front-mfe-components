@@ -1,9 +1,6 @@
 $step-height: 64px;
-$vertical-step-width: 160px;
 
 @mixin stepperHeaderStepColor($color) {
-	
-
 	i.mdi {
 		background-color: $color;
 		border-color: $color;
@@ -12,6 +9,10 @@ $vertical-step-width: 160px;
 	i.mdi:before {
 		color: white;
 	}
+}
+
+.horizontal-step-size .stepper__header--vertical {
+	width: 160px;
 }
 
 .stepper__header {
@@ -72,7 +73,6 @@ $vertical-step-width: 160px;
 
 	&.stepper__header--vertical {
 		display: block;
-		width: $vertical-step-width;
 
 		div.stepper__header-step {
 			width: 100%;
@@ -85,8 +85,10 @@ $vertical-step-width: 160px;
 			}
 
 			span {
-				display: block;
+				display: flex;
+				align-items: center;
 				width: calc(100% - 40px);
+				height: 32px;
 				clear: none;
 				float: left;
 				margin-top: 0;
@@ -108,11 +110,19 @@ $vertical-step-width: 160px;
 			}
 
 			&.stepper__divider--previous-to-current {
-				background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-accent-base));
+				background: linear-gradient(
+					to bottom,
+					var(--v-secondary-base),
+					var(--v-accent-base)
+				);
 			}
 
 			&.stepper__divider--previous-to-error {
-				background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-error-base));
+				background: linear-gradient(
+					to bottom,
+					var(--v-secondary-base),
+					var(--v-error-base)
+				);
 			}
 		}
 	}
@@ -128,7 +138,6 @@ i.mdi {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 
 	&:before {
 		font-size: 16px;
