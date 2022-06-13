@@ -1,39 +1,41 @@
 <template>
-	<section :class="{ stepper__header: true, 'stepper__header--vertical': vertical }">
-		<template v-for="(step, index) in steps">
-			<div
-				:class="{
-					'stepper__header-step': true,
-					'stepper__header-step--current': isStepCurrent(index),
-					'stepper__header-step--previous': isStepPrevious(index),
-					'stepper__header-step--error': isStepError(index),
-				}"
-				:key="step.label"
-			>
-				<i
+	<div class="horizontal-step-size">
+		<section :class="{ stepper__header: true, 'stepper__header--vertical': vertical }">
+			<template v-for="(step, index) in steps">
+				<div
 					:class="{
-						mdi: true,
-						['mdi-' + step.icon]: true,
+						'stepper__header-step': true,
+						'stepper__header-step--current': isStepCurrent(index),
+						'stepper__header-step--previous': isStepPrevious(index),
+						'stepper__header-step--error': isStepError(index),
 					}"
-					v-if="step.icon"
+					:key="step.label"
+				>
+					<i
+						:class="{
+							mdi: true,
+							['mdi-' + step.icon]: true,
+						}"
+						v-if="step.icon"
+					/>
+					<span>
+						{{ step.label }}
+					</span>
+				</div>
+				<div
+					:class="{
+						'stepper__divider--horizontal': !vertical,
+						'stepper__divider--vertical': vertical,
+						'stepper__divider--previous': isStepPrevious(index),
+						'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
+						'stepper__divider--previous-to-error': isStepPreviousToError(index),
+					}"
+					v-if="hasDivider(index)"
+					:key="'divider_' + step.label"
 				/>
-				<span>
-					{{ step.label }}
-				</span>
-			</div>
-			<div
-				:class="{
-					'stepper__divider--horizontal': !vertical,
-					'stepper__divider--vertical': vertical,
-					'stepper__divider--previous': isStepPrevious(index),
-					'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
-					'stepper__divider--previous-to-error': isStepPreviousToError(index),
-				}"
-				v-if="hasDivider(index)"
-				:key="'divider_' + step.label"
-			/>
-		</template>
-	</section>
+			</template>
+		</section>
+	</div>
 </template>
 <script lang="ts">
 import Vue, { PropType } from 'vue';
