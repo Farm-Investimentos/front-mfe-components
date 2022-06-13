@@ -58,6 +58,54 @@ export const ModalSmall = () => ({
 	</div>`,
 });
 
+export const ModalExtremeSmall = () => ({
+	components: {
+		DialogHeader,
+		DialogFooter,
+	},
+	data() {
+		return {
+			showModalSmall: false,
+		};
+	},
+	template: `<div>
+	<v-dialog content-class="modal-default modal-default-x-small" v-model="showModalSmall">
+		<DialogHeader title="Exemplo" @onClose="showModalSmall = false;" />
+		<v-main class="pa-6 pt-12">
+			Place dialog content here!
+		</v-main>
+		<DialogFooter :hasConfirm="false" @onClose="showModalSmall = false;" />
+	</v-dialog>
+		<v-btn @click="showModalSmall = true;" color="secondary">
+			Clique para abrir
+		</v-btn>
+	</div>`,
+});
+
+export const ModalMedium = () => ({
+	components: {
+		DialogHeader,
+		DialogFooter,
+	},
+	data() {
+		return {
+			showModalSmall: false,
+		};
+	},
+	template: `<div>
+	<v-dialog content-class="modal-default modal-default-md" v-model="showModalSmall">
+		<DialogHeader title="Exemplo" @onClose="showModalSmall = false;" />
+		<v-main class="pa-6 pt-12">
+			Place dialog content here!
+		</v-main>
+		<DialogFooter :hasConfirm="false" @onClose="showModalSmall = false;" />
+	</v-dialog>
+		<v-btn @click="showModalSmall = true;" color="secondary">
+			Clique para abrir
+		</v-btn>
+	</div>`,
+});
+
 export const ModalScrollVertical = () => ({
 	components: {
 		DialogHeader,
@@ -182,3 +230,7 @@ ModalSmall.story = {
 ModalScrollVertical.storyName = 'Rolagem vertical';
 
 ModalScrollHorizontal.storyName = 'Rolagem horizontal';
+
+ModalExtremeSmall.storyName = 'Extra pequeno';
+
+ModalMedium.storyName = 'Médio';

@@ -72,7 +72,16 @@
 			max-width: calc(392px - 2rem);
 		}
 	}
+
+	.v-dialog.modal-default.modal-default-md {
+		max-width: calc(600px - 2rem);
+
+		header {
+			max-width: calc(600px - 2rem);
+		}
+	}
 }
+
 @media screen and (max-width: 960px) {
 	.v-dialog.modal-default header {
 		max-width: calc(100% - 3rem);
