@@ -1,10 +1,18 @@
 $step-height: 64px;
-$line-color : #D6D6D6;
-$fore-color: #858585;
-$current-color: #5089DE;
-$previous-color: #00B493;
-$error-color: #EA5455;
 $vertical-step-width: 160px;
+
+@mixin stepperHeaderStepColor($color) {
+	
+
+	i.mdi {
+		background-color: $color;
+		border-color: $color;
+	}
+
+	i.mdi:before {
+		color: white;
+	}
+}
 
 .stepper__header {
 	display: flex;
@@ -17,44 +25,20 @@ $vertical-step-width: 160px;
 		flex-direction: column;
 		align-items: center;
 		justify-items: center;
-		color: $fore-color;
+		color: var(--v-gray-lighten1);
 		font-size: 14px;
 		font-weight: 700;
 
 		&.stepper__header-step--previous {
-			color: $previous-color;
-
-			i.mdi {
-				border-color: $previous-color;
-			}
-
-			i.mdi:before {
-				color: $previous-color;
-			}
+			@include stepperHeaderStepColor(var(--v-secondary-base));
 		}
 
 		&.stepper__header-step--current {
-			color: $current-color;
-
-			i.mdi {
-				border-color: $current-color;
-			}
-
-			i.mdi:before {
-				color: $current-color;
-			}
+			@include stepperHeaderStepColor(var(--v-accent-base));
 		}
 
 		&.stepper__header-step--error {
-			color: $error-color;
-
-			i.mdi {
-				border-color: $error-color;
-			}
-
-			i.mdi:before {
-				color: $error-color;
-			}
+			@include stepperHeaderStepColor(var(--v-error-base));
 		}
 
 		span {
@@ -62,8 +46,6 @@ $vertical-step-width: 160px;
 			text-align: center;
 		}
 	}
-
-
 
 	.stepper__divider--horizontal {
 		display: block;
@@ -73,18 +55,18 @@ $vertical-step-width: 160px;
 
 		border: none;
 		margin: 16px -16px 0;
-		background: $line-color;
+		background: var(--v-gray-lighten2);
 
 		&.stepper__divider--previous {
-			background: $previous-color;
+			background: var(--v-secondary-base);
 		}
 
 		&.stepper__divider--previous-to-current {
-			background: linear-gradient(to right, $previous-color, $current-color);
+			background: linear-gradient(to right, var(--v-secondary-base), var(--v-accent-base));
 		}
 
 		&.stepper__divider--previous-to-error {
-			background: linear-gradient(to right, $previous-color, $error-color);
+			background: linear-gradient(to right, var(--v-secondary-base), var(--v-error-base));
 		}
 	}
 
@@ -120,25 +102,25 @@ $vertical-step-width: 160px;
 			height: 32px;
 			margin: -24px 0 8px 16px;
 			width: 1px;
-			background-color: $line-color;
+			background-color: var(--v-gray-lighten2);
 
 			&.stepper__divider--previous {
-				background-color: $previous-color;
+				background-color: var(--v-secondary-base);
 			}
 
 			&.stepper__divider--previous-to-current {
-				background: linear-gradient(to bottom, $previous-color, $current-color);
+				background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-accent-base));
 			}
 
 			&.stepper__divider--previous-to-error {
-				background: linear-gradient(to bottom, $previous-color, $error-color);
+				background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-error-base));
 			}
 		}
 	}
 }
 
 i.mdi {
-	border: 1px solid $line-color;
+	border: 1px solid var(--v-gray-lighten2);
 	border-radius: 50%;
 	width: 32px;
 	height: 32px;
@@ -151,6 +133,6 @@ i.mdi {
 
 	&:before {
 		font-size: 16px;
-		color: $fore-color;
+		color: var(--v-gray-lighten1);
 	}
 }
