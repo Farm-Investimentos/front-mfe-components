@@ -1,5 +1,3 @@
-$fore-color: #858585;
-
 .logger {
     display: block;
 
@@ -15,5 +13,5 @@ $fore-color: #858585;
     height: 40px;
     margin: -4px 0 -4px 16px;
     width: 1px;
-    background-color: $fore-color;
+    background-color: var(--v-gray-lighten1);
 }
