@@ -43,5 +43,12 @@ describe('StepperHeader component', () => {
 			expect(component.hasDivider(4)).toBeFalsy();
 			expect(component.hasDivider(1)).toBeTruthy();
 		});
+
+		it('Should check if step is next', () => {
+			expect(component.isStepNext(4)).toBeTruthy();
+			expect(component.isStepNext(1)).toBeFalsy();
+		});
+
+		
 	});
 });

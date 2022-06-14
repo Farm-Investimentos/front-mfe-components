@@ -8,6 +8,7 @@
 						'stepper__header-step--current': isStepCurrent(index),
 						'stepper__header-step--previous': isStepPrevious(index),
 						'stepper__header-step--error': isStepError(index),
+						'stepper__header-step--next': isStepNext(index),
 					}"
 					:key="step.label"
 				>
@@ -16,8 +17,9 @@
 							mdi: true,
 							['mdi-' + step.icon]: true,
 						}"
-						v-if="step.icon"
-					/>
+					>
+						{{ step.icon ? '' : index + 1 }}
+					</i>
 					<span>
 						{{ step.label }}
 					</span>
@@ -88,6 +90,9 @@ export default Vue.extend({
 				this.isStepCurrent(index + 1) &&
 				this.isStepError(index + 1)
 			);
+		},
+		isStepNext(index: number): boolean {
+			return index + 1 > this.currentStep;
 		},
 	},
 });
