@@ -42,6 +42,12 @@ $step-height: 64px;
 			@include stepperHeaderStepColor(var(--v-error-base));
 		}
 
+		&.stepper__header-step--next {
+			i.mdi {
+				color: var(--v-gray-lighten1);
+			}
+		}
+
 		span {
 			margin-top: 8px;
 			text-align: center;
@@ -110,19 +116,15 @@ $step-height: 64px;
 			}
 
 			&.stepper__divider--previous-to-current {
-				background: linear-gradient(
-					to bottom,
-					var(--v-secondary-base),
-					var(--v-accent-base)
-				);
+				background: linear-gradient(to bottom,
+						var(--v-secondary-base),
+						var(--v-accent-base));
 			}
 
 			&.stepper__divider--previous-to-error {
-				background: linear-gradient(
-					to bottom,
-					var(--v-secondary-base),
-					var(--v-error-base)
-				);
+				background: linear-gradient(to bottom,
+						var(--v-secondary-base),
+						var(--v-error-base));
 			}
 		}
 	}
@@ -133,11 +135,12 @@ i.mdi {
 	border-radius: 50%;
 	width: 32px;
 	height: 32px;
-	display: block;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: white;
+	font-style: normal;
 
 	&:before {
 		font-size: 16px;
