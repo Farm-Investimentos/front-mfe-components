@@ -62,7 +62,24 @@ export const VerticalError = () => ({
 			currentStep: 3,
 		};
 	},
-	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+	template:
+		'<StepperHeader :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+});
+
+export const Numbers = () => ({
+	components: { StepperHeader },
+	data() {
+		return {
+			steps: [
+				{ label: 'Solicitação de limite' },
+				{ label: 'Lista impeditiva' },
+				{ label: 'Lista pré-elegíveis' },
+				{ label: 'Fila de compliance' },
+			],
+			currentStep: 2,
+		};
+	},
+	template: '<StepperHeader :steps="steps" :currentStep="currentStep" />',
 });
 
 Primary.story = {
@@ -76,4 +93,7 @@ Error.story = {
 };
 VerticalError.story = {
 	name: 'Vertical Error',
+};
+Numbers.story = {
+	name: 'Numbers',
 };
