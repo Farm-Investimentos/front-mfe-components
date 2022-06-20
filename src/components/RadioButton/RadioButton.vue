@@ -1,11 +1,11 @@
 <template>
 	<v-radio-group v-model="selectedVal" :column="isBlock">
 		<v-radio
-			:class="`${isBlock ? '' : 'ml-3 mr-3'}`"
-			v-for="(n, i) in labels"
-			:key="i"
-			:label="n"
 			color="secondary"
+			v-for="(item, index) in labels"
+			:class="{ 'ml-3': isBlock, 'mr-3': isBlock }"
+			:key="index"
+			:label="item"
 		>
 		</v-radio>
 	</v-radio-group>
@@ -23,20 +23,20 @@ export default Vue.extend({
 	},
 	props: {
 		/**
-		 * value to change with v-model, if has some value it'ill be the initial selected value
+		 * Value to change with v-model, if has some value it'ill be the *     initial selected value
 		 *  */
 		value: {
 			require: true,
 		},
 		/**
-		 * labels to show radio buttons aside
+		 * Labels to show aside radio buttons
 		 */
 		labels: {
 			type: Array,
 			require: true,
 		},
 		/**
-		 * to change if is vertical or horizontal show
+		 * To change if is vertical or horizontal view
 		 */
 		isBlock: {
 			type: Boolean,
