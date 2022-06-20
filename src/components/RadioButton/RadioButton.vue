@@ -23,7 +23,7 @@ export default Vue.extend({
 	},
 	props: {
 		/**
-		 * value to change with v-model
+		 * value to change with v-model, if has some value it'ill be the initial selected value
 		 *  */
 		value: {
 			require: true,
