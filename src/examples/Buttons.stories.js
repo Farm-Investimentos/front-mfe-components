@@ -1,5 +1,6 @@
 import { withDesign } from 'storybook-addon-designs';
 import { DefaultButton } from '../main';
+import('./Buttons.stories.scss');
 
 export default {
 	title: 'Examples/Buttons',
@@ -14,7 +15,7 @@ export default {
 	},
 };
 
-const colors = ['primary', 'secondary', 'error', 'extra', 'gray', 'accent', 'yellow'];
+const colors = ['primary', 'secondary', 'error', 'gray', 'accent', 'yellow'];
 
 export const ActiveButtons = () => ({
 	components: {
@@ -25,8 +26,8 @@ export const ActiveButtons = () => ({
 			colors,
 		};
 	},
-	template: `<div style="display: flex; flex-direction: column; max-width: 160px; width: 100%;">
-        <DefaultButton v-for="color of colors":key="color" :color="color" style="margin-bottom: 1rem;">
+	template: `<div class="buttons-container">
+        <DefaultButton v-for="color of colors":key="color" :color="color">
             {{ color }}
         </DefaultButton>
 	</div>`,
@@ -41,8 +42,8 @@ export const OutlinedButtons = () => ({
 			colors,
 		};
 	},
-	template: `<div style="display: flex; flex-direction: column; max-width: 160px; width: 100%;">
-        <DefaultButton v-for="color of colors":key="color" :color="color" style="margin-bottom: 1rem;" outlined>
+	template: `<div class="buttons-container">
+        <DefaultButton v-for="color of colors":key="color" :color="color"outlined>
             {{ color }}
         </DefaultButton>
 	</div>`,
@@ -57,8 +58,24 @@ export const DisabledButtons = () => ({
 			colors,
 		};
 	},
-	template: `<div style="display: flex; flex-direction: column; max-width: 160px; width: 100%;">
-        <DefaultButton v-for="color of colors":key="color" :color="color" style="margin-bottom: 1rem;" disabled>
+	template: `<div class="buttons-container">
+        <DefaultButton v-for="color of colors":key="color" :color="color" disabled>
+            {{ color }}
+        </DefaultButton>
+	</div>`,
+});
+
+export const Plain = () => ({
+	components: {
+		DefaultButton,
+	},
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div class="buttons-container">
+        <DefaultButton v-for="color of colors":key="color" :color="color" plain>
             {{ color }}
         </DefaultButton>
 	</div>`,
@@ -72,4 +89,7 @@ OutlinedButtons.story = {
 };
 DisabledButtons.story = {
 	name: 'Disabled',
+};
+Plain.story = {
+	name: 'Plain',
 };
