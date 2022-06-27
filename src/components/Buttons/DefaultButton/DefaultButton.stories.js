@@ -27,8 +27,9 @@ export const HtmlMarkup = () => ({
 
 export const Props = () => ({
 	components: { DefaultButton },
-	template: '<DefaultButton color="secondary">props</DefaultButton>',
+	template: '<DefaultButton color="secondary" outlined>props</DefaultButton>',
 });
+
 
 export const Listener = () => ({
 	components: { DefaultButton },
