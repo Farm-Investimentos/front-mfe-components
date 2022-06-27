@@ -42,6 +42,10 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
         background-color: var(--v-#{$color}-base);
         color: white;
 
+        .farm-btn__content i.mdi {
+            color: white;
+        }
+
         &:before {
             background-color: currentColor;
             border-radius: inherit;
@@ -67,12 +71,22 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
         border: 1px solid var(--v-#{$color}-base);
         background: white;
         color: var(--v-#{$color}-base);
+
+        .farm-btn__content i.mdi {
+            color: var(--v-#{$color}-base);
+        }
+
     }
 
     .farm-btn--plain#{'.farm-btn--' + $color} {
         border: none;
         background: white;
         color: var(--v-#{$color}-base);
+
+        .farm-btn__content i.mdi {
+            color: var(--v-#{$color}-base);
+        }
+
     }
 }
 

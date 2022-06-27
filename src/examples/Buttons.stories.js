@@ -81,6 +81,34 @@ export const Plain = () => ({
 	</div>`,
 });
 
+export const Icons = () => ({
+	components: {
+		DefaultButton,
+	},
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div class="buttons-container">
+		<h4>Full</h4>
+        <DefaultButton v-for="color of colors":key="color" :color="color">
+            <v-icon>mdi-book</v-icon> book
+        </DefaultButton>
+
+		<h4>Outlined</h4>
+        <DefaultButton v-for="color of colors":key="color" :color="color" outlined>
+            <v-icon>mdi-book</v-icon> book
+        </DefaultButton>
+
+		<h4>Plain</h4>
+        <DefaultButton v-for="color of colors":key="color" :color="color" plain>
+            <v-icon>mdi-book</v-icon> book
+        </DefaultButton>
+
+	</div>`,
+});
+
 ActiveButtons.story = {
 	name: 'Active',
 };
@@ -92,4 +120,7 @@ DisabledButtons.story = {
 };
 Plain.story = {
 	name: 'Plain',
+};
+Icons.story = {
+	name: 'Icons',
 };
