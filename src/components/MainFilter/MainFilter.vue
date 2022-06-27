@@ -7,11 +7,11 @@
 			</label>
 			<v-text-field
 				color="secondary"
-				@keyup="onKeyUp"
-				:id="elementId"
 				outlined
 				dense
 				v-model="inputValue"
+				:id="elementId"
+				@keyup="onKeyUp"
 			/>
 		</fieldset>
 		<v-btn
@@ -77,7 +77,7 @@ export default Vue.extend({
 	},
 	computed: {
 		extraFiltersBtnLabel() {
-			return this.showFilters ? 'Esconder filtros' : 'Ver filtros';
+			return `${this.showFilters ? 'Esconder' : 'Ver'} Filtros`;
 		},
 		extraFiltersBtnIcon() {
 			return this.showFilters ? 'mdi-filter-off' : 'mdi-filter';

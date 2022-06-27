@@ -10,6 +10,7 @@ describe('RadioButton component', () => {
 				value: 2,
 				label: ['teste', 'teste', 'teste', 'teste'],
 				isBlock: true,
+				items: [],
 			},
 		});
 	});
