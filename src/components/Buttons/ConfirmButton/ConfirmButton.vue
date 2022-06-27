@@ -6,14 +6,12 @@
 </template>
 <script>
 import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
 
 import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-confirm',
 	components: {
-		VIcon,
 		DefaultButton,
 	},
 	inheritAttrs: true,
