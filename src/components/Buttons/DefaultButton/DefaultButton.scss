@@ -34,6 +34,11 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     }
 }
 
+
+.farm-btn--round {
+    border-radius: 50%;
+}
+
 .farm-btn__content {
     font-weight: 700;
     display: flex;

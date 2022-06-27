@@ -1,5 +1,5 @@
 <template>
-	<v-btn
+	<farm-btn
 		@click="onClick"
 		dense
 		class="v-btn--responsive"
@@ -9,12 +9,13 @@
 	>
 		<v-icon>mdi-trash-can-outline</v-icon>
 		{{ label }}
-	</v-btn>
+	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../DefaultButton';
+
 export default Vue.extend({
 	name: 'farm-btn-remove',
 	props: {
@@ -34,8 +35,8 @@ export default Vue.extend({
 		},
 	},
 	components: {
-		VBtn,
 		VIcon,
+		'farm-btn': DefaultButton,
 	},
 	methods: {
 		onClick() {
@@ -45,7 +46,7 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.v-btn {
+.farm-btn {
 	.v-icon {
 		margin-right: 1rem;
 	}

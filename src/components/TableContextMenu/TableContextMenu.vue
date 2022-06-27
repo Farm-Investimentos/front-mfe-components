@@ -1,9 +1,9 @@
 <template>
 	<v-menu>
 		<template v-slot:activator="{ on, attrs }">
-			<v-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
+			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
 				<v-icon>mdi-dots-horizontal</v-icon>
-			</v-btn>
+			</farm-btn>
 		</template>
 
 		<v-list dense class="pa-0">
@@ -31,22 +31,22 @@
 <script>
 import Vue from 'vue';
 import { VMenu } from 'vuetify/lib/components/VMenu';
-import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VIcon } from 'vuetify/lib/components/VIcon';
 import { VList } from 'vuetify/lib/components/VList';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+import DefaultButton from '../Buttons/DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-context-menu',
 	components: {
-		VBtn,
 		VIcon,
 		VMenu,
 		VList,
 		VListItem,
 		VListItemContent,
 		VListItemTitle,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		items: {

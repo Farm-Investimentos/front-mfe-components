@@ -1,18 +1,17 @@
 <template>
-	<v-btn @click="onClick" dense class="v-btn--responsive v-btn--import" outlined title="Importar">
-		<v-icon>mdi-upload</v-icon>
+	<farm-btn @click="onClick" dense class="v-btn--responsive farm-btn--import" outlined title="Importar">
+		<i class="mdi mdi-upload"></i>
 		{{ label }}
-	</v-btn>
+	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
-import VIcon from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../DefaultButton';
+
 export default Vue.extend({
 	name: 'farm-btn-import',
 	components: {
-		VBtn,
-		VIcon,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**
@@ -31,10 +30,11 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.v-btn.v-btn--import {
+.farm-btn.farm-btn--import {
 	background: var(--v-extra-lighten2);
 	color: var(--v-gray-lighten5);
-	.v-icon {
+	.farm-btn__content i.mdi {
+		color: white;
 		margin-right: 1rem;
 	}
 }
