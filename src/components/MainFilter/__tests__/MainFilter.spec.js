@@ -23,11 +23,11 @@ describe('MainFilter component', () => {
 
 	describe('computed properties', () => {
 		it('get extraFiltersBtnLabel', async () => {
-			expect(component.extraFiltersBtnLabel).toEqual('Ver filtros');
+			expect(component.extraFiltersBtnLabel).toEqual('Ver Filtros');
 			await wrapper.setProps({
 				showFilters: true,
 			});
-			expect(component.extraFiltersBtnLabel).not.toEqual('Ver filtros');
+			expect(component.extraFiltersBtnLabel).not.toEqual('Ver Filtros');
 		});
 
 		it('get extraFiltersBtnIcon', async () => {
