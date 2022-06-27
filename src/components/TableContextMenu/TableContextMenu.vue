@@ -2,7 +2,7 @@
 	<v-menu>
 		<template v-slot:activator="{ on, attrs }">
 			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
-				<i class="mdi mdi-dots-horizontal"></i>
+				<i class="farm-btn__icon mdi mdi-dots-horizontal"></i>
 			</farm-btn>
 		</template>
 
