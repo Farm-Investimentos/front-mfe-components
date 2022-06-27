@@ -16,6 +16,7 @@ export default Vue.extend({
 		color: { type: String, default: 'primary' },
 		outlined: Boolean,
 		plain: Boolean,
+		disabled: Boolean,
 		type: {
 			type: String,
 			default: 'button',
@@ -29,16 +30,28 @@ export default Vue.extend({
 	computed: {
 		classes() {
 			const obj = {};
-			['outlined', 'plain']
+			['outlined', 'plain', 'disabled']
 				.filter(key => this[key])
 				.forEach(key => {
 					obj['farm-btn--' + key] = this[key];
 				});
 			return {
 				'farm-btn': true,
+				'farm-btn--elevated': this.isElevated,
 				['farm-btn--' + this.color]: true,
 				...obj,
 			};
+		},
+		isElevated(): boolean {
+			return Boolean(
+				!this.icon &&
+					!this.text &&
+					!this.outlined &&
+					!this.depressed &&
+					!this.disabled &&
+					!this.plain &&
+					(this.elevation == null || Number(this.elevation) > 0)
+			);
 		},
 	},
 	methods: {
