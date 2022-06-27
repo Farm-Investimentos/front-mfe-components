@@ -22,6 +22,7 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     min-width: 64px;
     padding: 0 16px;
 
+
     &.farm-btn--disabled {
         background-color: #DADADA;
         color: rgba(0, 0, 0, .26);
@@ -34,9 +35,26 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     }
 }
 
-
 .farm-btn--round {
     border-radius: 50%;
+}
+.farm-btn.farm-btn--icon {
+    border: none;
+    background: white;
+    transition: color 0.5s ease;
+    
+    min-width: auto;
+    width: 36px;
+    .farm-btn__content i.mdi {
+        color: gray !important;
+    }
+    @each $color in $colors {
+        &#{'.farm-btn--' + $color} {
+            &:hover {
+                color: var(--v-#{$color}-base);
+            }
+        }
+    }
 }
 
 .farm-btn__content {
@@ -52,7 +70,7 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
 @each $color in $colors {
     #{'.farm-btn--' + $color} {
         border: 1px solid var(--v-#{$color}-base);
-        background-color: var(--v-#{$color}-base);
+        background-color: var(--v-#{$color}-lighten1);
         color: white;
 
         .farm-btn__content i.mdi {

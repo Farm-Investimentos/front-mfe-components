@@ -17,6 +17,8 @@ export default Vue.extend({
 		outlined: Boolean,
 		plain: Boolean,
 		disabled: Boolean,
+		rounded: Boolean,
+		icon: Boolean,
 		type: {
 			type: String,
 			default: 'button',
@@ -34,9 +36,15 @@ export default Vue.extend({
 			return {
 				'farm-btn': true,
 				'farm-btn--elevated': this.isElevated,
+				'farm-btn--round': this.isRound,
+				'farm-btn--rounded': this.rounded,
+				'farm-btn--icon': this.icon,
 				['farm-btn--' + this.color]: true,
 				...obj,
 			};
+		},
+		isRound(): boolean {
+			return Boolean(this.icon || this.fab);
 		},
 		isElevated(): boolean {
 			return Boolean(
