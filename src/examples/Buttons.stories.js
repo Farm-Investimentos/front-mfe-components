@@ -19,7 +19,7 @@ const colors = ['primary', 'secondary', 'error', 'gray', 'accent', 'yellow'];
 
 export const ActiveButtons = () => ({
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	data() {
 		return {
@@ -27,15 +27,15 @@ export const ActiveButtons = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <DefaultButton v-for="color of colors":key="color" :color="color">
+        <farm-btn v-for="color of colors":key="color" :color="color">
             {{ color }}
-        </DefaultButton>
+        </farm-btn>
 	</div>`,
 });
 
 export const OutlinedButtons = () => ({
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	data() {
 		return {
@@ -43,15 +43,15 @@ export const OutlinedButtons = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <DefaultButton v-for="color of colors":key="color" :color="color"outlined>
+        <farm-btn v-for="color of colors":key="color" :color="color"outlined>
             {{ color }}
-        </DefaultButton>
+        </farm-btn>
 	</div>`,
 });
 
 export const DisabledButtons = () => ({
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	data() {
 		return {
@@ -59,15 +59,15 @@ export const DisabledButtons = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <DefaultButton v-for="color of colors":key="color" :color="color" disabled>
+        <farm-btn v-for="color of colors":key="color" :color="color" disabled>
             {{ color }}
-        </DefaultButton>
+        </farm-btn>
 	</div>`,
 });
 
 export const Plain = () => ({
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	data() {
 		return {
@@ -75,15 +75,15 @@ export const Plain = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <DefaultButton v-for="color of colors":key="color" :color="color" plain>
+        <farm-btn v-for="color of colors":key="color" :color="color" plain>
             {{ color }}
-        </DefaultButton>
+        </farm-btn>
 	</div>`,
 });
 
 export const Icons = () => ({
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	data() {
 		return {
@@ -92,19 +92,19 @@ export const Icons = () => ({
 	},
 	template: `<div class="buttons-container">
 		<h4>Full</h4>
-        <DefaultButton v-for="color of colors":key="color" :color="color">
+        <farm-btn v-for="color of colors":key="color" :color="color">
             <v-icon>mdi-book</v-icon> book
-        </DefaultButton>
+        </farm-btn>
 
 		<h4>Outlined</h4>
-        <DefaultButton v-for="color of colors":key="color" :color="color" outlined>
+        <farm-btn v-for="color of colors":key="color + 'outlined'" :color="color" outlined>
             <v-icon>mdi-book</v-icon> book
-        </DefaultButton>
+        </farm-btn>
 
 		<h4>Plain</h4>
-        <DefaultButton v-for="color of colors":key="color" :color="color" plain>
+        <farm-btn v-for="color of colors":key="color + 'plain'" :color="color" plain>
             <v-icon>mdi-book</v-icon> book
-        </DefaultButton>
+        </farm-btn>
 
 	</div>`,
 });

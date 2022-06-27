@@ -26,6 +26,7 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
         background-color: rgba(0, 0, 0, .12);
         color: rgba(0, 0, 0, .26);
         cursor: default;
+        border-color: rgba(0, 0, 0, .12);
 
         &:before {
             display: none;
@@ -38,10 +39,14 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     display: flex;
     flex-direction: row;
     align-items: center;
+    i.mdi {
+        font-size: 1rem;
+    }
 }
 
 @each $color in $colors {
     #{'.farm-btn--' + $color} {
+        border: 1px solid var(--v-#{$color}-base);
         background-color: var(--v-#{$color}-base);
         color: white;
 

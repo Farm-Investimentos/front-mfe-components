@@ -5,28 +5,28 @@
 				{{ label }}
 			</v-col>
 			<v-col class="shrink">
-				<v-btn color="secondary" class="ml-3" alt="Recarregar" @click="$emit('onClick')">
-					<v-icon class="v-icon__refresh">mdi-refresh</v-icon>
-					Recarregar</v-btn
-				>
+				<farm-btn color="secondary" class="ml-3" alt="Recarregar" @click="$emit('onClick')">
+					<i class="mdi mdi-refresh farm-icon"></i>
+					Recarregar
+				</farm-btn>
 			</v-col>
 		</v-row>
 	</v-alert>
 </template>
 <script>
-import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
 import VAlert from 'vuetify/lib/components/VAlert';
 import { VRow, VCol } from 'vuetify/lib/components/VGrid';
+import DefaultButton from '../Buttons/DefaultButton';
 
 export default {
 	name: 'farm-alert-reload',
 	components: {
-		VBtn,
 		VIcon,
 		VAlert,
 		VRow,
 		VCol,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**
@@ -41,8 +41,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-btn {
-	.v-icon.v-icon__refresh {
+.farm-btn {
+	.farm-icon {
 		margin-right: 1rem;
 	}
 }
