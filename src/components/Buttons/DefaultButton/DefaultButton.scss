@@ -70,7 +70,7 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
 @each $color in $colors {
     #{'.farm-btn--' + $color} {
         border: 1px solid var(--v-#{$color}-base);
-        background-color: var(--v-#{$color}-lighten1);
+        background-color: var(--v-#{$color}-base);
         color: white;
 
         .farm-btn__content i.mdi {

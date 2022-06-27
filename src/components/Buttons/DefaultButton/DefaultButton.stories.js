@@ -26,7 +26,7 @@ export const HtmlMarkup = () => ({
 });
 
 export const Props = () => ({
-	components: { DefaultButton },
+	components: { 'farm-btn': DefaultButton },
 	template: '<farm-btn color="secondary" outlined>props</farm-btn>',
 });
 
