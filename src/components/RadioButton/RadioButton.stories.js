@@ -10,11 +10,14 @@ export const Primary = () => ({
 	data() {
 		return {
 			value: null,
-			label: ['teste', 'teste']
+			items: [
+				{ label: 'label', value: 1 },
+				{ label: 'label', value: 2 },
+			],
 		};
 	},
 	template: `<div>
-			<RadioButton v-model="value" :labels="label">
+			<RadioButton v-model="value" :items="items">
 			</RadioButton>
 		</div>`,
 });
@@ -24,11 +27,16 @@ export const Secondary = () => ({
 	data() {
 		return {
 			value: 2,
-			label: ['teste', 'teste', 'teste', 'teste']
+			items: [
+				{ label: 'label', value: 1 },
+				{ label: 'label', value: 2 },
+				{ label: 'label', value: 3 },
+				{ label: 'label', value: 4 },
+			],
 		};
 	},
 	template: `<div>
-			<RadioButton v-model="value" :labels="label">
+			<RadioButton v-model="value" :items="items">
 			</RadioButton>
 		</div>`,
 });
@@ -38,11 +46,16 @@ export const Tertiary = () => ({
 	data() {
 		return {
 			value: 2,
-			label: ['teste', 'teste', 'teste', 'teste']
+			items: [
+				{ label: 'label', value: 1 },
+				{ label: 'label', value: 2 },
+				{ label: 'label', value: 3 },
+				{ label: 'label', value: 4 },
+			],
 		};
 	},
 	template: `<div>
-			<RadioButton v-model="value" isBlock :labels="label">
+			<RadioButton v-model="value" isBlock :items="items">
 			</RadioButton>
 		</div>`,
 });
