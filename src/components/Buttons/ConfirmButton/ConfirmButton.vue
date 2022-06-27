@@ -1,8 +1,6 @@
 <template>
 	<DefaultButton v-bind="$attrs" v-on="$listeners" color="secondary">
-		<v-icon v-if="icon" class="mr-3">
-			{{ iconPath }}
-		</v-icon>
+		<i :class="{ mdi: true, [iconPath]: true, 'mr-3': true }" v-if="icon"></i>
 		<slot></slot>
 	</DefaultButton>
 </template>
@@ -45,3 +43,8 @@ export default Vue.extend({
 	},
 });
 </script>
+<style lang="scss" scoped>
+i.mdi {
+	font-size: 1rem;
+}
+</style>

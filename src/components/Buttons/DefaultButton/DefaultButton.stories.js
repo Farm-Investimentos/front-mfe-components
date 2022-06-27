@@ -17,7 +17,7 @@ export default {
 
 export const Primary = () => ({
 	components: { DefaultButton },
-	template: '<DefaultButton>Pass text as slot</DefaultButton>',
+	template: '<DefaultButton title="Pass text as slot">Pass text as slot</DefaultButton>',
 });
 
 export const HtmlMarkup = () => ({

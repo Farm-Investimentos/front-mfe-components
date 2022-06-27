@@ -38,7 +38,7 @@ export const Listener = () => ({
 		};
 	},
 	template: `
-		<ConfirmButton color="error" @click="x = 2">click me to change: {{ x }}</ConfirmButton>
+		<ConfirmButton color="error" @click="x = x + 1">click me to change: {{ x }}</ConfirmButton>
 	`,
 });
 

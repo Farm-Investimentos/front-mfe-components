@@ -23,10 +23,6 @@ export default Vue.extend({
 		},
 	},
 
-	data() {
-		return {};
-	},
-
 	computed: {
 		classes() {
 			const obj = {};
@@ -52,13 +48,6 @@ export default Vue.extend({
 					!this.plain &&
 					(this.elevation == null || Number(this.elevation) > 0)
 			);
-		},
-	},
-	methods: {
-		click(e: MouseEvent): void {
-			this.$emit('click', e);
-
-			this.btnToggle && this.toggle();
 		},
 	},
 });
