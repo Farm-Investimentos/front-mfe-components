@@ -35,6 +35,9 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
 
 .farm-btn__content {
     font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 @each $color in $colors {
