@@ -1,5 +1,5 @@
 <template>
-	<v-btn
+	<farm-btn
 		v-if="optionsList.length == 0"
 		@click="onClick"
 		dense
@@ -8,9 +8,9 @@
 		title="Exportar"
 		:disabled="disabled"
 	>
-		<v-icon class="mr-2">mdi-file-export-outline</v-icon>
+		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
 		Exportar
-	</v-btn>
+	</farm-btn>
 	<v-menu
 		v-else
 		content-class="elevation-1"
@@ -19,7 +19,7 @@
 		:rounded="'b t-0'"
 	>
 		<template v-slot:activator="{ on, attrs }">
-			<v-btn
+			<farm-btn
 				v-bind="attrs"
 				v-on="on"
 				dense
@@ -30,10 +30,17 @@
 				:disabled="disabled"
 			>
 				Exportar
-				<v-icon class="ml-2 mr-0">
-					{{ togglePopover ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
-				</v-icon>
-			</v-btn>
+				<i
+					:class="{
+						'ml-2': true,
+						'mr-0': true,
+						'mdi': true,
+						'mdi-chevron-up': togglePopover,
+						'mdi-chevron-down': !togglePopover,
+					}"
+				>
+				</i>
+			</farm-btn>
 		</template>
 
 		<v-list dense class="pa-0">
@@ -53,12 +60,12 @@
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
-import VIcon from 'vuetify/lib/components/VIcon';
 import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+import DefaultButton from '../DefaultButton';
+
 /**
  * Botão de Exportação, com opção de gerar menu dropdown
  */
@@ -87,13 +94,12 @@ export default Vue.extend({
 		};
 	},
 	components: {
-		VBtn,
-		VIcon,
 		VList,
 		VListItem,
 		VMenu,
 		VListItemContent,
 		VListItemTitle,
+		'farm-btn': DefaultButton,
 	},
 	methods: {
 		onClick(key) {

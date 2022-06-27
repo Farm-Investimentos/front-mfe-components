@@ -14,7 +14,6 @@
 	</v-alert>
 </template>
 <script>
-import VIcon from 'vuetify/lib/components/VIcon';
 import VAlert from 'vuetify/lib/components/VAlert';
 import { VRow, VCol } from 'vuetify/lib/components/VGrid';
 import DefaultButton from '../Buttons/DefaultButton';
@@ -22,7 +21,6 @@ import DefaultButton from '../Buttons/DefaultButton';
 export default {
 	name: 'farm-alert-reload',
 	components: {
-		VIcon,
 		VAlert,
 		VRow,
 		VCol,

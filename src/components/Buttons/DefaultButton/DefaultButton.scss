@@ -23,10 +23,10 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     padding: 0 16px;
 
     &.farm-btn--disabled {
-        background-color: rgba(0, 0, 0, .12);
+        background-color: #DADADA;
         color: rgba(0, 0, 0, .26);
         cursor: default;
-        border-color: rgba(0, 0, 0, .12);
+        border-color: #DADADA;
 
         &:before {
             display: none;

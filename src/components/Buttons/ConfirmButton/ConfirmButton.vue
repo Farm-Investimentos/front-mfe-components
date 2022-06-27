@@ -1,18 +1,17 @@
 <template>
-	<DefaultButton v-bind="$attrs" v-on="$listeners" color="secondary">
+	<farm-btn v-bind="$attrs" v-on="$listeners" color="secondary">
 		<i :class="{ mdi: true, [iconPath]: true, 'mr-3': true }" v-if="icon"></i>
 		<slot></slot>
-	</DefaultButton>
+	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-
 import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-confirm',
 	components: {
-		DefaultButton,
+		'farm-btn': DefaultButton,
 	},
 	inheritAttrs: true,
 	props: {
