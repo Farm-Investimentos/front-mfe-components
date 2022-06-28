@@ -1,4 +1,4 @@
-$colors: primary, secondary, error, extra, gray, accent, yellow;
+$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
 
 .farm-btn {
     font-size: 0.75rem;
@@ -38,16 +38,19 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
 .farm-btn--round {
     border-radius: 50%;
 }
+
 .farm-btn.farm-btn--icon {
     border: none;
     background: transparent;
     transition: color 0.5s ease;
-    
+
     min-width: auto;
     width: 36px;
+
     .farm-btn__content i.mdi {
         color: gray !important;
     }
+
     @each $color in $colors {
         &#{'.farm-btn--' + $color} {
             &:hover {
@@ -62,6 +65,7 @@ $colors: primary, secondary, error, extra, gray, accent, yellow;
     display: flex;
     flex-direction: row;
     align-items: center;
+
     i.mdi {
         font-size: 1rem;
     }
