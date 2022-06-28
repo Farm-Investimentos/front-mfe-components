@@ -33,6 +33,49 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
             display: none;
         }
     }
+
+    &:before {
+        transition: all 0.28s ease;
+        background-color: currentColor;
+        border-radius: inherit;
+        bottom: 0;
+        color: inherit;
+        content: '';
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:not(.farm-btn--plain):hover {
+        &:before {
+            opacity: 0.08;
+        }
+    }
+
+    &:not(.farm-btn--plain):active {
+        box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+        &:before {
+            opacity: 0.16;
+        }
+    }
+
+    &.farm-btn--plain {
+        &:hover {
+            .farm-btn__content {
+                opacity: 0.68;
+            }
+        }
+
+        &:active {
+            &:before {
+                opacity: 0.08;
+            }
+        }
+    }
 }
 
 .farm-btn--round {
@@ -79,26 +122,6 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
 
         .farm-btn__content i.mdi {
             color: white;
-        }
-
-        &:before {
-            background-color: currentColor;
-            border-radius: inherit;
-            bottom: 0;
-            color: inherit;
-            content: '';
-            left: 0;
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        &:hover {
-            &:before {
-                opacity: 0.08;
-            }
         }
     }
 
