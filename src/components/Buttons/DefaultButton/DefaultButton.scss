@@ -91,7 +91,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
     width: 36px;
 
     .farm-btn__content i.mdi {
-        color: gray !important;
+        color: gray;
     }
 
     @each $color in $colors {
