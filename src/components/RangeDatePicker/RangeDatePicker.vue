@@ -33,13 +33,13 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<v-btn outlined color="primary" @click="menuField = false" tutle="Fechar">
+			<farm-btn outlined color="primary" @click="menuField = false" tutle="Fechar">
 				Fechar
-			</v-btn>
-			<v-btn outlined color="secondary" @click="clear()" title="Limpar"> Limpar </v-btn>
-			<v-btn color="secondary" :disabled="canConfirm" @click="save()" title="Confirmar">
+			</farm-btn>
+			<farm-btn outlined color="secondary" class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
+			<farm-btn color="secondary" class="ml-2" :disabled="canConfirm" @click="save()" title="Confirmar">
 				Confirmar
-			</v-btn>
+			</farm-btn>
 		</v-date-picker>
 	</v-menu>
 </template>
@@ -47,8 +47,8 @@
 import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
-import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
+import DefaultButton from '../Buttons/DefaultButton';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 /**
  * Componente de input com datepicker para range de data
@@ -58,8 +58,8 @@ export default Vue.extend({
 	components: {
 		VTextField,
 		VMenu,
-		VBtn,
 		VDatePicker,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**

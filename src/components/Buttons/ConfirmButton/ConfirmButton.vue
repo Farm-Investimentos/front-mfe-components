@@ -1,21 +1,17 @@
 <template>
-	<v-btn v-bind="$attrs" v-on="$listeners" color="secondary">
-		<v-icon v-if="icon" class="mr-3">
-			{{ iconPath }}
-		</v-icon>
+	<farm-btn v-bind="$attrs" v-on="$listeners" color="secondary">
+		<i :class="{ mdi: true, [iconPath]: true, 'mr-3': true }" v-if="icon"></i>
 		<slot></slot>
-	</v-btn>
+	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
-import VIcon from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-confirm',
 	components: {
-		VBtn,
-		VIcon,
+		'farm-btn': DefaultButton,
 	},
 	inheritAttrs: true,
 	props: {
@@ -44,3 +40,8 @@ export default Vue.extend({
 	},
 });
 </script>
+<style lang="scss" scoped>
+i.mdi {
+	font-size: 1rem;
+}
+</style>

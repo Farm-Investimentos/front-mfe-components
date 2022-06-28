@@ -1,25 +1,27 @@
 <template>
-	<v-menu
-		content-class="elevation-1"
-		v-model="togglePopover"
-		:offset-y="true"
-		:rounded="'b t-0'"
-	>
+	<v-menu content-class="elevation-1" v-model="togglePopover" :offset-y="true" :rounded="'b t-0'">
 		<template v-slot:activator="{ on, attrs }">
-			<v-btn
+			<farm-btn
 				v-bind="attrs"
 				v-on="on"
 				dense
 				@onClick="togglePopover = true"
-				class="v-btn--responsive v-btn--import"
+				class="v-btn--responsive farm-btn--import"
 				outlined
 				title="Importar"
 			>
 				Importar
-				<v-icon class="ml-2 mr-0">
-					{{ togglePopover ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
-				</v-icon>
-			</v-btn>
+				<i
+					:class="{
+						'ml-2': true,
+						'mr-0': true,
+						mdi: true,
+						'mdi-chevron-up': togglePopover,
+						'mdi-chevron-down': !togglePopover,
+					}"
+				>
+				</i>
+			</farm-btn>
 		</template>
 
 		<v-list dense class="pa-0">
@@ -39,23 +41,21 @@
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
-import VIcon from 'vuetify/lib/components/VIcon';
 import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-multipleimport',
 	components: {
-		VBtn,
-		VIcon,
 		VList,
 		VListItem,
 		VMenu,
 		VListItemContent,
 		VListItemTitle,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**
