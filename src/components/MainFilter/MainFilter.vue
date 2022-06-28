@@ -14,30 +14,30 @@
 				@keyup="onKeyUp"
 			/>
 		</fieldset>
-		<v-btn
+		<DefaultButton
 			v-if="hasExtraFilters"
 			color="secondary"
 			class="v-btn--responsive mt-14 mt-sm-8"
 			@click="onFilterClick"
 		>
-			<v-icon color="white" class="mr-2">{{ extraFiltersBtnIcon }}</v-icon>
+			<v-icon color="white" class="mr-2" small>{{ extraFiltersBtnIcon }}</v-icon>
 			{{ extraFiltersBtnLabel }}
-		</v-btn>
+		</DefaultButton>
 	</section>
 </template>
 
 <script>
 import Vue from 'vue';
-import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VIcon } from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../Buttons/DefaultButton';
 
 export default Vue.extend({
 	name: 'MainFilter',
 	components: {
 		VTextField,
-		VBtn,
 		VIcon,
+		DefaultButton,
 	},
 	props: {
 		hasExtraFilters: {

@@ -1,5 +1,5 @@
 <template>
-	<v-btn
+	<farm-btn
 		@click="onClick"
 		dense
 		class="v-btn--responsive"
@@ -13,21 +13,22 @@
 	>
 		<v-icon v-if="prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
 		{{ label }}
-		<v-icon v-if="!prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
-	</v-btn>
+		<v-icon v-if="!prepend" class="ml-3 mr-0">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
+	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-import VBtn from 'vuetify/lib/components/VBtn';
 import VIcon from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../DefaultButton';
+
 /**
  * Botão de Toggle, emitindo e guardando status
  */
 export default Vue.extend({
 	name: 'farm-btn-toggle',
 	components: {
-		VBtn,
 		VIcon,
+		'farm-btn': DefaultButton,
 	},
 	data: () => ({
 		open: false,
@@ -82,14 +83,3 @@ export default Vue.extend({
 	},
 });
 </script>
-<style scoped lang="scss">
-.v-btn {
-	&.v-btn_icon--apppend .v-icon {
-		margin-left: 1rem;
-		margin-right: 0;
-	}
-	&.v-btn_icon--prepend .v-icon {
-		margin-left: 0;
-	}
-}
-</style>
