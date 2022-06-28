@@ -109,6 +109,25 @@ export const Icons = () => ({
 	</div>`,
 });
 
+export const Iconed = () => ({
+	components: {
+		'farm-btn': DefaultButton,
+	},
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div class="buttons-container">
+		<h4>Icon</h4>
+        <farm-btn icon v-for="color of colors":key="color" >
+            <v-icon :color="color">mdi-book</v-icon>
+        </farm-btn>
+
+
+	</div>`,
+});
+
 ActiveButtons.story = {
 	name: 'Active',
 };
@@ -123,4 +142,7 @@ Plain.story = {
 };
 Icons.story = {
 	name: 'Icons',
+};
+Iconed.story = {
+	name: 'Iconed',
 };
