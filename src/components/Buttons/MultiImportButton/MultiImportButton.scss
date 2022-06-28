@@ -1,8 +1,9 @@
-.v-btn.v-btn--import {
+.farm-btn.farm-btn--import {
 	background: var(--v-extra-lighten2);
 	color: var(--v-gray-lighten5);
-	.v-icon {
+	.farm-btn__content i.mdi {
 		margin-right: 1rem;
+		color: var(--v-gray-lighten5);
 	}
 }
 

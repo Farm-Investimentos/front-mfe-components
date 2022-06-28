@@ -30,23 +30,26 @@
 			v-model="dateField"
 			no-title
 			scrollable
-			:max="max"
-			:min="min"
 			color="secondary"
 			locale="pt-br"
+			:max="max"
+			:min="min"
 		>
-			<v-btn outlined color="primary" @click="menuField = false" title="Fechar">
+			<farm-btn outlined color="primary" @click="menuField = false" title="Fechar">
 				Fechar
-			</v-btn>
-			<v-btn outlined color="secondary" @click="clear"> Limpar </v-btn>
-			<v-btn
+			</farm-btn>
+			<farm-btn outlined color="secondary" class="ml-2" @click="clear">
+				Limpar
+			</farm-btn>
+			<farm-btn
 				color="secondary"
+				class="ml-2"
+				title="Confirmar"
 				:disabled="!dateField.length"
 				@click="save()"
-				title="Confirmar"
 			>
 				Confirmar
-			</v-btn>
+			</farm-btn>
 		</v-date-picker>
 	</v-menu>
 </template>
@@ -54,8 +57,8 @@
 import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
-import { VBtn } from 'vuetify/lib/components/VBtn';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
+import DefaultButton from '../Buttons/DefaultButton';
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 /**
  * Componente de input com datepicker para data
@@ -65,8 +68,8 @@ export default Vue.extend({
 	components: {
 		VTextField,
 		VMenu,
-		VBtn,
 		VDatePicker,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**
@@ -113,11 +116,15 @@ export default Vue.extend({
 				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
 			checkMax: value => {
-				return this.max && new Date(convertDate(value)) > new Date(this.max) ? 'A data está fora do período permitido' : true;
+				return this.max && new Date(convertDate(value)) > new Date(this.max)
+					? 'A data está fora do período permitido'
+					: true;
 			},
 			checkMin: value => {
-				return this.min && new Date(convertDate(value)) < new Date(this.min) ? 'A data está fora do período permitido' : true;
-			}
+				return this.min && new Date(convertDate(value)) < new Date(this.min)
+					? 'A data está fora do período permitido'
+					: true;
+			},
 		};
 	},
 	watch: {
@@ -139,13 +146,14 @@ export default Vue.extend({
 			this.dateField = '';
 			this.save();
 		},
-		validation(date){
-			const pattern = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm;
-			return pattern.test(date);	
+		validation(date) {
+			const pattern =
+				/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm;
+			return pattern.test(date);
 		},
 		keyUpInput(event) {
 			let newValue = event.target.value;
-			if(this.validation(newValue) && newValue.length === 10) {
+			if (this.validation(newValue) && newValue.length === 10) {
 				const [day, month, year] = newValue.split('/');
 				this.dateField = `${year}-${month}-${day}`;
 				this.save();

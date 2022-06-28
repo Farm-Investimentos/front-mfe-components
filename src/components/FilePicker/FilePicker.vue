@@ -19,14 +19,14 @@
 
 			<p v-if="maxSizeReach" v-html="maxSizeReachMsg"></p>
 
-			<v-btn depressed outlined color="secondary" class="v-btn-responsive" @click="reset"
-				>Escolher outro</v-btn
-			>
+			<farm-btn depressed outlined color="secondary" class="v-btn-responsive" @click="reset">
+				Escolher outro
+			</farm-btn>
 		</div>
 	</section>
 </template>
 <script>
-import { VBtn } from 'vuetify/lib/components/VBtn';
+import DefaultButton from '../Buttons/DefaultButton';
 import { VIcon } from 'vuetify/lib/components/VIcon';
 export default {
 	props: {
@@ -96,7 +96,7 @@ export default {
 		},
 	},
 	components: {
-		VBtn,
+		'farm-btn': DefaultButton,
 		VIcon,
 	},
 };

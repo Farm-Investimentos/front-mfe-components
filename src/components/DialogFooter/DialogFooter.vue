@@ -1,44 +1,42 @@
 <template>
 	<div class="v-dialog__footer d-flex flex-column flex-sm-row justify-end">
-		<v-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined>
+		<farm-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined>
 			{{ closeLabel }}
-		</v-btn>
-		<v-btn
+		</farm-btn>
+		<farm-btn
 			v-for="button in extraButtons"
 			:key="button.label"
-			@click="$emit(button.listener ? button.listener : '')"
 			:color="button.color"
 			:outlined="button.outlined"
 			:depressed="button.outlined"
 			:disabled="button.disabled"
 			class="ml-sm-3 mt-3 mt-sm-0"
+			@click="$emit(button.listener ? button.listener : '')"
 		>
 			{{ button.label }}
-		</v-btn>
-		<v-btn
-			@click="$emit('onConfirm')"
-			:color="confirmColor"
-			v-if="hasConfirm"
-			:disabled="isConfirmDisabled"
+		</farm-btn>
+		<farm-btn
 			class="ml-sm-3 mt-3 mt-sm-0"
+			v-if="hasConfirm"
+			:color="confirmColor"
+			:disabled="isConfirmDisabled"
+			@click="$emit('onConfirm')"
 		>
-			<v-icon v-if="confirmIcon">mdi-{{ confirmIcon }}</v-icon>
+			<i :class="{ mdi: true, ['mdi-' + confirmIcon]: true }" v-if="confirmIcon"></i>
 			{{ confirmLabel }}
-		</v-btn>
+		</farm-btn>
 	</div>
 </template>
 
 <script>
-import { VBtn } from 'vuetify/lib/components/VBtn';
-import { VIcon } from 'vuetify/lib/components/VIcon';
+import DefaultButton from '../Buttons/DefaultButton';
 /**
  * Footer de dialog/modal
  */
 export default {
 	name: 'DialogFooter',
 	components: {
-		VBtn,
-		VIcon,
+		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**

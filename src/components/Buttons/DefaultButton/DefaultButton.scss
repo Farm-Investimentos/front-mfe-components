@@ -1,0 +1,153 @@
+$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
+
+.farm-btn {
+    font-size: 0.75rem;
+    align-items: center;
+    border-radius: 4px;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 500;
+    justify-content: center;
+    outline: 0;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.28s;
+    transition-property: box-shadow, transform, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1rem;
+    height: 36px;
+    min-width: 64px;
+    padding: 0 16px;
+
+
+    &.farm-btn--disabled {
+        background-color: #DADADA;
+        color: rgba(0, 0, 0, .26);
+        cursor: default;
+        border-color: #DADADA;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    &:before {
+        transition: all 0.28s ease;
+        background-color: currentColor;
+        border-radius: inherit;
+        bottom: 0;
+        color: inherit;
+        content: '';
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:not(.farm-btn--plain):hover {
+        &:before {
+            opacity: 0.08;
+        }
+    }
+
+    &:not(.farm-btn--plain):active {
+        box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+        &:before {
+            opacity: 0.16;
+        }
+    }
+
+    &.farm-btn--plain {
+        &:hover {
+            .farm-btn__content {
+                opacity: 0.68;
+            }
+        }
+
+        &:active {
+            &:before {
+                opacity: 0.08;
+            }
+        }
+    }
+}
+
+.farm-btn--round {
+    border-radius: 50%;
+}
+
+.farm-btn.farm-btn--icon {
+    border: none;
+    background: transparent;
+    transition: color 0.5s ease;
+
+    min-width: auto;
+    width: 36px;
+
+    .farm-btn__content i.mdi {
+        color: gray !important;
+    }
+
+    @each $color in $colors {
+        &#{'.farm-btn--' + $color} {
+            &:hover {
+                color: var(--v-#{$color}-base);
+            }
+        }
+    }
+}
+
+.farm-btn__content {
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    i.mdi {
+        font-size: 1rem;
+    }
+}
+
+@each $color in $colors {
+    #{'.farm-btn--' + $color} {
+        border: 1px solid var(--v-#{$color}-base);
+        background-color: var(--v-#{$color}-base);
+        color: white;
+
+        .farm-btn__content i.mdi {
+            color: white;
+        }
+    }
+
+    .farm-btn--outlined#{'.farm-btn--' + $color} {
+        border: 1px solid var(--v-#{$color}-base);
+        background: white;
+        color: var(--v-#{$color}-base);
+
+        .farm-btn__content i.mdi {
+            color: var(--v-#{$color}-base);
+        }
+
+    }
+
+    .farm-btn--plain#{'.farm-btn--' + $color} {
+        border: none;
+        background: white;
+        color: var(--v-#{$color}-base);
+
+        .farm-btn__content i.mdi {
+            color: var(--v-#{$color}-base);
+        }
+
+    }
+}
+
+.farm-btn--elevated {
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
