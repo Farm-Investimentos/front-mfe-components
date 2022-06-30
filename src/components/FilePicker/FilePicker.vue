@@ -19,7 +19,7 @@
 
 			<p v-if="maxSizeReach" v-html="maxSizeReachMsg"></p>
 
-			<farm-btn depressed outlined color="secondary" class="v-btn-responsive" @click="reset">
+			<farm-btn depressed outlined color="secondary" class="farm-btn--responsive" @click="reset">
 				Escolher outro
 			</farm-btn>
 		</div>
