@@ -1,5 +1,5 @@
 <template>
-	<button v-on="$listeners" v-bind="$attrs" :type="type" :class="classes">
+	<button v-on="$listeners" v-bind="$attrs" :disabled="disabled" :type="type" :class="classes">
 		<span class="farm-btn__content">
 			<slot></slot>
 		</span>
