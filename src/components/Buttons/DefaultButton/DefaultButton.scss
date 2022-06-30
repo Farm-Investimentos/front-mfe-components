@@ -109,7 +109,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
     flex-direction: row;
     align-items: center;
 
-    i.mdi {
+    ::v-deep i.mdi {
         font-size: 1rem;
     }
 }
@@ -120,7 +120,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
         background-color: var(--v-#{$color}-base);
         color: white;
 
-        .farm-btn__content i.mdi {
+        ::v-deep .farm-btn__content i.mdi {
             color: white;
         }
     }

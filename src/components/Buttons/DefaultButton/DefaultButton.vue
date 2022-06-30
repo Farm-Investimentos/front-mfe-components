@@ -1,9 +1,21 @@
 <template>
-	<button v-on="$listeners" v-bind="$attrs" :disabled="disabled" :type="type" :class="classes">
+	<button
+		v-if="!to"
+		v-on="$listeners"
+		v-bind="$attrs"
+		:disabled="disabled"
+		:type="type"
+		:class="classes"
+	>
 		<span class="farm-btn__content">
 			<slot></slot>
 		</span>
 	</button>
+	<router-link :to="to" v-bind="$attrs" :disabled="disabled" :class="classes" v-else>
+		<span class="farm-btn__content">
+			<slot></slot>
+		</span>
+	</router-link>
 </template>
 <script lang="ts">
 import Vue from 'vue';
@@ -22,6 +34,10 @@ export default Vue.extend({
 		type: {
 			type: String,
 			default: 'button',
+		},
+		to: {
+			type: String,
+			default: null,
 		},
 	},
 
