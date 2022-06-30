@@ -1,11 +1,11 @@
 <template>
 	<farm-btn
-		@click="onClick"
 		dense
-		class="v-btn--responsive"
+		class="farm-btn--responsive"
 		color="error"
 		:title="label"
 		:disabled="disabled"
+		@click="onClick"
 	>
 		<v-icon>mdi-trash-can-outline</v-icon>
 		{{ label }}

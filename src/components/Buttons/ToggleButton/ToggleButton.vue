@@ -2,7 +2,7 @@
 	<farm-btn
 		@click="onClick"
 		dense
-		class="v-btn--responsive"
+		class="farm-btn--responsive"
 		:class="{
 			'v-btn_icon--prepend': prepend,
 			'v-btn_icon--apppend': !prepend,
