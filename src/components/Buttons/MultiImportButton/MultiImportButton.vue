@@ -5,10 +5,10 @@
 				v-bind="attrs"
 				v-on="on"
 				dense
-				@onClick="togglePopover = true"
-				class="v-btn--responsive farm-btn--import"
+				class="farm-btn--responsive farm-btn--import"
 				outlined
 				title="Importar"
+				@onClick="togglePopover = true"
 			>
 				Importar
 				<i

@@ -3,7 +3,7 @@
 		v-if="optionsList.length == 0"
 		@click="onClick"
 		dense
-		class="v-btn--responsive"
+		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
 		:disabled="disabled"
@@ -23,7 +23,7 @@
 				v-bind="attrs"
 				v-on="on"
 				dense
-				class="v-btn--responsive"
+				class="farm-btn--responsive"
 				outlined
 				title="Exportar"
 				@onClick="togglePopover = true"
