@@ -43,7 +43,7 @@ export const OutlinedButtons = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <farm-btn v-for="color of colors":key="color" :color="color"outlined>
+        <farm-btn v-for="color of colors":key="color" :color="color" outlined>
             {{ color }}
         </farm-btn>
 	</div>`,
@@ -56,6 +56,7 @@ export const DisabledButtons = () => ({
 	data() {
 		return {
 			colors,
+			x: 1
 		};
 	},
 	template: `<div class="buttons-container">
