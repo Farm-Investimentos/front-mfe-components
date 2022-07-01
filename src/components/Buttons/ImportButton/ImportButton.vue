@@ -1,5 +1,5 @@
 <template>
-	<farm-btn @click="onClick" dense class="v-btn--responsive farm-btn--import" outlined title="Importar">
+	<farm-btn @click="onClick" dense class="farm-btn--responsive farm-btn--import" outlined title="Importar">
 		<i class="mdi mdi-upload"></i>
 		{{ label }}
 	</farm-btn>

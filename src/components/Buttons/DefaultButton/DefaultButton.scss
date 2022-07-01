@@ -1,4 +1,4 @@
-$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
+@import '../../../configurations/variables';
 
 .farm-btn {
     font-size: 0.75rem;
@@ -55,7 +55,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
         }
     }
 
-    &:not(.farm-btn--plain):active {
+    &:not(.farm-btn--plain):not(.farm-btn--disabled):active {
         box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 
         &:before {
@@ -75,6 +75,10 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
                 opacity: 0.08;
             }
         }
+    }
+
+    &.farm-btn--rounded {
+        border-radius: 1rem;
     }
 }
 
@@ -99,6 +103,9 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
             &:hover {
                 color: var(--v-#{$color}-base);
             }
+            i.mdi {
+                color: var(--v-#{$color}-base);
+            }
         }
     }
 }
@@ -109,7 +116,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
     flex-direction: row;
     align-items: center;
 
-    i.mdi {
+    ::v-deep i.mdi {
         font-size: 1rem;
     }
 }
@@ -120,7 +127,7 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
         background-color: var(--v-#{$color}-base);
         color: white;
 
-        .farm-btn__content i.mdi {
+        ::v-deep .farm-btn__content i.mdi {
             color: white;
         }
     }
@@ -150,4 +157,13 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
 
 .farm-btn--elevated {
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+@media screen and (max-width: 600px) {
+
+    .farm-btn.farm-btn--responsive {
+        width: 100%;
+        margin: 0;
+    }
+
 }

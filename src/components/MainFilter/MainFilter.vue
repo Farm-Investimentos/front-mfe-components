@@ -17,7 +17,7 @@
 		<DefaultButton
 			v-if="hasExtraFilters"
 			color="secondary"
-			class="v-btn--responsive mt-14 mt-sm-8"
+			class="farm-btn--responsive mt-14 mt-sm-8"
 			@click="onFilterClick"
 		>
 			<v-icon color="white" class="mr-2" small>{{ extraFiltersBtnIcon }}</v-icon>
