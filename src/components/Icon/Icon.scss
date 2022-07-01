@@ -1,0 +1,9 @@
+$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
+
+.farm-icon {
+    @each $color in $colors {
+        &#{'.farm-icon--' + $color} {
+            color: var(--v-#{$color}-base);
+        }
+    }
+}

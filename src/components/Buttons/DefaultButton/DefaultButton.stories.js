@@ -6,7 +6,7 @@ export default {
 	parameters: {
 		docs: {
 			description: {
-				component: `Default button (inherit from Vuetify)<br />
+				component: `Default button<br />
 				selector: <em>farm-btn</em>
 				`,
 			},
@@ -47,4 +47,3 @@ Primary.storyName = 'Básico';
 HtmlMarkup.storyName = 'Html Markup';
 Props.storyName = 'Props';
 Listener.storyName = 'Listener';
-To.storyName = 'Teste Rota';
