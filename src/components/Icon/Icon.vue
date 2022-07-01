@@ -12,7 +12,7 @@ export default Vue.extend({
 
 	props: {
 		color: { type: String, default: 'primary' },
-        size: { type: String, default: 'default' },
+		size: { type: String, default: 'default' },
 	},
 
 	computed: {
@@ -27,17 +27,17 @@ export default Vue.extend({
 			};
 		},
 		icon() {
-            if(!this.$slots.default) {
-                return '';
-            }
+			if (!this.$slots.default) {
+				return '';
+			}
 			return this.$slots.default[0].text!.trim();
 		},
 	},
 	mounted() {
-        if(this.size !== 'default' && !breakPoints.includes(this.size)) {
-            this.$el.style.fontSize = this.size;
-        }
-    },
+		if (this.size !== 'default' && !breakPoints.includes(this.size)) {
+			this.$el.style.fontSize = this.size;
+		}
+	},
 });
 </script>
 <style lang="scss" scoped>
