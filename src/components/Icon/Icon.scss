@@ -1,9 +1,17 @@
-$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
+@import '../../configurations/variables';
 
 .farm-icon {
+    font-size: 24px;
     @each $color in $colors {
         &#{'.farm-icon--' + $color} {
             color: var(--v-#{$color}-base);
         }
+    }
+
+    @each $size, $value in $sizes {
+        &#{'.farm-icon[size=' + $size +']'} {
+            font-size: $value; 
+        }
+        
     }
 }

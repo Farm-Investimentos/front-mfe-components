@@ -1,8 +1,10 @@
 <template>
-	<i v-on="$listeners" v-bind="$attrs" :class="classes"> </i>
+	<i v-on="$listeners" v-bind="$attrs" :class="classes" ref="el"> </i>
 </template>
 <script lang="ts">
 import Vue from 'vue';
+
+const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 export default Vue.extend({
 	name: 'farm-icon',
@@ -10,6 +12,7 @@ export default Vue.extend({
 
 	props: {
 		color: { type: String, default: 'primary' },
+        size: { type: String, default: 'default' },
 	},
 
 	computed: {
@@ -24,9 +27,17 @@ export default Vue.extend({
 			};
 		},
 		icon() {
+            if(!this.$slots.default) {
+                return '';
+            }
 			return this.$slots.default[0].text!.trim();
 		},
 	},
+	mounted() {
+        if(this.size !== 'default' && !breakPoints.includes(this.size)) {
+            this.$el.style.fontSize = this.size;
+        }
+    },
 });
 </script>
 <style lang="scss" scoped>
