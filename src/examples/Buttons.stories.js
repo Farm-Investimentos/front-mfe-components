@@ -56,7 +56,7 @@ export const DisabledButtons = () => ({
 	data() {
 		return {
 			colors,
-			x: 1
+			x: 1,
 		};
 	},
 	template: `<div class="buttons-container">
@@ -121,11 +121,25 @@ export const Iconed = () => ({
 	},
 	template: `<div class="buttons-container">
 		<h4>Icon</h4>
-        <farm-btn icon v-for="color of colors":key="color" >
-            <v-icon :color="color">mdi-book</v-icon>
+        <farm-btn icon v-for="color of colors" :key="color" :color="color">
+            <v-icon>mdi-book</v-icon>
         </farm-btn>
+	</div>`,
+});
 
-
+export const Rounded = () => ({
+	components: {
+		'farm-btn': DefaultButton,
+	},
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div class="buttons-container">
+		<h4>Rounded</h4>
+        <farm-btn v-for="color of colors" :key="color" :color="color" rounded >rounded
+        </farm-btn>
 	</div>`,
 });
 
@@ -144,6 +158,6 @@ Plain.story = {
 Icons.story = {
 	name: 'Icons',
 };
-Iconed.story = {
-	name: 'Iconed',
+Rounded.story = {
+	name: 'Rounded',
 };
