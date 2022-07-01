@@ -6,7 +6,7 @@ export default {
 	parameters: {
 		docs: {
 			description: {
-				component: `Default button (inherit from Vuetify)<br />
+				component: `Default button<br />
 				selector: <em>farm-btn</em>
 				`,
 			},
