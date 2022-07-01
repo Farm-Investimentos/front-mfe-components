@@ -1,4 +1,4 @@
-$colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
+@import '../../../configurations/variables';
 
 .farm-btn {
     font-size: 0.75rem;
@@ -76,6 +76,10 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
             }
         }
     }
+
+    &.farm-btn--rounded {
+        border-radius: 1rem;
+    }
 }
 
 .farm-btn--round {
@@ -97,6 +101,9 @@ $colors: primary, secondary, error, extra, accent, info, success, gray, yellow;
     @each $color in $colors {
         &#{'.farm-btn--' + $color} {
             &:hover {
+                color: var(--v-#{$color}-base);
+            }
+            i.mdi {
                 color: var(--v-#{$color}-base);
             }
         }

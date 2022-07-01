@@ -56,4 +56,3 @@ HtmlMarkup.storyName = 'Html Markup';
 Props.storyName = 'Props';
 Listener.storyName = 'Listener';
 Iconed.storyName = 'Icon';
-To.storyName = 'Teste rota';
