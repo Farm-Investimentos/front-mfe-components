@@ -103,6 +103,7 @@
             &:hover {
                 color: var(--v-#{$color}-base);
             }
+
             i.mdi {
                 color: var(--v-#{$color}-base);
             }
@@ -132,27 +133,29 @@
         }
     }
 
-    .farm-btn--outlined#{'.farm-btn--' + $color} {
-        border: 1px solid var(--v-#{$color}-base);
-        background: white;
-        color: var(--v-#{$color}-base);
-
-        .farm-btn__content i.mdi {
+    :not(.farm-btn--disabled){
+        &.farm-btn--outlined#{'.farm-btn--' + $color} {
+            border: 1px solid var(--v-#{$color}-base);
+            background: white;
             color: var(--v-#{$color}-base);
+    
+            .farm-btn__content i.mdi {
+                color: var(--v-#{$color}-base);
+            }
         }
 
-    }
-
-    .farm-btn--plain#{'.farm-btn--' + $color} {
-        border: none;
-        background: white;
-        color: var(--v-#{$color}-base);
-
-        .farm-btn__content i.mdi {
+        &.farm-btn--plain#{'.farm-btn--' + $color} {
+            border: none;
+            background: white;
             color: var(--v-#{$color}-base);
+    
+            .farm-btn__content i.mdi {
+                color: var(--v-#{$color}-base);
+            }
         }
-
     }
+
+    
 }
 
 .farm-btn--elevated {
