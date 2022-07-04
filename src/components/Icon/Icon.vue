@@ -1,8 +1,8 @@
 <template>
-	<i v-on="$listeners" v-bind="$attrs" :class="classes" ref="el"> </i>
+	<i v-on="$listeners" v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -11,8 +11,30 @@ export default Vue.extend({
 	inheritAttrs: true,
 
 	props: {
-		color: { type: String, default: 'primary' },
-		size: { type: String, default: 'default' },
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'error'
+				| 'extra'
+				| 'accent'
+				| 'info'
+				| 'success'
+				| 'gray'
+				| 'yellow'
+				| 'white'
+			>,
+			default: 'primary',
+		},
+		size: {
+			type: String as PropType<
+				'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'other (examples: 12px, 3rem)'
+			>,
+			default: 'default',
+		},
 	},
 
 	computed: {
