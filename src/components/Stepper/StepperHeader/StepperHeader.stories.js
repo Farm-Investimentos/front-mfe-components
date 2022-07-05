@@ -20,7 +20,7 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps: [
@@ -32,9 +32,7 @@ export const Primary = () => ({
 			currentStep: 3,
 		};
 	},
-	template: '<StepperHeader :steps="steps" :currentStep="currentStep" />',
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" />',
 });
 
 Primary.storyName = 'Básico';
-
-//
