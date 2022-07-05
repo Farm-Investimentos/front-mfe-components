@@ -21,18 +21,18 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps,
 			currentStep: 3,
 		};
 	},
-	template: '<StepperHeader :steps="steps" :currentStep="currentStep" />',
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" />',
 });
 
 export const Error = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps,
@@ -40,22 +40,22 @@ export const Error = () => ({
 		};
 	},
 	template:
-		'<StepperHeader :steps="steps" :currentStep="currentStep" :errorCurrentStepStatus="true" />',
+		'<farm-stepper-header :steps="steps" :currentStep="currentStep" :errorCurrentStepStatus="true" />',
 });
 
 export const Vertical = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps,
 			currentStep: 3,
 		};
 	},
-	template: '<StepperHeader :steps="steps" :currentStep="currentStep" vertical />',
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" vertical />',
 });
 
 export const VerticalError = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps,
@@ -63,11 +63,11 @@ export const VerticalError = () => ({
 		};
 	},
 	template:
-		'<StepperHeader :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+		'<farm-stepper-header :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
 });
 
 export const Numbers = () => ({
-	components: { StepperHeader },
+	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps: [
@@ -79,7 +79,7 @@ export const Numbers = () => ({
 			currentStep: 2,
 		};
 	},
-	template: '<StepperHeader :steps="steps" :currentStep="currentStep" />',
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" />',
 });
 
 Primary.story = {
