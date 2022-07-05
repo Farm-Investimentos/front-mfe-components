@@ -1,15 +1,9 @@
 .logger {
-    display: block;
-
-    .logger__item {
-        float: left;
-        clear: both;
-    }
+    display: flex;
+    flex-direction: column;
 }
-
 .logger__divider {
-    float: left;
-    clear: both;
+   
     height: 40px;
     margin: -4px 0 -4px 16px;
     width: 1px;

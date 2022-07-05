@@ -20,7 +20,7 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { LoggerItem },
+	components: { 'farm-logger-item': LoggerItem },
 	data() {
 		return {
 			item: {
@@ -32,7 +32,7 @@ export const Primary = () => ({
 			},
 		};
 	},
-	template: `<LoggerItem :item="item" />`,
+	template: `<farm-logger-item :item="item" />`,
 });
 
 Primary.storyName = 'Básico';
