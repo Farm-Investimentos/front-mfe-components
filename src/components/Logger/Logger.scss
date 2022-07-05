@@ -1,11 +1,25 @@
 .logger {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 .logger__divider {
-   
-    height: 40px;
-    margin: -4px 0 -4px 16px;
-    width: 1px;
-    background-color: var(--v-gray-lighten1);
+	height: 40px;
+	margin: -4px 0 -4px 16px;
+	width: 1px;
+
+	&.logger__divider--success {
+		background: var(--v-secondary-base);
+	}
+
+	&.logger__divider--error {
+		background: var(--v-error-base);
+	}
+
+	&.logger__divider--error-to-success {
+		background: linear-gradient(to bottom, var(--v-error-base), var(--v-secondary-base));
+	}
+
+	&.logger__divider--success-to-error {
+		background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-error-base));
+	}
 }
