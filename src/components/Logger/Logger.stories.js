@@ -21,13 +21,11 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { Logger },
+	components: { 'farm-logger': Logger },
 	data() {
 		return {};
 	},
-	template: `<Logger>
-	
-	</Logger>`,
+	template: `<farm-logger />`,
 });
 
 Primary.storyName = 'Básico';

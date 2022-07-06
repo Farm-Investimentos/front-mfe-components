@@ -1,12 +1,12 @@
 $step-height: 64px;
 
 @mixin stepperHeaderStepColor($color) {
-	i.mdi {
+	.farm-icon, .farm-icon__number {
 		background-color: $color;
 		border-color: $color;
 	}
 
-	i.mdi:before {
+	.farm-icon:before, .farm-icon__number {
 		color: white;
 	}
 }
@@ -43,12 +43,12 @@ $step-height: 64px;
 		}
 
 		&.stepper__header-step--next {
-			i.mdi {
+			.farm-icon, .farm-icon__number {
 				color: var(--v-gray-lighten1);
 			}
 		}
 
-		span {
+		span:not(.farm-icon__number) {
 			margin-top: 8px;
 			text-align: center;
 		}
@@ -78,7 +78,8 @@ $step-height: 64px;
 	}
 
 	&.stepper__header--vertical {
-		display: block;
+		display: flex;
+		flex-direction: column;
 
 		div.stepper__header-step {
 			width: 100%;
@@ -86,11 +87,11 @@ $step-height: 64px;
 			clear: both;
 			height: 64px;
 
-			i.mdi {
+			.farm-icon {
 				float: left;
 			}
 
-			span {
+			span:not(.farm-icon__number) {
 				display: flex;
 				align-items: center;
 				width: calc(100% - 40px);
@@ -130,7 +131,8 @@ $step-height: 64px;
 	}
 }
 
-i.mdi {
+.farm-icon,
+.farm-icon__number {
 	border: 1px solid var(--v-gray-lighten2);
 	border-radius: 50%;
 	width: 32px;

@@ -6,12 +6,7 @@
 			'logger__item--success': item.status === 'success',
 		}"
 	>
-		<i
-			:class="{
-				mdi: true,
-				[mdiIconName]: true,
-			}"
-		/>
+		<farm-icon>{{ mdiIconName }}</farm-icon>
 		<div>
 			<span class="logger__date">
 				{{ item.formattedDate }}
@@ -29,25 +24,32 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import ILoggerItem from './ILoggerItem';
+import Icon from '../../Icon';
 
 export default Vue.extend({
 	name: 'farm-logger-item',
+	components: {
+		'farm-icon': Icon,
+	},
 	props: {
+		/**
+		 * Logger item
+		 */
 		item: { required: true, type: Object as PropType<ILoggerItem> },
 	},
 	computed: {
 		mdiIconName() {
 			if (this.item.icon) {
-				return `mdi-${this.item.icon}`;
+				return `${this.item.icon}`;
 			}
-			if(!this.item.status) {
+			if (!this.item.status) {
 				return '';
 			}
-			return `mdi-${this.item.status === 'success' ? 'check' : 'close'}`;
+			return `${this.item.status === 'success' ? 'check' : 'close'}`;
 		},
 	},
 });
 </script>
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 @import './LoggerItem.scss'
 </style>
