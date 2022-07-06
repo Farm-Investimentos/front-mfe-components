@@ -1,2 +1,15 @@
 $colors: primary, secondary, error, extra, accent, info, success, gray, yellow, white;
-$sizes: ("xs": 12px, "sm": 16px , "md": 24px, "lg": 36px, "xl": 40px);
+$sizes: (
+    "xs": 12px,
+    "sm": 16px,
+    "md": 24px,
+    "lg": 36px,
+    "xl": 40px
+);
+$gutters: (
+    "xs": 4px,
+    'sm': 8px,
+    "default": 12px,
+    'md': 16px,
+    "lg": 36px,
+    "xl": 40px);
