@@ -12,14 +12,12 @@
 					}"
 					:key="step.label"
 				>
-					<i
-						:class="{
-							mdi: true,
-							['mdi-' + step.icon]: true,
-						}"
-					>
-						{{ step.icon ? '' : index + 1 }}
-					</i>
+					<farm-icon v-if="step.icon">
+						{{ step.icon }}
+					</farm-icon>
+					<span v-else class="farm-icon__number">
+						{{ index + 1 }}
+					</span>
 					<span>
 						{{ step.label }}
 					</span>
@@ -42,9 +40,13 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import IStep from './IStep';
+import Icon from '../../Icon';
 
 export default Vue.extend({
 	name: 'farm-stepper-header',
+	components: {
+		'farm-icon': Icon,
+	},
 	props: {
 		/**
 		 * Steps

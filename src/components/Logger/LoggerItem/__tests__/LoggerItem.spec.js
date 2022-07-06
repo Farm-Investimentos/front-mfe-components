@@ -28,7 +28,7 @@ describe('LoggerItem component', () => {
 					icon: 'aaa',
 				},
 			});
-			expect(component.mdiIconName).toEqual('mdi-aaa');
+			expect(component.mdiIconName).toEqual('aaa');
 		});
 
 		it('Should return success icon', async () => {
@@ -37,7 +37,7 @@ describe('LoggerItem component', () => {
 					status: 'success',
 				},
 			});
-			expect(component.mdiIconName).toEqual('mdi-check');
+			expect(component.mdiIconName).toEqual('check');
 		});
 
 		it('Should return success icon', async () => {
@@ -46,7 +46,7 @@ describe('LoggerItem component', () => {
 					status: 'error',
 				},
 			});
-			expect(component.mdiIconName).toEqual('mdi-close');
+			expect(component.mdiIconName).toEqual('close');
 		});
 
 	});

@@ -1,0 +1,5 @@
+@mixin for-sm-breakpoint {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
