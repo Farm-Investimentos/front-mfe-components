@@ -26,8 +26,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 import DefaultButton from '../Buttons/DefaultButton';
+import IExtraButton from './IExtraButton';
 
 /**
  * Footer de dialog/modal
@@ -88,10 +89,10 @@ export default Vue.extend({
 			default: false,
 		},
 		/**
-		 * lista de botões extra
+		 * lista de botões extra (IExtraButton)
 		 */
 		extraButtons: {
-			type: Array,
+			type: Array as PropType<Array<IExtraButton>>,
 			default: () => [],
 		},
 	},
