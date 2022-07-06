@@ -1,6 +1,6 @@
 <template>
-	<div class="v-dialog__footer d-flex flex-column flex-sm-row justify-end">
-		<farm-btn @click="$emit('onClose')" v-if="hasCancel" color="primary" outlined>
+	<div class="farm-dialog__footer">
+		<farm-btn v-if="hasCancel" color="primary" outlined @click="$emit('onClose')">
 			{{ closeLabel }}
 		</farm-btn>
 		<farm-btn
@@ -8,15 +8,12 @@
 			:key="button.label"
 			:color="button.color"
 			:outlined="button.outlined"
-			:depressed="button.outlined"
 			:disabled="button.disabled"
-			class="ml-sm-3 mt-3 mt-sm-0"
 			@click="$emit(button.listener ? button.listener : '')"
 		>
 			{{ button.label }}
 		</farm-btn>
 		<farm-btn
-			class="ml-sm-3 mt-3 mt-sm-0"
 			v-if="hasConfirm"
 			:color="confirmColor"
 			:disabled="isConfirmDisabled"
@@ -28,13 +25,15 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import DefaultButton from '../Buttons/DefaultButton';
+
 /**
  * Footer de dialog/modal
  */
-export default {
-	name: 'DialogFooter',
+export default Vue.extend({
+	name: 'farm-dialog-foote',
 	components: {
 		'farm-btn': DefaultButton,
 	},
@@ -96,5 +95,8 @@ export default {
 			default: () => [],
 		},
 	},
-};
+});
 </script>
+<style lang="scss" scoped>
+@import 'DialogFooter';
+</style>

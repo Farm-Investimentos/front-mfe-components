@@ -1,0 +1,29 @@
+@import '../../configurations/functions';
+
+.farm-dialog__footer {
+    border-top: 1px solid var(--v-gray-lighten2);
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.farm-btn {
+    margin-left: gutter();
+    margin-top: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .farm-btn {
+        margin-left: 0;
+        margin-top: gutter();
+    }
+
+    .farm-dialog__footer {
+        flex-direction: column;
+
+        .farm-btn:first-of-type {
+            margin-top: 0;
+        }
+    }
+}
