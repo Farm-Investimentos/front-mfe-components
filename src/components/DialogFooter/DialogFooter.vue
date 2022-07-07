@@ -1,6 +1,6 @@
 <template>
 	<div class="farm-dialog__footer">
-		<farm-btn v-if="hasCancel" color="primary" outlined @click="$emit('onClose')">
+		<farm-btn v-if="hasCancel" color="secondary" outlined @click="$emit('onClose')">
 			{{ closeLabel }}
 		</farm-btn>
 		<farm-btn
