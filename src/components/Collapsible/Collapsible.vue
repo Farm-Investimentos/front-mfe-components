@@ -3,25 +3,18 @@
 		<div class="collapsible__header" @click="onToggleCollapsible(status)">
 			<div class="collapsible__content-title">
 				<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-					<i
-						:class="{
-							mdi: true,
-							['mdi-' + icon]: true,
-						}"
-					></i>
+					<farm-icon color="secondary" size="1.625rem">
+						{{ icon }}
+					</farm-icon>
 				</div>
 				<h3 class="collapsible__title">
 					{{ title }}
 				</h3>
 			</div>
 			<div class="collapsible__icon collapsible__icon--arrow">
-				<i
-					:class="{
-						mdi: true,
-						['mdi-menu-down']: !status,
-						['mdi-menu-up']: status,
-					}"
-				></i>
+				<farm-icon size="1.625rem" color="primary">
+					{{ arrowIcon }}
+				</farm-icon>
 			</div>
 		</div>
 		<transition name="fade">
@@ -34,8 +27,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Icon from '../Icon';
 
 export default Vue.extend({
+	name: 'farm-collapsible',
+	components: {
+		'farm-icon': Icon,
+	},
 	props: {
 		title: {
 			type: String,
@@ -54,6 +52,11 @@ export default Vue.extend({
 		return {
 			status: this.$props.open,
 		};
+	},
+	computed: {
+		arrowIcon() {
+			return this.status ? 'menu-up' : 'menu-down';
+		},
 	},
 	methods: {
 		onToggleCollapsible(status: boolean): void {
