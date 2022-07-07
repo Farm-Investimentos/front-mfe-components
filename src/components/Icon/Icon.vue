@@ -54,10 +54,13 @@ export default Vue.extend({
 			}
 			return this.$slots.default[0].text!.trim();
 		},
+		fontSize() {
+			return isNaN(this.size) ? this.size : `${this.size}px`;
+		}
 	},
 	mounted() {
 		if (this.size !== 'default' && !breakPoints.includes(this.size)) {
-			this.$el.style.fontSize = this.size;
+			this.$el.style.fontSize = this.fontSize;
 		}
 	},
 });
