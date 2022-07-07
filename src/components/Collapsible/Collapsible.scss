@@ -20,7 +20,7 @@
 
 	&__title {
 		font-size: 1.25rem;
-		color: #1c1c1c;
+		color: var(--v-primary-base);
 
 		@media screen and (max-width: 600px) {
 			font-size: 0.9rem;
@@ -28,27 +28,13 @@
 	}
 
 	&__icon {
-		i {
-			font-size: 1.625rem;
-		}
+
 		&--main {
 			margin-right: 0.5rem;
-			i {
-				color: #00b493;
-			}
-			@media screen and (max-width: 600px) {
-				i {
-					font-size: 1.5rem;
-					color: #00b493;
-				}
-			}
 		}
 
 		&--arrow {
 			margin-left: 0.5rem;
-			i {
-				color: #1c1c1c;
-			}
 		}
 	}
 
@@ -62,6 +48,7 @@
 .fade-leave-active {
 	transition: opacity 0.3s ease-in-out;
 }
+
 .fade-enter,
 .fade-leave-to {
 	opacity: 0;

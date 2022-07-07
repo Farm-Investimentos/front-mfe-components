@@ -67,6 +67,12 @@ export const Sizes = () => ({
             </farm-icon>
             Custom: 14px
         </div>
+		<div>
+            <farm-icon size="14">
+                book
+            </farm-icon>
+            Custom: 14 (no unit, use px)
+        </div>
 	</div>`,
 });
 
