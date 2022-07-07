@@ -37,6 +37,12 @@ export default Vue.extend({
 		},
 	},
 
+	data() {
+		return {
+			icon: '',
+		};
+	},
+
 	computed: {
 		classes() {
 			const obj = {};
@@ -48,20 +54,29 @@ export default Vue.extend({
 				...obj,
 			};
 		},
-		icon() {
-			if (!this.$slots.default) {
-				return '';
-			}
-			return this.$slots.default[0].text!.trim();
-		},
 		fontSize() {
 			return isNaN(this.size) ? this.size : `${this.size}px`;
-		}
+		},
 	},
 	mounted() {
 		if (this.size !== 'default' && !breakPoints.includes(this.size)) {
 			this.$el.style.fontSize = this.fontSize;
 		}
+	},
+	created() {
+		this.checkForSlotContent();
+	},
+	beforeUpdate() {
+		this.checkForSlotContent();
+	},
+	methods: {
+		checkForSlotContent() {
+			if (!this.$slots.default) {
+				this.icon = '';
+				return;
+			}
+			this.icon = this.$slots.default[0].text!.trim();
+		},
 	},
 });
 </script>
