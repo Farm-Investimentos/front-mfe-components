@@ -18,5 +18,13 @@ describe('Icon component', () => {
 		it('get classes', () => {
 			expect(component.classes).toBeDefined();
 		});
+
+		it('get icon', () => {
+			expect(component.icon).toEqual('');
+		});
+
+		it('get fontSize', () => {
+			expect(component.fontSize).toEqual('default');
+		});
 	});
 });
