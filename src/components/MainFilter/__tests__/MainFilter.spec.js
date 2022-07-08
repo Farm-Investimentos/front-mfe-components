@@ -31,11 +31,11 @@ describe('MainFilter component', () => {
 		});
 
 		it('get extraFiltersBtnIcon', async () => {
-			expect(component.extraFiltersBtnIcon).toEqual('mdi-filter');
+			expect(component.extraFiltersBtnIcon).toEqual('filter');
 			await wrapper.setProps({
 				showFilters: true,
 			});
-			expect(component.extraFiltersBtnIcon).toEqual('mdi-filter-off');
+			expect(component.extraFiltersBtnIcon).toEqual('filter-off');
 		});
 	});
 });
