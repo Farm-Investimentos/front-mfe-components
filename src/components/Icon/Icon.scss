@@ -1,7 +1,14 @@
 @import '../../configurations/variables';
 
 .farm-icon {
+    align-items: center;
+    display: inline-flex;
     font-size: 24px;
+    justify-content: center;
+    letter-spacing: normal;
+    line-height: 1;
+    position: relative;
+    text-indent: 0;
     @each $color in $colors {
         &#{'.farm-icon--' + $color} {
             color: var(--v-#{$color}-base);

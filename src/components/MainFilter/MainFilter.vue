@@ -3,7 +3,7 @@
 		<fieldset class="fieldset-default" v-if="hasInitialInput">
 			<label :for="elementId">
 				{{ label }}
-				<v-icon style="vertical-align: middle"> mdi-file-find </v-icon>
+				<farm-icon color="gray"> file-find </farm-icon>
 			</label>
 			<v-text-field
 				color="secondary"
@@ -14,32 +14,35 @@
 				@keyup="onKeyUp"
 			/>
 		</fieldset>
-		<DefaultButton
+		<farm-button
 			v-if="hasExtraFilters"
 			color="secondary"
 			class="farm-btn--responsive mt-14 mt-sm-8"
 			@click="onFilterClick"
 		>
-			<v-icon color="white" class="mr-2" small>{{ extraFiltersBtnIcon }}</v-icon>
+			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
 			{{ extraFiltersBtnLabel }}
-		</DefaultButton>
+		</farm-button>
 	</section>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import { VTextField } from 'vuetify/lib/components/VTextField';
-import { VIcon } from 'vuetify/lib/components/VIcon';
 import DefaultButton from '../Buttons/DefaultButton';
+import Icon from '../Icon';
 
 export default Vue.extend({
-	name: 'MainFilter',
+	name: 'farm-form-mainfilter',
 	components: {
 		VTextField,
-		VIcon,
-		DefaultButton,
+		'farm-button': DefaultButton,
+		'farm-icon': Icon,
 	},
 	props: {
+		/**
+		 * Show or not button for extra filters
+		 */
 		hasExtraFilters: {
 			type: Boolean,
 			default: true,
@@ -52,17 +55,23 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Label
+		 */
 		label: {
 			type: String,
 			default: 'Quer localizar um cliente?',
 		},
+		/**
+		 * Input's id
+		 */
 		elementId: {
 			type: String,
 			default: 'form-main-filter-search',
 		},
 		initialValue: {
 			type: String,
-			default: () => '',
+			default: '',
 		},
 		showFilters: {
 			type: Boolean,
@@ -71,7 +80,7 @@ export default Vue.extend({
 	},
 
 	watch: {
-		initialValue(newValue) {
+		initialValue(newValue: string) {
 			this.inputValue = newValue;
 		},
 	},
@@ -80,7 +89,7 @@ export default Vue.extend({
 			return `${this.showFilters ? 'Esconder' : 'Ver'} Filtros`;
 		},
 		extraFiltersBtnIcon() {
-			return this.showFilters ? 'mdi-filter-off' : 'mdi-filter';
+			return this.showFilters ? 'filter-off' : 'filter';
 		},
 	},
 	data() {
@@ -93,16 +102,17 @@ export default Vue.extend({
 		onFilterClick() {
 			this.$emit('onClick');
 		},
-		onKeyUp(event) {
+		onKeyUp(event: KeyboardEvent) {
 			const keyCode = event.keyCode;
 			if (keyCode === 13) {
-				this.$emit('onEnter', event.target.value);
+				this.$emit('onEnter', (event.target as HTMLInputElement).value);
 				return false;
 			}
 
 			if (
 				(keyCode < 48 && keyCode !== 8 && keyCode !== 46) ||
-				(keyCode > 90 && keyCode < 186 && keyCode !== 91)
+				(keyCode > 90 && keyCode < 96 && keyCode !== 91) ||
+				(keyCode > 105 && keyCode < 186)
 			) {
 				return false;
 			}
@@ -111,8 +121,8 @@ export default Vue.extend({
 				this.timer = null;
 			}
 			this.timer = setTimeout(() => {
-				this.$emit('onInputChange', event.target.value);
-			}, 400);
+				this.$emit('onInputChange', (event.target as HTMLInputElement).value);
+			}, 750);
 		},
 	},
 });
