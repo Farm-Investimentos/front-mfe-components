@@ -60,5 +60,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import 'DialogHeader.scss';
+@import 'DialogHeader';
 </style>
