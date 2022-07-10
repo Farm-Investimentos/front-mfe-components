@@ -1,26 +1,28 @@
 <template>
 	<header>
-		<v-icon v-if="iconTitle" class="dialog-header__title-icon">{{ 'mdi-' + iconTitle }}</v-icon>
+		<farm-icon v-if="iconTitle" size="16px" color="secondary">{{ iconTitle }}</farm-icon>
 		{{ title }}
 
-		<v-icon
+		<farm-icon
 			v-if="hasCloseIcon"
 			role="button"
 			title="Fechar"
-			class="dialog-header__close-icon"
-			@click="onClose"
+			class="farm-dialog-header__close"
 			color="secondary"
+			@click="onClose"
 		>
-			mdi-close-thick
-		</v-icon>
+			close-thick
+		</farm-icon>
 	</header>
 </template>
-<script>
-import { VIcon } from 'vuetify/lib/components/VIcon';
+<script lang="ts">
+import Vue from 'vue';
+import Icon from '../Icon';
 /**
  * Header de dialog/modal
  */
-export default {
+export default Vue.extend({
+	name: 'farm-dialog-header',
 	props: {
 		/**
 		 * Título
@@ -48,12 +50,15 @@ export default {
 		},
 	},
 	components: {
-		VIcon,
+		'farm-icon': Icon,
 	},
 	methods: {
 		onClose() {
 			this.$emit('onClose', {});
 		},
 	},
-};
+});
 </script>
+<style lang="scss" scoped>
+@import 'DialogHeader.scss';
+</style>

@@ -34,7 +34,7 @@ import IExtraButton from './IExtraButton';
  * Footer de dialog/modal
  */
 export default Vue.extend({
-	name: 'farm-dialog-foote',
+	name: 'farm-dialog-footer',
 	components: {
 		'farm-btn': DefaultButton,
 	},

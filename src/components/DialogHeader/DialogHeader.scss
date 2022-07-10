@@ -1,0 +1,10 @@
+.farm-dialog-header__close {
+    position: absolute;
+    right: 1rem;
+    margin-top: 4px;
+    font-size: 1rem;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
