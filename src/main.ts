@@ -68,3 +68,4 @@ export * from './components/Stepper';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
+export * from './components/Switch';
