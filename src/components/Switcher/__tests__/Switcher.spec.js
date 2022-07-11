@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import Switch from '../Switch';
+import Switcher from '../Switcher';
 
-describe('Switch component', () => {
+describe('Switcher component', () => {
 	let wrapper;
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Switch, {
+		wrapper = shallowMount(Switcher, {
 			propsData: {
 				value: false,
 			},
