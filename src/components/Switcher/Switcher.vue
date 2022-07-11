@@ -8,7 +8,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-	name: 'farm-switch',
+	name: 'farm-switcher',
 	props: {
 		value: {
 			type: Boolean,
@@ -34,5 +34,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import 'Switch.scss';
+@import 'Switcher.scss';
 </style>
