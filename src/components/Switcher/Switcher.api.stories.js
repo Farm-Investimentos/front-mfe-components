@@ -1,7 +1,7 @@
-import Switch from './Switch';
+import Switch from './Switcher';
 
 export default {
-	title: 'API/Form/Switch',
+	title: 'API/Form/Switcher',
 	component: Switch,
 };
 
@@ -13,7 +13,7 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div>
-	<farm-switch v-model="selectedValue" />
+	<farm-switch v-model="selectedValue" block />
 	</div>`,
 });
 
