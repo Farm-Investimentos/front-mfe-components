@@ -1,7 +1,7 @@
 import Switch from './Switch';
 
 export default {
-	title: 'API/Switch',
+	title: 'API/Form/Switch',
 	component: Switch,
 };
 
