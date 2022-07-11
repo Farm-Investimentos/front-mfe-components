@@ -6,8 +6,6 @@
 npm install
 ```
 
-Must Use Node 12
-
 ## Compiles and hot-reloads for development
 ```
 npm run storybook

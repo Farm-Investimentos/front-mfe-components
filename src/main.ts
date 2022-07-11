@@ -23,8 +23,6 @@ import CardContext from './components/CardContext';
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
 
-import RadioButton from './components/RadioButton';
-
 export {
 	DataTableEmptyWrapper,
 	DataTablePaginator,
@@ -47,7 +45,6 @@ export {
 	IconBox,
 	CardContext,
 	Collapsible,
-	RadioButton,
 };
 
 export * from './components/Buttons/DefaultButton';
@@ -68,3 +65,4 @@ export * from './components/Stepper';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
+export * from './components/Switch';
