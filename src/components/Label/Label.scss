@@ -1,9 +1,9 @@
 .farm-label {
     font-weight: bold;
     display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 24px;
 
     &.farm-label--required::after {
         content: '*';
