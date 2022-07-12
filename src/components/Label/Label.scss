@@ -1,0 +1,13 @@
+.farm-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+
+    &.farm-label--required::after {
+        content: '*';
+        margin-left: 2px;
+        color: var(--v-error-base);
+    }
+}

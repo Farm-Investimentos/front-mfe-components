@@ -62,6 +62,7 @@ export * from './components/MultipleSelectShortener';
 export * from './components/SelectModalOptions';
 export * from './components/ChipInviteStatus';
 export * from './components/Stepper';
+export * from './components/Label';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
