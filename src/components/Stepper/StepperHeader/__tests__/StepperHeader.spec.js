@@ -49,6 +49,15 @@ describe('StepperHeader component', () => {
 			expect(component.isStepNext(1)).toBeFalsy();
 		});
 
-		
+		it('Should check if step is current error to next', () => {
+			expect(component.isStepErrorToNext(4)).toBeFalsy();
+			expect(component.isStepErrorToNext(1)).toBeFalsy();
+		});
+
+		it('Should check if step is current to next', () => {
+			expect(component.isStepCurrentToNext(4)).toBeFalsy();
+			expect(component.isStepCurrentToNext(1)).toBeFalsy();
+		});
+
 	});
 });
