@@ -12,7 +12,7 @@ export const Primary = () => ({
 			v: '',
 		};
 	},
-	template: `<div>
+	template: `<div style="width: 480px">
 		<farm-textfield v-model="v" />
 		value: {{ v }}
 	</div>`,
