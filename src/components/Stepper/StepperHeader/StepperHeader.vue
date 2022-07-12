@@ -29,6 +29,8 @@
 						'stepper__divider--previous': isStepPrevious(index),
 						'stepper__divider--previous-to-current': isStepPreviousToCurrent(index),
 						'stepper__divider--previous-to-error': isStepPreviousToError(index),
+						'stepper__divider--error-to-next': isStepErrorToNext(index),
+						'stepper__divider--current-to-next': isStepCurrentToNext(index),
 					}"
 					v-if="hasDivider(index)"
 					:key="'divider_' + step.label"
@@ -96,9 +98,15 @@ export default Vue.extend({
 		isStepNext(index: number): boolean {
 			return index + 1 > this.currentStep;
 		},
+		isStepErrorToNext(index: number): boolean {
+			return this.errorCurrentStepStatus && index + 1 === this.currentStep;
+		},
+		isStepCurrentToNext(index: number): boolean {
+			return !this.errorCurrentStepStatus && index + 1 === this.currentStep;
+		},
 	},
 });
 </script>
-<style lang="sass" scoped>
-@import './StepperHeader.scss'
+<style lang="scss" scoped>
+@import './StepperHeader.scss';
 </style>
