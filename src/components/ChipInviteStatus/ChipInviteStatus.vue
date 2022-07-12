@@ -23,6 +23,7 @@ const StatusLabel = {
 	15: 'EM ANÁLISE',
 	16: 'EM ANDAMENTO',
 	17: 'EM ESPERA',
+	18: 'DECLINADO'
 };
 
 const StatusColor = {
@@ -34,6 +35,7 @@ const StatusColor = {
 	15: 'accent',
 	16: 'primary',
 	17: 'on-wait',
+	18: 'error',
 };
 
 import VChip from 'vuetify/lib/components/VChip/';
