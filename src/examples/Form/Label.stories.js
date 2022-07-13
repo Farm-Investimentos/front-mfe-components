@@ -3,7 +3,6 @@ import { Label } from '../../main.ts';
 export default {
 	title: 'Examples/Form/Label',
 	component: Label,
-	parameters,
 };
 
 export const Primary = () => ({
