@@ -33,10 +33,13 @@ export const Secondary = () => ({
 		return {
 			model: 'secondary',
 			item: { label: 'Nome do campo', key: 'key', md: 4 },
+			rules: {
+				required: val => !!val,
+			},
 		};
 	},
 	template: `<v-form>
-		<DefaultTextField :item="item" v-model="model" :required="true" />
+		<DefaultTextField :item="item" v-model="model" :required="true" :rules='[rules.required]' />
 	</v-form>`,
 });
 

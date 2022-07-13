@@ -35,7 +35,7 @@ export const Primary = () => ({
         <v-form v-model="validForm" :style="[styles.vForm]">
             <div>
                 <farm-label :required="true">Documento</farm-label>
-                <farm-textfield v-model="form.document" />
+                <farm-textfield v-model="form.document" :rules="[rules.required]" />
             </div>
             <div>
                 <farm-label :required="true">E-mail</farm-label>
