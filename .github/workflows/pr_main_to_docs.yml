@@ -1,0 +1,23 @@
+name: PR main to docs
+on:
+  workflow_dispatch:
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: package-version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+
+      - name: Current version package.json
+        run: echo ${{ env.PACKAGE_VERSION }}
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "main"
+          destination_branch: "docs"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automerge,triggered pr"
+          pr_title: "Pulling current version from main v${{ env.PACKAGE_VERSION }} to docs"
