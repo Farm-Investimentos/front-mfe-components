@@ -6,6 +6,7 @@
 		:disabled="disabled"
 		:type="type"
 		:class="classes"
+		:size="$props.size"
 	>
 		<span class="farm-btn__content">
 			<slot></slot>
@@ -18,7 +19,7 @@
 	</router-link>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-btn',
@@ -38,6 +39,12 @@ export default Vue.extend({
 		to: {
 			type: String,
 			default: null,
+		},
+		size: {
+			type: String as PropType<
+				'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'other (examples: 12px, 3rem)'
+			>,
+			default: 'default',
 		},
 	},
 
