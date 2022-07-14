@@ -1,4 +1,4 @@
-import { TextField } from '../main.ts';
+import { TextField } from '../../main.ts';
 
 export default {
 	title: 'Examples/Form/TextField',

@@ -1,30 +1,32 @@
 <template>
 	<v-col cols="12" sm="12" :md="item.md ? item.md : 2" class="v-col-fieldset-default pl-0">
-		<label :for="inputId">
+		<farm-label :for="inputId" :required="required && !disabled">
 			{{ item.label }}
-			<span class="required" v-if="required && !disabled">*</span>
-		</label>
-		<v-text-field
-			color="secondary"
+		</farm-label>
+		<farm-textfield
 			v-model="inputVal"
-			outlined
-			dense
 			v-mask="`${mask ? mask : ''}`"
 			:placeholder="placeholder"
 			:id="inputId"
 			:rules="inputRules"
 			:disabled="disabled"
 			:readonly="readonly"
-		></v-text-field>
+		/>
 	</v-col>
 </template>
 <script>
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib/components/VTextField';
+import Label from '../Label';
+import TextField from '../TextField';
 import { VCol } from 'vuetify/lib/components/VGrid';
 
 export default Vue.extend({
 	name: 'farm-textfield-labelled',
+	components: {
+		'farm-label': Label,
+		'farm-textfield': TextField,
+		VCol,
+	},
 	props: {
 		item: {
 			type: Object,
@@ -82,10 +84,6 @@ export default Vue.extend({
 			type: String,
 			default: null,
 		},
-	},
-	components: {
-		VCol,
-		VTextField,
 	},
 	computed: {
 		inputVal: {

@@ -1,37 +1,33 @@
 import { withDesign } from 'storybook-addon-designs';
-import TextField from './TextField.vue';
+import ProgressBar from './ProgressBar.vue';
 
 export default {
-	title: 'API/Form/TextField',
-	component: TextField,
+	title: 'API/ProgressBar',
+	component: ProgressBar,
 	decorators: [withDesign],
 	parameters: {
-		docs: {
-			description: {
-				component: `Text field<br />
-				selector: <em>farm-texfield</em>
-				`,
-			},
-		},
+		viewMode: 'docs',
 		design: {
 			type: 'figma',
 			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%85---Design-System-%7C-v1?node-id=1503%3A227',
 		},
-		viewMode: 'docs',
+		docs: {
+			description: {
+				component: `ProgressBar<br />
+				selector: <em>farm-progressbar</em>`,
+			},
+		},
 	},
 };
 
 export const Primary = () => ({
-	components: { 'farm-textfield': TextField },
+	components: { 'farm-progressbar': ProgressBar },
 	data() {
 		return {
-			v: '',
+			val: 35,
 		};
 	},
-	template: `<div style="width: 480px">
-		<farm-textfield v-model="v" />
-		value: {{ v }}
-	</div>`,
+	template: '<farm-progressbar :value="val" />',
 });
 
 const parameters = {
