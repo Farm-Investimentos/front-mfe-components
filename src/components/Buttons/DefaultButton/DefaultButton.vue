@@ -26,12 +26,32 @@ export default Vue.extend({
 	inheritAttrs: true,
 
 	props: {
-		color: { type: String, default: 'primary' },
-		outlined: Boolean,
-		plain: Boolean,
-		disabled: Boolean,
-		rounded: Boolean,
-		icon: Boolean,
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'error'
+				| 'extra'
+				| 'accent'
+				| 'info'
+				| 'success'
+				| 'gray'
+				| 'yellow'
+				| 'white'
+			>,
+			default: 'primary',
+		},
+		/**
+		 * Outlined
+		 */
+		outlined: { type: Boolean, default: false },
+		plain: { type: Boolean, default: false },
+		disabled: { type: Boolean, default: false },
+		rounded: { type: Boolean, default: false },
+		icon: { type: Boolean, default: false },
 		type: {
 			type: String,
 			default: 'button',
@@ -42,7 +62,7 @@ export default Vue.extend({
 		},
 		size: {
 			type: String as PropType<
-				'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'other (examples: 12px, 3rem)'
+				'xs' | 'sm' | 'md' | 'lg' | 'xl'
 			>,
 			default: 'default',
 		},
