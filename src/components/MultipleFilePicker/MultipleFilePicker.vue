@@ -65,31 +65,22 @@
 				</div>
 			</li>
 		</ul>
-		<file-upload
-			class="fileUpload"
-			:class="{
-				'fileUpload--flex': flag,
-			}"
-			:input-id="id"
-			:multiple="true"
-			:drop="true"
-			:drop-directory="true"
-			v-model="files"
-			ref="upload"
-			:data="{
-				id_product: idProduct,
-				document_type: idTypeDocument,
-				id_register: idResponsible,
-			}"
-			v-show="flag"
-			accept="application/pdf,image/jpeg,image/jpg,image/png"
-			extensions="jpg,jpeg,png,pdf"
-		>
+		<div>
+			<input
+				class="fileUpload"
+				type="file"
+				name="file"
+				@change="fileChange($event.target.files)"
+				:accept="acceptTypes"
+				:multiple="true"
+				ref="upload"
+			/>
+
 			<div class="iconFileStyled">
 				<v-icon color="secondary" large class="mdi mdi-cloud-upload mb-3"></v-icon>
 			</div>
-			<slot></slot>
-		</file-upload>
+		</div>
+
 		<div class="d-flex justify-center">
 			<div class="contentButtonsStyled" v-if="files.length > 0 || downloadFiles.length > 0">
 				<farm-btn-confirm
@@ -175,6 +166,10 @@ export default Vue.extend({
 
 		onDownload(id: number): void {
 			this.$emit('onDownload', id);
+		},
+		fileChange(fileList) {
+			this.files.push(fileList);
+			console.log(fileList);
 		},
 	},
 	computed: {
