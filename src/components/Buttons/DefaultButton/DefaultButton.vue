@@ -6,6 +6,7 @@
 		:disabled="disabled"
 		:type="type"
 		:class="classes"
+		:size="$props.size"
 	>
 		<span class="farm-btn__content">
 			<slot></slot>
@@ -18,19 +19,39 @@
 	</router-link>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-btn',
 	inheritAttrs: true,
 
 	props: {
-		color: { type: String, default: 'primary' },
-		outlined: Boolean,
-		plain: Boolean,
-		disabled: Boolean,
-		rounded: Boolean,
-		icon: Boolean,
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'error'
+				| 'extra'
+				| 'accent'
+				| 'info'
+				| 'success'
+				| 'gray'
+				| 'yellow'
+				| 'white'
+			>,
+			default: 'primary',
+		},
+		/**
+		 * Outlined
+		 */
+		outlined: { type: Boolean, default: false },
+		plain: { type: Boolean, default: false },
+		disabled: { type: Boolean, default: false },
+		rounded: { type: Boolean, default: false },
+		icon: { type: Boolean, default: false },
 		type: {
 			type: String,
 			default: 'button',
@@ -38,6 +59,12 @@ export default Vue.extend({
 		to: {
 			type: String,
 			default: null,
+		},
+		size: {
+			type: String as PropType<
+				'xs' | 'sm' | 'md' | 'lg' | 'xl'
+			>,
+			default: 'default',
 		},
 	},
 
