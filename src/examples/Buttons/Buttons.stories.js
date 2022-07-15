@@ -1,5 +1,5 @@
 import { withDesign } from 'storybook-addon-designs';
-import { DefaultButton, Icon } from '../main';
+import { DefaultButton, Icon } from '../../main';
 import('./Buttons.stories.scss');
 
 export default {
