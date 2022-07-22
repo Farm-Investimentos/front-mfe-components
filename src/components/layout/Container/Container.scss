@@ -1,0 +1,29 @@
+.farm-container {
+    width: 100%;
+    padding: 12px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+
+    >div {
+        background-color: white;
+        border-radius: 8px;
+        max-width: calc(100% - 32px);
+        margin: 16px auto;
+        padding: 12px;
+
+        // deprecated
+        .container-main__footer-buttons-right {
+            margin: 0;
+            margin-top: 1rem;
+            padding: 0;
+            justify-content: flex-end;
+
+            .v-btn {
+                margin-left: 1rem;
+            }
+        }
+
+        min-height: 128px;
+    }
+}

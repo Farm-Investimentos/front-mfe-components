@@ -121,7 +121,7 @@
     }
 
     @each $color in $colors {
-        &#{'.farm-btn--' + $color} {
+        &#{'.farm-btn--' + $color}:not(.farm-btn--disabled) {
             &:hover {
                 color: var(--v-#{$color}-base);
             }

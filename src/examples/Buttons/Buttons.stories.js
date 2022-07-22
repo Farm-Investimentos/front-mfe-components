@@ -1,5 +1,5 @@
 import { withDesign } from 'storybook-addon-designs';
-import { DefaultButton, Icon } from '../main';
+import { DefaultButton, Icon } from '../../main';
 import('./Buttons.stories.scss');
 
 export default {
@@ -135,6 +135,12 @@ export const Iconed = () => ({
         <farm-btn icon v-for="color of colors" :key="'random_2_' + color" :color="color">
             <farm-icon>book</farm-icon>
         </farm-btn>
+
+		<h4>Disabled Icon</h4>
+        <farm-btn icon v-for="color of colors" :key="'disabled_random_2_' + color" :color="color" :disabled="true">
+            <farm-icon>book</farm-icon>
+        </farm-btn>
+
 	</div>`,
 });
 

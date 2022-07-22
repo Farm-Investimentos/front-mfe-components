@@ -69,3 +69,6 @@ export * from './components/ProgressBar';
 export * from './components/Stepper';
 export * from './components/Switcher';
 export * from './components/TextField';
+
+export * from './components/layout/Container';
+export * from './components/layout/ContainerFooter';
