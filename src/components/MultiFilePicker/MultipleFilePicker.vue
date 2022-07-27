@@ -3,16 +3,20 @@
 		class="filePickerStyled"
 		:class="{
 			'filePickerStyled--dropActive': $refs.upload && $refs.upload.dropActive,
-			'filePickerStyled--flex': flag,
+			'filePickerStyled--flex': filesLength,
 		}"
 	>
 		<section ref="container" id="droparea-container">
 			<input
+				:class="{
+					'hidden-input-file': filesLength,
+				}"
 				type="file"
 				name="file"
 				@change="fileChange($event.target.files)"
 				:accept="acceptedFileTypes"
 				multiple
+				ref="upload"
 			/>
 			<div v-if="!selectedFile" class="selectfile-container">
 				<v-icon color="secondary">mdi-cloud-upload</v-icon>
@@ -52,12 +56,13 @@
 					v-if="files.length > 0 || downloadFiles.length > 0"
 				>
 					<farm-btn-confirm
-						@click="openFileInput"
+						color="secondary"
 						:disabled="filesLength >= maxFilesNumber"
 						title="Escolha outro"
 						class="v-btn--another"
 						outlined
 						dense
+						@click="openFileInput"
 					>
 						Escolha Outro
 					</farm-btn-confirm>
@@ -72,6 +77,10 @@ import { sizeOf } from '@farm-investimentos/front-mfe-libs-ts';
 import DefaultButton from '../Buttons/DefaultButton';
 import { VIcon } from 'vuetify/lib/components/VIcon';
 export default Vue.extend({
+	components: {
+		'farm-btn': DefaultButton,
+		VIcon,
+	},
 	props: {
 		/*
 		 * Accepted file types
@@ -101,15 +110,6 @@ export default Vue.extend({
 			sizeOf,
 		};
 	},
-	computed: {
-		maxSizeReachMsg() {
-			return `Arquivo ultrapassou o tamanho máximo de ${this.maxFileSize}MB`;
-		},
-	},
-	mounted() {
-		this.dropArea = this.$refs.container;
-		this.addListeners();
-	},
 	methods: {
 		reset() {
 			this.$refs.container.querySelector('input').value = '';
@@ -118,22 +118,8 @@ export default Vue.extend({
 			this.selectedFile = null;
 		},
 		fileChange(fileList) {
-			console.log('file', fileList);
-			this.maxSizeReach = false;
-			if (!fileList.length || fileList.length > 1) return;
-
-			if (this.maxFileSize) {
-				const sizeInMB = fileList[0].size / (1024 * 1024);
-
-				if (sizeInMB > this.maxFileSize) {
-					this.maxSizeReach = true;
-					return;
-				}
-			}
 			this.selectedFile = fileList[0];
 			this.files = [...this.files, ...fileList];
-			console.log('files', this.files);
-			this.$emit('onFileChange', this.selectedFile);
 		},
 		handlerFunctionHighlight() {
 			this.dropArea.classList.add('highlight');
@@ -148,13 +134,88 @@ export default Vue.extend({
 			this.dropArea.addEventListener('drop', this.handlerFunctionUnhighlight, false);
 		},
 		openFileInput(): void {
-			const input = this.$refs.upload.$el.querySelector(`#${this.id}`) as HTMLInputElement;
+			const input = this.$refs.upload as HTMLInputElement;
 			input.click();
 		},
+
+		remove(file: File): void {
+			this.files = this.files.filter(item => item.name !== file.name);
+		},
+
+		onDownload(id: number): void {
+			this.$emit('onDownload', id);
+		},
 	},
-	components: {
-		'farm-btn': DefaultButton,
-		VIcon,
+	computed: {
+		filesLength() {
+			return this.files.length + this.downloadFiles.length;
+		},
+	},
+	watch: {
+		files(newValue) {
+			/* if (newValue.length === 0 && this.downloadFiles.length === 0) {
+				this.flag = true;
+				this.$emit('updateFiles', newValue);
+				return;
+			}
+			const invalidTypeArray = newValue.filter(file => {
+				if (this.acceptTypes.indexOf(file.type) === -1) {
+					return true;
+				}
+				return false;
+			});
+			if (invalidTypeArray.length > 0) {
+				const validTypeArray = newValue.filter(file => {
+					if (this.acceptTypes.indexOf(file.type) === -1) {
+						return false;
+					}
+					return true;
+				});
+
+				this.files = validTypeArray;
+				this.$emit('updateFiles', this.files);
+				return;
+			}
+
+			this.flag = false;
+			this.hiddenButtonSend = false;
+			if (this.buttonFileLoading) {
+				const allLoading = newValue.filter(item => item.success === true);
+				if (allLoading.length > 0) {
+					this.buttonFileLoading = !(allLoading.length === newValue.length);
+					this.hiddenButtonSend = allLoading.length === newValue.length;
+				}
+			}
+			if (
+				!!this.maxFilesNumber &&
+				newValue.length + this.downloadFiles.length > this.maxFilesNumber
+			) {
+				this.files = newValue.slice(0, this.maxFilesNumber - this.downloadFiles.length);
+				this.$emit('onMaxFilesNumberWarning');
+			}
+			if (this.maxFileSize > 0) {
+				const files = newValue.filter(file => {
+					if (file.size > this.maxFileSize) return true;
+
+					return false;
+				});
+
+				if (files.length > 0) {
+					this.files = newValue.filter(file => {
+						if (file.size < this.maxFileSize) return true;
+
+						return false;
+					});
+
+					this.$emit('onMaxFileSizeWarning');
+				}
+			}
+			this.$emit('updateFiles', this.files); */
+		},
+	},
+	mounted() {
+		this.dropArea = this.$refs.container;
+		this.addListeners();
 	},
 });
 </script>

@@ -1,11 +1,11 @@
 section {
-	/* 	border: 2px dashed var(--v-gray-lighten1);
+	/* border: 2px dashed var(--v-gray-lighten1);
 	border-radius: 2rem;
-	background-color: var(--v-gray-lighten4); */
-	padding: 1rem;
+	background-color: var(--v-gray-lighten4);
+	padding: 1rem; */
 	position: relative;
 	/* cursor: pointer; */
-	height: 12rem;
+	min-height: 12rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -124,7 +124,6 @@ section {
 }
 
 .itemFilesContentButtonStyled {
-	cursor: pointer;
 	display: flex;
 	margin-right: 1rem;
 	justify-content: flex-end;
@@ -241,4 +240,12 @@ label[for='fileInput-1'] {
 
 .v-btn--another {
 	z-index: 2;
+}
+
+.hidden-input-file {
+	display: none;
+}
+
+.mdi-close {
+	cursor: pointer;
 }
