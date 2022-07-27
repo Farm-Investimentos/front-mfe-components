@@ -1,9 +1,8 @@
 <template>
 	<section :class="{ 'justify-end': justifyEnd === true }">
 		<fieldset class="fieldset-default" v-if="hasInitialInput">
-			<label :for="elementId">
+			<label class="filter-label" :for="elementId">
 				{{ label }}
-				<farm-icon color="gray"> file-find </farm-icon>
 			</label>
 			<v-text-field
 				color="secondary"
