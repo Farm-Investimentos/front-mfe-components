@@ -1,7 +1,7 @@
 <template>
 	<section :class="{ 'justify-end': justifyEnd === true }">
 		<fieldset class="fieldset-default" v-if="hasInitialInput">
-			<label :for="elementId">
+			<label class="filter-label" :for="elementId">
 				{{ label }}
 			</label>
 			<v-text-field
