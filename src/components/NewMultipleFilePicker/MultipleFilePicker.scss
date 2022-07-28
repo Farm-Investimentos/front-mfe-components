@@ -1,0 +1,165 @@
+section {
+	border: 2px dashed var(--v-gray-lighten1);
+	border-radius: 2rem;
+	background-color: var(--v-gray-lighten4);
+	padding: 1.5rem;
+	position: relative;
+	min-height: 12rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	input {
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		cursor: pointer;
+	}
+
+	&.highlight {
+		background: var(--v-secondary-lighten5);
+		opacity: 0.5;
+	}
+
+	.selectfile-container {
+		text-align: center;
+		.v-icon {
+			font-size: 2.25rem;
+			margin-bottom: 1rem;
+		}
+		p {
+			font-weight: 600;
+			color: var(--v-gray-base);
+		}
+	}
+
+	.reset-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		> p {
+			margin-bottom: 0;
+			font-size: 0.75rem;
+		}
+		.v-btn {
+			margin-top: 1rem;
+		}
+	}
+}
+.fileDocumentStyled {
+	margin-left: 1rem;
+	margin-right: 5px;
+	span {
+		display: block;
+		font-size: 24px;
+		color: #fff;
+	}
+
+	@media screen and (max-width: 600px) {
+		display: none;
+	}
+}
+.listFilesStyled {
+	width: 100%;
+	list-style: none;
+	min-height: auto;
+	margin-bottom: 20px;
+	padding: 0;
+
+	&--download {
+		margin-bottom: 1rem;
+		min-height: auto;
+	}
+
+	&--margin-bottom {
+		min-height: 100px;
+		margin-bottom: 1.25rem;
+	}
+}
+
+.itemFilesStyled {
+	width: 100%;
+	background-color: #858585;
+	border-radius: 50px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+	padding: 14px 8px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	@media screen and (max-width: 600px) {
+		flex-direction: column;
+	}
+}
+
+.itemFilesContentStyled {
+	width: calc(100% - 24px);
+	display: flex;
+	align-items: center;
+
+	@media screen and (max-width: 600px) {
+		display: block;
+		text-align: center;
+	}
+}
+
+.itemFilesContentButtonStyled {
+	display: flex;
+	margin-right: 1rem;
+	justify-content: flex-end;
+	width: 15rem;
+	span {
+		font-size: 1.5rem;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	@media screen and (max-width: 600px) {
+		justify-content: center;
+		margin-right: 0;
+	}
+}
+
+.mdi {
+	color: #fff;
+}
+
+.download-button {
+	&__text {
+		font-size: 0.95rem !important;
+	}
+	@media screen and (max-width: 600px) {
+		margin-right: 0 !important;
+
+		&__text {
+			display: none;
+		}
+	}
+}
+
+.download-button.farm-btn {
+	background-color: #858585 !important;
+	color: #fff;
+	margin-right: 1rem;
+
+	&__content {
+		color: #fff;
+	}
+}
+
+.download-button__icon {
+	color: #fff !important;
+}
+
+.hidden-input {
+	display: none;
+}

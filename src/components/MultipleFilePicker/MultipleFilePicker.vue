@@ -57,11 +57,6 @@
 						@click.prevent="remove(file)"
 						v-if="file.active == false && !file.success"
 					></span>
-					<span
-						class="mdi mdi-loading mdi-spin"
-						v-if="file.active && !file.progress !== '0.00' && !file.success"
-					></span>
-					<span class="mdi mdi-check" v-if="file.success"></span>
 				</div>
 			</li>
 		</ul>
