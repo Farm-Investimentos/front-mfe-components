@@ -1,29 +1,42 @@
 <template>
-	<div class="icon-box">
-		<div class="icon">
-			<v-icon color="secondary">{{ icon }}</v-icon>
-		</div>
+	<div :class="{ 'farm-icon-box': true, [cssColorClass]: true }">
+		<farm-icon size="md" :color="color">{{ iconParsed }}</farm-icon>
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
+import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-icon-box',
 	components: {
-		VIcon,
+		'farm-icon': Icon,
 	},
 	props: {
 		icon: {
 			type: String,
-			require: true,
+			required: true,
 		},
+		color: {
+			type: String,
+			default: 'secondary',
+		},
+	},
+	computed: {
+		iconParsed() {
+			if (this.icon.indexOf('mdi-') === 0) {
+				return this.icon.split('mdi-')[1];
+			}
+			return this.icon;
+		},
+		cssColorClass() {
+			return `farm-icon-box--${this.color}`;
+		}
 	},
 });
 </script>
 
-<style lang="sass" scoped>
-@import './IconBox.scss'
+<style lang="scss" scoped>
+@import './IconBox.scss';
 </style>
