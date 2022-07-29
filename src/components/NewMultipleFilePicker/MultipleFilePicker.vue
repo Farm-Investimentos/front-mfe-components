@@ -12,7 +12,9 @@
 			ref="upload"
 		/>
 		<div v-if="!hasFiles" class="selectfile-container">
-			<farm-icon color="secondary" size="lg">cloud-upload</farm-icon>
+			<farm-icon class="upload-icon" color="secondary" size="lg" @click="addMoreFiles"
+				>cloud-upload</farm-icon
+			>
 			<p>Clique para selecionar ou arraste o arquivo aqui</p>
 		</div>
 
@@ -45,7 +47,7 @@
 							>download</farm-icon
 						>
 
-						<span class="download-button__text"> Baixar Arquivo </span>
+						<span class="download-button__text">Baixar Arquivo</span>
 					</farm-btn>
 				</div>
 			</li>
@@ -76,18 +78,17 @@
 			</li>
 		</ul>
 
-		<!-- 	<p v-if="maxSizeReach" v-html="maxSizeReachMsg"></p> -->
-
 		<farm-btn
 			depressed
 			outlined
+			title="Escolher Outro"
 			color="gray"
 			class="farm-btn--responsive"
 			:disabled="disabledButton"
 			v-if="hasFiles"
 			@click="addMoreFiles"
 		>
-			Escolher outro
+			Escolher Outro
 		</farm-btn>
 	</section>
 </template>
@@ -122,7 +123,7 @@ export default Vue.extend({
 		 * Max file size (in MB)
 		 */
 		maxFileSize: {
-			default: null,
+			default: 0,
 		},
 		/**
 		 * Max files number
@@ -132,7 +133,7 @@ export default Vue.extend({
 			default: 0,
 		},
 		/**
-		 * Max files number
+		 * File List from files who could be download
 		 */
 		downloadFiles: {
 			type: Array as PropType<Array<DownloadFiles>>,
@@ -143,15 +144,11 @@ export default Vue.extend({
 		return {
 			selectedFile: null,
 			dropArea: null,
-			/* maxSizeReach: false, */
 			files: [],
 			sizeOf,
 		};
 	},
 	computed: {
-		/* 	maxSizeReachMsg(): string {
-			return `Arquivo ultrapassou o tamanho máximo de ${this.maxFileSize}MB`;
-		}, */
 		hasFiles(): boolean {
 			return this.files.length > 0 || this.downloadFiles.length;
 		},
@@ -178,20 +175,7 @@ export default Vue.extend({
 			this.selectedFile = null;
 		},
 		fileChange(fileList): void {
-			this.maxSizeReach = false;
-			/* 	if (!fileList.length || fileList.length > 1) return; */
-
-			if (this.maxFileSize) {
-				const sizeInMB = fileList[0].size / (1024 * 1024);
-
-				if (sizeInMB > this.maxFileSize) {
-					this.maxSizeReach = true;
-					return;
-				}
-			}
-			this.selectedFile = fileList[0];
 			this.files.push(...fileList);
-			this.$emit('onFileChange', this.selectedFile);
 		},
 		handlerFunctionHighlight(): void {
 			this.dropArea.classList.add('highlight');
@@ -213,6 +197,65 @@ export default Vue.extend({
 
 		onDownload(id: number): void {
 			this.$emit('onDownload', id);
+		},
+	},
+	watch: {
+		files(newValue) {
+			if (newValue.length === 0 && this.downloadFiles.length === 0) {
+				this.$emit('onFileChange', newValue);
+				return;
+			}
+			const invalidTypeArray = newValue.filter(file => {
+				if (
+					this.acceptedFileTypes !== '*' &&
+					this.acceptedFileTypes.indexOf(file.type) === -1
+				) {
+					return true;
+				}
+				return false;
+			});
+
+			if (invalidTypeArray.length > 0) {
+				const validTypeArray = newValue.filter(file => {
+					if (this.acceptedFileTypes.indexOf(file.type) === -1) {
+						return false;
+					}
+					return true;
+				});
+
+				this.files = validTypeArray;
+				return;
+			}
+
+			if (
+				!!this.maxFilesNumber &&
+				newValue.length + this.downloadFiles.length > this.maxFilesNumber
+			) {
+				this.files = newValue.slice(0, this.maxFilesNumber - this.downloadFiles.length);
+				this.$emit('onMaxFilesNumberWarning');
+				return;
+			}
+
+			if (this.maxFileSize > 0) {
+				const files = newValue.filter(file => {
+					const sizeInMB = file.size / (1024 * 1024);
+					if (sizeInMB > this.maxFileSize) return true;
+
+					return false;
+				});
+				if (files.length > 0) {
+					this.files = newValue.filter(file => {
+						const sizeInMB = file.size / (1024 * 1024);
+						if (sizeInMB < this.maxFileSize) return true;
+
+						return false;
+					});
+
+					this.$emit('onMaxFileSizeWarning');
+					return;
+				}
+			}
+			this.$emit('onFileChange', this.files);
 		},
 	},
 });
