@@ -1,4 +1,4 @@
-import MultipleFilePicker from '.';
+import MultipleFilePicker from './MultipleFilePicker.vue';
 
 export default {
 	title: 'API/MultipleFilePicker',
@@ -7,8 +7,26 @@ export default {
 
 export const Primary = () => ({
 	components: { MultipleFilePicker },
+	template: '<MultipleFilePicker />',
+});
+
+export const MaxFileSize = () => ({
+	components: { MultipleFilePicker },
+	template: '<MultipleFilePicker :maxFileSize="5" />',
+});
+
+export const MaxFilesNumber = () => ({
+	components: { MultipleFilePicker },
+	template: '<MultipleFilePicker :maxFileSize="5" :maxFilesNumber="1" />',
+});
+
+export const Download = () => ({
+	components: { MultipleFilePicker },
 	template:
-		'<MultipleFilePicker :id="`fileInput-${1}`" :idTypeDocument="1" :idResponsible="1" :idProduct="1" :index="1" :maxFilesNumber="10" :maxFileSize="3145728" acceptTypes="application/pdf,image/jpeg,image/jpg,image/png" />',
+		'<MultipleFilePicker :maxFileSize="5" :downloadFiles="[{ id: 1, name: `Arquivo 1`, size: 10000 }, { id: 2, name: `Arquivo 2`, size: 15000 }]" />',
 });
 
 Primary.storyName = 'Básico';
+MaxFileSize.storyName = 'Max File Size';
+MaxFilesNumber.storyName = 'Max Files Number';
+Download.storyName = 'Download Files';
