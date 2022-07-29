@@ -6,8 +6,8 @@ export default {
 		docs: {
 			description: {
 				component: `Container<br />
-				selector: <em>farm-container</em>
-				`,
+selector: <em>farm-container</em>
+`,
 			},
 		},
 		viewMode: 'docs',
@@ -22,12 +22,13 @@ export const Primary = () => ({
 export const Secondary = () => ({
 	components: { 'farm-container': Container, 'farm-container-footer': ContainerFooter },
 	template: `
-    <farm-container>
-      Content
-      <farm-container-footer>
-        Footer content
-      </farm-container-footer>
-    </farm-container>`,
+	<farm-container>
+		Content
+		<farm-container-footer>
+			Footer content
+		</farm-container-footer>
+	</farm-container>
+`,
 });
 
 export const Tertiary = () => ({
@@ -48,10 +49,10 @@ export const Tertiary = () => ({
 		};
 	},
 	template: `
-    <farm-container>
-      <farm-stepper-header :steps="steps" :currentStep="currentStep" />
-      <farm-container-footer>Footer content</farm-container-footer>
-    </farm-container>`,
+	<farm-container>
+		<farm-stepper-header :steps="steps" :currentStep="currentStep" />
+	</farm-container>
+`,
 });
 
 Primary.storyName = 'Básico';
