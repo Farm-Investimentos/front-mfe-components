@@ -5,7 +5,11 @@ describe('IconBox component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(IconBox);
+		wrapper = shallowMount(IconBox, {
+			propsData: {
+				icon: 'mdi-book',
+			}
+		});
 	});
 
 	test('Created hook', () => {
