@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import MultipleFilePicker from '@/components/MultipleFilePicker';
+import MultipleFilePicker from '../index';
 
 describe('MultipleFilePicker component', () => {
 	let wrapper;
@@ -9,14 +9,10 @@ describe('MultipleFilePicker component', () => {
 	beforeEach(() => {
 		wrapper = shallowMount(MultipleFilePicker, {
 			propsData: {
-				idTypeDocument: 1,
-				idResponsible: 1,
-				id: '1',
-				idProduct: 1,
-				index: 1,
+				maxFileSize: 1,
 				maxFilesNumber: 10,
 				downloadFiles: [],
-				acceptTypes: 'application/pdf,image/jpeg,image/jpg,image/png',
+				acceptedFileTypes: 'application/pdf,image/jpeg,image/jpg,image/png',
 			},
 		});
 		component = wrapper.vm;
@@ -27,33 +23,70 @@ describe('MultipleFilePicker component', () => {
 	});
 
 	describe('Methods', () => {
-		describe('openFileInput', () => {
+		describe('handlerFunctionHighlight', () => {
+			it('Should add class', () => {
+				const spyObj = jest.spyOn(wrapper.vm.dropArea.classList, 'add');
+				wrapper.vm.handlerFunctionHighlight();
+				expect(spyObj).toHaveBeenCalled();
+			});
+		});
+
+		describe('handlerFunctionUnhighlight', () => {
+			it('Should add class', () => {
+				const spyObj = jest.spyOn(wrapper.vm.dropArea.classList, 'remove');
+				wrapper.vm.handlerFunctionUnhighlight();
+				expect(spyObj).toHaveBeenCalled();
+			});
+		});
+
+		describe('addListeners', () => {
+			it('Should add listeners', () => {
+				const spyObj = jest.spyOn(wrapper.vm.dropArea, 'addEventListener');
+				wrapper.vm.addListeners();
+				expect(spyObj).toHaveBeenCalled();
+			});
+		});
+		describe('addMoreFiles', () => {
 			it('should open file input', () => {
 				const spy = jest.fn();
 				component.$refs = {
-					upload: {
-						$el: {
-							querySelector() {
-								return { click: spy };
-							},
+					container: {
+						querySelector() {
+							return { click: spy };
 						},
 					},
 				};
-				component.openFileInput();
+				component.addMoreFiles();
 				expect(spy).toHaveBeenCalled();
 			});
 		});
 
+		describe('fileChange', () => {
+			it('should open file input', () => {
+				const file = new File([], 'test');
+				component.fileChange([file]);
+				expect(component.files).toEqual([file]);
+			});
+		});
+
 		describe('remove', () => {
-			it('should remove an item', () => {
-				const spy = jest.fn();
-				component.$refs = {
-					upload: {
-						remove: spy,
-					},
-				};
-				component.remove(new File([], 'test'));
+			it('should remove an item and call reset method when files length is 1', () => {
+				const spy = jest.spyOn(component, 'reset');
+				const file = new File([], 'test');
+				component.files = [file];
+				component.remove(0);
+				expect(component.files).toEqual([]);
 				expect(spy).toHaveBeenCalled();
+			});
+
+			it('should remove an item', () => {
+				const spy = jest.spyOn(component, 'reset');
+				const file = new File([], 'test');
+				const file2 = new File([], 'test2');
+				component.files = [file, file2];
+				component.remove(0);
+				expect(component.files).toEqual([file2]);
+				expect(spy).not.toHaveBeenCalled();
 			});
 		});
 		describe('onDownload', () => {
@@ -64,13 +97,56 @@ describe('MultipleFilePicker component', () => {
 		});
 	});
 
-	describe('Watch', () => {
-		describe('files', () => {
-			it('should set flag true when files lenght is 0', () => {
-				wrapper.vm.$options.watch.files.call(component, []);
-				expect(component.flag).toBeTruthy();
+	describe('Computed', () => {
+		describe('hasFiles', () => {
+			it('should return false', () => {
+				expect(component.hasFiles).toBeFalsy();
 			});
 
+			it('should return true when files length is more than zero', () => {
+				component.files = [new File([], 'test')];
+				expect(component.hasFiles).toBeTruthy();
+			});
+
+			it('should return true when files length is more than zero', async () => {
+				await wrapper.setProps({
+					downloadFiles: [new File([], 'test')],
+				});
+				expect(component.hasFiles).toBeTruthy();
+			});
+		});
+		describe('filesLength', () => {
+			it('should return files and downloadFiles length', async () => {
+				await wrapper.setProps({
+					downloadFiles: [new File([], 'test')],
+				});
+				component.files = [new File([], 'test2')];
+				expect(component.filesLength).toBe(2);
+			});
+		});
+		describe('disabledButton', () => {
+			it('should return files and downloadFiles length', async () => {
+				await wrapper.setProps({
+					maxFilesNumber: 0,
+				});
+
+				expect(component.disabledButton).toBeFalsy();
+			});
+
+			it('should return files and downloadFiles length', async () => {
+				await wrapper.setProps({
+					maxFilesNumber: 2,
+					downloadFiles: [new File([], 'test')],
+				});
+				component.files = [new File([], 'test2')];
+
+				expect(component.disabledButton).toBeTruthy();
+			});
+		});
+	});
+
+	describe('Watch', () => {
+		describe('files', () => {
 			it('should emit an onMaxFilesNumberWarning event when there are more files added who maxFilesNumber', () => {
 				wrapper.vm.$options.watch.files.call(
 					component,
@@ -81,7 +157,7 @@ describe('MultipleFilePicker component', () => {
 
 			it('should emit an onMaxFileSizeWarning event when one file size is bigger than maxFileSize prop', async () => {
 				await wrapper.setProps({
-					maxFileSize: 3145728,
+					maxFileSize: 3,
 				});
 				wrapper.vm.$options.watch.files.call(component, [
 					{ size: 4145728, type: 'image/jpeg' },
