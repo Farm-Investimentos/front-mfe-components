@@ -72,3 +72,4 @@ export * from './components/TextField';
 
 export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
+export * from './components/layout/Line';

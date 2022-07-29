@@ -12,7 +12,6 @@ import '../src/scss/Sticky-table.scss';
 
 import '../src/scss/Table.scss';
 
-
 addDecorator(() => ({
 	vuetify,
 	template: `
