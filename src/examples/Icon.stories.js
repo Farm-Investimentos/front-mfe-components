@@ -1,5 +1,7 @@
 import { withDesign } from 'storybook-addon-designs';
 import { Icon } from '../main';
+import colors from '../configurations/colors';
+
 import('./Icons.stories.scss');
 
 export default {
@@ -14,8 +16,6 @@ export default {
 		},
 	},
 };
-
-const colors = ['primary', 'secondary', 'error', 'gray', 'accent', 'yellow'];
 
 export const Icons = () => ({
 	components: {
