@@ -5,9 +5,7 @@ export default {
 	parameters: {
 		docs: {
 			description: {
-				component: `Container<br />
-selector: <em>farm-container</em>
-`,
+				component: `Container<br />selector: <em>farm-container</em>`,
 			},
 		},
 		viewMode: 'docs',
@@ -34,7 +32,6 @@ export const Secondary = () => ({
 export const Tertiary = () => ({
 	components: {
 		'farm-container': Container,
-		'farm-container-footer': ContainerFooter,
 		'farm-stepper-header': StepperHeader,
 	},
 	data() {
