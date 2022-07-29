@@ -21,7 +21,6 @@
 		"src/*"
 	],
 	"dependencies": {
-		"@farm-investimentos/front-mfe-libs-ts": "^1.0.2",
 		"core-js": "^3.8.3",
 		"vue": "^2.7.0",
 		"vuetify": "^2.4.5",
