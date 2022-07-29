@@ -1,15 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
-import IconBox from '../IconBox';
+import Line from '../Line';
 
-describe('IconBox component', () => {
+describe('Line component', () => {
 	let wrapper;
+	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(IconBox, {
-			propsData: {
-				icon: 'mdi-book',
-			}
+		wrapper = shallowMount(Line, {
+			propsData: {},
 		});
+		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {

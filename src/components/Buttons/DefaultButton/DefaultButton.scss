@@ -104,6 +104,7 @@
     .farm-btn__content i.mdi {
         color: gray;
     }
+
     @each $size,
     $value in $sizes {
         &#{'.farm-btn[size=' + $size +']'} {
@@ -115,6 +116,7 @@
         width: 48px;
         height: 48px;
     }
+
     &[size='xl'] {
         width: 64px;
         height: 64px;
@@ -150,9 +152,21 @@
         background-color: var(--v-#{$color}-base);
         color: white;
 
-        ::v-deep .farm-btn__content i.mdi {
-            color: white;
+        ::v-deep .farm-btn__content {
+            i.mdi {
+                color: white;
+            }
+
+            .farm-btn__content i.mdi {
+                color: black
+            }
+
         }
+    }
+
+    .farm-btn--extra,
+    .farm-btn--white {
+        color: black;
     }
 
     :not(.farm-btn--disabled) {
@@ -160,6 +174,12 @@
             border: 1px solid var(--v-#{$color}-base);
             background: white;
             color: var(--v-#{$color}-base);
+
+            &.farm-btn--extra,
+            &.farm-btn--white {
+                color: black;
+                border: 1px solid black;
+            }
 
             .farm-btn__content i.mdi {
                 color: var(--v-#{$color}-base);
@@ -170,6 +190,15 @@
             border: none;
             background: white;
             color: var(--v-#{$color}-base);
+
+            &.farm-btn--extra,
+            &.farm-btn--white {
+                color: black;
+
+                .farm-btn__content i.mdi {
+                    color: black
+                }
+            }
 
             .farm-btn__content i.mdi {
                 color: var(--v-#{$color}-base);

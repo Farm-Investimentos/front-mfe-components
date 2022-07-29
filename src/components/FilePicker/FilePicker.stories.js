@@ -12,7 +12,7 @@ export const Primary = () => ({
 
 export const MaxFileSize = () => ({
 	components: { FilePicker },
-	template: '<FilePicker maxFileSize="5" />',
+	template: '<FilePicker maxFileSize="0.1" />',
 });
 
 Primary.storyName = 'Básico';
