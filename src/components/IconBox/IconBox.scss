@@ -4,7 +4,7 @@
 	width: 40px;
 	height: 40px;
 	padding: 6px;
-	border-radius: 5px;
+	border-radius: 0.5rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -14,4 +14,5 @@
             background: var(--v-#{$color}-lighten5);
         }
     }
+
 }
