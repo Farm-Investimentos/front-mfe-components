@@ -44,9 +44,10 @@ export default Vue.extend({
 		const onOver = () => {
 			showOver.value = true;
 		};
-		const onOut = event => {
+		const onOut = (event: MouseEvent) => {
 			showOver.value = parent.value.contains(event.relatedTarget);
 		};
+		
 		return {
 			parent,
 			showOver,
