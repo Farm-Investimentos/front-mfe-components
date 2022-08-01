@@ -1,13 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
-import Line from '../Line';
+import Tooltip from '../Tooltip';
 
-describe('Line component', () => {
+describe('Tooltip component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Line, {
-			propsData: {},
-		});
+		wrapper = shallowMount(Tooltip, {});
 	});
 
 	test('Created hook', () => {

@@ -1,0 +1,38 @@
+@import '../../configurations/variables';
+
+.farm-tooltip {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+
+.farm-tooltip__popup {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.3s linear, opacity 0.3s linear;
+	color: white;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 8px 12px;
+	position: absolute;
+	width: 160px;
+	bottom: 32px;
+	left: 50%;
+	transform: translate(-50%, 0);
+
+	&--visible {
+		opacity: 1;
+		visibility: visible;
+	}
+
+}
+
+
+@each $color in $colors {
+	#{'.farm-tooltip--' + $color} {
+		.farm-tooltip__popup {
+			background-color: var(--v-#{$color}-base);
+
+		}
+	}
+}
