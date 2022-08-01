@@ -5,7 +5,7 @@
 		@mouseout="onOut"
 		ref="parent"
 	>
-		<farm-icon :color="color" size="sm">help-circle</farm-icon>
+		<slot name="activator"></slot>
 		<span :class="{ 'farm-tooltip__popup': true, 'farm-tooltip__popup--visible': showOver }">
 			<slot></slot>
 		</span>
