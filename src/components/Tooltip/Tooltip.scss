@@ -1,0 +1,55 @@
+@import '../../configurations/variables';
+
+.farm-tooltip {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.farm-tooltip__popup {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s linear, opacity 0.3s linear;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 4px 8px;
+    position: absolute;
+    width: 160px;
+    left: -72px;
+    bottom: 32px;
+
+    &--visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 72px;
+        bottom: -8px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid var(--v-gray-base);
+        clear: both;
+    }
+}
+
+
+@each $color in $colors {
+    #{'.farm-tooltip--' + $color} {
+        .farm-tooltip__popup {
+            background-color: var(--v-#{$color}-lighten4);
+            border-color: var(--v-#{$color}-base);
+
+            &:after {
+
+                border-top-color: var(--v-#{$color}-base);
+            }
+        }
+    }
+}
