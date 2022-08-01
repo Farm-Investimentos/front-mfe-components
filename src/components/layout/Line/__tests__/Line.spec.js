@@ -3,13 +3,11 @@ import Line from '../Line';
 
 describe('Line component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Line, {
 			propsData: {},
 		});
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
