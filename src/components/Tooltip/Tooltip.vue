@@ -18,7 +18,6 @@
 </template>
 <script lang="ts">
 import Vue, { PropType, ref, computed } from 'vue';
-import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-tooltip',
@@ -56,9 +55,10 @@ export default Vue.extend({
 		const onOver = () => {
 			showOver.value = true;
 		};
-		const onOut = event => {
+		const onOut = (event: MouseEvent) => {
 			showOver.value = parent.value.contains(event.relatedTarget);
 		};
+
 		return {
 			parent,
 			showOver,
@@ -66,9 +66,6 @@ export default Vue.extend({
 			onOut,
 			toggleComponent,
 		};
-	},
-	components: {
-		'farm-icon': Icon,
 	},
 });
 </script>
