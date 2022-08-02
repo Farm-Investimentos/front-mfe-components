@@ -42,7 +42,7 @@ export const Tooltips = () => ({
 export const Iconed = () => ({
 	components: {
 		'farm-tooltip': Tooltip,
-        'farm-icon': Icon
+		'farm-icon': Icon,
 	},
 	data() {
 		return {
@@ -63,24 +63,20 @@ export const Iconed = () => ({
 
 Tooltips.story = {
 	name: 'Colors',
-    parameters: {
+	parameters: {
 		design: {
 			type: 'figma',
-			url:
-				'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
 		},
 	},
 };
 
 Iconed.story = {
 	name: 'Iconed',
-    parameters: {
+	parameters: {
 		design: {
 			type: 'figma',
-			url:
-				'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
 		},
 	},
 };
-
-

@@ -6,13 +6,18 @@
 		ref="parent"
 	>
 		<slot name="activator"></slot>
-		<span :class="{ 'farm-tooltip__popup': true, 'farm-tooltip__popup--visible': showOver }">
+		<span
+			:class="{
+				'farm-tooltip__popup': true,
+				'farm-tooltip__popup--visible': showOver || toggleComponent,
+			}"
+		>
 			<slot></slot>
 		</span>
 	</span>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref } from 'vue';
+import Vue, { PropType, ref, computed } from 'vue';
 import Icon from '../Icon';
 
 export default Vue.extend({
@@ -36,11 +41,18 @@ export default Vue.extend({
 			>,
 			default: 'gray',
 		},
+
+		value: {
+			type: Boolean,
+		},
 	},
-	setup() {
+	setup(props) {
 		const parent = ref(null);
 		const showOver = ref(false);
 
+		const toggleComponent = computed(() => {
+			return props.value;
+		});
 		const onOver = () => {
 			showOver.value = true;
 		};
@@ -52,6 +64,7 @@ export default Vue.extend({
 			showOver,
 			onOver,
 			onOut,
+			toggleComponent,
 		};
 	},
 	components: {
