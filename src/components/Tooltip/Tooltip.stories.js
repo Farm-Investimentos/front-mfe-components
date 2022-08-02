@@ -9,14 +9,9 @@ export default {
 
 export const Primary = () => ({
 	components: { 'farm-tooltip': Tooltip, 'farm-icon': Icon },
-	data() {
-		return {
-			value: false,
-		};
-	},
 	template: `
     <div style="padding-left: 80px; padding-top: 80px;">
-        <farm-tooltip v-model:value="value">
+        <farm-tooltip>
             some <em>sample</em> text
             <br />with line break
             <br />and a long text that does not fit

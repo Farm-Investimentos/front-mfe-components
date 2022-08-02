@@ -9,7 +9,7 @@
 		<span
 			:class="{
 				'farm-tooltip__popup': true,
-				'farm-tooltip__popup--visible': showOver || toggleComponent,
+				'farm-tooltip__popup--visible': (!externalControl && showOver) || (externalControl && toggleComponent),
 			}"
 		>
 			<slot></slot>
@@ -40,10 +40,10 @@ export default Vue.extend({
 			>,
 			default: 'gray',
 		},
-
-		value: {
-			type: Boolean,
-		},
+		/**
+		 * Control visibility
+		 */
+		value: {},
 	},
 	setup(props) {
 		const parent = ref(null);
@@ -52,6 +52,10 @@ export default Vue.extend({
 		const toggleComponent = computed(() => {
 			return props.value;
 		});
+		const externalControl = computed(() => {
+			return typeof props.value === 'boolean';
+		});
+
 		const onOver = () => {
 			showOver.value = true;
 		};
@@ -65,6 +69,7 @@ export default Vue.extend({
 			onOver,
 			onOut,
 			toggleComponent,
+			externalControl,
 		};
 	},
 });
