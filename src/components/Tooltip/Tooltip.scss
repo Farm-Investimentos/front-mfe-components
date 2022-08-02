@@ -3,7 +3,6 @@
 .farm-tooltip {
 	display: inline-block;
 	position: relative;
-	cursor: pointer;
 }
 
 .farm-tooltip__popup {
@@ -16,9 +15,8 @@
 	padding: 8px 12px;
 	position: absolute;
 	width: 160px;
-	bottom: 32px;
 	left: 50%;
-	transform: translate(-50%, 0);
+	transform: translate(-50%, -110%);
 
 	&--visible {
 		opacity: 1;

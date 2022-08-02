@@ -42,12 +42,7 @@ export const Tooltips = () => ({
 export const Iconed = () => ({
 	components: {
 		'farm-tooltip': Tooltip,
-        'farm-icon': Icon
-	},
-	data() {
-		return {
-			colors,
-		};
+		'farm-icon': Icon,
 	},
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
         <farm-tooltip>
@@ -61,26 +56,62 @@ export const Iconed = () => ({
 	</div>`,
 });
 
+export const Visibility = () => ({
+	components: {
+		'farm-tooltip': Tooltip,
+		'farm-icon': Icon,
+	},
+	data() {
+		return {
+			show: false,
+		};
+	},
+	template: `<div style="padding-left: 80px; padding-top: 80px;">
+        <farm-tooltip v-model="show">
+            some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+			some <em>sample</em> text<br />
+            <template v-slot:activator="{ on, attrs }">
+			<v-btn @click="show = !show">
+				toggle me
+			</v-btn>
+            </template>
+        </farm-tooltip>
+	</div>`,
+});
+
 Tooltips.story = {
 	name: 'Colors',
-    parameters: {
+	parameters: {
 		design: {
 			type: 'figma',
-			url:
-				'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
 		},
 	},
 };
 
 Iconed.story = {
 	name: 'Iconed',
-    parameters: {
+	parameters: {
 		design: {
 			type: 'figma',
-			url:
-				'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
 		},
 	},
 };
 
-
+Visibility.story = {
+	name: 'Visibility',
+	parameters: {
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+		},
+	},
+};
