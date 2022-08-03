@@ -10,31 +10,19 @@
     &[italic] {
         font-style: italic;
     }
+ 
 
-    &--xs {
-        font-size: 0.5rem;
-    }
-
-    &--sm {
-        font-size: 0.75rem;
-    }
-
-    &--md {
-        font-size: 0.875rem;
-    }
-
-    &--lg {
-        font-size: 1.25rem;
-    }
-
-    &--xl {
-        font-size: 1.5rem;
-    }
-
-    @each $color in $colors {
-        &[color=#{$color}] {
-            color: var(--v-#{$color}-base);
+    @each $k in $colors {
+        &#{'[color=' + $k + ']'} {
+            color: var(--v-#{$k}-base);
         }
     }
+
+    @each $s, $val in $fontSizes {
+        &--#{$s} {
+            font-size: $val;
+        }
+    }
+    
 
 }

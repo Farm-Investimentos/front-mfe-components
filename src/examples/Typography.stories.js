@@ -16,7 +16,7 @@ export default {
 
 export const Primary = () => ({
 	components: { 'farm-typography': Typography },
-	template: '<farm-typography>Typography</farm-typography>',
+	template: '<farm-typography type="legenda">Typography</farm-typography>',
 });
 
 export const Bold = () => ({
@@ -55,6 +55,7 @@ export const Sizes = () => ({
 		<farm-typography
 			v-for="s in sizes"
 			:size="s"
+			:key="s"
 		>
 			Typography - size {{ s }}
 		</farm-typography>
@@ -72,6 +73,7 @@ export const CustomSizes = () => ({
 		<farm-typography
 			v-for="s in sizes"
 			:size="s"
+			:key="s"
 		>
 			Typography - size {{ s }}
 		</farm-typography>
@@ -92,6 +94,24 @@ export const Colors = () => ({
 			:key="color"
 		>
 			Typography - color {{ color }}
+		</farm-typography>
+	</div>`,
+});
+
+export const Tags = () => ({
+	components: { 'farm-typography': Typography },
+	data() {
+		return {
+			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7'],
+		};
+	},
+	template: `<div>
+		<farm-typography
+			v-for="t in tags"
+			:tag="t"
+			:key="t"
+		>
+			Typography - tag {{ t }}
 		</farm-typography>
 	</div>`,
 });
