@@ -37,7 +37,7 @@ export const Weight = () => ({
 		};
 	},
 	template: `<div>
-		<farm-typography v-for="w in weights" :weight="w">Typography - weight {{ w }}</farm-typography>
+		<farm-typography v-for="w in weights" :weight="w" :key="w">Typography - weight {{ w }}</farm-typography>
 	</div>`,
 });
 
@@ -102,7 +102,7 @@ export const Tags = () => ({
 	components: { 'farm-typography': Typography },
 	data() {
 		return {
-			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'legend', 'label', 'li'],
+			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend', 'label', 'li'],
 		};
 	},
 	template: `<div>

@@ -1,10 +1,17 @@
 <template>
-	<component :is="tag" :class="cssClasses" :style="style">
+	<component
+		:is="tag"
+		:class="{
+			'farm-typography': true,
+			['farm-typography--' + $props.size]: isSizeFromBreakpoints,
+		}"
+		:style="style"
+	>
 		<slot></slot>
 	</component>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref } from 'vue';
+import Vue, { computed, PropType, ref } from 'vue';
 
 const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -21,7 +28,6 @@ export default Vue.extend({
 				| 'h4'
 				| 'h5'
 				| 'h6'
-				| 'h7'
 				| 'legend'
 				| 'label'
 				| 'li'
@@ -34,19 +40,14 @@ export default Vue.extend({
 	},
 	setup(props, context) {
 		let style = ref({});
-		let cssClasses = ref({
-			'farm-typography': true,
-		});
+
 		const { weight } = context.attrs;
+		const { size } = props;
 
-		if (props.size !== undefined) {
-			const { size } = props;
+		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
 
-			if (breakPoints.includes(size)) {
-				cssClasses.value['farm-typography--' + size] = true;
-			} else {
-				style.value.fontSize = size;
-			}
+		if (props.size !== undefined && !isSizeFromBreakpoints.value) {
+			style.value.fontSize = size;
 		}
 
 		if (weight) {
@@ -55,7 +56,7 @@ export default Vue.extend({
 
 		return {
 			style,
-			cssClasses,
+			isSizeFromBreakpoints,
 		};
 	},
 });
