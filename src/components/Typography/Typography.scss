@@ -1,0 +1,26 @@
+.farm-typography {
+    font-size: 1rem;
+    &[bold] {
+        font-weight: bold;
+    }
+    &[italic] {
+        font-style: italic;
+    }
+
+    &--xm {
+        font-size: 0.5rem;
+    }
+    &--sm {
+        font-size: 0.75rem;
+    }
+    &--md {
+        font-size: 0.875rem;
+    }
+    &--lg {
+        font-size: 1.25rem;
+    }
+    &--xl {
+        font-size: 1.5rem;
+    }
+    
+}
