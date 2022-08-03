@@ -66,7 +66,7 @@ export const CustomSizes = () => ({
 	components: { 'farm-typography': Typography },
 	data() {
 		return {
-			sizes: ['11px', '1.25rem', '48px'],
+			sizes: ['11px', '1.12876rem', '48px'],
 		};
 	},
 	template: `<div>
@@ -102,7 +102,7 @@ export const Tags = () => ({
 	components: { 'farm-typography': Typography },
 	data() {
 		return {
-			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7'],
+			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'legend', 'label', 'li'],
 		};
 	},
 	template: `<div>
