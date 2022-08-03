@@ -17,7 +17,7 @@ export default {
 
 export const Primary = () => ({
 	components: { 'farm-typography': Typography },
-	template: `<farm-typography>
+	template: `<farm-typography color="secondary">
 		farm typography
 	</farm-typography>`,
 });
