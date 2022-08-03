@@ -1,6 +1,7 @@
 import { withDesign } from 'storybook-addon-designs';
 import { Icon } from '../main';
 import colors from '../configurations/colors';
+import sizes from '../configurations/sizes';
 
 import('./Icons.stories.scss');
 
@@ -39,7 +40,7 @@ export const Sizes = () => ({
 	},
 	data() {
 		return {
-			sizes: ['xs', 'sm', 'md', 'lg', 'xl'],
+			sizes,
 		};
 	},
 	template: `<div class="icons-container">

@@ -35,10 +35,16 @@ export default Vue.extend({
 		'farm-icon': Icon,
 	},
 	props: {
+		/**
+		 * Title
+		 */
 		title: {
 			type: String,
 			required: true,
 		},
+		/**
+		 * Icon
+		 */
 		icon: {
 			type: String,
 			default: '',
@@ -48,19 +54,22 @@ export default Vue.extend({
 			default: false,
 		},
 	},
+
 	data() {
 		return {
 			status: this.$props.open,
 		};
 	},
+
 	computed: {
-		arrowIcon() {
+		arrowIcon(): string {
 			return this.status ? 'menu-up' : 'menu-down';
 		},
 	},
 	methods: {
 		onToggleCollapsible(status: boolean): void {
 			this.status = !status;
+			this.$emit('open', this.status);
 		},
 	},
 });

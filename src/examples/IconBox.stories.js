@@ -1,6 +1,7 @@
 import { withDesign } from 'storybook-addon-designs';
 import { IconBox } from '../main';
 import colors from '../configurations/colors';
+import sizes from '../configurations/sizes';
 import('./Icons.stories.scss');
 
 export default {
@@ -34,6 +35,28 @@ export const IconBoxes = () => ({
 	</div>`,
 });
 
+export const Sizes = () => ({
+	components: {
+		'farm-icon-box': IconBox,
+	},
+	data() {
+		return {
+			sizes,
+		};
+	},
+	template: `<div class="icons-container">
+        <div v-for="size of sizes" :key="size">
+            <farm-icon-box icon="book" :key="size" :size="size" />
+			{{ size }}
+        </div>
+       
+	</div>`,
+});
+
 IconBoxes.story = {
 	name: 'Colors',
+};
+
+Sizes.story = {
+	name: 'Sizes',
 };
