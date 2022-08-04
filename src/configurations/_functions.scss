@@ -3,3 +3,7 @@
 @function gutter($key: 'default') {
     @return map-get($gutters, $key)
 }
+
+@function fontSize($key: 'default') {
+    @return map-get($fontSizes, $key)
+}

@@ -25,7 +25,14 @@ describe('Collapsible component', () => {
 			it('should set status to inverse from status param', () => {
 				component.onToggleCollapsible(false);
 				expect(component.status).toBeTruthy();
+				expect(wrapper.emitted().open).toBeDefined();
 			});
+		});
+	});
+
+	describe('Computed properties', () => {
+		it('Should have arrowIcon', () => {
+			expect(component.arrowIcon).toEqual('menu-down');
 		});
 	});
 });

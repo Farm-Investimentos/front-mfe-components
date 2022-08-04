@@ -1,11 +1,11 @@
 <template>
-	<div :class="{ 'farm-icon-box': true, [cssColorClass]: true }">
-		<farm-icon size="md" :color="color">{{ iconParsed }}</farm-icon>
+	<div :class="{ 'farm-icon-box': true, [cssColorClass]: true }" :size="size">
+		<farm-icon :color="color" :size="size">{{ iconParsed }}</farm-icon>
 	</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 import Icon from '../Icon';
 
 export default Vue.extend({
@@ -14,13 +14,23 @@ export default Vue.extend({
 		'farm-icon': Icon,
 	},
 	props: {
+		/**
+		 * Icon
+		 */
 		icon: {
 			type: String,
 			required: true,
 		},
+		/**
+		 * Color
+		 */
 		color: {
 			type: String,
 			default: 'secondary',
+		},
+		size: {
+			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+			default: 'md',
 		},
 	},
 	computed: {
@@ -32,7 +42,7 @@ export default Vue.extend({
 		},
 		cssColorClass() {
 			return `farm-icon-box--${this.color}`;
-		}
+		},
 	},
 });
 </script>
