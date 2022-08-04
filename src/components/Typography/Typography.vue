@@ -12,9 +12,8 @@
 </template>
 <script lang="ts">
 import Vue, { computed, PropType, ref } from 'vue';
-
-const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
-const valideHtmlTags = ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend', 'label', 'li'];
+import breakPoints from '../../configurations/sizes';
+import valideHtmlTags from '../../configurations/typographyHtmlTags';
 
 export default Vue.extend({
 	inheritAttrs: true,
@@ -41,7 +40,7 @@ export default Vue.extend({
 
 		const isHtmlTagValide = computed(() => valideHtmlTags.includes(receivedTag));
 
-		!isHtmlTagValide.value ? (tag.value = defaultHtmlTag) : (tag.value = receivedTag);
+		tag.value = isHtmlTagValide.value ? receivedTag : defaultHtmlTag;
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
 
