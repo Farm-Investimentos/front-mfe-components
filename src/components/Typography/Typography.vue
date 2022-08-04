@@ -17,6 +17,7 @@ import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
 export default Vue.extend({
 	inheritAttrs: true,
+	name: 'farm-typography',
 	props: {
 		tag: {
 			type: String as PropType<
