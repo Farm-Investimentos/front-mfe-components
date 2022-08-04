@@ -13,7 +13,7 @@
 <script lang="ts">
 import Vue, { computed, PropType, ref } from 'vue';
 import breakPoints from '../../configurations/sizes';
-import valideHtmlTags from '../../configurations/typographyHtmlTags';
+import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
 export default Vue.extend({
 	inheritAttrs: true,
@@ -29,18 +29,12 @@ export default Vue.extend({
 		},
 	},
 	setup(props, context) {
-		let style = ref({});
-		let tag = ref({});
 
 		const { weight } = context.attrs;
 		const { size } = props;
 
-		const receivedTag = props.tag;
-		const defaultHtmlTag = 'p';
-
-		const isHtmlTagValide = computed(() => valideHtmlTags.includes(receivedTag));
-
-		tag.value = isHtmlTagValide.value ? receivedTag : defaultHtmlTag;
+		let style = ref({});
+		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
 
