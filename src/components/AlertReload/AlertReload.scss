@@ -1,13 +1,15 @@
+@import '../../configurations/functions';
+
 .farm-alert-reload {
     border: 1px solid var(--v-error-base);
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: gutter('sm') gutter('md');
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     &--label {
-        padding: 0 8px;
+        padding: 0 gutter('sm');
     }
 
     >div {
@@ -18,14 +20,14 @@
         flex-direction: column;
 
         >div {
-            margin-bottom: 8px;
+            margin-bottom: gutter('sm');
         }
     }
 }
 
 .farm-btn {
     .farm-icon {
-        margin-right: 8px;
+        margin-right: gutter('sm');
     }
 }
 

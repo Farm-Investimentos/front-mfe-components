@@ -14,7 +14,7 @@
     margin-top: 0;
 }
 
-@include for-sm-breakpoint {
+@include forXsOnly {
     .farm-btn {
         margin-left: 0;
         margin-top: gutter();

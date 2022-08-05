@@ -1,9 +1,3 @@
-@mixin for-sm-breakpoint {
-    @media (max-width: 599px) {
-        @content;
-    }
-}
-
 @mixin forXsOnly {
     @media (max-width: 599px) {
         @content;
