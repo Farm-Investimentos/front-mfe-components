@@ -1,30 +1,33 @@
 <template>
-	<v-alert dense outlined type="error" class="farm-alert-reload">
-		<v-row align="center">
-			<v-col class="grow">
+	<div
+		:class="{
+			'farm-alert-reload': true,
+			'farm-alert-reload--vertical': $props.vertical,
+		}"
+	>
+		<div>
+			<farm-icon color="error">alert</farm-icon>
+			<farm-typography tag="span" color="error" class="farm-alert-reload__label">
 				{{ label }}
-			</v-col>
-			<v-col class="shrink">
-				<farm-btn color="secondary" class="ml-3" alt="Recarregar" @click="$emit('onClick')">
-					<i class="mdi mdi-refresh farm-icon"></i>
-					Recarregar
-				</farm-btn>
-			</v-col>
-		</v-row>
-	</v-alert>
+			</farm-typography>
+		</div>
+		<farm-btn color="secondary" alt="Recarregar" @click="$emit('onClick')">
+			<farm-icon>refresh</farm-icon>
+			Recarregar
+		</farm-btn>
+	</div>
 </template>
-<script>
-import VAlert from 'vuetify/lib/components/VAlert';
-import { VRow, VCol } from 'vuetify/lib/components/VGrid';
+<script lang="ts">
 import DefaultButton from '../Buttons/DefaultButton';
+import Icon from '../Icon';
+import Typography from '../Typography';
 
 export default {
 	name: 'farm-alert-reload',
 	components: {
-		VAlert,
-		VRow,
-		VCol,
 		'farm-btn': DefaultButton,
+		'farm-icon': Icon,
+		'farm-typography': Typography,
 	},
 	props: {
 		/**
@@ -34,14 +37,17 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Vertical?
+		 */
+		vertical: {
+			type: Boolean,
+			default: false,
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.farm-btn {
-	.farm-icon {
-		margin-right: 1rem;
-	}
-}
+@import 'AlertReload';
 </style>
