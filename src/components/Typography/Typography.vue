@@ -12,25 +12,16 @@
 </template>
 <script lang="ts">
 import Vue, { computed, PropType, ref } from 'vue';
-
-const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
+import breakPoints from '../../configurations/sizes';
+import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
 export default Vue.extend({
 	inheritAttrs: true,
+	name: 'farm-typography',
 	props: {
 		tag: {
 			type: String as PropType<
-				| 'p'
-				| 'span'
-				| 'h1'
-				| 'h2'
-				| 'h3'
-				| 'h4'
-				| 'h5'
-				| 'h6'
-				| 'legend'
-				| 'label'
-				| 'li'
+				'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'label' | 'li'
 			>,
 			default: 'p',
 		},
@@ -39,10 +30,12 @@ export default Vue.extend({
 		},
 	},
 	setup(props, context) {
-		let style = ref({});
 
 		const { weight } = context.attrs;
 		const { size } = props;
+
+		let style = ref({});
+		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
 
@@ -53,10 +46,10 @@ export default Vue.extend({
 		if (weight) {
 			style.value.fontWeight = weight;
 		}
-
 		return {
 			style,
 			isSizeFromBreakpoints,
+			tag,
 		};
 	},
 });

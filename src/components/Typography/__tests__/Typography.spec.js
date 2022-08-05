@@ -1,5 +1,4 @@
 import { shallowMount } from '@vue/test-utils';
-import Vue from 'vue';
 import Typography from '../Typography';
 
 describe('Typography component', () => {
@@ -7,7 +6,11 @@ describe('Typography component', () => {
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Typography, {});
+		wrapper = shallowMount(Typography, {
+			propsData: {
+				tag: 'li',
+			},
+		});
 		component = wrapper.vm;
 	});
 
@@ -33,6 +36,22 @@ describe('Typography component', () => {
 				},
 			});
 			expect(wrapperTest.vm.isSizeFromBreakpoints).toBeTruthy();
+		});
+	});
+
+	describe('Prop data', () => {
+
+		it('Should have li tag', async () => {
+			expect(wrapper.vm.tag).toEqual('li');
+		});
+
+		it('Should not allow invalid html tag', async () => {
+			const wrapperTest = shallowMount(Typography, {
+				propsData: {
+					tag: 'div',
+				},
+			});
+			expect(wrapperTest.vm.tag).toEqual('p');
 		});
 	});
 });
