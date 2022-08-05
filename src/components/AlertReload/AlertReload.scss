@@ -1,0 +1,33 @@
+@import '../../configurations/functions';
+
+.farm-alert-reload {
+    border: 1px solid var(--v-error-base);
+    border-radius: 8px;
+    padding: gutter('sm') gutter('md');
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__label {
+        padding: 0 gutter('sm');
+    }
+
+    >div {
+        display: flex;
+    }
+
+    &--vertical {
+        flex-direction: column;
+
+        >div {
+            margin-bottom: gutter('sm');
+        }
+    }
+}
+
+.farm-btn {
+    .farm-icon {
+        margin-right: gutter('sm');
+    }
+}
+

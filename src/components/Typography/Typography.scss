@@ -1,4 +1,5 @@
 @import '../../configurations/variables';
+@import '../../configurations/mixins';
 
 .farm-typography {
     font-size: 1rem;
@@ -23,6 +24,12 @@
             font-size: $val;
         }
     }
-    
+}
 
+@include upToSm {
+    @each $s, $val in $fontSizes {
+        .farm-typography--#{$s} {
+            font-size: calc(#{$val} - 2px);
+        }
+    }
 }
