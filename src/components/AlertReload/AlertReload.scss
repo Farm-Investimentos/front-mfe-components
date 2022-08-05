@@ -1,0 +1,31 @@
+.farm-alert-reload {
+    border: 1px solid var(--v-error-base);
+    border-radius: 8px;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--label {
+        padding: 0 8px;
+    }
+
+    >div {
+        display: flex;
+    }
+
+    &--vertical {
+        flex-direction: column;
+
+        >div {
+            margin-bottom: 8px;
+        }
+    }
+}
+
+.farm-btn {
+    .farm-icon {
+        margin-right: 8px;
+    }
+}
+

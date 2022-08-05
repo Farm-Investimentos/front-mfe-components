@@ -3,3 +3,29 @@
         @content;
     }
 }
+
+@mixin forXsOnly {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+@mixin upToSm {
+    @media (max-width: 959px) {
+        @content;
+    }
+}
+@mixin upToMd {
+    @media (max-width: 1263px) {
+        @content;
+    }
+}
+@mixin fromSm {
+    @media (min-width: 960) {
+        @content;
+    }
+}
+@mixin fromMd {
+    @media (min-width: 1264px) {
+        @content;
+    }
+}

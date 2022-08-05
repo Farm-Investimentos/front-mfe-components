@@ -2,7 +2,7 @@
 	<div
 		:class="{
 			'farm-alert-reload': true,
-			'farm-alert-reload--vertical': $props.direction === 'vertical',
+			'farm-alert-reload--vertical': $props.vertical,
 		}"
 	>
 		<div>
@@ -38,40 +38,16 @@ export default {
 			default: '',
 		},
 		/**
-		 * Direction
+		 * Vertical?
 		 */
-		direction: {
-			type: String,
-			default: 'horizontal',
+		vertical: {
+			type: Boolean,
+			default: false,
 		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.farm-alert-reload {
-	border: 1px solid var(--v-error-base);
-	border-radius: 8px;
-	padding: 8px 16px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	&--label {
-		padding: 0 8px;
-	}
-	> div {
-		display: flex;
-	}
-}
-.farm-btn {
-	.farm-icon {
-		margin-right: 8px;
-	}
-}
-
-@media screen and (max-width: 959px) {
-	.farm-alert-reload--label {
-		font-size: 0.75rem;
-	}
-}
+@import 'AlertReload';
 </style>

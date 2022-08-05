@@ -2,7 +2,6 @@ import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 
 import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
-import AlertReload from './components/AlertReload';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
@@ -33,7 +32,6 @@ export {
 	Tabs,
 	DialogHeader,
 	DialogFooter,
-	AlertReload,
 	DefaultTextField,
 	RangeDatePicker,
 	DatePicker,
@@ -47,6 +45,7 @@ export {
 	Collapsible,
 };
 
+export * from './components/AlertReload';
 export * from './components/Buttons/DefaultButton';
 export * from './components/Buttons/DangerButton';
 export * from './components/Buttons/ConfirmButton';

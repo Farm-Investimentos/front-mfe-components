@@ -1,4 +1,5 @@
 @import '../../../configurations/variables';
+@import '../../../configurations/mixins';
 
 .farm-btn {
     font-size: 0.75rem;
@@ -213,11 +214,8 @@
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 
-
-
-@media screen and (max-width: 959px) {
+@include upToSm {
     .farm-btn {
-        font-size: 0.625rem;
         padding: 0 12px;
         line-height: 12px;
         min-width: 48px;
@@ -225,10 +223,8 @@
 }
 
 @media screen and (max-width: 600px) {
-
     .farm-btn.farm-btn--responsive {
         width: 100%;
         margin: 0;
     }
-
 }
