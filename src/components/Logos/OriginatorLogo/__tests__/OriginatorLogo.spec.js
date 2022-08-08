@@ -26,7 +26,7 @@ describe('OriginatorLogo component', () => {
 
 	describe('Computed properties', () => {
 		it('Should have imgSrc', () => {
-			expect(component.imgSrc).toEqual('/public/logos/originadores/10/full.svg');
+			expect(component.imgSrc).toContain('/public/logos/originadores/10/full.svg');
 		});
 	});
 });
