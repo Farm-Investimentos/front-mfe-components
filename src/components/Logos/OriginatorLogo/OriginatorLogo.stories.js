@@ -7,7 +7,7 @@ export default {
 
 export const Primary = () => ({
 	components: { OriginatorLogo },
-	template: '<OriginatorLogo alt="primary" id="1" />',
+	template: '<OriginatorLogo alt="primary" id="88001" />',
 });
 
 Primary.storyName = 'Básico';
