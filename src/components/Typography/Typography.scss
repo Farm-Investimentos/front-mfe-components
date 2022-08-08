@@ -11,7 +11,10 @@
     &[italic] {
         font-style: italic;
     }
- 
+
+    &:is(p) {
+        margin-bottom: auto;
+    }
 
     @each $k in $colors {
         &#{'[color=' + $k + ']'} {
