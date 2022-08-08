@@ -24,8 +24,9 @@ export default Vue.extend({
 	},
 	computed: {
 		imgSrc() {
+			const href = window.location.href;
 			return `${
-				window.location.href.indexOf('localhost')
+				href.indexOf('localhost') || href.indexOf('front-farm-storybook')
 					? 'https://dev.plataforma.portalfarm.com.br'
 					: ''
 			}/public/logos/products/${this.id}/${this.variation}.svg`;
