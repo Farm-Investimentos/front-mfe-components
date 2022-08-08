@@ -24,7 +24,12 @@ export default Vue.extend({
 	},
 	computed: {
 		imgSrc() {
-			return `/public/logos/originadores/${this.id}/${this.variation}.svg`;
+			const href = window.location.href;
+			return `${
+				href.indexOf('localhost') || href.indexOf('front-farm-storybook')
+					? 'https://dev.plataforma.portalfarm.com.br'
+					: ''
+			}/public/logos/originadores/${this.id}/${this.variation}.svg`;
 		},
 	},
 });

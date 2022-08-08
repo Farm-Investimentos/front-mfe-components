@@ -26,7 +26,7 @@ describe('ProductLogo component', () => {
 
 	describe('Computed properties', () => {
 		it('Should have imgSrc', () => {
-			expect(component.imgSrc).toEqual('/public/logos/products/10/full.svg');
+			expect(component.imgSrc).toContain('/public/logos/products/10/full.svg');
 		});
 	});
 });
