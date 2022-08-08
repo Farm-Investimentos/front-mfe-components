@@ -115,3 +115,25 @@ export const Tags = () => ({
 		</farm-typography>
 	</div>`,
 });
+
+export const LineHeight = () => ({
+	components: { 'farm-typography': Typography },
+	data() {
+		return {
+			heights: ['12px', '16px', '20px', '24px', '32px', '40px'],
+		};
+	},
+	template: `<div>
+		<farm-typography
+			v-for="h in heights"
+			tag="p"
+			:lineHeight="h"
+			:key="h"
+			style="border: 1px solid var(--v-gray-lighten2); padding: 8px;"
+		>
+			Typography - height {{ h }}<br />
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		</farm-typography>
+	</div>`,
+});
