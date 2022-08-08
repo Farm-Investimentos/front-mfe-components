@@ -7,7 +7,7 @@ export default {
 
 export const Primary = () => ({
 	components: { ProductLogo },
-	template: '<ProductLogo alt="primary" id="1" />',
+	template: '<ProductLogo alt="primary" id="34" />',
 });
 
 Primary.storyName = 'Básico';
