@@ -28,19 +28,24 @@ export default Vue.extend({
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 		},
+		lineHeight: {
+			type: Number || String,
+		},
 	},
 	setup(props, context) {
-
 		const { weight } = context.attrs;
-		const { size } = props;
+		const { size, lineHeight } = props;
 
 		let style = ref({});
 		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
 
-		if (props.size !== undefined && !isSizeFromBreakpoints.value) {
+		if (size !== undefined && !isSizeFromBreakpoints.value) {
 			style.value.fontSize = size;
+		}
+		if (lineHeight !== undefined) {
+			style.value.lineHeight = lineHeight;
 		}
 
 		if (weight) {
