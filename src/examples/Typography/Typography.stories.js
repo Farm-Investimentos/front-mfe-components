@@ -1,6 +1,6 @@
-import { Typography } from '../main.ts';
-import sizes from '../configurations/sizes';
-import colors from '../configurations/colors';
+import { Typography } from '../../main.ts';
+import sizes from '../../configurations/sizes';
+import colors from '../../configurations/colors';
 
 export default {
 	title: 'Examples/Typography',

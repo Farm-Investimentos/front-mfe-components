@@ -29,7 +29,7 @@ export default Vue.extend({
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 		},
 		lineHeight: {
-			type: Number || String,
+			type: String,
 		},
 	},
 	setup(props, context) {
