@@ -1,4 +1,6 @@
 import Typography from './Typography.vue';
 
-export { Typography };
+import Heading from './Heading/Heading.vue';
+
+export { Typography, Heading };
 export default Typography;
