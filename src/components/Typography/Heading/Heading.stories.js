@@ -25,6 +25,11 @@ export const Primary = () => ({
 	template: `<farm-heading :type="type">
 		farm heading
 	</farm-heading>`,
+	mounted() {
+		setTimeout(() => {
+			this.type = 5;
+		}, 2000);
+	}
 });
 
 Primary.storyName = 'Basic';
