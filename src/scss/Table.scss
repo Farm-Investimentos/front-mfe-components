@@ -1,2 +1,7 @@
 @import './Sticky-table.scss';
 @include stickytable('#v-data-table--default', 1, (0));
+
+@import '../configurations/colors';
+
+@debug farmColor('info', 'base');
+@debug farmColor('secondary', 'lighten');
