@@ -1,0 +1,30 @@
+$secondary: (
+    base: #00B493,
+    lighten: #ADFFF0,
+    darken: #006653,
+);
+
+$info: (
+    base: #5089DE,
+    lighten: #95e8ff,
+    darken: #003784
+);
+
+$error: (
+    base: #ea5455,
+    lighten: #ff706d,
+    darken: #6f0000
+);
+
+$theme-colors: (
+    "secondary": $secondary,
+    "info": $info,
+    "error": $error
+);
+
+$theme-colors-list: map-keys($theme-colors);
+
+@function themeColor($name, $variation: 'base') {
+    $theme-color: map-get($theme-colors, $name);
+    @return map-get($theme-color, $variation)
+}
