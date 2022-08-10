@@ -27,6 +27,12 @@
             font-size: $val;
         }
     }
+
+    @each $w in $fontWeights {
+        &--weight-#{$w} {
+            font-weight: $w;
+        }
+    }
 }
 
 @include upToSm {
