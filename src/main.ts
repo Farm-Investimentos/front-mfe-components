@@ -54,6 +54,7 @@ export * from './components/Buttons/ImportButton';
 export * from './components/Buttons/ToggleButton';
 export * from './components/Buttons/RemoveButton';
 export * from './components/Buttons/MultiImportButton';
+export * from './components/Chip';
 export * from './components/Logos/ProductLogo';
 export * from './components/Logos/OriginatorLogo';
 export * from './components/ResetTableRowSelection';
