@@ -1,0 +1,34 @@
+@import '../../configurations/theme-colors';
+
+.farm-chip {
+    display: inline-flex;
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: themeColor('secondary');
+    height: 24px;
+    min-width: 80px;
+    max-width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    align-items: center;
+    color: white;
+
+    .farm-typography {
+        width: 100%;
+    }
+
+    @each $color in $theme-colors-list {
+        &#{'[color=' + $color + ']'} {
+            background-color: themeColor($color);
+
+            &[variation='lighten'] {
+                background-color: themeColor($color, 'lighten');
+                color: black;
+            }
+
+            &[variation='darken'] {
+                background-color: themeColor($color, 'darken');
+            }
+        }
+    }
+}
