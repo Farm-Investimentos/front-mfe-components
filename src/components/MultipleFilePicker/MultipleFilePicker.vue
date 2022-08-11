@@ -105,6 +105,7 @@ export type DownloadFiles = {
 };
 
 export default Vue.extend({
+	name: 'farm-multiple-filepicker',
 	components: {
 		'farm-btn': DefaultButton,
 		'farm-icon': Icon,

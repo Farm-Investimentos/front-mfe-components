@@ -5,6 +5,7 @@ import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
+import MultipleFilePicker from './components/MultipleFilePicker';
 import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
@@ -29,6 +30,7 @@ export {
 	MainFilter,
 	Loader,
 	FilePicker,
+	MultipleFilePicker,
 	Tabs,
 	DialogHeader,
 	DialogFooter,
