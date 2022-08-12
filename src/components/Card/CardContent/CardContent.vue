@@ -13,10 +13,7 @@ export default Vue.extend({
 		tag: { type: String, default: 'div' },
 		gutter: { type: String, default: 'default' },
 	},
-<<<<<<< HEAD
-=======
 	inheritAttrs: true,
->>>>>>> 38dc3bb9698df651e1adb50e862be215daf600a6
 });
 </script>
 
