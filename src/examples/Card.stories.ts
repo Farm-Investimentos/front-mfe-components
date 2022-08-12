@@ -65,3 +65,17 @@ export const Gutters = () => ({
 	</farm-card>
     </div>`,
 });
+
+export const Shadow = () => ({
+	components: {
+		'farm-card': Card,
+		'farm-card-content': CardContent,
+	},
+	template: `<div style="width: 480px;">
+    <farm-card shadow>
+		<farm-card-content>
+			Content!
+		</farm-card-content>
+	</farm-card>
+    </div>`,
+});

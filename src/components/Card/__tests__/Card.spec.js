@@ -6,11 +6,7 @@ describe('Card component', () => {
 	let component;
 
 	beforeEach(() => {
-<<<<<<< HEAD
-		wrapper = shallowMount(CardContext);
-=======
 		wrapper = shallowMount(Card);
->>>>>>> 38dc3bb9698df651e1adb50e862be215daf600a6
 		component = wrapper.vm;
 	});
 
