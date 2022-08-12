@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import Card from '../Card';
+import CardContent from '../CardContent';
 
-describe('Card component', () => {
+describe('CardContent component', () => {
 	let wrapper;
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Card);
+		wrapper = shallowMount(CardContent);
 		component = wrapper.vm;
 	});
 

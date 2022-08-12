@@ -9,6 +9,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
 	name: 'farm-card',
+	inheritAttrs: true,
 });
 </script>
 
