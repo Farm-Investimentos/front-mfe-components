@@ -1,0 +1,14 @@
+@import '../../../configurations/variables';
+@import '../../../configurations/functions';
+
+.farm-card__content {
+
+    //padding: gutter('md');
+    @each $k in map-keys($gutters) {
+        @debug $k;
+        &#{'[gutter=' + $k + ']'} {
+            @debug map-get($gutters, $k);
+            padding: map-get($gutters, $k);
+        }
+    }
+}

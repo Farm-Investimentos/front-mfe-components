@@ -3,7 +3,7 @@
 
 .farm-dialog__footer {
     border-top: 1px solid var(--v-gray-lighten2);
-    padding: 1rem;
+    padding: gutter('md');
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -12,6 +12,10 @@
 .farm-btn {
     margin-left: gutter();
     margin-top: 0;
+
+    .farm-icon {
+        margin-right: 8px;
+    }
 }
 
 @include forXsOnly {
