@@ -19,7 +19,7 @@
 			:disabled="isConfirmDisabled"
 			@click="$emit('onConfirm')"
 		>
-			<i :class="{ mdi: true, ['mdi-' + confirmIcon]: true }" v-if="confirmIcon"></i>
+			<farm-icon v-if="confirmIcon">{{ confirmIcon }}</farm-icon>
 			{{ confirmLabel }}
 		</farm-btn>
 	</div>
@@ -28,6 +28,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import DefaultButton from '../Buttons/DefaultButton';
+import Icon from '../Icon';
 import IExtraButton from './IExtraButton';
 
 /**
@@ -37,6 +38,7 @@ export default Vue.extend({
 	name: 'farm-dialog-footer',
 	components: {
 		'farm-btn': DefaultButton,
+		'farm-icon': Icon,
 	},
 	props: {
 		/**
