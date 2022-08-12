@@ -1,7 +1,7 @@
 <template>
-	<div class="farm-card">
+	<component class="farm-card" v-bind:is="tag">
 		<slot></slot>
-	</div>
+	</component>
 </template>
 
 <script lang="ts">
@@ -10,6 +10,9 @@ import Vue from 'vue';
 export default Vue.extend({
 	name: 'farm-card',
 	inheritAttrs: true,
+	props: {
+		tag: { type: String, default: 'div' },
+	},
 });
 </script>
 
