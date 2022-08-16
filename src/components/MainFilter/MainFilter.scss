@@ -6,11 +6,10 @@ section {
 		margin-left: 1rem;
 	}
 
-	.filter-label {
-		align-items: flex-end;
-		display: flex;
-		height: 1.56rem;
+	fieldset {
+		border: 0;
 	}
+
 }
 
 @media screen and (max-width: 600px) {

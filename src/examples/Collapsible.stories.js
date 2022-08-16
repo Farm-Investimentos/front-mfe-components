@@ -24,7 +24,7 @@ export const Title = () => ({
 
 export const Icon = () => ({
 	components: { 'farm-collapsible': Collapsible },
-	template: '<farm-collapsible icon="book" title="">collapsible content</farm-collapsible>',
+	template: '<farm-collapsible icon="book" title="With Icon">collapsible content</farm-collapsible>',
 });
 
 export const Opened = () => ({
