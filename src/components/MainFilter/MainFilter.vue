@@ -1,13 +1,10 @@
 <template>
 	<section :class="{ 'justify-end': justifyEnd === true }">
-		<fieldset class="fieldset-default" v-if="hasInitialInput">
-			<label class="filter-label" :for="elementId">
+		<fieldset v-if="hasInitialInput">
+			<farm-label :for="elementId">
 				{{ label }}
-			</label>
-			<v-text-field
-				color="secondary"
-				outlined
-				dense
+			</farm-label>
+			<farm-textfield
 				v-model="inputValue"
 				:id="elementId"
 				@keyup="onKeyUp"
@@ -27,16 +24,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib/components/VTextField';
 import DefaultButton from '../Buttons/DefaultButton';
 import Icon from '../Icon';
+import Label from '../Label';
+import TextField from '../TextField';
 
 export default Vue.extend({
 	name: 'farm-form-mainfilter',
 	components: {
-		VTextField,
 		'farm-button': DefaultButton,
 		'farm-icon': Icon,
+		'farm-textfield': TextField,
+		'farm-label': Label
 	},
 	props: {
 		/**
