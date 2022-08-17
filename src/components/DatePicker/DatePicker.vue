@@ -121,7 +121,7 @@ export default Vue.extend({
 			checkMin: value => {
 				const selectedDate = new Date(convertDate(value));
 				const nextDay = new Date();
-				nextDay.setDate(selectedDate.getDate() + 1)
+				nextDay.setDate(selectedDate.getDate() + 1);
 				nextDay.setHours(0);
 				nextDay.setMinutes(0);
 				return this.min && nextDay < new Date(this.min)
