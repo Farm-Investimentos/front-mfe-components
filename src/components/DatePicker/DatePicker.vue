@@ -119,12 +119,24 @@ export default Vue.extend({
 					: true;
 			},
 			checkMin: value => {
-				const selectedDate = new Date(convertDate(value));
-				const nextDay = new Date();
-				nextDay.setDate(selectedDate.getDate() + 1);
-				nextDay.setHours(0);
-				nextDay.setMinutes(0);
-				return this.min && nextDay < new Date(this.min)
+				const selectedDateUTCString = new Date(convertDate(value))
+					.toUTCString()
+					.slice(0, -4);
+
+				const selectedDate = new Date(selectedDateUTCString);
+				selectedDate.setDate(selectedDate.getDate() + 1);
+
+				const locatedSelectedDate = new Date(selectedDate.toUTCString()).toLocaleString(
+					'pt-BR',
+					{
+						timeZone: 'America/Sao_Paulo',
+					}
+				);
+				const locatedMinDate = new Date(this.min).toLocaleString('pt-BR', {
+					timeZone: 'America/Sao_Paulo',
+				});
+
+				return this.min && locatedSelectedDate < locatedMinDate
 					? 'A data está fora do período permitido'
 					: true;
 			},
