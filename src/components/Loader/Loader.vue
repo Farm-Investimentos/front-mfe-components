@@ -1,9 +1,27 @@
 <template>
-	<v-overlay opacity="0.3" v-if="mode === 'overlay'">
-		<v-progress-circular indeterminate :size="100" color="secondary" />
-	</v-overlay>
-	<div v-else>
-		<v-progress-circular color="secondary" indeterminate :size="calculateSize" :width="6" />
+	<div>
+		<div>
+			<v-overlay opacity="0.3" v-if="mode === 'overlayy'">
+				<v-progress-circular indeterminate :size="100" color="secondary" />
+			</v-overlay>
+			<div v-else>
+				<v-progress-circular
+					color="secondary"
+					indeterminate
+					:size="calculateSize"
+					:width="6"
+				/>
+				<v-progress-circular indeterminate :size="100" color="secondary" />
+			</div>
+		</div>
+		<div>
+			<v-overlay opacity="0.3" v-if="mode === 'overlay'">
+				<span class="loader loader--big"></span>
+			</v-overlay>
+			<div v-else>
+				<span class="loader loader--big-border"></span>
+			</div>
+		</div>
 	</div>
 </template>
 <script lang="ts">
@@ -34,3 +52,6 @@ export default Vue.extend({
 	},
 });
 </script>
+<style lang="scss" scoped>
+@import 'Loader.scss';
+</style>
