@@ -29,6 +29,16 @@ export const Italic = () => ({
 	template: '<farm-typography italic>Typography</farm-typography>',
 });
 
+export const Underline = () => ({
+	components: { 'farm-typography': Typography },
+	template: '<farm-typography underline>Typography</farm-typography>',
+});
+
+export const LineThrough = () => ({
+	components: { 'farm-typography': Typography },
+	template: '<farm-typography line-through>Typography</farm-typography>',
+});
+
 export const Weight = () => ({
 	components: { 'farm-typography': Typography },
 	data() {
