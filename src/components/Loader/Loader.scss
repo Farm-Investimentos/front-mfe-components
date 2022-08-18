@@ -15,11 +15,8 @@
 		width: 100px;
 		height: 100px;
 	}
-
-	&--big-border {
-		border-width: 20px;
-	}
 }
+
 .loader::before {
 	content: '';
 	box-sizing: border-box;
@@ -28,6 +25,24 @@
 	border-radius: 50%;
 	border: 5px solid var(--v-secondary-base);
 	animation: prixClipFix 2s linear infinite;
+}
+
+.loader--big-border:before {
+	border-width: 6px;
+}
+
+.overlay {
+	align-items: center;
+	border-radius: inherit;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
 }
 
 @keyframes rotate {

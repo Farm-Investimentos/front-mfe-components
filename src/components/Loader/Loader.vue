@@ -1,26 +1,10 @@
 <template>
 	<div>
-		<div>
-			<v-overlay opacity="0.3" v-if="mode === 'overlayy'">
-				<v-progress-circular indeterminate :size="100" color="secondary" />
-			</v-overlay>
-			<div v-else>
-				<v-progress-circular
-					color="secondary"
-					indeterminate
-					:size="calculateSize"
-					:width="6"
-				/>
-				<v-progress-circular indeterminate :size="100" color="secondary" />
-			</div>
+		<div class="overlay" opacity="0.3" v-if="mode === 'overlay'">
+			<span class="loader loader--big"></span>
 		</div>
-		<div>
-			<v-overlay opacity="0.3" v-if="mode === 'overlay'">
-				<span class="loader loader--big"></span>
-			</v-overlay>
-			<div v-else>
-				<span class="loader loader--big-border"></span>
-			</div>
+		<div v-else>
+			<span class="loader loader--big-border" :class="calculateSize"></span>
 		</div>
 	</div>
 </template>
@@ -47,7 +31,7 @@ export default Vue.extend({
 	},
 	computed: {
 		calculateSize() {
-			return this.size === 'small' ? 35 : 70;
+			return this.size === 'small' ? 'loader--small' : '';
 		},
 	},
 });
