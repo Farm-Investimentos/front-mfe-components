@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="overlay" opacity="0.3" v-if="mode === 'overlay'">
+		<div class="overlay" v-if="mode === 'overlay'" :style="styleObject">
 			<span class="loader loader--big"></span>
 		</div>
 		<div v-else>
@@ -29,6 +29,20 @@ export default Vue.extend({
 			default: 'normal',
 		},
 	},
+	data() {
+		const zIndex = Math.max(
+			...Array.from(document.querySelectorAll('body *'), el =>
+				parseFloat(window.getComputedStyle(el).zIndex)
+			).filter(zIndex => !Number.isNaN(zIndex)),
+			0
+		);
+		return {
+			styleObject: {
+				zIndex,
+			},
+		};
+	},
+
 	computed: {
 		calculateSize() {
 			return this.size === 'small' ? 'loader--small' : '';
