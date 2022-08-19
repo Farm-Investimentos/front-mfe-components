@@ -1,22 +1,16 @@
 <template>
-	<v-overlay opacity="0.3" v-if="mode === 'overlay'">
-		<v-progress-circular indeterminate :size="100" color="secondary" />
-	</v-overlay>
+	<div class="farm-loader__overlay" v-if="mode === 'overlay'" :style="styleObject">
+		<span class="farm-loader__spinner farm-loader__spinner--big"></span>
+	</div>
 	<div v-else>
-		<v-progress-circular color="secondary" indeterminate :size="calculateSize" :width="6" />
+		<span class="farm-loader__spinner farm-loader__spinner--big-border" :class="calculateSize"></span>
 	</div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { VOverlay } from 'vuetify/lib/components/VOverlay';
-import { VProgressCircular } from 'vuetify/lib/components/VProgressCircular';
 
 export default Vue.extend({
 	name: 'farm-loader',
-	components: {
-		VOverlay,
-		VProgressCircular,
-	},
 	props: {
 		mode: {
 			type: String,
@@ -27,10 +21,28 @@ export default Vue.extend({
 			default: 'normal',
 		},
 	},
+	data() {
+
+		const zIndex = Math.max(
+			...Array.from(document.querySelectorAll('body *'), el =>
+				parseFloat(window.getComputedStyle(el).zIndex)
+			).filter(zIndex => !Number.isNaN(zIndex)),
+			0
+		);
+		return {
+			styleObject: {
+				zIndex,
+			},
+		};
+	},
+
 	computed: {
 		calculateSize() {
-			return this.size === 'small' ? 35 : 70;
+			return this.size === 'small' ? 'loader--small' : '';
 		},
 	},
 });
 </script>
+<style lang="scss" scoped>
+@import 'Loader.scss';
+</style>
