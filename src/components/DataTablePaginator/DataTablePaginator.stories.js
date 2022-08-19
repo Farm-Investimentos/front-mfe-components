@@ -23,7 +23,7 @@ export default {
 
 export const Primary = () => ({
 	components: { DataTablePaginator },
-	template: '<DataTablePaginator :totalPages="6" :page="2" />',
+	template: '<DataTablePaginator :totalPages="10" :page="1" />',
 });
 
 export const Secondary = () => ({
