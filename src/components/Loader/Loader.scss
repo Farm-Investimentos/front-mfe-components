@@ -1,4 +1,4 @@
-.loader {
+.farm-loader__spinner {
 	display: inline-block;
 	width: 70px;
 	height: 70px;
@@ -17,7 +17,7 @@
 	}
 }
 
-.loader::before {
+.farm-loader__spinner::before {
 	content: '';
 	box-sizing: border-box;
 	position: absolute;
@@ -27,11 +27,11 @@
 	animation: prixClipFix 2s linear infinite;
 }
 
-.loader--big-border:before {
+.farm-loader__spinner--big-border:before {
 	border-width: 6px;
 }
 
-.overlay {
+.farm-loader__overlay {
 	align-items: center;
 	border-radius: inherit;
 	background-color: rgba(0, 0, 0, 0.3);

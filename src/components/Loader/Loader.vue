@@ -1,24 +1,16 @@
 <template>
-	<div>
-		<div class="overlay" v-if="mode === 'overlay'" :style="styleObject">
-			<span class="loader loader--big"></span>
-		</div>
-		<div v-else>
-			<span class="loader loader--big-border" :class="calculateSize"></span>
-		</div>
+	<div class="farm-loader__overlay" v-if="mode === 'overlay'" :style="styleObject">
+		<span class="farm-loader__spinner farm-loader__spinner--big"></span>
+	</div>
+	<div v-else>
+		<span class="farm-loader__spinner farm-loader__spinner--big-border" :class="calculateSize"></span>
 	</div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { VOverlay } from 'vuetify/lib/components/VOverlay';
-import { VProgressCircular } from 'vuetify/lib/components/VProgressCircular';
 
 export default Vue.extend({
 	name: 'farm-loader',
-	components: {
-		VOverlay,
-		VProgressCircular,
-	},
 	props: {
 		mode: {
 			type: String,
@@ -30,6 +22,7 @@ export default Vue.extend({
 		},
 	},
 	data() {
+
 		const zIndex = Math.max(
 			...Array.from(document.querySelectorAll('body *'), el =>
 				parseFloat(window.getComputedStyle(el).zIndex)
