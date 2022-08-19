@@ -3,11 +3,9 @@ import CardContent from '../CardContent';
 
 describe('CardContent component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(CardContent);
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {

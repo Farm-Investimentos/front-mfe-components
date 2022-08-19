@@ -1,5 +1,5 @@
 <template>
-	<v-col cols="12" sm="12" :md="item.md ? item.md : 2" class="v-col-fieldset-default pl-0">
+	<v-col cols="12" sm="12" :md="item.md ? item.md : 2" class="pl-0">
 		<farm-label :for="inputId" :required="required && !disabled">
 			{{ item.label }}
 		</farm-label>
@@ -14,7 +14,7 @@
 		/>
 	</v-col>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import Label from '../Label';
 import TextField from '../TextField';

@@ -24,6 +24,15 @@ export const Primary = () => ({
     </div>`,
 });
 
+export const Small = () => ({
+	components: {
+		'farm-loader': Loader,
+	},
+	template: `<div style="width: 480px;">
+    <farm-loader size="small" />
+    </div>`,
+});
+
 export const Overlay = () => ({
 	components: {
 		'farm-loader': Loader,
