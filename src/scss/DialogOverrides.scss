@@ -1,3 +1,4 @@
+
 .v-dialog.vuedl-layout {
 	.v-toolbar {
 		color: var(--v-secondary-base);
@@ -32,6 +33,14 @@
 		font-size: 0.75rem !important;
 		color: var(--v-primary-base) !important;
 		font-family: 'Montserrat', sans-serif !important;
+	}
+
+	.v-btn {
+		&.secondary-outlined--text {
+			background-color: white;
+			border: 1px solid var(--v-secondary-base);
+			color: var(--v-secondary-base);
+		}
 	}
 
 	.v-btn.primary--text,
@@ -69,8 +78,7 @@
 	.v-btn.gray--text,
 	.v-btn.secondary--text,
 	.v-btn.yellow--text {
-		box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%),
-			0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
+		
 		margin-left: 0.75rem !important;
 	}
 	.v-btn.yellow--text {
