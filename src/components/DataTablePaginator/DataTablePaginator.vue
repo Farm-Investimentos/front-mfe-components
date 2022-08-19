@@ -3,6 +3,7 @@
 		class="v-data-table-custom-footer"
 		:class="{ 'hidden-perpageoptions': hidePerPageOptions }"
 	>
+	
 		<div v-if="!hidePerPageOptions">
 			<v-select
 				outlined
@@ -12,19 +13,39 @@
 				dense
 			></v-select>
 		</div>
-		<v-pagination
-			:disabled="disabled"
-			v-model="currentPage"
-			:length="totalPages"
-			:total-visible="7"
-			color="secondary"
-		></v-pagination>
+
+		<ul :class="{ 'farm-paginator': true, 'farm-paginator--disabled': disabled }">
+			<li>
+				<button :disabled="currentPage === 1 || disabled" @click="previousPage">
+					<farm-icon color="gray" size="sm">chevron-left</farm-icon>
+				</button>
+			</li>
+
+			<li
+				v-for="(item, index) in itemsInPagination"
+				:key="'button_' + index"
+				:class="{ 'farm-paginator__item--selected': item === currentPage && !disabled }"
+			>
+				<button
+					:disabled="currentPage === item || item === '...' || disabled"
+					@click="currentPage = item"
+				>
+					{{ item }}
+				</button>
+			</li>
+
+			<li>
+				<button :disabled="currentPage === totalPages || disabled">
+					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
+				</button>
+			</li>
+		</ul>
 	</section>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import { VSelect } from 'vuetify/lib/components/VSelect';
-import { VPagination } from 'vuetify/lib/components/VPagination';
+import Icon from '../Icon';
 
 /**
  * Componente de paginação usado em tabelas e listas
@@ -70,6 +91,25 @@ export default Vue.extend({
 			default: 10,
 		},
 	},
+	methods: {
+		range(from: number, to: number) {
+			const range = [];
+
+			from = from > 0 ? from : 1;
+
+			for (let i = from; i <= to; i++) {
+				range.push(i);
+			}
+
+			return range;
+		},
+		previousPage() {
+			this.currentPage--;
+		},
+		nextPage() {
+			this.currentPage++;
+		},
+	},
 	data() {
 		return {
 			selectedLimit: this.initialLimitPerPage,
@@ -77,11 +117,40 @@ export default Vue.extend({
 		};
 	},
 	computed: {
-		perPageBuiltItems: function() {
+		perPageBuiltItems: function () {
 			return this.perPageOptions.map(value => ({
 				text: value + ' registros por página',
 				value,
 			}));
+		},
+		itemsInPagination: function () {
+			const maxLength = 7;
+			if (this.totalPages <= maxLength) {
+				return this.range(1, maxLength);
+			}
+
+			const even = maxLength % 2 === 0 ? 1 : 0;
+			const left = Math.floor(maxLength / 2);
+			const right = this.totalPages - left + 1 + even;
+
+			if (this.currentPage > left && this.currentPage < right) {
+				const firstItem = 1;
+				const lastItem = this.totalPages;
+				const start = this.currentPage - left + 2;
+				const end = this.currentPage + left - 2 - even;
+				const secondItem = start - 1 === firstItem + 1 ? 2 : '...';
+				const beforeLastItem = end + 1 === lastItem - 1 ? end + 1 : '...';
+
+				return [1, secondItem, ...this.range(start, end), beforeLastItem, this.totalPages];
+			} else if (this.currentPage === left) {
+				const end = this.currentPage + left - 1 - even;
+				return [...this.range(1, end), '...', this.totalPages];
+			} else if (this.currentPage === right) {
+				const start = this.currentPage - left + 1;
+				return [1, '...', ...this.range(start, this.totalPages)];
+			} else {
+				return [...this.range(1, left), '...', ...this.range(right, this.totalPages)];
+			}
 		},
 	},
 	watch: {
@@ -100,50 +169,11 @@ export default Vue.extend({
 	},
 	components: {
 		VSelect,
-		VPagination,
+		'farm-icon': Icon,
 	},
 });
 </script>
 
-<style lang="scss">
-.v-data-table-custom-footer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: 1rem 1.5rem 0;
-	.v-pagination.theme--light {
-		.v-pagination__item--active,
-		.v-pagination__navigation,
-		.v-pagination__item,
-		.v-pagination__more {
-			box-shadow: none;
-			border: 1px solid var(--v-gray-lighten2);
-			border-right: 0;
-			border-radius: 0;
-			height: 2rem;
-			margin: 0;
-		}
-		li:first-child .v-pagination__navigation {
-			border-radius: 0.25rem 0 0 0.25rem;
-		}
-		li:last-child .v-pagination__navigation {
-			border-right: 1px solid var(--v-gray-lighten2);
-			border-radius: 0 0.25rem 0.25rem 0;
-		}
-		.v-pagination__item {
-			font-size: 0.75rem;
-		}
-	}
-	&.hidden-perpageoptions {
-		justify-content: flex-end;
-	}
-}
-@media screen and (max-width: 600px) {
-	.v-data-table-custom-footer {
-		flex-direction: column;
-		&.hidden-perpageoptions {
-			justify-content: space-between;
-		}
-	}
-}
+<style lang="scss" scoped>
+@import './DataTablePaginator';
 </style>
