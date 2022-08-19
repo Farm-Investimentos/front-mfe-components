@@ -22,14 +22,14 @@ describe('Loader component', () => {
 
 	describe('Compited properties', () => {
 		it('Should calculate calculateSize for default size prop', () => {
-			expect(component.calculateSize).toEqual(70);
+			expect(component.calculateSize).toEqual('');
 		});
 
 		it('Should calculate calculateSize for small prop', async () => {
 			await wrapper.setProps({
 				size: 'small',
 			});
-			expect(component.calculateSize).toEqual(35);
+			expect(component.calculateSize).toEqual('loader--small');
 		});
 	});
 });
