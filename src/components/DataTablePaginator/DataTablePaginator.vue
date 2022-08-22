@@ -3,7 +3,6 @@
 		class="v-data-table-custom-footer"
 		:class="{ 'hidden-perpageoptions': hidePerPageOptions }"
 	>
-	
 		<div v-if="!hidePerPageOptions">
 			<v-select
 				outlined
@@ -35,7 +34,7 @@
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled">
+				<button :disabled="currentPage === totalPages || disabled"  @click="nextPage">
 					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
 				</button>
 			</li>
@@ -126,7 +125,7 @@ export default Vue.extend({
 		itemsInPagination: function () {
 			const maxLength = 7;
 			if (this.totalPages <= maxLength) {
-				return this.range(1, maxLength);
+				return this.range(1, this.totalPages);
 			}
 
 			const even = maxLength % 2 === 0 ? 1 : 0;

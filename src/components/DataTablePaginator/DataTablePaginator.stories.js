@@ -23,7 +23,17 @@ export default {
 
 export const Primary = () => ({
 	components: { DataTablePaginator },
-	template: '<DataTablePaginator :totalPages="10" :page="1" />',
+	data() {
+		return {
+			totalPages: null
+		}
+	},
+	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
+	mounted() {
+		setTimeout(() => {
+			this.totalPages = 2;
+		}, 1000)
+	}
 });
 
 export const Secondary = () => ({
@@ -65,3 +75,4 @@ CustomPerPage.story = {
 	name: 'Lista de registros por página customizada',
 	parameters,
 };
+
