@@ -36,7 +36,6 @@ export const Primary = () => ({
 	}
 });
 
-/*
 export const Secondary = () => ({
 	components: { DataTablePaginator },
 	template: '<DataTablePaginator :hidePerPageOptions="true" :totalPages="19" :page="1" />',
@@ -76,4 +75,4 @@ CustomPerPage.story = {
 	name: 'Lista de registros por página customizada',
 	parameters,
 };
-*/
+

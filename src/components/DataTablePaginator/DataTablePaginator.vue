@@ -34,7 +34,7 @@
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled">
+				<button :disabled="currentPage === totalPages || disabled"  @click="nextPage">
 					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
 				</button>
 			</li>
