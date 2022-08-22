@@ -114,6 +114,7 @@ export default Vue.extend({
 		return {
 			selectedLimit: this.initialLimitPerPage,
 			currentPage: this.page,
+			dynamicTotalPages: this.totalPages,
 		};
 	},
 	computed: {
@@ -166,6 +167,9 @@ export default Vue.extend({
 		initialLimitPerPage(newValue) {
 			this.selectedLimit = newValue;
 		},
+		totalPages(newValue: number) {
+			this.dynamicTotalPages = newValue;
+		}
 	},
 	components: {
 		VSelect,
