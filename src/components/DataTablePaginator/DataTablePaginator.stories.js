@@ -23,7 +23,17 @@ export default {
 
 export const Primary = () => ({
 	components: { DataTablePaginator },
-	template: '<DataTablePaginator :totalPages="10" :page="1" />',
+	data() {
+		return {
+			totalPages: null
+		}
+	},
+	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
+	mounted() {
+		setTimeout(() => {
+			this.totalPages = 10;
+		}, 1000)
+	}
 });
 
 export const Secondary = () => ({
