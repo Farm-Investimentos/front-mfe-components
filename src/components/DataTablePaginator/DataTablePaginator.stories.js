@@ -31,11 +31,12 @@ export const Primary = () => ({
 	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
 	mounted() {
 		setTimeout(() => {
-			this.totalPages = 10;
+			this.totalPages = 2;
 		}, 1000)
 	}
 });
 
+/*
 export const Secondary = () => ({
 	components: { DataTablePaginator },
 	template: '<DataTablePaginator :hidePerPageOptions="true" :totalPages="19" :page="1" />',
@@ -75,3 +76,4 @@ CustomPerPage.story = {
 	name: 'Lista de registros por página customizada',
 	parameters,
 };
+*/

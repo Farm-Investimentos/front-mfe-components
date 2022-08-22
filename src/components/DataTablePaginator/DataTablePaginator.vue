@@ -3,7 +3,6 @@
 		class="v-data-table-custom-footer"
 		:class="{ 'hidden-perpageoptions': hidePerPageOptions }"
 	>
-	
 		<div v-if="!hidePerPageOptions">
 			<v-select
 				outlined
@@ -114,7 +113,6 @@ export default Vue.extend({
 		return {
 			selectedLimit: this.initialLimitPerPage,
 			currentPage: this.page,
-			dynamicTotalPages: this.totalPages,
 		};
 	},
 	computed: {
@@ -127,7 +125,7 @@ export default Vue.extend({
 		itemsInPagination: function () {
 			const maxLength = 7;
 			if (this.totalPages <= maxLength) {
-				return this.range(1, maxLength);
+				return this.range(1, this.totalPages);
 			}
 
 			const even = maxLength % 2 === 0 ? 1 : 0;
@@ -167,9 +165,6 @@ export default Vue.extend({
 		initialLimitPerPage(newValue) {
 			this.selectedLimit = newValue;
 		},
-		totalPages(newValue: number) {
-			this.dynamicTotalPages = newValue;
-		}
 	},
 	components: {
 		VSelect,
