@@ -1,7 +1,7 @@
 import RemoveButton from './RemoveButton.vue';
 
 export default {
-    title: 'API/Buttons/Remove',
+    title: 'Buttons/Remove',
     component: RemoveButton,
 };
 

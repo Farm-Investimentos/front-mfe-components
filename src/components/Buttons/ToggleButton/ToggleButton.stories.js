@@ -1,7 +1,7 @@
 import ToggleButton from './ToggleButton.vue';
 
 export default {
-    title: 'API/Buttons/ToggleButton',
+    title: 'Buttons/ToggleButton',
     component: ToggleButton,
 };
 

@@ -1,7 +1,7 @@
 import DefaultButton from './DefaultButton.vue';
 
 export default {
-	title: 'API/Buttons/Default',
+	title: 'Buttons/Default',
 	component: DefaultButton,
 	parameters: {
 		docs: {

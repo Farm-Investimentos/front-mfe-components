@@ -68,6 +68,7 @@ export * from './components/Label';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
+export * from './components/CopyToClipboard';
 export * from './components/ProgressBar';
 export * from './components/Stepper';
 export * from './components/Switcher';
