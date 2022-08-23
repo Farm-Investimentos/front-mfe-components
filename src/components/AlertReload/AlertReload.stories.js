@@ -8,7 +8,8 @@ export default {
 		viewMode: 'docs',
 		docs: {
 			description: {
-				component: `AlertReload`,
+				component: `AlertReload<br />
+				selector: <em>farm-alert-reload</em>`,
 			},
 		},
 	},
