@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import RangeDatePicker from './RangeDatePicker';
 
 export default {
-	title: 'API/Form/RangeDatePicker',
+	title: 'Form/RangeDatePicker',
 	component: RangeDatePicker,
 	decorators: [withDesign],
 };

@@ -1,7 +1,7 @@
 import Card from './Card.vue';
 
 export default {
-	title: 'API/Card',
+	title: 'Surfaces/Card',
 	component: Card,
 	parameters: {
 		docs: {

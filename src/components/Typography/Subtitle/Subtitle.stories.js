@@ -1,7 +1,7 @@
 import Subtitle from './Subtitle.vue';
 
 export default {
-	title: 'API/Typography/Subtitle',
+	title: 'Typography/Subtitle',
 	component: Subtitle,
 	parameters: {
 		docs: {
