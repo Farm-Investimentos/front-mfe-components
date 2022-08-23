@@ -1,7 +1,7 @@
 import ExportButton from './ExportButton.vue';
 
 export default {
-	title: 'API/Buttons/Export',
+	title: 'Buttons/Export',
 	component: ExportButton,
 };
 

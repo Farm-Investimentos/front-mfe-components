@@ -1,7 +1,7 @@
 import Caption from './Caption.vue';
 
 export default {
-	title: 'API/Typography/Caption',
+	title: 'Typography/Caption',
 	component: Caption,
 	parameters: {
 		docs: {

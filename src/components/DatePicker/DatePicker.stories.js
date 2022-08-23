@@ -1,7 +1,7 @@
 import DatePicker from './DatePicker';
 
 export default {
-	title: 'API/Form/DatePicker',
+	title: 'Form/DatePicker',
 	component: DatePicker,
 	parameters: {
 		docs: {

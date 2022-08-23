@@ -1,7 +1,7 @@
 import BodyText from './BodyText.vue';
 
 export default {
-	title: 'API/Typography/BodyText',
+	title: 'Typography/BodyText',
 	component: BodyText,
 	parameters: {
 		docs: {

@@ -1,7 +1,7 @@
 import Heading from './Heading.vue';
 
 export default {
-	title: 'API/Typography/Heading',
+	title: 'Typography/Heading',
 	component: Heading,
 	parameters: {
 		docs: {
