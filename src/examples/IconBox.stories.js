@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { IconBox } from '../main';
 import colors from '../configurations/colors';
 import sizes from '../configurations/sizes';
-import('./Icons.stories.scss');
+import('../components/Icon/Icons.stories.scss');
 
 export default {
 	title: 'Examples/IconBox',
