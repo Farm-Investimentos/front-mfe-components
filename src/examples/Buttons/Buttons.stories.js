@@ -53,6 +53,7 @@ export const OutlinedButtons = () => ({
 export const DisabledButtons = () => ({
 	components: {
 		'farm-btn': DefaultButton,
+		'farm-icon': Icon,
 	},
 	data() {
 		return {
@@ -72,6 +73,10 @@ export const DisabledButtons = () => ({
 		<h4>Plain</h4>
 		<farm-btn v-for="color of colors":key="'random_7_' + color" :color="color" plain disabled>
             {{ color }}
+        </farm-btn>
+		<h4>Icon</h4>
+        <farm-btn v-for="color of colors":key="color + '_disabled_icon'" :color="color" plain disabled>
+            <farm-icon>book</farm-icon> {{ color }}
         </farm-btn>
 	</div>`,
 });
@@ -116,6 +121,7 @@ export const Icons = () => ({
         <farm-btn v-for="color of colors":key="color + 'plain'" :color="color" plain>
             <v-icon>mdi-book</v-icon> book
         </farm-btn>
+		
 
 	</div>`,
 });
