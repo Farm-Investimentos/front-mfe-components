@@ -1,7 +1,7 @@
 import CardContent from './CardContent.vue';
 
 export default {
-	title: 'API/Card/CardContent',
+	title: 'Surfaces/Card/CardContent',
 	component: CardContent,
 	parameters: {
 		docs: {

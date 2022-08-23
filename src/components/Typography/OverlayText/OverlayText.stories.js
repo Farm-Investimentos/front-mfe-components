@@ -1,7 +1,7 @@
 import OverlayText from './OverlayText.vue';
 
 export default {
-	title: 'API/Typography/OverlayText',
+	title: 'Typography/OverlayText',
 	component: OverlayText,
 	parameters: {
 		docs: {
