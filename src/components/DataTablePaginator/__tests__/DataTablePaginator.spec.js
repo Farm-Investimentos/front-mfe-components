@@ -24,5 +24,5 @@ describe('DataTablePaginator component', () => {
 		it('Should build range of items', () => {
 			expect(component.range(1, 7).length).toEqual(7);
 		});
-	})
+	});
 });

@@ -26,13 +26,13 @@ export const Primary = () => ({
 	data() {
 		return {
 			totalPages: null
-		}
+		};
 	},
 	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
 	mounted() {
 		setTimeout(() => {
 			this.totalPages = 2;
-		}, 1000)
+		}, 1000);
 	}
 });
 
