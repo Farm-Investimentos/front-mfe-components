@@ -1,8 +1,8 @@
 import { withDesign } from 'storybook-addon-designs';
-import { Loader } from '../main';
+import { Loader } from '../../main';
 
 export default {
-	title: 'Examples/Loader',
+	title: 'Feedback/Loader',
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
@@ -16,27 +16,18 @@ export default {
 };
 
 export const Primary = () => ({
-	components: {
-		'farm-loader': Loader,
-	},
 	template: `<div style="width: 480px;">
     <farm-loader />
     </div>`,
 });
 
 export const Small = () => ({
-	components: {
-		'farm-loader': Loader,
-	},
 	template: `<div style="width: 480px;">
     <farm-loader size="small" />
     </div>`,
 });
 
 export const Overlay = () => ({
-	components: {
-		'farm-loader': Loader,
-	},
 	data() {
 		return {
 			show: false,
