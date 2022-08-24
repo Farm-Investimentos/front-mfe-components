@@ -29,19 +29,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Icon from '../Icon';
-import Card from '../Card';
-import CardContent from '../Card/CardContent';
-import Typography from '../Typography';
 
 export default Vue.extend({
 	name: 'farm-collapsible',
-	components: {
-		'farm-icon': Icon,
-		'farm-card': Card,
-		'farm-card-content': CardContent,
-		'farm-typography': Typography,
-	},
+
 	props: {
 		/**
 		 * Title

@@ -11,7 +11,6 @@
 </template>
 <script lang="ts">
 import Vue, { computed, ref, watch, toRefs, PropType } from 'vue';
-import Typography from '../Typography.vue';
 
 import { Keys } from './configurations';
 
@@ -42,7 +41,6 @@ export default Vue.extend({
 
 		return { weight, size, tag, config, key };
 	},
-	components: { 'farm-typography': Typography },
 });
 </script>
 <style lang="scss" scoped>
