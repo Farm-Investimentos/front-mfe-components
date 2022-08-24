@@ -22,6 +22,7 @@ import CardContext from './components/CardContext';
 
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
+import IdCaption from './components/IdCaption';
 
 export {
 	DataTableEmptyWrapper,
@@ -45,6 +46,7 @@ export {
 	IconBox,
 	CardContext,
 	Collapsible,
+	IdCaption,
 };
 
 export * from './components/AlertReload';
@@ -75,6 +77,7 @@ export * from './components/Switcher';
 export * from './components/TextField';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/IdCaption';
 
 export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';

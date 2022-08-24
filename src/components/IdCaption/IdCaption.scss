@@ -1,0 +1,13 @@
+.idcaption {
+	// display: flex;
+	// align-items: center;
+
+	display: flex;
+	align-items: center;
+}
+
+.idcaption__body {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
