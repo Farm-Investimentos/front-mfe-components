@@ -16,7 +16,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-overlaytext': OverlayText },
 	template: `<farm-overlaytext>
 		FARM OVERLAYTEXT
 	</farm-overlaytext>`,

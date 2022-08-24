@@ -20,7 +20,7 @@ export default {
 
 export const Atom = () => ({
 	template: `<div class="icons-container">
-        <farm-icon :color="color">
+        <farm-icon color="secondary">
             book
         </farm-icon>
 	</div>`,

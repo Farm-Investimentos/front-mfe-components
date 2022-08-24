@@ -1,4 +1,4 @@
-import Subtitle from './Subtitle.vue';
+import Subtitle from './Subtitle';
 
 export default {
 	title: 'Typography/Subtitle',
@@ -19,12 +19,40 @@ export const Primary = () => ({
 	components: { 'farm-subtitle': Subtitle },
 	data() {
 		return {
-			type: 1,
+			types: [1, 2],
+			variations: ['regular', 'medium'],
 		};
 	},
-	template: `<farm-subtitle :type="1" :variation="'regular'" tag="span">
-		farm subtitle
-	</farm-subtitle>`,
+	template: `<div>
+	<template v-for="type in types" :key="type">
+		<farm-subtitle
+			v-for="variation in variations"
+			:key="variation"
+			:type="type"
+			:variation="variation">
+			Subtitle {{ type }} {{ variation }}
+		</farm-subtitle>
+	</template>
+	</div>`,
 });
 
-Primary.storyName = 'Basic';
+export const CustomTag = () => ({
+	components: { 'farm-subtitle': Subtitle },
+	data() {
+		return {
+			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend', 'label', 'li'],
+		};
+	},
+	template: `<div>
+		<farm-subtitle
+			v-for="t in tags"
+			:tag="t"
+			:key="t"
+			:type="1"
+			variation="regular"
+			>
+			Subtitle with {{ t }} tag
+		</farm-subtitle>
+	
+	</div>`,
+});
