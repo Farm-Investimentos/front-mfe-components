@@ -4,15 +4,11 @@
 		<slot></slot>
 	</farm-btn>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-danger',
-	components: {
-		'farm-btn': DefaultButton,
-	},
 	inheritAttrs: true,
 	props: {
 		/**
@@ -31,7 +27,7 @@ export default Vue.extend({
 		},
 	},
 	computed: {
-		iconPath() {
+		iconPath(): string {
 			if (!this.customIcon) {
 				return 'mdi-trash-can-outline';
 			}

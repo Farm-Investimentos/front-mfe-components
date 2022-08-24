@@ -1,9 +1,8 @@
 import { withDesign } from 'storybook-addon-designs';
-import { Card, CardContent } from '../main';
-import gutters from '../configurations/gutters';
+import gutters from '../../configurations/gutters';
 
 export default {
-	title: 'Examples/Card',
+	title: 'Surfaces/Card/Molecules',
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
@@ -15,25 +14,7 @@ export default {
 	},
 };
 
-export const Primary = () => ({
-	components: {
-		'farm-card': Card,
-		'farm-card-content': CardContent,
-	},
-	template: `<div style="width: 480px;">
-    <farm-card>
-		<farm-card-content>
-			Content!
-		</farm-card-content>
-	</farm-card>
-    </div>`,
-});
-
 export const MultipleContents = () => ({
-	components: {
-		'farm-card': Card,
-		'farm-card-content': CardContent,
-	},
 	template: `<div style="width: 480px;">
     <farm-card>
 		<farm-card-content>
@@ -50,10 +31,6 @@ export const MultipleContents = () => ({
 });
 
 export const Gutters = () => ({
-	components: {
-		'farm-card': Card,
-		'farm-card-content': CardContent,
-	},
 	data() {
 		return { gutters };
 	},
@@ -67,10 +44,6 @@ export const Gutters = () => ({
 });
 
 export const Shadow = () => ({
-	components: {
-		'farm-card': Card,
-		'farm-card-content': CardContent,
-	},
 	template: `<div style="width: 480px;">
     <farm-card shadow>
 		<farm-card-content>
