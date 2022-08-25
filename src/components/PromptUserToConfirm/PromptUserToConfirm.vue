@@ -15,11 +15,13 @@
 		</v-row>
 	</v-form>
 </template>
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { VForm } from 'vuetify/lib/components/VForm';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VRow, VCol } from 'vuetify/lib/components/VGrid';
-export default {
+export default Vue.extend({
+	name: 'farm-prompusertoconfirm',
 	props: {
 		/**
 		 * String to be matched with user prompt
@@ -71,5 +73,5 @@ export default {
 	mounted() {
 		this.matchInput = null;
 	},
-};
+});
 </script>
