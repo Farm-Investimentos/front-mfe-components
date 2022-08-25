@@ -5,8 +5,10 @@
 		</li>
 	</ul>
 </template>
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+	name: 'farm-managers-list',
 	props: {
 		managersString: {
 			type: String,
@@ -18,7 +20,7 @@ export default {
 			return !this.managersString ? [] : this.managersString.split(',');
 		},
 	},
-};
+});
 </script>
 <style scoped lang="scss">
 ul {

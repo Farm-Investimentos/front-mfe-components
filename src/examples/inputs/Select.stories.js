@@ -1,5 +1,5 @@
 export default {
-	title: 'Examples/Form/Inputs/Select',
+	title: 'Form/Select/Examples',
 	parameters: {
 		docs: {
 			description: {

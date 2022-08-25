@@ -1,7 +1,7 @@
 import Logger from './Logger.vue';
 
 export default {
-	title: 'API/Logger',
+	title: 'Feedback/Logger',
 	component: Logger,
 	parameters: {
 		docs: {
@@ -21,11 +21,41 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-logger': Logger },
 	data() {
-		return {};
+		return {
+			items: [
+				{
+					message: 'Recusado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+				},
+				{
+					message: 'Aprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'success',
+				},
+				{
+					message: 'Aprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'success',
+				},
+				{
+					message: 'Recusado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+				},
+				{
+					message: 'Recusado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+				},
+			],
+		};
 	},
-	template: `<farm-logger />`,
+	template: `<farm-logger :items="items" />`,
 });
-
-Primary.storyName = 'Básico';

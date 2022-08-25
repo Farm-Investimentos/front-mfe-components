@@ -1,12 +1,11 @@
 import MultipleSelectShortener from './MultipleSelectShortener';
 
 export default {
-	title: 'API/MultipleSelectShortener',
+	title: 'Display/MultipleSelectShortener',
 	component: MultipleSelectShortener,
 };
 
 export const Primary = () => ({
-	components: { MultipleSelectShortener },
 	data() {
 		return {
 			items: {
@@ -19,19 +18,15 @@ export const Primary = () => ({
 });
 
 export const Secondary = () => ({
-	components: { MultipleSelectShortener },
 	data() {
 		return {
 			items: [
 				{
 					id: 0,
-					label: `Convidar`
+					label: `Convidar`,
 				},
 			],
 		};
 	},
 	template: '<MultipleSelectShortener :item="{...items}" :index="1" :itemsLength="3"/>',
 });
-
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Multiplos';

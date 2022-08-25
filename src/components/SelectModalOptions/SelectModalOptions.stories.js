@@ -1,12 +1,11 @@
 import SelectModalOptions from './SelectModalOptions';
 
 export default {
-	title: 'API/SelectModalOptions',
+	title: 'INteractions/SelectModalOptions',
 	component: SelectModalOptions,
 };
 
 export const Primary = () => ({
-	components: { SelectModalOptions },
 	data() {
 		return {
 			items: [
@@ -17,7 +16,7 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div>
-	<SelectModalOptions
+	<farm-select-modal-options
 		:items="items"
 		v-model="selectedValue"
 		label="label"
@@ -27,7 +26,6 @@ export const Primary = () => ({
 });
 
 export const InitialValue = () => ({
-	components: { SelectModalOptions },
 	data() {
 		return {
 			items: [
@@ -38,7 +36,7 @@ export const InitialValue = () => ({
 		};
 	},
 	template: `<div>
-	<SelectModalOptions
+	<farm-select-modal-options
 		:items="items"
 		v-model="selectedValue"
 		label="label"
@@ -46,6 +44,3 @@ export const InitialValue = () => ({
 		<br />selected value: {{ selectedValue }}
 	</div>`,
 });
-
-Primary.storyName = 'Basic';
-InitialValue.storyName = 'Initial value';

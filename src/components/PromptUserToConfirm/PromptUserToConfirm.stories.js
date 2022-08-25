@@ -1,39 +1,45 @@
 import PromptUserToConfirm from './PromptUserToConfirm';
 
 export default {
-	title: 'API/PromptUserToConfirm',
+	title: 'INteractions/PromptUserToConfirm',
 	component: PromptUserToConfirm,
+	parameters: {
+		viewMode: 'docs',
+		docs: {
+			description: {
+				component: `Prompt User to Confirm<br />
+				selector: <em>farm-promptusertoconfirm</em>`,
+			},
+		},
+	},
 };
 
 export const Primary = () => ({
-	components: { PromptUserToConfirm },
 	data() {
 		return {
 			model: {},
 		};
 	},
-	template: `<div style="max-width: 320px"><PromptUserToConfirm  v-model="model"/>
+	template: `<div style="max-width: 320px"><farm-promptusertoconfirm v-model="model"/>
 	match: {{ model }}
 	</div>`,
 });
 
 export const CustomTitle = () => ({
-	components: { PromptUserToConfirm },
-	template: '<div style="max-width: 320px"><PromptUserToConfirm title="Custom" /></div>',
+	template: '<div style="max-width: 320px"><farm-promptusertoconfirm title="Custom" /></div>',
 });
 
 export const CustomMatchInput = () => ({
-	components: { PromptUserToConfirm },
 	data() {
 		return {
 			model: {},
 		};
 	},
-	template: `<div style="max-width: 320px"><PromptUserToConfirm title="Custom match input: CONFIRMAR" match="CONFIRMAR" v-model="model" />
-	match: {{ model }}
+	template: `<div style="max-width: 320px">
+		<farm-promptusertoconfirm
+			title="Custom match input: CONFIRMAR"
+			match="CONFIRMAR"
+			v-model="model" />
+		match: {{ model }}
 	</div>`,
 });
-
-Primary.storyName = 'Básico';
-CustomTitle.storyName = 'Título customizado';
-CustomMatchInput.storyName = 'Match input customizado';

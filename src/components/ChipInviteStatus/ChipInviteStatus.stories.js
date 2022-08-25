@@ -1,22 +1,19 @@
 import ChipInviteStatus from './ChipInviteStatus.vue';
 
 export default {
-	title: 'API/Onboarding/ChipInviteStatus',
+	title: 'Display/Chips/Onboarding/InviteStatus',
 	component: ChipInviteStatus,
 };
 
 export const Primary = () => ({
-	components: { ChipInviteStatus },
 	template: `<div style="width: 120px;">
-        <ChipInviteStatus :status="10" />
-        <ChipInviteStatus :status="11" />
-        <ChipInviteStatus :status="12" />
-        <ChipInviteStatus :status="13" />
-        <ChipInviteStatus :status="14" />
-        <ChipInviteStatus :status="15" />
-        <ChipInviteStatus :status="16" />
-        <ChipInviteStatus :status="17" />
+        <farm-chip-invite :status="10" />
+        <farm-chip-invite :status="11" />
+        <farm-chip-invite :status="12" />
+        <farm-chip-invite :status="13" />
+        <farm-chip-invite :status="14" />
+        <farm-chip-invite :status="15" />
+        <farm-chip-invite :status="16" />
+        <farm-chip-invite :status="17" />
     </div>`,
 });
-
-Primary.storyName = 'Básico';

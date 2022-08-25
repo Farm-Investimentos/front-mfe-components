@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { DialogHeader, DialogFooter } from '../main';
 
 export default {
-	title: 'Examples/Modal',
+	title: 'Display/Dialog/Examples',
 	decorators: [withDesign],
 	component: Modal,
 };
@@ -11,10 +11,6 @@ export const Modal = () => ({
 	/*
 	 * How to create the default modal following FARM's Design System guideline
 	 */
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			inputVal: false,
@@ -35,10 +31,6 @@ export const Modal = () => ({
 });
 
 export const ModalSmall = () => ({
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			showModalSmall: false,
@@ -59,10 +51,6 @@ export const ModalSmall = () => ({
 });
 
 export const ModalExtremeSmall = () => ({
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			showModalSmall: false,
@@ -83,10 +71,6 @@ export const ModalExtremeSmall = () => ({
 });
 
 export const ModalMedium = () => ({
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			showModalSmall: false,
@@ -107,10 +91,6 @@ export const ModalMedium = () => ({
 });
 
 export const ModalScrollVertical = () => ({
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			showModalSmall: false,
@@ -133,10 +113,6 @@ export const ModalScrollVertical = () => ({
 });
 
 export const ModalScrollHorizontal = () => ({
-	components: {
-		DialogHeader,
-		DialogFooter,
-	},
 	data() {
 		return {
 			open: false,
@@ -204,33 +180,3 @@ export const ModalScrollHorizontal = () => ({
 		</v-btn>
 	</div>`,
 });
-
-Modal.story = {
-	name: 'Básico',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=2867%3A10594',
-		},
-	},
-};
-
-ModalSmall.story = {
-	name: 'Pequeno',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/rkkAsX4IP0tzv1udIDXlqe/%E2%9C%8D---Onboarding---PJ?node-id=5336%3A32496',
-		},
-	},
-};
-
-ModalScrollVertical.storyName = 'Rolagem vertical';
-
-ModalScrollHorizontal.storyName = 'Rolagem horizontal';
-
-ModalExtremeSmall.storyName = 'Extra pequeno';
-
-ModalMedium.storyName = 'Médio';

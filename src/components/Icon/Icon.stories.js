@@ -6,7 +6,7 @@ import sizes from '../../configurations/sizes';
 import('./Icons.stories.scss');
 
 export default {
-	title: 'Atoms/Icons',
+	title: 'Display/Icons',
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',

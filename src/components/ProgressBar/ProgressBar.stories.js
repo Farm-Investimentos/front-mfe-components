@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import ProgressBar from './ProgressBar.vue';
 
 export default {
-	title: 'API/ProgressBar',
+	title: 'Feedback/ProgressBar',
 	component: ProgressBar,
 	decorators: [withDesign],
 	parameters: {
@@ -21,7 +21,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-progressbar': ProgressBar },
 	data() {
 		return {
 			val: 35,
@@ -30,14 +29,20 @@ export const Primary = () => ({
 	template: '<farm-progressbar :value="val" />',
 });
 
-const parameters = {
-	design: {
-		type: 'figma',
-		url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%85---Design-System-%7C-v1?node-id=1503%3A227',
+export const CustomColors = () => ({
+	data() {
+		return {
+			val: 35,
+		};
 	},
-};
+	template: '<farm-progressbar :value="val" backgroundColor="accent" valueColor="secondary" />',
+});
 
-Primary.story = {
-	name: 'Basic',
-	parameters,
-};
+export const CustomHexaColors = () => ({
+	data() {
+		return {
+			val: 35,
+		};
+	},
+	template: '<farm-progressbar :value="val" backgroundColor="#FFFF00" valueColor="#00FF00" />',
+});
