@@ -1,26 +1,25 @@
 import ModalPromptUser from './ModalPromptUser.vue';
 
 export default {
-	title: 'API/ModalPromptUser',
+	title: 'Interactions/ModalPromptUser',
 	component: ModalPromptUser,
 };
 
 export const Primary = () => ({
-	components: { ModalPromptUser },
 	data() {
 		return {
-			showPrompt: true,
+			showPrompt: false,
 		};
 	},
 	template: `<div>
 		<ModalPromptUser match="CONFIRMAR" title="Título" subtitle="Digite CONFIRMAR para habilitar" v-model="showPrompt" />
-			<v-btn color="secondary" @click="showPrompt = true;">
+		click:		
+		<v-btn color="secondary" @click="showPrompt = true;">
 			reabrir
 			</v-btn>
 		</div>`,
 });
 export const Error = () => ({
-	components: { ModalPromptUser },
 	data() {
 		return {
 			showPrompt: true,
