@@ -1,12 +1,8 @@
-import { Label, TextField } from '../../main.ts';
-
 export default {
-	title: 'Examples/Form/Full',
-	component: Label,
+	title: 'Form/Examples',
 };
 
 export const Primary = () => ({
-	components: { 'farm-label': Label, 'farm-textfield': TextField },
 	data() {
 		return {
 			form: {
@@ -51,8 +47,6 @@ export const Primary = () => ({
         </v-form>
     `,
 });
-
-Primary.storyName = 'Basic';
 
 const emailValidator = value => {
 	if (!value) {

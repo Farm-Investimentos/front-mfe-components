@@ -6,7 +6,7 @@ import sizes from '../../configurations/sizes';
 import('./Icons.stories.scss');
 
 export default {
-	title: 'Atoms/Icons',
+	title: 'Display/Icons',
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
@@ -20,7 +20,7 @@ export default {
 
 export const Atom = () => ({
 	template: `<div class="icons-container">
-        <farm-icon :color="color">
+        <farm-icon color="secondary">
             book
         </farm-icon>
 	</div>`,

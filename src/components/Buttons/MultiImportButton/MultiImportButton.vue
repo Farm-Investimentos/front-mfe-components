@@ -45,7 +45,6 @@ import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
-import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-multipleimport',
@@ -55,7 +54,6 @@ export default Vue.extend({
 		VMenu,
 		VListItemContent,
 		VListItemTitle,
-		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**

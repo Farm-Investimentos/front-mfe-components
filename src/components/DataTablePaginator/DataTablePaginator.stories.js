@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import DataTablePaginator from './DataTablePaginator.vue';
 
 export default {
-	title: 'API/Table/DataTablePaginator',
+	title: 'Display/Table/DataTablePaginator',
 	component: DataTablePaginator,
 	decorators: [withDesign],
 	parameters: {
@@ -26,13 +26,13 @@ export const Primary = () => ({
 	data() {
 		return {
 			totalPages: null
-		}
+		};
 	},
 	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
 	mounted() {
 		setTimeout(() => {
 			this.totalPages = 2;
-		}, 1000)
+		}, 1000);
 	}
 });
 

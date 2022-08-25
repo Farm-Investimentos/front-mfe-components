@@ -11,25 +11,19 @@
 		:outlined="!open"
 		:title="label"
 	>
-		<v-icon v-if="prepend">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
+		<farm-icon v-if="prepend" class="mr-3 ml-0">{{ `chevron-${open ? 'up' : 'down'}` }}</farm-icon>
 		{{ label }}
-		<v-icon v-if="!prepend" class="ml-3 mr-0">{{ `mdi-chevron-${open ? 'up' : 'down'}` }}</v-icon>
+		<farm-icon v-if="!prepend" class="ml-3 mr-0">{{ `chevron-${open ? 'up' : 'down'}` }}</farm-icon>
 	</farm-btn>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
-import DefaultButton from '../DefaultButton';
 
 /**
  * Botão de Toggle, emitindo e guardando status
  */
 export default Vue.extend({
 	name: 'farm-btn-toggle',
-	components: {
-		VIcon,
-		'farm-btn': DefaultButton,
-	},
 	data: () => ({
 		open: false,
 	}),

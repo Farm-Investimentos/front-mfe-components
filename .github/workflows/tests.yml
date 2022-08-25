@@ -3,8 +3,6 @@ name: Test
 on:
   push:
     branches: [develop]
-  pull_request:
-    branches: [develop]
 
 env: 
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

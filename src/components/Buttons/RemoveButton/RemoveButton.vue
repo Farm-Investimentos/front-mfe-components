@@ -7,14 +7,12 @@
 		:disabled="disabled"
 		@click="onClick"
 	>
-		<v-icon>mdi-trash-can-outline</v-icon>
+		<farm-icon>trash-can-outline</farm-icon>
 		{{ label }}
 	</farm-btn>
 </template>
 <script>
 import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
-import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-remove',
@@ -34,10 +32,6 @@ export default Vue.extend({
 			default: false,
 		},
 	},
-	components: {
-		VIcon,
-		'farm-btn': DefaultButton,
-	},
 	methods: {
 		onClick() {
 			this.$emit('onClick');
@@ -46,9 +40,5 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.farm-btn {
-	.v-icon {
-		margin-right: 1rem;
-	}
-}
+@import './RemoveButton';
 </style>

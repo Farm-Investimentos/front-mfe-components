@@ -10,12 +10,10 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import Typography from '../Typography.vue';
 
 export default Vue.extend({
 	inheritAttrs: true,
 	name: 'farm-overlaytext',
-	components: { 'farm-typography': Typography },
 });
 </script>
 <style lang="scss" scoped>

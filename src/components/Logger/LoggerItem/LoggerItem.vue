@@ -24,13 +24,9 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import ILoggerItem from './ILoggerItem';
-import Icon from '../../Icon';
 
 export default Vue.extend({
 	name: 'farm-logger-item',
-	components: {
-		'farm-icon': Icon,
-	},
 	props: {
 		/**
 		 * Logger item

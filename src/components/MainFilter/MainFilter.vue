@@ -10,7 +10,7 @@
 				@keyup="onKeyUp"
 			/>
 		</fieldset>
-		<farm-button
+		<farm-btn
 			v-if="hasExtraFilters"
 			color="secondary"
 			class="farm-btn--responsive mt-14 mt-sm-8"
@@ -18,25 +18,15 @@
 		>
 			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
 			{{ extraFiltersBtnLabel }}
-		</farm-button>
+		</farm-btn>
 	</section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
-import Label from '../Label';
-import TextField from '../TextField';
 
 export default Vue.extend({
 	name: 'farm-form-mainfilter',
-	components: {
-		'farm-button': DefaultButton,
-		'farm-icon': Icon,
-		'farm-textfield': TextField,
-		'farm-label': Label
-	},
 	props: {
 		/**
 		 * Show or not button for extra filters

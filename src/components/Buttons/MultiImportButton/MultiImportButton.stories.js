@@ -6,14 +6,11 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { MultiImport },
-	template: '<MultiImport />',
+	template: '<farm-btn-multipleimport />',
 });
 
 export const List = () => ({
-	components: { MultiImport },
-	template: `<MultiImport :optionsList="[{ listenerKey: 1, title: 'XLS teste'}, { listenerKey: 2, title: 'CSV teste novo'}]" />`,
+	template: `<farm-btn-multipleimport :optionsList="[{ listenerKey: 1, title: 'XLS teste'}, { listenerKey: 2, title: 'CSV teste novo'}]" />`,
 });
 
-Primary.storyName = 'Básico';
 List.storyName = 'Lista';
