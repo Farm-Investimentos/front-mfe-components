@@ -21,7 +21,7 @@ import { VForm } from 'vuetify/lib/components/VForm';
 import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VRow, VCol } from 'vuetify/lib/components/VGrid';
 export default Vue.extend({
-	name: 'farm-prompusertoconfirm',
+	name: 'farm-promptusertoconfirm',
 	props: {
 		/**
 		 * String to be matched with user prompt

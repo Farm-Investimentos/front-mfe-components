@@ -1,8 +1,23 @@
+import { withDesign } from 'storybook-addon-designs';
 import ModalPromptUser from './ModalPromptUser.vue';
 
 export default {
 	title: 'Interactions/ModalPromptUser',
 	component: ModalPromptUser,
+	decorators: [withDesign],
+	parameters: {
+		viewMode: 'docs',
+		docs: {
+			description: {
+				component: `Modal Prompt User to Confirm<br />
+				selector: <em>farm-prompt-user</em>`,
+			},
+		},
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1%3A7',
+		},
+	},
 };
 
 export const Primary = () => ({
@@ -12,7 +27,7 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div>
-		<ModalPromptUser match="CONFIRMAR" title="Título" subtitle="Digite CONFIRMAR para habilitar" v-model="showPrompt" />
+		<farm-prompt-user match="CONFIRMAR" title="Título" subtitle="Digite CONFIRMAR para habilitar" v-model="showPrompt" />
 		click:		
 		<v-btn color="secondary" @click="showPrompt = true;">
 			reabrir
@@ -22,35 +37,13 @@ export const Primary = () => ({
 export const Error = () => ({
 	data() {
 		return {
-			showPrompt: true,
+			showPrompt: false,
 		};
 	},
 	template: `<div>
-		<ModalPromptUser match="REMOVER" title="Título" subtitle="Digite REMOVER para habilitar" v-model="showPrompt" confirmColor="error" confirmLabel="Remover" />
+		<farm-prompt-user match="REMOVER" title="Título" subtitle="Digite REMOVER para habilitar" v-model="showPrompt" confirmColor="error" confirmLabel="Remover" />
 			<v-btn color="secondary" @click="showPrompt = true;">
 			reabrir
 			</v-btn>
 		</div>`,
 });
-
-Primary.story = {
-	name: 'Básico',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1%3A7',
-		},
-	},
-};
-
-Error.story = {
-	name: 'Error',
-	parameters: {
-		design: {
-			type: 'figma',
-			url:
-				'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1%3A7',
-		},
-	},
-};

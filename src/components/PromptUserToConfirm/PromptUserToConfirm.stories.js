@@ -8,7 +8,7 @@ export default {
 		docs: {
 			description: {
 				component: `Prompt User to Confirm<br />
-				selector: <em>farm-prompusertoconfirm</em>`,
+				selector: <em>farm-promptusertoconfirm</em>`,
 			},
 		},
 	},
@@ -20,13 +20,13 @@ export const Primary = () => ({
 			model: {},
 		};
 	},
-	template: `<div style="max-width: 320px"><farm-prompusertoconfirm v-model="model"/>
+	template: `<div style="max-width: 320px"><farm-promptusertoconfirm v-model="model"/>
 	match: {{ model }}
 	</div>`,
 });
 
 export const CustomTitle = () => ({
-	template: '<div style="max-width: 320px"><farm-prompusertoconfirm title="Custom" /></div>',
+	template: '<div style="max-width: 320px"><farm-promptusertoconfirm title="Custom" /></div>',
 });
 
 export const CustomMatchInput = () => ({
@@ -36,7 +36,7 @@ export const CustomMatchInput = () => ({
 		};
 	},
 	template: `<div style="max-width: 320px">
-		<farm-prompusertoconfirm
+		<farm-promptusertoconfirm
 			title="Custom match input: CONFIRMAR"
 			match="CONFIRMAR"
 			v-model="model" />
