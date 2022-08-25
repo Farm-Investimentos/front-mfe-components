@@ -5,7 +5,7 @@ const colors = ['secondary', 'info', 'error'];
 const variations = ['darken', 'lighten'];
 
 export default {
-	title: 'Atoms/Chips',
+	title: 'Display/Chips',
 	component: Chip,
 };
 

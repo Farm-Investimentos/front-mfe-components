@@ -1,11 +1,9 @@
-import { Container, ContainerFooter, StepperHeader } from '../../main.ts';
-
 export default {
-	title: 'Examples/Container',
+	title: 'Layout/Container/Examples',
 	parameters: {
 		docs: {
 			description: {
-				component: `Container<br />selector: <em>farm-container</em>`,
+				component: `Full Container`,
 			},
 		},
 		viewMode: 'docs',
@@ -13,12 +11,10 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-container': Container },
 	template: '<farm-container>content</farm-container>',
 });
 
 export const Secondary = () => ({
-	components: { 'farm-container': Container, 'farm-container-footer': ContainerFooter },
 	template: `
 	<farm-container>
 		Content
@@ -30,10 +26,6 @@ export const Secondary = () => ({
 });
 
 export const Tertiary = () => ({
-	components: {
-		'farm-container': Container,
-		'farm-stepper-header': StepperHeader,
-	},
 	data() {
 		return {
 			steps: [
@@ -51,9 +43,3 @@ export const Tertiary = () => ({
 	</farm-container>
 `,
 });
-
-Primary.storyName = 'Básico';
-
-Secondary.storyName = 'Footer';
-
-Tertiary.storyName = 'Stepper';
