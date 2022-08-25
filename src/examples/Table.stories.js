@@ -1,6 +1,4 @@
 import { withDesign } from 'storybook-addon-designs';
-import { DataTableEmptyWrapper } from '../main';
-import { DataTablePaginator } from '../main';
 
 const headers = [
 	{
@@ -20,13 +18,12 @@ const headers = [
 ];
 
 export default {
-	title: 'Examples/Table',
+	title: 'Display/Table/Examples',
 	decorators: [withDesign],
 	parameters: {
 		design: {
 			type: 'figma',
-			url:
-				'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1505%3A372',
+			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%8D---Design-System?node-id=1505%3A372',
 		},
 		viewMode: 'docs',
 		docs: {
@@ -38,9 +35,6 @@ export default {
 };
 
 export const TableNoData = () => ({
-	components: {
-		DataTableEmptyWrapper,
-	},
 	data() {
 		return {
 			headers,
@@ -63,9 +57,6 @@ export const TableNoData = () => ({
 });
 
 export const TableSampleData = () => ({
-	components: {
-		DataTableEmptyWrapper,
-	},
 	data() {
 		return {
 			headers,

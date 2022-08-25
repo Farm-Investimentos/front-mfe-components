@@ -19,9 +19,10 @@
 	</v-tabs>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
 import { VTabs, VTab } from 'vuetify/lib/components/VTabs';
-export default {
+export default Vue.extend({
 	name: 'farm-tabs',
 	data: () => ({
 		selected: 0,
@@ -86,7 +87,7 @@ export default {
 		VTabs,
 		VTab,
 	},
-};
+});
 </script>
 <style scoped lang="scss">
 div.rounded-circle {

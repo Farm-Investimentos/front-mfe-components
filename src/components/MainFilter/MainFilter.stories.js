@@ -1,25 +1,34 @@
 import MainFilter from './MainFilter.vue';
 
 export default {
-	title: 'API/MainFilter',
+	title: 'Form/MainFilter',
 	component: MainFilter,
 };
 
 export const Primary = () => ({
-	components: { MainFilter },
-	template: '<MainFilter />',
+	template: '<farm-form-mainfilter />',
 });
 
 export const Secondary = () => ({
-	components: { MainFilter },
-	template: '<MainFilter :hasExtraFilters="false" />',
+	template: '<farm-form-mainfilter :hasExtraFilters="false" />',
 });
 
 export const CustomLabel = () => ({
-	components: { MainFilter },
-	template: '<MainFilter label="Custom" />',
+	template: '<farm-form-mainfilter label="Custom" />',
 });
 
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Apenas input';
-CustomLabel.storyName = 'Custom Label';
+
+export const MainFilters = () => ({
+	data() {
+		return {
+			showFilters: false,
+			items: [1, 2, 3, 4, 5],
+		};
+	},
+	template: `<div style="max-width: 480px">
+		<farm-form-mainfilter @onClick="showFilters = !showFilters" :showFilters="showFilters" />
+        <section v-if="showFilters">
+            <v-select :items="items" />
+        </section>
+	</div>`,
+});

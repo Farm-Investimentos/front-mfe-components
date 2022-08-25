@@ -1,19 +1,45 @@
 import DialogHeader from './DialogHeader.vue';
 
 export default {
-	title: 'API/Dialog/DialogHeader',
+	title: 'Display/Dialog/DialogHeader',
 	component: DialogHeader,
 };
 
 export const Primary = () => ({
-	components: { DialogHeader },
-	template: '<div style="max-width: 480px; position: relative;"><DialogHeader title="Título do header" /></div>',
+	template: `<div style="max-width: 480px; position: relative;">
+		<farm-dialog-header title="Título do header" />
+	</div>`,
 });
 
 export const Secondary = () => ({
-	components: { DialogHeader },
-	template: `<div style="max-width: 480px; position: relative;"><DialogHeader title="Título do header" iconTitle="calendar" /></div>`,
+	template: `<div style="max-width: 480px; position: relative;">
+		<farm-dialog-header title="Título do header" iconTitle="calendar" />
+	</div>`,
 });
 
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Com ícone';
+
+export const CustomIcon = () => ({
+	template: `
+		<div style="max-width: 480px; position: relative;">
+			<farm-dialog-header title="Título do header" iconTitle="calendar" />
+		</div>`,
+});
+
+export const CloseHandler = () => ({
+	template: `
+		<div style="max-width: 480px; position: relative;">
+			<farm-dialog-header title="Título do header" iconTitle="calendar" @onClose="onClose" />
+		</div>`,
+	methods: {
+		onClose() {
+			alert('onClose handler');
+		},
+	},
+});
+
+export const NoCloseIcon = () => ({
+	template: `
+		<div style="max-width: 480px; position: relative;">
+			<farm-dialog-header title="Título do header" :hasCloseIcon="false" />
+		</div>`,
+});

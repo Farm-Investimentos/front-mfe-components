@@ -1,8 +1,7 @@
 import { withDesign } from 'storybook-addon-designs';
-import { ConfirmButton } from '../main';
 
 export default {
-	title: 'Examples/ConfirmDialog',
+	title: 'Display/Dialog/Confirm',
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
@@ -15,9 +14,6 @@ export default {
 };
 
 export const ConfirmDialog = () => ({
-	components: {
-		ConfirmButton,
-	},
 	methods: {
 		openDialog() {
 			this.$dialog.confirm({
@@ -45,7 +41,3 @@ export const ConfirmDialog = () => ({
         </ConfirmButton>
 	</div>`,
 });
-
-ConfirmDialog.story = {
-	name: 'ConfirmDialog',
-};

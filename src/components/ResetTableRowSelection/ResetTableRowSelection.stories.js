@@ -1,12 +1,11 @@
 import ResetTableRowSelection from './ResetTableRowSelection';
 
 export default {
-	title: 'API/ResetTableRowSelection',
+	title: 'Interactions/ResetTableRowSelection',
 	component: ResetTableRowSelection,
 };
 
 export const Primary = () => ({
-	components: { ResetTableRowSelection },
 	data() {
 		return {
 			items: [1, 2, 3],
@@ -14,5 +13,3 @@ export const Primary = () => ({
 	},
 	template: `<ResetTableRowSelection v-model="items" />`,
 });
-
-Primary.storyName = 'Básico';
