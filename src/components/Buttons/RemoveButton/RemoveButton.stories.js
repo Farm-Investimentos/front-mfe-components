@@ -1,18 +1,16 @@
 import RemoveButton from './RemoveButton.vue';
 
 export default {
-    title: 'API/Buttons/Remove',
+    title: 'Buttons/Remove',
     component: RemoveButton,
 };
 
 export const Primary = () => ({
-    components: { RemoveButton },
-    template: '<RemoveButton />',
+    template: '<farm-btn-remove />',
 });
 
 export const Secondary = () => ({
-    components: { RemoveButton },
-    template: '<RemoveButton label="Custom label" />',
+    template: '<farm-btn-remove label="Custom label" />',
 });
 
 Primary.storyName = 'Básico';

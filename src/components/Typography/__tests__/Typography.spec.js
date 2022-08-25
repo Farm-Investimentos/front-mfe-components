@@ -37,12 +37,15 @@ describe('Typography component', () => {
 			});
 			expect(wrapperTest.vm.isSizeFromBreakpoints).toBeTruthy();
 		});
+
+		it('Should have style', () => {
+			expect(component.style).toBeDefined();
+		});
 	});
 
 	describe('Prop data', () => {
-
 		it('Should have li tag', async () => {
-			expect(wrapper.vm.tag).toEqual('li');
+			expect(component.tag).toEqual('li');
 		});
 
 		it('Should not allow invalid html tag', async () => {

@@ -6,13 +6,9 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-icon-box',
-	components: {
-		'farm-icon': Icon,
-	},
 	props: {
 		/**
 		 * Icon

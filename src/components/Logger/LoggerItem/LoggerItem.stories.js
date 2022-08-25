@@ -1,7 +1,7 @@
 import LoggerItem from './LoggerItem.vue';
 
 export default {
-	title: 'API/Logger/LoggerItem',
+	title: 'Feedback/Logger/LoggerItem',
 	component: LoggerItem,
 	parameters: {
 		docs: {
@@ -20,11 +20,36 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-logger-item': LoggerItem },
 	data() {
 		return {
 			item: {
-				icon: 'book',
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});
+
+export const Success = () => ({
+	data() {
+		return {
+			item: {
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+				status: 'success',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});
+
+export const Error = () => ({
+	data() {
+		return {
+			item: {
 				message: 'Recusado entre as pré elegíveis',
 				userName: 'Cleyton Rasta',
 				formattedDate: '13/06/2022  20:40',
@@ -35,4 +60,17 @@ export const Primary = () => ({
 	template: `<farm-logger-item :item="item" />`,
 });
 
-Primary.storyName = 'Básico';
+export const CustomIcon = () => ({
+	data() {
+		return {
+			item: {
+				icon: 'book',
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+				status: 'success',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});

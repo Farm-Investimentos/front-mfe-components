@@ -1,7 +1,7 @@
 import DatePicker from './DatePicker';
 
 export default {
-	title: 'API/Form/DatePicker',
+	title: 'Form/DatePicker',
 	component: DatePicker,
 	parameters: {
 		docs: {
@@ -17,11 +17,18 @@ export default {
 
 export const Primary = () => ({
 	components: { DatePicker },
+	data() {
+		return {
+			minDate: new Date().toISOString(),
+		};
+	},
 	template: `<div style='max-width: 320px'>
-        <DatePicker inputId="input-custom-id-0" />
+        <DatePicker inputId="input-custom-id-0" :min="minDate" />
+		{{ minDate }}
     </div>`,
 });
 
+/*
 export const InitValue = () => ({
 	components: { DatePicker },
 	template: `<div style='max-width: 320px'><DatePicker inputId="input-custom-id-1" value="2021-08-01" /></div>`,
@@ -54,3 +61,4 @@ InitValue.storyName = 'Data inicial';
 MinMaxDates.storyName = 'Data mínima e máxima';
 RequiredDates.storyName = 'Obrigatório';
 readonlyFalse.storyName = 'Permitir digitação';
+*/

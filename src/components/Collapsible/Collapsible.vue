@@ -1,39 +1,38 @@
 <template>
-	<div class="collapsible">
-		<div class="collapsible__header" @click="onToggleCollapsible(status)">
-			<div class="collapsible__content-title">
-				<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-					<farm-icon color="secondary" size="1.625rem">
-						{{ icon }}
+	<farm-card class="collapsible">
+		<farm-card-content gutter="md">
+			<div class="collapsible__header" @click="onToggleCollapsible(status)">
+				<div class="collapsible__content-title">
+					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
+						<farm-icon color="secondary" size="md">
+							{{ icon }}
+						</farm-icon>
+					</div>
+					<farm-typography bold size="lg">
+						{{ title }}
+					</farm-typography>
+				</div>
+				<div class="collapsible__icon collapsible__icon--arrow">
+					<farm-icon size="md" color="primary">
+						{{ arrowIcon }}
 					</farm-icon>
 				</div>
-				<h3 class="collapsible__title">
-					{{ title }}
-				</h3>
 			</div>
-			<div class="collapsible__icon collapsible__icon--arrow">
-				<farm-icon size="1.625rem" color="primary">
-					{{ arrowIcon }}
-				</farm-icon>
-			</div>
-		</div>
-		<transition name="fade">
-			<div class="collapsible__body" v-show="status">
-				<slot></slot>
-			</div>
-		</transition>
-	</div>
+			<transition name="fade">
+				<div class="collapsible__body" v-show="status">
+					<slot></slot>
+				</div>
+			</transition>
+		</farm-card-content>
+	</farm-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-collapsible',
-	components: {
-		'farm-icon': Icon,
-	},
+
 	props: {
 		/**
 		 * Title

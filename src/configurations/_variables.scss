@@ -7,6 +7,7 @@ $sizes: (
     "xl": 40px
 );
 $gutters: (
+    "none": 0,
     "xs": 4px,
     'sm': 8px,
     "default": 12px,
@@ -23,3 +24,5 @@ $fontSizes: (
     "lg": 20px,
     "xl": 24px
 );
+
+$fontWeights: 100, 200, 300, 400, 500, 600, 700;

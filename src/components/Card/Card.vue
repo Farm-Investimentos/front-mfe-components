@@ -1,0 +1,21 @@
+<template>
+	<component class="farm-card" v-bind:is="tag">
+		<slot></slot>
+	</component>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+	name: 'farm-card',
+	inheritAttrs: true,
+	props: {
+		tag: { type: String, default: 'div' },
+	},
+});
+</script>
+
+<style lang="scss" scoped>
+@import './Card.scss';
+</style>

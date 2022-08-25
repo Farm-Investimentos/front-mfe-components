@@ -38,9 +38,7 @@
 			<farm-btn outlined color="primary" @click="menuField = false" title="Fechar">
 				Fechar
 			</farm-btn>
-			<farm-btn outlined color="secondary" class="ml-2" @click="clear">
-				Limpar
-			</farm-btn>
+			<farm-btn outlined color="secondary" class="ml-2" @click="clear"> Limpar </farm-btn>
 			<farm-btn
 				color="secondary"
 				class="ml-2"
@@ -121,7 +119,24 @@ export default Vue.extend({
 					: true;
 			},
 			checkMin: value => {
-				return this.min && new Date(convertDate(value)) < new Date(this.min)
+				const selectedDateUTCString = new Date(convertDate(value))
+					.toUTCString()
+					.slice(0, -4);
+
+				const selectedDate = new Date(selectedDateUTCString);
+				selectedDate.setDate(selectedDate.getDate() + 1);
+
+				const locatedSelectedDate = new Date(selectedDate.toUTCString()).toLocaleString(
+					'pt-BR',
+					{
+						timeZone: 'America/Sao_Paulo',
+					}
+				);
+				const locatedMinDate = new Date(this.min).toLocaleString('pt-BR', {
+					timeZone: 'America/Sao_Paulo',
+				});
+
+				return this.min && locatedSelectedDate < locatedMinDate
 					? 'A data está fora do período permitido'
 					: true;
 			},

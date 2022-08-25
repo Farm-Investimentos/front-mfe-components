@@ -3,7 +3,6 @@ import Chip from '../Chip';
 
 describe('Chip component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Chip, {});

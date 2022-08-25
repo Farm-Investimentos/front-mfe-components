@@ -1,7 +1,7 @@
-import Heading from './Heading.vue';
+import Heading from './Heading';
 
 export default {
-	title: 'API/Typography/Heading',
+	title: 'Typography/Heading',
 	component: Heading,
 	parameters: {
 		docs: {
@@ -16,15 +16,16 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-heading': Heading },
 	data() {
 		return {
-			type: 1,
+			types: [1, 2, 3, 4, 5, 6],
 		};
 	},
-	template: `<farm-heading :type="type">
-		farm heading
-	</farm-heading>`,
+	template: `<div>
+		<farm-heading v-for="type in types" :key="type" :type="type">
+		Heading {{ type }}
+	</farm-heading>
+	</div>`,
 });
 
 Primary.storyName = 'Basic';

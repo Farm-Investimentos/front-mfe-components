@@ -18,17 +18,10 @@
 	</div>
 </template>
 <script lang="ts">
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
-import Typography from '../Typography';
+import Vue from 'vue';
 
-export default {
+export default Vue.extend({
 	name: 'farm-alert-reload',
-	components: {
-		'farm-btn': DefaultButton,
-		'farm-icon': Icon,
-		'farm-typography': Typography,
-	},
 	props: {
 		/**
 		 * Label
@@ -45,7 +38,7 @@ export default {
 			default: false,
 		},
 	},
-};
+});
 </script>
 
 <style lang="scss" scoped>

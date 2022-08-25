@@ -5,6 +5,7 @@ import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
+import MultipleFilePicker from './components/MultipleFilePicker';
 import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
@@ -29,6 +30,7 @@ export {
 	MainFilter,
 	Loader,
 	FilePicker,
+	MultipleFilePicker,
 	Tabs,
 	DialogHeader,
 	DialogFooter,
@@ -54,6 +56,8 @@ export * from './components/Buttons/ImportButton';
 export * from './components/Buttons/ToggleButton';
 export * from './components/Buttons/RemoveButton';
 export * from './components/Buttons/MultiImportButton';
+export * from './components/Card';
+export * from './components/Checkbox';
 export * from './components/Chip';
 export * from './components/Logos/ProductLogo';
 export * from './components/Logos/OriginatorLogo';
@@ -65,6 +69,7 @@ export * from './components/Label';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
+export * from './components/CopyToClipboard';
 export * from './components/ProgressBar';
 export * from './components/Stepper';
 export * from './components/Switcher';

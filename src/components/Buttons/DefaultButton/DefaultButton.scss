@@ -2,12 +2,13 @@
 @import '../../../configurations/mixins';
 
 .farm-btn {
-    font-size: 0.75rem;
+    font-size: 14px;
     align-items: center;
     border-radius: 4px;
     display: inline-flex;
     flex: 0 0 auto;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 1.25px;
     justify-content: center;
     outline: 0;
     position: relative;
@@ -53,6 +54,10 @@
 
         &:before {
             display: none;
+        }
+
+        i.mdi.farm-icon {
+            color: rgba(0, 0, 0, .26);
         }
     }
 

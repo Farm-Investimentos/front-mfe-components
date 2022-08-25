@@ -1,0 +1,10 @@
+@import '../../../configurations/variables';
+@import '../../../configurations/functions';
+
+.farm-card__content {
+    @each $k in map-keys($gutters) {
+        &#{'[gutter=' + $k + ']'} {
+            padding: map-get($gutters, $k);
+        }
+    }
+}

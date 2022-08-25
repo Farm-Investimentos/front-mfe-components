@@ -39,7 +39,7 @@ jobs:
         run: |
           touch package.json
           git add -A
-          git commit -m "Update package.json - new version"
+          git commit -m "Update package.json - new version [skip ci]"
           git push -u origin develop:chore-newversion_${{ env.PACKAGE_VERSION }}
 
       - name: pull-request

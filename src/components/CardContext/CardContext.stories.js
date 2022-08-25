@@ -1,10 +1,9 @@
 import CardContext from './CardContext.vue';
 
-
 export default {
-	title: 'API/CardContext',
+	title: 'Surfaces/CardContext',
 	component: CardContext,
-    parameters: {
+	parameters: {
 		docs: {
 			description: {
 				component: `Card Context<br />
@@ -17,62 +16,51 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { CardContext },
 	template: `
-        <CardContext icon="mdi-currency-usd" title="Titulo do Card">
+        <farm-card-context icon="mdi-currency-usd" title="Titulo do Card">
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
 
 export const Secondary = () => ({
-	components: { CardContext },
 	template: `
-        <CardContext icon="mdi-currency-usd" title="Titulo do Card" bold>
+        <farm-card-context icon="mdi-currency-usd" title="Titulo do Card" bold>
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
 
 export const WithLoading = () => ({
-	components: { CardContext },
 	template: `
-        <CardContext icon="mdi-currency-usd" title="Titulo do Card" isLoading>
+        <farm-card-context icon="mdi-currency-usd" title="Titulo do Card" isLoading>
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
 
 export const WithLoadingLarge = () => ({
-	components: { CardContext },
 	template: `
-        <CardContext icon="mdi-currency-usd" title="Titulo do Card" isLoading largeLoading>
+        <farm-card-context icon="mdi-currency-usd" title="Titulo do Card" isLoading largeLoading>
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
 
 export const WithError = () => ({
 	components: { CardContext },
 	template: `
-        <CardContext icon="mdi-currency-usd" title="Titulo do Card" isError>
+        <farm-card-context icon="mdi-currency-usd" title="Titulo do Card" isError>
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
 
 export const NoIcon = () => ({
 	components: { CardContext },
 	template: `
-        <CardContext title="Titulo do Card">
+        <farm-card-context title="Titulo do Card">
             <p>Conteúdo do Card</p>
-        </CardContext>
+        </farm-card-context>
     `,
 });
-
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Título em Bold';
-WithLoading.storyName = 'Com Loading';
-WithLoadingLarge.storyName = 'Com Loading Large';
-WithError.storyName = 'Com Erro';
-NoIcon.storyName = 'No icon';

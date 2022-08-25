@@ -1,28 +1,39 @@
 import DialogFooter from './DialogFooter.vue';
 
 export default {
-	title: 'API/Dialog/DialogFooter',
+	title: 'Display/Dialog/DialogFooter',
 	component: DialogFooter,
 };
 
 export const Primary = () => ({
-	components: { DialogFooter },
-	template: '<DialogFooter />',
+	components: { 'farm-dialog-footer': DialogFooter },
+	template: '<farm-dialog-footer />',
 });
 
-export const Secondary = () => ({
-	components: { DialogFooter },
-	template: `<DialogFooter :extraButtons="[{ label: 'Random label', color: 'error', outlined: true }]" />`,
+export const ExtraButton = () => ({
+	data() {
+		return { extraButtons: [{ label: 'Random label', color: 'error', outlined: true }] };
+	},
+	template: `<farm-dialog-footer :extraButtons="extraButtons" />`,
 });
 
 export const ConfirmIcon = () => ({
-	components: { DialogFooter },
-	template: `<div><DialogFooter confirmIcon="check" /><br />
-	<DialogFooter confirmIcon="check" confirmColor="yellow" /><br />
-	<DialogFooter confirmIcon="check" confirmColor="accent" /></div>
+	template: `<div>
+        <farm-dialog-footer confirmIcon="check" />
+        <farm-dialog-footer confirmIcon="check" confirmColor="yellow" />
+        <farm-dialog-footer confirmIcon="check" confirmColor="accent" />
+    </div>
 	`,
 });
 
-Primary.storyName = 'Básico';
-Secondary.storyName = 'Botão extra';
-ConfirmIcon.storyName = 'Ícone confirmar';
+export const Handlers = () => ({
+	template: '<farm-dialog-footer @onConfirm="onConfirm"  @onClose="onClose" />',
+	methods: {
+		onConfirm() {
+			alert('onConfirm handler');
+		},
+		onClose() {
+			alert('onClose handler');
+		},
+	},
+});

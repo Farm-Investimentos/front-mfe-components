@@ -2,37 +2,51 @@
 @import '../../configurations/mixins';
 
 .farm-typography {
-    font-size: 1rem;
+	font-size: 16px;
 
-    &[bold] {
-        font-weight: bold;
-    }
+	&[bold] {
+		font-weight: bold;
+	}
 
-    &[italic] {
-        font-style: italic;
-    }
+	&[italic] {
+		font-style: italic;
+	}
 
-    &:is(p) {
-        margin-bottom: auto;
-    }
+	&[underline] {
+		text-decoration: underline;
+	}
 
-    @each $k in $colors {
-        &#{'[color=' + $k + ']'} {
-            color: var(--v-#{$k}-base);
-        }
-    }
+	&[line-through] {
+		text-decoration: line-through;
+	}
 
-    @each $s, $val in $fontSizes {
-        &--#{$s} {
-            font-size: $val;
-        }
-    }
+	&:is(p) {
+		margin-bottom: auto;
+	}
+
+	@each $k in $colors {
+		&#{'[color=' + $k + ']'} {
+			color: var(--v-#{$k}-base);
+		}
+	}
+
+	@each $s, $val in $fontSizes {
+		&--#{$s} {
+			font-size: $val;
+		}
+	}
+
+	@each $w in $fontWeights {
+		&--weight-#{$w} {
+			font-weight: $w;
+		}
+	}
 }
 
 @include upToSm {
-    @each $s, $val in $fontSizes {
-        .farm-typography--#{$s} {
-            font-size: calc(#{$val} - 2px);
-        }
-    }
+	@each $s, $val in $fontSizes {
+		.farm-typography--#{$s} {
+			font-size: calc(#{$val} - 2px);
+		}
+	}
 }

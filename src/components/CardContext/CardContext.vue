@@ -7,7 +7,7 @@
 		}"
 	>
 		<div class="card-context-header" v-if="isSuccess && title">
-			<IconBox :icon="icon" v-if="icon" />
+			<farm-icon-box v-if="icon" :icon="icon" />
 			<div class="card-context-content">
 				<p :class="{ 'card-context-title': true, 'card-context-content--bold': bold }">
 					{{ title }}
@@ -18,32 +18,26 @@
 			<slot></slot>
 		</div>
 		<div class="card-context-loading-or-error" v-if="isLoading">
-			<Loader :size="isLargeLoading" />
+			<farm-loader :size="isLargeLoading" />
 		</div>
 		<div class="card-context-loading-or-error" v-if="isError">
-			<AlertReload :label="errorLabel" @onClick="$emit('onLoad')" />
+			<farm-alert-reload :label="errorLabel" @onClick="$emit('onLoad')" />
 		</div>
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import { Loader, AlertReload, IconBox } from '../../main.ts';
 
 export default Vue.extend({
 	name: 'farm-card-context',
-	components: {
-		IconBox,
-		AlertReload,
-		Loader,
-	},
 	props: {
 		/**
 		 * Title
 		 */
 		title: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Set bold text
@@ -111,6 +105,6 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="sass" scoped>
-@import './CardContext.scss'
+<style lang="scss" scoped>
+@import './CardContext.scss';
 </style>

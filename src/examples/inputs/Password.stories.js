@@ -1,5 +1,5 @@
 export default {
-	title: 'Examples/Form/Inputs/Password',
+	title: 'Form/Textfield/Examples/Password',
 	component: Password,
 	parameters: {
 		docs: {

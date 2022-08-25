@@ -1,13 +1,12 @@
 import ProductLogo from './ProductLogo.vue';
 
 export default {
-	title: 'API/Logos/ProductLogo',
+	title: 'Display/Logos/ProductLogo',
 	component: ProductLogo,
 };
 
 export const Primary = () => ({
-	components: { ProductLogo },
-	template: '<ProductLogo alt="primary" id="34" />',
+	template: '<farm-imglogo-product alt="primary" id="34" />',
 });
 
 Primary.storyName = 'Básico';

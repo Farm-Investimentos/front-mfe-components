@@ -1,19 +1,16 @@
 <template>
 	<section :class="{ 'justify-end': justifyEnd === true }">
-		<fieldset class="fieldset-default" v-if="hasInitialInput">
-			<label class="filter-label" :for="elementId">
+		<fieldset v-if="hasInitialInput">
+			<farm-label :for="elementId">
 				{{ label }}
-			</label>
-			<v-text-field
-				color="secondary"
-				outlined
-				dense
+			</farm-label>
+			<farm-textfield
 				v-model="inputValue"
 				:id="elementId"
 				@keyup="onKeyUp"
 			/>
 		</fieldset>
-		<farm-button
+		<farm-btn
 			v-if="hasExtraFilters"
 			color="secondary"
 			class="farm-btn--responsive mt-14 mt-sm-8"
@@ -21,23 +18,15 @@
 		>
 			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
 			{{ extraFiltersBtnLabel }}
-		</farm-button>
+		</farm-btn>
 	</section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib/components/VTextField';
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-form-mainfilter',
-	components: {
-		VTextField,
-		'farm-button': DefaultButton,
-		'farm-icon': Icon,
-	},
 	props: {
 		/**
 		 * Show or not button for extra filters

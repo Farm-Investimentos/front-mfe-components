@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import DefaultTextField from './DefaultTextField.vue';
 
 export default {
-	title: 'API/Form/DefaultTextField',
+	title: 'Form/DefaultTextField',
 	component: DefaultTextField,
 	decorators: [withDesign],
 	parameters: {

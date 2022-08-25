@@ -4,6 +4,7 @@
 		:class="{
 			'farm-typography': true,
 			['farm-typography--' + $props.size]: isSizeFromBreakpoints,
+			['farm-typography--weight-' + weight]: weight !== undefined,
 		}"
 		:style="style"
 	>
@@ -11,7 +12,7 @@
 	</component>
 </template>
 <script lang="ts">
-import Vue, { computed, PropType, ref } from 'vue';
+import Vue, { computed, PropType, ref, toRefs } from 'vue';
 import breakPoints from '../../configurations/sizes';
 import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
@@ -29,28 +30,29 @@ export default Vue.extend({
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 		},
 		lineHeight: {
-			type: Number || String,
+			type: String,
+		},
+		weight: {
+			type: Number as PropType<
+				100 | 200 | 300 | 400 | 500 | 600 | 700
+			>
 		},
 	},
-	setup(props, context) {
-		const { weight } = context.attrs;
-		const { size, lineHeight } = props;
+	setup(props) {
+		const { size, lineHeight } = toRefs(props);
 
 		let style = ref({});
 		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
-		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size));
+		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size.value));
 
 		if (size !== undefined && !isSizeFromBreakpoints.value) {
-			style.value.fontSize = size;
+			style.value.fontSize = size.value;
 		}
 		if (lineHeight !== undefined) {
-			style.value.lineHeight = lineHeight;
+			style.value.lineHeight = lineHeight.value;
 		}
 
-		if (weight) {
-			style.value.fontWeight = weight;
-		}
 		return {
 			style,
 			isSizeFromBreakpoints,

@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import TextField from './TextField.vue';
 
 export default {
-	title: 'API/Form/TextField',
+	title: 'Form/TextField',
 	component: TextField,
 	decorators: [withDesign],
 	parameters: {
@@ -22,7 +22,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-textfield': TextField },
 	data() {
 		return {
 			v: '',
@@ -34,14 +33,30 @@ export const Primary = () => ({
 	</div>`,
 });
 
-const parameters = {
-	design: {
-		type: 'figma',
-		url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%85---Design-System-%7C-v1?node-id=1503%3A227',
+export const BindVar = () => ({
+	data() {
+		return {
+			v: '',
+		};
 	},
-};
+	template: `<div style="width: 480px">
+		<farm-textfield v-model="v" />
+		value: {{ v }}
+	</div>`,
+});
 
-Primary.story = {
-	name: 'Basic',
-	parameters,
-};
+export const Rules = () => ({
+	data() {
+		return {
+			v: '',
+			rules: {
+				required: val => !!val,
+			},
+		};
+	},
+	template: `<div style="width: 480px">
+		<h4>Custom rule (required field)</h4>
+		<farm-textfield v-model="v" :rules="[rules.required]" />
+		value: {{ v }}
+	</div>`,
+});

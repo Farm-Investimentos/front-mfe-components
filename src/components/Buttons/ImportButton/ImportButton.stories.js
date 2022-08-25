@@ -1,19 +1,15 @@
 import ImportButton from './ImportButton.vue';
 
 export default {
-    title: 'API/Buttons/Import',
-    component: ImportButton,
+	title: 'Buttons/Import',
+	component: ImportButton,
 };
 
 export const Primary = () => ({
-    components: { ImportButton },
-    template: '<ImportButton />',
+	template: '<farm-btn-import />',
 });
 
 export const CustomLabel = () => ({
-    components: { ImportButton },
-    template: '<ImportButton label="Label custom" />',
+	components: { ImportButton },
+	template: '<farm-btn-import label="Label custom" />',
 });
-
-Primary.storyName = 'Básico';
-CustomLabel.storyName = 'Label customizado';
