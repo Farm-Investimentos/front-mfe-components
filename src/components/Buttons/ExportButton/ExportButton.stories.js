@@ -6,18 +6,15 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { ExportButton },
-	template: '<ExportButton />',
+	template: '<farm-btn-export />',
 });
 
 export const Disabled = () => ({
-	components: { ExportButton },
-	template: '<ExportButton :disabled="true" />',
+	template: '<farm-btn-export :disabled="true" />',
 });
 
 export const List = () => ({
-	components: { ExportButton },
-	template: `<ExportButton :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
+	template: `<farm-btn-export :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
 });
 
 Primary.storyName = 'Básico';

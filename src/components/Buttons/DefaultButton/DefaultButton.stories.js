@@ -21,29 +21,25 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { DefaultButton },
-	template: '<DefaultButton title="Pass text as slot">Pass text as slot</DefaultButton>',
+	template: '<farm-btn title="Pass text as slot">Pass text as slot</farm-btn>',
 });
 
 export const HtmlMarkup = () => ({
-	components: { DefaultButton },
-	template: '<DefaultButton><em>I am italic</strong></em></DefaultButton>',
+	template: '<farm-btn><em>I am italic</strong></em></farm-btn>',
 });
 
 export const Props = () => ({
-	components: { 'farm-btn': DefaultButton },
 	template: '<farm-btn color="secondary" outlined>props</farm-btn>',
 });
 
 export const Listener = () => ({
-	components: { DefaultButton },
 	data() {
 		return {
 			x: 1,
 		};
 	},
 	template: `
-		<DefaultButton color="error" @click="x = 2">click me to change: {{ x }}</DefaultButton>
+		<farm-btn color="error" @click="x = 2">click me to change: {{ x }}</farm-btn>
 	`,
 });
 

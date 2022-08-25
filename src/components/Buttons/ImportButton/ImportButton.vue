@@ -1,18 +1,14 @@
 <template>
-	<farm-btn @click="onClick" dense class="farm-btn--responsive farm-btn--import" outlined title="Importar">
-		<i class="mdi mdi-upload"></i>
+	<farm-btn class="farm-btn--responsive farm-btn--import" title="Importar" @click="onClick">
+		<farm-icon>upload</farm-icon>
 		{{ label }}
 	</farm-btn>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import DefaultButton from '../DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-btn-import',
-	components: {
-		'farm-btn': DefaultButton,
-	},
 	props: {
 		/**
 		 * Label do botão
@@ -30,12 +26,5 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.farm-btn.farm-btn--import {
-	background: var(--v-extra-lighten2);
-	color: var(--v-gray-lighten5);
-	.farm-btn__content i.mdi {
-		color: white;
-		margin-right: 1rem;
-	}
-}
+@import 'ImportButton';
 </style>
