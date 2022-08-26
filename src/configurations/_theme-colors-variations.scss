@@ -1,0 +1,9 @@
+@import './theme-colors';
+
+:export {
+    @each $name,
+    $color in $theme-colors {
+        #{$name + "-lighten"}: themeColor($name, "lighten");
+        #{$name + "-darken"}: themeColor($name, "darken");
+    }
+}
