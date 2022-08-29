@@ -25,7 +25,7 @@ export const Primary = () => ({
 	</div>`,
 });
 
-export const IconBoxes = () => ({
+export const Colors = () => ({
 	data() {
 		return {
 			colors,
@@ -52,5 +52,22 @@ export const Sizes = () => ({
 			{{ size }}
         </div>
        
+	</div>`,
+});
+
+export const Inverted = () => ({
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div class="icons-container">
+        <farm-icon-box
+			v-for="color of colors"
+			:key="'inverted_' + color"
+			:color="color"
+			:inverted="true"
+			icon="book"
+			 />
 	</div>`,
 });
