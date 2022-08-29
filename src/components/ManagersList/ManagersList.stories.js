@@ -1,14 +1,10 @@
 import ManagersList from './ManagersList';
 
 export default {
-    title: 'API/ManagersList',
+    title: 'Display/ManagersList',
     component: ManagersList,
 };
 
 export const Primary = () => ({
-    components: { ManagersList },
-    template: '<ManagersList managersString="nome1,nome2,nome3" />',
+    template: '<farm-managers-list managersString="nome1,nome2,nome3" />',
 });
-
-
-Primary.storyName = 'Básico';

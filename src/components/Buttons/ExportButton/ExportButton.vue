@@ -34,7 +34,7 @@
 					:class="{
 						'ml-2': true,
 						'mr-0': true,
-						'mdi': true,
+						mdi: true,
 						'mdi-chevron-up': togglePopover,
 						'mdi-chevron-down': !togglePopover,
 					}"
@@ -64,7 +64,6 @@ import VList from 'vuetify/lib/components/VList/VList';
 import VMenu from 'vuetify/lib/components/VMenu';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
-import DefaultButton from '../DefaultButton';
 
 /**
  * Botão de Exportação, com opção de gerar menu dropdown
@@ -99,7 +98,6 @@ export default Vue.extend({
 		VMenu,
 		VListItemContent,
 		VListItemTitle,
-		'farm-btn': DefaultButton,
 	},
 	methods: {
 		onClick(key) {
@@ -109,10 +107,6 @@ export default Vue.extend({
 });
 </script>
 <style scoped lang="scss">
-.v-btn {
-	color: var(--v-extra-lighten2);
-	background: white;
-}
 .v-list-item {
 	border-bottom: 1px solid var(--v-gray-lighten2);
 	&:last-child {

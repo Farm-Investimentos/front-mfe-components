@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import DataTablePaginator from './DataTablePaginator.vue';
 
 export default {
-	title: 'API/Table/DataTablePaginator',
+	title: 'Display/Table/DataTablePaginator',
 	component: DataTablePaginator,
 	decorators: [withDesign],
 	parameters: {
@@ -38,7 +38,7 @@ export const Primary = () => ({
 
 export const Secondary = () => ({
 	components: { DataTablePaginator },
-	template: '<DataTablePaginator :hidePerPageOptions="true" :totalPages="19" :page="1" />',
+	template: '<DataTablePaginator :hidePerPageOptions="true" :totalPages="190000" :page="1" />',
 });
 
 export const Disabled = () => ({

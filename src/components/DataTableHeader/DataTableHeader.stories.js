@@ -1,12 +1,11 @@
 import DataTableHeader from './DataTableHeader.vue';
 
 export default {
-	title: 'API/Table/DataTableHeader',
+	title: 'Display/Table/DataTableHeader',
 	component: DataTableHeader,
 };
 
 export const Primary = () => ({
-	components: { DataTableHeader },
 	data() {
 		return {
 			headers: [

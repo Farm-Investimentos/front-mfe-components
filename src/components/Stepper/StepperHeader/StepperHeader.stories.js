@@ -1,7 +1,7 @@
 import StepperHeader from './StepperHeader.vue';
 
 export default {
-	title: 'API/Stepper/StepperHeader',
+	title: 'Navigation/StepperHeader',
 	component: StepperHeader,
 	parameters: {
 		docs: {
@@ -19,8 +19,14 @@ export default {
 	},
 };
 
+const steps = [
+	{ label: 'Solicitação de limite', icon: 'book' },
+	{ label: 'Lista impeditiva', icon: 'monitor' },
+	{ label: 'Lista pré-elegíveis', icon: 'book' },
+	{ label: 'Fila de compliance', icon: 'logout' },
+];
+
 export const Primary = () => ({
-	components: { 'farm-stepper-header': StepperHeader },
 	data() {
 		return {
 			steps: [
@@ -35,4 +41,49 @@ export const Primary = () => ({
 	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" />',
 });
 
-Primary.storyName = 'Básico';
+export const Error = () => ({
+	data() {
+		return {
+			steps,
+			currentStep: 3,
+		};
+	},
+	template:
+		'<farm-stepper-header :steps="steps" :currentStep="currentStep" :errorCurrentStepStatus="true" />',
+});
+
+export const Vertical = () => ({
+	data() {
+		return {
+			steps,
+			currentStep: 3,
+		};
+	},
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" vertical />',
+});
+
+export const VerticalError = () => ({
+	data() {
+		return {
+			steps,
+			currentStep: 3,
+		};
+	},
+	template:
+		'<farm-stepper-header :steps="steps" :currentStep="currentStep" vertical :errorCurrentStepStatus="true" />',
+});
+
+export const Numbers = () => ({
+	data() {
+		return {
+			steps: [
+				{ label: 'Solicitação de limite' },
+				{ label: 'Lista impeditiva' },
+				{ label: 'Lista pré-elegíveis' },
+				{ label: 'Fila de compliance' },
+			],
+			currentStep: 2,
+		};
+	},
+	template: '<farm-stepper-header :steps="steps" :currentStep="currentStep" />',
+});

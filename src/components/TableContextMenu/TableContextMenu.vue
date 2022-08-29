@@ -35,7 +35,6 @@ import { VIcon } from 'vuetify/lib/components/VIcon';
 import { VList } from 'vuetify/lib/components/VList';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
-import DefaultButton from '../Buttons/DefaultButton';
 
 export default Vue.extend({
 	name: 'farm-context-menu',
@@ -46,7 +45,6 @@ export default Vue.extend({
 		VListItem,
 		VListItemContent,
 		VListItemTitle,
-		'farm-btn': DefaultButton,
 	},
 	props: {
 		items: {

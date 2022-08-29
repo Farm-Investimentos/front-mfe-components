@@ -7,7 +7,7 @@
 		}"
 	>
 		<div class="card-context-header" v-if="isSuccess && title">
-			<farm-iconbox :icon="icon" v-if="icon" />
+			<farm-icon-box v-if="icon" :icon="icon" />
 			<div class="card-context-content">
 				<p :class="{ 'card-context-title': true, 'card-context-content--bold': bold }">
 					{{ title }}
@@ -26,7 +26,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 
 export default Vue.extend({
@@ -37,7 +37,7 @@ export default Vue.extend({
 		 */
 		title: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		/**
 		 * Set bold text
@@ -105,6 +105,6 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="sass" scoped>
-@import './CardContext.scss'
+<style lang="scss" scoped>
+@import './CardContext.scss';
 </style>
