@@ -11,11 +11,11 @@ export const Primary = () => ({
     icon="account-box-outline" 
     link="/admin/dashboard" 
     copyText="texto a copiar">
-        <template v-slot:text="{}">
-            teste
+        <template v-slot:title="{}">
+            Upper Line Text
         </template>
         <template v-slot:subtitle="{}">
-            teste 2
+            Lower: Line Text
         </template>
     </farm-idcaption>
     `,

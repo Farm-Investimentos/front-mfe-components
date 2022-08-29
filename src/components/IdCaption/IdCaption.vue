@@ -1,17 +1,21 @@
 <template>
 	<div class="idcaption" :link="link">
-		<IconBox :icon="icon" color="secondary" />
+		<IconBox v-if="icon" :icon="icon" color="secondary" size="md" />
 		<div class="idcaption__body">
-			<div class="bodyTitle">
-				<slot name="text"></slot>
-				<farm-btn icon>
-					<farm-icon>book</farm-icon>
+			<div v-if="hasTitle" class="d-flex align-center">
+				<farm-caption class="text" bold variation="medium">
+					<slot name="title"></slot>
+				</farm-caption>
+				<farm-btn @click="$emit('onLinkClick')" icon color="gray" v-if="link">
+					<farm-icon size="xs">open-in-new</farm-icon>
 				</farm-btn>
 			</div>
 
-			<div v-if="hasSlot" class="bodySubtitle">
-				<slot name="subtitle"></slot>
-				<farm-copytoclipboard :toCopy="copyText" />
+			<div v-if="hasSubtitle" class="d-flex align-center">
+				<farm-caption class="text" variation="regular" color="gray">
+					<slot name="subtitle"></slot>
+				</farm-caption>
+				<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
 			</div>
 		</div>
 	</div>
@@ -27,32 +31,30 @@ export default Vue.extend({
 		 */
 		icon: {
 			type: String,
-			required: true,
 		},
 		/**
 		 * copy to clipboard
 		 */
 		copyText: {
 			type: String,
-			required: true,
 		},
 		/**
 		 * Link to
 		 */
 		link: {
 			type: String,
-			required: true,
 		},
 	},
 
 	setup(_, { slots }) {
-		const hasSlot = computed(() => {
+		const hasTitle = computed(() => {
+			return slots.title;
+		});
+		const hasSubtitle = computed(() => {
 			return slots.subtitle;
 		});
 
-		// console.log(slots);
-
-		return { hasSlot };
+		return { hasSubtitle, hasTitle };
 	},
 });
 </script>
