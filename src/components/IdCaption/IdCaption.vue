@@ -2,8 +2,8 @@
 	<div class="idcaption">
 		<farm-icon-box v-if="icon" :icon="icon" color="secondary" size="md" />
 		<div class="idcaption__body">
-			<div v-if="hasTitle" class="d-flex align-center">
-				<farm-caption class="text" bold variation="medium">
+			<div v-if="hasTitle">
+				<farm-caption bold variation="medium">
 					<slot name="title"></slot>
 					<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
 						<farm-icon size="xs">open-in-new</farm-icon>
@@ -11,8 +11,8 @@
 				</farm-caption>
 			</div>
 
-			<div v-if="hasSubtitle" class="d-flex align-center">
-				<farm-caption class="text" variation="regular" color="gray">
+			<div v-if="hasSubtitle">
+				<farm-caption variation="regular" color="gray">
 					<slot name="subtitle"></slot>
 					<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
 				</farm-caption>
