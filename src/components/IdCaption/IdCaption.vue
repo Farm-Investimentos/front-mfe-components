@@ -1,21 +1,21 @@
 <template>
 	<div class="idcaption">
-		<IconBox v-if="icon" :icon="icon" color="secondary" size="md" />
+		<farm-icon-box v-if="icon" :icon="icon" color="secondary" size="md" />
 		<div class="idcaption__body">
 			<div v-if="hasTitle" class="d-flex align-center">
 				<farm-caption class="text" bold variation="medium">
 					<slot name="title"></slot>
+					<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
+						<farm-icon size="xs">open-in-new</farm-icon>
+					</farm-btn>
 				</farm-caption>
-				<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
-					<farm-icon size="xs">open-in-new</farm-icon>
-				</farm-btn>
 			</div>
 
 			<div v-if="hasSubtitle" class="d-flex align-center">
 				<farm-caption class="text" variation="regular" color="gray">
 					<slot name="subtitle"></slot>
+					<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
 				</farm-caption>
-				<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
 			</div>
 		</div>
 	</div>
