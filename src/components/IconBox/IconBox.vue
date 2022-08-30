@@ -1,6 +1,15 @@
 <template>
-	<div :class="{ 'farm-icon-box': true, [cssColorClass]: true }" :size="size">
-		<farm-icon :color="color" :size="size">{{ iconParsed }}</farm-icon>
+	<div
+		:class="{
+			'farm-icon-box': true,
+			[cssColorClass]: true,
+			'farm-icon-box--inverted': inverted,
+		}"
+		:size="size"
+	>
+		<farm-icon :color="inverted ? 'white' : color" :size="size">{{
+			iconParsed
+		}}</farm-icon>
 	</div>
 </template>
 
@@ -27,6 +36,13 @@ export default Vue.extend({
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'md',
+		},
+		/**
+		 * INverted
+		 */
+		inverted: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	computed: {

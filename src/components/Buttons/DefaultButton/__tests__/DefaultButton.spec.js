@@ -24,10 +24,6 @@ describe('DefaultButton component', () => {
 			expect(component.isRound).toBeTruthy();
 		});
 
-		it('get isElevated false', () => {
-			expect(component.isElevated).toBeTruthy();
-		});
-
 		it('get classes', () => {
 			expect(component.classes).toBeDefined();
 		});

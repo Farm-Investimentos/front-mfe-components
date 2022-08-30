@@ -22,6 +22,7 @@ import CardContext from './components/CardContext';
 
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
+import IdCaption from './components/IdCaption';
 
 export {
 	DataTableEmptyWrapper,
@@ -45,6 +46,7 @@ export {
 	IconBox,
 	CardContext,
 	Collapsible,
+	IdCaption,
 };
 
 export * from './components/AlertReload';

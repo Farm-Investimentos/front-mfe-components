@@ -9,9 +9,21 @@
 	align-items: center;
 
 	@each $color in $colors {
-        &#{'--' + $color} {
-            background: var(--v-#{$color}-lighten5);
-        }
-    }
+		&#{'--' + $color} {
+			background: var(--v-#{$color}-lighten5);
+		}
+	}
+}
+
+.farm-icon-box--inverted.farm-icon-box {
+	@each $color in $colors {
+		&#{'--' + $color} {
+			background: var(--v-#{$color}-base);
+		}
+	}
+
+	.farm-icon.farm-icon--white {
+		color: white;
+	}
 
 }

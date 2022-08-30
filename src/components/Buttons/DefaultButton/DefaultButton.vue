@@ -48,10 +48,23 @@ export default Vue.extend({
 		 * Outlined
 		 */
 		outlined: { type: Boolean, default: false },
+		/**
+		 * Is plain
+		 */
 		plain: { type: Boolean, default: false },
+		/**
+		 * Is disabled
+		 */
 		disabled: { type: Boolean, default: false },
+		/**
+		 * Is rounded
+		 */
 		rounded: { type: Boolean, default: false },
 		icon: { type: Boolean, default: false },
+		/**
+		 * Has elevation
+		 */
+		elevated: { type: Boolean, default: false },
 		type: {
 			type: String,
 			default: 'button',
@@ -61,9 +74,7 @@ export default Vue.extend({
 			default: null,
 		},
 		size: {
-			type: String as PropType<
-				'xs' | 'sm' | 'md' | 'lg' | 'xl'
-			>,
+			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'default',
 		},
 	},
@@ -78,7 +89,7 @@ export default Vue.extend({
 				});
 			return {
 				'farm-btn': true,
-				'farm-btn--elevated': this.isElevated,
+				'farm-btn--elevated': this.elevated,
 				'farm-btn--round': this.isRound,
 				'farm-btn--rounded': this.rounded,
 				'farm-btn--icon': this.icon,
@@ -88,17 +99,6 @@ export default Vue.extend({
 		},
 		isRound(): boolean {
 			return Boolean(this.icon || this.fab);
-		},
-		isElevated(): boolean {
-			return Boolean(
-				!this.icon &&
-					!this.text &&
-					!this.outlined &&
-					!this.depressed &&
-					!this.disabled &&
-					!this.plain &&
-					(this.elevation == null || Number(this.elevation) > 0)
-			);
 		},
 	},
 });
