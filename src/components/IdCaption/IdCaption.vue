@@ -1,12 +1,12 @@
 <template>
-	<div class="idcaption" :link="link">
+	<div class="idcaption">
 		<IconBox v-if="icon" :icon="icon" color="secondary" size="md" />
 		<div class="idcaption__body">
 			<div v-if="hasTitle" class="d-flex align-center">
 				<farm-caption class="text" bold variation="medium">
 					<slot name="title"></slot>
 				</farm-caption>
-				<farm-btn @click="$emit('onLinkClick')" icon color="gray" v-if="link">
+				<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
 					<farm-icon size="xs">open-in-new</farm-icon>
 				</farm-btn>
 			</div>
@@ -47,12 +47,8 @@ export default Vue.extend({
 	},
 
 	setup(_, { slots }) {
-		const hasTitle = computed(() => {
-			return slots.title;
-		});
-		const hasSubtitle = computed(() => {
-			return slots.subtitle;
-		});
+		const hasTitle = computed(() => slots.title);
+		const hasSubtitle = computed(() => slots.subtitle);
 
 		return { hasSubtitle, hasTitle };
 	},

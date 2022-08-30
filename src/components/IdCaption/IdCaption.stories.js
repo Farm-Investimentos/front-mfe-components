@@ -12,11 +12,11 @@ export const Primary = () => ({
     link="/admin/dashboard" 
     copyText="texto a copiar"
     >
-        <template v-slot:title="{}">
+        <template v-slot:title>
             Upper Line Text
         </template>
-        <template v-slot:subtitle="{}">
-            Lower: Line Text
+        <template v-slot:subtitle>
+            Lower:Line Text
         </template>
     </farm-idcaption>
     `,
@@ -28,14 +28,30 @@ export const Linkless = () => ({
     icon="account-box-outline"
     copyText="texto a copiar"
     >
-        <template v-slot:title="{}">
+        <template v-slot:title>
             Upper Line Text
         </template>
-        <template v-slot:subtitle="{}">
-            Lower: Line Text
+        <template v-slot:subtitle>
+            Lower:Line Text
         </template>
     </farm-idcaption>
     
+    `,
+});
+
+export const Iconless = () => ({
+	template: `
+    <farm-idcaption 
+    link="/admin/dashboard" 
+    copyText="texto a copiar"
+    >
+        <template v-slot:title>
+            Upper Line Text
+        </template>
+        <template v-slot:subtitle>
+            Lower:Line Text
+        </template>
+    </farm-idcaption>
     `,
 });
 
@@ -45,10 +61,9 @@ export const NoUpperText = () => ({
     icon="account-box-outline"
     copyText="texto a copiar"
     link="/admin/dashboard" 
-
     >
-        <template v-slot:subtitle="{}">
-            Lower: Line Text
+        <template v-slot:subtitle>
+            Lower:Line Text
         </template>
     </farm-idcaption>
     
@@ -65,23 +80,6 @@ export const NoBottomText = () => ({
         <template v-slot:title="{}">
             Upper Line Text
         </template>
-       
-    </farm-idcaption>
-    `,
-});
-
-export const Iconless = () => ({
-	template: `
-    <farm-idcaption 
-    link="/admin/dashboard" 
-    copyText="texto a copiar"
-    >
-        <template v-slot:title="{}">
-            Upper Line Text
-        </template>
-        <template v-slot:subtitle="{}">
-            Lower: Line Text
-        </template>
     </farm-idcaption>
     `,
 });
@@ -92,11 +90,11 @@ export const NoTextToClip = () => ({
     icon="account-box-outline" 
     link="/admin/dashboard" 
     >
-        <template v-slot:title="{}">
+        <template v-slot:title>
             Upper Line Text
         </template>
-        <template v-slot:subtitle="{}">
-            Lower: Line Text
+        <template v-slot:subtitle>
+            Lower:Line Text
         </template>
     </farm-idcaption>
     `,
