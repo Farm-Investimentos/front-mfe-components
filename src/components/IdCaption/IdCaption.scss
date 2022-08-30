@@ -1,21 +1,36 @@
 .idcaption {
 	display: flex;
-	align-items: center;
-
+	
 	.farm-icon-box {
-		margin-right: 5px;
+		margin-right: 8px;
 	}
+
 	&__body {
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-content: flex-start;
+
+		&--single {
+			justify-content: center;
+		}
+
 		.farm-typography {
-			position: relative;
-			padding: 2px 0;
+			
+			margin-bottom: 0;
+			display: flex;
+			flex: none;
+			> span {
+				position: relative;
+			}
 		}
 
 		.farm-btn,
 		.farm-tooltip {
 			position: absolute;
 			right: -30px;
-			top: -5px;
+			top: -8px;
 		}
 	}
 }
