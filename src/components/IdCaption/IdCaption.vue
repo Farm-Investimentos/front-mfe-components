@@ -39,10 +39,11 @@ export default Vue.extend({
 			type: String,
 		},
 		/**
-		 * Link to
+		 * Has link?
 		 */
 		link: {
-			type: String,
+			type: Boolean,
+			default: false,
 		},
 	},
 

@@ -8,9 +8,9 @@ export default {
 export const Primary = () => ({
 	template: `
     <farm-idcaption 
-    icon="account-box-outline" 
-    link="/admin/dashboard" 
+    icon="account-box-outline"
     copyText="texto a copiar"
+    :link="true"
     >
         <template v-slot:title>
             Upper Line Text
@@ -42,8 +42,8 @@ export const Linkless = () => ({
 export const Iconless = () => ({
 	template: `
     <farm-idcaption 
-    link="/admin/dashboard" 
     copyText="texto a copiar"
+    :link="true"
     >
         <template v-slot:title>
             Upper Line Text
@@ -60,7 +60,7 @@ export const NoUpperText = () => ({
     <farm-idcaption 
     icon="account-box-outline"
     copyText="texto a copiar"
-    link="/admin/dashboard" 
+    :link="true"
     >
         <template v-slot:subtitle>
             Lower:Line Text
@@ -74,8 +74,8 @@ export const NoBottomText = () => ({
 	template: `
     <farm-idcaption 
     icon="account-box-outline" 
-    link="/admin/dashboard" 
     copyText="texto a copiar"
+    :link="true"
     >
         <template v-slot:title="{}">
             Upper Line Text
@@ -88,7 +88,7 @@ export const NoTextToClip = () => ({
 	template: `
     <farm-idcaption 
     icon="account-box-outline" 
-    link="/admin/dashboard" 
+    :link="true"
     >
         <template v-slot:title>
             Upper Line Text
