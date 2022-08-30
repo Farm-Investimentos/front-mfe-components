@@ -1,7 +1,7 @@
 import IdCaption from './';
 
 export default {
-	title: 'IdCaption',
+	title: 'Display/idCaption',
 	component: IdCaption,
 };
 
