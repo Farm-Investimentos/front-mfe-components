@@ -1,13 +1,15 @@
 .header-text {
 	position: relative;
-	i {
+	color: var(--v-primary-base);
+	font-size: 12px;
+	.farm-icon {
 		position: absolute;
 		right: -20px;
 		top: -1px;
 	}
 
-	.v-icon {
-		&.v-icon--asc {
+	.farm-icon {
+		&.farm-icon--asc {
 			transform: rotateX(180deg);
 		}
 	}
