@@ -136,7 +136,9 @@ export default Vue.extend({
 					timeZone: 'America/Sao_Paulo',
 				});
 
-				return this.min && locatedSelectedDate < locatedMinDate
+				console.log(this.getUniversalDate(locatedSelectedDate), this.getUniversalDate(locatedMinDate));
+
+				return this.min && this.getUniversalDate(locatedSelectedDate) < this.getUniversalDate(locatedMinDate)
 					? 'A data está fora do período permitido'
 					: true;
 			},
@@ -173,6 +175,11 @@ export default Vue.extend({
 				this.dateField = `${year}-${month}-${day}`;
 				this.save();
 			}
+		},
+		getUniversalDate(d) {
+			const onlyDMY = d.split(' ')[0];
+			const arr = onlyDMY.split('/');
+			return new Date(arr[2], arr[1] -1, arr[0]);
 		},
 	},
 	computed: {
