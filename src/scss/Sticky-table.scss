@@ -10,7 +10,7 @@ $defaultLefts: 0, 4rem, 4rem;
 		tr td {
 			background-color: white;
 		}
-		tr th {
+		.v-data-table-header tr th {
 			color: var(--v-primary-base);
 			text-transform: uppercase;
 			font-weight: bold;
