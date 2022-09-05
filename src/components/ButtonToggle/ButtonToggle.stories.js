@@ -1,7 +1,7 @@
 import ButtonToggle from './ButtonToggle.vue';
 
 export default {
-	title: 'Buttons/Button Toggle',
+	title: 'Interactions/Button Toggle',
 	component: ButtonToggle,
 	parameters: {
 		docs: {
