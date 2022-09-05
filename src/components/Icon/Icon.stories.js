@@ -2,6 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import Icon from './Icon';
 import colors from '../../configurations/colors';
 import sizes from '../../configurations/sizes';
+import iconsList from './icons_list';
 
 import('./Icons.stories.scss');
 
@@ -26,10 +27,7 @@ export const Atom = () => ({
 	</div>`,
 });
 
-export const Icons = () => ({
-	components: {
-		'farm-icon': Icon,
-	},
+export const Colors = () => ({
 	data() {
 		return {
 			colors,
@@ -43,9 +41,6 @@ export const Icons = () => ({
 });
 
 export const Sizes = () => ({
-	components: {
-		'farm-icon': Icon,
-	},
 	data() {
 		return {
 			sizes,
@@ -85,9 +80,18 @@ export const Sizes = () => ({
 	</div>`,
 });
 
-Icons.story = {
-	name: 'Colors',
-};
-Sizes.story = {
-	name: 'Sizes',
-};
+export const ListOfIcons = () => ({
+	data() {
+		return {
+			iconsList: [...iconsList],
+		};
+	},
+	template: `<div class="icons-container__list">
+       <div v-for="icon of iconsList" :key="'icon_' + icon">
+       <farm-icon>
+            {{ icon }}
+        </farm-icon>
+        <span>{{ icon }}</span>
+       </div>
+	</div>`,
+});
