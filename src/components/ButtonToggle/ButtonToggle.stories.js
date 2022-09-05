@@ -19,9 +19,12 @@ export const Primary = () => ({
 	data() {
 		return {
 			buttons: [{ label: 'label 1' }, { label: 'label 2' }, { label: 'label 3' }],
+			selected: null,
 		};
 	},
 	template: `
-        <farm-button-toggle :buttons="buttons" />
-    `,
+    <div>
+        <farm-button-toggle v-model="selected" :buttons="buttons" />
+        selected item: {{ selected }}
+    </div>`,
 });

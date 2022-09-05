@@ -5,13 +5,14 @@
 			:key="`button_toggle_` + index"
 			color="gray"
 			outlined
+			@click="setValue(index)"
 		>
 			{{ button.label }}
 		</farm-btn>
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue, { PropType, ref } from 'vue';
 export default Vue.extend({
 	name: 'farm-button-toggle',
 	props: {
@@ -19,8 +20,21 @@ export default Vue.extend({
 			type: Array as PropType<Array<IButtonToggle>>,
 			default: () => [],
 		},
+		input: { type: Number, default: null },
 	},
-	setup() {},
+	setup(props, { emit }) {
+		const inputVal = ref(props.input);
+
+		const setValue = (index: number) => {
+			inputVal.value = index;
+			emit('input', inputVal.value);
+		};
+
+		return {
+			inputVal,
+			setValue,
+		};
+	},
 });
 
 interface IButtonToggle {
