@@ -50,6 +50,7 @@ export {
 };
 
 export * from './components/AlertReload';
+export * from './components/ButtonToggle';
 export * from './components/Buttons/DefaultButton';
 export * from './components/Buttons/DangerButton';
 export * from './components/Buttons/ConfirmButton';
