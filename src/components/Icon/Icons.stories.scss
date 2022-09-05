@@ -12,3 +12,20 @@
         align-items: center;
     }
 }
+
+.icons-container__list {
+    display: flex;
+  flex-wrap: wrap;
+    
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        width: 120px;
+        height: 100px;
+        text-align: center;
+        span {
+            font-size: 12px;
+        }
+    }
+}
