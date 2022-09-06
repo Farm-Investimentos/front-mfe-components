@@ -84,14 +84,25 @@ export const ListOfIcons = () => ({
 	data() {
 		return {
 			iconsList: [...iconsList],
+			filterKey: '',
 		};
 	},
-	template: `<div class="icons-container__list">
-       <div v-for="icon of iconsList" :key="'icon_' + icon">
-       <farm-icon>
-            {{ icon }}
-        </farm-icon>
-        <span>{{ icon }}</span>
-       </div>
-	</div>`,
+	watch: {
+		filterKey(newValue) {
+			this.iconsList = [...iconsList].filter(
+				item => item.toLowerCase().indexOf(newValue.toLowerCase()) >= 0
+			);
+		},
+	},
+	template: `<div>
+        <farm-textfield v-model="filterKey" style="margin: 0 auto; width: 240px;" />
+        <div class="icons-container__list">
+            <div v-for="icon of iconsList" :key="'icon_' + icon">
+                <farm-icon>
+                    {{ icon }}
+                </farm-icon>
+                <span>{{ icon }}</span>
+            </div>
+        </div>
+    </div>`,
 });
