@@ -1,0 +1,14 @@
+.farm-button-toggle {
+    .farm-btn {
+        border-radius: 0;
+    }
+    > .farm-btn:first-of-type {
+        border-radius: 4px 0 0 4px;
+    }
+    > .farm-btn:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+    > .farm-btn:not(:last-child) {
+        border-right: 0;
+    }
+}

@@ -21,15 +21,16 @@
 				<span class="header-text" v-if="!isTHDataTableSelect(item)">
 					{{ item.text }}
 
-					<v-icon
+					<farm-icon
 						v-if="item.sortable && sortClick[$index].show"
 						v-bind:class="[
-							sortClick[$index][item.value] ? 'v-icon--desc' : 'v-icon--asc',
+							sortClick[$index][item.value] ? 'farm-icon--desc' : 'farm-icon--asc',
 						]"
-						small
+						size="sm"
+						color="gray"
 					>
-						mdi-sort-descending
-					</v-icon>
+						sort-descending
+					</farm-icon>
 				</span>
 
 				<span v-if="isTHDataTableSelect(item) && showCheckbox">
@@ -47,13 +48,11 @@
 <script>
 /* eslint-disable */
 import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
 import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
 
 export default Vue.extend({
 	name: 'farm-datatable-header',
 	components: {
-		VIcon,
 		VSimpleCheckbox,
 	},
 	props: {
