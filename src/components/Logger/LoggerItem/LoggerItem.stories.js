@@ -74,3 +74,43 @@ export const CustomIcon = () => ({
 	},
 	template: `<farm-logger-item :item="item" />`,
 });
+
+export const Details = () => ({
+	data() {
+		return {
+			items: [
+				{
+					icon: 'book',
+					message: 'Aprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'success',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+				{
+					icon: 'book',
+					message: 'Reprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+				{
+					icon: 'book',
+					message: 'Reprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'primary',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+			],
+		};
+	},
+	template: `<div><farm-logger-item v-for="item of items" :key="item.status" :item="item" /></div>`,
+});
