@@ -19,7 +19,12 @@
 				{{ item.userName }}
 			</span>
 		</div>
-		<farm-btn v-if="hasDetails" :color="buttonColor" plain @click="callDetails"
+		<farm-btn
+			v-if="hasDetails"
+			:color="buttonColor"
+			plain
+			title="Ver Detalhes"
+			@click="callDetails"
 			>Ver Detalhes</farm-btn
 		>
 	</section>
