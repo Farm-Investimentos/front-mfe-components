@@ -19,6 +19,14 @@
 				{{ item.userName }}
 			</span>
 		</div>
+		<farm-btn
+			v-if="hasDetails"
+			:color="buttonColor"
+			plain
+			title="Ver Detalhes"
+			@click="callDetails"
+			>Ver Detalhes</farm-btn
+		>
 	</section>
 </template>
 <script lang="ts">
@@ -33,8 +41,13 @@ export default Vue.extend({
 		 */
 		item: { required: true, type: Object as PropType<ILoggerItem> },
 	},
+	methods: {
+		callDetails(): void {
+			this.item.details();
+		},
+	},
 	computed: {
-		mdiIconName() {
+		mdiIconName(): string {
 			if (this.item.icon) {
 				return `${this.item.icon}`;
 			}
@@ -43,9 +56,21 @@ export default Vue.extend({
 			}
 			return `${this.item.status === 'success' ? 'check' : 'close'}`;
 		},
+		buttonColor(): string {
+			if (this.item.status === 'success') {
+				return 'secondary';
+			} else if (this.item.status === 'error') {
+				return 'error';
+			}
+
+			return 'primary';
+		},
+		hasDetails(): boolean {
+			return !!this.item.details;
+		},
 	},
 });
 </script>
 <style lang="scss" scoped>
-@import './LoggerItem.scss'
+@import './LoggerItem.scss';
 </style>

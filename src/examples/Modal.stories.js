@@ -1,5 +1,4 @@
 import { withDesign } from 'storybook-addon-designs';
-import { DialogHeader, DialogFooter } from '../main';
 
 export default {
 	title: 'Display/Dialog/Examples',

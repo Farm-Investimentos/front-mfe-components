@@ -1,5 +1,4 @@
 import { withDesign } from 'storybook-addon-designs';
-import Icon from './Icon';
 import colors from '../../configurations/colors';
 import sizes from '../../configurations/sizes';
 import iconsList from './icons_list';

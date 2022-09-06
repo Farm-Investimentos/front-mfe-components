@@ -49,5 +49,45 @@ describe('LoggerItem component', () => {
 			expect(component.mdiIconName).toEqual('close');
 		});
 
+		it('Should return success button color', async () => {
+			await wrapper.setProps({
+				item: {
+					status: 'success',
+				},
+			});
+			expect(component.buttonColor).toEqual('secondary');
+		});
+
+		it('Should return error button color', async () => {
+			await wrapper.setProps({
+				item: {
+					status: 'error',
+				},
+			});
+			expect(component.buttonColor).toEqual('error');
+		});
+
+		it('Should return default button color', async () => {
+			await wrapper.setProps({
+				item: {
+					status: 'primary',
+				},
+			});
+			expect(component.buttonColor).toEqual('primary');
+		});
+
+		it('Should not have a detail button', async () => {
+			await wrapper.setProps({
+				item: {
+					details: () => {},
+				},
+			});
+
+			expect(component.hasDetails).toBeTruthy();
+		});
+
+		it('Should not have a detail button', () => {
+			expect(component.hasDetails).toBeFalsy();
+		});
 	});
 });
