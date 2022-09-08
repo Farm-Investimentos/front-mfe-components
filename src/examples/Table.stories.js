@@ -1,4 +1,6 @@
 import { withDesign } from 'storybook-addon-designs';
+import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
+import DataTablePaginator from '../components/DataTablePaginator';
 
 const headers = [
 	{

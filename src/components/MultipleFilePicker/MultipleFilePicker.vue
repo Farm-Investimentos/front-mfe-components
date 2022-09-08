@@ -94,8 +94,6 @@
 </template>
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
 import { sizeOf } from '@farm-investimentos/front-mfe-libs-ts';
 
 export type DownloadFiles = {
@@ -106,10 +104,7 @@ export type DownloadFiles = {
 
 export default Vue.extend({
 	name: 'farm-multiple-filepicker',
-	components: {
-		'farm-btn': DefaultButton,
-		'farm-icon': Icon,
-	},
+
 	props: {
 		/*
 		 * Accepted file types
@@ -200,15 +195,11 @@ export default Vue.extend({
 				this.$emit('onFileChange', newValue);
 				return;
 			}
-			const invalidTypeArray = newValue.filter(file => {
-				if (
+			const invalidTypeArray = newValue.filter(
+				file =>
 					this.acceptedFileTypes !== '*' &&
 					this.acceptedFileTypes.indexOf(file.type) === -1
-				) {
-					return true;
-				}
-				return false;
-			});
+			);
 
 			if (invalidTypeArray.length > 0) {
 				const validTypeArray = newValue.filter(file => {
@@ -217,7 +208,7 @@ export default Vue.extend({
 					}
 					return true;
 				});
-
+				this.$emit('onInvalidFiles', [...invalidTypeArray]);
 				this.files = validTypeArray;
 				return;
 			}
