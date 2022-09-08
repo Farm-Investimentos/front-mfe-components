@@ -1,7 +1,10 @@
 <template>
 	<section
-		class="v-data-table-custom-footer"
-		:class="{ 'hidden-perpageoptions': hidePerPageOptions }"
+		:class="{
+			'v-data-table-custom-footer': true,
+			'hidden-perpageoptions': hidePerPageOptions,
+			'farm-paginator--gutter': hasGutter,
+		}"
 	>
 		<div v-if="!hidePerPageOptions">
 			<v-select
@@ -34,7 +37,7 @@
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled"  @click="nextPage">
+				<button :disabled="currentPage === totalPages || disabled" @click="nextPage">
 					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
 				</button>
 			</li>
@@ -88,6 +91,10 @@ export default Vue.extend({
 		initialLimitPerPage: {
 			type: Number,
 			default: 10,
+		},
+		hasGutter: {
+			type: Boolean,
+			default: true,
 		},
 	},
 	methods: {

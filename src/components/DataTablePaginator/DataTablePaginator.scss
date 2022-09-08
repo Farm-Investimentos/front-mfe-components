@@ -55,8 +55,13 @@ ul.farm-paginator {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 0;
 
     &.hidden-perpageoptions {
         justify-content: flex-end;
     }
+}
+
+.farm-paginator--gutter {
+    margin: 1rem 1.5rem 0;
 }
