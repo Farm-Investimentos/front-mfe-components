@@ -24,7 +24,9 @@
 	inset: 0px;
 	border-radius: 50%;
 	border: 5px solid var(--v-secondary-base);
-	animation: prixClipFix 2s linear infinite;
+	animation: prixClipFix 2s linear infinite alternate;
+	animation-fill-mode: backwards;
+	animation-delay: 0;
 }
 
 .farm-loader__spinner--big-border:before {
@@ -65,5 +67,115 @@
 	}
 	100% {
 		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+	}
+}
+
+/* .farm-circular--visible {
+	animation: progress-circular-dash 1.4s ease-in-out infinite;
+	stroke-linecap: round;
+	stroke-dasharray: 80, 200;
+	stroke-dashoffset: 0px;
+} */
+
+$progress-circular-rotate-animation: progress-circular-rotate 1.4s linear infinite !default;
+$progress-circular-rotate-dash: progress-circular-dash 1.4s ease-in-out infinite !default;
+$process-circular-intermediate-svg-transition: all 0.2s ease-in-out !default;
+$progress-circular-overlay-transition: all 0.6s ease-in-out !default;
+
+.farm-progress-circular {
+	width: 70px;
+	height: 70px;
+	color: var(--v-secondary-base) !important;
+	caret-color: var(--v-secondary-base) !important;
+	position: relative;
+	display: inline-flex;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
+
+	& circle {
+		stroke-width: 3.7;
+	}
+
+	&--small {
+		width: 35px;
+		height: 35px;
+
+		& circle {
+			stroke-width: 5.7;
+		}
+	}
+
+	&--big {
+		width: 100px;
+		height: 100px;
+
+		& circle {
+			stroke-width: 2.7;
+		}
+	}
+
+	> svg {
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 0;
+	}
+
+	&--visible {
+		animation: progress-circular-dash 1.4s ease-in-out infinite;
+		stroke-linecap: round;
+		stroke-dasharray: 80, 200;
+		stroke-dashoffset: 0px;
+	}
+
+	&--indeterminate {
+		> svg {
+			animation: $progress-circular-rotate-animation;
+			transform-origin: center center;
+			transition: $process-circular-intermediate-svg-transition;
+		}
+
+		.farm-progress-circular__overlay {
+			animation: $progress-circular-rotate-dash;
+			stroke-linecap: round;
+			stroke-dasharray: 80, 200;
+			stroke-dashoffset: 0px;
+		}
+	}
+	&__info {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
+	&__overlay {
+		stroke: currentColor;
+		z-index: 2;
+		transition: $progress-circular-overlay-transition;
+	}
+}
+@keyframes progress-circular-dash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0px;
+	}
+	50% {
+		stroke-dasharray: 100, 200;
+		stroke-dashoffset: -15px;
+	}
+	100% {
+		stroke-dasharray: 100, 200;
+		stroke-dashoffset: -125px;
+	}
+}
+
+@keyframes progress-circular-rotate {
+	100% {
+		transform: rotate(360deg);
 	}
 }
