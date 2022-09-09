@@ -5,12 +5,7 @@
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
-				class="
-					farm-progress-circular
-					farm-progress-circular--big
-					farm-progress-circular--visible
-					farm-progress-circular--indeterminate
-				"
+				class="farm-loader farm-loader--big farm-loader--visible farm-loader--indeterminate"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +19,10 @@
 						r="20"
 						stroke-dasharray="125.664"
 						stroke-dashoffset="125.66370614359172px"
-						class="farm-progress-circular__overlay"
+						class="farm-loader__overlay"
 					></circle>
 				</svg>
-				<div class="v-progress-circular__info"></div>
+				<div class="farm-loader__info"></div>
 			</div>
 		</div>
 		<div v-else>
@@ -35,11 +30,7 @@
 				role="progressbar"
 				aria-valuemin="0"
 				aria-valuemax="100"
-				class="
-					farm-progress-circular
-					farm-progress-circular--visible
-					farm-progress-circular--indeterminate
-				"
+				class="farm-loader farm-loader--visible farm-loader--indeterminate"
 				:class="calculateSize"
 			>
 				<svg
@@ -54,10 +45,10 @@
 						r="20"
 						stroke-dasharray="125.664"
 						stroke-dashoffset="125.66370614359172px"
-						class="farm-progress-circular__overlay"
+						class="farm-loader__overlay"
 					></circle>
 				</svg>
-				<div class="v-progress-circular__info"></div>
+				<div class="farm-loader__info"></div>
 			</div>
 		</div>
 	</div>
@@ -93,7 +84,7 @@ export default Vue.extend({
 
 	computed: {
 		calculateSize() {
-			return this.size === 'small' ? 'farm-progress-circular--small' : '';
+			return this.size === 'small' ? 'farm-loader--small' : '';
 		},
 	},
 });

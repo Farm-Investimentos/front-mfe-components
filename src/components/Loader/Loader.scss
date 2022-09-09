@@ -1,88 +1,9 @@
-.farm-loader__spinner {
-	display: inline-block;
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	position: relative;
-	animation: rotate 1s linear infinite;
+$loader-rotate-animation: loader-rotate 1.4s linear infinite !default;
+$loader-rotate-dash: loader-dash 1.4s ease-in-out infinite !default;
+$loader-intermediate-svg-transition: all 0.2s ease-in-out !default;
+$loader-overlay-transition: all 0.6s ease-in-out !default;
 
-	&--small {
-		width: 35px;
-		height: 35px;
-	}
-
-	&--big {
-		width: 100px;
-		height: 100px;
-	}
-}
-
-.farm-loader__spinner::before {
-	content: '';
-	box-sizing: border-box;
-	position: absolute;
-	inset: 0px;
-	border-radius: 50%;
-	border: 5px solid var(--v-secondary-base);
-	animation: prixClipFix 2s linear infinite alternate;
-	animation-fill-mode: backwards;
-	animation-delay: 0;
-}
-
-.farm-loader__spinner--big-border:before {
-	border-width: 6px;
-}
-
-.farm-loader__overlay {
-	align-items: center;
-	border-radius: inherit;
-	background-color: rgba(0, 0, 0, 0.3);
-	display: flex;
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-@keyframes rotate {
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
-@keyframes prixClipFix {
-	0% {
-		clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-	}
-	25% {
-		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-	}
-	50% {
-		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-	}
-	75% {
-		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-	}
-	100% {
-		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-	}
-}
-
-/* .farm-circular--visible {
-	animation: progress-circular-dash 1.4s ease-in-out infinite;
-	stroke-linecap: round;
-	stroke-dasharray: 80, 200;
-	stroke-dashoffset: 0px;
-} */
-
-$progress-circular-rotate-animation: progress-circular-rotate 1.4s linear infinite !default;
-$progress-circular-rotate-dash: progress-circular-dash 1.4s ease-in-out infinite !default;
-$process-circular-intermediate-svg-transition: all 0.2s ease-in-out !default;
-$progress-circular-overlay-transition: all 0.6s ease-in-out !default;
-
-.farm-progress-circular {
+.farm-loader {
 	width: 70px;
 	height: 70px;
 	color: var(--v-secondary-base) !important;
@@ -128,7 +49,7 @@ $progress-circular-overlay-transition: all 0.6s ease-in-out !default;
 	}
 
 	&--visible {
-		animation: progress-circular-dash 1.4s ease-in-out infinite;
+		animation: loader-dash 1.4s ease-in-out infinite;
 		stroke-linecap: round;
 		stroke-dasharray: 80, 200;
 		stroke-dashoffset: 0px;
@@ -136,13 +57,13 @@ $progress-circular-overlay-transition: all 0.6s ease-in-out !default;
 
 	&--indeterminate {
 		> svg {
-			animation: $progress-circular-rotate-animation;
+			animation: $loader-rotate-animation;
 			transform-origin: center center;
-			transition: $process-circular-intermediate-svg-transition;
+			transition: $loader-intermediate-svg-transition;
 		}
 
-		.farm-progress-circular__overlay {
-			animation: $progress-circular-rotate-dash;
+		.farm-loader__overlay {
+			animation: $loader-rotate-dash;
 			stroke-linecap: round;
 			stroke-dasharray: 80, 200;
 			stroke-dashoffset: 0px;
@@ -156,10 +77,24 @@ $progress-circular-overlay-transition: all 0.6s ease-in-out !default;
 	&__overlay {
 		stroke: currentColor;
 		z-index: 2;
-		transition: $progress-circular-overlay-transition;
+		transition: $loader-overlay-transition;
 	}
 }
-@keyframes progress-circular-dash {
+
+.farm-loader__overlay {
+	align-items: center;
+	border-radius: inherit;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+@keyframes loader-dash {
 	0% {
 		stroke-dasharray: 1, 200;
 		stroke-dashoffset: 0px;
@@ -174,7 +109,7 @@ $progress-circular-overlay-transition: all 0.6s ease-in-out !default;
 	}
 }
 
-@keyframes progress-circular-rotate {
+@keyframes loader-rotate {
 	100% {
 		transform: rotate(360deg);
 	}
