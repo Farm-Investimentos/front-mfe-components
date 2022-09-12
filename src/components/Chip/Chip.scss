@@ -12,6 +12,12 @@
     text-align: center;
     align-items: center;
     color: white;
+    width: 100%;
+
+    &--dense {
+        min-width: auto;
+        width: max-content;
+    }
 
     .farm-typography {
         width: 100%;
