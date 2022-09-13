@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "9.2.2",
+	"version": "9.2.3",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -66,4 +66,3 @@
 		"@farm-investimentos:registry": "https://registry.npmjs.org"
 	}
 }
-

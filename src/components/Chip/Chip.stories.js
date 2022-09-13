@@ -10,8 +10,15 @@ export default {
 };
 
 export const Primary = () => ({
-	template: `<div>
-		<farm-chip color="info">Chip</farm-chip>
+	template: `<div class="chips-container">
+		<farm-chip color="info">Chip (100% width)</farm-chip>
+	</div>`,
+});
+
+export const Dense = () => ({
+	template: `<div class="chips-container">
+		<farm-chip color="info" :dense="true">prop</farm-chip>
+		<farm-chip color="secondary" dense>attribute</farm-chip>
 	</div>`,
 });
 
