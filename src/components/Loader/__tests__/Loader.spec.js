@@ -20,7 +20,7 @@ describe('Loader component', () => {
 		});
 	});
 
-	describe('Compited properties', () => {
+	describe('Computed properties', () => {
 		it('Should calculate calculateSize for default size prop', () => {
 			expect(component.calculateSize).toEqual('');
 		});
@@ -29,7 +29,7 @@ describe('Loader component', () => {
 			await wrapper.setProps({
 				size: 'small',
 			});
-			expect(component.calculateSize).toEqual('loader--small');
+			expect(component.calculateSize).toEqual('farm-loader--small');
 		});
 	});
 });
