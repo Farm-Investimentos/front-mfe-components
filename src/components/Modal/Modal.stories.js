@@ -19,55 +19,14 @@ export const Primary = () => ({
 	data() {
 		return {
 			value: false,
+			text,
 		};
 	},
 	template: `<div>
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value">
 		<template v-slot:content>
-		inicio!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 1!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 2!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 3!
+			<div v-html="text" />
 		</template>
 	</farm-modal>
 	</div>`,
@@ -77,58 +36,17 @@ export const HeaderAndBottomFromDS = () => ({
 	data() {
 		return {
 			value: false,
+			text,
 		};
 	},
 	template: `<div>
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
-	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="64">
+	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="64">
 		<template v-slot:header>
 			<farm-dialog-header title="Título" @onClose="() => value = false" />
 		</template>
 		<template v-slot:content>
-		inicio!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 1!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 2!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 3!
+		<div v-html="text" />
 		</template>
 		
 		<template v-slot:footer>
@@ -138,10 +56,62 @@ export const HeaderAndBottomFromDS = () => ({
 	</div>`,
 });
 
+export const SizeMD = () => ({
+	data() {
+		return {
+			value: false,
+			text,
+		};
+	},
+	template: `<div>
+	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value" size="md">
+		<template v-slot:content>
+			<div v-html="text" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
+export const SizeSmall = () => ({
+	data() {
+		return {
+			value: false,
+			text,
+		};
+	},
+	template: `<div>
+	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value" size="sm">
+		<template v-slot:content>
+			<div v-html="text" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
+export const SizeXs = () => ({
+	data() {
+		return {
+			value: false,
+			text,
+		};
+	},
+	template: `<div>
+	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value" size="xs">
+		<template v-slot:content>
+			<div v-html="text" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
 export const HeaderAndBottom = () => ({
 	data() {
 		return {
 			value: false,
+			text,
 		};
 	},
 	template: `<div>
@@ -151,49 +121,7 @@ export const HeaderAndBottom = () => ({
 			header vai aqui
 		</template>
 		<template v-slot:content>
-		inicio!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 1!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 2!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste!<br />
-		teste 3!
+		<div v-html="text" />
 		</template>
 		
 		<template v-slot:footer>
@@ -202,3 +130,47 @@ export const HeaderAndBottom = () => ({
 	</farm-modal>
 	</div>`,
 });
+
+const text = `inicio!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste 1!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste 2!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste 3!`;

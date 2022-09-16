@@ -1,3 +1,5 @@
+@import '../../configurations/mixins';
+
 .farm-modal {
     position: fixed;
     top: 0;
@@ -16,24 +18,52 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(#CCCCCC, 0.6);
+        background: rgba(#999999, 0.8);
         z-index: 101;
     }
 
     &--container {
         background-color: white;
-        width: 960px;
-        max-width: 960px;
         border-radius: 8px;
         max-height: calc(100vh - 64px);
         position: relative;
         overflow: hidden;
         z-index: 102;
+        @include addShadow;
+    }
+
+    &--size-default {
+        .farm-modal--container {
+            width: 960px;
+            max-width: 960px;
+        }
+    }
+
+    &--size-md {
+        .farm-modal--container {
+            width: 568px;
+            max-width: 568px;
+        }
+    }
+
+    &--size-sm {
+        .farm-modal--container {
+            width: 448px;
+            max-width: 448px;
+        }
+    }
+
+    &--size-xs {
+        .farm-modal--container {
+            width: 360px;
+            max-width: 360px;
+        }
     }
 
     &--content {
         max-height: calc(100vh - 64px);
         overflow-y: auto;
+        width: 100%;
     }
 
     &--header {
@@ -50,4 +80,23 @@
         width: 100%;
     }
 
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .25s
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0
+}
+
+@include upToSm {
+    .farm-modal {
+        &--container {
+            width: calc(100vw - 32px);
+            max-width: calc(100vw - 32px);
+        }
+    }
 }

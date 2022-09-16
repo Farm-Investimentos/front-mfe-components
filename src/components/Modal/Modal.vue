@@ -1,21 +1,23 @@
 <template>
-	<div :class="{ 'farm-modal': true }" v-if="value">
-		<div class="farm-modal--container">
-			<div class="farm-modal--header">
-				<slot name="header"></slot>
+	<transition name="fade">
+		<div :class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }" v-if="inputValue">
+			<div class="farm-modal--container">
+				<div class="farm-modal--header">
+					<slot name="header"></slot>
+				</div>
+				<div class="farm-modal--content" :style="styles">
+					<slot name="content"></slot>
+				</div>
+				<div class="farm-modal--footer">
+					<slot name="footer"></slot>
+				</div>
 			</div>
-			<div class="farm-modal--content" :style="styles">
-				<slot name="content"></slot>
-			</div>
-			<div class="farm-modal--footer">
-				<slot name="footer"></slot>
-			</div>
+			<div class="farm-modal--overlay" @click="close()"></div>
 		</div>
-		<div class="farm-modal--overlay" @click="close()"></div>
-	</div>
+	</transition>
 </template>
 <script lang="ts">
-import Vue, { PropType, toRefs } from 'vue';
+import Vue, { PropType, ref, toRefs, watch } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-modal',
@@ -29,8 +31,8 @@ export default Vue.extend({
 		 */
 		persistent: { type: Boolean, default: false },
 		size: {
-			type: String as PropType<'sm' | 'md' | 'lg'>,
-			default: 'md',
+			type: String as PropType<'xs' | 'sm' | 'md' | 'default'>,
+			default: 'default',
 		},
 		/**
 		 * content offset, in pixels, from the top
@@ -39,7 +41,7 @@ export default Vue.extend({
 			type: Number,
 			default: 0,
 		},
-        /**
+		/**
 		 * content offset, in pixels, from the bottom
 		 */
 		offsetBottom: {
@@ -48,7 +50,8 @@ export default Vue.extend({
 		},
 	},
 	setup(props, { emit }) {
-		const { value, offsetTop, offsetBottom, persistent } = toRefs(props);
+		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
+		const inputValue = ref(props.value);
 		const styles = {
 			paddingTop: offsetTop.value + 'px',
 			paddingBottom: offsetBottom.value + 'px',
@@ -56,16 +59,24 @@ export default Vue.extend({
 
 		const close = () => {
 			if (persistent.value) {
-				return;
+				return false;
 			}
-			value.value = false;
+			inputValue.value = false;
 			emit('input', false);
 		};
 
+		watch(
+			() => props.value,
+			newValue => {
+				inputValue.value = newValue;
+			}
+		);
+
 		return {
-			value,
+			inputValue,
 			styles,
 			close,
+			size,
 		};
 	},
 });
