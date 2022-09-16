@@ -131,7 +131,6 @@ export const HeaderAndBottom = () => ({
 	</div>`,
 });
 
-<<<<<<< HEAD
 export const Persistent = () => ({
 	data() {
 		return {
@@ -156,8 +155,6 @@ export const Persistent = () => ({
 	</div>`,
 });
 
-=======
->>>>>>> develop
 const text = `inicio!<br />
 teste!<br />
 teste!<br />
