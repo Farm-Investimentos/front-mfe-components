@@ -11,7 +11,6 @@ describe('Modal component', () => {
 				value: false,
 			},
 		});
-		component = wrapper.vm;
 	});
 
 	test('Modal created', () => {
