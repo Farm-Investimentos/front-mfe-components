@@ -4,7 +4,6 @@ import Modal from '../index';
 
 describe('Modal component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Modal, {
@@ -12,7 +11,6 @@ describe('Modal component', () => {
 				value: false,
 			},
 		});
-		component = wrapper.vm;
 	});
 
 	test('Modal created', () => {
