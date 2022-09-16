@@ -1,9 +1,56 @@
 <template>
-	<div class="farm-loader__overlay" v-if="mode === 'overlay'" :style="styleObject">
-		<span class="farm-loader__spinner farm-loader__spinner--big"></span>
-	</div>
-	<div v-else>
-		<span class="farm-loader__spinner farm-loader__spinner--big-border" :class="calculateSize"></span>
+	<div>
+		<div class="farm-loader__overlay" v-if="mode === 'overlay'" :style="styleObject">
+			<div
+				role="progressbar"
+				aria-valuemin="0"
+				aria-valuemax="100"
+				class="farm-loader farm-loader--big farm-loader--visible farm-loader--indeterminate"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715"
+					style="transform: rotate(0deg)"
+				>
+					<circle
+						fill="transparent"
+						cx="45.714285714285715"
+						cy="45.714285714285715"
+						r="20"
+						stroke-dasharray="125.664"
+						stroke-dashoffset="125.66370614359172px"
+						class="farm-loader__overlay"
+					></circle>
+				</svg>
+				<div class="farm-loader__info"></div>
+			</div>
+		</div>
+		<div v-else>
+			<div
+				role="progressbar"
+				aria-valuemin="0"
+				aria-valuemax="100"
+				class="farm-loader farm-loader--visible farm-loader--indeterminate"
+				:class="calculateSize"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715"
+					style="transform: rotate(0deg)"
+				>
+					<circle
+						fill="transparent"
+						cx="45.714285714285715"
+						cy="45.714285714285715"
+						r="20"
+						stroke-dasharray="125.664"
+						stroke-dashoffset="125.66370614359172px"
+						class="farm-loader__overlay"
+					></circle>
+				</svg>
+				<div class="farm-loader__info"></div>
+			</div>
+		</div>
 	</div>
 </template>
 <script lang="ts">
@@ -22,7 +69,6 @@ export default Vue.extend({
 		},
 	},
 	data() {
-
 		const zIndex = Math.max(
 			...Array.from(document.querySelectorAll('body *'), el =>
 				parseFloat(window.getComputedStyle(el).zIndex)
@@ -38,7 +84,7 @@ export default Vue.extend({
 
 	computed: {
 		calculateSize() {
-			return this.size === 'small' ? 'loader--small' : '';
+			return this.size === 'small' ? 'farm-loader--small' : '';
 		},
 	},
 });
