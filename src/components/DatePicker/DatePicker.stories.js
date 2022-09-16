@@ -28,7 +28,6 @@ export const Primary = () => ({
     </div>`,
 });
 
-/*
 export const InitValue = () => ({
 	components: { DatePicker },
 	template: `<div style='max-width: 320px'><DatePicker inputId="input-custom-id-1" value="2021-08-01" /></div>`,
@@ -49,16 +48,10 @@ export const RequiredDates = () => ({
     </div>`,
 });
 
-export const readonlyFalse = () => ({
+export const ReadonlyFalse = () => ({
 	components: { DatePicker },
 	template: `<div style='max-width: 320px'>
         <DatePicker :readonly="false" inputId="input-custom-id-3"/>
     </div>`,
 });
 
-Primary.storyName = 'Básico';
-InitValue.storyName = 'Data inicial';
-MinMaxDates.storyName = 'Data mínima e máxima';
-RequiredDates.storyName = 'Obrigatório';
-readonlyFalse.storyName = 'Permitir digitação';
-*/
