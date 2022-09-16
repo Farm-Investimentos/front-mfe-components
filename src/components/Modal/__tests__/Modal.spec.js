@@ -4,7 +4,6 @@ import Modal from '../index';
 
 describe('Modal component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Modal, {
