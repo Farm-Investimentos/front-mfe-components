@@ -1,0 +1,53 @@
+.farm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition: .2s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 1ms;
+
+    &--overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(#CCCCCC, 0.6);
+        z-index: 101;
+    }
+
+    &--container {
+        background-color: white;
+        width: 960px;
+        max-width: 960px;
+        border-radius: 8px;
+        max-height: calc(100vh - 64px);
+        position: relative;
+        overflow: hidden;
+        z-index: 102;
+    }
+
+    &--content {
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+    }
+
+    &--header {
+        position: absolute;
+        top: 0;
+        background: white;
+        width: 100%;
+    }
+
+    &--footer {
+        position: absolute;
+        bottom: 0;
+        background: white;
+        width: 100%;
+    }
+
+}
