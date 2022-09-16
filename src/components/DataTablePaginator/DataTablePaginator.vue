@@ -16,9 +16,9 @@
 			></v-select>
 		</div>
 
-		<ul :class="{ 'farm-paginator': true, 'farm-paginator--disabled': disabled }">
+		<ul :class="{ 'farm-paginator': true, 'farm-paginator--disabled': disabled || totalPages == null }">
 			<li>
-				<button :disabled="currentPage === 1 || disabled" @click="previousPage">
+				<button :disabled="currentPage === 1 || disabled || totalPages == null" @click="previousPage">
 					<farm-icon color="gray" size="sm">chevron-left</farm-icon>
 				</button>
 			</li>
@@ -37,7 +37,7 @@
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled" @click="nextPage">
+				<button :disabled="currentPage === totalPages || disabled || totalPages == null || totalPages === 0" @click="nextPage">
 					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
 				</button>
 			</li>
@@ -70,7 +70,10 @@ export default Vue.extend({
 		/**
 		 * Total de páginas
 		 */
-		totalPages: null,
+		totalPages: {
+			type: Number,
+			default: null,
+		},
 		/**
 		 * Desabilita controles
 		 */
