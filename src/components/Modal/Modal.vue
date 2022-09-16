@@ -61,6 +61,7 @@ export default Vue.extend({
 			if (persistent.value) {
 				return false;
 			}
+			window.removeEventListener('keyup', escHandler);
 			inputValue.value = false;
 			emit('input', false);
 		};
@@ -69,14 +70,23 @@ export default Vue.extend({
 			() => props.value,
 			newValue => {
 				inputValue.value = newValue;
+				if (newValue) {
+					window.addEventListener('keyup', escHandler);
+				}
 			}
 		);
+
+		const escHandler = event => {
+			if (event.key === 'Escape') {
+				close();
+			}
+		};
 
 		return {
 			inputValue,
 			styles,
-			close,
 			size,
+			close,
 		};
 	},
 });
