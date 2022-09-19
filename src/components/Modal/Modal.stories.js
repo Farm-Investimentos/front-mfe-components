@@ -41,7 +41,7 @@ export const HeaderAndBottomFromDS = () => ({
 	},
 	template: `<div>
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
-	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="64">
+	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="68">
 		<template v-slot:header>
 			<farm-dialog-header title="Título" @onClose="() => value = false" />
 		</template>
@@ -116,7 +116,7 @@ export const HeaderAndBottom = () => ({
 	},
 	template: `<div>
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
-	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="64">
+	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="68">
 		<template v-slot:header>
 			header vai aqui
 		</template>
@@ -140,7 +140,7 @@ export const Persistent = () => ({
 	},
 	template: `<div>
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
-	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="64" :persistent="true">
+	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="68" :persistent="true">
 		<template v-slot:header>
 			<farm-dialog-header title="Título" @onClose="() => value = false" />
 		</template>
@@ -148,6 +148,27 @@ export const Persistent = () => ({
 		<br />persistent modal<br />
 		</template>
 		
+		<template v-slot:footer>
+			<farm-dialog-footer @onConfirm="() => value = false" @onClose="() => value = false" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
+export const HorizontalScroll = () => ({
+	data() {
+		return {
+			value: false,
+		};
+	},
+	template: `<div>
+	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value" size="md" :offsetBottom="68">
+		<template v-slot:content>
+			<div style="width: 800px;">
+			horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll
+			</div>
+		</template>
 		<template v-slot:footer>
 			<farm-dialog-footer @onConfirm="() => value = false" @onClose="() => value = false" />
 		</template>
