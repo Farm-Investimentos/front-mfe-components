@@ -17,7 +17,7 @@
 }
 
 @mixin fromSm {
-    @media (min-width: 960) {
+    @media (min-width: 960px) {
         @content;
     }
 }
