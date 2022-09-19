@@ -32,10 +32,6 @@
         @include addShadow;
     }
 
-
-   
-
-
     &--content {
         max-height: calc(100vh - 64px);
         overflow-y: auto;
@@ -85,21 +81,21 @@
                 max-width: 960px;
             }
         }
-    
+
         &--size-md {
             .farm-modal--container {
                 width: 568px;
                 max-width: 568px;
             }
         }
-    
+
         &--size-sm {
             .farm-modal--container {
                 width: 448px;
                 max-width: 448px;
             }
         }
-    
+
         &--size-xs {
             .farm-modal--container {
                 width: 360px;
