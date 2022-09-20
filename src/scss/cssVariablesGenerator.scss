@@ -1,0 +1,11 @@
+@import '../configurations/theme-colors';
+
+:root {
+
+    @each $name,
+    $color in $theme-colors {
+        #{"--farm-" + $name + "-base"}: themeColor($name, "base");
+        #{"--farm-" + $name + "-lighten"}: themeColor($name, "lighten");
+        #{"--farm-" + $name + "-darken"}: themeColor($name, "darken");
+    }
+}
