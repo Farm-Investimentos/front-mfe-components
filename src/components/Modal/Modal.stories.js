@@ -118,14 +118,14 @@ export const HeaderAndBottom = () => ({
 	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="68">
 		<template v-slot:header>
-			header vai aqui
+			Header
 		</template>
 		<template v-slot:content>
 		<div v-html="text" />
 		</template>
 		
 		<template v-slot:footer>
-			footer vai aqui
+			Footer
 		</template>
 	</farm-modal>
 	</div>`,
@@ -169,6 +169,32 @@ export const HorizontalScroll = () => ({
 			horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll horizontal scroll
 			</div>
 		</template>
+		<template v-slot:footer>
+			<farm-dialog-footer @onConfirm="() => value = false" @onClose="() => value = false" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
+export const CustomHeader = () => ({
+	data() {
+		return {
+			value: false,
+			text,
+		};
+	},
+	template: `<div>
+	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="68">
+		<template v-slot:header>
+		<farm-dialog-header>
+			Template Slot <farm-chip :dense="true">chip</farm-chip>
+		</farm-dialog-header>
+		</template>
+		<template v-slot:content>
+		<div v-html="text" />
+		</template>
+		
 		<template v-slot:footer>
 			<farm-dialog-footer @onConfirm="() => value = false" @onClose="() => value = false" />
 		</template>
