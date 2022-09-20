@@ -3,6 +3,8 @@
 		<farm-icon v-if="iconTitle" size="16px" color="secondary">{{ iconTitle }}</farm-icon>
 		{{ title }}
 
+		<slot></slot>
+
 		<farm-icon
 			v-if="hasCloseIcon"
 			role="button"
@@ -30,7 +32,6 @@ export default Vue.extend({
 		title: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		 * Ícone - usa os do material icons
@@ -38,7 +39,6 @@ export default Vue.extend({
 		iconTitle: {
 			type: String,
 			default: null,
-			required: false,
 		},
 		/**
 		 * Ícone - se possui o ícone de fechar
@@ -46,7 +46,6 @@ export default Vue.extend({
 		hasCloseIcon: {
 			type: Boolean,
 			default: true,
-			required: false,
 		},
 	},
 	components: {
