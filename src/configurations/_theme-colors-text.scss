@@ -1,0 +1,10 @@
+@import './theme-colors';
+
+:export {
+
+    @each $name,
+    $color in $text-colors {
+        #{'text-' + $name}: $color;
+    }
+
+}

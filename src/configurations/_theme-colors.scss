@@ -1,25 +1,79 @@
-$secondary: (
-    base: #00B493,
-    lighten: #ADFFF0,
-    darken: #006653,
+$primary: (
+    base: #00CCA7,
+    lighten: #EBFFFB,
+    darken: #00B493,
 );
 
-$info: (
-    base: #5089DE,
-    lighten: #95e8ff,
-    darken: #003784
+$secondary: (
+    base: #5C5C5C,
+    lighten: #F5F5F5,
+    darken: #1A3738,
+);
+
+$neutral: (
+    base: #EEEEEE,
+    lighten: #F5F5F5,
+    darken: #E0E0E0,
 );
 
 $error: (
-    base: #ea5455,
-    lighten: #ff706d,
-    darken: #6f0000
+    base: #F44336,
+    lighten: #FFEBEE,
+    darken: #B71C1C,
+);
+
+$warning: (
+    base: #FF9800,
+    lighten: #FFF3E0,
+    darken: #FF6D00,
+);
+
+$info: (
+    base: #2196F3,
+    lighten: #E3F2FD,
+    darken: #0D47A1,
+);
+
+$success: (
+    base: #4CAF50,
+    lighten: #E8F5E9,
+    darken: #1B5E20,
+);
+
+$extra-1: (
+    base: #8E24AA,
+    lighten: #E8F5E9,
+    darken: #4A148C,
+);
+
+$extra-2: (
+    base: #EC407A,
+    lighten: #FCE4EC,
+    darken: #880E4F,
 );
 
 $theme-colors: (
+    "primary": $primary,
     "secondary": $secondary,
+    "neutral": $neutral,
     "info": $info,
-    "error": $error
+    "error": $error,
+    "warning": $warning,
+    "success": $success,
+    "extra-1": $extra-1,
+    "extra-2": $extra-2
+);
+
+$text-colors: (
+    "primary": #1C1C1C,
+    "secondary": #757575,
+    "disabled": #BDBDBD
+);
+
+$stroke-colors: (
+    "base": #E0E0E0,
+    "disabled": #BDBDBD,
+    "divider": #E0E0E0
 );
 
 $theme-colors-list: map-keys($theme-colors);
