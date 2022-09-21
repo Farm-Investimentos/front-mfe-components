@@ -1,8 +1,10 @@
 @import './theme-colors';
 
 :export {
+
     @each $name,
     $color in $theme-colors {
         #{$name}: themeColor($name);
     }
+
 }

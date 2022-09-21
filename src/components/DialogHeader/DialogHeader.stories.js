@@ -17,7 +17,6 @@ export const Secondary = () => ({
 	</div>`,
 });
 
-
 export const CustomIcon = () => ({
 	template: `
 		<div style="max-width: 480px; position: relative;">
@@ -42,4 +41,12 @@ export const NoCloseIcon = () => ({
 		<div style="max-width: 480px; position: relative;">
 			<farm-dialog-header title="Título do header" :hasCloseIcon="false" />
 		</div>`,
+});
+
+export const TemplateSlot = () => ({
+	template: `<div style="max-width: 480px; position: relative;">
+		<farm-dialog-header>
+			Template Slot <farm-chip :dense="true">chip</farm-chip>
+		</farm-dialog-header>
+	</div>`,
 });

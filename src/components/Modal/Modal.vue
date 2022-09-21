@@ -53,8 +53,8 @@ export default Vue.extend({
 		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
 		const inputValue = ref(props.value);
 		const styles = {
-			paddingTop: offsetTop.value + 'px',
-			paddingBottom: offsetBottom.value + 'px',
+			marginTop: offsetTop.value + 'px',
+			marginBottom: offsetBottom.value + 'px',
 		};
 
 		const close = () => {

@@ -1,5 +1,13 @@
 <template>
-	<span :class="{ 'farm-chip': true, 'farm-chip--dense': dense }">
+	<span
+		:class="{
+			'farm-chip': true,
+			'farm-chip--dense': dense,
+			'farm-chip--outlined': outlined,
+			'farm-chip--lighten': variation === 'lighten',
+			'farm-chip--darken': variation === 'darken',
+		}"
+	>
 		<farm-typography tag="span" size="sm"> <slot></slot> </farm-typography>
 	</span>
 </template>
@@ -16,6 +24,17 @@ export default Vue.extend({
 		dense: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Is outlined
+		 */
+		outlined: {
+			type: Boolean,
+			default: false,
+		},
+		variation: {
+			type: String,
+			default: '',
 		},
 	},
 });

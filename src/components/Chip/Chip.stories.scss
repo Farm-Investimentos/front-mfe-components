@@ -1,9 +1,16 @@
 .chips-container {
     display: flex;
     flex-direction: column;
-    max-width: 320px;
+    max-width: 160px;
 
     > .farm-chip {
         margin-bottom: 16px;
+    }
+
+    &-full-example {
+        border:1px solid black;
+        > .farm-chip {
+            margin-bottom: 0;
+        }
     }
 }
