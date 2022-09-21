@@ -1,0 +1,10 @@
+@import './theme-colors';
+
+:export {
+
+    @each $name,
+    $color in $stroke-colors {
+        #{'stroke-' + $name}: $color;
+    }
+
+}
