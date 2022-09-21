@@ -47,3 +47,16 @@ export const WithLabel = () => ({
 		<farm-checkbox v-model="isChecked" label="custom label" />
 	</div>`,
 });
+
+export const Disabled = () => ({
+	data() {
+		return {
+			isChecked: true,
+			notIsChecked: false,
+		};
+	},
+	template: `<div>
+		<farm-checkbox v-model="isChecked" :disabled="true" /><br />
+		<farm-checkbox v-model="notIsChecked" :disabled="true" />
+	</div>`,
+});
