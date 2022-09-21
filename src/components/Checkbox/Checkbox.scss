@@ -23,6 +23,15 @@
         border-color: var(--v-secondary-base);
     }
 
+    &--disabled {
+        border-color: #dadada;
+        cursor: default;
+
+        &.farm-checkbox--checked {
+            background-color: #dadada;
+        }
+    }
+
     .farm-icon {
         color: white;
     }
