@@ -14,10 +14,11 @@ export const Primary = () => ({
                 { label: 'Button 2', id: 2 }, 
                 { label: 'Button 3', id: 3 }
             ],
+			checkedValue: 1
 		};
 	},
 	template: `<div>
-	    <farm-radio-group v-model="buttons" />
+	    <farm-radio-group v-model="checkedValue" column :buttons="buttons" />
 	</div>`,
 });
 

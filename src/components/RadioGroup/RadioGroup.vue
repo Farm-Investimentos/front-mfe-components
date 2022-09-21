@@ -1,11 +1,18 @@
 <template>
-    <div>
-        <div 
+    <div 
+    :class="{
+        'farm-radio_wrapper': true,
+        'farm-radio_wrapper--column': $props.column,
+    }"
+    
+    class="farm-radio_wrapper">
+        <div class="farm-radio-group"
             v-for="(button, index) in buttons" 
             :key="`farm-radio-group_` + index"
-        >
-            <input type="radio" :id="`farm-radio-group_` + index" :name="button.label" value="30">
-            <label :for="`farm-radio-group_` + index">
+            @click="clicked(button.id)"
+        >   
+            <input :checked="button.id === $props.value" type="radio" :id="`farm-radio-group_` + index" name="radio" :value="button.id">
+            <label>
                 {{button.label}}
             </label>
         </div>
@@ -24,7 +31,22 @@ export default Vue.extend({
 			type: Array as PropType<Array<IRadioGroup>>,
 			default: () => [],
 		},
+        /**
+		 * v-model
+		 */
+		value: {
+			required: true,
+		},
+        column: {
+            type: Boolean,
+            default: false
+        }
 	},
+    methods: {
+        clicked(value) {
+            this.$emit('input', value);
+        }
+    }
 
 });
 </script>
