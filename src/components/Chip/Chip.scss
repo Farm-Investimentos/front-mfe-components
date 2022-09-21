@@ -3,8 +3,8 @@
 .farm-chip {
     display: inline-flex;
     padding: 0 8px;
-    border-radius: 8px;
-    background-color: themeColor('secondary');
+    border-radius: 16px;
+    background-color: themeColor('primary');
     height: 24px;
     min-width: 80px;
     max-width: 100%;
@@ -13,6 +13,9 @@
     align-items: center;
     color: white;
     width: 100%;
+    border:1px solid themeColor('primary');
+    font-size: 12px;
+    font-weight: 500;
 
     &--dense {
         min-width: auto;
@@ -26,14 +29,38 @@
     @each $color in $theme-colors-list {
         &#{'[color=' + $color + ']'} {
             background-color: themeColor($color);
-
-            &[variation='lighten'] {
+            border-color: themeColor($color);
+            
+            &.farm-chip--lighten {
                 background-color: themeColor($color, 'lighten');
-                color: black;
+                border-color: themeColor($color, 'lighten');
+                color: themeColor($color, 'darken');
             }
 
-            &[variation='darken'] {
+            &.farm-chip--darken {
                 background-color: themeColor($color, 'darken');
+                border-color: themeColor($color, 'darken');
+            }
+        }
+    }
+
+    &--outlined {
+        @each $color in $theme-colors-list {
+            &#{'[color=' + $color + ']'} {
+                background-color: transparent;
+                color: themeColor($color);
+    
+                &.farm-chip--lighten {
+                    background-color: transparent;
+                    border-color: themeColor($color, 'lighten');
+                    color: themeColor($color);
+                }
+    
+                &.farm-chip--darken {
+                    background-color: transparent;
+                    border-color: themeColor($color, 'darken');
+                    color: themeColor($color, 'darken');
+                }
             }
         }
     }
