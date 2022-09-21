@@ -3,9 +3,7 @@
     :class="{
         'farm-radio_wrapper': true,
         'farm-radio_wrapper--column': $props.column,
-    }"
-    
-    class="farm-radio_wrapper">
+    }">
         <div class="farm-radio-group"
             v-for="(button, index) in buttons" 
             :key="`farm-radio-group_` + index"
