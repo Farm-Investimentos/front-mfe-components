@@ -10,8 +10,9 @@ import '../src/scss/Status-Chip.scss';
 import '../src/scss/VMenuOverrides.scss';
 import '../src/scss/utils.scss';
 import '../src/scss/Sticky-table.scss';
-
 import '../src/scss/Table.scss';
+
+import '../src/scss/cssVariablesGenerator.scss';
 
 import * as farmComponents from '../src/main';
 
