@@ -18,4 +18,5 @@
     @each $name,
     $color in $stroke-colors {
         #{"--farm-stroke-" + $name}: $color;
-    }}
+    }
+}
