@@ -1,8 +1,11 @@
 import Chip from './Chip.vue';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
 import('./Chip.stories.scss');
 
-const colors = ['secondary', 'info', 'error'];
-const variations = ['darken', 'lighten'];
+console.log(baseThemeColors);
+
+const colors = Object.keys(baseThemeColors);
+const variations = ['', 'darken', 'lighten'];
 
 export default {
 	title: 'Display/Chips',
@@ -10,14 +13,14 @@ export default {
 };
 
 export const Primary = () => ({
-	template: `<div class="chips-container">
-		<farm-chip color="info">Chip (100% width)</farm-chip>
+	template: `<div class="chips-container chips-container-full-example">
+		<farm-chip color="primary">Chip (100% width)</farm-chip>
 	</div>`,
 });
 
 export const Dense = () => ({
 	template: `<div class="chips-container">
-		<farm-chip color="info" :dense="true">prop</farm-chip>
+		<farm-chip color="primary" :dense="true">prop</farm-chip>
 		<farm-chip color="secondary" dense>attribute</farm-chip>
 	</div>`,
 });
@@ -26,20 +29,27 @@ export const Colors = () => ({
 	data() {
 		return {
 			colors,
+			variations,
 		};
 	},
-	template: `<div class="chips-container">
-		<h3>Base Colors</h3>
-		<farm-chip 
-			v-for="color in colors"
-			:key="color"
-			:color="color">
-				{{ color }}
-		</farm-chip>
+	template: `
+	<div>
+		<h3>Colors & variations</h3>
+		<div class="chips-container" v-for="color in colors">
+			<h4>{{ color }}</h4>
+			<farm-chip 
+				v-for="variation in variations"
+				:key="color + '_' + variation"
+				:color="color"
+				:variation="variation">
+					{{ variation || 'base' }}
+			</farm-chip>
+		</div>
+
 	</div>`,
 });
 
-export const Variations = () => ({
+export const ColorsOutlined = () => ({
 	data() {
 		return {
 			colors,
@@ -48,16 +58,26 @@ export const Variations = () => ({
 	},
 	template: `
 	<div>
-		<h3>Variations</h3>
+		<h3>Outlined</h3>
 		<div class="chips-container" v-for="color in colors">
 			<h4>{{ color }}</h4>
 			<farm-chip 
 				v-for="variation in variations"
 				:key="color + '_' + variation"
 				:color="color"
+				:outlined="true"
 				:variation="variation">
-					{{ variation }}
+					{{ variation || 'base' }}
 			</farm-chip>
 		</div>
+
+	</div>`,
+});
+
+export const CustomTypography = () => ({
+	template: `<div class="chips-container">
+		<farm-chip color="primary">
+			<farm-bodytext :type="2">BodyText 2</farm-bodytext>
+		</farm-chip>
 	</div>`,
 });
