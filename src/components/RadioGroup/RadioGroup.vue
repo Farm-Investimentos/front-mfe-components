@@ -1,15 +1,22 @@
 <template>
     <div 
     :class="{
-        'farm-radio_wrapper': true,
-        'farm-radio_wrapper--column': $props.column,
+        'farm-radio-group': true,
+        'farm-radio-group--column': $props.column,
     }">
-        <div class="farm-radio-group"
+        <div class="farm-radio-group__item"
             v-for="(button, index) in buttons" 
             :key="`farm-radio-group_` + index"
             @click="clicked(button.id)"
         >   
-            <input :checked="button.id === $props.value" type="radio" :id="`farm-radio-group_` + index" name="radio" :value="button.id">
+            <input  
+                type="radio" 
+                name="radio" 
+                :checked="button.id === $props.value"
+                :id="`farm-radio-group_` + index"
+                :style="cssVars" 
+                :value="button.id"
+               >
             <label>
                 {{button.label}}
             </label>
@@ -38,11 +45,22 @@ export default Vue.extend({
         column: {
             type: Boolean,
             default: false
+        },
+        color: {
+            type: String,
+			default: '#00B493',
         }
 	},
     methods: {
         clicked(value) {
             this.$emit('input', value);
+        }
+    },
+    computed: {
+        cssVars () {
+            return {
+                '--radio-group-color': this.color
+            };
         }
     }
 
