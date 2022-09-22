@@ -1,18 +1,18 @@
 <template>
 	<div class="farm-checkbox__container">
 		<span
-			:class="{ 'farm-checkbox': true, 'farm-checkbox--checked': innerValue }"
+			:class="{ 'farm-checkbox': true, 'farm-checkbox--checked': innerValue, 'farm-checkbox--disabled': disabled }"
 			@click="toggleValue"
 		>
 			<farm-icon size="sm" v-if="innerValue">check</farm-icon>
 		</span>
 		<farm-label v-if="label">
-            {{ label }}
-        </farm-label>
+			{{ label }}
+		</farm-label>
 	</div>
 </template>
 <script lang="ts">
-import Vue, { ref } from 'vue';
+import Vue, { ref, toRefs } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-checkbox',
@@ -25,12 +25,19 @@ export default Vue.extend({
 		 * Label
 		 */
 		label: { type: String, default: null },
+		/**
+		 * disabled
+		 */
+		disabled: { type: Boolean, default: false },
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
-		const { label } = props;
+		const { label, disabled } = toRefs(props);
 
 		const toggleValue = () => {
+			if(disabled.value) {
+				return false;
+			}
 			innerValue.value = !innerValue.value;
 			emit('input', innerValue.value);
 		};
@@ -38,6 +45,7 @@ export default Vue.extend({
 		return {
 			innerValue,
 			label,
+			disabled,
 			toggleValue,
 		};
 	},
