@@ -13,7 +13,7 @@
     align-items: center;
     color: white;
     width: 100%;
-    border:1px solid themeColor('primary');
+    border: 1px solid themeColor('primary');
     font-size: 12px;
     font-weight: 500;
 
@@ -30,7 +30,7 @@
         &#{'[color=' + $color + ']'} {
             background-color: themeColor($color);
             border-color: themeColor($color);
-            
+
             &.farm-chip--lighten {
                 background-color: themeColor($color, 'lighten');
                 border-color: themeColor($color, 'lighten');
@@ -44,23 +44,39 @@
         }
     }
 
+    &[color='neutral'] {
+        color: themeColor('secondary');
+
+        &.farm-chip--lighten {
+            color: themeColor('secondary');
+        }
+    }
+
     &--outlined {
         @each $color in $theme-colors-list {
             &#{'[color=' + $color + ']'} {
                 background-color: transparent;
                 color: themeColor($color);
-    
+
                 &.farm-chip--lighten {
                     background-color: transparent;
                     border-color: themeColor($color, 'lighten');
                     color: themeColor($color);
                 }
-    
+
                 &.farm-chip--darken {
                     background-color: transparent;
                     border-color: themeColor($color, 'darken');
                     color: themeColor($color, 'darken');
                 }
+            }
+        }
+
+        &[color='neutral'] {
+            color: themeColor('secondary');
+
+            &.farm-chip--lighten {
+                color: themeColor('secondary');
             }
         }
     }
