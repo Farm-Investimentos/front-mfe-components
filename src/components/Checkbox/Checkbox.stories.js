@@ -1,4 +1,8 @@
 import Checkbox from './Checkbox';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+
+const colors = Object.keys(baseThemeColors);
+const variations = ['', 'darken', 'lighten'];
 
 export default {
 	title: 'Form/Checkbox',
@@ -58,5 +62,32 @@ export const Disabled = () => ({
 	template: `<div>
 		<farm-checkbox v-model="isChecked" :disabled="true" /><br />
 		<farm-checkbox v-model="notIsChecked" :disabled="true" />
+	</div>`,
+});
+
+export const Colors = () => ({
+	data() {
+		return {
+			isChecked: true,
+			colors,
+			variations,
+		};
+	},
+	template: `<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+	<div v-for="color in colors" style="width: 33.3%;">
+		<h4>{{ color }}</h4>
+		<div
+			style="display: flex; flex-direction: column;"
+			v-for="variation in variations"
+			:key="color + '_' + variation"
+		>
+			<farm-checkbox
+				v-model="isChecked"
+				:color="color"
+				:variation="variation"
+				:label="variation || 'Base'"			
+			/>
+			</div>
+		</div>
 	</div>`,
 });

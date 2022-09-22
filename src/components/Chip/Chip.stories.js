@@ -2,8 +2,6 @@ import Chip from './Chip.vue';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
 import('./Chip.stories.scss');
 
-console.log(baseThemeColors);
-
 const colors = Object.keys(baseThemeColors);
 const variations = ['', 'darken', 'lighten'];
 

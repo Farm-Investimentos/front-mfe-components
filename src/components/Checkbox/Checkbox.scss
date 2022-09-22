@@ -1,9 +1,34 @@
+@import '../../configurations/theme-colors';
+
 .farm-checkbox__container {
     display: flex;
     flex-direction: row;
 
     .farm-label {
         margin-left: 8px;
+    }
+
+    @each $color in $theme-colors-list {
+        &#{'[color=' + $color + ']'} {
+            .farm-checkbox--checked {
+                background-color: themeColor($color);
+                border-color: themeColor($color);
+
+                &.farm-checkbox--lighten {
+                    background-color: themeColor($color, 'lighten');
+                    border-color: themeColor($color, 'lighten');
+
+                    .farm-icon {
+                        color: themeColor($color, 'darken');
+                    }
+                }
+
+                &.farm-checkbox--darken {
+                    background-color: themeColor($color, 'darken');
+                    border-color: themeColor($color, 'darken');
+                }
+            }
+        }
     }
 }
 
@@ -18,11 +43,6 @@
     line-height: 0;
     transition: all 0.4s;
 
-    &--checked {
-        background-color: var(--v-secondary-base);
-        border-color: var(--v-secondary-base);
-    }
-
     &--disabled {
         border-color: #dadada;
         cursor: default;
@@ -35,4 +55,5 @@
     .farm-icon {
         color: white;
     }
+
 }
