@@ -75,6 +75,7 @@ export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
 export * from './components/Modal';
 export * from './components/ProgressBar';
+export * from './components/RadioGroup';
 export * from './components/Stepper';
 export * from './components/Switcher';
 export * from './components/TextField';
