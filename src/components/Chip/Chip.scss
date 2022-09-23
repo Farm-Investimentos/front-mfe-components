@@ -50,6 +50,15 @@
         &.farm-chip--lighten {
             color: themeColor('secondary');
         }
+        &.farm-chip--darken {
+            color: white;
+        }
+    }
+
+    &[color='secondary'] {
+        &.farm-chip--lighten {
+            color: white;
+        }
     }
 
     &--outlined {

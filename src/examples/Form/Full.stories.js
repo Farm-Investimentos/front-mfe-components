@@ -42,7 +42,7 @@ export const Primary = () => ({
                 <farm-textfield v-model="form.name" />
             </div>
             <div class="footer" :style="[styles.footer]">
-                <v-btn color="secondary" :disabled="!validForm">Salvar</v-btn>
+                <farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
             </div>
         </v-form>
     `,
