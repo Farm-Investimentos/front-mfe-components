@@ -16,7 +16,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-container': Container },
 	template: '<farm-container>content</farm-container>',
 });
 
