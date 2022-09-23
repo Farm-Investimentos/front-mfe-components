@@ -1,11 +1,10 @@
 <template>
-	<form class="farm-row"><slot></slot></form>
+	<form class="farm-form"><slot></slot></form>
 </template>
 <script lang="ts">
-import Vue, { onMounted, reactive, ref } from 'vue';
-import { getCurrentInstance } from 'vue';
+import Vue, { onMounted, reactive, ref, getCurrentInstance } from 'vue';
 
-type ErrorBag = Record<number, boolean>;
+type ErrorsBag = Record<number, boolean>;
 
 export default Vue.extend({
 	name: 'farm-form',
@@ -15,7 +14,7 @@ export default Vue.extend({
 	inheritAttrs: true,
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
-		const errorsBag = reactive({} as ErrorBag);
+		const errorsBag = reactive({} as ErrorsBag);
 		let validationFields = [];
 
 		const dispatchError = () => {
