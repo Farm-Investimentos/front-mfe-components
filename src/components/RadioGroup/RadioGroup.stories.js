@@ -3,10 +3,19 @@ import RadioGroup from './RadioGroup';
 export default {
 	title: 'Form/RadioGroup',
 	component: RadioGroup,
+	parameters: {
+		docs: {
+			description: {
+				component: `RadioGroup<br />
+				selector: <em>farm-radio-group</em>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({
-	components: { 'farm-radio-group': RadioGroup },
 	data() {
 		return {
 			buttons: [
