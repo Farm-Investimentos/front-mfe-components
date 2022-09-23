@@ -26,7 +26,7 @@ export default Vue.extend({
 		const watchInput = (field: any) => {
 			field.$watch(
 				'hasError',
-				_ => {
+				() => {
 					errorsBag[field._uid] = field.valid;
 					dispatchError();
 				},
