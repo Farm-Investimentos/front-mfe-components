@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Card<br />
-				selector: <em>farm-card</em>
+				selector: <em>farm-card</em><br />
+				<span style="color: green;">ready for use</span>
 				`,
 			},
 		},
