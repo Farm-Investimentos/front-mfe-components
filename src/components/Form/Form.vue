@@ -46,6 +46,8 @@ export default Vue.extend({
 					recursiveFormField($leaf);
 				} else if ($leaf.$children[0] && $leaf.$children[0].validate) {
 					validationFields.push($leaf.$children[0]);
+				} else if ($leaf.validatable) {
+					validationFields.push($leaf);
 				}
 			});
 		};
