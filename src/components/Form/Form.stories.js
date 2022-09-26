@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Form<br />
-				selector: <em>farm-form</em>
+				selector: <em>farm-form</em><br />
+				<span style="color: green;">ready for use</span>
 				`,
 			},
 		},

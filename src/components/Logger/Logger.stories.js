@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Logger<br />
-				selector: <em>farm-logger</em>
+				selector: <em>farm-logger</em><br />
+				<span style="color: green;">ready for use</span>
 				`,
 			},
 		},

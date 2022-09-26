@@ -11,7 +11,8 @@ export default {
 		docs: {
 			description: {
 				component: `Checkbox<br />
-				selector: <em>farm-checkbox</em>
+				selector: <em>farm-checkbox</em><br />
+				<span style="color: green;">ready for use</span>
 				`,
 			},
 		},
