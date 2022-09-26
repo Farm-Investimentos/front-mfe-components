@@ -19,11 +19,11 @@ export const Primary = () => ({
 	data() {
 		return {
 			buttons: [
-                { label: 'Button 1', id: 1 }, 
-                { label: 'Button 2', id: 2 }, 
-                { label: 'Button 3', id: 3 }
-            ],
-			checkedValue: 1
+				{ label: 'Button 1', id: 1 },
+				{ label: 'Button 2', id: 2 },
+				{ label: 'Button 3', id: 3 },
+			],
+			checkedValue: 1,
 		};
 	},
 	template: `<div>
@@ -31,4 +31,26 @@ export const Primary = () => ({
 	</div>`,
 });
 
-Primary.storyName = 'Basic';
+
+export const Reset = () => ({
+	data() {
+		return {
+			buttons: [
+				{ label: 'Button 1', id: 1 },
+				{ label: 'Button 2', id: 2 },
+				{ label: 'Button 3', id: 3 },
+			],
+			checkedValue: 1,
+		};
+	},
+	methods: {
+		reset() {
+			this.$refs.radiogroupreset.reset();
+		}
+	},
+	template: `<div>
+	    <farm-radio-group v-model="checkedValue" column :buttons="buttons" ref="radiogroupreset" />
+		<farm-btn @click="reset">Reset</farm-btn>
+	</div>`,
+});
+
