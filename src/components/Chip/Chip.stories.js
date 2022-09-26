@@ -8,6 +8,17 @@ const variations = ['', 'darken', 'lighten'];
 export default {
 	title: 'Display/Chips',
 	component: Chip,
+	parameters: {
+		docs: {
+			description: {
+				component: `Chip<br />
+				selector: <em>farm-chip</em><br />
+				<span style="color: green;">ready for use</span>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({

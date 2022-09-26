@@ -7,8 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Modal<br />
-				selector: <em>farm-modal</em>
-				<span style="color: yellow;">wait</span>
+				selector: <em>farm-modal</em><br />
+				<span style="color: green;">ready for use</span>
 				`,
 			},
 		},
