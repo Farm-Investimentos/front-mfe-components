@@ -5,7 +5,11 @@ describe('Checkbox component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Checkbox, {});
+		wrapper = shallowMount(Checkbox, {
+			propsData: {
+				value: false,
+			},
+		});
 	});
 
 	test('Created hook', () => {

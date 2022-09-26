@@ -8,6 +8,7 @@ export default {
 			description: {
 				component: `Modal<br />
 				selector: <em>farm-modal</em>
+				<span style="color: yellow;">wait</span>
 				`,
 			},
 		},

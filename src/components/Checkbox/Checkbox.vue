@@ -18,7 +18,11 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { ref, toRefs, watch } from 'vue';
+import Vue, { onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
+import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
+import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
+import deepEqual from '../../composition/deepEqual';
 
 export default Vue.extend({
 	name: 'farm-checkbox',
@@ -32,21 +36,34 @@ export default Vue.extend({
 		 */
 		label: { type: String, default: null },
 		/**
-		 * disabled
+		 * Is disabled?
 		 */
 		disabled: { type: Boolean, default: false },
+		/**
+		 * Variation
+		 */
 		variation: {
-			type: String,
+			type: String as PropType<'' | 'lighten' | 'darken'>,
 			default: '',
 		},
 		color: {
 			type: String,
 			default: 'primary',
 		},
+		/**
+		 * Array of rules used for validation
+		 */
+		rules: {
+			type: Array as PropType<Array<Function>>,
+			default: () => [],
+		},
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
-		const { label, disabled } = toRefs(props);
+		const { label, disabled, rules } = toRefs(props);
+		const { errorBucket, valid, validatable } = validateFormStateBuilder();
+
+		let fieldValidator = validateFormFieldBuilder(rules.value);
 
 		const toggleValue = () => {
 			if (disabled.value) {
@@ -54,20 +71,51 @@ export default Vue.extend({
 			}
 			innerValue.value = !innerValue.value;
 			emit('input', innerValue.value);
+			validate(innerValue.value);
 		};
 
 		watch(
 			() => props.value,
 			() => {
 				innerValue.value = props.value;
+				validate(innerValue.value);
 			}
 		);
+
+		watch(
+			() => props.rules,
+			(newVal, oldVal) => {
+				if (deepEqual(newVal, oldVal)) return;
+				fieldValidator = validateFormFieldBuilder(rules.value);
+				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+				validate(innerValue.value);
+			}
+		);
+
+		const reset = () => {
+			if (disabled.value) {
+				return false;
+			}
+			innerValue.value = false;
+			emit('input', innerValue.value);
+		};
+
+		onBeforeMount(() => {
+			validate(innerValue.value);
+		});
+
+		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
 		return {
 			innerValue,
 			label,
 			disabled,
+			errorBucket,
+			valid,
+			validatable,
 			toggleValue,
+			reset,
+			validate,
 		};
 	},
 });
