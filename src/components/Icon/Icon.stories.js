@@ -12,7 +12,9 @@ export default {
 		viewMode: 'docs',
 		docs: {
 			description: {
-				component: `Icon`,
+				component: `Icon<br />
+                selector: <em>farm-icon<em><br />
+                <span style="color: green;">ready for use</span>`,
 			},
 		},
 	},

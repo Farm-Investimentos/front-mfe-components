@@ -18,7 +18,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -74,6 +74,10 @@ export default Vue.extend({
 			validate(innerValue.value);
 		};
 
+		const hasError = computed(() => {
+			return errorBucket.value.length > 0;
+		});
+
 		watch(
 			() => props.value,
 			() => {
@@ -113,6 +117,7 @@ export default Vue.extend({
 			errorBucket,
 			valid,
 			validatable,
+			hasError,
 			toggleValue,
 			reset,
 			validate,
