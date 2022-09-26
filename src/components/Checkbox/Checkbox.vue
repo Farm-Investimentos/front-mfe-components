@@ -117,10 +117,7 @@ export default Vue.extend({
 			errorBucket,
 			valid,
 			validatable,
-<<<<<<< HEAD
-=======
 			hasError,
->>>>>>> main
 			toggleValue,
 			reset,
 			validate,
