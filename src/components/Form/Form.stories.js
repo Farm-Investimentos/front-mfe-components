@@ -44,10 +44,10 @@ export const Primary = () => ({
 	},
 	template: `
         <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
-			
-			<farm-label :required="true">Documento</farm-label>
-			<farm-textfield v-model="form.document" :rules="[rules.required]" />
-
+			<div>
+				<farm-label :required="true">Documento</farm-label>
+				<farm-textfield v-model="form.document" :rules="[rules.required]" />
+			</div>
 			<farm-label :required="true">Nome</farm-label>
 			<farm-textfield v-model="form.name" :rules="[rules.required]" />
 			
