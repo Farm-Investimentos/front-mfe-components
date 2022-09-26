@@ -26,7 +26,7 @@ export default Vue.extend({
 		const watchInput = (field: any) => {
 			field.$watch(
 				'hasError',
-				(val: boolean) => {
+				() => {
 					errorsBag[field._uid] = field.valid;
 					dispatchError();
 				},
@@ -46,6 +46,8 @@ export default Vue.extend({
 					recursiveFormField($leaf);
 				} else if ($leaf.$children[0] && $leaf.$children[0].validate) {
 					validationFields.push($leaf.$children[0]);
+				} else if ($leaf.validatable) {
+					validationFields.push($leaf);
 				}
 			});
 		};
