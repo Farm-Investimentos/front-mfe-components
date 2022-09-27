@@ -1,37 +1,35 @@
 <template>
-	<v-dialog content-class="modal-default modal-default-small" v-model="inputVal">
-		<DialogHeader :title="title" @onClose="close" />
-
-		<v-main>
-			<section class="mt-9">
-				<PromptUserToConfirm
+	<farm-modal v-model="inputVal" size="sm" :offsetTop="48" :offsetBottom="68">
+		<template v-slot:header>
+			<DialogHeader :title="title" @onClose="close" />
+		</template>
+		<template v-slot:content>
+			<section class="modal-content">
+				<farm-promptusertoconfirm
 					v-if="inputVal"
-					:match="match"
 					v-model="canConfirm"
+					:match="match"
 					:title="subtitle"
 				/>
 			</section>
+		</template>
+
+		<template v-slot:footer>
 			<DialogFooter
-				@onClose="close"
 				:confirmColor="confirmColor"
 				:confirmLabel="confirmLabel"
-				@onConfirm="confirm"
 				:isConfirmDisabled="!canConfirm"
+				@onConfirm="confirm"
+				@onClose="close"
 			/>
-		</v-main>
-	</v-dialog>
+		</template>
+	</farm-modal>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { VDialog } from 'vuetify/lib/components/VDialog';
-import { VMain } from 'vuetify/lib/components/VMain';
 
 export default Vue.extend({
 	name: 'farm-prompt-user',
-	components: {
-		VDialog,
-		VMain,
-	},
 	props: {
 		/**
 		 * Habilita/desabilita o modal
@@ -101,3 +99,6 @@ export default Vue.extend({
 	},
 });
 </script>
+<style lang="scss" scoped>
+@import './ModalPromptUser';
+</style>
