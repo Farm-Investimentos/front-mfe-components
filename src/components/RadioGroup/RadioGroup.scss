@@ -48,7 +48,7 @@ input[type="radio"]::before {
     background-color: CanvasText;
 }
 
-input[type="radio"]:checked::before {
+input[type="radio"].checked::before {
     transform: scale(1);
 }
 
@@ -57,7 +57,7 @@ input[type="radio"]:focus {
     outline-offset: none;
 }
 
-input[type="radio"]:checked {
+input[type="radio"].checked {
     border: 1.5px solid var(--radio-group-color);
 }
 
