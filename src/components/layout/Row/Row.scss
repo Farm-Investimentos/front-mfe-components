@@ -1,8 +1,30 @@
 @import '../../../configurations/functions';
+$aligns: start, center, end, baseline, stretch;
+$align-contents: start, center, end, space-between, space-around, stretch;
+$justifications: start, center, end, space-between, space-around;
+
 
 .farm-row {
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 auto;
     margin: 0 calc(#{gutter('lg')} * -1);
+
+    @each $k in $aligns {
+        &#{'--align-' + $k} {
+            align-items: $k  !important;
+        }
+    }
+
+    @each $k in $align-contents {
+        &#{'--align-content-' + $k} {
+            align-content: $k  !important;
+        }
+    }
+
+    @each $k in $justifications {
+        &#{'--justify-' + $k} {
+            justify-content: $k  !important;
+        }
+    }
 }
