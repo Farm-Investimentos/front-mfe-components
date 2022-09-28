@@ -57,7 +57,7 @@ export default Vue.extend({
 		},
 	},
 	setup(props, { emit }) {
-		const { hoverColor, hoverColorVariation, clickable } = toRefs(props);
+		const { hoverColor, hoverColorVariation } = toRefs(props);
 
 		const cssColorWithVariation = computed((): String => {
 			if (!hoverColor.value) {
@@ -72,7 +72,6 @@ export default Vue.extend({
 
 		return {
 			cssColorWithVariation,
-
 			onClick,
 		};
 	},
