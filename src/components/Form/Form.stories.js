@@ -144,3 +144,28 @@ export const InitInvalid = () => ({
         </farm-form>
     `,
 });
+
+export const RadioGroupReset = () => ({
+	data() {
+		return {
+			checkedValue: 1,
+			buttons: [
+				{ label: 'Button 1', id: 1 },
+				{ label: 'Button 2', id: 2 },
+				{ label: 'Button 3', id: 3 },
+			],
+			validForm: false,
+			styles,
+		};
+	},
+	template: `
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+			<farm-radio-group v-model="checkedValue" column :buttons="buttons" />
+
+            <div class="footer" :style="[styles.footer]">
+				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
+            </div>
+        </farm-form>
+    `,
+});

@@ -1,0 +1,37 @@
+@import '../../configurations/theme-colors';
+
+.farm-listitem {
+    list-style-type: none;
+    transition: background-color 300ms linear;
+    padding: 8px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+
+    &--clickable {
+        cursor: pointer;
+    }
+
+    >a {
+        text-decoration: none;
+    }
+
+    &:hover {
+
+        @each $color in $theme-colors-list {
+
+            &#{'.farm-listitem--' + $color + '-base'} {
+                background-color: themeColor($color);
+            }
+
+            &#{'.farm-listitem--' + $color + '-lighten'} {
+                background-color: themeColor($color, 'lighten');
+            }
+
+            &#{'.farm-listitem--' + $color + '-darken'} {
+                background-color: themeColor($color, 'darken');
+            }
+        }
+    }
+
+}

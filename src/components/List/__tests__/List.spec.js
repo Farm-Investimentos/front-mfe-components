@@ -1,15 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
-import CopyToClipboard from '../CopyToClipboard';
+import List from '../List';
 
-describe('CopyToClipboard component', () => {
+describe('List component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(CopyToClipboard, {
-			propsData: {
-				toCopy: 'test',
-			},
-		});
+		wrapper = shallowMount(List);
 	});
 
 	test('Created hook', () => {

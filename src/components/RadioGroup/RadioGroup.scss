@@ -1,24 +1,54 @@
+@import '../../configurations/theme-colors';
+
 .farm-radio-group {
     border: none;
     cursor: default;
     display: flex;
     width: 100%;
+
     &__item {
         font-size: 16px;
-        line-height: 1.1;
+        line-height: 18px;
         cursor: pointer;
         display: grid;
         grid-template-columns: 16px auto;
-        gap: 8px;
-        color: rgba(0,0,0,.6);
-        margin-top: 16px;
-        margin-right: 16px;
+        gap: 0;
+        color: rgba(0, 0, 0, .6);
+        margin-right: 32px;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    input[type="radio"].checked {
+        border: 1.5px solid black;
+    }
+
+    &--vertical {
+        flex-direction: column;
+        .farm-radio-group__item {
+            margin-right: 24px;
+            margin-top: 16px;
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+    }
+
+    @each $color in $theme-colors-list {
+        &#{'[color=' + $color + ']'} {
+            input[type="radio"]::before {
+                box-shadow: inset 16px 16px themeColor($color);
+            }
+
+            input[type="radio"].checked {
+                border-color: themeColor($color);
+            }
+        }
     }
 }
 
-.farm-radio-group--column {
-    flex-direction: column;
-}
 
 input[type="radio"] {
     -webkit-appearance: none;
@@ -26,10 +56,10 @@ input[type="radio"] {
     background-color: #ffffff;
     margin: 0;
     font: inherit;
-    color: rgba(0,0,0,.6);
+    color: rgba(0, 0, 0, .6);
     width: 18px;
     height: 18px;
-    border: 1.5px solid rgba(0,0,0,.6);
+    border: 1.5px solid rgba(0, 0, 0, .6);
     border-radius: 50%;
     transform: translate(-12px);
     display: grid;
@@ -44,11 +74,10 @@ input[type="radio"]::before {
     border-radius: 50%;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 16px 16px var(--radio-group-color);
     background-color: CanvasText;
 }
 
-input[type="radio"]:checked::before {
+input[type="radio"].checked::before {
     transform: scale(1);
 }
 
@@ -57,13 +86,9 @@ input[type="radio"]:focus {
     outline-offset: none;
 }
 
-input[type="radio"]:checked {
-    border: 1.5px solid var(--radio-group-color);
-}
-
 input[type='radio']:hover {
-    box-shadow: 0px 0px 0px 8px  rgba(0, 0, 0, 0.1);
-    background-color:  rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     opacity: 1;
 }
@@ -74,9 +99,10 @@ input[type='radio']:active {
 
 @keyframes pulse {
     from {
-      box-shadow:  0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(0, 0, 0, 0.2);
     }
+
     to {
-      box-shadow:  0 0 0 8px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(0, 0, 0, 0.2);
     }
 }
