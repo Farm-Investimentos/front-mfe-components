@@ -26,7 +26,6 @@ export const Primary = () => ({
 	template: '<farm-listitem>aaa</farm-listitem>',
 });
 
-
 export const HoverColors = () => ({
 	data() {
 		return {
@@ -34,9 +33,8 @@ export const HoverColors = () => ({
 			variations,
 		};
 	},
-	template: `<div>
-		<h3>Colors & variations</h3>
-		<div class="chips-container" v-for="color in colors" :key="color">
+	template: `<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+		<div class="chips-container" v-for="color in colors" :key="color" style="width: 33.3%; margin-bottom: 32px;">
 			<h4>{{ color }}</h4>
 			<farm-listitem
 				v-for="variation in variations"
@@ -48,4 +46,8 @@ export const HoverColors = () => ({
 			</farm-listitem>
 		</div>
 	</div>`,
+});
+
+export const ClickableCursor = () => ({
+	template: '<farm-listitem clickable>Clickable cursor</farm-listitem>',
 });

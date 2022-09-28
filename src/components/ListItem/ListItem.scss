@@ -3,6 +3,9 @@
 .farm-listitem {
     list-style-type: none;
     transition: background-color 300ms linear;
+    &--clickable {
+        cursor: pointer;
+    }
 
     &:hover {
         

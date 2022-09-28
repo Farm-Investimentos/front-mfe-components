@@ -1,7 +1,11 @@
 <template>
 	<li
 		@click="onClick"
-		:class="{ 'farm-listitem': true, [cssColorWithVariation]: cssColorWithVariation }"
+		:class="{
+			'farm-listitem': true,
+			[cssColorWithVariation]: cssColorWithVariation,
+			'farm-listitem--clickable': clickable || to,
+		}"
 	>
 		<router-link :to="to" v-if="to">
 			<slot></slot>
@@ -44,9 +48,16 @@ export default Vue.extend({
 			type: [String, null] as PropType<'base' | 'lighten' | 'darken'>,
 			default: 'base',
 		},
+		/**
+		 * Is clickable
+		 */
+		clickable: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
-		const { hoverColor, hoverColorVariation } = toRefs(props);
+		const { hoverColor, hoverColorVariation, clickable } = toRefs(props);
 
 		const cssColorWithVariation = computed((): String => {
 			if (!hoverColor.value) {
@@ -61,6 +72,7 @@ export default Vue.extend({
 
 		return {
 			cssColorWithVariation,
+
 			onClick,
 		};
 	},
