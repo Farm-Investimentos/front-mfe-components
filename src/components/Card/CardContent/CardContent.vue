@@ -1,5 +1,5 @@
 <template>
-	<component v-bind:is="tag" class="farm-card__content" :gutter="gutter">
+	<component :is="tag" class="farm-card__content" :gutter="gutter">
 		<slot></slot>
 	</component>
 </template>

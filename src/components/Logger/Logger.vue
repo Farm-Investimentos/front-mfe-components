@@ -1,9 +1,11 @@
 <template>
 	<section class="logger">
 		<template v-for="(item, index) in items">
-			<LoggerItem :item="item" :key="index" />
+			<farm-logger-item :item="item" :key="`logger_item_${index}`" />
 			<div
+				v-if="hasDivider(index)"
 				:class="{
+					'logger__divider': true,
 					'logger__divider--success': isPreviousLogAndCurrentLogSuccess(index),
 					'logger__divider--error': isPreviousLogAndCurrentLogError(index),
 					'logger__divider--success-to-error':
@@ -11,8 +13,6 @@
 					'logger__divider--error-to-success':
 						isPreviousLogSuccessAndCurrentLogError(index),
 				}"
-				v-if="hasDivider(index)"
-				class="logger__divider"
 				:key="'divider_' + index"
 			></div>
 		</template>
@@ -21,11 +21,9 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import ILoggerItem from './LoggerItem/ILoggerItem';
-import LoggerItem from './LoggerItem/';
 
 export default Vue.extend({
 	name: 'farm-logger',
-	components: { LoggerItem },
 	props: {
 		/*
 		 * List of logger items
@@ -57,6 +55,6 @@ export default Vue.extend({
 	},
 });
 </script>
-<style lang="sass" scoped>
-@import './Logger.scss'
+<style lang="scss" scoped>
+@import './Logger';
 </style>

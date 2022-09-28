@@ -10,7 +10,8 @@ export default {
 		docs: {
 			description: {
 				component: `Modal Prompt User to Confirm<br />
-				selector: <em>farm-prompt-user</em>`,
+				selector: <em>farm-prompt-user</em><br />
+				<span style="color: green;">ready for use</span>`,
 			},
 		},
 		design: {
@@ -28,10 +29,10 @@ export const Primary = () => ({
 	},
 	template: `<div>
 		<farm-prompt-user match="CONFIRMAR" title="Título" subtitle="Digite CONFIRMAR para habilitar" v-model="showPrompt" />
-		click:		
-		<v-btn color="secondary" @click="showPrompt = true;">
+			click:
+			<farm-btn color="primary" @click="showPrompt = true;">
 			reabrir
-			</v-btn>
+			</farm-btn>
 		</div>`,
 });
 export const Error = () => ({
@@ -42,8 +43,8 @@ export const Error = () => ({
 	},
 	template: `<div>
 		<farm-prompt-user match="REMOVER" title="Título" subtitle="Digite REMOVER para habilitar" v-model="showPrompt" confirmColor="error" confirmLabel="Remover" />
-			<v-btn color="secondary" @click="showPrompt = true;">
+			<farm-btn color="primary" @click="showPrompt = true;">
 			reabrir
-			</v-btn>
+			</farm-btn>
 		</div>`,
 });

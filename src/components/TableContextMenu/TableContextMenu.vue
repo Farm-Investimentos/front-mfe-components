@@ -2,7 +2,7 @@
 	<v-menu>
 		<template v-slot:activator="{ on, attrs }">
 			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
-				<i class="farm-btn__icon mdi mdi-dots-horizontal"></i>
+				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
 		</template>
 
@@ -15,12 +15,13 @@
 			>
 				<v-list-item-content>
 					<v-list-item-title>
-						<v-icon
+						<farm-icon
 							v-if="item.icon"
+							size="md"
 							:color="item.icon.color || 'secondary'"
-							class="mb-1"
-							>mdi-{{ item.icon.type }}</v-icon
 						>
+							{{ item.icon.type }}
+						</farm-icon>
 						{{ item.label }}
 					</v-list-item-title>
 				</v-list-item-content>
@@ -28,10 +29,9 @@
 		</v-list>
 	</v-menu>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import { VMenu } from 'vuetify/lib/components/VMenu';
-import { VIcon } from 'vuetify/lib/components/VIcon';
 import { VList } from 'vuetify/lib/components/VList';
 import VListItem from 'vuetify/lib/components/VList/VListItem';
 import { VListItemContent, VListItemTitle } from 'vuetify/lib';
@@ -39,7 +39,6 @@ import { VListItemContent, VListItemTitle } from 'vuetify/lib';
 export default Vue.extend({
 	name: 'farm-context-menu',
 	components: {
-		VIcon,
 		VMenu,
 		VList,
 		VListItem,

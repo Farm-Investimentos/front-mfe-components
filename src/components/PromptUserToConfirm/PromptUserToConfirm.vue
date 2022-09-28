@@ -1,12 +1,12 @@
 <template>
 	<v-form v-model="formVal" autocomplete="off">
-		<div v-html="title"></div>
+		<farm-caption v-html="title" color="gray" />
 		<v-row>
 			<v-col cols="12" sm="12" class="mt-3 v-col-fieldset-default">
 				<v-text-field
+					v-model="matchInput"
 					id="form-confirm-remove"
 					color="secondary"
-					v-model="matchInput"
 					outlined
 					dense
 					:rules="[rules.checkRemove]"
