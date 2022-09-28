@@ -37,3 +37,6 @@ export const Xs = () => ({
 export const Combination = () => ({
 	template: '<farm-col xl="3" xs="4">xl: 3 - xs: 4</farm-col>',
 });
+export const TagP = () => ({
+	template: '<farm-col tag="p">col</farm-col>',
+});

@@ -1,6 +1,6 @@
 <template>
 	<component
-		v-bind:is="tag"
+		:is="tag"
 		:class="{
 			'farm-col': true,
 			[`farm-col--xl-${xl}`]: xl,
