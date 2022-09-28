@@ -136,8 +136,6 @@ export default Vue.extend({
 					timeZone: 'America/Sao_Paulo',
 				});
 
-				console.log(this.getUniversalDate(locatedSelectedDate), this.getUniversalDate(locatedMinDate));
-
 				return this.min && this.getUniversalDate(locatedSelectedDate) < this.getUniversalDate(locatedMinDate)
 					? 'A data está fora do período permitido'
 					: true;
