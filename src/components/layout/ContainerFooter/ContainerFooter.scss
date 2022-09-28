@@ -1,6 +1,9 @@
+@import '../../../configurations/functions';
+
 .farm-container-footer {
     width: 100%;
-    padding: 24px 32px;
-    border-top: 1px solid var(--v-gray-lighten2);
-    margin-top: 12px;
+    padding: gutter('lg');
+    padding-bottom: 0;
+    border-top: 1px solid var(--farm-stroke-base);
+    margin-top: gutter('lg');
 }

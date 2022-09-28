@@ -1,3 +1,6 @@
+@import '../../../configurations/functions';
+@import '../../../configurations/_mixins';
+
 .farm-container {
     width: 100%;
     padding: 12px;
@@ -8,9 +11,10 @@
     >div {
         background-color: white;
         border-radius: 8px;
-        max-width: calc(100% - 32px);
-        margin: 16px auto;
-        padding: 12px;
+        max-width: calc(100% - 24px);
+        margin: gutter('lg') auto;
+        padding: gutter('lg');
+        @include addShadow;
 
         // deprecated
         .container-main__footer-buttons-right {
