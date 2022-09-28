@@ -71,6 +71,7 @@ export * from './components/SelectModalOptions';
 export * from './components/ChipInviteStatus';
 export * from './components/Form';
 export * from './components/Label';
+export * from './components/List';
 export * from './components/ListItem';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
