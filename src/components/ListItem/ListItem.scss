@@ -4,16 +4,20 @@
     list-style-type: none;
     transition: background-color 300ms linear;
     padding: 8px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+
     &--clickable {
         cursor: pointer;
     }
 
-    > a {
+    >a {
         text-decoration: none;
     }
 
     &:hover {
-        
+
         @each $color in $theme-colors-list {
 
             &#{'.farm-listitem--' + $color + '-base'} {

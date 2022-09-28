@@ -52,7 +52,19 @@ export const ClickableCursor = () => ({
 	template: '<farm-listitem clickable>Clickable cursor</farm-listitem>',
 });
 
-export const testLink = () => ({
+export const ClickListener = () => ({
+	methods: {
+		onClick() {
+			alert('Clicked')
+		}
+	},
 	template:
-		'<farm-listitem to="/admin/xpto" hoverColor="error" hoverColorVariation="lighten">teste me</farm-listitem>',
+		`<farm-listitem
+			clickable
+			hoverColor="error"
+			hoverColorVariation="lighten"
+			@click="onClick"
+		>
+			try me
+		</farm-listitem>`,
 });
