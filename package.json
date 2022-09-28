@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "9.4.1",
+	"version": "10.0.0",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -69,4 +69,3 @@
 		"node": ">=14.0.0 <15.0.0"
 	}
 }
-
