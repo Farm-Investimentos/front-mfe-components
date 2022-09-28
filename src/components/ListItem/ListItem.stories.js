@@ -51,3 +51,8 @@ export const HoverColors = () => ({
 export const ClickableCursor = () => ({
 	template: '<farm-listitem clickable>Clickable cursor</farm-listitem>',
 });
+
+export const testLink = () => ({
+	template:
+		'<farm-listitem to="/admin/xpto" hoverColor="error" hoverColorVariation="lighten">teste me</farm-listitem>',
+});

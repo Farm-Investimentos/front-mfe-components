@@ -3,8 +3,13 @@
 .farm-listitem {
     list-style-type: none;
     transition: background-color 300ms linear;
+    padding: 8px;
     &--clickable {
         cursor: pointer;
+    }
+
+    > a {
+        text-decoration: none;
     }
 
     &:hover {
