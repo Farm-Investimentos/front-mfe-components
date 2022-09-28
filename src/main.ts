@@ -83,6 +83,7 @@ export * from './components/TextField';
 export * from './components/Tooltip';
 export * from './components/Typography';
 
+export * from './components/layout/Col';
 export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';

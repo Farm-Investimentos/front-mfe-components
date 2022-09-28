@@ -7,8 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Row<br />
-				selector: <em>farm-row</em>
-				<span style="color: yellow;">wait</span>
+				selector: <em>farm-row</em><br />
+				<span style="color: var(--farm-extra-1-base);">development</span>
 				`,
 			},
 		},
