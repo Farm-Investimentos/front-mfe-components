@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Container Footer<br />
-				selector: <em>farm-container-footer</em>
+				selector: <em>farm-container-footer</em><br />
+				<span style="color: green">ready for use</span>
 				`,
 			},
 		},
