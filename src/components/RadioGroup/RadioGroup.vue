@@ -25,7 +25,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref, toRefs, watch } from 'vue';
+import Vue, { PropType, ref, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import IRadioGroup from './IRadioGroup';
 export default Vue.extend({
