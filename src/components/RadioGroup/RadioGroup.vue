@@ -2,8 +2,9 @@
 	<div
 		:class="{
 			'farm-radio-group': true,
-			'farm-radio-group--column': $props.column,
+			'farm-radio-group--vertical': $props.vertical,
 		}"
+		:color="color"
 	>
 		<div
 			class="farm-radio-group__item"
@@ -16,7 +17,6 @@
 				name="radio"
 				:checked="button.id === innerValue"
 				:id="`farm-radio-group_` + index"
-				:style="cssVars"
 				:value="button.id"
 				:class="{ checked: button.id === innerValue }"
 			/>
@@ -25,8 +25,8 @@
 	</div>
 </template>
 <script lang="ts">
+import Vue, { PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
-import Vue, { PropType, ref, watch } from 'vue';
 import IRadioGroup from './IRadioGroup';
 export default Vue.extend({
 	name: 'farm-radio-group',
@@ -36,7 +36,7 @@ export default Vue.extend({
 		 */
 		buttons: {
 			type: Array as PropType<Array<IRadioGroup>>,
-			default: () => [],
+			default: [],
 		},
 		/**
 		 * v-model
@@ -44,13 +44,16 @@ export default Vue.extend({
 		value: {
 			required: true,
 		},
-		column: {
+		/**
+		 * Is vertical?
+		 */
+		vertical: {
 			type: Boolean,
 			default: false,
 		},
 		color: {
 			type: String,
-			default: '#00B493',
+			default: 'primary',
 		},
 	},
 	setup(props, { emit }) {
@@ -82,13 +85,6 @@ export default Vue.extend({
 			reset,
 			clicked,
 		};
-	},
-	computed: {
-		cssVars() {
-			return {
-				'--radio-group-color': this.color,
-			};
-		},
 	},
 });
 </script>
