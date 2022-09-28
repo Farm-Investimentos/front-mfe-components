@@ -17,10 +17,26 @@ export const Primary = () => ({
 export const Secondary = () => ({
 	template: `
 	<farm-container>
-		Content
-		<farm-container-footer>
-			Footer content
-		</farm-container-footer>
+		<div>
+			Content<br />
+			Content<br />
+			Content<br />
+			Content<br />
+			Content<br />
+		</div>
+		<farm-row>
+			<v-col md="6">
+				coluna 1
+			</v-col>
+			<v-col md="6">
+				coluna 2
+			</v-col>
+		</farm-row>
+		<farm-row>
+			<farm-container-footer>
+				Footer content
+			</farm-container-footer>
+		</farm-row>
 	</farm-container>
 `,
 });
