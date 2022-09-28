@@ -71,6 +71,7 @@ export * from './components/SelectModalOptions';
 export * from './components/ChipInviteStatus';
 export * from './components/Form';
 export * from './components/Label';
+export * from './components/ListItem';
 export * from './components/Logger';
 export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
@@ -88,3 +89,4 @@ export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
+
