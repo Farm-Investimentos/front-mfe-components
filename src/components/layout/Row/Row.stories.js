@@ -8,7 +8,7 @@ export default {
 			description: {
 				component: `Row<br />
 				selector: <em>farm-row</em><br />
-				<span style="color: var(--farm-extra-1-base);">development</span>
+				<span style="color: green">ready for use</span>
 				`,
 			},
 		},

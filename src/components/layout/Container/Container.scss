@@ -3,18 +3,19 @@
 
 .farm-container {
     width: 100%;
-    padding: 12px;
+    padding: 0;
     margin-right: auto;
     margin-left: auto;
     max-width: 100%;
 
     >div {
+        border-top: 1px solid var(--farm-stroke-base);
         background-color: white;
         border-radius: 8px;
-        max-width: calc(100% - 24px);
-        margin: gutter('lg') auto;
+        max-width: 100%;
+        margin: gutter('lg');
         padding: gutter('lg');
-        @include addShadow;
+        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
 
         // deprecated
         .container-main__footer-buttons-right {

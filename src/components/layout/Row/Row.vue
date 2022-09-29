@@ -12,8 +12,7 @@
 	</component>
 </template>
 <script lang="ts">
-import Vue from 'vue';
-import { PropType } from 'vue/types/v3-component-props';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-row',
@@ -22,16 +21,25 @@ export default Vue.extend({
 		 * Html tag
 		 */
 		tag: { type: String, default: 'div' },
+		/**
+		 * Applies the align-items css property.
+		 */
 		align: {
 			type: String as PropType<'start' | 'center' | 'end' | 'baseline' | 'stretch'>,
 			default: '',
 		},
+		/**
+		 * applies the align-content css property
+		 */
 		alignContent: {
 			type: String as PropType<
 				'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'stretch'
 			>,
 			default: '',
 		},
+		/**
+		 * Applies the justify-content css property
+		 */
 		justify: {
 			type: String as PropType<'start' | 'center' | 'end' | 'space-between' | 'space-around'>,
 			default: '',
