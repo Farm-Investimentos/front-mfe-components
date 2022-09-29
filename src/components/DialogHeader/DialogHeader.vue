@@ -1,7 +1,9 @@
 <template>
 	<header>
 		<farm-icon v-if="iconTitle" size="16px" color="secondary">{{ iconTitle }}</farm-icon>
-		{{ title }}
+		<farm-caption v-if="title" variation="regular" bold>
+			{{ title }}
+		</farm-caption>
 
 		<slot></slot>
 
@@ -19,7 +21,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import Icon from '../Icon';
 /**
  * Header de dialog/modal
  */
@@ -47,9 +48,6 @@ export default Vue.extend({
 			type: Boolean,
 			default: true,
 		},
-	},
-	components: {
-		'farm-icon': Icon,
 	},
 	methods: {
 		onClose() {

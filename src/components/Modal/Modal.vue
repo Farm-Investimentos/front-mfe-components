@@ -25,7 +25,7 @@ export default Vue.extend({
 		/**
 		 * v-model binding
 		 */
-		value: { type: Boolean, required: true, default: true },
+		value: { type: Boolean, required: true, default: false },
 		/**
 		 * Is persistent
 		 */
