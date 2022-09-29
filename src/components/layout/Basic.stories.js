@@ -14,7 +14,7 @@ export const Primary = () => ({
 	template: '<farm-container>content</farm-container>',
 });
 
-export const Secondary = () => ({
+export const Structure = () => ({
 	template: `
 	<farm-container>
 		<div>
@@ -25,11 +25,17 @@ export const Secondary = () => ({
 			Content<br />
 		</div>
 		<farm-row>
-			<v-col md="6">
+			<v-col md="6" lg="3">
 				coluna 1
 			</v-col>
-			<v-col md="6">
+			<v-col md="6" lg="3">
 				coluna 2
+			</v-col>
+			<v-col md="6" lg="3">
+				coluna 3
+			</v-col>
+			<v-col md="6" lg="3">
+				coluna 4
 			</v-col>
 		</farm-row>
 		<farm-row>
