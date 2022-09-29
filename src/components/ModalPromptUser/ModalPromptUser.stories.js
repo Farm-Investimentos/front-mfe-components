@@ -11,7 +11,7 @@ export default {
 			description: {
 				component: `Modal Prompt User to Confirm<br />
 				selector: <em>farm-prompt-user</em><br />
-				<span style="color: green;">ready for use</span>`,
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 		design: {

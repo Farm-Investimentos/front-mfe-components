@@ -11,7 +11,7 @@ export default {
 			description: {
 				component: `RadioGroup<br />
 				selector: <em>farm-radio-group</em><br />
-				<span style="color: green;">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 
 				`,
 			},

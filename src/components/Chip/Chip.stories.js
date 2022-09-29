@@ -13,7 +13,7 @@ export default {
 			description: {
 				component: `Chip<br />
 				selector: <em>farm-chip</em><br />
-				<span style="color: green;">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
