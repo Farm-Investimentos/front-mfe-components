@@ -1,6 +1,6 @@
 <template>
 	<section class="farm-container">
-		<div class="elevation-2">
+		<div>
 			<slot></slot>
 		</div>
 	</section>
