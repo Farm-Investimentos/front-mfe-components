@@ -26,3 +26,8 @@ $fontSizes: (
 );
 
 $fontWeights: 100, 200, 300, 400, 500, 600, 700;
+
+$aligns: start, center, end, baseline, stretch;
+$align-contents: start, center, end, space-between, space-around, stretch;
+$justifications: start, center, end, space-between, space-around;
+$directions: row, row-reverse, column, column-reverse;

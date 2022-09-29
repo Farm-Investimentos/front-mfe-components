@@ -1,4 +1,5 @@
 import Row from './Row.vue';
+import { justifications } from '../../../configurations/flexVariables';
 
 export default {
 	title: 'Layout/Row',
@@ -8,7 +9,7 @@ export default {
 			description: {
 				component: `Row<br />
 				selector: <em>farm-row</em><br />
-				<span style="color: green">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -55,7 +56,7 @@ export const AlignContent = () => ({
 export const Justify = () => ({
 	data() {
 		return {
-			justifications: ['start', 'center', 'end', 'space-between', 'space-around'],
+			justifications,
 		};
 	},
 	template: `<div>

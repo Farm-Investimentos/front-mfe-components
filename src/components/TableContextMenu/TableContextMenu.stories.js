@@ -14,7 +14,7 @@ export default {
 			description: {
 				component: `TableContextMenu<br />
 				selector: <em>farm-context-menu</em><br />
-				<span style="color: green;">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
