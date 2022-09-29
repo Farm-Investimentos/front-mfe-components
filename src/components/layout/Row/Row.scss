@@ -1,7 +1,5 @@
 @import '../../../configurations/functions';
-$aligns: start, center, end, baseline, stretch;
-$align-contents: start, center, end, space-between, space-around, stretch;
-$justifications: start, center, end, space-between, space-around;
+@import '../../../configurations/variables';
 
 
 .farm-row {

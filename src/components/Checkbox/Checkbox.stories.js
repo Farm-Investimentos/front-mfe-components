@@ -12,7 +12,7 @@ export default {
 			description: {
 				component: `Checkbox<br />
 				selector: <em>farm-checkbox</em><br />
-				<span style="color: green;">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

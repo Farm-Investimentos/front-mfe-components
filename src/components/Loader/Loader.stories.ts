@@ -10,7 +10,7 @@ export default {
 			description: {
 				component: `Loader<br />
 				selector: <em>farm-loader</em><br />
-				<span style="color: green;">ready for use</span>`,
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},
