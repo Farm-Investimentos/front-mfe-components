@@ -17,13 +17,13 @@ export const Primary = () => ({
 export const Structure = () => ({
 	template: `
 	<farm-container>
-		<div>
+		<farm-box>
 			Content<br />
 			Content<br />
 			Content<br />
 			Content<br />
 			Content<br />
-		</div>
+		</farm-box>
 		<farm-row>
 			<v-col md="6" lg="3">
 				coluna 1

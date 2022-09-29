@@ -8,7 +8,7 @@ export default {
 			description: {
 				component: `Modal<br />
 				selector: <em>farm-modal</em><br />
-				<span style="color: green;">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
