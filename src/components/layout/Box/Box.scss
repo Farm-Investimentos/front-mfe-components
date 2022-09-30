@@ -6,15 +6,25 @@
     max-width: 100%;
     transition: .2s cubic-bezier(.4, 0, .2, 1);
 
+    >div {
+        flex: 1 1 auto;
+        max-width: 100%;
+        position: relative;
+    }
+
     @each $k in $justifications {
         &#{'--justify-' + $k} {
-            justify-content: $k;
+            >div {
+                justify-content: $k;
+            }
         }
     }
 
     @each $k in $directions {
         &#{'--direction-' + $k} {
-            flex-direction: $k;
+            >div {
+                flex-direction: $k;
+            }
         }
     }
 }
