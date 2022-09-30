@@ -7,7 +7,9 @@
 			[`farm-box--direction-${direction}`]: direction,
 		}"
 	>
-		<slot></slot>
+		<div>
+			<slot></slot>
+		</div>
 	</component>
 </template>
 <script lang="ts">

@@ -6,7 +6,6 @@ describe('Row component', () => {
 
 	beforeEach(() => {
 		wrapper = shallowMount(Row);
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
