@@ -1,1 +1,1 @@
-export default ['none', 'xs', 'sm', 'md', 'lg', 'xl'];
+export default ['none', 'xs', 'sm', 'vuetify', 'md', 'lg', 'xl',  'default'];

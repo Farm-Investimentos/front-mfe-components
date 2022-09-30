@@ -1,5 +1,6 @@
 import Box from './Box.vue';
 import { directions, justifications } from '../../../configurations/flexVariables';
+import gutters from '../../../configurations/gutters';
 
 export default {
 	title: 'Layout/Box',
@@ -63,4 +64,15 @@ export const Directions = () => ({
 			</div>
 		</farm-box>
 	</div>`,
+});
+
+export const Gutters = () => ({
+	data() {
+		return { gutters };
+	},
+	template: `<div style="width: 480px;">
+		<farm-box v-for="gutter in gutters" :key="gutter" :gutter="gutter" style="margin-bottom: 16px">
+			box with gutter {{ gutter }}
+		</farm-box>
+    </div>`,
 });
