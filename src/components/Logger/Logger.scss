@@ -8,18 +8,18 @@
 	width: 1px;
 
 	&.logger__divider--success {
-		background: var(--v-secondary-base);
+		background: var(--farm-primary-base);
 	}
 
 	&.logger__divider--error {
-		background: var(--v-error-base);
+		background: var(--farm-error-base);
 	}
 
 	&.logger__divider--error-to-success {
-		background: linear-gradient(to bottom, var(--v-error-base), var(--v-secondary-base));
+		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-primary-base));
 	}
 
 	&.logger__divider--success-to-error {
-		background: linear-gradient(to bottom, var(--v-secondary-base), var(--v-error-base));
+		background: linear-gradient(to bottom, var(--farm-primary-base), var(--farm-error-base));
 	}
 }

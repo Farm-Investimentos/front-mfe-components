@@ -33,14 +33,14 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
-				| 'error'
-				| 'extra'
-				| 'accent'
+				| 'neutral'
 				| 'info'
 				| 'success'
-				| 'gray'
-				| 'yellow'
-				| 'white'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
 			>,
 			default: 'primary',
 		},
@@ -104,5 +104,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import 'DefaultButton.scss';
+@import 'DefaultButton';
 </style>

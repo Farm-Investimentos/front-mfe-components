@@ -21,12 +21,13 @@
 		</div>
 		<farm-btn
 			v-if="hasDetails"
-			:color="buttonColor"
 			plain
 			title="Ver Detalhes"
+			:color="buttonColor"
 			@click="callDetails"
-			>Ver Detalhes</farm-btn
-		>
+			>
+				Ver Detalhes
+			</farm-btn>
 	</section>
 </template>
 <script lang="ts">
