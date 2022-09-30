@@ -6,6 +6,7 @@
 			[`farm-row--align-${align}`]: align,
 			[`farm-row--align-content-${alignContent}`]: alignContent,
 			[`farm-row--justify-${justify}`]: justify,
+			'farm-row--no-gutters': noGutters,
 		}"
 	>
 		<slot></slot>
@@ -44,10 +45,17 @@ export default Vue.extend({
 			type: String as PropType<'start' | 'center' | 'end' | 'space-between' | 'space-around'>,
 			default: '',
 		},
+		/**
+		 * Remove default gutters
+		 */
+		noGutters: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	inheritAttrs: true,
 });
 </script>
 <style lang="scss" scoped>
-@import 'Row.scss';
+@import 'Row';
 </style>

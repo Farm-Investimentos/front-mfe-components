@@ -6,6 +6,7 @@
 			[`farm-box--justify-${justify}`]: justify,
 			[`farm-box--direction-${direction}`]: direction,
 		}"
+		:gutter="gutter"
 	>
 		<div>
 			<slot></slot>
@@ -35,6 +36,13 @@ export default Vue.extend({
 		justify: {
 			type: String as PropType<'start' | 'center' | 'end' | 'space-between' | 'space-around'>,
 			default: '',
+		},
+		/**
+		 * Add gutter
+		 */
+		gutter: {
+			type: String as PropType<'none' | 'xs' | 'sm' | 'default' | 'md' | 'lg' | 'xl' | 'ds'>,
+			default: 'none',
 		},
 	},
 	inheritAttrs: true,

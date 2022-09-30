@@ -11,6 +11,9 @@ export default Vue.extend({
 	name: 'farm-card-content',
 	props: {
 		tag: { type: String, default: 'div' },
+		/**
+		 * Add gutter
+		 */
 		gutter: {
 			type: String as PropType<'none' | 'xs' | 'sm' | 'default' | 'md' | 'lg' | 'xl'>,
 			default: 'default',
