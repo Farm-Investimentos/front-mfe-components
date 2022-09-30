@@ -3,11 +3,9 @@ import Col from '../Col';
 
 describe('Col component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Col);
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {

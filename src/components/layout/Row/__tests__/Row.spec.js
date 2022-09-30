@@ -3,11 +3,9 @@ import Row from '../Row';
 
 describe('Row component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Row);
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {

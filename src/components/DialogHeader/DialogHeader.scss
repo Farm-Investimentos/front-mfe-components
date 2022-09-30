@@ -14,6 +14,8 @@ header {
     padding: 16px;
     background-color: #fff;
     font-weight: 700;
-    color: var(--v-secondary-base);
-    border-bottom: 1px solid #d6d6d6;
+    color: var(--farm-primary-base);
+    border-bottom: 1px solid var(--farm-stroke-divider);
+    display: flex;
+    justify-content: flex-start;
 }

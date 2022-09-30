@@ -5,13 +5,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-card-content',
 	props: {
 		tag: { type: String, default: 'div' },
-		gutter: { type: String, default: 'default' },
+		/**
+		 * Add gutter
+		 */
+		gutter: {
+			type: String as PropType<'none' | 'xs' | 'sm' | 'default' | 'md' | 'lg' | 'xl'>,
+			default: 'default',
+		},
 	},
 	inheritAttrs: true,
 });

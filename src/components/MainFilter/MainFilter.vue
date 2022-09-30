@@ -3,12 +3,16 @@
 		<fieldset v-if="hasInitialInput">
 			<farm-label :for="elementId">
 				{{ label }}
+				<farm-tooltip v-if="tooltip">
+					<farm-caption>
+						{{ tooltip }}
+					</farm-caption>
+					<template v-slot:activator="{}">
+						<farm-icon size="sm" color="gray">help-circle</farm-icon>
+					</template>
+				</farm-tooltip>
 			</farm-label>
-			<farm-textfield
-				v-model="inputValue"
-				:id="elementId"
-				@keyup="onKeyUp"
-			/>
+			<farm-textfield v-model="inputValue" :id="elementId" @keyup="onKeyUp" />
 		</fieldset>
 		<farm-btn
 			v-if="hasExtraFilters"
@@ -64,6 +68,13 @@ export default Vue.extend({
 		showFilters: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Tooltip text
+		 */
+		tooltip: {
+			type: String,
+			default: null,
 		},
 	},
 

@@ -55,7 +55,7 @@ export const ClickableCursor = () => ({
 export const ClickListener = () => ({
 	methods: {
 		onClick() {
-			alert('Clicked')
+			alert('Clicked');
 		}
 	},
 	template:
