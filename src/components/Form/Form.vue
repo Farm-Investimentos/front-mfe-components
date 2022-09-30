@@ -9,7 +9,7 @@ type ErrorsBag = Record<number, boolean>;
 export default Vue.extend({
 	name: 'farm-form',
 	props: {
-		value: { type: [Array, Boolean], required: true },
+		value: { type: [Boolean], required: true },
 	},
 	inheritAttrs: true,
 	setup(props, { emit }) {

@@ -1,8 +1,20 @@
+@import '../../configurations/theme-colors';
 @import '../../configurations/variables';
 
 .farm-tooltip {
 	display: inline-block;
 	position: relative;
+
+	@each $color in $colors {
+		@each $color in $theme-colors-list {
+	
+			&--#{$color} {
+				.farm-tooltip__popup {
+					background-color: themeColor($color);
+				}
+			}
+		}
+	}
 }
 
 .farm-tooltip__popup {
@@ -21,16 +33,5 @@
 	&--visible {
 		opacity: 1;
 		visibility: visible;
-	}
-
-}
-
-
-@each $color in $colors {
-	#{'.farm-tooltip--' + $color} {
-		.farm-tooltip__popup {
-			background-color: var(--v-#{$color}-base);
-
-		}
 	}
 }
