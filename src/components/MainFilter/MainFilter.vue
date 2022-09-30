@@ -7,7 +7,7 @@
 					<farm-caption>
 						{{ tooltip }}
 					</farm-caption>
-					<template v-slot:activator="{ on, attrs }">
+					<template v-slot:activator="">
 						<farm-icon size="sm" color="gray">help-circle</farm-icon>
 					</template>
 				</farm-tooltip>

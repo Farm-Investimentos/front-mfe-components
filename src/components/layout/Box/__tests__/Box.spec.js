@@ -3,7 +3,6 @@ import Box from '../Box';
 
 describe('Box component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(Box);
