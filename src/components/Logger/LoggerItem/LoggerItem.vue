@@ -59,12 +59,12 @@ export default Vue.extend({
 		},
 		buttonColor(): string {
 			if (this.item.status === 'success') {
-				return 'secondary';
+				return 'primary';
 			} else if (this.item.status === 'error') {
 				return 'error';
 			}
 
-			return 'primary';
+			return 'secondary';
 		},
 		hasDetails(): boolean {
 			return !!this.item.details;

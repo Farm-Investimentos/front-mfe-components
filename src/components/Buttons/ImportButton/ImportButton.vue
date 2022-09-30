@@ -1,5 +1,5 @@
 <template>
-	<farm-btn class="farm-btn--responsive farm-btn--import" title="Importar" @click="onClick">
+	<farm-btn class="farm-btn--responsive farm-btn--import" color="secondary" title="Importar" @click="onClick">
 		<farm-icon>upload</farm-icon>
 		{{ label }}
 	</farm-btn>

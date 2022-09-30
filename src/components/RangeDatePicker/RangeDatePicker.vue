@@ -33,11 +33,11 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<farm-btn outlined color="primary" @click="menuField = false" tutle="Fechar">
+			<farm-btn outlined color="secondary" @click="menuField = false" tutle="Fechar">
 				Fechar
 			</farm-btn>
-			<farm-btn outlined color="secondary" class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
-			<farm-btn color="secondary" class="ml-2" :disabled="canConfirm" @click="save()" title="Confirmar">
+			<farm-btn outlined class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
+			<farm-btn class="ml-2" :disabled="canConfirm" @click="save()" title="Confirmar">
 				Confirmar
 			</farm-btn>
 		</v-date-picker>

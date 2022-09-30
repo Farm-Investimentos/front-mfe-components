@@ -6,6 +6,7 @@
 		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
+		color="secondary"
 		:disabled="disabled"
 	>
 		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
@@ -26,6 +27,7 @@
 				class="farm-btn--responsive"
 				outlined
 				title="Exportar"
+				color="secondary"
 				@onClick="togglePopover = true"
 				:disabled="disabled"
 			>

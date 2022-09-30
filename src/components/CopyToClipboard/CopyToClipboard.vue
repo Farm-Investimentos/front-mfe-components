@@ -2,7 +2,7 @@
 	<farm-tooltip v-model="show">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
-			<farm-btn icon color="secondary" :disabled="disabled" @click="onClick">
+			<farm-btn icon :disabled="disabled" @click="onClick">
 				<farm-icon size="xs">content-copy</farm-icon>
 			</farm-btn>
 		</template>
