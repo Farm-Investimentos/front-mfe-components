@@ -4,7 +4,7 @@
 		<div
 			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
 		>
-			<farm-caption bold variation="medium" v-if="hasTitle">
+			<farm-caption variation="medium" v-if="hasTitle">
 				<span>
 					{{ $slots.title ? $slots.title[0].text : null }}
 					<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
