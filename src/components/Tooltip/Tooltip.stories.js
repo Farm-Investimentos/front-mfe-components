@@ -11,7 +11,8 @@ export default {
 		docs: {
 			description: {
 				component: `Tooltip<br />
-				selector: <em>farm-tooltip</em>
+				selector: <em>farm-tooltip</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
