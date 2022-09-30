@@ -6,7 +6,6 @@ describe('Box component', () => {
 
 	beforeEach(() => {
 		wrapper = shallowMount(Box);
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
