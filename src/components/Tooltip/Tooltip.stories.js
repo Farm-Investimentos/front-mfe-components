@@ -1,13 +1,13 @@
 import { withDesign } from 'storybook-addon-designs';
 import Tooltip from '.';
-import colors from '../../configurations/colors';
-
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
-    title: 'Interactions/Tooltip',
-    component: Tooltip,
-    decorators: [withDesign],
-    parameters: {
+	title: 'Interactions/Tooltip',
+	component: Tooltip,
+	decorators: [withDesign],
+	parameters: {
 		docs: {
 			description: {
 				component: `Tooltip<br />
@@ -15,10 +15,13 @@ export default {
 				`,
 			},
 		},
+		design: {
+			type: 'figma',
+			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
+		},
 		viewMode: 'docs',
 	},
 };
-
 
 export const Tooltips = () => ({
 	data() {
@@ -79,33 +82,3 @@ export const Visibility = () => ({
         </farm-tooltip>
 	</div>`,
 });
-
-Tooltips.story = {
-	name: 'Colors',
-	parameters: {
-		design: {
-			type: 'figma',
-			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
-		},
-	},
-};
-
-Iconed.story = {
-	name: 'Iconed',
-	parameters: {
-		design: {
-			type: 'figma',
-			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
-		},
-	},
-};
-
-Visibility.story = {
-	name: 'Visibility',
-	parameters: {
-		design: {
-			type: 'figma',
-			url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=3779%3A6131',
-		},
-	},
-};
