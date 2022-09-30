@@ -18,7 +18,7 @@
 	</span>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref, computed, toRefs } from 'vue';
+import Vue, { PropType, ref, computed } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-tooltip',
