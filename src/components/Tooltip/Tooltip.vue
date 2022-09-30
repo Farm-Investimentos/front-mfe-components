@@ -9,7 +9,8 @@
 		<span
 			:class="{
 				'farm-tooltip__popup': true,
-				'farm-tooltip__popup--visible': (!externalControl && showOver) || (externalControl && toggleComponent),
+				'farm-tooltip__popup--visible':
+					(!externalControl && showOver) || (externalControl && toggleComponent),
 			}"
 		>
 			<slot></slot>
@@ -17,7 +18,7 @@
 	</span>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref, computed } from 'vue';
+import Vue, { PropType, ref, computed, toRefs } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-tooltip',
@@ -29,32 +30,32 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
-				| 'error'
-				| 'extra'
-				| 'accent'
+				| 'neutral'
 				| 'info'
 				| 'success'
-				| 'gray'
-				| 'yellow'
-				| 'white'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
 			>,
-			default: 'gray',
+			default: 'secondary',
 		},
 		/**
 		 * Control visibility
+		 * v-model bind
 		 */
-		value: {},
+		value: {
+			type: Boolean,
+			default: undefined,
+		},
 	},
 	setup(props) {
 		const parent = ref(null);
 		const showOver = ref(false);
 
-		const toggleComponent = computed(() => {
-			return props.value;
-		});
-		const externalControl = computed(() => {
-			return typeof props.value === 'boolean';
-		});
+		const toggleComponent = computed(() => props.value);
+		const externalControl = computed(() => props.value !== undefined);
 
 		const onOver = () => {
 			showOver.value = true;
@@ -66,10 +67,10 @@ export default Vue.extend({
 		return {
 			parent,
 			showOver,
-			onOver,
-			onOut,
 			toggleComponent,
 			externalControl,
+			onOver,
+			onOut,
 		};
 	},
 });
