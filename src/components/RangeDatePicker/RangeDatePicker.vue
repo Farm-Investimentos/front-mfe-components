@@ -33,7 +33,7 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<farm-btn outlined color="secondary" @click="menuField = false" tutle="Fechar">
+			<farm-btn outlined color="secondary" @click="menuField = false" title="Fechar">
 				Fechar
 			</farm-btn>
 			<farm-btn outlined class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
