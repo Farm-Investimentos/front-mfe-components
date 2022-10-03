@@ -1,5 +1,5 @@
 <template>
-	<farm-btn v-bind="$attrs" v-on="$listeners" color="secondary">
+	<farm-btn v-bind="$attrs" v-on="$listeners">
 		<i :class="{ mdi: true, [iconPath]: true, 'mr-3': true }" v-if="icon"></i>
 		<slot></slot>
 	</farm-btn>

@@ -1,13 +1,14 @@
 import DefaultButton from './DefaultButton.vue';
-// import { withDesign } from 'storybook-addon-designs';
-import colors from '../../../configurations/colors';
+import { withDesign } from 'storybook-addon-designs';
+import baseThemeColors from '../../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 import './Buttons.stories.scss';
 
 export default {
 	title: 'Buttons/Default',
 	component: DefaultButton,
 
-	//decorators: [withDesign],
+	decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {
@@ -198,31 +199,31 @@ export const Sizes = () => ({
 	template: `<div>
 		<h4>Default</h4>
         <div :style="styles">
-            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'default_' + size" :size="size" color="secondary">
+            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'default_' + size" :size="size">
                 {{ size }}
             </farm-btn>
         </div>
 		<h4>Outlined</h4>
 		<div :style="styles">
-            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'outlined_' + size" :size="size" color="secondary" outlined>
+            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'outlined_' + size" :size="size" outlined>
                 {{ size }}
             </farm-btn>
         </div>
 		<h4>Plain</h4>
 		<div :style="styles">
-            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'plain_' + size" :size="size" color="secondary" plain>
+            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'plain_' + size" :size="size" plain>
                 {{ size }}
             </farm-btn>
         </div>
 		<h4>Rounded</h4>
 		<div :style="styles">
-            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'rouned_' + size" :size="size" color="secondary" rounded>
+            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'rouned_' + size" :size="size" rounded>
                 {{ size }}
             </farm-btn>
         </div>
 		<h4>Icon</h4>
 		<div :style="styles">
-            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'icon_' + size" color="secondary" :size="size" icon>
+            <farm-btn v-for="size of sizes" :style="styles.farmBtn" :key="'icon_' + size" :size="size" icon>
 				<farm-icon :size="size">book</farm-icon>
             </farm-btn>
         </div>

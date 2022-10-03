@@ -1,5 +1,6 @@
 @import '../../../configurations/variables';
 @import '../../../configurations/mixins';
+@import '../../../configurations/theme-colors';
 
 .farm-btn {
     font-size: 14px;
@@ -137,23 +138,23 @@
         height: 64px;
     }
 
-    @each $color in $colors {
+    @each $color in $theme-colors-list {
         &#{'.farm-btn--' + $color}:not(.farm-btn--disabled) {
             &:hover {
-                color: var(--v-#{$color}-base);
+                color: var(--farm-#{$color}-base);
             }
 
             i.mdi {
-                color: var(--v-#{$color}-base);
+                color: var(--farm-#{$color}-base);
             }
         }
     }
 }
 
-@each $color in $colors {
+@each $color in $theme-colors-list {
     #{'.farm-btn--' + $color} {
-        border: 1px solid var(--v-#{$color}-base);
-        background-color: var(--v-#{$color}-base);
+        border: 1px solid var(--farm-#{$color}-base);
+        background-color: var(--farm-#{$color}-base);
         color: white;
 
         ::v-deep .farm-btn__content {
@@ -175,9 +176,9 @@
 
     :not(.farm-btn--disabled) {
         &.farm-btn--outlined#{'.farm-btn--' + $color} {
-            border: 1px solid var(--v-#{$color}-base);
+            border: 1px solid var(--farm-#{$color}-base);
             background: white;
-            color: var(--v-#{$color}-base);
+            color: var(--farm-#{$color}-base);
 
             &.farm-btn--extra,
             &.farm-btn--white {
@@ -186,14 +187,14 @@
             }
 
             .farm-btn__content i.mdi {
-                color: var(--v-#{$color}-base);
+                color: var(--farm-#{$color}-base);
             }
         }
 
         &.farm-btn--plain#{'.farm-btn--' + $color} {
             border: none;
             background: white;
-            color: var(--v-#{$color}-base);
+            color: var(--farm-#{$color}-base);
 
             &.farm-btn--extra,
             &.farm-btn--white {
@@ -205,7 +206,7 @@
             }
 
             .farm-btn__content i.mdi {
-                color: var(--v-#{$color}-base);
+                color: var(--farm-#{$color}-base);
             }
         }
     }

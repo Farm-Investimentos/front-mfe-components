@@ -22,18 +22,18 @@
     }
 
     &.logger__item--error {
-        @include loggerMessage(var(--v-error-base));
+        @include loggerMessage(var(--farm-error-base));
     }
 
     &.logger__item--success {
-        @include loggerMessage(var(--v-secondary-base));
+        @include loggerMessage(var(--farm-primary-base));
 
     }
 }
 
 
 .logger__item>i.mdi {
-    border: 1px solid var(--v-gray-lighten2);
+    border: 1px solid var(--farm-stroke-base);
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -43,8 +43,8 @@
     align-items: center;
     justify-content: center;
 
-    border-color: var(--v-gray-lighten1);
-    background-color: var(--v-gray-lighten1);
+    border-color: var(--farm-neutral-base);
+    background-color: var(--farm-neutral-base);
 
     &:before {
         font-size: 16px;

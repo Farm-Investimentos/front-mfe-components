@@ -21,12 +21,13 @@
 		</div>
 		<farm-btn
 			v-if="hasDetails"
-			:color="buttonColor"
 			plain
 			title="Ver Detalhes"
+			:color="buttonColor"
 			@click="callDetails"
-			>Ver Detalhes</farm-btn
-		>
+			>
+				Ver Detalhes
+			</farm-btn>
 	</section>
 </template>
 <script lang="ts">
@@ -58,12 +59,12 @@ export default Vue.extend({
 		},
 		buttonColor(): string {
 			if (this.item.status === 'success') {
-				return 'secondary';
+				return 'primary';
 			} else if (this.item.status === 'error') {
 				return 'error';
 			}
 
-			return 'primary';
+			return 'secondary';
 		},
 		hasDetails(): boolean {
 			return !!this.item.details;
