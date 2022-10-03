@@ -55,7 +55,7 @@ describe('LoggerItem component', () => {
 					status: 'success',
 				},
 			});
-			expect(component.buttonColor).toEqual('secondary');
+			expect(component.buttonColor).toEqual('primary');
 		});
 
 		it('Should return error button color', async () => {
@@ -73,7 +73,7 @@ describe('LoggerItem component', () => {
 					status: 'primary',
 				},
 			});
-			expect(component.buttonColor).toEqual('primary');
+			expect(component.buttonColor).toEqual('secondary');
 		});
 
 		it('Should not have a detail button', async () => {

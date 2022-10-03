@@ -7,6 +7,7 @@
 				dense
 				class="farm-btn--responsive farm-btn--import"
 				outlined
+				color="secondary"
 				title="Importar"
 				@onClick="togglePopover = true"
 			>
