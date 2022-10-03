@@ -9,9 +9,22 @@
 		<div class="card-context-header" v-if="isSuccess && title">
 			<farm-icon-box v-if="icon" :icon="icon" />
 			<div class="card-context-content">
-				<p :class="{ 'card-context-title': true, 'card-context-content--bold': bold }">
-					{{ title }}
-				</p>
+				<div class="d-flex align-center">
+					<p :class="{ 
+						'mr-2': true, 
+						'mb-1': true, 
+						'card-context-title': true, 
+						'card-context-content--bold': bold }"
+					>
+						{{ title }}
+					</p>
+					<farm-tooltip v-if="tooltipText !== null">
+						{{ tooltipText }}
+						<template v-slot:activator="{}">
+							<farm-icon size="sm" color="gray">help-circle</farm-icon>
+						</template>
+					</farm-tooltip>
+				</div>
 			</div>
 		</div>
 		<div class="card-context-body" v-if="isSuccess">
@@ -93,6 +106,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show Tooltip and help text
+		 */
+		tooltipText: {
+			type: String,
+			default: null,
+		}
 	},
 	computed: {
 		isSuccess() {
