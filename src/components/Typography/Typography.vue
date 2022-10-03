@@ -7,6 +7,7 @@
 			['farm-typography--weight-' + weight]: weight !== undefined,
 		}"
 		:style="style"
+		:color="color"
 	>
 		<slot></slot>
 	</component>
@@ -33,9 +34,25 @@ export default Vue.extend({
 			type: String,
 		},
 		weight: {
-			type: Number as PropType<
-				100 | 200 | 300 | 400 | 500 | 600 | 700
-			>
+			type: Number as PropType<100 | 200 | 300 | 400 | 500 | 600 | 700>,
+		},
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'default',
 		},
 	},
 	setup(props) {
