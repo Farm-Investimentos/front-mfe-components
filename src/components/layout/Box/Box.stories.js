@@ -1,5 +1,4 @@
 import Box from './Box.vue';
-import { directions, justifications } from '../../../configurations/flexVariables';
 import gutters from '../../../configurations/gutters';
 
 export default {
@@ -27,42 +26,6 @@ export const Primary = () => ({
 export const Tag = () => ({
 	template: `<div>
 		<farm-box tag="section">tag: section</farm-box>
-	</div>`,
-});
-
-export const Justify = () => ({
-	data() {
-		return {
-			justifications,
-		};
-	},
-	template: `<div>
-		<farm-box :justify="k" v-for="k in justifications" :key="'justify-_' + k" style="border:1px solid var(--farm-stroke-base); margin-bottom: 16px;">
-			<div>
-				justify {{ k }}
-			</div>
-			<div>
-				another div
-			</div>
-		</farm-box>
-	</div>`,
-});
-
-export const Directions = () => ({
-	data() {
-		return {
-			directions,
-		};
-	},
-	template: `<div>
-		<farm-box :direction="k" v-for="k in directions" :key="'direction-_' + k" style="border:1px solid var(--farm-stroke-base); margin-bottom: 16px;">
-			<div>
-			direction {{ k }}
-			</div>
-			<div>
-				another div
-			</div>
-		</farm-box>
 	</div>`,
 });
 
