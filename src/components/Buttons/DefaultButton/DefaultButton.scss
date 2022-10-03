@@ -157,7 +157,7 @@
         background-color: var(--farm-#{$color}-base);
         color: white;
 
-        ::v-deep .farm-btn__content {
+        .farm-btn__content {
             i.mdi {
                 color: white;
             }
