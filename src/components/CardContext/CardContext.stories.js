@@ -64,3 +64,12 @@ export const NoIcon = () => ({
         </farm-card-context>
     `,
 });
+
+export const TooltipText = () => ({
+	template: `
+        <farm-card-context tooltipText="Lorem Ipsum is simply dummy text of the printing and typesetting industry" icon="mdi-currency-usd" title="Titulo do Card">
+            <p>Conteúdo do Card</p>
+        </farm-card-context>
+    `,
+});
+

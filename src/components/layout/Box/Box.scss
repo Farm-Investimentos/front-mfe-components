@@ -12,25 +12,4 @@
         position: relative;
     }
 
-    @each $k in $justifications {
-        &#{'--justify-' + $k} {
-            >div {
-                justify-content: $k;
-            }
-        }
-    }
-
-    @each $k in $directions {
-        &#{'--direction-' + $k} {
-            >div {
-                flex-direction: $k;
-            }
-        }
-    }
-
-    @each $k in map-keys($gutters) {
-        &#{'[gutter=' + $k + ']'} {
-            padding: map-get($gutters, $k);
-        }
-    }
 }

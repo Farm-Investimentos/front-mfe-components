@@ -144,7 +144,7 @@
                 color: var(--farm-#{$color}-base);
             }
 
-            i.mdi {
+            ::v-deep .farm-btn__content i.mdi {
                 color: var(--farm-#{$color}-base);
             }
         }
