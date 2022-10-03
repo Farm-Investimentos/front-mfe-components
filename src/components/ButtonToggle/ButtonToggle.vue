@@ -3,7 +3,7 @@
 		<farm-btn
 			v-for="(button, index) in buttons"
 			:key="`button_toggle_` + index"
-			:color="isSelected(index) ? 'secondary' : 'gray'"
+			:color="isSelected(index) ? 'primary' : 'secondary'"
 			:outlined="!isSelected(index)"
 			@click="setValue(index)"
 		>

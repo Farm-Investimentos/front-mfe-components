@@ -35,17 +35,11 @@
 			:max="max"
 			:min="min"
 		>
-			<farm-btn outlined color="primary" @click="menuField = false" title="Fechar">
+			<farm-btn outlined color="secondary" @click="menuField = false" title="Fechar">
 				Fechar
 			</farm-btn>
-			<farm-btn outlined color="secondary" class="ml-2" @click="clear"> Limpar </farm-btn>
-			<farm-btn
-				color="secondary"
-				class="ml-2"
-				title="Confirmar"
-				:disabled="!dateField.length"
-				@click="save()"
-			>
+			<farm-btn outlined class="ml-2" @click="clear"> Limpar </farm-btn>
+			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
 				Confirmar
 			</farm-btn>
 		</v-date-picker>
@@ -136,7 +130,9 @@ export default Vue.extend({
 					timeZone: 'America/Sao_Paulo',
 				});
 
-				return this.min && this.getUniversalDate(locatedSelectedDate) < this.getUniversalDate(locatedMinDate)
+				return this.min &&
+					this.getUniversalDate(locatedSelectedDate) <
+						this.getUniversalDate(locatedMinDate)
 					? 'A data está fora do período permitido'
 					: true;
 			},
@@ -177,7 +173,7 @@ export default Vue.extend({
 		getUniversalDate(d) {
 			const onlyDMY = d.split(' ')[0];
 			const arr = onlyDMY.split('/');
-			return new Date(arr[2], arr[1] -1, arr[0]);
+			return new Date(arr[2], arr[1] - 1, arr[0]);
 		},
 	},
 	computed: {

@@ -40,7 +40,7 @@ export default Vue.extend({
 		 */
 		color: {
 			type: String,
-			default: 'secondary',
+			default: 'primary',
 		},
 		/**
 		 * Pressionado ou não

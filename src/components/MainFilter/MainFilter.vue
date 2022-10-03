@@ -16,7 +16,6 @@
 		</fieldset>
 		<farm-btn
 			v-if="hasExtraFilters"
-			color="secondary"
 			class="farm-btn--responsive mt-14 mt-sm-8"
 			@click="onFilterClick"
 		>

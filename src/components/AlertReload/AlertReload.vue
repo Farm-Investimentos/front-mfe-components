@@ -11,7 +11,7 @@
 				{{ label }}
 			</farm-typography>
 		</div>
-		<farm-btn color="secondary" alt="Recarregar" @click="$emit('onClick')">
+		<farm-btn alt="Recarregar" @click="$emit('onClick')">
 			<farm-icon>refresh</farm-icon>
 			Recarregar
 		</farm-btn>

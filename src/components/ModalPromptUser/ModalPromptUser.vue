@@ -56,7 +56,7 @@ export default Vue.extend({
 		 */
 		confirmColor: {
 			type: String,
-			default: 'secondary',
+			default: 'primary',
 		},
 		/**
 		 * Label do botão

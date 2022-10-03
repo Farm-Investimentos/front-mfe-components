@@ -1,7 +1,7 @@
 <template>
 	<v-menu>
 		<template v-slot:activator="{ on, attrs }">
-			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções">
+			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções" color="secondary">
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
 		</template>
