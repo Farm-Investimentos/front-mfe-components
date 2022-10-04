@@ -1,7 +1,7 @@
 <template>
 	<header>
-		<farm-icon v-if="iconTitle" size="16px" color="secondary">{{ iconTitle }}</farm-icon>
-		<farm-caption v-if="title" variation="regular" bold>
+		<farm-icon v-if="iconTitle" size="16px" color="primary">{{ iconTitle }}</farm-icon>
+		<farm-caption v-if="title" variation="regular" color="primary" bold>
 			{{ title }}
 		</farm-caption>
 

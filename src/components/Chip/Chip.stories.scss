@@ -14,3 +14,15 @@
         }
     }
 }
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    > div.chips-container {
+        width: calc(33% - 32px);
+        margin: 0 16px;
+        max-width: 33%;
+    }
+}

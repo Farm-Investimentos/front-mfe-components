@@ -24,10 +24,26 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value">
 		<template v-slot:content>
 			<div v-html="text" />
+		</template>
+	</farm-modal>
+	</div>`,
+});
+
+export const SmallContent = () => ({
+	data() {
+		return {
+			value: false,
+		};
+	},
+	template: `<div>
+	<farm-btn @click="value = true">abrir</farm-btn>
+	<farm-modal v-model="value">
+		<template v-slot:content>
+			small content
 		</template>
 	</farm-modal>
 	</div>`,
@@ -41,7 +57,7 @@ export const HeaderAndBottomFromDS = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="68">
 		<template v-slot:header>
 			<farm-dialog-header title="Título" @onClose="() => value = false" />
@@ -65,7 +81,7 @@ export const SizeMD = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" size="md">
 		<template v-slot:content>
 			<div v-html="text" />
@@ -82,7 +98,7 @@ export const SizeSmall = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" size="sm">
 		<template v-slot:content>
 			<div v-html="text" />
@@ -99,7 +115,7 @@ export const SizeXs = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" size="xs">
 		<template v-slot:content>
 			<div v-html="text" />
@@ -116,7 +132,7 @@ export const HeaderAndBottom = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="68">
 		<template v-slot:header>
 			Header
@@ -139,7 +155,7 @@ export const HorizontalScroll = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" size="md" :offsetBottom="68">
 		<template v-slot:content>
 			<div style="width: 800px;">
@@ -161,7 +177,7 @@ export const CustomHeader = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" :offsetTop="24" :offsetBottom="68">
 		<template v-slot:header>
 		<farm-dialog-header>
@@ -187,7 +203,7 @@ export const Persistent = () => ({
 		};
 	},
 	template: `<div>
-	<farm-btn color="secondary" @click="value = true">abrir</farm-btn>
+	<farm-btn @click="value = true">abrir</farm-btn>
 	<farm-modal v-model="value" :offsetTop="48" :offsetBottom="64" :persistent="true">
 		<template v-slot:header>
 			<farm-dialog-header title="Título" @onClose="() => value = false" />
@@ -234,6 +250,41 @@ teste!<br />
 teste!<br />
 teste 2!<br />
 teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste 1!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste!<br />
+teste 2!<br />
 teste!<br />
 teste!<br />
 teste!<br />

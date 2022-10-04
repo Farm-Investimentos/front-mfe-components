@@ -1,8 +1,10 @@
 .farm-dialog-header__close {
     position: absolute;
-    right: 1rem;
-    margin-top: 4px;
-    font-size: 1rem;
+    right: 16px;
+    margin-top: 0;
+    font-size: 16px;
+
+    transition: all 0.4s;
 
     &:hover {
         opacity: 0.8;
@@ -18,4 +20,5 @@ header {
     border-bottom: 1px solid var(--farm-stroke-divider);
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
