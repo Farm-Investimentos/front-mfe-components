@@ -28,23 +28,23 @@ export const Primary = () => ({
 			totalPages: 8,
 		};
 	},
-	template: '<DataTablePaginator :totalPages="totalPages" :page="1" />',
+	template: '<farm-datatable-paginator :totalPages="totalPages" :page="1" />',
 	mounted() {
 		setTimeout(() => {
-			this.totalPages = 0;
+			this.totalPages = 2;
 		}, 1000);
 	},
 });
 
 export const Secondary = () => ({
-	template: '<DataTablePaginator :hidePerPageOptions="true" :totalPages="190000" :page="1" />',
+	template: '<farm-datatable-paginator :hidePerPageOptions="true" :totalPages="190000" :page="1" />',
 });
 
 export const Disabled = () => ({
-	template: '<DataTablePaginator :disabled="true":totalPages="19" :page="1" />',
+	template: '<farm-datatable-paginator :disabled="true":totalPages="19" :page="1" />',
 });
 
 export const CustomPerPage = () => ({
 	template:
-		'<DataTablePaginator :perPageOptions="[1, 2, 4, 12, 27]" :totalPages="19" :page="1" />',
+		'<farm-datatable-paginator :perPageOptions="[1, 2, 4, 12, 27]" :totalPages="19" :page="1" />',
 });
