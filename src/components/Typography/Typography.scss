@@ -33,6 +33,10 @@
 		}
 	}
 
+	&[color=white] {
+		color: white;
+	}
+
 	@each $s,
 	$val in $fontSizes {
 		&--#{$s} {
