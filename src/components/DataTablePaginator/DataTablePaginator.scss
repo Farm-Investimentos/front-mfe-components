@@ -13,10 +13,11 @@ ul.farm-paginator {
         display: flex;
 
         button {
-            border: 1px solid var(--v-gray-lighten2);
+            border: 1px solid var(--farm-stroke-base);
             border-right: 0;
             height: 36px;
-            width: 36px;
+            min-width: 36px;
+            padding-inline: 4px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -30,7 +31,7 @@ ul.farm-paginator {
         }
 
         &:last-child button {
-            border-right: 1px solid var(--v-gray-lighten2);
+            border-right: 1px solid var(--farm-stroke-base);
             border-radius: 0 4px 4px 0;
         }
 
@@ -63,5 +64,5 @@ ul.farm-paginator {
 }
 
 .farm-paginator--gutter {
-    margin: 1rem 1.5rem 0;
+    margin: 16px 24px 0;
 }
