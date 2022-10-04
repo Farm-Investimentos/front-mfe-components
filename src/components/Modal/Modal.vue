@@ -1,7 +1,11 @@
 <template>
 	<transition name="fade">
-		<div :class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }" v-if="inputValue">
-			<div class="farm-modal--container">
+		<div
+			:class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }"
+			v-if="inputValue"
+			:style="styleObject"
+		>
+			<div class="farm-modal--container teste">
 				<div class="farm-modal--header">
 					<!-- @slot header -->
 					<slot name="header"></slot>
@@ -21,6 +25,7 @@
 		</div>
 	</transition>
 </template>
+
 <script lang="ts">
 import Vue, { PropType, ref, toRefs, watch } from 'vue';
 
@@ -53,6 +58,20 @@ export default Vue.extend({
 			type: Number,
 			default: 0,
 		},
+	},
+	data() {
+		const zIndex = Math.max(
+			...Array.from(document.querySelectorAll('body *'), el =>
+				parseFloat(window.getComputedStyle(el).zIndex)
+			).filter(zIndex => !Number.isNaN(zIndex)),
+			0
+		);
+
+		return {
+			styleObject: {
+				zIndex,
+			},
+		};
 	},
 	setup(props, { emit }) {
 		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
