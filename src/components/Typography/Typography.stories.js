@@ -91,7 +91,7 @@ export const CustomSizes = () => ({
 export const Colors = () => ({
 	data() {
 		return {
-			colors: ['default', ...colors],
+			colors: ['default', ...colors, 'white'],
 		};
 	},
 	template: `<div>

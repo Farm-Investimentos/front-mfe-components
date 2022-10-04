@@ -3,12 +3,17 @@
 		<div :class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }" v-if="inputValue">
 			<div class="farm-modal--container">
 				<div class="farm-modal--header">
+					<!-- @slot header -->
 					<slot name="header"></slot>
 				</div>
-				<div class="farm-modal--content" :style="styles">
-					<slot name="content"></slot>
+				<div class="farm-modal--content">
+					<div :style="styles">
+						<!-- @slot main content -->
+						<slot name="content"></slot>
+					</div>
 				</div>
 				<div class="farm-modal--footer">
+					<!-- @slot footer -->
 					<slot name="footer"></slot>
 				</div>
 			</div>
@@ -55,6 +60,7 @@ export default Vue.extend({
 		const styles = {
 			marginTop: offsetTop.value + 'px',
 			marginBottom: offsetBottom.value + 'px',
+			maxHeight: `calc(100vh - ${offsetTop.value + offsetBottom.value + 48}px)`,
 		};
 
 		const close = () => {
