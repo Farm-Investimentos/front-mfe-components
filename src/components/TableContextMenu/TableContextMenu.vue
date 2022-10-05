@@ -5,53 +5,43 @@
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
 		</template>
-
-		<div data-app="true" class="v-application v-application--is-ltr theme--light">
-			<div class="v-application--wrap">
-				<v-list dense class="pa-0">
-					<v-list-item
-						v-for="item in items"
-						:key="item.label"
-						:title="item.label"
-						@click="onClick(item.handler)"
-					>
-						<v-list-item-content>
-							<v-list-item-title>
-								<farm-icon
-									v-if="item.icon"
-									size="md"
-									:color="item.icon.color || 'secondary'"
-								>
-									{{ item.icon.type }}
-								</farm-icon>
-								<farm-caption tag="span" bold>
-									{{ item.label }}
-								</farm-caption>
-							</v-list-item-title>
-						</v-list-item-content>
-					</v-list-item>
-				</v-list>
-			</div>
-		</div>
+		<farm-list>
+			<farm-listitem
+				v-for="item in items"
+				clickable
+				hoverColorVariation="lighten"
+				:key="'tablecontextmenu_item_' + item.label"
+				:hoverColor="item.icon.color || 'primary'"
+				@click="onClick(item.handler)"
+			>
+				<farm-icon v-if="item.icon" size="sm" :color="item.icon.color || 'primary'">
+					{{ item.icon.type }}
+				</farm-icon>
+				<farm-caption bold tag="span">{{ item.label }}</farm-caption>
+			</farm-listitem>
+		</farm-list>
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import Vue from 'vue';
-import { VList } from 'vuetify/lib/components/VList';
-import VListItem from 'vuetify/lib/components/VList/VListItem';
-import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+import Vue, { PropType } from 'vue';
+
+export interface IContextMenuOption {
+	label: string;
+	handler: string;
+	icon: IContextMenuOptionIcon;
+}
+
+export interface IContextMenuOptionIcon {
+	color?: string;
+	type: string;
+}
 
 export default Vue.extend({
 	name: 'farm-context-menu',
-	components: {
-		VList,
-		VListItem,
-		VListItemContent,
-		VListItemTitle,
-	},
+	components: {},
 	props: {
 		items: {
-			type: Array,
+			type: Array as PropType<Array<IContextMenuOption>>,
 			required: true,
 		},
 	},
@@ -64,6 +54,7 @@ export default Vue.extend({
 		onClick(handler) {
 			if (handler !== undefined) {
 				this.$emit(handler);
+				// handler();
 			}
 		},
 		toggleValue() {
