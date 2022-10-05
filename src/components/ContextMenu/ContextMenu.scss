@@ -1,0 +1,32 @@
+@import '../../configurations/mixins';
+
+.farm-contextmenu {
+	display: inline-block;
+}
+
+.farm-contextmenu__popup {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	display: block;
+	overflow-y: auto;
+	overflow-x: hidden;
+	contain: content;
+	font-family: 'Montserrat', sans-serif !important;
+
+	transform-origin: left top;
+	transition: visibility 0.1s linear, opacity 0.1s linear;
+
+	border-radius: 4px;
+	left: 0;
+
+	background: #FFFFFF;
+	border: 1px solid var(--farm-stroke-base);
+	@include addShadow;
+	border-radius: 5px;
+
+	&--visible {
+		opacity: 1;
+		visibility: visible;
+	}
+}
