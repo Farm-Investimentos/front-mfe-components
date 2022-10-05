@@ -1,4 +1,5 @@
 @import '../../configurations/variables';
+@import '../../configurations/theme-colors';
 
 .farm-icon {
     align-items: center;
@@ -10,10 +11,14 @@
     position: relative;
     text-indent: 0;
 
-    @each $color in $colors {
-        &#{'.farm-icon--' + $color} {
-            color: var(--v-#{$color}-base);
+    @each $color in $theme-colors-list {
+        &#{'--' + $color} {
+            color: var(--farm-#{$color}-base);
         }
+    }
+
+    &--gray-base {
+        color: var(--farm-neutral-darken);
     }
 
     @each $size,

@@ -31,7 +31,7 @@ describe('IconBox component', () => {
 		});
 
 		it('get cssColorClass', () => {
-			expect(component.cssColorClass).toEqual('farm-icon-box--secondary');
+			expect(component.cssColorClass).toEqual('farm-icon-box--primary');
 		});
 	});
 });

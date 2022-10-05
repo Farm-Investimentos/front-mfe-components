@@ -1,5 +1,6 @@
 import { withDesign } from 'storybook-addon-designs';
-import colors from '../../configurations/colors';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 import sizes from '../../configurations/sizes';
 import iconsList from './icons_list';
 
@@ -22,7 +23,7 @@ export default {
 
 export const Atom = () => ({
 	template: `<div class="icons-container">
-        <farm-icon color="secondary">
+        <farm-icon color="primary">
             book
         </farm-icon>
 	</div>`,
@@ -31,7 +32,7 @@ export const Atom = () => ({
 export const Colors = () => ({
 	data() {
 		return {
-			colors,
+			colors: [...colors, 'gray'],
 		};
 	},
 	template: `<div class="icons-container">

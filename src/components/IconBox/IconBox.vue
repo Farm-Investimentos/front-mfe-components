@@ -7,9 +7,7 @@
 		}"
 		:size="size"
 	>
-		<farm-icon :color="inverted ? 'white' : color" :size="size">{{
-			iconParsed
-		}}</farm-icon>
+		<farm-icon :color="inverted ? 'white' : color" :size="size">{{ iconParsed }}</farm-icon>
 	</div>
 </template>
 
@@ -30,8 +28,20 @@ export default Vue.extend({
 		 * Color
 		 */
 		color: {
-			type: String,
-			default: 'secondary',
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
+			default: 'primary',
 		},
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
