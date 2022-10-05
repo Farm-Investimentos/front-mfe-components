@@ -23,13 +23,13 @@ export default {
 };
 
 export const Primary = () => ({
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu :items="[{ label: 'Remover', icon: { color: 'error', type: 'open-in-new' } }]" />
 	</div>`,
 });
 
 export const Icons = () => ({
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu
 			ref="icons"
 			:items="[{ label: 'Remover', icon: { color: 'error', type: 'delete' } }]"
@@ -41,13 +41,26 @@ export const Multi = () => ({
 	data() {
 		return {
 			items: [
-				{ label: 'Novo', icon: { color: 'grey', type: 'open-in-new' } },
+				{ label: 'Novo', icon: { type: 'open-in-new' } },
 				{ label: 'Editar', icon: { color: 'secondary', type: 'open-in-new' } },
 				{ label: 'Remover', icon: { color: 'error', type: 'delete' } },
 			],
 		};
 	},
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu ref="multi" :items="items" />
+	</div>`,
+});
+
+export const ClickHandler = () => ({
+	data() {
+		return {
+			editItem: () => {
+				alert('Click handler');
+			},
+		};
+	},
+	template: `<div style="padding-left: 80px">
+		<farm-context-menu :items="[{ label: 'Click me', icon: { type: 'open-in-new' }, handler: 'edit' }]" @edit="editItem()" />
 	</div>`,
 });

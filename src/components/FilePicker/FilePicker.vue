@@ -7,7 +7,7 @@
 			:accept="acceptedFileTypes"
 		/>
 		<div v-if="!selectedFile" class="selectfile-container">
-			<farm-icon color="secondary">cloud-upload</farm-icon>
+			<farm-icon>cloud-upload</farm-icon>
 			<p>Clique para selecionar ou arraste o arquivo aqui</p>
 		</div>
 		<div v-if="selectedFile || maxSizeReach" class="reset-container">
@@ -21,7 +21,6 @@
 
 			<farm-btn
 				outlined
-				color="secondary"
 				class="farm-btn--responsive"
 				title="Escolher outro"
 				@click="reset"

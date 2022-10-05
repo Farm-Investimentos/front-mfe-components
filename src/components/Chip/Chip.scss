@@ -34,7 +34,10 @@
             &.farm-chip--lighten {
                 background-color: themeColor($color, 'lighten');
                 border-color: themeColor($color, 'lighten');
-                color: themeColor($color, 'darken');
+
+                span {
+                    color: themeColor($color, 'darken');
+                }
             }
 
             &.farm-chip--darken {
@@ -45,18 +48,21 @@
     }
 
     &[color='neutral'] {
-        color: themeColor('secondary');
-
-        &.farm-chip--lighten {
+        span {
             color: themeColor('secondary');
         }
-        &.farm-chip--darken {
+
+        &.farm-chip--lighten span {
+            color: themeColor('secondary');
+        }
+
+        &.farm-chip--darken span {
             color: white;
         }
     }
 
     &[color='secondary'] {
-        &.farm-chip--lighten {
+        &.farm-chip--lighten span {
             color: white;
         }
     }
@@ -65,26 +71,37 @@
         @each $color in $theme-colors-list {
             &#{'[color=' + $color + ']'} {
                 background-color: transparent;
-                color: themeColor($color);
+
+                span {
+                    color: themeColor($color);
+                }
 
                 &.farm-chip--lighten {
                     background-color: transparent;
                     border-color: themeColor($color, 'lighten');
-                    color: themeColor($color);
+
+                    span {
+                        color: themeColor($color);
+                    }
                 }
 
                 &.farm-chip--darken {
                     background-color: transparent;
                     border-color: themeColor($color, 'darken');
-                    color: themeColor($color, 'darken');
+
+                    span {
+                        color: themeColor($color, 'darken');
+                    }
                 }
             }
         }
 
         &[color='neutral'] {
-            color: themeColor('secondary');
+            span {
+                color: themeColor('secondary');
+            }
 
-            &.farm-chip--lighten {
+            &.farm-chip--lighten span {
                 color: themeColor('secondary');
             }
         }

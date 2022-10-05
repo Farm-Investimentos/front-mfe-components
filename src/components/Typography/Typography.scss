@@ -1,5 +1,6 @@
 @import '../../configurations/variables';
 @import '../../configurations/mixins';
+@import '../../configurations/theme-colors';
 
 .farm-typography {
 	font-size: 16px;
@@ -24,13 +25,20 @@
 		margin-bottom: auto;
 	}
 
-	@each $k in $colors {
+	color: var(--farm-text-primary);
+
+	@each $k in $theme-colors-list {
 		&#{'[color=' + $k + ']'} {
-			color: var(--v-#{$k}-base);
+			color: var(--farm-#{$k}-base);
 		}
 	}
 
-	@each $s, $val in $fontSizes {
+	&[color=white] {
+		color: white;
+	}
+
+	@each $s,
+	$val in $fontSizes {
 		&--#{$s} {
 			font-size: $val;
 		}
@@ -44,7 +52,9 @@
 }
 
 @include upToSm {
-	@each $s, $val in $fontSizes {
+
+	@each $s,
+	$val in $fontSizes {
 		.farm-typography--#{$s} {
 			font-size: calc(#{$val} - 2px);
 		}

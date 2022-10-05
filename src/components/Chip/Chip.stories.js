@@ -42,8 +42,7 @@ export const Colors = () => ({
 		};
 	},
 	template: `
-	<div>
-		<h3>Colors & variations</h3>
+	<div class="grid">
 		<div class="chips-container" v-for="color in colors">
 			<h4>{{ color }}</h4>
 			<farm-chip 
@@ -66,8 +65,7 @@ export const ColorsOutlined = () => ({
 		};
 	},
 	template: `
-	<div>
-		<h3>Outlined</h3>
+	<div class="grid">
 		<div class="chips-container" v-for="color in colors">
 			<h4>{{ color }}</h4>
 			<farm-chip 

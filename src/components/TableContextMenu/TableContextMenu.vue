@@ -1,61 +1,64 @@
 <template>
-	<v-menu>
-		<template v-slot:activator="{ on, attrs }">
-			<farm-btn icon v-bind="attrs" v-on="on" title="Abrir opções" color="secondary">
+	<farm-contextmenu v-model="value">
+		<template v-slot:activator="{}">
+			<farm-btn icon @click="toggleValue" title="Abrir opções" color="secondary">
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
 		</template>
-
-		<v-list dense class="pa-0">
-			<v-list-item
+		<farm-list>
+			<farm-listitem
 				v-for="item in items"
-				:key="item.label"
-				:title="item.label"
+				clickable
+				hoverColorVariation="lighten"
+				:key="'tablecontextmenu_item_' + item.label"
+				:hoverColor="item.icon.color || 'primary'"
 				@click="onClick(item.handler)"
 			>
-				<v-list-item-content>
-					<v-list-item-title>
-						<farm-icon
-							v-if="item.icon"
-							size="md"
-							:color="item.icon.color || 'secondary'"
-						>
-							{{ item.icon.type }}
-						</farm-icon>
-						{{ item.label }}
-					</v-list-item-title>
-				</v-list-item-content>
-			</v-list-item>
-		</v-list>
-	</v-menu>
+				<farm-icon v-if="item.icon" size="sm" :color="item.icon.color || 'primary'">
+					{{ item.icon.type }}
+				</farm-icon>
+				<farm-caption bold tag="span">{{ item.label }}</farm-caption>
+			</farm-listitem>
+		</farm-list>
+	</farm-contextmenu>
 </template>
 <script lang="ts">
-import Vue from 'vue';
-import { VMenu } from 'vuetify/lib/components/VMenu';
-import { VList } from 'vuetify/lib/components/VList';
-import VListItem from 'vuetify/lib/components/VList/VListItem';
-import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+import Vue, { PropType } from 'vue';
+
+export interface IContextMenuOption {
+	label: string;
+	handler: string;
+	icon: IContextMenuOptionIcon;
+}
+
+export interface IContextMenuOptionIcon {
+	color?: string;
+	type: string;
+}
 
 export default Vue.extend({
 	name: 'farm-context-menu',
-	components: {
-		VMenu,
-		VList,
-		VListItem,
-		VListItemContent,
-		VListItemTitle,
-	},
+	components: {},
 	props: {
 		items: {
-			type: Array,
+			type: Array as PropType<Array<IContextMenuOption>>,
 			required: true,
 		},
+	},
+	data() {
+		return {
+			value: false,
+		};
 	},
 	methods: {
 		onClick(handler) {
 			if (handler !== undefined) {
 				this.$emit(handler);
+				// handler();
 			}
+		},
+		toggleValue() {
+			this.value = !this.value;
 		},
 	},
 });
