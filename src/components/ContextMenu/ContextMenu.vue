@@ -47,6 +47,8 @@ export default Vue.extend({
 
 		const inputValue = ref(props.value);
 
+		let hasBeenBoostrapped = false;
+
 		const outClick = (event: Event) => {
 			if (activator && !activator.value.contains(event.target)) {
 				emit('input', false);
@@ -61,7 +63,14 @@ export default Vue.extend({
 			() => props.value,
 			newValue => {
 				if (newValue) {
+					if (!hasBeenBoostrapped) {
+						document.querySelector('body').appendChild(popup.value);
+
+						hasBeenBoostrapped = true;
+					}
 					window.addEventListener('click', outClick);
+					window.addEventListener('resize', resizeWindowHandler);
+
 					calculatePosition();
 				} else {
 					window.removeEventListener('click', outClick);
@@ -93,15 +102,15 @@ export default Vue.extend({
 		};
 
 		onMounted(() => {
-			window.addEventListener('resize', resizeWindowHandler);
-			document.querySelector('body').appendChild(popup.value);
 			calculatePosition();
 		});
 
 		onBeforeUnmount(() => {
-			window.removeEventListener('resize', resizeWindowHandler);
-			window.removeEventListener('click', outClick);
-			document.querySelector('body').removeChild(popup.value);
+			if (hasBeenBoostrapped) {
+				window.removeEventListener('resize', resizeWindowHandler);
+				window.removeEventListener('click', outClick);
+				document.querySelector('body').removeChild(popup.value);
+			}
 		});
 
 		return {
