@@ -1,6 +1,6 @@
 <template>
 	<div class="idcaption">
-		<farm-icon-box v-if="icon" :icon="icon" color="secondary" size="md" />
+		<farm-icon-box v-if="icon" :icon="icon" size="md" />
 		<div
 			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
 		>

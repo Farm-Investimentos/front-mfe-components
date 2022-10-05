@@ -18,14 +18,15 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
-				| 'error'
-				| 'extra'
-				| 'accent'
+				| 'neutral'
 				| 'info'
 				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
 				| 'gray'
-				| 'yellow'
-				| 'white'
 			>,
 			default: 'primary',
 		},
