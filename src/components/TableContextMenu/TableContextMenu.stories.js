@@ -23,13 +23,13 @@ export default {
 };
 
 export const Primary = () => ({
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu :items="[{ label: 'Remover', icon: { color: 'error', type: 'open-in-new' } }]" />
 	</div>`,
 });
 
 export const Icons = () => ({
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu
 			ref="icons"
 			:items="[{ label: 'Remover', icon: { color: 'error', type: 'delete' } }]"
@@ -47,7 +47,7 @@ export const Multi = () => ({
 			],
 		};
 	},
-	template: `<div>
+	template: `<div style="padding-left: 80px">
 		<farm-context-menu ref="multi" :items="items" />
 	</div>`,
 });
