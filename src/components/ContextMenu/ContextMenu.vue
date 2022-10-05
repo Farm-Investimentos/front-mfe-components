@@ -1,5 +1,5 @@
 <template>
-	<div :class="{ 'farm-contextmenu': true }" ref="parent">
+	<div class="farm-contextmenu" ref="parent">
 		<span ref="activator">
 			<slot name="activator"></slot>
 		</span>
