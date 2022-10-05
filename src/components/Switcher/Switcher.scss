@@ -17,8 +17,14 @@
     &:focus {
         outline: 0;
     }
+
     &[block] {
         display: block;
+    }
+
+    &--disabled {
+        opacity: 0.6;
+        cursor: default;
     }
 }
 
