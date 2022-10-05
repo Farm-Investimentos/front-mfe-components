@@ -17,12 +17,18 @@ ul.farm-paginator {
             border-right: 0;
             height: 36px;
             min-width: 36px;
-            padding-inline: 4px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             font-size: 12px;
             transition: all ease 0.5s;
+            padding: 4px 12px;
+
+            p {
+                color: var(--farm-neutral-darken);
+                margin: 0;
+            }
+            
 
         }
 
@@ -38,15 +44,16 @@ ul.farm-paginator {
         &.farm-paginator__item--selected {
             button {
                 background-color: var(--v-secondary-base);
-                color: white;
+                p{
+                    color: #FFFFFF;  
+                }
+                
             }
         }
 
         &:hover {
-
-            button:not([disabled="disabled"]),
-            button:not([disabled="disabled"]) i.farm-icon {
-                color: var(--v-secondary-base);
+            button:not([disabled="disabled"]) {
+                background-color: var(--farm-primary-lighten);
             }
         }
     }
@@ -65,4 +72,8 @@ ul.farm-paginator {
 
 .farm-paginator--gutter {
     margin: 16px 24px 0;
+}
+
+.farm-typography.button {
+    font-size: 14px;
 }

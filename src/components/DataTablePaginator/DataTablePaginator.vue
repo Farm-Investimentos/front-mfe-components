@@ -16,9 +16,25 @@
 			></v-select>
 		</div>
 
-		<ul :class="{ 'farm-paginator': true, 'farm-paginator--disabled': disabled || totalPages == null }">
+		<ul
+			:class="{
+				'farm-paginator': true,
+				'farm-paginator--disabled': disabled || totalPages == null,
+			}"
+		>
 			<li>
-				<button :disabled="currentPage === 1 || disabled || totalPages == null" @click="previousPage">
+				<button
+					:disabled="currentPage === 1 || disabled || totalPages == null"
+					@click="firstPage"
+				>
+					<farm-icon color="gray" size="sm">chevron-double-left</farm-icon>
+				</button>
+			</li>
+			<li>
+				<button
+					:disabled="currentPage === 1 || disabled || totalPages == null"
+					@click="previousPage"
+				>
 					<farm-icon color="gray" size="sm">chevron-left</farm-icon>
 				</button>
 			</li>
@@ -32,13 +48,34 @@
 					:disabled="currentPage === item || item === '...' || disabled"
 					@click="currentPage = item"
 				>
-					{{ item }}
+					<farm-bodytext :type="2" :variation="regular">{{ item }}</farm-bodytext>
 				</button>
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled || totalPages == null || totalPages === 0" @click="nextPage">
+				<button
+					:disabled="
+						currentPage === totalPages ||
+						disabled ||
+						totalPages == null ||
+						totalPages === 0
+					"
+					@click="nextPage"
+				>
 					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
+				</button>
+			</li>
+			<li>
+				<button
+					:disabled="
+						currentPage === totalPages ||
+						disabled ||
+						totalPages == null ||
+						totalPages === 0
+					"
+					@click="lastPage"
+				>
+					<farm-icon color="gray" size="sm">chevron-double-right</farm-icon>
 				</button>
 			</li>
 		</ul>
@@ -117,6 +154,12 @@ export default Vue.extend({
 		},
 		nextPage() {
 			this.currentPage++;
+		},
+		firstPage() {
+			this.currentPage = 1;
+		},
+		lastPage() {
+			this.currentPage = this.totalPages;
 		},
 	},
 	data() {
