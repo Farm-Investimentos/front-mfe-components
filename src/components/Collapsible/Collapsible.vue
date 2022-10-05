@@ -4,7 +4,7 @@
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
 					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-						<farm-icon color="secondary" size="md">
+						<farm-icon size="md">
 							{{ icon }}
 						</farm-icon>
 					</div>
