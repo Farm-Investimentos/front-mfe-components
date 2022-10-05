@@ -46,6 +46,7 @@
     &--disabled {
         border-color: #dadada;
         cursor: default;
+        opacity: 0.6;
 
         &.farm-checkbox--checked {
             background-color: #dadada;
