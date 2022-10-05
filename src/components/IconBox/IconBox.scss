@@ -1,4 +1,5 @@
 @import '../../configurations/variables';
+@import '../../configurations/theme-colors';
 
 .farm-icon-box {
 	width: 48px;
@@ -8,17 +9,17 @@
 	justify-content: center;
 	align-items: center;
 
-	@each $color in $colors {
+	@each $color in $theme-colors-list {
 		&#{'--' + $color} {
-			background: var(--v-#{$color}-lighten5);
+			background: var(--farm-#{$color}-lighten);
 		}
 	}
 }
 
 .farm-icon-box--inverted.farm-icon-box {
-	@each $color in $colors {
+	@each $color in $theme-colors-list {
 		&#{'--' + $color} {
-			background: var(--v-#{$color}-base);
+			background: var(--farm-#{$color}-base);
 		}
 	}
 
