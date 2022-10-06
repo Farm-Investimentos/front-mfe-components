@@ -64,3 +64,18 @@ export const ClickHandler = () => ({
 		<farm-context-menu :items="[{ label: 'Click me', icon: { type: 'open-in-new' }, handler: 'edit' }]" @edit="editItem()" />
 	</div>`,
 });
+
+export const OnRightSide = () => ({
+	data() {
+		return {
+			items: [
+				{ label: 'Novo', icon: { type: 'open-in-new' } },
+				{ label: 'Nome bem longo sem quebrar linha', icon: { color: 'secondary', type: 'open-in-new' } },
+				{ label: 'Remover', icon: { color: 'error', type: 'delete' } },
+			],
+		};
+	},
+	template: `<div style="padding-left: 80px; display: flex; justify-content: end;">
+		<farm-context-menu ref="multi" :items="items" />
+	</div>`,
+});
