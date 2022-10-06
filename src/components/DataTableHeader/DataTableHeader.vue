@@ -35,37 +35,24 @@
 
 				<span v-if="isTHDataTableSelect(item) && showCheckbox" class="span-checkbox">
 					<!--
-					<v-simple-checkbox
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
-						v-model="inputVal"
-						@input="selectAll"
-					/>
 					-->
-					<farm-checkbox
-						:indeterminate="headerProps.someItems && !headerProps.everyItem"
-						size="sm"
-						v-model="inputVal"
-						@input="selectAll"
-					/>
+					<farm-checkbox size="sm" v-model="inputVal" @input="selectAll" />
 				</span>
 			</th>
 		</tr>
 	</thead>
 </template>
 
-<script lang="showCheckbox">
+<script lang="ts">
 /* eslint-disable */
 import Vue from 'vue';
-import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
 
 export default Vue.extend({
 	name: 'farm-datatable-header',
-	components: {
-		VSimpleCheckbox,
-	},
 	props: {
 		/**
-		 * Cabeçalho
+		 * Headers
 		 */
 		headers: {
 			type: Array,
