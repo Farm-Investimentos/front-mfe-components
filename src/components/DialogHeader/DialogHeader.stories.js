@@ -3,6 +3,17 @@ import DialogHeader from './DialogHeader.vue';
 export default {
 	title: 'Display/Dialog/DialogHeader',
 	component: DialogHeader,
+	parameters: {
+		docs: {
+			description: {
+				component: `Dialog Header<br />
+				selector: <em>farm-dialog-header</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({
