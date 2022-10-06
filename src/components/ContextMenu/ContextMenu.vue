@@ -100,13 +100,13 @@ export default Vue.extend({
 
 			//Do not allow to open outside window
 			const rightEdge = offsetLeft + popupClientRect.width;
-			var clientWidth = document.documentElement.clientWidth;
+			const clientWidth = document.documentElement.clientWidth;
 			if (rightEdge > clientWidth - 12) {
 				offsetLeft = clientWidth - 12 - popupClientRect.width;
 			}
 
 			const bottomEdge = offsetTop + popupClientRect.height;
-			var clientHeight = document.documentElement.clientHeight;
+			const clientHeight = document.documentElement.clientHeight;
 			if (bottomEdge - window.scrollY > clientHeight) {
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
