@@ -48,6 +48,8 @@ export default Vue.extend({
 					validationFields.push($leaf.$children[0]);
 				} else if ($leaf.validatable) {
 					validationFields.push($leaf);
+				} else {
+					recursiveFormField($leaf);
 				}
 			});
 		};

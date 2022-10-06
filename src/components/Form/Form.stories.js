@@ -54,6 +54,7 @@ export const Primary = () => ({
 			<farm-label :required="true">True/false</farm-label>
 			<farm-checkbox v-model="form.checkbox" :rules="[rules.checked]" />
 			
+			
             <div class="footer" :style="[styles.footer]">
 				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
 				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
@@ -162,6 +163,46 @@ export const RadioGroupReset = () => ({
         <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
 			<farm-radio-group v-model="checkedValue" column :buttons="buttons" />
 
+            <div class="footer" :style="[styles.footer]">
+				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
+            </div>
+        </farm-form>
+    `,
+});
+
+export const DatePickers = () => ({
+	data() {
+		return {
+			birthDate: '',
+			rangeDate: [],
+			validForm: false,
+			styles,
+		};
+	},
+	template: `
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+
+			<farm-label :required="true">Birthdate: {{ birthDate }}</farm-label>
+			<DatePicker
+				ref="birthDate"
+				inputId="form-pf-birthDate"
+				class="mt-4"
+				v-model="birthDate"
+				:readonly="true"
+				:required="true"
+			/>
+		
+			<farm-label :required="true">Range: {{ rangeDate }}</farm-label>
+			<RangeDatePicker
+				ref="rangeDate"
+				inputId="form-pf-rangeDate"
+				class="mt-4"
+				v-model="rangeDate"
+				:readonly="true"
+				:required="true"
+			/>
+			
             <div class="footer" :style="[styles.footer]">
 				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
 				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>

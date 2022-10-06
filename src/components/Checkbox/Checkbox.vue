@@ -8,9 +8,10 @@
 				'farm-checkbox--lighten': variation === 'lighten',
 				'farm-checkbox--darken': variation === 'darken',
 			}"
+			:size="$props.size"
 			@click="toggleValue"
 		>
-			<farm-icon size="sm" v-if="innerValue">check</farm-icon>
+			<farm-icon :size="$props.size" v-if="innerValue">check</farm-icon>
 		</span>
 		<farm-label v-if="label">
 			{{ label }}
@@ -56,6 +57,13 @@ export default Vue.extend({
 		rules: {
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
+		},
+		/**
+		 * Size
+		 */
+		size: {
+			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+			default: 'md',
 		},
 	},
 	setup(props, { emit }) {
