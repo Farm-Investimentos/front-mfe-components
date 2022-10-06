@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import Vue, { PropType, ref, toRefs, watch } from 'vue';
+import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-modal',
@@ -60,17 +61,8 @@ export default Vue.extend({
 		},
 	},
 	data() {
-		const zIndex = Math.max(
-			...Array.from(document.querySelectorAll('body *'), el =>
-				parseFloat(window.getComputedStyle(el).zIndex)
-			).filter(zIndex => !Number.isNaN(zIndex)),
-			0
-		);
-
 		return {
-			styleObject: {
-				zIndex,
-			},
+			styleObject: calculateMainZindex(),
 		};
 	},
 	setup(props, { emit }) {
