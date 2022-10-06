@@ -1,6 +1,6 @@
 import Checkbox from './Checkbox';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
-
+import sizes from '../../configurations/sizes';
 const colors = Object.keys(baseThemeColors);
 const variations = ['', 'darken', 'lighten'];
 
@@ -90,5 +90,19 @@ export const Colors = () => ({
 			/>
 			</div>
 		</div>
+	</div>`,
+});
+
+export const Sizes = () => ({
+	data() {
+		return {
+			sizes,
+			isChecked: true,
+		};
+	},
+	template: `<div style="display: flex; flex-direction: column; flex-wrap: wrap;">
+        <div v-for="size of sizes">
+			<farm-checkbox v-model="isChecked" :size="size" :label="size" /><br />
+        </div>
 	</div>`,
 });

@@ -33,19 +33,27 @@
 					</farm-icon>
 				</span>
 
-				<span v-if="isTHDataTableSelect(item) && showCheckbox">
+				<span v-if="isTHDataTableSelect(item) && showCheckbox" class="span-checkbox">
+					<!--
 					<v-simple-checkbox
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
 						v-model="inputVal"
 						@input="selectAll"
-					></v-simple-checkbox>
+					/>
+					-->
+					<farm-checkbox
+						:indeterminate="headerProps.someItems && !headerProps.everyItem"
+						size="sm"
+						v-model="inputVal"
+						@input="selectAll"
+					/>
 				</span>
 			</th>
 		</tr>
 	</thead>
 </template>
 
-<script>
+<script lang="showCheckbox">
 /* eslint-disable */
 import Vue from 'vue';
 import VSimpleCheckbox from 'vuetify/lib/components/VCheckbox/VSimpleCheckbox';
@@ -100,6 +108,7 @@ export default Vue.extend({
 		 * Hide/show checkbox
 		 */
 		showCheckbox: {
+			type: Boolean,
 			default: true,
 		},
 	},
