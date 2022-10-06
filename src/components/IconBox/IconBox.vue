@@ -48,7 +48,7 @@ export default Vue.extend({
 			default: 'md',
 		},
 		/**
-		 * INverted
+		 * Inverted
 		 */
 		inverted: {
 			type: Boolean,
