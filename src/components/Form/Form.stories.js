@@ -26,7 +26,6 @@ const styles = {
 	},
 };
 
-/*
 export const Primary = () => ({
 	data() {
 		return {
@@ -171,7 +170,7 @@ export const RadioGroupReset = () => ({
         </farm-form>
     `,
 });
-*/
+
 export const DatePickers = () => ({
 	data() {
 		return {
