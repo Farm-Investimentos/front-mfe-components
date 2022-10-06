@@ -10,13 +10,16 @@ import Vue, { PropType } from 'vue';
 export default Vue.extend({
 	name: 'farm-card-content',
 	props: {
+		/**
+		 * Html tag
+		 */
 		tag: { type: String, default: 'div' },
 		/**
 		 * Add gutter
 		 */
 		gutter: {
-			type: String as PropType<'none' | 'xs' | 'sm' | 'default' | 'md' | 'lg' | 'xl'>,
-			default: 'default',
+			type: String as PropType<'none' | 'xs' | 'sm' | 'vuetify' | 'md' | 'lg' | 'xl'>,
+			default: 'md',
 		},
 	},
 	inheritAttrs: true,
@@ -24,5 +27,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import './CardContent.scss';
+@import './CardContent';
 </style>
