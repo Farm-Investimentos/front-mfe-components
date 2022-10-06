@@ -2,6 +2,7 @@
 	position: relative;
 	color: var(--v-primary-base);
 	font-size: 12px;
+
 	.farm-icon {
 		position: absolute;
 		right: -20px;
@@ -17,11 +18,18 @@
 
 th.sortable {
 	cursor: pointer;
+
 	&:not(.active) {
 		&:hover {
-			.v-icon {
+			.farm-icon {
 				opacity: 0.5 !important;
 			}
 		}
 	}
+}
+
+th span.span-checkbox {
+	display: flex;
+	justify-content: start;
+	padding-left: 4px;
 }

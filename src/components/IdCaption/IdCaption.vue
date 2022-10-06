@@ -1,6 +1,6 @@
 <template>
 	<div class="idcaption">
-		<farm-icon-box v-if="icon" :icon="icon" size="md" />
+		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
 		<div
 			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
 		>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed } from 'vue';
+import Vue, { computed, PropType } from 'vue';
 export default Vue.extend({
 	name: 'farm-idcaption',
 	props: {
@@ -33,6 +33,25 @@ export default Vue.extend({
 		 */
 		icon: {
 			type: String,
+		},
+		/**
+		 * IconBox Color
+		 */
+		iconBoxColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
+			default: 'primary',
 		},
 		/**
 		 * copy to clipboard

@@ -114,3 +114,21 @@ export const NoTextToClip = () => ({
     </farm-idcaption>
     `,
 });
+
+export const IconBoxCustomColor = () => ({
+	template: `
+    <farm-idcaption 
+    icon="account-box-outline"
+    copyText="texto a copiar"
+    iconBoxColor="error"
+    :link="true"
+    >
+        <template v-slot:title>
+            Upper Line Text
+        </template>
+        <template v-slot:subtitle>
+            Lower: Line Text Line Text Line Text
+        </template>
+    </farm-idcaption>
+    `,
+});

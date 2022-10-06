@@ -1,5 +1,10 @@
 <template>
-	<div class="farm-switch" role="checkbox" @click="toggle" @keydown.space.prevent="toggle">
+	<div
+		:class="{ 'farm-switch': true, 'farm-switch--disabled': isDisabled }"
+		role="checkbox"
+		@click="toggle"
+		@keydown.space.prevent="toggle"
+	>
 		<span class="farm-switch__background" :class="backgroundStyles" />
 		<span class="farm-switch__indicator" :style="indicatorStyles" />
 	</div>
@@ -10,10 +15,22 @@ import Vue from 'vue';
 export default Vue.extend({
 	name: 'farm-switcher',
 	props: {
+		/**
+		 * v-model binding
+		 */
 		value: {
 			type: Boolean,
 			required: true,
 		},
+		/**
+		 * Is disabled?
+		 */
+		disabled: { type: Boolean, default: false },
+	},
+	data() {
+		return {
+			isDisabled: this.disabled,
+		};
 	},
 	computed: {
 		backgroundStyles() {
@@ -26,13 +43,21 @@ export default Vue.extend({
 			return { transform: this.value ? 'translateX(16px)' : 'translateX(0)' };
 		},
 	},
+	watch: {
+		disabled(newValue: boolean) {
+			this.isDisabled = newValue;
+		},
+	},
 	methods: {
 		toggle() {
+			if (this.isDisabled) {
+				return false;
+			}
 			this.$emit('input', !this.value);
 		},
 	},
 });
 </script>
 <style lang="scss" scoped>
-@import 'Switcher.scss';
+@import 'Switcher';
 </style>

@@ -7,16 +7,15 @@
 
 		<slot></slot>
 
-		<farm-icon
+		<farm-btn
 			v-if="hasCloseIcon"
-			role="button"
-			title="Fechar"
+			icon
 			class="farm-dialog-header__close"
-			color="secondary"
+			title="Fechar"
 			@click="onClose"
 		>
-			close-thick
-		</farm-icon>
+			<farm-icon role="button"> close-thick </farm-icon>
+		</farm-btn>
 	</header>
 </template>
 <script lang="ts">
@@ -28,21 +27,21 @@ export default Vue.extend({
 	name: 'farm-dialog-header',
 	props: {
 		/**
-		 * Título
+		 * Title
 		 */
 		title: {
 			type: String,
 			default: '',
 		},
 		/**
-		 * Ícone - usa os do material icons
+		 * Icon
 		 */
 		iconTitle: {
 			type: String,
 			default: null,
 		},
 		/**
-		 * Ícone - se possui o ícone de fechar
+		 * Has close icon?
 		 */
 		hasCloseIcon: {
 			type: Boolean,
