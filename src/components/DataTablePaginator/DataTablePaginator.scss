@@ -29,7 +29,12 @@ ul.farm-paginator {
                 margin: 0;
             }
             
-
+            
+            &:disabled {
+                .farm-icon {
+                    color: var(--farm-neutral-base);
+                }
+            }
         }
 
         &:first-child button {
@@ -43,7 +48,8 @@ ul.farm-paginator {
 
         &.farm-paginator__item--selected {
             button {
-                background-color: var(--v-secondary-base);
+                background-color: var(--farm-secondary-base);
+
                 p{
                     color: #FFFFFF;  
                 }
