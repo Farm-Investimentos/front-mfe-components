@@ -143,6 +143,12 @@ export default Vue.extend({
 			this.dateField = newValue;
 			this.fieldRange = this.formatDateRange(newValue);
 		},
+		fieldRange(newValue) {
+			if (!newValue) {
+				this.dateField = '';
+				this.save();
+			}
+		},
 	},
 	methods: {
 		formatDateRange(date) {
