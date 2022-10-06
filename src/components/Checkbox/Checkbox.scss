@@ -1,4 +1,5 @@
 @import '../../configurations/theme-colors';
+@import '../../configurations/variables';
 
 .farm-checkbox__container {
     display: flex;
@@ -57,4 +58,12 @@
         color: white;
     }
 
+}
+
+@each $size,
+$value in $sizes {
+    #{'.farm-checkbox[size=' + $size +']'} {
+        width: $value;
+        height: $value;
+    }
 }
