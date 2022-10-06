@@ -1,5 +1,5 @@
 <template>
-	<component :style="cardStyles" class="farm-card" :is="tag">
+	<component class="farm-card" :is="tag">
 		<slot></slot>
 	</component>
 </template>
@@ -11,19 +11,14 @@ export default Vue.extend({
 	name: 'farm-card',
 	inheritAttrs: true,
 	props: {
+		/**
+		 * Html tag
+		 */
 		tag: { type: String, default: 'div' },
-		padding: { type: Number, default: 16 }
 	},
-	computed: {
-		cardStyles() {
-			return {
-				padding: `${this.padding}px`
-			};
-		}
-	}
 });
 </script>
 
 <style lang="scss" scoped>
-@import './Card.scss';
+@import './Card';
 </style>

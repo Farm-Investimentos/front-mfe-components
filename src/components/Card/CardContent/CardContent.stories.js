@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Card Content<br />
-				selector: <em>farm-card-content</em>
+				selector: <em>farm-card-content</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -16,10 +17,20 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-card-content': CardContent },
 	template: `
         <farm-card-content>
             Conteúdo do Card Content
         </farm-card-content>
     `,
+});
+
+export const Gutters = () => ({
+	data() {
+		return { gutters: ['none', 'xs', 'sm', 'vuetify', 'md', 'lg', 'xl'] };
+	},
+	template: `<div style="width: 480px;">
+		<farm-card-content v-for="gutter in gutters" :key="gutter" style="margin-bottom: 16px" :gutter="gutter">
+			Content with {{ gutter }} gutter
+		</farm-card-content>
+    </div>`,
 });
