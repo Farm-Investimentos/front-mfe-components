@@ -14,7 +14,7 @@
 				:items="perPageBuiltItems"
 				dense
 			></v-select>
-		</div>{{ perPageBuiltItems }}
+		</div>
 
 		<ul
 			:class="{
