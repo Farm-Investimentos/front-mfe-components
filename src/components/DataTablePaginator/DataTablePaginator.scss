@@ -29,6 +29,9 @@ ul.farm-paginator {
                 margin: 0;
             }
             
+            .farm-icon {
+                color: var(--farm-text-primary);
+            }
             
             &:disabled {
                 .farm-icon {
