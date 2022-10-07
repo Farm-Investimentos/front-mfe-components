@@ -3,6 +3,17 @@ import ExportButton from './ExportButton.vue';
 export default {
 	title: 'Buttons/Export',
 	component: ExportButton,
+	parameters: {
+		docs: {
+			description: {
+				component: `Export Button<br />
+				selector: <em>farm-btn-export</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({
@@ -16,7 +27,3 @@ export const Disabled = () => ({
 export const List = () => ({
 	template: `<farm-btn-export :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
 });
-
-Primary.storyName = 'Básico';
-Disabled.storyName = 'Desabilitado';
-List.storyName = 'Lista';

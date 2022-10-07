@@ -94,9 +94,9 @@ export default Vue.extend({
 					offsetLeft + parentBoundingClientRect.width / 2 - popupClientRect.width / 2;
 			}
 			styles.minWidth =
-				parentBoundingClientRect.width > 96
+				(parentBoundingClientRect.width > 96
 					? parseInt(parentBoundingClientRect.width)
-					: 96 + 'px';
+					: 96) + 'px';
 
 			//Do not allow to open outside window
 			const rightEdge = offsetLeft + popupClientRect.width;
