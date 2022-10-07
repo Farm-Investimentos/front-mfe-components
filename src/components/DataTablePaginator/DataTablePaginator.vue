@@ -14,7 +14,7 @@
 				:items="perPageBuiltItems"
 				dense
 			></v-select>
-		</div>
+		</div>{{ perPageBuiltItems }}
 
 		<ul
 			:class="{
@@ -42,7 +42,7 @@
 					:disabled="currentPage === item || item === '...' || disabled"
 					@click="currentPage = item"
 				>
-					<farm-bodytext type="2" variation="regular">{{ item }}</farm-bodytext>
+					<farm-bodytext :type="2" variation="regular">{{ item }}</farm-bodytext>
 				</button>
 			</li>
 
@@ -62,7 +62,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { VSelect } from 'vuetify/lib/components/VSelect';
-import Icon from '../Icon';
 
 /**
  * Componente de paginação usado em tabelas e listas
@@ -70,6 +69,9 @@ import Icon from '../Icon';
  */
 export default Vue.extend({
 	name: 'farm-datatable-paginator',
+	components: {
+		VSelect,
+	},
 	props: {
 		/**
 		 * Lista de opções para o controle de registros por página
@@ -211,10 +213,7 @@ export default Vue.extend({
 			this.selectedLimit = newValue;
 		},
 	},
-	components: {
-		VSelect,
-		'farm-icon': Icon,
-	},
+	
 });
 </script>
 
