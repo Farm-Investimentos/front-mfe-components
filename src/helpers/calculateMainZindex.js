@@ -8,5 +8,5 @@ export default () => {
 		all_z.map(x => Number(x))
 	);
 
-	return zIndex;
+	return zIndex > 5 ? zIndex : 5;
 };

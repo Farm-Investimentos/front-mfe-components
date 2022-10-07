@@ -82,15 +82,18 @@ export default Vue.extend({
 
 		const calculatePosition = () => {
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
+			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
+
+			console.log(activatorBoundingClientRect);
 
 			let offsetTop =
 				parentBoundingClientRect.top +
 				window.scrollY +
-				(!bottom.value ? 0 : parentBoundingClientRect.height);
+				(!bottom.value ? 0 : activatorBoundingClientRect.height);
 
 			let offsetLeft = parentBoundingClientRect.left;
-			if (popupClientRect.width > parentBoundingClientRect.width) {
+			if (popupClientRect.width > activatorBoundingClientRect.width) {
 				offsetLeft =
 					offsetLeft + parentBoundingClientRect.width / 2 - popupClientRect.width / 2;
 			}
