@@ -68,7 +68,9 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			styleObject: {},
+			styleObject: {
+				zIndex: calculateMainZindex(),
+			},
 		};
 	},
 
@@ -77,12 +79,6 @@ export default Vue.extend({
 			return this.size === 'small' ? 'farm-loader--small' : '';
 		},
 	},
-
-	mounted() {
-		if(this.mode === 'overlay') {
-			this.styleObject.zIndex = calculateMainZindex();
-		}
-	}
 });
 </script>
 <style lang="scss" scoped>
