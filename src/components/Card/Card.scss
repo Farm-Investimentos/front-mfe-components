@@ -3,8 +3,8 @@
 .farm-card {
 	width: 100%;
 	background: #ffffff;
-	border: 1px solid #D6D6D6;
-	border-radius: 8px;
+	border: 1px solid var(--farm-stroke-base);
+	border-radius: 5px;
 
 	&[shadow] {
 		@include addShadow;

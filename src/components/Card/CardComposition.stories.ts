@@ -1,5 +1,4 @@
 import { withDesign } from 'storybook-addon-designs';
-import gutters from '../../configurations/gutters';
 
 export default {
 	title: 'Surfaces/Card/Molecules',
@@ -32,7 +31,7 @@ export const MultipleContents = () => ({
 
 export const Gutters = () => ({
 	data() {
-		return { gutters };
+		return { gutters: ['none', 'xs', 'sm', 'vuetify', 'md', 'lg', 'xl'] };
 	},
 	template: `<div style="width: 480px;">
     <farm-card v-for="gutter in gutters" :key="gutter" style="margin-bottom: 16px">

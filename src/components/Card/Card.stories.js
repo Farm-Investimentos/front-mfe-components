@@ -17,7 +17,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-card': Card },
 	template: `
         <farm-card>
 			Conteúdo do Card

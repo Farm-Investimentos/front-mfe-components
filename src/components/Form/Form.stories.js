@@ -33,6 +33,7 @@ export const Primary = () => ({
 				document: 'Document',
 				name: 'Name',
 				checkbox: true,
+				birthDate: new Date('1980/09/20').toISOString()
 			},
 			validForm: false,
 			rules: {
@@ -53,6 +54,16 @@ export const Primary = () => ({
 			
 			<farm-label :required="true">True/false</farm-label>
 			<farm-checkbox v-model="form.checkbox" :rules="[rules.checked]" />
+
+			<farm-label :required="true">Birthdate:</farm-label>
+			<DatePicker
+				ref="birthDate"
+				inputId="form-pf-birthDate"
+				class="mt-4"
+				v-model="form.birthDate"
+				:readonly="true"
+				:required="true"
+			/>
 			
 			
             <div class="footer" :style="[styles.footer]">
