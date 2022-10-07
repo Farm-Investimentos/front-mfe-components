@@ -6,7 +6,7 @@
 		>
 			<farm-caption variation="medium" v-if="hasTitle">
 				<span>
-					{{ $slots.title ? $slots.title[0].text : null }}
+					<slot name="title"></slot>
 					<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
 						<farm-icon size="xs">open-in-new</farm-icon>
 					</farm-btn>
@@ -15,7 +15,7 @@
 
 			<farm-caption variation="regular" color="gray" v-if="hasSubtitle">
 				<span>
-					{{ $slots.subtitle ? $slots.subtitle[0].text : null }}
+					<slot name="subtitle"></slot>
 					<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
 				</span>
 			</farm-caption>

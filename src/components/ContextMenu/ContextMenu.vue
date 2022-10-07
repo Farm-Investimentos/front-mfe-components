@@ -18,6 +18,7 @@
 </template>
 <script lang="ts">
 import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
+import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-contextmenu',
@@ -42,7 +43,7 @@ export default Vue.extend({
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const styles = reactive({ minWidth: 0, top: 0 } as any);
+		const styles = reactive({ minWidth: 0, top: 0, zIndex: 1 } as any);
 		const { bottom } = toRefs(props);
 
 		const inputValue = ref(props.value);
@@ -81,15 +82,18 @@ export default Vue.extend({
 
 		const calculatePosition = () => {
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
+			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
+
+			console.log(activatorBoundingClientRect);
 
 			let offsetTop =
 				parentBoundingClientRect.top +
 				window.scrollY +
-				(!bottom.value ? 0 : parentBoundingClientRect.height);
+				(!bottom.value ? 0 : activatorBoundingClientRect.height);
 
 			let offsetLeft = parentBoundingClientRect.left;
-			if (popupClientRect.width > parentBoundingClientRect.width) {
+			if (popupClientRect.width > activatorBoundingClientRect.width) {
 				offsetLeft =
 					offsetLeft + parentBoundingClientRect.width / 2 - popupClientRect.width / 2;
 			}
@@ -111,8 +115,9 @@ export default Vue.extend({
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
 
-			styles.top = offsetTop + 'px';
-			styles.left = offsetLeft + 'px';
+			styles.top = `${offsetTop}px`;
+			styles.left = `${offsetLeft}px`;
+			styles.zIndex = calculateMainZindex();
 		};
 
 		onBeforeUnmount(() => {

@@ -1,10 +1,12 @@
 export default () => {
-	const zIndex = Math.max(
-		...Array.from(document.querySelectorAll('body *'), el =>
-			parseFloat(window.getComputedStyle(el).zIndex)
-		).filter(zIndex => !Number.isNaN(zIndex)),
-		0
+	const all_z = [];
+	document.querySelectorAll('*').forEach(function (elem) {
+		all_z.push(elem.style.zIndex);
+	});
+	const zIndex = Math.max.apply(
+		null,
+		all_z.map(x => Number(x))
 	);
 
-	return zIndex;
+	return zIndex > 5 ? zIndex : 5;
 };

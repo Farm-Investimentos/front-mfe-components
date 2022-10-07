@@ -83,6 +83,7 @@ export * from './components/RadioGroup';
 export * from './components/Stepper';
 export * from './components/Switcher';
 export * from './components/TextField';
+export * from './components/TextFieldV2';
 export * from './components/Tooltip';
 export * from './components/Typography';
 
