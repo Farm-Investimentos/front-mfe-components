@@ -1,4 +1,4 @@
-const calculateMainZindex = () => {
+export default () => {
 	const zIndex = Math.max(
 		...Array.from(document.querySelectorAll('body *'), el =>
 			parseFloat(window.getComputedStyle(el).zIndex)
@@ -6,9 +6,5 @@ const calculateMainZindex = () => {
 		0
 	);
 
-	return {
-		zIndex,
-	};
+	return zIndex;
 };
-
-export default calculateMainZindex;
