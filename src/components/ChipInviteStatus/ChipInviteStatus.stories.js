@@ -15,5 +15,6 @@ export const Primary = () => ({
         <farm-chip-invite :status="15" />
         <farm-chip-invite :status="16" />
         <farm-chip-invite :status="17" />
+        <farm-chip-invite :status="18" />
     </div>`,
 });
