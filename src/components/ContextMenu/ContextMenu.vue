@@ -18,6 +18,7 @@
 </template>
 <script lang="ts">
 import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
+import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-contextmenu',
@@ -42,7 +43,7 @@ export default Vue.extend({
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const styles = reactive({ minWidth: 0, top: 0 } as any);
+		const styles = reactive({ minWidth: 0, top: 0, zIndex: 1 } as any);
 		const { bottom } = toRefs(props);
 
 		const inputValue = ref(props.value);
@@ -111,8 +112,9 @@ export default Vue.extend({
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
 
-			styles.top = offsetTop + 'px';
-			styles.left = offsetLeft + 'px';
+			styles.top = `${offsetTop}px`;
+			styles.left = `${offsetLeft}px`;
+			styles.zIndex = calculateMainZindex();
 		};
 
 		onBeforeUnmount(() => {
