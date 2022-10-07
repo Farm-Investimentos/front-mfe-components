@@ -17,7 +17,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { onMounted, ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
+import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-contextmenu',
@@ -83,7 +83,7 @@ export default Vue.extend({
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
 
-			const offsetTop =
+			let offsetTop =
 				parentBoundingClientRect.top +
 				window.scrollY +
 				(!bottom.value ? 0 : parentBoundingClientRect.height);
@@ -94,16 +94,26 @@ export default Vue.extend({
 					offsetLeft + parentBoundingClientRect.width / 2 - popupClientRect.width / 2;
 			}
 			styles.minWidth =
-				parentBoundingClientRect.width > 96
+				(parentBoundingClientRect.width > 96
 					? parseInt(parentBoundingClientRect.width)
-					: 96 + 'px';
+					: 96) + 'px';
+
+			//Do not allow to open outside window
+			const rightEdge = offsetLeft + popupClientRect.width;
+			const clientWidth = document.documentElement.clientWidth;
+			if (rightEdge > clientWidth - 12) {
+				offsetLeft = clientWidth - 12 - popupClientRect.width;
+			}
+
+			const bottomEdge = offsetTop + popupClientRect.height;
+			const clientHeight = document.documentElement.clientHeight;
+			if (bottomEdge - window.scrollY > clientHeight) {
+				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
+			}
+
 			styles.top = offsetTop + 'px';
 			styles.left = offsetLeft + 'px';
 		};
-
-		onMounted(() => {
-			calculatePosition();
-		});
 
 		onBeforeUnmount(() => {
 			if (hasBeenBoostrapped) {

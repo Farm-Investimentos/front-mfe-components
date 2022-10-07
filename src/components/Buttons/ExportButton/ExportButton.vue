@@ -12,77 +12,51 @@
 		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
 		Exportar
 	</farm-btn>
-	<v-menu
-		v-else
-		content-class="elevation-1"
-		v-model="togglePopover"
-		:offset-y="true"
-		:rounded="'b t-0'"
-	>
-		<template v-slot:activator="{ on, attrs }">
-			<farm-btn
-				v-bind="attrs"
-				v-on="on"
-				dense
-				class="farm-btn--responsive"
-				outlined
-				title="Exportar"
-				color="secondary"
-				@onClick="togglePopover = true"
-				:disabled="disabled"
-			>
+	<farm-contextmenu v-else v-model="value" :bottom="true">
+		<template v-slot:activator="{}">
+			<farm-btn outlined title="Exportar" color="secondary" @click="toggleValue">
 				Exportar
-				<i
-					:class="{
-						'ml-2': true,
-						'mr-0': true,
-						mdi: true,
-						'mdi-chevron-up': togglePopover,
-						'mdi-chevron-down': !togglePopover,
-					}"
-				>
-				</i>
+				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
 		</template>
-
-		<v-list dense class="pa-0">
-			<v-list-item
+		<farm-list>
+			<farm-listitem
 				v-for="item in optionsList"
-				:key="item.key"
-				link
+				clickable
+				hoverColor="primary"
+				hoverColorVariation="lighten"
+				:key="'exportbutton_key_' + item.label"
 				:title="item.label"
 				@click="onClick(item.key)"
 			>
-				<v-list-item-content>
-					<v-list-item-title v-text="item.label" />
-				</v-list-item-content>
-			</v-list-item>
-		</v-list>
-	</v-menu>
+				<farm-caption bold tag="span">{{ item.label }}</farm-caption>
+			</farm-listitem>
+		</farm-list>
+	</farm-contextmenu>
 </template>
-<script>
-import Vue from 'vue';
-import VList from 'vuetify/lib/components/VList/VList';
-import VMenu from 'vuetify/lib/components/VMenu';
-import VListItem from 'vuetify/lib/components/VList/VListItem';
-import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+<script lang="ts">
+import Vue, { PropType } from 'vue';
+
+export interface IExportOption {
+	label: String;
+	key: String;
+}
 
 /**
- * Botão de Exportação, com opção de gerar menu dropdown
+ * BExport Button: standalone or menu list
  */
 export default Vue.extend({
 	name: 'farm-btn-export',
 	props: {
 		/**
-		 * Lista de opções para o menu dropdown
-		 * Se não informado, o botão emite evento no clique
+		 * Options list
 		 */
 		optionsList: {
-			type: Array,
+			type: Array as PropType<Array<IExportOption>>,
 			default: () => [],
 		},
 		/**
-		 * Desabilita o botão
+		 * Is disabled?
 		 */
 		disabled: {
 			type: Boolean,
@@ -91,31 +65,16 @@ export default Vue.extend({
 	},
 	data() {
 		return {
-			togglePopover: false,
+			value: false,
 		};
-	},
-	components: {
-		VList,
-		VListItem,
-		VMenu,
-		VListItemContent,
-		VListItemTitle,
 	},
 	methods: {
 		onClick(key) {
 			this.$emit('onClick', key);
 		},
+		toggleValue() {
+			this.value = !this.value;
+		},
 	},
 });
 </script>
-<style scoped lang="scss">
-.v-list-item {
-	border-bottom: 1px solid var(--v-gray-lighten2);
-	&:last-child {
-		border-bottom: none;
-	}
-}
-.v-list-item--link {
-	font-size: 0.875rem;
-}
-</style>

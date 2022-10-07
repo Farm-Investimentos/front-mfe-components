@@ -16,10 +16,20 @@
 			></v-select>
 		</div>
 
-		<ul :class="{ 'farm-paginator': true, 'farm-paginator--disabled': disabled || totalPages == null }">
+		<ul
+			:class="{
+				'farm-paginator': true,
+				'farm-paginator--disabled': disabled || totalPages == null,
+			}"
+		>
 			<li>
-				<button :disabled="currentPage === 1 || disabled || totalPages == null" @click="previousPage">
-					<farm-icon color="gray" size="sm">chevron-left</farm-icon>
+				<button :disabled="canGoBack" @click="firstPage">
+					<farm-icon size="sm">chevron-double-left</farm-icon>
+				</button>
+			</li>
+			<li>
+				<button :disabled="canGoBack" @click="previousPage">
+					<farm-icon size="sm">chevron-left</farm-icon>
 				</button>
 			</li>
 
@@ -32,13 +42,18 @@
 					:disabled="currentPage === item || item === '...' || disabled"
 					@click="currentPage = item"
 				>
-					{{ item }}
+					<farm-bodytext :type="2" variation="regular">{{ item }}</farm-bodytext>
 				</button>
 			</li>
 
 			<li>
-				<button :disabled="currentPage === totalPages || disabled || totalPages == null || totalPages === 0" @click="nextPage">
-					<farm-icon color="gray" size="sm">chevron-right</farm-icon>
+				<button :disabled="canGoForward" @click="nextPage">
+					<farm-icon size="sm">chevron-right</farm-icon>
+				</button>
+			</li>
+			<li>
+				<button :disabled="canGoForward" @click="lastPage">
+					<farm-icon size="sm">chevron-double-right</farm-icon>
 				</button>
 			</li>
 		</ul>
@@ -47,7 +62,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { VSelect } from 'vuetify/lib/components/VSelect';
-import Icon from '../Icon';
 
 /**
  * Componente de paginação usado em tabelas e listas
@@ -55,6 +69,9 @@ import Icon from '../Icon';
  */
 export default Vue.extend({
 	name: 'farm-datatable-paginator',
+	components: {
+		VSelect,
+	},
 	props: {
 		/**
 		 * Lista de opções para o controle de registros por página
@@ -118,6 +135,12 @@ export default Vue.extend({
 		nextPage() {
 			this.currentPage++;
 		},
+		firstPage() {
+			this.currentPage = 1;
+		},
+		lastPage() {
+			this.currentPage = this.totalPages;
+		},
 	},
 	data() {
 		return {
@@ -161,6 +184,20 @@ export default Vue.extend({
 				return [...this.range(1, left), '...', ...this.range(right, this.totalPages)];
 			}
 		},
+		canGoBack: function () {
+			const goBack = this.currentPage === 1 || this.disabled || this.totalPages == null;
+
+			return goBack;
+		},
+		canGoForward: function () {
+			const goNext =
+				this.currentPage === this.totalPages ||
+				this.disabled ||
+				this.totalPages == null ||
+				this.totalPages === 0;
+
+			return goNext;
+		},
 	},
 	watch: {
 		selectedLimit(newValue) {
@@ -176,10 +213,7 @@ export default Vue.extend({
 			this.selectedLimit = newValue;
 		},
 	},
-	components: {
-		VSelect,
-		'farm-icon': Icon,
-	},
+	
 });
 </script>
 

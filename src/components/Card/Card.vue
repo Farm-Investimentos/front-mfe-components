@@ -11,11 +11,14 @@ export default Vue.extend({
 	name: 'farm-card',
 	inheritAttrs: true,
 	props: {
+		/**
+		 * Html tag
+		 */
 		tag: { type: String, default: 'div' },
 	},
 });
 </script>
 
 <style lang="scss" scoped>
-@import './Card.scss';
+@import './Card';
 </style>
