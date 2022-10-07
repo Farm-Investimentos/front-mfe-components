@@ -4,7 +4,7 @@ import IdCaption from './';
 export default {
 	title: 'Display/IdCaption',
 	component: IdCaption,
-    decorators: [withDesign],
+	decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {
@@ -128,6 +128,23 @@ export const IconBoxCustomColor = () => ({
         </template>
         <template v-slot:subtitle>
             Lower: Line Text Line Text Line Text
+        </template>
+    </farm-idcaption>
+    `,
+});
+
+export const CustomTag = () => ({
+	template: `
+    <farm-idcaption 
+    icon="account-box-outline"
+    copyText="texto a copiar"
+    :link="true"
+    >
+        <template v-slot:title>
+            <b>Upper Line Text</b>
+        </template>
+        <template v-slot:subtitle>
+            <b>Lower:</b> Line Text Line Text Line Text
         </template>
     </farm-idcaption>
     `,
