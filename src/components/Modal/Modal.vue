@@ -1,7 +1,11 @@
 <template>
 	<transition name="fade">
-		<div :class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }" v-if="inputValue">
-			<div class="farm-modal--container">
+		<div
+			v-if="inputValue"
+			:class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }"
+			:style="styleObject"
+		>
+			<div class="farm-modal--container teste">
 				<div class="farm-modal--header">
 					<!-- @slot header -->
 					<slot name="header"></slot>
@@ -21,8 +25,10 @@
 		</div>
 	</transition>
 </template>
+
 <script lang="ts">
-import Vue, { PropType, ref, toRefs, watch } from 'vue';
+import Vue, { PropType, reactive, ref, toRefs, watch } from 'vue';
+import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-modal',
@@ -57,6 +63,7 @@ export default Vue.extend({
 	setup(props, { emit }) {
 		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
 		const inputValue = ref(props.value);
+		const styleObject = reactive({ zIndex: 1 });
 		const styles = {
 			marginTop: offsetTop.value + 'px',
 			marginBottom: offsetBottom.value + 'px',
@@ -77,7 +84,8 @@ export default Vue.extend({
 			newValue => {
 				inputValue.value = newValue;
 				if (newValue) {
-					window.addEventListener('keyup', escHandler);
+					(styleObject.zIndex = calculateMainZindex()),
+						window.addEventListener('keyup', escHandler);
 				}
 			}
 		);
@@ -91,6 +99,7 @@ export default Vue.extend({
 		return {
 			inputValue,
 			styles,
+			styleObject,
 			size,
 			close,
 		};
