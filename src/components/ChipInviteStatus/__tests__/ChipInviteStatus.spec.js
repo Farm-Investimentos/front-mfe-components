@@ -21,16 +21,4 @@ describe('ChipInviteStatus component', () => {
 			expect(wrapper.element).toMatchSnapshot();
 		});
 	});
-
-	describe('Computed properties', () => {
-		it('Should have text color', () => {
-			expect(component.textColor).toBeDefined();
-		});
-		it('Should have color', () => {
-			expect(component.color).toBeDefined();
-		});
-		it('Should have label', () => {
-			expect(component.label).toBeDefined();
-		});
-	});
 });

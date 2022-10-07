@@ -1,50 +1,18 @@
 <template>
-	<v-chip
-		small
-		:class="
-			`status-chip ${
-				isFull ? 'status-chip--fullwidth' : ''
-			} status-chip-${color} status-chip--onboarding`
-		"
+	<farm-chip
+		:color="obj.color"
+		:outlined="obj.outlined"
+		:variation="obj.variation"
+		:dense="!isFull"
 	>
-		<span :class="`${textColor}--text`">
-			{{ label }}
-		</span>
-	</v-chip>
+		{{ obj.label }}
+	</farm-chip>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-const StatusLabel = {
-	10: 'CONVIDAR',
-	11: 'CONVIDADO',
-	12: 'INCOMPLETO',
-	13: 'CONCLUÍDO',
-	14: 'FALHA/ERRO',
-	15: 'EM ANÁLISE',
-	16: 'EM ANDAMENTO',
-	17: 'EM ESPERA',
-	18: 'DECLINADO'
-};
-
-const StatusColor = {
-	10: 'secondary',
-	11: 'yellow',
-	12: 'yellow',
-	13: 'success',
-	14: 'error',
-	15: 'accent',
-	16: 'primary',
-	17: 'on-wait',
-	18: 'error',
-};
-
-import VChip from 'vuetify/lib/components/VChip/';
-
+import keys from './keys';
 export default Vue.extend({
 	name: 'farm-chip-invite',
-	components: {
-		VChip,
-	},
 	props: {
 		/**
 		 * Invite status
@@ -58,24 +26,13 @@ export default Vue.extend({
 		 */
 		isFull: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
 	computed: {
-		textColor() {
-			return this.status === 10 || this.status === 16 || this.status === 17
-				? ''
-				: StatusColor[this.status];
-		},
-		color() {
-			return !this.status ? '' : StatusColor[this.status];
-		},
-		label() {
-			return StatusLabel[this.status];
+		obj() {
+			return keys[this.status];
 		},
 	},
 });
 </script>
-<style lang="scss" scoped>
-@import './ChipInviteStatus.scss';
-</style>
