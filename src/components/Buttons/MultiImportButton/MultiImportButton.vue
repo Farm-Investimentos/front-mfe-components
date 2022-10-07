@@ -1,4 +1,5 @@
 <template>
+	<!--
 	<v-menu content-class="elevation-1" v-model="togglePopover" :offset-y="true" :rounded="'b t-0'">
 		<template v-slot:activator="{ on, attrs }">
 			<farm-btn
@@ -39,39 +40,60 @@
 			</v-list-item>
 		</v-list>
 	</v-menu>
+-->
+	<farm-contextmenu v-model="value" :bottom="true">
+		<template v-slot:activator="{}">
+			<farm-btn outlined title="Importar" color="secondary" @click="toggleValue">
+				Importar
+				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
+			</farm-btn>
+		</template>
+		<farm-list>
+			<farm-listitem
+				v-for="item in optionsList"
+				clickable
+				hoverColor="primary"
+				hoverColorVariation="lighten"
+				:key="'importbutton_key_' + item.title"
+				:title="item.title"
+				@click="onClick(item.listenerKey)"
+			>
+				<farm-caption bold tag="span">{{ item.title }}</farm-caption>
+			</farm-listitem>
+		</farm-list>
+	</farm-contextmenu>
 </template>
-<script>
-import Vue from 'vue';
-import VList from 'vuetify/lib/components/VList/VList';
-import VMenu from 'vuetify/lib/components/VMenu';
-import VListItem from 'vuetify/lib/components/VList/VListItem';
-import { VListItemContent, VListItemTitle } from 'vuetify/lib';
+<script lang="ts">
+import Vue, { PropType } from 'vue';
+
+export interface IImportOption {
+	title: String;
+	listenerKey: String;
+}
 
 export default Vue.extend({
 	name: 'farm-btn-multipleimport',
-	components: {
-		VList,
-		VListItem,
-		VMenu,
-		VListItemContent,
-		VListItemTitle,
-	},
 	props: {
 		/**
-		 * Lista de opções para o menu dropdown
+		 * Options list
 		 */
 		optionsList: {
-			type: Array,
+			type: Array as PropType<Array<IImportOption>>,
 			default: () => [],
 		},
 	},
 	data() {
 		return {
-			togglePopover: false,
+			value: false,
 		};
+	},
+	methods: {
+		onClick(key) {
+			this.$emit('onClick', key);
+		},
+		toggleValue() {
+			this.value = !this.value;
+		},
 	},
 });
 </script>
-<style scoped lang="scss">
-@import './MultiImportButton.scss';
-</style>
