@@ -10,7 +10,13 @@ export const Primary = () => ({
 });
 
 export const List = () => ({
-	template: `<farm-btn-multipleimport :optionsList="[{ listenerKey: 1, title: 'XLS teste'}, { listenerKey: 2, title: 'CSV teste novo'}]" />`,
+	methods: {
+		listener(key) {
+			alert('Handler for item ' + key);
+		},
+	},
+	template: `<farm-btn-multipleimport
+			:optionsList="[{ listenerKey: 1, title: 'XLS teste'}, { listenerKey: 2, title: 'CSV teste novo'}]"
+			@onClick="listener"
+		/>`,
 });
-
-List.storyName = 'Lista';
