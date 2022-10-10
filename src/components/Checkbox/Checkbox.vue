@@ -51,7 +51,18 @@ export default Vue.extend({
 			default: '',
 		},
 		color: {
-			type: String,
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
 			default: 'primary',
 		},
 		/**
