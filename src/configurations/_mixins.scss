@@ -16,6 +16,12 @@
     }
 }
 
+@mixin fromXs {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
 @mixin fromSm {
     @media (min-width: 960px) {
         @content;
