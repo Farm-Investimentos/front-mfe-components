@@ -38,13 +38,26 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Max height
+		 */
+		maxHeight: {
+			type: [Number, String],
+			default: 320,
+		},
 	},
 	setup(props, { emit }) {
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const styles = reactive({ minWidth: 0, top: 0, zIndex: 1 } as any);
-		const { bottom } = toRefs(props);
+		const { bottom, maxHeight } = toRefs(props);
+
+		const styles = reactive({
+			minWidth: 0,
+			top: 0,
+			zIndex: 1,
+			maxHeight: parseInt(maxHeight.value as string) + 'px',
+		} as any);
 
 		const inputValue = ref(props.value);
 
@@ -85,21 +98,19 @@ export default Vue.extend({
 			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
 
-			console.log(activatorBoundingClientRect);
-
 			let offsetTop =
 				parentBoundingClientRect.top +
 				window.scrollY +
 				(!bottom.value ? 0 : activatorBoundingClientRect.height);
 
-			let offsetLeft = parentBoundingClientRect.left;
+			let offsetLeft = activatorBoundingClientRect.left;
 			if (popupClientRect.width > activatorBoundingClientRect.width) {
 				offsetLeft =
-					offsetLeft + parentBoundingClientRect.width / 2 - popupClientRect.width / 2;
+					offsetLeft + activatorBoundingClientRect.width / 2 - popupClientRect.width / 2;
 			}
 			styles.minWidth =
-				(parentBoundingClientRect.width > 96
-					? parseInt(parentBoundingClientRect.width)
+				(activatorBoundingClientRect.width > 96
+					? parseInt(activatorBoundingClientRect.width)
 					: 96) + 'px';
 
 			//Do not allow to open outside window
