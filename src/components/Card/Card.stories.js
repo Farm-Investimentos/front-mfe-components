@@ -18,8 +18,10 @@ export default {
 
 export const Primary = () => ({
 	template: `
-        <farm-card>
-			Conteúdo do Card
-        </farm-card>
-    `,
+		<farm-card>
+		Card content
+		</farm-card>
+	`,
 });
+
+

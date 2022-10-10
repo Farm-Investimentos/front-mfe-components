@@ -51,3 +51,13 @@ export const Shadow = () => ({
 	</farm-card>
     </div>`,
 });
+
+export const BackgroundChildren = () => ({
+	template: `<div style="width: 480px;">
+    <farm-card>
+		<farm-card-content style="background: #DADADA">
+			Content!
+		</farm-card-content>
+	</farm-card>
+    </div>`,
+});
