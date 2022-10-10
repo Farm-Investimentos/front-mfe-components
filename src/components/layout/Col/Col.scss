@@ -3,7 +3,7 @@
 .farm-col {
     flex: 0 0 100%;
     max-width: 100%;
-    padding-inline: 12px;
+    padding: 0 24px;
 }
 
 @for $i from 1 through 12 {
