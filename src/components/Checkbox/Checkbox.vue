@@ -5,17 +5,20 @@
 				'farm-checkbox': true,
 				'farm-checkbox--checked': innerValue,
 				'farm-checkbox--disabled': disabled,
+				'farm-checkbox--indeterminate': indeterminate,
 				'farm-checkbox--lighten': variation === 'lighten',
 				'farm-checkbox--darken': variation === 'darken',
 			}"
 			:size="$props.size"
 			@click="toggleValue"
 		>
-			<farm-icon :size="$props.size" v-if="innerValue">check</farm-icon>
+			<farm-icon :size="$props.size" v-if="innerValue && !indeterminate">check</farm-icon>
+			<farm-icon :size="$props.size" v-if="indeterminate">minus</farm-icon>
 		</span>
 		<farm-label v-if="label">
 			{{ label }}
 		</farm-label>
+		<div class="farm-ripple" :size="$props.size" v-if="!disabled"></div>
 	</div>
 </template>
 <script lang="ts">
@@ -65,6 +68,10 @@ export default Vue.extend({
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'md',
 		},
+		/**
+		 * Sets an indeterminate state for the simple checkbox
+		 */
+		indeterminate: { type: Boolean, default: false },
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
