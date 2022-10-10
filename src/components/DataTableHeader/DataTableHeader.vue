@@ -34,10 +34,12 @@
 				</span>
 
 				<span v-if="isTHDataTableSelect(item) && showCheckbox" class="span-checkbox">
-					<!--
+					<farm-checkbox
+						size="sm"
+						v-model="inputVal"
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
-					-->
-					<farm-checkbox size="sm" v-model="inputVal" @input="selectAll" />
+						@input="selectAll"
+					/>
 				</span>
 			</th>
 		</tr>
