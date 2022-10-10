@@ -1,44 +1,49 @@
 @import '../../../configurations/mixins.scss';
 
-@include forXsOnly {
+.farm-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@for $i from 1 through 12 {
+    .farm-col--xs-#{$i * 1} {
+        flex: 0 0 (100/12 * $i)+#{"%"};
+        max-width: (100/12 * $i)+#{"%"};
+    }
+}
+
+@include fromXs {
     @for $i from 1 through 12 {
-        .farm-col--xs-#{$i * 1} {
-            flex: 0 0 (100/12 * $i) + #{"%"};
-            max-width: (100/12 * $i) + #{"%"};
+        .farm-col--sm-#{$i * 1} {
+            flex: 0 0 (100/12 * $i)+#{"%"};
+            max-width: (100/12 * $i)+#{"%"};
         }
     }
 }
 
 @include fromSm {
     @for $i from 1 through 12 {
-        .farm-col--sm-#{$i * 1} {
-            flex: 0 0 (100/12 * $i) + #{"%"};
-            max-width: (100/12 * $i) + #{"%"};
+        .farm-col--md-#{$i * 1} {
+            flex: 0 0 (100/12 * $i)+#{"%"};
+            max-width: (100/12 * $i)+#{"%"};
         }
     }
 }
 
 @include fromMd {
     @for $i from 1 through 12 {
-        .farm-col--md-#{$i * 1} {
-            flex: 0 0 (100/12 * $i) + #{"%"};
-            max-width: (100/12 * $i) + #{"%"};
+        .farm-col--lg-#{$i * 1} {
+            flex: 0 0 (100/12 * $i)+#{"%"};
+            max-width: (100/12 * $i)+#{"%"};
         }
     }
 }
 
 @include fromLg {
     @for $i from 1 through 12 {
-        .farm-col--lg-#{$i * 1} {
-            flex: 0 0 (100/12 * $i) + #{"%"};
-            max-width: (100/12 * $i) + #{"%"};
+        .farm-col--xl-#{$i * 1} {
+            flex: 0 0 (100/12 * $i)+#{"%"};
+            max-width: (100/12 * $i)+#{"%"};
         }
-    }
-}
-
-@for $i from 1 through 12 {
-    .farm-col--xl-#{$i * 1} {
-        flex: 0 0 (100/12 * $i) + #{"%"};
-        max-width: (100/12 * $i) + #{"%"};
     }
 }
