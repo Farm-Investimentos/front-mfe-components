@@ -3,6 +3,7 @@
 		:is="tag"
 		:class="{
 			'farm-col': true,
+			[`farm-col--align-${alignSelf}`]: alignSelf,
 			[`farm-col--xl-${xl}`]: xl,
 			[`farm-col--lg-${lg}`]: lg,
 			[`farm-col--md-${md}`]: md,
@@ -65,6 +66,13 @@ export default Vue.extend({
 		noGutters: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Applies the align-items css property.
+		 */
+		 alignSelf: {
+			type: String as PropType<'start' | 'center' | 'end' | 'auto' | 'baseline' | 'stretch'>,
+			default: '',
 		},
 	},
 	inheritAttrs: true,

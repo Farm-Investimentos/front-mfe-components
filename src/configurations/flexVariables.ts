@@ -1,4 +1,5 @@
 const directions = ['row', 'row-reverse', 'column', 'column-reverse'];
-const justifications = ['start', 'center', 'end', 'space-between', 'space-around'];
+const justifications = ['start', 'center', 'end', 'auto', 'space-between', 'space-around'];
+const aligns = ['start', 'center', 'end', 'auto', 'baseline', 'stretch'];
 
-export { directions, justifications };
+export { aligns, directions, justifications };
