@@ -1,9 +1,11 @@
 @import '../../configurations/theme-colors';
 @import '../../configurations/variables';
+@import '../../configurations/mixins';
 
 .farm-checkbox__container {
     display: flex;
     flex-direction: row;
+    position: relative;
 
     .farm-label {
         margin-left: 8px;
@@ -11,7 +13,9 @@
 
     @each $color in $theme-colors-list {
         &#{'[color=' + $color + ']'} {
-            .farm-checkbox--checked {
+
+            .farm-checkbox--checked,
+            .farm-checkbox--indeterminate {
                 background-color: themeColor($color);
                 border-color: themeColor($color);
 
@@ -31,11 +35,13 @@
             }
         }
     }
+
+    @include activateRipple;
 }
 
+@include rippleStyles;
+
 .farm-checkbox {
-    width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     border: 2px solid #5c5c5c;
@@ -43,6 +49,7 @@
     cursor: pointer;
     line-height: 0;
     transition: all 0.4s;
+    z-index: 2;
 
     &--disabled {
         border-color: #dadada;
@@ -57,7 +64,6 @@
     .farm-icon {
         color: white;
     }
-
 }
 
 @each $size,
@@ -65,5 +71,12 @@ $value in $sizes {
     #{'.farm-checkbox[size=' + $size +']'} {
         width: $value;
         height: $value;
+    }
+
+    #{'.farm-ripple[size=' + $size +']'} {
+        height: $value*1.75;
+        width: $value*1.75;
+        left: -$value*0.4;
+        top: -$value*0.4 ;
     }
 }

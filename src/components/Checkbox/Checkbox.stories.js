@@ -106,3 +106,15 @@ export const Sizes = () => ({
         </div>
 	</div>`,
 });
+
+export const Indeterminate = () => ({
+	data() {
+		return {
+			sizes,
+			isChecked: true,
+		};
+	},
+	template: `<div>
+		<farm-checkbox :indeterminate="true" v-model="isChecked"  />
+	</div>`,
+});

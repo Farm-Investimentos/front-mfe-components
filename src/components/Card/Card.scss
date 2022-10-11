@@ -5,6 +5,7 @@
 	background: #ffffff;
 	border: 1px solid var(--farm-stroke-base);
 	border-radius: 5px;
+	overflow: hidden;
 
 	&[shadow] {
 		@include addShadow;
