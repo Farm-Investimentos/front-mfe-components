@@ -6,23 +6,24 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 auto;
-    margin-inline: -12px;
+    
+    margin: 0 -#{gutter()};
 
     @each $k in $aligns {
         &#{'--align-' + $k} {
-            align-items: $k  !important;
+            align-items: $k!important;
         }
     }
 
     @each $k in $align-contents {
         &#{'--align-content-' + $k} {
-            align-content: $k  !important;
+            align-content: $k!important;
         }
     }
 
     @each $k in $justifications {
         &#{'--justify-' + $k} {
-            justify-content: $k  !important;
+            justify-content: $k!important;
         }
     }
 

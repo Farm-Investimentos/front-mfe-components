@@ -1,4 +1,5 @@
 import Col from './Col.vue';
+import { aligns } from '../../../configurations/flexVariables';
 
 export default {
 	title: 'Layout/Col',
@@ -8,7 +9,7 @@ export default {
 			description: {
 				component: `Col<br />
 					selector: <em>farm-col</em><br />
-					<span style="color: var(--farm-extra-1-base);">development</span>
+					<span style="color: var(--farm-primary-base);">ready for use</span>
 `,
 			},
 		},
@@ -141,4 +142,17 @@ export const NoGutters = () => ({
 		};
 	},
 	template: '<farm-col :no-gutters="true" :style="style">col</farm-col>',
+});
+
+export const AlignSelf = () => ({
+	data() {
+		return {
+			style,
+			aligns,
+		};
+	},
+	template: `
+		<farm-row style="height: 150px">
+			<farm-col :style="style" v-for="align in aligns" :key="align" :align-self="align">{{ align }}</farm-col>
+	</farm-row>`,
 });
