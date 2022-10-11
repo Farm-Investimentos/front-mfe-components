@@ -49,6 +49,7 @@ export {
 	IdCaption,
 };
 
+export * from './components/AlertBox';
 export * from './components/AlertReload';
 export * from './components/ButtonToggle';
 export * from './components/Buttons/DefaultButton';
