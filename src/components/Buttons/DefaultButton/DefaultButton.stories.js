@@ -1,8 +1,8 @@
-import DefaultButton from './DefaultButton.vue';
 import { withDesign } from 'storybook-addon-designs';
 import baseThemeColors from '../../../configurations/_theme-colors-base.scss';
-const colors = Object.keys(baseThemeColors);
 import './Buttons.stories.scss';
+import DefaultButton from './DefaultButton.vue';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Buttons/Default',
@@ -25,8 +25,46 @@ export default {
 	},
 };
 
-export const Primary = () => ({
-	template: '<farm-btn title="Pass text as slot">Pass text as slot</farm-btn>',
+export const DefaultActive = () => ({
+	template: '<farm-btn color="primary"> Pass text as slot </farm-btn>',
+});
+
+export const DefaultInactive = () => ({
+	template: '<farm-btn disabled > Pass text as slot </farm-btn>',
+});
+
+export const PrimaryActive = () => ({
+	template:
+		'<farm-btn color="primary"> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+
+export const PrimaryActiveMobile = () => ({
+	template:
+		'<farm-btn color="primary" full> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+
+export const PrimaryInactive = () => ({
+	template:
+		'<farm-btn disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+export const SecondaryActive = () => ({
+	template:
+		'<farm-btn outlined> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+
+export const SecondaryInactive = () => ({
+	template:
+		'<farm-btn outlined disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+
+export const TertiaryActive = () => ({
+	template:
+		'<farm-btn plain> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
+});
+
+export const TertiaryInactive = () => ({
+	template:
+		'<farm-btn plain disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
 export const HtmlMarkup = () => ({

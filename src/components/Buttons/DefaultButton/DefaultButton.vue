@@ -38,7 +38,6 @@ export default Vue.extend({
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 			>,
@@ -52,6 +51,10 @@ export default Vue.extend({
 		 * Is plain
 		 */
 		plain: { type: Boolean, default: false },
+		/**
+		 * Is full
+		 */
+		full: { type: Boolean, default: false },
 		/**
 		 * Is disabled
 		 */
@@ -93,6 +96,7 @@ export default Vue.extend({
 				'farm-btn--round': this.isRound,
 				'farm-btn--rounded': this.rounded,
 				'farm-btn--icon': this.icon,
+				'farm-btn--full': this.full,
 				['farm-btn--' + this.color]: true,
 				...obj,
 			};
