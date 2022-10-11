@@ -2,7 +2,6 @@ import { shallowMount } from '@vue/test-utils';
 import ChipInviteStatus from '../ChipInviteStatus.vue';
 describe('ChipInviteStatus component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(ChipInviteStatus, {
@@ -10,7 +9,6 @@ describe('ChipInviteStatus component', () => {
 				status: 10,
 			},
 		});
-		component = wrapper.vm;
 	});
 	test('ChipInviteStatus created', () => {
 		expect(wrapper).toBeDefined();
