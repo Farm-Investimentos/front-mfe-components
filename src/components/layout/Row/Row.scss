@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     flex: 1 1 auto;
     
-    margin: 0 -#{gutter()};
+    margin: 0 -#{gutter('vuetify')};
 
     @each $k in $aligns {
         &#{'--align-' + $k} {
@@ -27,7 +27,12 @@
         }
     }
 
-    &--no-gutters {
+    &--no-default-gutters {
         margin: 0;
     }
+
+    &--extra-decrease {
+        margin: 0 -#{2 * gutter('vuetify')};
+    }
+
 }

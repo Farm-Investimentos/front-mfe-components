@@ -6,7 +6,8 @@
 			[`farm-row--align-${align}`]: align,
 			[`farm-row--align-content-${alignContent}`]: alignContent,
 			[`farm-row--justify-${justify}`]: justify,
-			'farm-row--no-gutters': noGutters,
+			'farm-row--no-default-gutters': noDefaultGutters,
+			'farm-row--extra-decrease': extraDecrease,
 		}"
 	>
 		<slot></slot>
@@ -48,7 +49,14 @@ export default Vue.extend({
 		/**
 		 * Remove default gutters
 		 */
-		noGutters: {
+		noDefaultGutters: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Extra decrease margin
+		 */
+		extraDecrease: {
 			type: Boolean,
 			default: false,
 		},
