@@ -4,6 +4,10 @@
     flex: 0 0 100%;
     max-width: 100%;
     padding: 0 24px;
+
+    &--no-gutters {
+        padding: 0;
+    }
 }
 
 @for $i from 1 through 12 {
