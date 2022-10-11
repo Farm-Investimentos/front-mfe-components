@@ -114,7 +114,7 @@ export const ColorsLighten = () => ({
 	template: `<div>
 		<farm-typography
 			v-for="color in colors"
-			variation="lighten"
+			color-variation="lighten"
 			:color="color"
 			:key="'lighten' + color"
 		>
@@ -132,7 +132,7 @@ export const ColorsDarken = () => ({
 	template: `<div>
 		<farm-typography
 			v-for="color in colors"
-			variation="darken"
+			color-variation="darken"
 			:color="color"
 			:key="'darken' + color"
 		>

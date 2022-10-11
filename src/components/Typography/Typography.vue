@@ -5,8 +5,8 @@
 			'farm-typography': true,
 			['farm-typography--' + $props.size]: isSizeFromBreakpoints,
 			['farm-typography--weight-' + weight]: weight !== undefined,
-			'farm-typography--lighten': variation === 'lighten',
-			'farm-typography--darken': variation === 'darken',
+			'farm-typography--lighten': colorVariation === 'lighten',
+			'farm-typography--darken': colorVariation === 'darken',
 		}"
 		:style="style"
 		:color="color"
@@ -59,7 +59,7 @@ export default Vue.extend({
 		/**
 		 * Color variation
 		 */
-		variation: {
+		colorVariation: {
 			type: String,
 			default: '',
 		},
