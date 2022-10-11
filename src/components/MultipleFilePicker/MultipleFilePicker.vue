@@ -3,27 +3,27 @@
 		<input
 			type="file"
 			name="file"
+			multiple
+			ref="upload"
 			:class="{
 				'hidden-input': hasFiles,
 			}"
-			@change="fileChange($event.target.files)"
 			:accept="acceptedFileTypes"
-			multiple
-			ref="upload"
+			@change="fileChange($event.target.files)"
 		/>
 		<div v-if="!hasFiles" class="selectfile-container">
-			<farm-icon class="upload-icon" color="secondary" size="lg" @click="addMoreFiles"
-				>cloud-upload</farm-icon
-			>
+			<farm-icon class="upload-icon" size="lg" @click="addMoreFiles">
+				cloud-upload
+			</farm-icon>
 			<p>Clique para selecionar ou arraste o arquivo aqui</p>
 		</div>
 
 		<ul
+			v-if="downloadFiles.length"
 			class="listFilesStyled listFilesStyled--download"
 			:class="{
 				'listFilesStyled--margin-bottom': files.length === 0,
 			}"
-			v-if="downloadFiles.length"
 		>
 			<li class="itemFilesStyled" v-for="file in downloadFiles" :key="file.id">
 				<div class="itemFilesContentStyled">
@@ -66,26 +66,26 @@
 					</div>
 				</div>
 				<div class="itemFilesContentButtonStyled">
-					<span
-						class="mdi mdi-close"
-						aria-role="button"
+					<farm-btn
+						icon
 						title="Remover"
+						color="neutral"
+						size="md"
 						@click.prevent="remove(index)"
-					></span>
-
-					<span class="mdi mdi-check" v-if="file.success"></span>
+					>
+						<farm-icon size="md">close</farm-icon>
+					</farm-btn>
+					<farm-icon size="md" color="neutral" v-if="file.success">check</farm-icon>
 				</div>
 			</li>
 		</ul>
 
 		<farm-btn
-			depressed
+			v-if="hasFiles"
 			outlined
 			title="Escolher Outro"
-			color="gray"
 			class="farm-btn--responsive"
 			:disabled="disabledButton"
-			v-if="hasFiles"
 			@click="addMoreFiles"
 		>
 			Escolher Outro
