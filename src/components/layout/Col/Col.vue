@@ -70,7 +70,7 @@ export default Vue.extend({
 		/**
 		 * Applies the align-items css property.
 		 */
-		 alignSelf: {
+		alignSelf: {
 			type: String as PropType<'start' | 'center' | 'end' | 'auto' | 'baseline' | 'stretch'>,
 			default: '',
 		},

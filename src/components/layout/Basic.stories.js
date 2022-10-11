@@ -46,7 +46,7 @@ export const Structure = () => ({
 				coluna 4
 			</farm-col>
 		</farm-row>
-		<farm-row>
+		<farm-row extra-decrease="true">
 			<farm-container-footer>
 				Footer content
 			</farm-container-footer>

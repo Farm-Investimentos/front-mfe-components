@@ -68,6 +68,6 @@ export const Justify = () => ({
 	</div>`,
 });
 
-export const NoGutters = () => ({
-	template: '<farm-row :no-gutters="true">no gutters</farm-row>',
+export const NoDefaultGutters = () => ({
+	template: '<farm-row :no-default-gutters="true">no gutters</farm-row>',
 });
