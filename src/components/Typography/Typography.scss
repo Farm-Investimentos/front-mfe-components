@@ -30,6 +30,14 @@
 	@each $k in $theme-colors-list {
 		&#{'[color=' + $k + ']'} {
 			color: var(--farm-#{$k}-base);
+
+			&.farm-typography--lighten {
+				color: var(--farm-#{$k}-lighten);
+			}
+
+			&.farm-typography--darken {
+				color: var(--farm-#{$k}-darken);
+			}
 		}
 	}
 
@@ -60,4 +68,3 @@
 		}
 	}
 }
-

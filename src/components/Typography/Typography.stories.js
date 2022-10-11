@@ -105,6 +105,42 @@ export const Colors = () => ({
 	</div>`,
 });
 
+export const ColorsLighten = () => ({
+	data() {
+		return {
+			colors: [ ...colors, 'white'],
+		};
+	},
+	template: `<div>
+		<farm-typography
+			v-for="color in colors"
+			variation="lighten"
+			:color="color"
+			:key="'lighten' + color"
+		>
+			Typography - color {{ color }} lighten
+		</farm-typography>
+	</div>`,
+});
+
+export const ColorsDarken = () => ({
+	data() {
+		return {
+			colors: [...colors, 'white'],
+		};
+	},
+	template: `<div>
+		<farm-typography
+			v-for="color in colors"
+			variation="darken"
+			:color="color"
+			:key="'darken' + color"
+		>
+			Typography - color {{ color }} darken
+		</farm-typography>
+	</div>`,
+});
+
 export const Tags = () => ({
 	data() {
 		return {

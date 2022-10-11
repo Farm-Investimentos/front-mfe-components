@@ -35,7 +35,7 @@ export const Structure = () => ({
 		<farm-row>
 			<farm-col md="6" lg="3">
 				coluna 1
-			</farm-col>
+			</farm-col>›
 			<farm-col md="6" lg="3">
 				coluna 2
 			</farm-col>
@@ -46,7 +46,7 @@ export const Structure = () => ({
 				coluna 4
 			</farm-col>
 		</farm-row>
-		<farm-row extra-decrease="true">
+		<farm-row :extra-decrease="true">
 			<farm-container-footer>
 				Footer content
 			</farm-container-footer>
