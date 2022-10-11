@@ -29,10 +29,10 @@ export const Align = () => ({
 	},
 	template: `<div>
 		<farm-row :align="align" v-for="align in aligns" :key="'align_' + align">
-			<v-col md="6">
+			<farm-col md="6">
 				row align
 				{{ align }}
-			</v-col>
+			</farm-col>
 		</farm-row>
 	</div>`,
 });
@@ -45,10 +45,10 @@ export const AlignContent = () => ({
 	},
 	template: `<div>
 		<farm-row :align-content="align" v-for="align in aligns" :key="'align-content-_' + align">
-			<v-col md="6">
+			<farm-col md="6">
 				row align-content
 				{{ align }}
-			</v-col>
+			</farm-col>
 		</farm-row>
 	</div>`,
 });
@@ -61,13 +61,13 @@ export const Justify = () => ({
 	},
 	template: `<div>
 		<farm-row :justify="k" v-for="k in justifications" :key="'justify-_' + k">
-			<v-col md="6">
+			<farm-col md="6">
 				row justify {{ k }}
-			</v-col>
+			</farm-col>
 		</farm-row>
 	</div>`,
 });
 
-export const NoGutters = () => ({
-	template: '<farm-row :no-gutters="true">no gutters</farm-row>',
+export const NoDefaultGutters = () => ({
+	template: '<farm-row :no-default-gutters="true">no gutters</farm-row>',
 });

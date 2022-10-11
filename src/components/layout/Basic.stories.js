@@ -17,6 +17,14 @@ export const Primary = () => ({
 export const Structure = () => ({
 	template: `
 	<farm-container>
+		<farm-row>
+			<farm-col md="6" xs="12">
+				Main Filter
+			</farm-col>
+			<farm-col md="6" xs="12">
+				Botoes laterais
+			</farm-col>
+		</farm-row>
 		<farm-box>
 			Content<br />
 			Content<br />
@@ -25,20 +33,20 @@ export const Structure = () => ({
 			Content<br />
 		</farm-box>
 		<farm-row>
-			<v-col md="6" lg="3">
+			<farm-col md="6" lg="3">
 				coluna 1
-			</v-col>
-			<v-col md="6" lg="3">
+			</farm-col>
+			<farm-col md="6" lg="3">
 				coluna 2
-			</v-col>
-			<v-col md="6" lg="3">
+			</farm-col>
+			<farm-col md="6" lg="3">
 				coluna 3
-			</v-col>
-			<v-col md="6" lg="3">
+			</farm-col>
+			<farm-col md="6" lg="3">
 				coluna 4
-			</v-col>
+			</farm-col>
 		</farm-row>
-		<farm-row>
+		<farm-row extra-decrease="true">
 			<farm-container-footer>
 				Footer content
 			</farm-container-footer>

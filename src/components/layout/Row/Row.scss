@@ -6,27 +6,33 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 auto;
-    margin-inline: -12px;
+    
+    margin: 0 -#{gutter('vuetify')};
 
     @each $k in $aligns {
         &#{'--align-' + $k} {
-            align-items: $k  !important;
+            align-items: $k!important;
         }
     }
 
     @each $k in $align-contents {
         &#{'--align-content-' + $k} {
-            align-content: $k  !important;
+            align-content: $k!important;
         }
     }
 
     @each $k in $justifications {
         &#{'--justify-' + $k} {
-            justify-content: $k  !important;
+            justify-content: $k!important;
         }
     }
 
-    &--no-gutters {
+    &--no-default-gutters {
         margin: 0;
     }
+
+    &--extra-decrease {
+        margin: 0 -#{2 * gutter('vuetify')};
+    }
+
 }

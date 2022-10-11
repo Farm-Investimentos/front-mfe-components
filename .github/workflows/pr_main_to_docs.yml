@@ -10,6 +10,11 @@ jobs:
 
       - name: Checkout source code
         uses: actions/checkout@master
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14.19
+          registry-url: https://registry.npmjs.org/
         
       - name: package-version
         run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
