@@ -28,51 +28,41 @@ export default Vue.extend({
 		 * Extra-large breakpoint
 		 */
 		xl: {
-			type: [String, Number] as PropType<
-				1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-			>,
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
 		/**
 		 * Large breakpoint
 		 */
 		lg: {
-			type: [String, Number] as PropType<
-				1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-			>,
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
 		/**
 		 * Medium breakpoint
 		 */
 		md: {
-			type: [String, Number] as PropType<
-				1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-			>,
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
 		/**
 		 * Small breakpoint
 		 */
 		sm: {
-			type: [String, Number] as PropType<
-				1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-			>,
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
 		/**
 		 * Extra-small breakpoint
 		 */
 		xs: {
-			type: [String, Number] as PropType<
-				1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-			>,
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
 		/**
 		 * Remove default gutters
 		 */
-		 noGutters: {
+		noGutters: {
 			type: Boolean,
 			default: false,
 		},
