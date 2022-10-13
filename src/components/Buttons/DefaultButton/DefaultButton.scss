@@ -5,7 +5,7 @@
 .farm-btn {
     font-size: 14px;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 6px;
     display: inline-flex;
     flex: 0 0 auto;
     font-weight: 700;
@@ -25,6 +25,10 @@
     min-width: 64px;
     padding: 0 16px;
 
+    &.farm-btn--full {
+        width: 100%;
+    }
+
     @each $size,
     $value in $sizes {
         &#{'.farm-btn[size=' + $size +']'} {
@@ -37,6 +41,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        gap: 8px;
 
         ::v-deep i.mdi {
             font-size: 1rem;
@@ -62,6 +67,8 @@
         }
     }
 
+
+    
     &:before {
         transition: all 0.28s ease;
         background-color: currentColor;
@@ -220,8 +227,13 @@
     background-color: white;
 
     i.mdi.farm-icon {
-        color: white;
+        color: #D6D6D6;
     }
+}
+
+.farm-btn--plain.farm-btn--disabled {
+    background-color: transparent;
+    border: none;
 }
 
 .farm-btn--elevated {
