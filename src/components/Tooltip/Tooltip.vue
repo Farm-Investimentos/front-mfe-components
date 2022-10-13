@@ -86,7 +86,7 @@ export default Vue.extend({
 					window.scrollY -
 					(popupBoundingClientRect.height + 8) +
 					'px';
-				//
+				
 				hasBeenBoostrapped = true;
 			}
 		};
