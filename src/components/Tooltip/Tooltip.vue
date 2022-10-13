@@ -1,24 +1,26 @@
 <template>
-	<span
-		:class="{ 'farm-tooltip': true, ['farm-tooltip--' + color]: true }"
-		@mouseover="onOver"
-		@mouseout="onOut"
-		ref="parent"
-	>
-		<slot name="activator"></slot>
+	<span :class="{ 'farm-tooltip': true }" ref="parent">
+		<span @mouseover="onOver" @mouseout="onOut" ref="activator">
+			<slot name="activator"></slot>
+		</span>
+
 		<span
+			ref="popup"
 			:class="{
 				'farm-tooltip__popup': true,
+				['farm-tooltip--' + color]: true,
 				'farm-tooltip__popup--visible':
 					(!externalControl && showOver) || (externalControl && toggleComponent),
 			}"
+			:style="styles"
+			@mouseout="onOut"
 		>
 			<slot></slot>
 		</span>
 	</span>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref, computed } from 'vue';
+import Vue, { PropType, ref, computed, reactive, onBeforeUnmount } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-tooltip',
@@ -52,23 +54,60 @@ export default Vue.extend({
 	},
 	setup(props) {
 		const parent = ref(null);
+		const popup = ref(null);
+		const activator = ref(null);
 		const showOver = ref(false);
+		const styles = reactive({
+			left: '0',
+			top: '0',
+		});
 
 		const toggleComponent = computed(() => props.value);
 		const externalControl = computed(() => props.value !== undefined);
 
+		let hasBeenBoostrapped = false;
+
 		const onOver = () => {
 			showOver.value = true;
+
+			if (!hasBeenBoostrapped) {
+				document.querySelector('body').appendChild(popup.value);
+				const parentBoundingClientRect = parent.value.getBoundingClientRect();
+				const activatorBoundingClientRect = activator.value.getBoundingClientRect();
+				const popupBoundingClientRect = popup.value.getBoundingClientRect();
+
+				styles.left =
+					parentBoundingClientRect.left +
+					window.scrollX -
+					(80 - activatorBoundingClientRect.width / 2) +
+					'px';
+				styles.top =
+					parentBoundingClientRect.top +
+					window.scrollY -
+					(popupBoundingClientRect.height + 8) +
+					'px';
+				//
+				hasBeenBoostrapped = true;
+			}
 		};
 		const onOut = (event: MouseEvent) => {
 			showOver.value = parent.value.contains(event.relatedTarget);
 		};
 
+		onBeforeUnmount(() => {
+			if (hasBeenBoostrapped) {
+				document.querySelector('body').removeChild(popup.value);
+			}
+		});
+
 		return {
 			parent,
+			popup,
+			activator,
 			showOver,
 			toggleComponent,
 			externalControl,
+			styles,
 			onOver,
 			onOut,
 		};
