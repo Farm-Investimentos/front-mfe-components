@@ -72,10 +72,17 @@ export default Vue.extend({
 			type: String,
 			default: 'button',
 		},
+		/**
+		 * Denotes the target route of the link
+		 * Will transform button into a router-link
+		 */
 		to: {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Size
+		 */
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'default',

@@ -25,22 +25,18 @@ export default {
 	},
 };
 
-export const DefaultActive = () => ({
+export const Default = () => ({
 	template: '<farm-btn color="primary"> Pass text as slot </farm-btn>',
 });
 
-export const DefaultInactive = () => ({
-	template: '<farm-btn disabled > Pass text as slot </farm-btn>',
+export const Full = () => ({
+	template:
+		'<farm-btn color="primary" full> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
 export const PrimaryActive = () => ({
 	template:
 		'<farm-btn color="primary"> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
-});
-
-export const PrimaryActiveMobile = () => ({
-	template:
-		'<farm-btn color="primary" full> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
 export const PrimaryInactive = () => ({
@@ -72,7 +68,7 @@ export const HtmlMarkup = () => ({
 });
 
 export const Props = () => ({
-	template: '<farm-btn color="secondary" outlined>props</farm-btn>',
+	template: '<farm-btn outlined>props</farm-btn>',
 });
 
 export const Listener = () => ({
@@ -82,7 +78,7 @@ export const Listener = () => ({
 		};
 	},
 	template: `
-		<farm-btn color="error" @click="x = 2">click me to change: {{ x }}</farm-btn>
+		<farm-btn color="error" @click="x++">click me to change: {{ x }}</farm-btn>
 	`,
 });
 
