@@ -1,11 +1,29 @@
 <template>
-	<div class="farm-textfield">
+	<div
+		class="farm-textfield"
+		:class="{
+			'touched-success': isSuccess,
+			'touched-error': isError,
+			'touched-disabled': isDisabled,
+		}"
+	>
 		<div class="farm-textfield--input">
-			<input v-bind="$attrs" v-model="innerValue" />
+			<button v-if="iconLeft" @click="$emit('onClickIconLeft')">
+				<farm-icon>{{ iconLeft }}</farm-icon>
+			</button>
+
+			<input v-bind="$attrs" v-model="innerValue" :disabled="isDisabled" />
+
+			<button v-if="iconRight" @click="$emit('onClickIconRight')">
+				<farm-icon>{{ iconRight }}</farm-icon>
+			</button>
 		</div>
-		<span class="farm-textfield--text"> hint text</span>
+
+		<span class="farm-textfield--text" v-if="errorMessage">{{ errorMessage }}</span>
+		<span class="farm-textfield--text" v-if="hintText && !errorMessage">{{ hintText }}</span>
 	</div>
 </template>
+
 <script lang="ts">
 import Vue, { ref, watch } from 'vue';
 
@@ -17,6 +35,41 @@ export default Vue.extend({
 		 * v-model binding
 		 */
 		value: {},
+		/**
+		 * Show icon left
+		 */
+		iconLeft: String,
+		/**
+		 * Show icon right
+		 */
+		iconRight: String,
+		/**
+		 * Show hint text
+		 */
+		hintText: String,
+		/**
+		 * Show input active
+		 */
+		isSuccess: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Show input error
+		 */
+		isError: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Show input disable
+		 */
+		isDisabled: {
+			type: Boolean,
+			default: false,
+		},
+
+		errorMessage: String,
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);

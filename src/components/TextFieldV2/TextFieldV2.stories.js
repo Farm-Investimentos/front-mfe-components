@@ -22,14 +22,51 @@ export default {
 	},
 };
 
-export const Primary = () => ({
+export const Untouched = () => ({
 	data() {
 		return {
-			v: 'some text',
+			v: 'input text',
+		};
+	},
+	methods: {
+		show() {
+			alert('iconLeftAction');
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" iconRight="eye" iconRightAction="this.show" hintText="Hint text" isUntouched />
+	</div>`,
+});
+
+export const TouchedSuccess = () => ({
+	data() {
+		return {
+			v: 'input text',
 		};
 	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" />
-		value: {{ v }}
+		<farm-textfield-v2 v-model="v" iconRight="eye" hintText="Hint text" isSuccess />
+	</div>`,
+});
+
+export const TouchedError = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" iconRight="eye" hintText="Hint text error" isError errorMessage="Campo obrigatório" />
+	</div>`,
+});
+
+export const TouchedDisabled = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" hintText="Hint text" isDisabled />
 	</div>`,
 });
