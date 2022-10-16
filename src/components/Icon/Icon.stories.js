@@ -1,8 +1,8 @@
 import { withDesign } from 'storybook-addon-designs';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
-const colors = Object.keys(baseThemeColors);
 import sizes from '../../configurations/sizes';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
 import iconsList from './icons_list';
+const colors = Object.keys(baseThemeColors);
 
 import('./Icons.stories.scss');
 
