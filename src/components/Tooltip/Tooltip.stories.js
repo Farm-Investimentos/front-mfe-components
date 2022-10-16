@@ -37,7 +37,9 @@ export const Tooltips = () => ({
             :color="color"
             style="margin-right: 4px"
         >
-            this is the tooltip for {{ color }}
+            <span>
+			this is the tooltip for {{ color }}
+			</span>
             <template v-slot:activator="{ on, attrs }">
                 {{ color }}
             </template>
@@ -81,5 +83,18 @@ export const Visibility = () => ({
 			</v-btn>
             </template>
         </farm-tooltip>
+	</div>`,
+});
+
+export const TooltipTest = () => ({
+	template: `<div style="padding-left: 80px; padding-top: 80px;">
+        <farm-card style="padding: 32px">
+			<farm-tooltip>
+				this is the tooltip!
+				<template v-slot:activator="{ on, attrs }">
+					<farm-btn style="height: 80px">try me</farm-btn>
+				</template>
+			</farm-tooltip>
+		</farm-card>
 	</div>`,
 });

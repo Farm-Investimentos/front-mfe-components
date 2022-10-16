@@ -4,14 +4,18 @@
 .farm-tooltip {
 	display: inline-block;
 	position: relative;
+}
+
+.farm-tooltip__popup {
+	background-color: themeColor('primary');
 
 	@each $color in $colors {
 		@each $color in $theme-colors-list {
-	
-			&--#{$color} {
-				.farm-tooltip__popup {
-					background-color: themeColor($color);
-				}
+
+			&.farm-tooltip--#{$color} {
+
+				background-color: themeColor($color);
+
 			}
 		}
 	}
@@ -27,8 +31,11 @@
 	padding: 8px 12px;
 	position: absolute;
 	width: 160px;
-	left: 50%;
-	transform: translate(-50%, -110%);
+	background-color: themeColor('primary');
+	contain: content;
+
+	display: block;
+	font-family: 'Montserrat', sans-serif !important;
 
 	&--visible {
 		opacity: 1;
