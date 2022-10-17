@@ -9,6 +9,7 @@
 			[`farm-col--md-${md}`]: md,
 			[`farm-col--sm-${sm}`]: sm,
 			[`farm-col--xs-${xs}`]: xs,
+			[`farm-col--cols-${cols}`]: cols,
 			'farm-col--no-gutters': noGutters,
 		}"
 	>
@@ -25,6 +26,13 @@ export default Vue.extend({
 		 * Html tag
 		 */
 		tag: { type: String, default: 'div' },
+		/**
+		 * Sets the default number of columns the component extends
+		 */
+		 cols: {
+			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
+			default: null,
+		},
 		/**
 		 * Extra-large breakpoint
 		 */
