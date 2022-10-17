@@ -15,6 +15,10 @@ npm run storybook
 ```
 npm run build-storybook
 ```
+or
+```
+npm run build:components
+```
 
 ### Pipelines
 
