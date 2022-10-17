@@ -16,13 +16,22 @@ jobs:
           node-version: 14.19
           registry-url: https://registry.npmjs.org/
         
-      - name: package-version
+      - name: Get version from package.json
         run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
 
       - name: Current version package.json
         run: echo ${{ env.PACKAGE_VERSION }}
+      
+      - name: Create tag using value from package.json
+        uses: pkgdeps/git-tag-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          version: ${{ env.PACKAGE_VERSION }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
 
-      - name: pull-request
+      - name: Create PR from develop to main
         uses: repo-sync/pull-request@v2
         with:
           source_branch: "develop"

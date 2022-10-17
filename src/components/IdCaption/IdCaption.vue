@@ -29,7 +29,8 @@ export default Vue.extend({
 	name: 'farm-idcaption',
 	props: {
 		/**
-		 * Icon
+		 * Icon (from Material Icons)
+		 * Example: chart-bar
 		 */
 		icon: {
 			type: String,

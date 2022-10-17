@@ -13,7 +13,7 @@
 					</farm-typography>
 				</div>
 				<div class="collapsible__icon collapsible__icon--arrow">
-					<farm-icon size="md" color="primary">
+					<farm-icon size="md" color="secondary">
 						{{ arrowIcon }}
 					</farm-icon>
 				</div>
@@ -42,12 +42,16 @@ export default Vue.extend({
 			required: true,
 		},
 		/**
-		 * Icon
+		 * Icon (from Material Icons)
+		 * Example: chart-bar
 		 */
 		icon: {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Is open?
+		 */
 		open: {
 			type: Boolean,
 			default: false,
