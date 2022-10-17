@@ -108,7 +108,7 @@ export const Colors = () => ({
 export const ColorsLighten = () => ({
 	data() {
 		return {
-			colors: [ ...colors, 'white'],
+			colors: ['default', ...colors, 'white'],
 		};
 	},
 	template: `<div>

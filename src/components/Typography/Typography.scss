@@ -27,6 +27,10 @@
 
 	color: var(--farm-text-primary);
 
+	&--lighten {
+		color: var(--farm-text-secondary);
+	}
+
 	@each $k in $theme-colors-list {
 		&#{'[color=' + $k + ']'} {
 			color: var(--farm-#{$k}-base);

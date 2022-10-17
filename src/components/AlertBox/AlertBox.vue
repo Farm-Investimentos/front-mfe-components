@@ -1,5 +1,10 @@
 <template>
-	<div>alertbox</div>
+	<div>
+		<!--
+			@slot Use this slot for the content
+		-->
+		<slot></slot>
+	</div>
 </template>
 
 <script lang="ts">
