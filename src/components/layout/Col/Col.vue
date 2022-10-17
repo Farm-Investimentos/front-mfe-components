@@ -29,7 +29,7 @@ export default Vue.extend({
 		/**
 		 * Sets the default number of columns the component extends
 		 */
-		 cols: {
+		cols: {
 			type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>,
 			default: null,
 		},
