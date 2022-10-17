@@ -6,6 +6,7 @@
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
+    width: 100;
 
     &--no-gutters {
         padding: 0;
@@ -13,8 +14,15 @@
 
     @each $k in $aligns {
         &#{'--align-' + $k} {
-            align-self: $k!important;
+            align-self: $k !important;
         }
+    }
+}
+
+@for $i from 1 through 12 {
+    .farm-col--cols-#{$i * 1} {
+        flex: 0 0 (100/12 * $i)+#{"%"};
+        max-width: (100/12 * $i)+#{"%"};
     }
 }
 
