@@ -17,10 +17,6 @@
         }
     }
 
-    &--gray-base {
-        color: var(--farm-neutral-darken);
-    }
-
     @each $size,
     $value in $sizes {
         &#{'.farm-icon[size=' + $size +']'} {
