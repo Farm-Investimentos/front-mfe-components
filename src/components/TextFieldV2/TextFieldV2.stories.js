@@ -22,6 +22,37 @@ export default {
 	},
 };
 
+export const Primary = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	methods: {
+		show() {
+			alert('iconLeftAction');
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" iconRight="eye" iconRightAction="this.show" hintText="Hint text" isUntouched />
+	</div>`,
+});
+
+export const Validate = () => ({
+	data() {
+		return {
+			v: 'input text',
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+			}
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" :rules="[rules.required]" />
+	</div>`,
+});
+
+/*
 export const Untouched = () => ({
 	data() {
 		return {
@@ -70,3 +101,4 @@ export const TouchedDisabled = () => ({
 		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" hintText="Hint text" isDisabled />
 	</div>`,
 });
+*/
