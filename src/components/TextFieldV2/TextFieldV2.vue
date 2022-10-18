@@ -3,7 +3,7 @@
 		class="farm-textfield"
 		:class="{
 			'touched-success': isSuccess,
-			'touched-error': isError,
+			'touched-error': hasError,
 			'touched-disabled': isDisabled,
 		}"
 	>
@@ -25,7 +25,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { ref, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
+import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
+import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
+import deepEqual from '../../composition/deepEqual';
 
 export default Vue.extend({
 	name: 'farm-textfield-v2',
@@ -70,14 +74,31 @@ export default Vue.extend({
 		},
 
 		errorMessage: String,
+		/**
+		 * Array of rules used for validation
+		 */
+		 rules: {
+			type: Array as PropType<Array<Function>>,
+			default: () => [],
+		},
 	},
 	setup(props, { emit }) {
+		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
+
+		const { errorBucket, valid, validatable } = validateFormStateBuilder();
+
+		let fieldValidator = validateFormFieldBuilder(rules.value);
+
+		const hasError = computed(() => {
+			return errorBucket.value.length > 0;
+		});
 
 		watch(
 			() => props.value,
 			() => {
 				innerValue.value = props.value;
+				validate(innerValue.value);
 			}
 		);
 
@@ -88,8 +109,29 @@ export default Vue.extend({
 			}
 		);
 
+		watch(
+			() => props.rules,
+			(newVal, oldVal) => {
+				if (deepEqual(newVal, oldVal)) return;
+				fieldValidator = validateFormFieldBuilder(rules.value);
+				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+				validate(innerValue.value);
+			}
+		);
+
+		onBeforeMount(() => {
+			validate(innerValue.value);
+		});
+
+		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+
 		return {
 			innerValue,
+			errorBucket,
+			valid,
+			validatable,
+			hasError,
+			validate,
 		};
 	},
 });
