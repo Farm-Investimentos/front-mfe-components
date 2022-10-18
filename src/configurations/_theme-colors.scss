@@ -52,6 +52,12 @@ $extra-2: (
     darken: #880E4F,
 );
 
+$gray: (
+    base: #858585,
+    lighten: #D6D6D6,
+    darken: #5C5C5C,
+);
+
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
@@ -61,7 +67,8 @@ $theme-colors: (
     "warning": $warning,
     "success": $success,
     "extra-1": $extra-1,
-    "extra-2": $extra-2
+    "extra-2": $extra-2,
+    "gray": $gray
 );
 
 $text-colors: (

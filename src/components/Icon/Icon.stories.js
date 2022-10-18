@@ -34,7 +34,7 @@ export const Atom = () => ({
 export const Colors = () => ({
 	data() {
 		return {
-			colors: [...colors, 'gray'],
+			colors: [...colors],
 		};
 	},
 	template: `<div class="icons-container">

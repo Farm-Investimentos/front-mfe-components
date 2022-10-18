@@ -26,6 +26,7 @@ export default Vue.extend({
 				| 'success'
 				| 'extra-1'
 				| 'extra-2'
+				| 'gray'
 			>,
 			default: 'primary',
 		},
