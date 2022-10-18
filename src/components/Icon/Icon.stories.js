@@ -1,4 +1,5 @@
 import { withDesign } from 'storybook-addon-designs';
+import Icon from './Icon.vue';
 import sizes from '../../configurations/sizes';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
 import iconsList from './icons_list';
@@ -9,6 +10,7 @@ import('./Icons.stories.scss');
 export default {
 	title: 'Display/Icons',
 	decorators: [withDesign],
+	component: Icon,
 	parameters: {
 		viewMode: 'docs',
 		docs: {
