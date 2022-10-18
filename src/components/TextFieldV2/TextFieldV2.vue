@@ -2,9 +2,8 @@
 	<div
 		class="farm-textfield"
 		:class="{
-			'touched-success': isSuccess,
 			'touched-error': hasError,
-			'touched-disabled': isDisabled,
+			'touched-disabled': disabled,
 		}"
 	>
 		<div class="farm-textfield--input">
@@ -12,7 +11,7 @@
 				<farm-icon>{{ iconLeft }}</farm-icon>
 			</button>
 
-			<input v-bind="$attrs" v-model="innerValue" :disabled="isDisabled" />
+			<input v-bind="$attrs" v-model="innerValue" :disabled="disabled" />
 
 			<button v-if="iconRight" @click="$emit('onClickIconRight')">
 				<farm-icon>{{ iconRight }}</farm-icon>
@@ -52,23 +51,9 @@ export default Vue.extend({
 		 */
 		hintText: String,
 		/**
-		 * Show input active
-		 */
-		isSuccess: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Show input error
-		 */
-		isError: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		 * Show input disable
 		 */
-		isDisabled: {
+		disabled: {
 			type: Boolean,
 			default: false,
 		},
