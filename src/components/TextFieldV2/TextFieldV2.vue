@@ -18,7 +18,7 @@
 			</button>
 		</div>
 
-		<span class="farm-textfield--text" v-if="errorMessage">{{ errorMessage }}</span>
+		<span class="farm-textfield--text" v-if="hasError">{{ errorBucket[0] }}</span>
 		<span class="farm-textfield--text" v-if="hintText && !errorMessage">{{ hintText }}</span>
 	</div>
 </template>
