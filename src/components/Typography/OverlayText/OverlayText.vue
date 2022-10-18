@@ -1,10 +1,5 @@
 <template>
-	<farm-typography
-		:weight="400"
-		size="sm"
-		:class="{ [`farm-overlaytext`]: true }"
-		v-bind="$attrs"
-	>
+	<farm-typography v-bind="$attrs" size="10px" class="farm-overlaytext" :weight="400">
 		<slot></slot>
 	</farm-typography>
 </template>
