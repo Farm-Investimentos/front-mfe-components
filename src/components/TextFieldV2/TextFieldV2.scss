@@ -4,7 +4,7 @@
 		align-items: center;
 		gap: 8px;
 		border: 1px solid;
-		border-color: var(--farm-neutral-base);
+		border-color: var(--farm-gray-lighten);
 		height: 36px;
 		border-radius: 5px;
 		padding: 8px;
@@ -24,8 +24,6 @@
 
 		width: 100%;
 	}
-
-
 }
 
 .farm-textfield--touched.farm-textfield--validatable {

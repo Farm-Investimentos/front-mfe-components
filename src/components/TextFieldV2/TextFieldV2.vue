@@ -27,8 +27,12 @@
 			</button>
 		</div>
 
-		<farm-caption v-if="hasError && isTouched" color="error">{{ errorBucket[0] }}</farm-caption>
-		<farm-caption v-if="hintText && !errorMessage" color="gray">{{ hintText }}</farm-caption>
+		<farm-caption v-if="hasError && isTouched" color="error" variation="regular">
+			{{ errorBucket[0] }}
+		</farm-caption>
+		<farm-caption v-if="hintText && !errorMessage" color="gray" variation="regular">
+			{{ hintText }}
+		</farm-caption>
 	</div>
 </template>
 
@@ -46,19 +50,25 @@ export default Vue.extend({
 		/**
 		 * v-model binding
 		 */
-		value: {},
+		value: { type: [String, Number], default: '' },
 		/**
 		 * Show icon?
 		 */
-		icon: String,
+		icon: {
+			type: String,
+			default: null,
+		},
 		/**
 		 * Icon position
 		 */
-		iconPosition: { type: String, default: 'right' },
+		iconPosition: { type: String as PropType<'left' | 'right'>, default: 'right' },
 		/**
 		 * Show hint text
 		 */
-		hintText: String,
+		hintText: {
+			type: String,
+			default: null,
+		},
 		/**
 		 * Show input disable
 		 */

@@ -76,3 +76,24 @@ export const HintText = () => ({
 		<farm-textfield-v2 v-model="v" hintText="Hint text" />
 	</div>`,
 });
+
+export const UpdateValue = () => ({
+	data() {
+		return {
+			counter: 1,
+			v: '1',
+		};
+	},
+	methods: {
+		onClick() {
+			this.counter++;
+			this.v = this.counter;
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" />
+		<farm-btn @click="onClick">Add 1 to counter and update v-model</farm-btn>
+		<br />counter: {{ counter }}
+		<br />v-model: {{ v }}
+	</div>`,
+});
