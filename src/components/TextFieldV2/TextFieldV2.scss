@@ -1,83 +1,73 @@
 .farm-textfield {
-  &--input {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid;
-    border-color: var(--farm-neutral-base);
-    height: 36px;
-    border-radius: 5px;
-    padding: 8px;
-    margin-bottom: 8px;
+	&--input {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		border: 1px solid;
+		border-color: var(--farm-neutral-base);
+		height: 36px;
+		border-radius: 5px;
+		padding: 8px;
+		margin-bottom: 8px;
 
-    & > input {
-      flex: 1;
-      outline: none;
-    }
+		&>input {
+			flex: 1;
+			outline: none;
+			color: var(--farm-neutral-darken);
+			font-size: 12px;
+			font-weight: 400;
+		}
 
-    width: 100%;
+		width: 100%;
+	}
 
-    .farm-icon {
-      color: var(--farm-neutral-darken);
-      display: flex;
-    }
-  }
+	/*
+	&.touched-disabled {
+		.farm-textfield {
+			&--input {
+				border-color: var(disabled);
 
-  &--text {
-    color: var(--farm-neutral-darken);
-    gap: 8px;
-  }
+				&>input {
+					color: var(disabled);
+				}
 
-  &.touched-success {
-    .farm-textfield {
-      &--input {
-        border-color: var(--farm-primary-base);
+				.farm-icon {
+					color: var(disabled);
+				}
+			}
+		}
+	}
+	*/
+}
 
-        & > input {
-          color: var(--farm-primary-base);
-        }
-  
-        .farm-icon {
-          color: var(--farm-primary-base);
-        }
-      }
-    }
-  }
+.farm-textfield--touched {
+	&.farm-textfield--error {
+		.farm-textfield {
+			&--input {
+				border-color: var(--farm-error-base);
 
-  &.touched-error {
-    .farm-textfield {
-      &--input {
-        border-color: var(--farm-error-base);
+				&>input {
+					color: var(--farm-neutral-darken);
+				}
 
-        & > input {
-          color: var(--farm-neutral-darken);
-        }
-  
-        .farm-icon {
-          color: var(--farm-error-base);
-        }               
-      }
+				.farm-icon {
+					color: var(--farm-error-base);
+				}
+			}
+		}
+	}
+}
 
-      &--text {
-        color: var(--farm-error-base);
-        
-      }
-    }
-  }
+.farm-textfield--blured:not(.farm-textfield--error) {
+	.farm-textfield--input {
+		border-color: var(--farm-primary-base);
 
-  &.touched-disabled {
-    .farm-textfield {
-      &--input {
-        border-color: var(disabled);
+		&>input {
+			color: var(--farm-neutral-darken);
+		}
 
-        & > input {
-          color: var(disabled);
-        }
-  
-        .farm-icon {
-          color: var(disabled);
-        }
-      }
-    }
-  }
+		.farm-icon {
+			color: var(--farm-primary-base);
+		}
+	}
 }

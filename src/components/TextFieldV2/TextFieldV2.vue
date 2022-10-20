@@ -2,23 +2,31 @@
 	<div
 		class="farm-textfield"
 		:class="{
-			'touched-error': hasError,
-			'touched-disabled': disabled,
+			'farm-textfield': true,
+			'farm-textfield--touched': isTouched,
+			'farm-textfield--blured': isBlured,
+			'farm-textfield--error': hasError,
 		}"
 	>
 		<div class="farm-textfield--input">
 			<button v-if="iconLeft" @click="$emit('onClickIconLeft')">
-				<farm-icon>{{ iconLeft }}</farm-icon>
+				<farm-icon color="gray">{{ iconLeft }}</farm-icon>
 			</button>
 
-			<input v-bind="$attrs" v-model="innerValue" :disabled="disabled" />
+			<input
+				v-bind="$attrs"
+				v-model="innerValue"
+				:disabled="disabled"
+				@keyup="onKeyUp"
+				@blur="onBlur"
+			/>
 
 			<button v-if="iconRight" @click="$emit('onClickIconRight')">
-				<farm-icon>{{ iconRight }}</farm-icon>
+				<farm-icon color="gray">{{ iconRight }}</farm-icon>
 			</button>
 		</div>
 
-		<span class="farm-textfield--text" v-if="hasError">{{ errorBucket[0] }}</span>
+		<farm-caption v-if="hasError && isTouched" color="error">{{ errorBucket[0] }}</farm-caption>
 		<span class="farm-textfield--text" v-if="hintText && !errorMessage">{{ hintText }}</span>
 	</div>
 </template>
@@ -62,7 +70,7 @@ export default Vue.extend({
 		/**
 		 * Array of rules used for validation
 		 */
-		 rules: {
+		rules: {
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
@@ -70,6 +78,8 @@ export default Vue.extend({
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
+		const isTouched = ref(false);
+		const isBlured = ref(false);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -110,13 +120,25 @@ export default Vue.extend({
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const onKeyUp = () => {
+			isTouched.value = true;
+		};
+
+		const onBlur = () => {
+			isBlured.value = true;
+		}
+
 		return {
 			innerValue,
 			errorBucket,
 			valid,
 			validatable,
 			hasError,
+			isTouched,
+			isBlured,
 			validate,
+			onKeyUp,
+			onBlur,
 		};
 	},
 });

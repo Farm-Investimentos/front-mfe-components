@@ -41,13 +41,14 @@ export const Primary = () => ({
 export const Validate = () => ({
 	data() {
 		return {
-			v: 'input text',
+			v: 'input',
 			rules: {
 				required: value => !!value || 'Campo obrigatório',
 			}
 		};
 	},
 	template: `<div style="width: 480px">
+		<farm-label required>Required field</farm-label>
 		<farm-textfield-v2 v-model="v" :rules="[rules.required]" />
 	</div>`,
 });
