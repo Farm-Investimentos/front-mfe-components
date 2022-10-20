@@ -10,6 +10,10 @@
 		padding: 8px;
 		margin-bottom: 8px;
 
+		> button {
+			display: flex;
+		}
+
 		&>input {
 			flex: 1;
 			outline: none;
@@ -21,26 +25,10 @@
 		width: 100%;
 	}
 
-	/*
-	&.touched-disabled {
-		.farm-textfield {
-			&--input {
-				border-color: var(disabled);
 
-				&>input {
-					color: var(disabled);
-				}
-
-				.farm-icon {
-					color: var(disabled);
-				}
-			}
-		}
-	}
-	*/
 }
 
-.farm-textfield--touched {
+.farm-textfield--touched.farm-textfield--validatable {
 	&.farm-textfield--error {
 		.farm-textfield {
 			&--input {
@@ -58,7 +46,7 @@
 	}
 }
 
-.farm-textfield--blured:not(.farm-textfield--error) {
+.farm-textfield--blured.farm-textfield--validatable:not(.farm-textfield--error) {
 	.farm-textfield--input {
 		border-color: var(--farm-primary-base);
 

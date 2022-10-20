@@ -28,13 +28,9 @@ export const Primary = () => ({
 			v: 'input text',
 		};
 	},
-	methods: {
-		show() {
-			alert('iconLeftAction');
-		},
-	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" iconRight="eye" iconRightAction="this.show" hintText="Hint text" isUntouched />
+		<farm-textfield-v2 v-model="v" />
+		v-model: {{ v }}
 	</div>`,
 });
 
@@ -44,7 +40,7 @@ export const Validate = () => ({
 			v: 'input',
 			rules: {
 				required: value => !!value || 'Campo obrigatório',
-			}
+			},
 		};
 	},
 	template: `<div style="width: 480px">
@@ -53,53 +49,30 @@ export const Validate = () => ({
 	</div>`,
 });
 
-/*
-export const Untouched = () => ({
+export const Icon = () => ({
 	data() {
 		return {
-			v: 'input text',
+			v: '',
 		};
 	},
 	methods: {
 		show() {
-			alert('iconLeftAction');
+			alert('On icon click');
 		},
 	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" iconRight="eye" iconRightAction="this.show" hintText="Hint text" isUntouched />
+		<farm-textfield-v2 v-model="v" icon="eye" onClickIcon="this.show" />
+		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" onClickIcon="this.show" />
 	</div>`,
 });
 
-export const TouchedSuccess = () => ({
+export const HintText = () => ({
 	data() {
 		return {
 			v: 'input text',
 		};
 	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" iconRight="eye" hintText="Hint text" isSuccess />
+		<farm-textfield-v2 v-model="v" hintText="Hint text" />
 	</div>`,
 });
-
-export const TouchedError = () => ({
-	data() {
-		return {
-			v: 'input text',
-		};
-	},
-	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" iconRight="eye" hintText="Hint text error" isError errorMessage="Campo obrigatório" />
-	</div>`,
-});
-
-export const TouchedDisabled = () => ({
-	data() {
-		return {
-			v: 'input text',
-		};
-	},
-	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" iconLeft="eye" iconLeftAction="this.show" hintText="Hint text" isDisabled />
-	</div>`,
-});
-*/

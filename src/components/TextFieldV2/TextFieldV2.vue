@@ -3,14 +3,15 @@
 		class="farm-textfield"
 		:class="{
 			'farm-textfield': true,
+			'farm-textfield--validatable': rules.length > 0,
 			'farm-textfield--touched': isTouched,
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 		}"
 	>
 		<div class="farm-textfield--input">
-			<button v-if="iconLeft" @click="$emit('onClickIconLeft')">
-				<farm-icon color="gray">{{ iconLeft }}</farm-icon>
+			<button v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
+				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 
 			<input
@@ -21,13 +22,13 @@
 				@blur="onBlur"
 			/>
 
-			<button v-if="iconRight" @click="$emit('onClickIconRight')">
-				<farm-icon color="gray">{{ iconRight }}</farm-icon>
+			<button v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
+				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
 
 		<farm-caption v-if="hasError && isTouched" color="error">{{ errorBucket[0] }}</farm-caption>
-		<span class="farm-textfield--text" v-if="hintText && !errorMessage">{{ hintText }}</span>
+		<farm-caption v-if="hintText && !errorMessage" color="gray">{{ hintText }}</farm-caption>
 	</div>
 </template>
 
@@ -47,13 +48,13 @@ export default Vue.extend({
 		 */
 		value: {},
 		/**
-		 * Show icon left
+		 * Show icon?
 		 */
-		iconLeft: String,
+		icon: String,
 		/**
-		 * Show icon right
+		 * Icon position
 		 */
-		iconRight: String,
+		iconPosition: { type: String, default: 'right' },
 		/**
 		 * Show hint text
 		 */
@@ -126,7 +127,7 @@ export default Vue.extend({
 
 		const onBlur = () => {
 			isBlured.value = true;
-		}
+		};
 
 		return {
 			innerValue,
