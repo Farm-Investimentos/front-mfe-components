@@ -22,51 +22,64 @@ const style = {
 	backgroundColor: 'var(--farm-extra-1-lighten)',
 };
 
+const items = Array.from(Array(12).keys());
+
 export const Primary = () => ({
 	data() {
 		return {
 			style,
 		};
 	},
-	template: '<farm-col :style="style">col</farm-col>',
+	template: `<farm-col>
+	<farm-col :style="style">col</farm-col>
+	</farm-col>`,
 });
+
+export const Cols = () => ({
+	data() {
+		return {
+			style,
+			items
+		};
+	},
+	template: `<farm-row>
+				<farm-col v-for="item in items" :key="'col_' + item" :cols="item + 1" :style="style">{{item + 1}}</farm-col>
+			</farm-row>`,
+});
+
 export const Xl = () => ({
 	data() {
 		return {
 			style,
+			items
 		};
 	},
 	template: `<farm-row>
-				<farm-col xl="4" :style="style">4</farm-col>
-				<farm-col xl="6" :style="style">6</farm-col>
-				<farm-col xl="12" :style="style">12</farm-col>
-				<farm-col xl="2" :style="style">2</farm-col>
-			</farm-row>`,
+			<farm-col v-for="item in items" :key="'xl_' + item" :xl="item + 1" :style="style">{{item + 1}}</farm-col>
+		</farm-row>`,
 });
+
 export const Lg = () => ({
 	data() {
 		return {
 			style,
+			items
 		};
 	},
 	template: `<farm-row>
-		<farm-col lg="4" :style="style">4</farm-col>
-		<farm-col lg="6" :style="style">6</farm-col>
-		<farm-col lg="12" :style="style">12</farm-col>
-		<farm-col lg="2" :style="style">2</farm-col>
-	</farm-row>`,
+			<farm-col v-for="item in items" :key="'lg_' + item" :lg="item + 1" :style="style">{{item + 1}}</farm-col>
+		</farm-row>`,
 });
+
 export const Md = () => ({
 	data() {
 		return {
 			style,
+			items
 		};
 	},
 	template: `<farm-row>
-		<farm-col md="4" :style="style">4</farm-col>
-		<farm-col md="6" :style="style">6</farm-col>
-		<farm-col md="12" :style="style">12</farm-col>
-		<farm-col md="2" :style="style">2</farm-col>
+			<farm-col v-for="item in items" :key="'md_' + item" :md="item + 1" :style="style">{{item + 1}}</farm-col>
 		</farm-row>`,
 });
 
@@ -74,13 +87,11 @@ export const Sm = () => ({
 	data() {
 		return {
 			style,
+			items
 		};
 	},
 	template: `<farm-row>
-			<farm-col sm="4" :style="style">4</farm-col>
-			<farm-col sm="6" :style="style">6</farm-col>
-			<farm-col sm="12" :style="style">12</farm-col>
-			<farm-col sm="2" :style="style">2</farm-col>
+			<farm-col v-for="item in items" :key="'sm_' + item" :sm="item + 1" :style="style">{{item + 1}}</farm-col>
 		</farm-row>`,
 });
 
@@ -88,14 +99,12 @@ export const Xs = () => ({
 	data() {
 		return {
 			style,
+			items
 		};
 	},
 	template: `<farm-row>
-		<farm-col xs="4" :style="style">4</farm-col>
-		<farm-col xs="6" :style="style">6</farm-col>
-		<farm-col xs="12" :style="style">12</farm-col>
-		<farm-col xs="2" :style="style">2</farm-col>
-	</farm-row>`,
+			<farm-col v-for="item in items" :key="'xs_' + item" :xs="item + 1" :style="style">{{item + 1}}</farm-col>
+		</farm-row>`,
 });
 
 export const Combination = () => ({
@@ -105,7 +114,7 @@ export const Combination = () => ({
 		};
 	},
 	template: `<div>
-		<farm-col lg="5" md="4" sm="3" :style="style">lg: 5 - md: 4 - sm: 3</farm-col>
+		<farm-col cols="9" lg="5" md="4" sm="3" :style="style">lg: 5 - md: 4 - sm: 3</farm-col>
 	</div>`,
 });
 export const TagP = () => ({
