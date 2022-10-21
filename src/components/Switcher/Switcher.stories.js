@@ -8,7 +8,7 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			selectedValue: false,
+			selectedValue: true,
 		};
 	},
 	template: `<div>
@@ -16,7 +16,7 @@ export const Primary = () => ({
 	</div>`,
 });
 
-export const DisabledOn = () => ({
+export const OnDisabled = () => ({
 	data() {
 		return {
 			selectedValue: true,
@@ -27,7 +27,18 @@ export const DisabledOn = () => ({
 	</div>`,
 });
 
-export const DisabledOff = () => ({
+export const Off = () => ({
+	data() {
+		return {
+			selectedValue: false,
+		};
+	},
+	template: `<div>
+	<farm-switcher v-model="selectedValue" block :disabled="false" />
+	</div>`,
+});
+
+export const OffDisabled = () => ({
 	data() {
 		return {
 			selectedValue: false,
@@ -35,16 +46,5 @@ export const DisabledOff = () => ({
 	},
 	template: `<div>
 	<farm-switcher v-model="selectedValue" block :disabled="true" />
-	</div>`,
-});
-
-export const Active = () => ({
-	data() {
-		return {
-			selectedValue: true,
-		};
-	},
-	template: `<div>
-	<farm-switcher v-model="selectedValue" block :disabled="false" />
 	</div>`,
 });
