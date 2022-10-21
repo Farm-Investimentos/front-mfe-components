@@ -52,9 +52,21 @@ export default Vue.extend({
 			default: false,
 		},
 		color: {
-			type: String,
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
 			default: 'primary',
-		},
+		}
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);

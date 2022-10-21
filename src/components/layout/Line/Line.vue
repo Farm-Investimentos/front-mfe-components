@@ -8,6 +8,9 @@ import Vue from 'vue';
 export default Vue.extend({
 	name: 'farm-line',
 	props: {
+		/**
+		 * Remove default margins
+		 */
 		noSpacing: {
 			type: Boolean,
 			default: false,
@@ -17,5 +20,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import './Line.scss'
+@import './Line'
 </style>

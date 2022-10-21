@@ -33,13 +33,19 @@ export const Primary = () => ({
 				document: 'Document',
 				name: 'Name',
 				checkbox: true,
-				birthDate: new Date('1980/09/20').toISOString()
+				birthDate: new Date('1980/09/20').toISOString(),
+				selectId: 1,
 			},
 			validForm: false,
 			rules: {
 				required: value => !!value || 'Campo obrigatório',
 				checked: value => !!value || 'Deve estar marcado',
 			},
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
 			styles,
 		};
 	},
@@ -54,6 +60,9 @@ export const Primary = () => ({
 			
 			<farm-label :required="true">True/false</farm-label>
 			<farm-checkbox v-model="form.checkbox" :rules="[rules.checked]" />
+
+			<farm-label :required="true">Select</farm-label>
+			<v-select :rules="[rules.required]" :items="items" v-model="form.selectId"/>
 
 			<farm-label :required="true">Birthdate:</farm-label>
 			<DatePicker
@@ -87,6 +96,11 @@ export const Secondary = () => ({
 				required: value => !!value || 'Campo obrigatório',
 			},
 			styles,
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
 		};
 	},
 	template: `
