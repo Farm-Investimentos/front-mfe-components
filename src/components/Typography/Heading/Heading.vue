@@ -21,7 +21,7 @@ export default Vue.extend({
         /**
          * Type of the heading
          */
-		type: { type: Number as PropType<1 | 2 | 3 | 4 | 5 | 6>, default: 1 },
+		type: { type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6>, default: 1 },
 	},
 	setup(props) {
 		const { type } = toRefs(props);

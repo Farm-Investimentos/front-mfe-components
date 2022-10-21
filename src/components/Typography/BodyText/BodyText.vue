@@ -20,7 +20,7 @@ export default Vue.extend({
 		/**
 		 * Type of the bodytext
 		 */
-		type: { type: Number as PropType<1 | 2>, default: 1 },
+		type: { type: [Number, String] as PropType<1 | 2>, default: 1 },
 		/**
 		 * Variation of the bodytext
 		 */
