@@ -1,6 +1,6 @@
 <template>
 	<div
-		:class="{ 'farm-switch': true, 'farm-switch--disabled': isDisabled }"
+		:class="{ 'farm-switch': true }"
 		role="checkbox"
 		@click="toggle"
 		@keydown.space.prevent="toggle"
@@ -35,8 +35,10 @@ export default Vue.extend({
 	computed: {
 		backgroundStyles() {
 			return {
-				'farm-switch--selected': this.value,
-				'farm-switch--idle': !this.value,
+				'farm-switch--selected': this.value && !this.isDisabled,
+				'farm-switch--idle': !this.value && !this.isDisabled,
+				'farm-switch--disabled-on': this.value && this.isDisabled,   
+				'farm-switch--disabled-0ff': !this.value && this.isDisabled,   
 			};
 		},
 		indicatorStyles() {
