@@ -40,6 +40,9 @@ export default Vue.extend({
 	name: 'farm-context-menu',
 	components: {},
 	props: {
+		/**
+		 * Items to populate the context menu
+		 */
 		items: {
 			type: Array as PropType<Array<IContextMenuOption>>,
 			required: true,
@@ -54,7 +57,6 @@ export default Vue.extend({
 		onClick(handler) {
 			if (handler !== undefined) {
 				this.$emit(handler);
-				// handler();
 			}
 		},
 		toggleValue() {

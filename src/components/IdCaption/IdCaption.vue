@@ -55,7 +55,7 @@ export default Vue.extend({
 			default: 'primary',
 		},
 		/**
-		 * copy to clipboard
+		 * Text to be copied to clipboard
 		 */
 		copyText: {
 			type: String,

@@ -25,11 +25,75 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			v: 'some text',
+			v: 'input text',
 		};
 	},
 	template: `<div style="width: 480px">
 		<farm-textfield-v2 v-model="v" />
-		value: {{ v }}
+		v-model: {{ v }}
+	</div>`,
+});
+
+export const Validate = () => ({
+	data() {
+		return {
+			v: 'input',
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+			},
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-label required>Required field</farm-label>
+		<farm-textfield-v2 v-model="v" :rules="[rules.required]" />
+	</div>`,
+});
+
+export const Icon = () => ({
+	data() {
+		return {
+			v: '',
+		};
+	},
+	methods: {
+		show() {
+			alert('On icon click');
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" icon="eye" onClickIcon="this.show" />
+		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" onClickIcon="this.show" />
+	</div>`,
+});
+
+export const HintText = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" hintText="Hint text" />
+	</div>`,
+});
+
+export const UpdateValue = () => ({
+	data() {
+		return {
+			counter: 1,
+			v: '1',
+		};
+	},
+	methods: {
+		onClick() {
+			this.counter++;
+			this.v = this.counter;
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" />
+		<farm-btn @click="onClick">Add 1 to counter and update v-model</farm-btn>
+		<br />counter: {{ counter }}
+		<br />v-model: {{ v }}
 	</div>`,
 });

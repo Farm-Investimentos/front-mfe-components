@@ -9,7 +9,7 @@ type ErrorsBag = Record<number, boolean>;
 export default Vue.extend({
 	name: 'farm-form',
 	props: {
-		value: { type: [Boolean], required: true },
+		value: { type: [Boolean] },
 	},
 	inheritAttrs: true,
 	setup(props, { emit }) {
@@ -42,7 +42,9 @@ export default Vue.extend({
 
 		const recursiveFormField = $node => {
 			$node.$children.forEach($leaf => {
-				if ($leaf.$children.length > 1) {
+				if($leaf.validate) {
+					validationFields.push($leaf);
+				} else if ($leaf.$children.length > 1) {
 					recursiveFormField($leaf);
 				} else if ($leaf.$children[0] && $leaf.$children[0].validate) {
 					validationFields.push($leaf.$children[0]);

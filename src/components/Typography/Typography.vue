@@ -23,18 +23,30 @@ export default Vue.extend({
 	inheritAttrs: true,
 	name: 'farm-typography',
 	props: {
+		/**
+		 * Html tag
+		 */
 		tag: {
 			type: String as PropType<
 				'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'label' | 'li'
 			>,
 			default: 'p',
 		},
+		/**
+		 * Size
+		 */
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 		},
+		/**
+		 * Line Height
+		 */
 		lineHeight: {
 			type: String,
 		},
+		/**
+		 * Font-weight
+		 */
 		weight: {
 			type: Number as PropType<100 | 200 | 300 | 400 | 500 | 600 | 700>,
 		},
@@ -53,6 +65,7 @@ export default Vue.extend({
 				| 'success'
 				| 'extra-1'
 				| 'extra-2'
+				| 'gray'
 			>,
 			default: 'default',
 		},
