@@ -2,8 +2,12 @@
 	<farm-tooltip v-model="show">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
-			<farm-btn icon :disabled="disabled" @click="onClick">
+			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
 				<farm-icon size="xs">content-copy</farm-icon>
+			</farm-btn>
+			<farm-btn v-else outlined title="Copiar" :disabled="disabled" @click="onClick">
+				<farm-icon>content-copy</farm-icon>
+				Copiar
 			</farm-btn>
 		</template>
 	</farm-tooltip>
@@ -20,12 +24,16 @@ export default Vue.extend({
 		 * Content to be copied to clipboard
 		 */
 		toCopy: { type: String, required: true },
+		/**
+		 * Is button with icon?
+		 */
+		isIcon: { type: Boolean, default: true },
 	},
 	setup(props) {
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
-		const { toCopy } = toRefs(props);
+		const { toCopy, isIcon } = toRefs(props);
 
 		const onClick = async () => {
 			disabled.value = true;
@@ -45,6 +53,7 @@ export default Vue.extend({
 
 		return {
 			show,
+			isIcon,
 			feedbackMessage,
 			disabled,
 			onClick,
@@ -52,4 +61,3 @@ export default Vue.extend({
 	},
 });
 </script>
-
