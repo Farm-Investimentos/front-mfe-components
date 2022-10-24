@@ -113,8 +113,8 @@ export const Icon = () => ({
 		},
 	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" icon="eye" @onClickIcon="this.show" />
-		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" @onClickIcon="this.show" />
+		<farm-textfield-v2 v-model="v" icon="eye" @onClickIcon="show" />
+		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" @onClickIcon="show" />
 	</div>`,
 });
 
