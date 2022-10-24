@@ -42,7 +42,8 @@ export const Validate = () => ({
 			v3: '',
 			rules: {
 				required: value => !!value || 'Required field',
-				email: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Must be an e-mail',
+				email: v =>
+					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Must be an e-mail',
 			},
 		};
 	},
@@ -119,5 +120,33 @@ export const Types = () => ({
 			<farm-label>Type: {{ type }}</farm-label>
 			<farm-textfield-v2 :type="type" />
 		</div>
+	</div>`,
+});
+
+export const Reset = () => ({
+	data() {
+		return {
+			v: 'input text',
+			rules: {
+				required: value => !!value || 'Required field',
+			},
+		};
+	},
+	methods: {
+		reset() {
+			this.$refs.input.reset();
+			this.$refs.inputValidatable.reset();
+		},
+	},
+	template: `<div style="width: 480px">
+
+		<farm-label>Not Required</farm-label>
+		<farm-textfield-v2 v-model="v" ref="input" />
+		
+		<farm-label required>Required</farm-label>
+		<farm-textfield-v2 v-model="v" ref="inputValidatable" :rules="[rules.required]" />
+		
+		<farm-btn @click="reset">reset</farm-btn>
+
 	</div>`,
 });
