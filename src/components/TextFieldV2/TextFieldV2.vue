@@ -139,6 +139,12 @@ export default Vue.extend({
 			isBlured.value = true;
 		};
 
+		const reset = () => {
+			innerValue.value = '';
+			isTouched.value = true;
+			emit('input', innerValue.value);
+		};
+
 		return {
 			innerValue,
 			errorBucket,
@@ -150,6 +156,7 @@ export default Vue.extend({
 			validate,
 			onKeyUp,
 			onBlur,
+			reset,
 		};
 	},
 });
