@@ -37,15 +37,25 @@ export const Primary = () => ({
 export const Validate = () => ({
 	data() {
 		return {
-			v: 'input',
+			v1: 'input 1',
+			v2: '',
+			v3: '',
 			rules: {
-				required: value => !!value || 'Campo obrigatório',
+				required: value => !!value || 'Required field',
+				email: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Must be an e-mail',
 			},
 		};
 	},
 	template: `<div style="width: 480px">
 		<farm-label required>Required field</farm-label>
-		<farm-textfield-v2 v-model="v" :rules="[rules.required]" />
+		<farm-textfield-v2 v-model="v1" :rules="[rules.required]" />
+
+		<farm-label>E-mail</farm-label>
+		<farm-textfield-v2 v-model="v2" :rules="[rules.email]" />
+
+		<farm-label required>Required and e-mail</farm-label>
+		<farm-textfield-v2 v-model="v3" :rules="[rules.required, rules.email]" />
+
 	</div>`,
 });
 
@@ -95,5 +105,19 @@ export const UpdateValue = () => ({
 		<farm-btn @click="onClick">Add 1 to counter and update v-model</farm-btn>
 		<br />counter: {{ counter }}
 		<br />v-model: {{ v }}
+	</div>`,
+});
+
+export const Types = () => ({
+	data() {
+		return {
+			types: ['text', 'password', 'email', 'date', 'search', 'color', 'tel', 'url'],
+		};
+	},
+	template: `<div style="width: 480px">
+		<div v-for="type in types" :key="'input_type_' + type">
+			<farm-label>Type: {{ type }}</farm-label>
+			<farm-textfield-v2 :type="type" />
+		</div>
 	</div>`,
 });
