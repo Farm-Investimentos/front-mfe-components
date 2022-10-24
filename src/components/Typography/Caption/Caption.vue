@@ -3,7 +3,7 @@
 		:weight="weight"
 		:size="size"
 		:key="key"
-		:class="{ [`farm-caption--${variation}`]: true }"
+		:class="{ 'farm-caption': true, [`farm-caption--${variation}`]: true }"
 		v-bind="$attrs"
 	>
 		<slot></slot>
