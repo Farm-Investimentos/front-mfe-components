@@ -38,7 +38,7 @@ export default Vue.extend({
 				'farm-switch--selected': this.value && !this.isDisabled,
 				'farm-switch--idle': !this.value && !this.isDisabled,
 				'farm-switch--disabled-on': this.value && this.isDisabled,   
-				'farm-switch--disabled-0ff': !this.value && this.isDisabled,   
+				'farm-switch--disabled-off': !this.value && this.isDisabled,   
 			};
 		},
 		indicatorStyles() {
