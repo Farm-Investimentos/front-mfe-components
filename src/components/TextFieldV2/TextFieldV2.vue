@@ -27,11 +27,11 @@
 			</button>
 		</div>
 
-		<farm-caption v-if="hasError && isTouched" color="error" variation="regular">
+		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hintText && !errorMessage" color="gray" variation="regular">
-			{{ hintText }}
+		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+			{{ hint }}
 		</farm-caption>
 	</div>
 </template>
@@ -65,7 +65,7 @@ export default Vue.extend({
 		/**
 		 * Show hint text
 		 */
-		hintText: {
+		hint: {
 			type: String,
 			default: null,
 		},
@@ -99,6 +99,8 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+
+		const showErrorText = computed(() => hasError.value && isTouched.value);
 
 		watch(
 			() => props.value,
@@ -153,6 +155,7 @@ export default Vue.extend({
 			hasError,
 			isTouched,
 			isBlured,
+			showErrorText,
 			validate,
 			onKeyUp,
 			onBlur,

@@ -40,6 +40,7 @@ export const Validate = () => ({
 			v1: 'input 1',
 			v2: '',
 			v3: '',
+			v4: '',
 			rules: {
 				required: value => !!value || 'Required field',
 				email: v =>
@@ -56,6 +57,9 @@ export const Validate = () => ({
 
 		<farm-label required>Required and e-mail</farm-label>
 		<farm-textfield-v2 v-model="v3" :rules="[rules.required, rules.email]" />
+
+		<farm-label required>Required field with hint</farm-label>
+		<farm-textfield-v2 v-model="v4" :rules="[rules.required]" hint="hint text" />
 
 	</div>`,
 });
@@ -83,8 +87,9 @@ export const HintText = () => ({
 			v: 'input text',
 		};
 	},
-	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" hintText="Hint text" />
+	template: `<div style="width: 480px; display: flex;">
+		<farm-textfield-v2 v-model="v" hint="Hint text" />
+		<farm-textfield v-model="v" hint="Hint text" persistent-hint />
 	</div>`,
 });
 

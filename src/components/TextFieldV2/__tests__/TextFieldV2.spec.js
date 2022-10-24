@@ -26,5 +26,16 @@ describe('TextFieldV2 component', () => {
 			expect(component.isTouched).toBeTruthy();
 			expect(component.innerValue).toEqual('');
 		});
+
+		it('onKeyUp', () => {
+			component.onKeyUp();
+			expect(component.isTouched).toBeTruthy();
+		});
+
+		it('onBlur', () => {
+			component.onBlur();
+			expect(component.isBlured).toBeTruthy();
+		});
+
 	});
 });
