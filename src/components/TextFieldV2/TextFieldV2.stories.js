@@ -1,6 +1,16 @@
 import { withDesign } from 'storybook-addon-designs';
 import TextFieldV2 from './TextFieldV2.vue';
 
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+const currencyMask = createNumberMask({
+	prefix: 'R$',
+	allowDecimal: true,
+	includeThousandsSeparator: true,
+	thousandsSeparatorSymbol: '.',
+	decimalSymbol: ',',
+	allowNegative: false,
+});
+
 export default {
 	title: 'Form/TextFieldV2',
 	component: TextFieldV2,
@@ -111,7 +121,6 @@ export const HintText = () => ({
 	},
 	template: `<div style="width: 480px; display: flex;">
 		<farm-textfield-v2 v-model="v" hint="Hint text" />
-		<farm-textfield v-model="v" hint="Hint text" persistent-hint />
 	</div>`,
 });
 
@@ -174,6 +183,27 @@ export const Reset = () => ({
 		<farm-textfield-v2 v-model="v" ref="inputValidatable" :rules="[rules.required]" />
 		
 		<farm-btn @click="reset">reset</farm-btn>
+
+	</div>`,
+});
+
+export const Mask = () => ({
+	data() {
+		return {
+			v: '',
+			v2: '',
+			mask: '###.###.###/##',
+			currencyMask,
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-label>CPF Mask ({{ mask }})</farm-label>
+		<farm-textfield-v2 v-model="v" :v-mask="mask" />
+		v-model: {{ v }}
+
+		<farm-label>Number Mask (R$ ##.###.###,##)</farm-label>
+		<farm-textfield-v2 v-model="v2" :v-mask="currencyMask" />
+		v-model: {{ v2 }}
 
 	</div>`,
 });
