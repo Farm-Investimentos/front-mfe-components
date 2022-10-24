@@ -95,6 +95,9 @@ export const Validate = () => ({
 		<farm-label required>Required field with hint</farm-label>
 		<farm-textfield-v2 v-model="v4" :rules="[rules.required]" hint="hint text" />
 
+		<farm-label required>Required field with icon</farm-label>
+		<farm-textfield-v2 v-model="v1" :rules="[rules.required]" icon="eye" />
+
 	</div>`,
 });
 
@@ -110,8 +113,8 @@ export const Icon = () => ({
 		},
 	},
 	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" icon="eye" onClickIcon="this.show" />
-		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" onClickIcon="this.show" />
+		<farm-textfield-v2 v-model="v" icon="eye" @onClickIcon="this.show" />
+		<farm-textfield-v2 v-model="v" icon="eye" icon-position="left" @onClickIcon="this.show" />
 	</div>`,
 });
 
@@ -207,5 +210,22 @@ export const Mask = () => ({
 		<farm-textfield-v2 v-model="v2" :v-mask="currencyMask" />
 		v-model: {{ v2 }}
 
+	</div>`,
+});
+
+export const ToggleVisibility = () => ({
+	data() {
+		return {
+			v: 'hidden password',
+			visible: false,
+		};
+	},
+	methods: {
+		toggle() {
+			this.visible = !this.visible;
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" :type="visible ? 'text' : 'password'"  :icon="visible ? 'eye-off' : 'eye'" @onClickIcon="toggle" />
 	</div>`,
 });
