@@ -1,6 +1,16 @@
 import { withDesign } from 'storybook-addon-designs';
 import TextFieldV2 from './TextFieldV2.vue';
 
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+const currencyMask = createNumberMask({
+	prefix: 'R$',
+	allowDecimal: true,
+	includeThousandsSeparator: true,
+	thousandsSeparatorSymbol: '.',
+	decimalSymbol: ',',
+	allowNegative: false,
+});
+
 export default {
 	title: 'Form/TextFieldV2',
 	component: TextFieldV2,
@@ -34,18 +44,55 @@ export const Primary = () => ({
 	</div>`,
 });
 
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" disabled />
+	</div>`,
+});
+
+export const Readonly = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" readonly />
+	</div>`,
+});
+
 export const Validate = () => ({
 	data() {
 		return {
-			v: 'input',
+			v1: 'input 1',
+			v2: '',
+			v3: '',
+			v4: '',
 			rules: {
-				required: value => !!value || 'Campo obrigatório',
+				required: value => !!value || 'Required field',
+				email: v =>
+					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Must be an e-mail',
 			},
 		};
 	},
 	template: `<div style="width: 480px">
 		<farm-label required>Required field</farm-label>
-		<farm-textfield-v2 v-model="v" :rules="[rules.required]" />
+		<farm-textfield-v2 v-model="v1" :rules="[rules.required]" />
+
+		<farm-label>E-mail</farm-label>
+		<farm-textfield-v2 v-model="v2" :rules="[rules.email]" />
+
+		<farm-label required>Required and e-mail</farm-label>
+		<farm-textfield-v2 v-model="v3" :rules="[rules.required, rules.email]" />
+
+		<farm-label required>Required field with hint</farm-label>
+		<farm-textfield-v2 v-model="v4" :rules="[rules.required]" hint="hint text" />
+
 	</div>`,
 });
 
@@ -72,8 +119,8 @@ export const HintText = () => ({
 			v: 'input text',
 		};
 	},
-	template: `<div style="width: 480px">
-		<farm-textfield-v2 v-model="v" hintText="Hint text" />
+	template: `<div style="width: 480px; display: flex;">
+		<farm-textfield-v2 v-model="v" hint="Hint text" />
 	</div>`,
 });
 
@@ -95,5 +142,68 @@ export const UpdateValue = () => ({
 		<farm-btn @click="onClick">Add 1 to counter and update v-model</farm-btn>
 		<br />counter: {{ counter }}
 		<br />v-model: {{ v }}
+	</div>`,
+});
+
+export const Types = () => ({
+	data() {
+		return {
+			types: ['text', 'password', 'email', 'date', 'search', 'color', 'tel', 'url'],
+		};
+	},
+	template: `<div style="width: 480px">
+		<div v-for="type in types" :key="'input_type_' + type">
+			<farm-label>Type: {{ type }}</farm-label>
+			<farm-textfield-v2 :type="type" />
+		</div>
+	</div>`,
+});
+
+export const Reset = () => ({
+	data() {
+		return {
+			v: 'input text',
+			rules: {
+				required: value => !!value || 'Required field',
+			},
+		};
+	},
+	methods: {
+		reset() {
+			this.$refs.input.reset();
+			this.$refs.inputValidatable.reset();
+		},
+	},
+	template: `<div style="width: 480px">
+
+		<farm-label>Not Required</farm-label>
+		<farm-textfield-v2 v-model="v" ref="input" />
+		
+		<farm-label required>Required</farm-label>
+		<farm-textfield-v2 v-model="v" ref="inputValidatable" :rules="[rules.required]" />
+		
+		<farm-btn @click="reset">reset</farm-btn>
+
+	</div>`,
+});
+
+export const Mask = () => ({
+	data() {
+		return {
+			v: '',
+			v2: '',
+			mask: '###.###.###/##',
+			currencyMask,
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-label>CPF Mask ({{ mask }})</farm-label>
+		<farm-textfield-v2 v-model="v" :v-mask="mask" />
+		v-model: {{ v }}
+
+		<farm-label>Number Mask (R$ ##.###.###,##)</farm-label>
+		<farm-textfield-v2 v-model="v2" :v-mask="currencyMask" />
+		v-model: {{ v2 }}
+
 	</div>`,
 });

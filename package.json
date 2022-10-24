@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "11.4.7",
+	"version": "11.5.0",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -49,8 +49,9 @@
 		"sass": "~1.32.0",
 		"sass-loader": "^10.0.0",
 		"storybook-addon-designs": "^6.2.1",
+		"text-mask-addons": "^3.8.0",
 		"typescript": "~4.1.5",
-		"v-mask": "^2.3.0",
+		"v-mask": "2.3.0",
 		"vue-template-compiler": "2.7.10"
 	},
 	"browserslist": [

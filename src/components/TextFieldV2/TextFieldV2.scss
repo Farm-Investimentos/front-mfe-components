@@ -1,4 +1,5 @@
 .farm-textfield {
+	height: 64px;
 	&--input {
 		display: flex;
 		align-items: center;
@@ -23,6 +24,10 @@
 		}
 
 		width: 100%;
+	}
+
+	.farm-caption {
+		line-height: 12px;
 	}
 }
 

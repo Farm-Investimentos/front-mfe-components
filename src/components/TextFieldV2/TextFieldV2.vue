@@ -13,25 +13,25 @@
 			<button v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
-
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
+				v-mask="$props.vMask"
 				:disabled="disabled"
+				:readonly="readonly"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
-
 			<button v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
 
-		<farm-caption v-if="hasError && isTouched" color="error" variation="regular">
+		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hintText && !errorMessage" color="gray" variation="regular">
-			{{ hintText }}
+		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+			{{ hint }}
 		</farm-caption>
 	</div>
 </template>
@@ -65,14 +65,21 @@ export default Vue.extend({
 		/**
 		 * Show hint text
 		 */
-		hintText: {
+		hint: {
 			type: String,
 			default: null,
 		},
 		/**
-		 * Show input disable
+		 * Disabled the input
 		 */
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Puts input in readonly state
+		 */
+		readonly: {
 			type: Boolean,
 			default: false,
 		},
@@ -84,6 +91,13 @@ export default Vue.extend({
 		rules: {
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
+		},
+		/**
+		 * Mask
+		 */
+		vMask: {
+			default: '',
+			type: [String, Function],
 		},
 	},
 	setup(props, { emit }) {
@@ -100,6 +114,8 @@ export default Vue.extend({
 			return errorBucket.value.length > 0;
 		});
 
+		const showErrorText = computed(() => hasError.value && isTouched.value);
+
 		watch(
 			() => props.value,
 			() => {
@@ -112,6 +128,7 @@ export default Vue.extend({
 			() => innerValue.value,
 			() => {
 				emit('input', innerValue.value);
+				emit('change', innerValue.value);
 			}
 		);
 
@@ -139,6 +156,12 @@ export default Vue.extend({
 			isBlured.value = true;
 		};
 
+		const reset = () => {
+			innerValue.value = '';
+			isTouched.value = true;
+			emit('input', innerValue.value);
+		};
+
 		return {
 			innerValue,
 			errorBucket,
@@ -147,9 +170,11 @@ export default Vue.extend({
 			hasError,
 			isTouched,
 			isBlured,
+			showErrorText,
 			validate,
 			onKeyUp,
 			onBlur,
+			reset,
 		};
 	},
 });
