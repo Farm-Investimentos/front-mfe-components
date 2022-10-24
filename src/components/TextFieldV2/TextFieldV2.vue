@@ -13,15 +13,14 @@
 			<button v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
-
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
+				v-mask="$props.vMask"
 				:disabled="disabled"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
-
 			<button v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
@@ -85,6 +84,13 @@ export default Vue.extend({
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
+		/**
+		 * Mask
+		 */
+		vMask: {
+			default: '',
+			type: [String, Function],
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
@@ -114,6 +120,7 @@ export default Vue.extend({
 			() => innerValue.value,
 			() => {
 				emit('input', innerValue.value);
+				emit('change', innerValue.value);
 			}
 		);
 
