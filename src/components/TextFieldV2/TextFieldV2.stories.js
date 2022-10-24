@@ -76,7 +76,9 @@ export const Validate = () => ({
 			rules: {
 				required: value => !!value || 'Required field',
 				email: v =>
-					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Must be an e-mail',
+					!v ||
+					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+					'Must be an e-mail',
 			},
 		};
 	},
