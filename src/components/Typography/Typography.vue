@@ -48,7 +48,7 @@ export default Vue.extend({
 		 * Font-weight
 		 */
 		weight: {
-			type: Number as PropType<100 | 200 | 300 | 400 | 500 | 600 | 700>,
+			type: [Number, String] as PropType<100 | 200 | 300 | 400 | 500 | 600 | 700>,
 		},
 		/**
 		 * Color

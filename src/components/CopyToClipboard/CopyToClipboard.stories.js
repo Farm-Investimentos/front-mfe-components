@@ -23,3 +23,10 @@ export const Primary = () => ({
 		<farm-copytoclipboard toCopy="To be copied" />
     </div>`,
 });
+
+export const NoIcon = () => ({
+	components: { 'farm-copytoclipboard': CopyToClipboard },
+	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
+		<farm-copytoclipboard toCopy="To be copied" :isIcon="false" />
+    </div>`,
+});

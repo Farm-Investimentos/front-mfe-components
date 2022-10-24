@@ -24,15 +24,15 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div>
-	<template v-for="type in types" :key="type">
+	<div v-for="type in types" :key="type">
 		<farm-subtitle
 			v-for="variation in variations"
-			:key="variation"
+			:key="'primary_' + variation + type"
 			:type="type"
 			:variation="variation">
 			Subtitle {{ type }} {{ variation }}
 		</farm-subtitle>
-	</template>
+	</div>
 	</div>`,
 });
 
@@ -47,7 +47,7 @@ export const CustomTag = () => ({
 		<farm-subtitle
 			v-for="t in tags"
 			:tag="t"
-			:key="t"
+			:key="'customtag_' + t"
 			:type="1"
 			variation="regular"
 			>
