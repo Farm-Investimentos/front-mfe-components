@@ -18,6 +18,7 @@
 				v-bind="$attrs"
 				v-model="innerValue"
 				:disabled="disabled"
+				:readonly="readonly"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
@@ -70,9 +71,16 @@ export default Vue.extend({
 			default: null,
 		},
 		/**
-		 * Show input disable
+		 * Disabled the input
 		 */
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Puts input in readonly state
+		 */
+		readonly: {
 			type: Boolean,
 			default: false,
 		},

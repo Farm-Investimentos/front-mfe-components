@@ -34,6 +34,28 @@ export const Primary = () => ({
 	</div>`,
 });
 
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" disabled />
+	</div>`,
+});
+
+export const Readonly = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-textfield-v2 v-model="v" readonly />
+	</div>`,
+});
+
 export const Validate = () => ({
 	data() {
 		return {
