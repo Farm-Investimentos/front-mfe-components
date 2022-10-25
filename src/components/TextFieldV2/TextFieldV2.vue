@@ -10,7 +10,7 @@
 		}"
 	>
 		<div class="farm-textfield--input">
-			<button v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
+			<button type="button" v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 			<input
@@ -22,7 +22,7 @@
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
-			<button v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
+			<button type="button" v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
