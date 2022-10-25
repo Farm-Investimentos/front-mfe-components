@@ -3,12 +3,14 @@
 		<farm-btn v-if="hasCancel" color="primary" outlined @click="$emit('onClose')">
 			{{ closeLabel }}
 		</farm-btn>
+		
 		<farm-btn
 			v-for="button in extraButtons"
 			:key="button.label"
 			:color="button.color"
 			:outlined="button.outlined"
 			:disabled="button.disabled"
+			:title="button.label"
 			@click="$emit(button.listener ? button.listener : '')"
 		>
 			{{ button.label }}
@@ -17,6 +19,7 @@
 			v-if="hasConfirm"
 			:color="confirmColor"
 			:disabled="isConfirmDisabled"
+			:title="confirmLabel"
 			@click="$emit('onConfirm')"
 		>
 			<farm-icon v-if="confirmIcon">{{ confirmIcon }}</farm-icon>
