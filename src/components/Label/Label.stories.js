@@ -25,5 +25,22 @@ export const Primary = () => ({
 });
 
 export const Required = () => ({
-	template: '<farm-label :required="true">Label</farm-label>',
+	template: `<div>
+		<farm-label :required="true">Label</farm-label>
+		<farm-label required>Label</farm-label>
+	</div>`,
+});
+
+export const Tooltip = () => ({
+	template: `<div>
+		<farm-label required>
+			Label with tooltip
+			<farm-tooltip>
+				this is the tooltip!
+				<template v-slot:activator="{ on, attrs }">
+					<farm-icon size="sm" color="gray">help-circle</farm-icon>
+				</template>
+			</farm-tooltip>
+		</farm-label>
+	</div>`,
 });

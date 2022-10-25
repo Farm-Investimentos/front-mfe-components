@@ -20,5 +20,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import 'Label.scss';
+@import 'Label';
 </style>
