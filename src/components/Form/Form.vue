@@ -14,8 +14,9 @@ export default Vue.extend({
 	inheritAttrs: true,
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
-		const errorsBag = reactive({} as ErrorsBag);
+		let errorsBag = reactive({} as ErrorsBag);
 		let validationFields = [];
+		const instance = getCurrentInstance().proxy;
 
 		const dispatchError = () => {
 			const keys = Object.keys(errorsBag);
@@ -27,6 +28,7 @@ export default Vue.extend({
 			field.$watch(
 				'hasError',
 				() => {
+					console.log(field);
 					errorsBag[field._uid] = field.valid;
 					dispatchError();
 				},
@@ -42,7 +44,7 @@ export default Vue.extend({
 
 		const recursiveFormField = $node => {
 			$node.$children.forEach($leaf => {
-				if($leaf.validate) {
+				if ($leaf.validate) {
 					validationFields.push($leaf);
 				} else if ($leaf.$children.length > 1) {
 					recursiveFormField($leaf);
@@ -57,16 +59,28 @@ export default Vue.extend({
 		};
 
 		onMounted(() => {
-			recursiveFormField(getCurrentInstance().proxy);
+			validationFields = [];
+			recursiveFormField(instance);
 			validationFields.forEach(field => {
 				watchInput(field);
 			});
 		});
 
+		const validate = () => {
+			validationFields = [];
+			errorsBag = {};
+			recursiveFormField(instance);
+			validationFields.forEach(field => {
+				watchInput(field);
+				field.validate();
+			});
+		};
+
 		return {
 			innerValue,
 			errorsBag,
 			reset,
+			validate,
 		};
 	},
 });
