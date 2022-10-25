@@ -28,7 +28,6 @@ export default Vue.extend({
 			field.$watch(
 				'hasError',
 				() => {
-					console.log(field);
 					errorsBag[field._uid] = field.valid;
 					dispatchError();
 				},
@@ -66,7 +65,7 @@ export default Vue.extend({
 			});
 		});
 
-		const validate = () => {
+		const restartValidation = () => {
 			validationFields = [];
 			errorsBag = {};
 			recursiveFormField(instance);
@@ -80,7 +79,7 @@ export default Vue.extend({
 			innerValue,
 			errorsBag,
 			reset,
-			validate,
+			restartValidation,
 		};
 	},
 });
