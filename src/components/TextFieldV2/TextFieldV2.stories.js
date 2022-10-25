@@ -73,8 +73,10 @@ export const Validate = () => ({
 			v2: '',
 			v3: '',
 			v4: '',
+			v5: '',
 			rules: {
 				required: value => !!value || 'Required field',
+				requiredNoMessage: value => !!value || '',
 				email: v =>
 					!v ||
 					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
@@ -85,6 +87,9 @@ export const Validate = () => ({
 	template: `<div style="width: 480px">
 		<farm-label required>Required field</farm-label>
 		<farm-textfield-v2 v-model="v1" :rules="[rules.required]" />
+
+		<farm-label required>Required field no message</farm-label>
+		<farm-textfield-v2 v-model="v5" :rules="[rules.requiredNoMessage]" />
 
 		<farm-label>E-mail</farm-label>
 		<farm-textfield-v2 v-model="v2" :rules="[rules.email]" />

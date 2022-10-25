@@ -3,10 +3,20 @@ import DialogFooter from './DialogFooter.vue';
 export default {
 	title: 'Display/Dialog/DialogFooter',
 	component: DialogFooter,
+	parameters: {
+		docs: {
+			description: {
+				component: `DialogFooter<br />
+				selector: <em>farm-dialog-footer</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
+				`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({
-	components: { 'farm-dialog-footer': DialogFooter },
 	template: '<farm-dialog-footer />',
 });
 
