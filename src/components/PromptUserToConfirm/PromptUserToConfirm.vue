@@ -1,25 +1,15 @@
 <template>
-	<v-form v-model="formVal" autocomplete="off">
+	<farm-form v-model="formVal" autocomplete="off">
 		<farm-caption v-html="title" color="gray" />
-		<v-row>
-			<v-col cols="12" sm="12" class="mt-3 v-col-fieldset-default">
-				<v-text-field
-					v-model="matchInput"
-					id="form-confirm-remove"
-					color="secondary"
-					outlined
-					dense
-					:rules="[rules.checkRemove]"
-				></v-text-field>
-			</v-col>
-		</v-row>
-	</v-form>
+		<farm-textfield-v2
+			v-model="matchInput"
+			class="mt-3"
+			:rules="[rules.checkRemove]"
+		></farm-textfield-v2>
+	</farm-form>
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { VForm } from 'vuetify/lib/components/VForm';
-import { VTextField } from 'vuetify/lib/components/VTextField';
-import { VRow, VCol } from 'vuetify/lib/components/VGrid';
 export default Vue.extend({
 	name: 'farm-promptusertoconfirm',
 	props: {
@@ -35,6 +25,7 @@ export default Vue.extend({
 		 */
 		value: {
 			required: true,
+			type: Boolean,
 		},
 		/**
 		 * Title
@@ -43,12 +34,6 @@ export default Vue.extend({
 			type: String,
 			default: 'Escreva no campo abaixo "EXCLUIR" para confirmar a exclusão.',
 		},
-	},
-	components: {
-		VForm,
-		VTextField,
-		VRow,
-		VCol,
 	},
 	data() {
 		return {
