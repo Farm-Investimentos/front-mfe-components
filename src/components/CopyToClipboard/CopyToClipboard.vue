@@ -28,9 +28,12 @@ export default Vue.extend({
 		 * Is button with icon?
 		 */
 		isIcon: { type: Boolean, default: true },
+		/**
+		 * Success message content after copy
+		 */
 		successMessage: {
 			type: String,
-			default: 'Conteúdo copiado para a área de trabalhado',
+			default: 'Conteúdo copiado para a área de trabalho',
 		},
 	},
 	setup(props) {
@@ -52,7 +55,7 @@ export default Vue.extend({
 			setTimeout(() => {
 				show.value = false;
 				disabled.value = false;
-			}, 1000);
+			}, 2000);
 		};
 
 		return {
