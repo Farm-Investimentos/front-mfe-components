@@ -28,18 +28,22 @@ export default Vue.extend({
 		 * Is button with icon?
 		 */
 		isIcon: { type: Boolean, default: true },
+		successMessage: {
+			type: String,
+			default: 'Conteúdo copiado para a área de trabalhado',
+		},
 	},
 	setup(props) {
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
-		const { toCopy, isIcon } = toRefs(props);
+		const { toCopy, isIcon, successMessage } = toRefs(props);
 
 		const onClick = async () => {
 			disabled.value = true;
 			try {
 				await toClipboard(toCopy.value);
-				feedbackMessage.value = 'Conteúdo copiado para a área de trabalhado';
+				feedbackMessage.value = successMessage.value;
 			} catch (e) {
 				feedbackMessage.value = 'Ocorreu um erro: ' + e;
 			}
