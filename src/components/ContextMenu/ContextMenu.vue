@@ -84,7 +84,6 @@ export default Vue.extend({
 					}
 					window.addEventListener('click', outClick);
 					window.addEventListener('resize', resizeWindowHandler);
-
 					calculatePosition();
 				} else {
 					window.removeEventListener('click', outClick);
@@ -105,17 +104,23 @@ export default Vue.extend({
 
 			let offsetLeft = activatorBoundingClientRect.left;
 			if (popupClientRect.width > activatorBoundingClientRect.width) {
+				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
 				offsetLeft =
-					offsetLeft + activatorBoundingClientRect.width / 2 - popupClientRect.width / 2;
+					activatorBoundingClientRect.left +
+					activatorBoundingClientRect.width / 2 -
+					w / 2;
 			}
+
 			styles.minWidth =
 				(activatorBoundingClientRect.width > 96
 					? parseInt(activatorBoundingClientRect.width)
 					: 96) + 'px';
 
 			//Do not allow to open outside window
+			
 			const rightEdge = offsetLeft + popupClientRect.width;
 			const clientWidth = document.documentElement.clientWidth;
+			
 			if (rightEdge > clientWidth - 12) {
 				offsetLeft = clientWidth - 12 - popupClientRect.width;
 			}
@@ -125,6 +130,7 @@ export default Vue.extend({
 			if (bottomEdge - window.scrollY > clientHeight) {
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
+
 
 			styles.top = `${offsetTop}px`;
 			styles.left = `${offsetLeft}px`;
