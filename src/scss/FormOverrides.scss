@@ -10,7 +10,7 @@
     }
 
     &.v-input {
-        &.v-input--dense.v-text-field.v-text-field--outlined {
+        &.v-text-field.v-text-field--outlined {
             .v-input__slot {
                 min-height: 36px !important;
                 height: 36px;
@@ -22,6 +22,15 @@
                 .v-select__selection {
                     font-size: 0.75rem;
                 }
+                .v-input__append-inner {
+					margin-top: 8px;
+				}
+                .v-input__prepend-inner {
+                    margin-top: 8px;
+                }
+            }
+            .v-input__prepend-outer {
+                margin-top: 8px;
             }
             &.v-input--is-label-active.v-input--is-focused {
                 .v-input__slot fieldset {
