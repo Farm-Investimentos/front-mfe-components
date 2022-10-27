@@ -235,3 +235,59 @@ export const DatePickers = () => ({
         </farm-form>
     `,
 });
+
+export const Grid = () => ({
+	data() {
+		return {
+			
+		};
+	},
+	template: `
+	<farm-container>
+        <farm-form ref="form">
+			
+			<farm-row>
+				<farm-col cols="12" md="3">
+					<farm-label>Label 1</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="3">
+					<farm-label>Label 2</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="3">
+					<farm-label>Label 3</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="3">
+					<farm-label>Label 4</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="6">
+					<farm-label>Label 6</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="2">
+					<farm-label>Label 7</farm-label>
+					<farm-textfield />
+				</farm-col>
+				<farm-col cols="12" md="4">
+					<farm-label>Label 4</farm-label>
+					<farm-textfield />
+				</farm-col>
+			</farm-row>
+			
+            <farm-row extra-decrease>
+				<farm-container-footer>
+					<farm-row>
+						<farm-col align="right">
+							<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-2">Reset</farm-btn>
+							<farm-btn>Salvar</farm-btn>
+						</farm-col>
+					</farm-row>
+				</farm-container-footer>
+			</farm-row>
+        </farm-form>
+	</farm-container>
+    `,
+});
