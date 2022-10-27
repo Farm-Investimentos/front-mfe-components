@@ -281,7 +281,7 @@ export const Grid = () => ({
 				<farm-container-footer>
 					<farm-row>
 						<farm-col align="right">
-							<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+							<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-2">Reset</farm-btn>
 							<farm-btn>Salvar</farm-btn>
 						</farm-col>
 					</farm-row>
