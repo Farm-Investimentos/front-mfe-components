@@ -10,19 +10,27 @@
 		}"
 	>
 		<div class="farm-textfield--input">
-			<button type="button" v-if="icon && iconPosition === 'left'" @click="$emit('onClickIcon')">
+			<button
+				type="button"
+				v-if="icon && iconPosition === 'left'"
+				@click="$emit('onClickIcon')"
+			>
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
-				v-mask="$props.vMask"
+				v-mask="mask"
 				:disabled="disabled"
 				:readonly="readonly"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
-			<button type="button" v-if="icon && iconPosition === 'right'" @click="$emit('onClickIcon')">
+			<button
+				type="button"
+				v-if="icon && iconPosition === 'right'"
+				@click="$emit('onClickIcon')"
+			>
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
@@ -37,7 +45,16 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import Vue, {
+	computed,
+	getCurrentInstance,
+	onBeforeMount,
+	onMounted,
+	PropType,
+	ref,
+	toRefs,
+	watch,
+} from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -95,12 +112,14 @@ export default Vue.extend({
 		/**
 		 * Mask
 		 */
-		vMask: {
+		mask: {
 			default: '',
 			type: [String, Function],
 		},
 	},
 	setup(props, { emit }) {
+		const proxy = getCurrentInstance().proxy;
+
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
