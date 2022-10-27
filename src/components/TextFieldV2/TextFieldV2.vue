@@ -45,16 +45,7 @@
 </template>
 
 <script lang="ts">
-import Vue, {
-	computed,
-	getCurrentInstance,
-	onBeforeMount,
-	onMounted,
-	PropType,
-	ref,
-	toRefs,
-	watch,
-} from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -118,8 +109,6 @@ export default Vue.extend({
 		},
 	},
 	setup(props, { emit }) {
-		const proxy = getCurrentInstance().proxy;
-
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
