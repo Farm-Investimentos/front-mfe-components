@@ -1,169 +1,181 @@
 .theme--light {
-    .fieldset-default,
-    .v-col-fieldset-default {
-        border: 0;
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-    }
+	.fieldset-default,
+	.v-col-fieldset-default {
+		border: 0;
+		label {
+			font-weight: bold;
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+	}
 
-    &.v-input {
-        &.v-text-field.v-text-field--outlined {
-            .v-input__slot {
-                min-height: 36px !important;
-                height: 36px;
-                background: white;
-                fieldset {
-                    border-color: var(--v-gray-lighten2);
-                }
-                input,
-                .v-select__selection {
-                    font-size: 0.75rem;
-                }
-                .v-input__append-inner {
+	&.v-input {
+		&.v-text-field.v-text-field--outlined {
+			.v-input__slot {
+				.v-input__append-inner {
 					margin-top: 8px;
 				}
-                .v-input__prepend-inner {
-                    margin-top: 8px;
-                }
-            }
-            .v-input__prepend-outer {
-                margin-top: 8px;
-            }
-            &.v-input--is-label-active.v-input--is-focused {
-                .v-input__slot fieldset {
-                    border-color: var(--v-secondary-base);
-                }
-                input {
-                    color: var(--v-secondary-base);
-                }
-            }
-            &.error--text {
-                .v-input__slot fieldset {
-                    border-color: var(--v-error-base);
-                    border-width: 1px;
-                }
-                &:after {
-                    content: '\F0028';
-                    position: absolute;
-                    font: normal normal normal 24px/1 'Material Design Icons';
-                    right: 6px;
-                    top: 6px;
-                }
-            }
-        }
-    }
-    .v-textarea.v-text-field--enclosed .v-text-field__slot {
-        textarea {
-            font-size: 0.75rem;
-            line-height: 1.25rem;
-        }
-    }
-    .v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-        > .v-input__control
-        > .v-input__slot
-        fieldset {
-        border-color: var(--v-gray-lighten2);
-    }
-    .v-text-field--outlined.v-input--is-focused > .v-input__control > .v-input__slot fieldset {
-        border-color: var(--v-gray-lighten2);
-        border-width: 1px;
-    }
-    .v-text-field .v-text-field__details {
-        padding-left: 0 !important;
-    }
+				.v-input__prepend-inner {
+					margin-top: 8px;
+				}
+			}
+			.v-input__prepend-outer {
+				margin-top: 8px;
+			}
+		}
+		&.v-text-field.v-input--dense.v-text-field--outlined {
+			.v-input__slot {
+				min-height: 36px !important;
+				height: 36px;
+				background: white;
+				fieldset {
+					border-color: var(--v-gray-lighten2);
+				}
+				input,
+				.v-select__selection {
+					font-size: 0.75rem;
+				}
+				.v-input__append-inner {
+					margin-top: 8px;
+				}
+				.v-input__prepend-inner {
+					margin-top: 8px;
+				}
+			}
+			.v-input__prepend-outer {
+				margin-top: 8px;
+			}
+			&.v-input--is-label-active.v-input--is-focused {
+				.v-input__slot fieldset {
+					border-color: var(--v-secondary-base);
+				}
+				input {
+					color: var(--v-secondary-base);
+				}
+			}
+			&.error--text {
+				.v-input__slot fieldset {
+					border-color: var(--v-error-base);
+					border-width: 1px;
+				}
+				&:after {
+					content: '\F0028';
+					position: absolute;
+					font: normal normal normal 24px/1 'Material Design Icons';
+					right: 6px;
+					top: 6px;
+				}
+			}
+		}
+	}
+	.v-textarea.v-text-field--enclosed .v-text-field__slot {
+		textarea {
+			font-size: 0.75rem;
+			line-height: 1.25rem;
+		}
+	}
+	.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+		> .v-input__control
+		> .v-input__slot
+		fieldset {
+		border-color: var(--v-gray-lighten2);
+	}
+	.v-text-field--outlined.v-input--is-focused > .v-input__control > .v-input__slot fieldset {
+		border-color: var(--v-gray-lighten2);
+		border-width: 1px;
+	}
+	.v-text-field .v-text-field__details {
+		padding-left: 0 !important;
+	}
 }
 .v-form {
-    .v-col-fieldset-default {
-        margin-bottom: 0;
-        padding-bottom: 0;
+	.v-col-fieldset-default {
+		margin-bottom: 0;
+		padding-bottom: 0;
 
-        span.required {
-            color: var(--v-error-base);
-        }
-    }
-    .row.form__footer-buttons--right {
-        margin: 0;
-        margin-top: 1rem;
-        padding: 0;
-        justify-content: flex-end;
-        .v-btn {
-            margin-left: 1rem;
-        }
-    }
+		span.required {
+			color: var(--v-error-base);
+		}
+	}
+	.row.form__footer-buttons--right {
+		margin: 0;
+		margin-top: 1rem;
+		padding: 0;
+		justify-content: flex-end;
+		.v-btn {
+			margin-left: 1rem;
+		}
+	}
 }
 .v-form.v-form-importfile {
-    > .row:first-child {
-        border-bottom: 1px solid var(--v-gray-lighten2);
-        padding: 1rem;
-        h3 {
-            font-weight: 700;
-            color: var(--v-secondary-base);
-        }
-    }
+	> .row:first-child {
+		border-bottom: 1px solid var(--v-gray-lighten2);
+		padding: 1rem;
+		h3 {
+			font-weight: 700;
+			color: var(--v-secondary-base);
+		}
+	}
 
-    > .row:nth-child(2) {
-        padding: 1rem;
-        legend {
-            font-weight: 700;
-            width: 100%;
-        }
-    }
+	> .row:nth-child(2) {
+		padding: 1rem;
+		legend {
+			font-weight: 700;
+			width: 100%;
+		}
+	}
 }
 .v-form.form-custom-disabled {
-    .theme--light {
-        &.v-text-field.v-input--is-disabled .v-input__slot {
-            padding-left: 0;
-            input,
-            label {
-                color: var(--v-primary-base);
-                font-size: 1rem !important;
-            }
-        }
-        &.v-text-field.v-input--is-disabled .v-input__slot fieldset {
-            border: none;
-        }
-    }
+	.theme--light {
+		&.v-text-field.v-input--is-disabled .v-input__slot {
+			padding-left: 0;
+			input,
+			label {
+				color: var(--v-primary-base);
+				font-size: 1rem !important;
+			}
+		}
+		&.v-text-field.v-input--is-disabled .v-input__slot fieldset {
+			border: none;
+		}
+	}
 }
 .v-text-field.v-text-field--solo .v-input__control {
-    min-height: 30px;
+	min-height: 30px;
 }
 
 .theme--light.v-input--switch {
-    .v-input--switch__thumb {
-        color: #ffffff !important;
-    }
-    .v-input--switch__track.theme--light {
-        background: #f0643b;
+	.v-input--switch__thumb {
+		color: #ffffff !important;
+	}
+	.v-input--switch__track.theme--light {
+		background: #f0643b;
 
-        &.secondary--text {
-            background-color: var(--v-secondary-base);
-        }
-    }
-    label {
-        font-size: 0.5rem;
-        font-weight: 600;
-        margin-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
+		&.secondary--text {
+			background-color: var(--v-secondary-base);
+		}
+	}
+	label {
+		font-size: 0.5rem;
+		font-weight: 600;
+		margin-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
 }
 
 @media screen and (max-width: 600px) {
-    .v-form {
-        .row.form__footer-buttons--right {
-            justify-content: unset;
-            .v-btn {
-                margin-left: 0;
-            }
-            .v-btn:not(:first-child) {
-                margin-top: 1rem;
-            }
-        }
-    }
+	.v-form {
+		.row.form__footer-buttons--right {
+			justify-content: unset;
+			.v-btn {
+				margin-left: 0;
+			}
+			.v-btn:not(:first-child) {
+				margin-top: 1rem;
+			}
+		}
+	}
 }
-
 
 //temporary solution for v-data-table checkboxes
 .v-data-table__checkbox.v-simple-checkbox {
@@ -181,7 +193,6 @@
 }
 
 .v-list.v-select-list.v-sheet.theme--light.v-list--dense.theme--light {
-	
 	.v-list-item.v-list-item--link {
 		padding: 8px 12px;
 		height: 36px;
