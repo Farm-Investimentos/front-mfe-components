@@ -1,5 +1,5 @@
 <template>
-	<farm-tooltip v-model="show">
+	<farm-tooltip v-model="show" :color="tooltipColor">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
 			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
@@ -34,6 +34,13 @@ export default Vue.extend({
 		successMessage: {
 			type: String,
 			default: 'Conteúdo copiado para a área de trabalho',
+		},
+		/**
+		 * Tooltip color
+		 */
+		tooltipColor: {
+			type: String,
+			default: 'secondary',
 		},
 	},
 	setup(props) {

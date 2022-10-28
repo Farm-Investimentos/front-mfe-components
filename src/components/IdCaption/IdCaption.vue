@@ -16,7 +16,12 @@
 			<farm-caption variation="regular" color="gray" v-if="hasSubtitle">
 				<span>
 					<slot name="subtitle"></slot>
-					<farm-copytoclipboard v-if="copyText" :toCopy="copyText" />
+					<farm-copytoclipboard
+						v-if="copyText"
+						:toCopy="copyText"
+						:successMessage="successMessage"
+						:tooltipColor="tooltipColor"
+					/>
 				</span>
 			</farm-caption>
 		</div>
@@ -59,6 +64,7 @@ export default Vue.extend({
 		 */
 		copyText: {
 			type: String,
+			default: 'Conteúdo copiado para a área de trabalho',
 		},
 		/**
 		 * Has link?
@@ -66,6 +72,20 @@ export default Vue.extend({
 		link: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Success message content after copy
+		 */
+		successMessage: {
+			type: String,
+			default: 'Conteúdo copiado para a área de trabalho',
+		},
+		/**
+		 * Tooltip color
+		 */
+		tooltipColor: {
+			type: String,
+			default: 'secondary',
 		},
 	},
 
@@ -79,5 +99,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import './IdCaption.scss';
+@import './IdCaption';
 </style>
