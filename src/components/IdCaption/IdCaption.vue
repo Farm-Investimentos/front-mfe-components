@@ -84,7 +84,18 @@ export default Vue.extend({
 		 * Tooltip color
 		 */
 		tooltipColor: {
-			type: String,
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
 			default: 'secondary',
 		},
 	},
