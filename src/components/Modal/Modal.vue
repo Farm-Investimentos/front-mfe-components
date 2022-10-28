@@ -5,7 +5,7 @@
 			:class="{ 'farm-modal': true, ['farm-modal--size-' + size]: true }"
 			:style="styleObject"
 		>
-			<div class="farm-modal--container teste">
+			<div class="farm-modal--container">
 				<div class="farm-modal--header">
 					<!-- @slot header -->
 					<slot name="header"></slot>
