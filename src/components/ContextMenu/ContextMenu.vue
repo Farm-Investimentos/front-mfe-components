@@ -1,6 +1,6 @@
 <template>
 	<div class="farm-contextmenu" ref="parent">
-		<span ref="activator">
+		<span ref="activator" @click="click">
 			<slot name="activator"></slot>
 		</span>
 
@@ -46,7 +46,7 @@ export default Vue.extend({
 			default: 320,
 		},
 	},
-	setup(props, { emit }) {
+	setup(props, { emit, slots }) {
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
@@ -66,6 +66,7 @@ export default Vue.extend({
 		const outClick = (event: Event) => {
 			if (activator && !activator.value.contains(event.target)) {
 				emit('input', false);
+				inputValue.value = false;
 			}
 		};
 
@@ -74,12 +75,11 @@ export default Vue.extend({
 		};
 
 		watch(
-			() => props.value,
+			() => inputValue.value,
 			newValue => {
 				if (newValue) {
 					if (!hasBeenBoostrapped) {
 						document.querySelector('body').appendChild(popup.value);
-
 						hasBeenBoostrapped = true;
 					}
 					window.addEventListener('click', outClick);
@@ -88,7 +88,6 @@ export default Vue.extend({
 				} else {
 					window.removeEventListener('click', outClick);
 				}
-				inputValue.value = newValue;
 			}
 		);
 
@@ -117,10 +116,10 @@ export default Vue.extend({
 					: 96) + 'px';
 
 			//Do not allow to open outside window
-			
+
 			const rightEdge = offsetLeft + popupClientRect.width;
 			const clientWidth = document.documentElement.clientWidth;
-			
+
 			if (rightEdge > clientWidth - 12) {
 				offsetLeft = clientWidth - 12 - popupClientRect.width;
 			}
@@ -130,7 +129,6 @@ export default Vue.extend({
 			if (bottomEdge - window.scrollY > clientHeight) {
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
-
 
 			styles.top = `${offsetTop}px`;
 			styles.left = `${offsetLeft}px`;
@@ -145,12 +143,18 @@ export default Vue.extend({
 			}
 		});
 
+		const click = () => {
+			inputValue.value = !inputValue.value;
+			emit('input', inputValue.value);
+		};
+
 		return {
 			parent,
 			popup,
 			activator,
 			styles,
 			inputValue,
+			click,
 		};
 	},
 });
