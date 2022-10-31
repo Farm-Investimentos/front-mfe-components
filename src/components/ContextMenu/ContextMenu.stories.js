@@ -27,7 +27,23 @@ export const Primary = () => ({
 					v-bind="attrs"
 					v-on="on"
 				>
-					toggle
+					open
+				</farm-btn>
+            </template>
+        </farm-contextmenu>
+	</div>`,
+});
+
+export const LongActivator = () => ({
+	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
+        <farm-contextmenu>
+            some text
+            <template v-slot:activator="{ on, attrs }">
+                <farm-btn
+					v-bind="attrs"
+					v-on="on"
+				>
+					Very long Activator
 				</farm-btn>
             </template>
         </farm-contextmenu>
