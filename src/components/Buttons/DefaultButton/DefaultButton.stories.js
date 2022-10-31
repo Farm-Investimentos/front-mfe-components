@@ -142,6 +142,10 @@ export const DisabledButtons = () => ({
         <farm-btn v-for="color of colors":key="color + '_disabled_icon'" :color="color" plain disabled>
             <farm-icon>book</farm-icon> {{ color }}
         </farm-btn>
+		<farm-btn v-for="color of colors":key="'random_icon_' + color" :color="color" disabled>
+			<farm-icon>book</farm-icon>
+			{{ color }}
+	</farm-btn>
 	</div>`,
 });
 
