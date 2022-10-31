@@ -18,8 +18,40 @@ export default {
 	},
 };
 
-
 export const Primary = () => ({
+	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
+        <farm-contextmenu>
+            some text
+            <template v-slot:activator="{ on, attrs }">
+                <farm-btn
+					v-bind="attrs"
+					v-on="on"
+				>
+					toggle
+				</farm-btn>
+            </template>
+        </farm-contextmenu>
+	</div>`,
+});
+
+export const IconActivator = () => ({
+	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
+        <farm-contextmenu>
+            some text
+            <template v-slot:activator="{ on, attrs }">
+                <farm-btn
+					v-bind="attrs"
+					v-on="on"
+					icon
+				>
+					<farm-icon>help-circle</farm-icon>
+				</farm-btn>
+            </template>
+        </farm-contextmenu>
+	</div>`,
+});
+
+export const VModel = () => ({
 	data() {
 		return {
 			value: false,
@@ -158,22 +190,6 @@ export const MaxHeight = () => ({
 			new line<br />new line<br />last line<br />
             <template v-slot:activator="{ on, attrs }">
                 <farm-btn @click="toggleValue">toggle</farm-btn>
-            </template>
-        </farm-contextmenu>
-	</div>`,
-});
-
-export const NoVModel = () => ({
-	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
-        <farm-contextmenu>
-            some text
-            <template v-slot:activator="{ on, attrs }">
-                <farm-btn
-					v-bind="attrs"
-					v-on="on"
-				>
-					toggle
-				</farm-btn>
             </template>
         </farm-contextmenu>
 	</div>`,

@@ -46,7 +46,7 @@ export default Vue.extend({
 			default: 320,
 		},
 	},
-	setup(props, { emit, slots }) {
+	setup(props, { emit }) {
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
@@ -92,6 +92,9 @@ export default Vue.extend({
 		);
 
 		const calculatePosition = () => {
+			if (!parent.value || !activator.value.children[0]) {
+				return;
+			}
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
 			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
@@ -101,14 +104,9 @@ export default Vue.extend({
 				window.scrollY +
 				(!bottom.value ? 0 : activatorBoundingClientRect.height);
 
-			let offsetLeft = activatorBoundingClientRect.left;
-			if (popupClientRect.width > activatorBoundingClientRect.width) {
-				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
-				offsetLeft =
-					activatorBoundingClientRect.left +
-					activatorBoundingClientRect.width / 2 -
-					w / 2;
-			}
+			const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
+			let offsetLeft =
+				activatorBoundingClientRect.left + activatorBoundingClientRect.width / 2 - w / 2;
 
 			styles.minWidth =
 				(activatorBoundingClientRect.width > 96
