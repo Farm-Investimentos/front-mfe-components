@@ -104,14 +104,22 @@ export default Vue.extend({
 				window.scrollY +
 				(!bottom.value ? 0 : activatorBoundingClientRect.height);
 
-			const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
-			let offsetLeft =
-				activatorBoundingClientRect.left + activatorBoundingClientRect.width / 2 - w / 2;
+			//
+
+			let offsetLeft = activatorBoundingClientRect.left;
 
 			styles.minWidth =
 				(activatorBoundingClientRect.width > 96
 					? parseInt(activatorBoundingClientRect.width)
 					: 96) + 'px';
+
+			if(activatorBoundingClientRect.width < 96) {
+				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
+				offsetLeft =
+					activatorBoundingClientRect.left +
+					activatorBoundingClientRect.width / 2 -
+					w / 2;
+			}
 
 			//Do not allow to open outside window
 
