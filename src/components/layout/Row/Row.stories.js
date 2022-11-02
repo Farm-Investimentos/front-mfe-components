@@ -110,34 +110,3 @@ export const yGridGutters = () => ({
 		</farm-row>
 	</div>`,
 });
-
-export const yFormGutters = () => ({
-	template: `<div>
-		<farm-row y-form-gutters>
-			<farm-col md="6">
-				<div style="border:1px solid red;">
-					<farm-label>label 1</farm-label>
-					<farm-textfield />
-				</div>
-			</farm-col>
-			<farm-col md="6">
-				<div style="border:1px solid red;">
-					<farm-label>label 2</farm-label>
-					<farm-textfield />
-				</div>
-			</farm-col>
-			<farm-col md="6">
-				<div style="border:1px solid red;">
-					<farm-label>label 3</farm-label>
-					<farm-textfield hint="some hint text" persistent-hint />
-				</div>
-			</farm-col>
-			<farm-col md="6">
-				<div style="border:1px solid red;">
-					<farm-label>label 4</farm-label>
-					<farm-textfield />
-				</div>
-			</farm-col>
-		</farm-row>
-	</div>`,
-});
