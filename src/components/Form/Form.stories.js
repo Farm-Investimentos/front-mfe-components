@@ -257,7 +257,7 @@ export const Grid = () => ({
 				</farm-col>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 3</farm-label>
-					<farm-textfield />
+					<farm-textfield hint="some hint text" persistent-hint="true"  />
 				</farm-col>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 4</farm-label>
