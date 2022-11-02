@@ -24,6 +24,6 @@ describe('ContextMenu component', () => {
 		it('Should handle click', () =>{
 			component.click();
 			expect(component.inputValue).toBeTruthy();
-		})
-	})
+		});
+	});
 });
