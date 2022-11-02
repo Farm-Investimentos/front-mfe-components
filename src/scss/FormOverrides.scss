@@ -106,12 +106,22 @@
 	}
 }
 
-.v-text-field.v-text-field--enclosed .v-text-field__details {
-	min-height: 16px !important;
-	margin-bottom: 0 !important;
+.v-text-field {
+	.v-input__slot {
+		margin-bottom: 4px;
+	}
+
+	&.v-text-field--enclosed .v-text-field__details {
+		min-height: 16px !important;
+		margin-bottom: 4px !important;
+	}
+
+	&.v-text-field--solo .v-input__control {
+		min-height: 30px;
+	}
 }
 
-.v-form {
+.v-text-field .v-form {
 	.v-col-fieldset-default {
 		margin-bottom: 0;
 		padding-bottom: 0;
@@ -170,10 +180,6 @@
 			border: none;
 		}
 	}
-}
-
-.v-text-field.v-text-field--solo .v-input__control {
-	min-height: 30px;
 }
 
 .theme--light.v-input--switch {
