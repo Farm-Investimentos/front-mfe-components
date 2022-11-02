@@ -19,3 +19,19 @@ export default {
 export const Primary = () => ({
 	template: '<farm-alertbox>alert box</farm-alertbox>',
 });
+
+export const withIcon = () => ({
+	template: '<farm-alertbox icon="book">alert box</farm-alertbox>',
+});
+
+export const withDismissable = () => ({
+	template: '<farm-alertbox dismissable>alert box</farm-alertbox>',
+});
+
+export const dense = () => ({
+	template: '<farm-alertbox dismissable dense>alert box</farm-alertbox>',
+});
+
+export const full = () => ({
+	template: '<farm-alertbox icon="book" dismissable>alert box</farm-alertbox>',
+});
