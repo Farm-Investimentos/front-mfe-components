@@ -2,7 +2,7 @@
 @import '../../configurations/mixins';
 
 .farm-dialog__footer {
-    border-top: 1px solid var(--v-gray-lighten2);
+    border-top: 1px solid var(--farm-stroke-base);
     padding: gutter('md');
     display: flex;
     flex-direction: row;
@@ -10,7 +10,7 @@
 }
 
 .farm-btn {
-    margin-left: gutter();
+    margin-left: gutter('sm');
     margin-top: 0;
 
     .farm-icon {

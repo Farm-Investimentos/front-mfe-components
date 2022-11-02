@@ -149,3 +149,37 @@ export const CustomTag = () => ({
     </farm-idcaption>
     `,
 });
+
+export const CustomSuccessMessageAfterCopyToClipboard = () => ({
+	template: `
+    <farm-idcaption 
+        icon="account-box-outline"
+        copy-text="Custom Success Message to be copied"
+        success-message="Custom Success Message"
+    >
+        <template v-slot:title>
+            <b>Upper Line Text</b>
+        </template>
+        <template v-slot:subtitle>
+            <b>Lower:</b> Line Text Line Text Line Text
+        </template>
+    </farm-idcaption>
+    `,
+});
+
+export const CustomTooltipColor = () => ({
+	template: `
+    <farm-idcaption 
+        icon="account-box-outline"
+        copy-text="Custom Success Message to be copied"
+        tooltip-color="info"
+    >
+        <template v-slot:title>
+            <b>Upper Line Text</b>
+        </template>
+        <template v-slot:subtitle>
+            <b>Lower:</b> Line Text Line Text Line Text
+        </template>
+    </farm-idcaption>
+    `,
+});

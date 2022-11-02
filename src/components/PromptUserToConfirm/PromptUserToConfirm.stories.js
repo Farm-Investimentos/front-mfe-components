@@ -1,14 +1,15 @@
 import PromptUserToConfirm from './PromptUserToConfirm';
 
 export default {
-	title: 'INteractions/PromptUserToConfirm',
+	title: 'Interactions/PromptUserToConfirm',
 	component: PromptUserToConfirm,
 	parameters: {
 		viewMode: 'docs',
 		docs: {
 			description: {
 				component: `Prompt User to Confirm<br />
-				selector: <em>farm-promptusertoconfirm</em>`,
+				selector: <em>farm-promptusertoconfirm</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},
@@ -17,7 +18,7 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			model: {},
+			model: false,
 		};
 	},
 	template: `<div style="max-width: 320px"><farm-promptusertoconfirm v-model="model"/>
@@ -26,13 +27,18 @@ export const Primary = () => ({
 });
 
 export const CustomTitle = () => ({
-	template: '<div style="max-width: 320px"><farm-promptusertoconfirm title="Custom" /></div>',
+	data() {
+		return {
+			model: false,
+		};
+	},
+	template: '<div style="max-width: 320px"><farm-promptusertoconfirm title="Custom"  v-model="model" /></div>',
 });
 
 export const CustomMatchInput = () => ({
 	data() {
 		return {
-			model: {},
+			model: false,
 		};
 	},
 	template: `<div style="max-width: 320px">

@@ -35,4 +35,14 @@
         margin: 0 -#{2 * gutter('vuetify')};
     }
 
+    &--y-grid-gutters > .farm-col {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    &--y-form-gutters > .farm-col {
+        margin-top: 12px;
+        margin-bottom: -12px;
+    }
+
 }
