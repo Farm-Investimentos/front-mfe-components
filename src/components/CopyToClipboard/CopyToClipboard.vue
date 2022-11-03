@@ -53,12 +53,19 @@ export default Vue.extend({
 			>,
 			default: 'secondary',
 		},
+		/**
+		 * Success message timeout (in ms)
+		 */
+		successTimeout: {
+			type: [Number, String],
+			default: 2000,
+		},
 	},
 	setup(props) {
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
-		const { toCopy, isIcon, successMessage } = toRefs(props);
+		const { toCopy, isIcon, successMessage, successTimeout } = toRefs(props);
 
 		const onClick = async () => {
 			disabled.value = true;
@@ -73,7 +80,7 @@ export default Vue.extend({
 			setTimeout(() => {
 				show.value = false;
 				disabled.value = false;
-			}, 2000);
+			}, successTimeout.value);
 		};
 
 		return {
