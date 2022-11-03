@@ -9,7 +9,6 @@
 			'farm-row--no-default-gutters': noDefaultGutters,
 			'farm-row--extra-decrease': extraDecrease,
 			'farm-row--y-grid-gutters': yGridGutters,
-			'farm-row--y-form-gutters': yFormGutters,
 		}"
 	>
 		<slot></slot>
@@ -66,13 +65,6 @@ export default Vue.extend({
 		 * Add gutters to farm-cols in Y axis
 		 */
 		yGridGutters: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Add proper gutters to farm-cols in Y axis to be used with form elements
-		 */
-		yFormGutters: {
 			type: Boolean,
 			default: false,
 		},
