@@ -35,3 +35,16 @@ export const dense = () => ({
 export const full = () => ({
 	template: '<farm-alertbox icon="book" dismissable>alert box</farm-alertbox>',
 });
+
+export const moreThanOneLine = () => ({
+	data() {
+		return {
+			text: `lorem ipsu lorem ipsu lorem ipsu lorem ipsu
+		lorem ipsu lorem ipsu lorem ipsu lorem ipsu lorem ipsu
+		lorem ipsu lorem ipsu lorem ipsu lorem ipsu lorem ipsu lorem ipsu lorem ipsu
+		lorem ipsu lorem ipsu lorem ipsu lorem ipsu lorem ipsu
+		lorem ipsu lorem ipsu lorem ipsu`,
+		};
+	},
+	template: '<farm-alertbox icon="book" dismissable>{{text}}</farm-alertbox>',
+});

@@ -6,6 +6,7 @@
 	color: themeColor('primary', 'darken');
 	display: flex;
 	padding: 8px 16px;
+	min-height: 40px;
 
 	&__content {
 		flex: 1;
@@ -28,4 +29,13 @@
 	&--dense {
 		display: inline-flex;
 	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
 }
