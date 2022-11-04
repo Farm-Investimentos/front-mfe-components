@@ -72,10 +72,10 @@ export const ShowUpdateWithNA = () => ({
 		return {
 			value: false,
 			info: {
-				createdAt: 'N/A',
-				updatedAt: 'N/A',
-				username: 'N/A',
-				updatedHours: 'N/A',
+				createdAt: null,
+				updatedAt: null,
+				username: null,
+				updatedHours: null,
 			},
 		};
 	},
@@ -89,10 +89,10 @@ export const ShowCreateWithNA = () => ({
 		return {
 			value: false,
 			info: {
-				createdAt: 'N/A',
-				updatedAt: 'N/A',
-				username: 'N/A',
-				updatedHours: 'N/A',
+				createdAt: null,
+				updatedAt: null,
+				username: null,
+				updatedHours: null,
 			},
 		};
 	},
@@ -106,10 +106,10 @@ export const ShowBothWithNA = () => ({
 		return {
 			value: false,
 			info: {
-				createdAt: 'N/A',
-				updatedAt: 'N/A',
-				username: 'N/A',
-				updatedHours: 'N/A',
+				createdAt: null,
+				updatedAt: null,
+				username: null,
+				updatedHours: null,
 			},
 		};
 	},

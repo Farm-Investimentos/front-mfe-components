@@ -5,7 +5,7 @@
 			<farm-caption color="gray" tag="p" variation="regular"
 				>Data de cadastro:
 				<farm-caption color="gray" variation="medium" tag="span">{{
-					infos.createdAt
+					formattedCreatedAt
 				}}</farm-caption>
 			</farm-caption>
 		</div>
@@ -15,15 +15,15 @@
 			<farm-caption color="gray" tag="p" variation="regular"
 				>Última atualização feita por
 				<farm-caption color="gray" variation="medium" tag="span">{{
-					infos.username
+					formattedUsername
 				}}</farm-caption
 				>, dia
 				<farm-caption color="gray" variation="medium" tag="span">{{
-					infos.updatedAt
+					formattedUpdatedAt
 				}}</farm-caption>
 				às
 				<farm-caption color="gray" variation="medium" tag="span">{{
-					infos.updatedHours
+					formattedUpdatedHours
 				}}</farm-caption>
 			</farm-caption>
 		</div>
@@ -66,23 +66,31 @@ export default Vue.extend({
 
 		const showUpdate = computed(
 			() =>
-				(infos.value.updatedAt !== null &&
-					infos.value.updatedAt !== undefined &&
-					infos.value.updatedAt !== 'N/A') ||
+				(infos.value.updatedAt !== null && infos.value.updatedAt !== undefined) ||
 				showEmptyUpdate.value
 		);
 
 		const showCreate = computed(
 			() =>
-				(infos.value.createdAt !== null &&
-					infos.value.createdAt !== undefined &&
-					infos.value.createdAt !== 'N/A') ||
+				(infos.value.createdAt !== null && infos.value.createdAt !== undefined) ||
 				showEmptyCreate.value
 		);
+
+		const formattedCreatedAt = computed(() => infos.value.createdAt || 'N/A');
+
+		const formattedUpdatedAt = computed(() => infos.value.updatedAt || 'N/A');
+
+		const formattedUsername = computed(() => infos.value.username || 'N/A');
+
+		const formattedUpdatedHours = computed(() => infos.value.updatedHours || 'N/A');
 
 		return {
 			showUpdate,
 			showCreate,
+			formattedCreatedAt,
+			formattedUpdatedAt,
+			formattedUsername,
+			formattedUpdatedHours,
 		};
 	},
 });
