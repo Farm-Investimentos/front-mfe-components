@@ -8,22 +8,18 @@
 		offset-y
 		min-width="290px"
 	>
-		<template v-slot:activator="{ on }">
-			<v-text-field
-				color="secondary"
-				append-icon="mdi-calendar"
-				v-mask="`${readonly ? '' : '##/##/####'}`"
-				@keyup="keyUpInput"
-				:readonly="readonly"
+		<template v-slot:activator="{}">
+			<farm-textfield-v2
+				icon="calendar"
+				:mask="`${readonly ? '' : '##/##/####'}`"
 				autocomplete="off"
-				outlined
-				dense
-				v-on="on"
 				v-model="fieldRange"
+				:readonly="readonly"
 				:id="inputId"
 				:rules="[checkMax, checkMin, checkRequire]"
-			>
-			</v-text-field>
+				@keyup="keyUpInput"
+				@click="menuField = true"
+			/>
 		</template>
 		<v-date-picker
 			v-if="menuField"
