@@ -35,6 +35,7 @@ export const Primary = () => ({
 				checkbox: true,
 				birthDate: new Date('1980/09/20').toISOString(),
 				selectId: 1,
+				rangeDate: [],
 			},
 			validForm: false,
 			rules: {
@@ -65,7 +66,7 @@ export const Primary = () => ({
 			<v-select :rules="[rules.required]" :items="items" v-model="form.selectId"/>
 
 			<farm-label :required="true">Birthdate:</farm-label>
-			<DatePicker
+			<farm-input-datepicker
 				ref="birthDate"
 				inputId="form-pf-birthDate"
 				class="mt-4"
@@ -73,12 +74,22 @@ export const Primary = () => ({
 				:readonly="true"
 				:required="true"
 			/>
+
+			<farm-label :required="true">Range date:</farm-label>
+			<farm-input-rangedatepicker
+				ref="rangeDate"
+				inputId="form-pf-rangeDate"
+				class="mt-4"
+				v-model="form.rangeDate"
+				:required="true"
+			/>
 			
 			
             <div class="footer" :style="[styles.footer]">
-				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
-				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
+				<farm-btn outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn :disabled="!validForm">Salvar</farm-btn>
             </div>
+			form: {{ form }}
         </farm-form>
     `,
 });
@@ -196,51 +207,9 @@ export const RadioGroupReset = () => ({
     `,
 });
 
-export const DatePickers = () => ({
-	data() {
-		return {
-			birthDate: '',
-			rangeDate: [],
-			validForm: false,
-			styles,
-		};
-	},
-	template: `
-        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
-
-			<farm-label :required="true">Birthdate: {{ birthDate }}</farm-label>
-			<DatePicker
-				ref="birthDate"
-				inputId="form-pf-birthDate"
-				class="mt-4"
-				v-model="birthDate"
-				:readonly="true"
-				:required="true"
-			/>
-		
-			<farm-label :required="true">Range: {{ rangeDate }}</farm-label>
-			<RangeDatePicker
-				ref="rangeDate"
-				inputId="form-pf-rangeDate"
-				class="mt-4"
-				v-model="rangeDate"
-				:readonly="true"
-				:required="true"
-			/>
-			
-            <div class="footer" :style="[styles.footer]">
-				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
-				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
-            </div>
-        </farm-form>
-    `,
-});
-
 export const Grid = () => ({
 	data() {
-		return {
-			
-		};
+		return {};
 	},
 	template: `
 	<farm-container>
@@ -289,5 +258,42 @@ export const Grid = () => ({
 			</farm-row>
         </farm-form>
 	</farm-container>
+    `,
+});
+
+export const MigrateTextVieldV2 = () => ({
+	data() {
+		return {
+			form: {
+				document: 'Document',
+				name: 'Name',
+			},
+			validForm: false,
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+			},
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
+			styles,
+		};
+	},
+	template: `
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+			<div>
+				<farm-label :required="true">Documento</farm-label>
+				<farm-textfield-v2 v-model="form.document" :rules="[rules.required]" />
+			</div>
+			<farm-label :required="true">Nome</farm-label>
+			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" />
+			
+            <div class="footer" :style="[styles.footer]">
+				<farm-btn outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn :disabled="!validForm">Salvar</farm-btn>
+            </div>
+			form: {{ form }}
+        </farm-form>
     `,
 });
