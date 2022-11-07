@@ -1,7 +1,7 @@
 <template>
 	<div class="farm-resource-metainfo">
 		<div v-if="showCreate">
-			<farm-icon color="gray" size="14">calendar-blank</farm-icon>
+			<farm-icon color="gray" size="sm">calendar-blank</farm-icon>
 			<farm-caption color="gray" variation="regular">
 				Data de cadastro:
 				<farm-caption color="gray" variation="medium" tag="span">
@@ -10,7 +10,7 @@
 			</farm-caption>
 		</div>
 		<div v-if="showUpdate">
-			<farm-icon color="gray" size="14">history</farm-icon>
+			<farm-icon color="gray" size="sm">history</farm-icon>
 
 			<farm-caption color="gray" variation="regular">
 				Última atualização feita por
