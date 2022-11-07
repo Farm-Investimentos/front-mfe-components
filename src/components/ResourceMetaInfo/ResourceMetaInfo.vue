@@ -2,29 +2,29 @@
 	<div class="farm-resource-metainfo">
 		<div v-if="showCreate">
 			<farm-icon color="gray" size="14">calendar-blank</farm-icon>
-			<farm-caption color="gray" tag="p" variation="regular"
-				>Data de cadastro:
-				<farm-caption color="gray" variation="medium" tag="span">{{
-					formattedCreatedAt
-				}}</farm-caption>
+			<farm-caption color="gray" variation="regular">
+				Data de cadastro:
+				<farm-caption color="gray" variation="medium" tag="span">
+					{{ formattedCreatedAt }}
+				</farm-caption>
 			</farm-caption>
 		</div>
 		<div v-if="showUpdate">
 			<farm-icon color="gray" size="14">history</farm-icon>
 
-			<farm-caption color="gray" tag="p" variation="regular"
-				>Última atualização feita por
-				<farm-caption color="gray" variation="medium" tag="span">{{
-					formattedUsername
-				}}</farm-caption
-				>, dia
-				<farm-caption color="gray" variation="medium" tag="span">{{
-					formattedUpdatedAt
-				}}</farm-caption>
+			<farm-caption color="gray" variation="regular">
+				Última atualização feita por
+				<farm-caption color="gray" variation="medium" tag="span">
+					{{ formattedUsername }}
+				</farm-caption>
+				, dia
+				<farm-caption color="gray" variation="medium" tag="span">
+					{{ formattedUpdatedAt }}
+				</farm-caption>
 				às
-				<farm-caption color="gray" variation="medium" tag="span">{{
-					formattedUpdatedHours
-				}}</farm-caption>
+				<farm-caption color="gray" variation="medium" tag="span">
+					{{ formattedUpdatedHours }}
+				</farm-caption>
 			</farm-caption>
 		</div>
 	</div>
@@ -42,14 +42,23 @@ interface ResourceMetaInfoProps {
 export default Vue.extend({
 	name: 'farm-resource-metainfo',
 	props: {
+		/**
+		 * Object with the metadata information
+		 */
 		infos: {
 			required: true,
 			type: Object as PropType<ResourceMetaInfoProps>,
 		},
+		/**
+		 * Show create metadata info if empty?
+		 */
 		showEmptyCreate: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show update metadata info if empty?
+		 */
 		showEmptyUpdate: {
 			type: Boolean,
 			default: false,
@@ -71,11 +80,8 @@ export default Vue.extend({
 		);
 
 		const formattedCreatedAt = computed(() => infos.value.createdAt || 'N/A');
-
 		const formattedUpdatedAt = computed(() => infos.value.updatedAt || 'N/A');
-
 		const formattedUsername = computed(() => infos.value.username || 'N/A');
-
 		const formattedUpdatedHours = computed(() => infos.value.updatedHours || 'N/A');
 
 		return {
@@ -90,5 +96,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import 'ResourceMetaInfo.scss';
+@import 'ResourceMetaInfo';
 </style>
