@@ -31,8 +31,6 @@
 </template>
 <script lang="ts">
 import Vue, { computed, PropType, toRefs } from 'vue';
-import Icon from '../Icon';
-import { Caption } from '../Typography';
 
 interface ResourceMetaInfoProps {
 	createdAt: string;
@@ -43,10 +41,6 @@ interface ResourceMetaInfoProps {
 
 export default Vue.extend({
 	name: 'farm-resource-metainfo',
-	components: {
-		'farm-icon': Icon,
-		'farm-caption': Caption,
-	},
 	props: {
 		infos: {
 			required: true,
