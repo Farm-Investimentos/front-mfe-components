@@ -156,12 +156,14 @@ export default Vue.extend({
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
-		const onKeyUp = () => {
+		const onKeyUp = (event: Event) => {
 			isTouched.value = true;
+			emit('keyup', event);
 		};
 
-		const onBlur = () => {
+		const onBlur = (event: Event) => {
 			isBlured.value = true;
+			emit('blur', event);
 		};
 
 		const reset = () => {

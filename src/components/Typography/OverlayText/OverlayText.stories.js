@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `OverlayText<br />
-				selector: <em>farm-overlaytext</em>
+				selector: <em>farm-overlaytext</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
