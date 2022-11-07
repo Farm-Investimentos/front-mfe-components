@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `BodyText<br />
-				selector: <em>farm-bodytext</em>
+				selector: <em>farm-bodytext</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -37,7 +38,6 @@ export const Primary = () => ({
 });
 
 export const CustomTag = () => ({
-	components: { 'farm-bodytext': BodyText },
 	data() {
 		return {
 			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend', 'label', 'li'],

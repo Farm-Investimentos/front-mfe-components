@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Caption<br />
-				selector: <em>farm-caption</em>
+				selector: <em>farm-caption</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

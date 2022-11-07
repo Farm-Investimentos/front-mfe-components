@@ -23,6 +23,7 @@ import CardContext from './components/CardContext';
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
 import IdCaption from './components/IdCaption';
+import ResourceMetaInfo from './components/ResourceMetaInfo';
 
 export {
 	DataTableEmptyWrapper,
@@ -47,6 +48,7 @@ export {
 	CardContext,
 	Collapsible,
 	IdCaption,
+	ResourceMetaInfo,
 };
 
 export * from './components/AlertBox';
@@ -94,4 +96,3 @@ export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
-

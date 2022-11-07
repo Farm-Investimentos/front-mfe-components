@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Heading<br />
-				selector: <em>farm-heading</em>
+				selector: <em>farm-heading</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

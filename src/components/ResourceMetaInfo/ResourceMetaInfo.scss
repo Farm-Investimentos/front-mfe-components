@@ -1,0 +1,14 @@
+.farm-resource-metainfo {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 8px;
+
+	& div {
+		align-items: center;
+		display: inline-flex;
+
+		& .farm-icon {
+			margin-right: 8px;
+		}
+	}
+}

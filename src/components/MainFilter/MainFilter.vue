@@ -12,7 +12,7 @@
 					</template>
 				</farm-tooltip>
 			</farm-label>
-			<farm-textfield v-model="inputValue" :id="elementId" @keyup="onKeyUp" />
+			<farm-textfield-v2 v-model="inputValue" :id="elementId" @keyup="onKeyUp" />
 		</fieldset>
 		<farm-btn
 			v-if="hasExtraFilters"
@@ -64,6 +64,9 @@ export default Vue.extend({
 			type: String,
 			default: '',
 		},
+		/**
+		 * Toggle filters
+		 */
 		showFilters: {
 			type: Boolean,
 			default: false,
@@ -100,18 +103,20 @@ export default Vue.extend({
 		onFilterClick() {
 			this.$emit('onClick');
 		},
+		isInvalidKey(keyCode: Number) {
+			return (
+				(keyCode < 48 && keyCode !== 8 && keyCode !== 46) ||
+				(keyCode > 90 && keyCode < 96 && keyCode !== 91) ||
+				(keyCode > 105 && keyCode < 186)
+			);
+		},
 		onKeyUp(event: KeyboardEvent) {
 			const keyCode = event.keyCode;
 			if (keyCode === 13) {
 				this.$emit('onEnter', (event.target as HTMLInputElement).value);
 				return false;
 			}
-
-			if (
-				(keyCode < 48 && keyCode !== 8 && keyCode !== 46) ||
-				(keyCode > 90 && keyCode < 96 && keyCode !== 91) ||
-				(keyCode > 105 && keyCode < 186)
-			) {
+			if (this.isInvalidKey(keyCode)) {
 				return false;
 			}
 			if (this.timer) {
@@ -119,7 +124,8 @@ export default Vue.extend({
 				this.timer = null;
 			}
 			this.timer = setTimeout(() => {
-				this.$emit('onInputChange', (event.target as HTMLInputElement).value);
+				console.log(this.inputValue);
+				this.$emit('onInputChange', this.inputValue);
 			}, 750);
 		},
 	},
