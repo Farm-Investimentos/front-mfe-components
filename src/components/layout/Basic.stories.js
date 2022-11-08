@@ -73,3 +73,24 @@ export const Tertiary = () => ({
 	</farm-container>
 `,
 });
+
+export const WithTabs = () => ({
+	data() {
+		return {
+			steps: [
+				{ label: 'Step 1', icon: '' },
+				{ label: 'Step 2', icon: 'monitor' },
+				{ label: 'Step 3', icon: 'book' },
+				{ label: 'Step 4', icon: '' },
+			],
+			currentStep: 3,
+		};
+	},
+	template: `
+	<farm-container>
+		<farm-row extra-decrease>
+			<farm-tabs :tabs="steps" class="mt-n6" />
+		</farm-row>
+	</farm-container>
+`,
+});
