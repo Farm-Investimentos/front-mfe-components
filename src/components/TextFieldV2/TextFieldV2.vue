@@ -20,9 +20,10 @@
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
-				v-mask="mask"
+				v-mask="mask"		
 				:disabled="disabled"
 				:readonly="readonly"
+				@click="$emit('click')"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
@@ -34,7 +35,6 @@
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
-
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
