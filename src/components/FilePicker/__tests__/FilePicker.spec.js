@@ -3,9 +3,11 @@ import FilePicker from '../FilePicker';
 
 describe('FilePicker component', () => {
 	let wrapper;
+	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(FilePicker);
+		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
@@ -15,12 +17,12 @@ describe('FilePicker component', () => {
 	describe('Component methods', () => {
 		describe('fileChange', () => {
 			it('Should emit event with a file', () => {
-				wrapper.vm.fileChange([1]);
+				component.fileChange([1]);
 				expect(wrapper.emitted().onFileChange[0]).toBeDefined();
 			});
 
 			it('Should not emit', () => {
-				wrapper.vm.fileChange([]);
+				component.fileChange([]);
 				expect(wrapper.emitted().onFileChange).toBeUndefined();
 			});
 
@@ -28,7 +30,7 @@ describe('FilePicker component', () => {
 				await wrapper.setProps({
 					maxFileSize: 5,
 				});
-				wrapper.vm.fileChange([{ size: 6 * 1024 * 1024 }]);
+				component.fileChange([{ size: 6 * 1024 * 1024 }]);
 				expect(wrapper.vm.maxSizeReach).toBeTruthy();
 			});
 		});
@@ -36,7 +38,7 @@ describe('FilePicker component', () => {
 		describe('handlerFunctionHighlight', () => {
 			it('Should add class', () => {
 				const spyObj = jest.spyOn(wrapper.vm.dropArea.classList, 'add');
-				wrapper.vm.handlerFunctionHighlight();
+				component.handlerFunctionHighlight();
 				expect(spyObj).toHaveBeenCalled();
 			});
 		});
@@ -65,5 +67,11 @@ describe('FilePicker component', () => {
 			});
 			expect(wrapper.vm.maxSizeReachMsg).toContain('Arquivo ultrapassou o tamanho máximo');
 		});
+
+		it('Should have input element', () => {
+			expect(component.inputEl).toBeDefined();
+		});
+
+		
 	});
 });
