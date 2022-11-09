@@ -52,6 +52,7 @@ export const Disabled = () => ({
 	},
 	template: `<div style="width: 480px">
 		<farm-textfield-v2 v-model="v" disabled />
+		<farm-textfield-v2 v-model="v" disabled icon="book" />
 	</div>`,
 });
 

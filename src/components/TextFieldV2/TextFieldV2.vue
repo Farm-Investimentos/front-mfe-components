@@ -7,6 +7,7 @@
 			'farm-textfield--touched': isTouched,
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
+			'farm-textfield--disabled': disabled,
 		}"
 	>
 		<div class="farm-textfield--input">
