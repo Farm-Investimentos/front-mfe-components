@@ -1,5 +1,6 @@
 .farm-textfield {
 	height: 64px;
+
 	&--input {
 		display: flex;
 		align-items: center;
@@ -11,19 +12,30 @@
 		padding: 8px;
 		margin-bottom: 4px;
 
-		> button {
+		>button {
 			display: flex;
 		}
 
 		&>input {
 			flex: 1;
 			outline: none;
-			color: var(--farm-neutral-darken);
+			color: var(--farm-text-primary);
 			font-size: 12px;
 			font-weight: 400;
 		}
 
 		width: 100%;
+
+	}
+
+	&--disabled {
+		input {
+			color: var(--farm-gray-base);
+		}
+		.farm-icon {
+			color: var(--farm-gray-lighten);
+			cursor: default;
+		}
 	}
 
 	.farm-caption {
