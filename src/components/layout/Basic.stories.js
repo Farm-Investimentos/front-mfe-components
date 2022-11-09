@@ -89,7 +89,7 @@ export const WithTabs = () => ({
 	template: `
 	<farm-container>
 		<farm-row extra-decrease>
-			<farm-tabs :tabs="steps" class="mt-n6" />
+			<farm-tabs :tabs="steps" :showCounter="false" class="mt-n6" />
 		</farm-row>
 	</farm-container>
 `,
