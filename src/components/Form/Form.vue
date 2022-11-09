@@ -7,6 +7,7 @@ import Vue, { onMounted, reactive, ref, getCurrentInstance } from 'vue';
 type ErrorsBag = Record<number, boolean>;
 
 export default Vue.extend({
+	name: 'farm-form',
 	props: {
 		value: { type: [Boolean] },
 	},
