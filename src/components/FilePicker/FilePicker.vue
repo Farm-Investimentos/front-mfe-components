@@ -3,11 +3,11 @@
 		<input
 			type="file"
 			name="file"
-			@change="fileChange($event.target.files)"
 			:accept="acceptedFileTypes"
+			@change="fileChange($event.target.files)"
 		/>
 		<div v-if="!selectedFile" class="selectfile-container">
-			<farm-icon>cloud-upload</farm-icon>
+			<farm-icon @click="triggerClick">cloud-upload</farm-icon>
 			<p>Clique para selecionar ou arraste o arquivo aqui</p>
 		</div>
 		<div v-if="selectedFile || maxSizeReach" class="reset-container">
@@ -19,12 +19,7 @@
 
 			<p v-if="maxSizeReach" v-html="maxSizeReachMsg"></p>
 
-			<farm-btn
-				outlined
-				class="farm-btn--responsive"
-				title="Escolher outro"
-				@click="reset"
-			>
+			<farm-btn outlined class="farm-btn--responsive" title="Escolher outro" @click="reset">
 				Escolher outro
 			</farm-btn>
 		</div>
@@ -32,8 +27,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
 
 export default Vue.extend({
 	name: 'farm-filepicker',
@@ -63,6 +56,9 @@ export default Vue.extend({
 		maxSizeReachMsg() {
 			return `Arquivo ultrapassou o tamanho máximo de ${this.maxFileSize}MB`;
 		},
+		inputEl() {
+			return this.$refs.container.querySelector('input');
+		}
 	},
 	mounted() {
 		this.dropArea = this.$refs.container;
@@ -70,7 +66,7 @@ export default Vue.extend({
 	},
 	methods: {
 		reset() {
-			this.$refs.container.querySelector('input').value = '';
+			this.inputEl.value = '';
 			this.$emit('onReset');
 			this.maxSizeReach = false;
 			this.selectedFile = null;
@@ -102,10 +98,9 @@ export default Vue.extend({
 			this.dropArea.addEventListener('dragover', this.handlerFunctionHighlight, false);
 			this.dropArea.addEventListener('drop', this.handlerFunctionUnhighlight, false);
 		},
-	},
-	components: {
-		'farm-btn': DefaultButton,
-		'farm-icon': Icon,
+		triggerClick() {
+			this.inputEl.click();
+		}
 	},
 });
 </script>

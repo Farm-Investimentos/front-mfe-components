@@ -9,18 +9,15 @@
 		offset-y
 		min-width="290px"
 	>
-		<template v-slot:activator="{ on }">
-			<v-text-field
-				color="secondary"
+		<template v-slot:activator="{}">
+			<farm-textfield-v2
 				v-model="fieldRange"
-				append-icon="mdi-calendar"
+				icon="calendar"
 				readonly
-				v-on="on"
-				outlined
-				dense
 				:id="inputId"
 				:rules="required ? [requiredRule] : []"
-			></v-text-field>
+				@click="menuField = true"
+			/>
 		</template>
 		<v-date-picker
 			v-if="menuField"
@@ -45,7 +42,6 @@
 </template>
 <script>
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import DefaultButton from '../Buttons/DefaultButton';
@@ -56,7 +52,6 @@ import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 export default Vue.extend({
 	name: 'farm-input-rangedatepicker',
 	components: {
-		VTextField,
 		VMenu,
 		VDatePicker,
 		'farm-btn': DefaultButton,
@@ -150,10 +145,7 @@ export default Vue.extend({
 			},
 		},
 		canConfirm() {
-			if (!this.dateField || this.dateField.length == 1) {
-				return true;
-			}
-			return false;
+			return !this.dateField || this.dateField.length == 1;
 		},
 	},
 });
