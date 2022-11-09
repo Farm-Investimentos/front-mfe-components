@@ -77,13 +77,8 @@ export const Tertiary = () => ({
 export const WithTabs = () => ({
 	data() {
 		return {
-			steps: [
-				{ label: 'Step 1', icon: '' },
-				{ label: 'Step 2', icon: 'monitor' },
-				{ label: 'Step 3', icon: 'book' },
-				{ label: 'Step 4', icon: '' },
-			],
-			currentStep: 3,
+			steps: [{ name: 'Step 1' }, { name: 'Step 2' }, { name: 'Step 3' }],
+			currentStep: 1,
 		};
 	},
 	template: `
