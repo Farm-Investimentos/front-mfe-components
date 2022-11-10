@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Danger button<br />
-				selector: <em>farm-btn-fanger</em>
+				selector: <em>farm-btn-fanger</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -43,5 +44,6 @@ export const Iconed = () => ({
 		<farm-btn-danger :icon="true">default icon</farm-btn-danger>
 		<farm-btn-danger :icon="true" customIcon="information-outline">information-outline</farm-btn-danger>
 		<farm-btn-danger :icon="true" customIcon="account-search">account-search</farm-btn-danger>
+		<farm-btn-danger :icon="true" customIcon="account-search" disabled>account-search</farm-btn-danger>
 	</div>`,
 });

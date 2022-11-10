@@ -7,6 +7,7 @@
 			'farm-textfield--touched': isTouched,
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
+			'farm-textfield--disabled': disabled,
 		}"
 	>
 		<div class="farm-textfield--input">
@@ -20,9 +21,10 @@
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
-				v-mask="mask"
+				v-mask="mask"		
 				:disabled="disabled"
 				:readonly="readonly"
+				@click="$emit('click')"
 				@keyup="onKeyUp"
 				@blur="onBlur"
 			/>
@@ -34,7 +36,6 @@
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
-
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
@@ -156,12 +157,14 @@ export default Vue.extend({
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
-		const onKeyUp = () => {
+		const onKeyUp = (event: Event) => {
 			isTouched.value = true;
+			emit('keyup', event);
 		};
 
-		const onBlur = () => {
+		const onBlur = (event: Event) => {
 			isBlured.value = true;
+			emit('blur', event);
 		};
 
 		const reset = () => {
