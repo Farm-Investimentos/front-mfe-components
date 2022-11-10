@@ -9,9 +9,6 @@
 				size="md"
 				>{{ icon }}</farm-icon
 			>
-			<!--
-			@slot Use this slot for the content
-		-->
 			<div
 				:class="{
 					'farm-alert-box__content': true,
