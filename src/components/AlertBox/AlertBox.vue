@@ -1,9 +1,9 @@
 <template>
 	<transition name="fade">
-		<div v-if="visible" :class="{ 'alert-box': true, 'alert-box--dense': dense }">
+		<div v-if="visible" :class="{ 'farm-alert-box': true, 'farm-alert-box--dense': dense }">
 			<farm-icon
 				v-if="icon"
-				class="alert-box__icon"
+				class="farm-alert-box__icon"
 				color="primary"
 				variation="darken"
 				size="md"
@@ -12,7 +12,7 @@
 			<!--
 			@slot Use this slot for the content
 		-->
-			<div class="alert-box__content">
+			<div class="farm-alert-box__content">
 				<farm-bodytext
 					:type="1"
 					variation="regular"
@@ -24,7 +24,7 @@
 			</div>
 			<farm-icon
 				v-if="dismissable"
-				class="alert-box__close"
+				class="farm-alert-box__close"
 				color="primary"
 				variation="darken"
 				size="md"
