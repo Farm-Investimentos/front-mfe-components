@@ -27,15 +27,9 @@ describe('Select component', () => {
 			expect(component.innerValue).toEqual('');
 		});
 
-		it('onKeyUp', () => {
-			component.onKeyUp();
-			expect(component.isTouched).toBeTruthy();
-		});
-
 		it('onBlur', () => {
 			component.onBlur();
 			expect(component.isBlured).toBeTruthy();
 		});
-
 	});
 });
