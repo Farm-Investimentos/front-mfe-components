@@ -36,6 +36,10 @@ export default Vue.extend({
 			>,
 			default: 'default',
 		},
+		variation: {
+			type: String as PropType<'lighten' | 'base' | 'darken'>,
+			default: 'base',
+		},
 	},
 
 	data() {
@@ -52,6 +56,8 @@ export default Vue.extend({
 				['farm-icon--' + this.color]: true,
 				mdi: true,
 				['mdi-' + this.icon]: true,
+				'farm-icon--lighten': this.variation === 'lighten',
+				'farm-icon--darken': this.variation === 'darken',
 				...obj,
 			};
 		},
