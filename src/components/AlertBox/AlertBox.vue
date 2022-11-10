@@ -12,7 +12,12 @@
 			<!--
 			@slot Use this slot for the content
 		-->
-			<div class="farm-alert-box__content">
+			<div
+				:class="{
+					'farm-alert-box__content': true,
+					'farm-alert-box__content--with-dismissable': dismissable,
+				}"
+			>
 				<farm-bodytext
 					:type="1"
 					variation="regular"
@@ -22,39 +27,36 @@
 					<slot></slot>
 				</farm-bodytext>
 			</div>
-			<farm-icon
-				v-if="dismissable"
-				class="farm-alert-box__close"
-				color="primary"
-				variation="darken"
-				size="md"
-				@click="close"
-				>close</farm-icon
-			>
+			<farm-btn class="farm-alert-box__close" v-if="dismissable" icon size="md">
+				<farm-icon color="primary" variation="darken" size="md">close</farm-icon>
+			</farm-btn>
 		</div>
 	</transition>
 </template>
 
 <script lang="ts">
 import Vue, { ref } from 'vue';
-import Icon from '../Icon';
-import { BodyText } from '../Typography';
 
 export default Vue.extend({
 	name: 'farm-alertbox',
-	components: {
-		'farm-icon': Icon,
-		'farm-bodytext': BodyText,
-	},
 	props: {
+		/**
+		 * Left Icon?
+		 */
 		icon: {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Close icon and option to close AlertBox?
+		 */
 		dismissable: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Dense?
+		 */
 		dense: {
 			type: Boolean,
 			default: false,
