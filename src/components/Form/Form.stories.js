@@ -297,3 +297,37 @@ export const MigrateTextVieldV2 = () => ({
         </farm-form>
     `,
 });
+
+export const MigrateSelectV2 = () => ({
+	data() {
+		return {
+			form: {
+				document: '',
+			},
+			validForm: false,
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+			},
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
+			styles,
+		};
+	},
+	template: `
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+			<div>
+				<farm-label :required="true">Documento</farm-label>
+				<farm-select v-model="form.document" :items="items" :rules="[rules.required]" />
+			</div>
+			
+            <div class="footer" :style="[styles.footer]">
+				<farm-btn outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn :disabled="!validForm">Salvar</farm-btn>
+            </div>
+			form: {{ form }}
+        </farm-form>
+    `,
+});

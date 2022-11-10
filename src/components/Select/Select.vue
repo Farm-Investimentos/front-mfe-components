@@ -6,12 +6,12 @@
 			'farm-textfield--validatable': rules.length > 0,
 			'farm-textfield--touched': isTouched,
 			'farm-textfield--blured': isBlured,
-			'farm-select--error': hasError,
+			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
 		}"
 		v-if="!readonly && !disabled"
 	>
-		<farm-contextmenu bottom>
+		<farm-contextmenu bottom v-model="isVisible">
 			<farm-list v-if="!readonly">
 				<farm-listitem
 					v-for="item in items"
@@ -31,10 +31,13 @@
 						v-model="selectedText"
 						:disabled="disabled"
 						:readonly="true"
-						@click="$emit('click')"
+						@click="clickInput"
 						@keyup="onKeyUp"
 						@blur="onBlur"
 					/>
+					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
+						menu-down
+					</farm-icon>
 				</div>
 			</template>
 		</farm-contextmenu>
@@ -119,6 +122,7 @@ export default Vue.extend({
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const isVisible = ref(false);
 		const selectedText = ref('');
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
@@ -164,7 +168,6 @@ export default Vue.extend({
 			const selectedItem = items.value.find(
 				item => item[itemValue.value] === innerValue.value
 			);
-			console.log(selectedItem);
 			if (selectedItem) {
 				selectedText.value = selectedItem[itemText.value];
 			}
@@ -174,21 +177,29 @@ export default Vue.extend({
 
 		const reset = () => {
 			innerValue.value = '';
+			selectedText.value = '';
 			isTouched.value = true;
 			emit('input', innerValue.value);
 		};
 
 		const onKeyUp = (event: Event) => {
-			if (readonly) emit('keyup', event);
+			emit('keyup', event);
 		};
 
 		const onBlur = (event: Event) => {
+			isBlured.value = true;
+			validate(innerValue.value);
 			emit('blur', event);
 		};
 
 		const selectItem = item => {
 			selectedText.value = item[itemText.value];
 			innerValue.value = item[itemValue.value];
+		};
+
+		const clickInput = () => {
+			isTouched.value = true;
+			emit('click');
 		};
 
 		return {
@@ -201,12 +212,14 @@ export default Vue.extend({
 			hasError,
 			isTouched,
 			isBlured,
+			isVisible,
 			showErrorText,
 			validate,
 			reset,
 			selectItem,
 			onKeyUp,
 			onBlur,
+			clickInput,
 		};
 	},
 });
