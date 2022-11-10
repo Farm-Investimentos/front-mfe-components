@@ -1,0 +1,76 @@
+.farm-select {
+	height: 64px;
+
+	&--input {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		border: 1px solid;
+		border-color: var(--farm-gray-lighten);
+		height: 36px;
+		border-radius: 5px;
+		padding: 8px;
+		margin-bottom: 4px;
+
+		>button {
+			display: flex;
+		}
+
+		&>input {
+			flex: 1;
+			outline: none;
+			color: var(--farm-text-primary);
+			font-size: 12px;
+			font-weight: 400;
+		}
+
+		width: 100%;
+
+	}
+
+	&--disabled {
+		input {
+			color: var(--farm-gray-base);
+		}
+		.farm-icon {
+			color: var(--farm-gray-lighten);
+			cursor: default;
+		}
+	}
+
+	.farm-caption {
+		line-height: 12px;
+	}
+}
+
+.farm-textfield--touched.farm-textfield--validatable {
+	&.farm-textfield--error {
+		.farm-textfield {
+			&--input {
+				border-color: var(--farm-error-base);
+
+				&>input {
+					color: var(--farm-neutral-darken);
+				}
+
+				.farm-icon {
+					color: var(--farm-error-base);
+				}
+			}
+		}
+	}
+}
+
+.farm-textfield--blured.farm-textfield--validatable:not(.farm-textfield--error) {
+	.farm-textfield--input {
+		border-color: var(--farm-primary-base);
+
+		&>input {
+			color: var(--farm-neutral-darken);
+		}
+
+		.farm-icon {
+			color: var(--farm-primary-base);
+		}
+	}
+}
