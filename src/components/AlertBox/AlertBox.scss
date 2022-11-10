@@ -1,0 +1,45 @@
+@import '../../configurations/theme-colors';
+
+.farm-alert-box {
+	background-color: themeColor('primary', 'lighten');
+	border-radius: 5px;
+	color: themeColor('primary', 'darken');
+	display: flex;
+	padding: 8px 16px;
+	position: relative;
+	min-height: 40px;
+
+	&__content {
+		flex: 1;
+
+		&--with-dismissable {
+			margin-right: 40px;
+		}
+	}
+
+	&__icon {
+		align-items: center;
+		display: flex;
+		margin-right: 16px;
+	}
+
+	&__close {
+		position: absolute;
+		right: 8px;
+		bottom: 50%;
+		transform: translateY(50%);
+	}
+
+	&--dense {
+		display: inline-flex;
+	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
+}
