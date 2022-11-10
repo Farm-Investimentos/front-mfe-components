@@ -44,6 +44,32 @@ export const Colors = () => ({
 	</div>`,
 });
 
+export const ColorsLighten = () => ({
+	data() {
+		return {
+			colors: [...colors],
+		};
+	},
+	template: `<div class="icons-container">
+        <farm-icon v-for="color of colors":key="color" :color="color" variation="lighten">
+            book
+        </farm-icon>
+	</div>`,
+});
+
+export const ColorsDarken = () => ({
+	data() {
+		return {
+			colors: [...colors],
+		};
+	},
+	template: `<div class="icons-container">
+        <farm-icon v-for="color of colors":key="color" :color="color" variation="darken">
+            book
+        </farm-icon>
+	</div>`,
+});
+
 export const Sizes = () => ({
 	data() {
 		return {

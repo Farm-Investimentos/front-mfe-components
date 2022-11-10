@@ -2,25 +2,32 @@
 @import '../../configurations/theme-colors';
 
 .farm-icon {
-    align-items: center;
-    display: inline-flex;
-    font-size: 24px;
-    justify-content: center;
-    letter-spacing: normal;
-    line-height: 1;
-    position: relative;
-    text-indent: 0;
+	align-items: center;
+	display: inline-flex;
+	font-size: 24px;
+	justify-content: center;
+	letter-spacing: normal;
+	line-height: 1;
+	position: relative;
+	text-indent: 0;
 
-    @each $color in $theme-colors-list {
-        &#{'--' + $color} {
-            color: var(--farm-#{$color}-base);
-        }
-    }
+	@each $color in $theme-colors-list {
+		&#{'--' + $color} {
+			color: var(--farm-#{$color}-base);
 
-    @each $size,
-    $value in $sizes {
-        &#{'.farm-icon[size=' + $size +']'} {
-            font-size: $value;
-        }
-    }
+			&.farm-icon--lighten {
+				color: var(--farm-#{$color}-lighten);
+			}
+
+			&.farm-icon--darken {
+				color: var(--farm-#{$color}-darken);
+			}
+		}
+	}
+
+	@each $size, $value in $sizes {
+		&#{'.farm-icon[size=' + $size + ']'} {
+			font-size: $value;
+		}
+	}
 }
