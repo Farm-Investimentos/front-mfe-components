@@ -9,9 +9,10 @@
 			'farm-select--error': hasError,
 			'farm-textfield--disabled': disabled,
 		}"
+		v-if="!readonly && !disabled"
 	>
 		<farm-contextmenu bottom>
-			<farm-list>
+			<farm-list v-if="!readonly">
 				<farm-listitem
 					v-for="item in items"
 					clickable
@@ -45,6 +46,7 @@
 			{{ hint }}
 		</farm-caption>
 	</div>
+	<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
 </template>
 
 <script lang="ts">
@@ -177,7 +179,7 @@ export default Vue.extend({
 		};
 
 		const onKeyUp = (event: Event) => {
-			emit('keyup', event);
+			if (readonly) emit('keyup', event);
 		};
 
 		const onBlur = (event: Event) => {

@@ -38,3 +38,37 @@ export const Primary = () => ({
 		v-model: {{ v }}
 	</div>`,
 });
+
+export const Readonly = () => ({
+	data() {
+		return {
+			v: 1,
+			items: [
+				{ value: 1, text: ' value 1' },
+				{ value: 2, text: ' value 2' },
+				{ value: 3, text: ' value 3' },
+			],
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-select v-model="v" :items="items" readonly />
+		v-model: {{ v }}
+	</div>`,
+});
+
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 1,
+			items: [
+				{ value: 1, text: ' value 1' },
+				{ value: 2, text: ' value 2' },
+				{ value: 3, text: ' value 3' },
+			],
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-select v-model="v" :items="items" disabled />
+		v-model: {{ v }}
+	</div>`,
+});
