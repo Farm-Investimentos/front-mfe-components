@@ -1,33 +1,33 @@
 <template>
 	<div
-		class="farm-select"
+		class="farm-textfield"
 		:class="{
-			'farm-select': true,
-			'farm-select--validatable': rules.length > 0,
-			'farm-select--touched': isTouched,
-			'farm-select--blured': isBlured,
+			'farm-textfield': true,
+			'farm-textfield--validatable': rules.length > 0,
+			'farm-textfield--touched': isTouched,
+			'farm-textfield--blured': isBlured,
 			'farm-select--error': hasError,
-			'farm-select--disabled': disabled,
+			'farm-textfield--disabled': disabled,
 		}"
 	>
-	{{ items }}
 		<farm-contextmenu bottom>
 			<farm-list>
 				<farm-listitem
 					v-for="item in items"
 					clickable
 					hoverColorVariation="lighten"
+					hover-color="primary"
 					:key="'contextmenu_item_' + item.text"
-					:hoverColor="item.icon.color || 'primary'"
+					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					@click="selectItem(item)"
 				>
-					
-					<farm-caption bold tag="span">{{ item.text }}</farm-caption>
+					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
-				<div class="farm-select--input">
+				<div class="farm-textfield--input">
 					<input
-						v-model="innerValue"
+						v-model="selectedText"
 						:disabled="disabled"
 						:readonly="true"
 						@click="$emit('click')"
@@ -94,15 +94,30 @@ export default Vue.extend({
 		 * This can be changed using the item-text ad item-value
 		 */
 		items: {
-			//type: Array,
+			type: Array,
 			default: () => [],
+		},
+		/**
+		 * Set property of items's text value
+		 */
+		itemText: {
+			type: String,
+			default: 'text',
+		},
+		/**
+		 * Set property of items's value
+		 */
+		itemValue: {
+			type: String,
+			default: 'value',
 		},
 	},
 	setup(props, { emit }) {
-		const { rules, items } = toRefs(props);
+		const { rules, items, itemText, itemValue } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const selectedText = ref('');
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -125,6 +140,8 @@ export default Vue.extend({
 		watch(
 			() => innerValue.value,
 			() => {
+				isTouched.value = true;
+				isBlured.value = true;
 				emit('input', innerValue.value);
 				emit('change', innerValue.value);
 			}
@@ -142,19 +159,16 @@ export default Vue.extend({
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
+			const selectedItem = items.value.find(
+				item => item[itemValue.value] === innerValue.value
+			);
+			console.log(selectedItem);
+			if (selectedItem) {
+				selectedText.value = selectedItem[itemText.value];
+			}
 		});
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
-
-		const onKeyUp = (event: Event) => {
-			isTouched.value = true;
-			emit('keyup', event);
-		};
-
-		const onBlur = (event: Event) => {
-			isBlured.value = true;
-			emit('blur', event);
-		};
 
 		const reset = () => {
 			innerValue.value = '';
@@ -162,9 +176,23 @@ export default Vue.extend({
 			emit('input', innerValue.value);
 		};
 
+		const onKeyUp = (event: Event) => {
+			emit('keyup', event);
+		};
+
+		const onBlur = (event: Event) => {
+			emit('blur', event);
+		};
+
+		const selectItem = item => {
+			selectedText.value = item[itemText.value];
+			innerValue.value = item[itemValue.value];
+		};
+
 		return {
 			items,
 			innerValue,
+			selectedText,
 			errorBucket,
 			valid,
 			validatable,
@@ -173,9 +201,10 @@ export default Vue.extend({
 			isBlured,
 			showErrorText,
 			validate,
+			reset,
+			selectItem,
 			onKeyUp,
 			onBlur,
-			reset,
 		};
 	},
 });

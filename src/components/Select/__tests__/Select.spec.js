@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import TextFieldV2 from '../TextFieldV2';
+import Select from '../Select';
 
-describe('TextFieldV2 component', () => {
+describe('Select component', () => {
 	let wrapper;
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(TextFieldV2);
+		wrapper = shallowMount(Select);
 		component = wrapper.vm;
 	});
 

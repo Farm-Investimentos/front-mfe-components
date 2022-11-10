@@ -10,7 +10,7 @@ export default {
 			description: {
 				component: `Select<br />
 				selector: <em>farm-select</em><br />
-				<span style="color: var(--farm-primary-base);">ready for use</span>
+				<span style="color: var(--farm-extra-1-base);">development</span>
 				`,
 			},
 		},
