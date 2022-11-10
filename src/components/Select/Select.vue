@@ -1,0 +1,216 @@
+<template>
+	<div
+		class="farm-textfield"
+		:class="{
+			'farm-textfield': true,
+			'farm-textfield--validatable': rules.length > 0,
+			'farm-textfield--touched': isTouched,
+			'farm-textfield--blured': isBlured,
+			'farm-select--error': hasError,
+			'farm-textfield--disabled': disabled,
+		}"
+		v-if="!readonly && !disabled"
+	>
+		<farm-contextmenu bottom>
+			<farm-list v-if="!readonly">
+				<farm-listitem
+					v-for="item in items"
+					clickable
+					hoverColorVariation="lighten"
+					hover-color="primary"
+					:key="'contextmenu_item_' + item.text"
+					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					@click="selectItem(item)"
+				>
+					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+				</farm-listitem>
+			</farm-list>
+			<template v-slot:activator="{}">
+				<div class="farm-textfield--input">
+					<input
+						v-model="selectedText"
+						:disabled="disabled"
+						:readonly="true"
+						@click="$emit('click')"
+						@keyup="onKeyUp"
+						@blur="onBlur"
+					/>
+				</div>
+			</template>
+		</farm-contextmenu>
+
+		<farm-caption v-if="showErrorText" color="error" variation="regular">
+			{{ errorBucket[0] }}
+		</farm-caption>
+		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+			{{ hint }}
+		</farm-caption>
+	</div>
+	<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
+</template>
+
+<script lang="ts">
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
+import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
+import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
+import deepEqual from '../../composition/deepEqual';
+
+export default Vue.extend({
+	name: 'farm-select',
+	inheritAttrs: true,
+	props: {
+		/**
+		 * v-model binding
+		 */
+		value: { type: [String, Number], default: '' },
+		hint: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Disabled the input
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Puts input in readonly state
+		 */
+		readonly: {
+			type: Boolean,
+			default: false,
+		},
+
+		errorMessage: String,
+		/**
+		 * Array of rules used for validation
+		 */
+		rules: {
+			type: Array as PropType<Array<Function>>,
+			default: () => [],
+		},
+		/**
+		 * An array of objects. Will look for a text, value and disabled keys.
+		 * This can be changed using the item-text ad item-value
+		 */
+		items: {
+			type: Array,
+			default: () => [],
+		},
+		/**
+		 * Set property of items's text value
+		 */
+		itemText: {
+			type: String,
+			default: 'text',
+		},
+		/**
+		 * Set property of items's value
+		 */
+		itemValue: {
+			type: String,
+			default: 'value',
+		},
+	},
+	setup(props, { emit }) {
+		const { rules, items, itemText, itemValue } = toRefs(props);
+		const innerValue = ref(props.value);
+		const isTouched = ref(false);
+		const isBlured = ref(false);
+		const selectedText = ref('');
+
+		const { errorBucket, valid, validatable } = validateFormStateBuilder();
+
+		let fieldValidator = validateFormFieldBuilder(rules.value);
+
+		const hasError = computed(() => {
+			return errorBucket.value.length > 0;
+		});
+
+		const showErrorText = computed(() => hasError.value && isTouched.value);
+
+		watch(
+			() => props.value,
+			() => {
+				innerValue.value = props.value;
+				validate(innerValue.value);
+			}
+		);
+
+		watch(
+			() => innerValue.value,
+			() => {
+				isTouched.value = true;
+				isBlured.value = true;
+				emit('input', innerValue.value);
+				emit('change', innerValue.value);
+			}
+		);
+
+		watch(
+			() => props.rules,
+			(newVal, oldVal) => {
+				if (deepEqual(newVal, oldVal)) return;
+				fieldValidator = validateFormFieldBuilder(rules.value);
+				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+				validate(innerValue.value);
+			}
+		);
+
+		onBeforeMount(() => {
+			validate(innerValue.value);
+			const selectedItem = items.value.find(
+				item => item[itemValue.value] === innerValue.value
+			);
+			console.log(selectedItem);
+			if (selectedItem) {
+				selectedText.value = selectedItem[itemText.value];
+			}
+		});
+
+		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+
+		const reset = () => {
+			innerValue.value = '';
+			isTouched.value = true;
+			emit('input', innerValue.value);
+		};
+
+		const onKeyUp = (event: Event) => {
+			if (readonly) emit('keyup', event);
+		};
+
+		const onBlur = (event: Event) => {
+			emit('blur', event);
+		};
+
+		const selectItem = item => {
+			selectedText.value = item[itemText.value];
+			innerValue.value = item[itemValue.value];
+		};
+
+		return {
+			items,
+			innerValue,
+			selectedText,
+			errorBucket,
+			valid,
+			validatable,
+			hasError,
+			isTouched,
+			isBlured,
+			showErrorText,
+			validate,
+			reset,
+			selectItem,
+			onKeyUp,
+			onBlur,
+		};
+	},
+});
+</script>
+<style lang="scss" scoped>
+@import 'Select';
+</style>
