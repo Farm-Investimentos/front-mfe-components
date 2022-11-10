@@ -1,9 +1,14 @@
 <template>
 	<transition name="fade">
 		<div v-if="visible" :class="{ 'alert-box': true, 'alert-box--dense': dense }">
-			<farm-icon v-if="icon" class="alert-box__icon" color="primary" size="md">{{
-				icon
-			}}</farm-icon>
+			<farm-icon
+				v-if="icon"
+				class="alert-box__icon"
+				color="primary"
+				variation="darken"
+				size="md"
+				>{{ icon }}</farm-icon
+			>
 			<!--
 			@slot Use this slot for the content
 		-->
@@ -21,6 +26,7 @@
 				v-if="dismissable"
 				class="alert-box__close"
 				color="primary"
+				variation="darken"
 				size="md"
 				@click="close"
 				>close</farm-icon
