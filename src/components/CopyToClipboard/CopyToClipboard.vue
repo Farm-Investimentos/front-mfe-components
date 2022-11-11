@@ -1,5 +1,5 @@
 <template>
-	<farm-tooltip v-model="show">
+	<farm-tooltip v-model="show" :color="tooltipColor">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
 			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { ref, toRefs } from 'vue';
+import Vue, { PropType, ref, toRefs } from 'vue';
 import { toClipboard } from '@farm-investimentos/front-mfe-libs-ts';
 
 export default Vue.extend({
@@ -35,12 +35,37 @@ export default Vue.extend({
 			type: String,
 			default: 'Conteúdo copiado para a área de trabalho',
 		},
+		/**
+		 * Tooltip color
+		 */
+		tooltipColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'secondary',
+		},
+		/**
+		 * Success message timeout (in ms)
+		 */
+		successTimeout: {
+			type: [Number, String],
+			default: 2000,
+		},
 	},
 	setup(props) {
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
-		const { toCopy, isIcon, successMessage } = toRefs(props);
+		const { toCopy, isIcon, successMessage, successTimeout } = toRefs(props);
 
 		const onClick = async () => {
 			disabled.value = true;
@@ -55,7 +80,7 @@ export default Vue.extend({
 			setTimeout(() => {
 				show.value = false;
 				disabled.value = false;
-			}, 2000);
+			}, successTimeout.value);
 		};
 
 		return {

@@ -1,6 +1,8 @@
 <template>
 	<farm-btn v-bind="$attrs" v-on="$listeners" color="error">
-		<i v-if="icon" :class="{mdi: true, [iconPath]: true, 'mr-3': true}"></i>
+		<farm-icon v-if="icon" class="'mr-3">
+			{{ customIcon }}
+		</farm-icon>
 		<slot></slot>
 	</farm-btn>
 </template>
@@ -24,14 +26,6 @@ export default Vue.extend({
 		customIcon: {
 			type: String,
 			default: '',
-		},
-	},
-	computed: {
-		iconPath(): string {
-			if (!this.customIcon) {
-				return 'mdi-trash-can-outline';
-			}
-			return `mdi-${this.customIcon}`;
 		},
 	},
 });

@@ -20,13 +20,13 @@ export default {
 			description: {
 				component: `Text field v2<br />
 				selector: <em>farm-texfield-v2</em><br />
-				<span style="color: var(--farm-extra-1-base);">development</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
 		design: {
 			type: 'figma',
-			url: 'https://www.figma.com/file/1f84J4m1IBghWhozQvdyyt/%E2%9C%85---Design-System-%7C-v1?node-id=1503%3A227',
+			url: 'https://www.figma.com/file/jnZXo2e0nRJ3fVXl4Et8t4/%E2%9C%8D-Design-System-%7C-BACKUP-(10%2F10%2F2022)?node-id=2491%3A4487',
 		},
 		viewMode: 'docs',
 	},
@@ -52,6 +52,7 @@ export const Disabled = () => ({
 	},
 	template: `<div style="width: 480px">
 		<farm-textfield-v2 v-model="v" disabled />
+		<farm-textfield-v2 v-model="v" disabled icon="book" />
 	</div>`,
 });
 
@@ -227,5 +228,29 @@ export const ToggleVisibility = () => ({
 	},
 	template: `<div style="width: 480px">
 		<farm-textfield-v2 v-model="v" :type="visible ? 'text' : 'password'"  :icon="visible ? 'eye-off' : 'eye'" @onClickIcon="toggle" />
+	</div>`,
+});
+
+
+export const Compare = () => ({
+	data() {
+		return {
+			v1: '',
+			rules: {
+				required: value => !!value || 'Required field',
+				email: v =>
+					!v ||
+					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+					'Must be an e-mail',
+			},
+		};
+	},
+	template: `<div style="width: 480px">
+
+		<farm-label required>Required and e-mail</farm-label>
+		<farm-textfield-v2 v-model="v1" :rules="[rules.required, rules.email]" />
+
+		<farm-textfield v-model="v1" :rules="[rules.required, rules.email]" />
+
 	</div>`,
 });

@@ -75,11 +75,21 @@ export default Vue.extend({
 			});
 		};
 
+		const restart = () => {
+			validationFields = [];
+			errorsBag = {};
+			recursiveFormField(instance);
+			validationFields.forEach(field => {
+				watchInput(field);
+			});
+		};
+
 		return {
 			innerValue,
 			errorsBag,
 			reset,
 			restartValidation,
+			restart,
 		};
 	},
 });

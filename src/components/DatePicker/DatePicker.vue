@@ -8,22 +8,18 @@
 		offset-y
 		min-width="290px"
 	>
-		<template v-slot:activator="{ on }">
-			<v-text-field
-				color="secondary"
-				append-icon="mdi-calendar"
-				v-mask="`${readonly ? '' : '##/##/####'}`"
-				@keyup="keyUpInput"
-				:readonly="readonly"
-				autocomplete="off"
-				outlined
-				dense
-				v-on="on"
+		<template v-slot:activator="{}">
+			<farm-textfield-v2
+				icon="calendar"
 				v-model="fieldRange"
+				:readonly="readonly"
+				:mask="`${readonly ? '' : '##/##/####'}`"
+				autocomplete="off"
 				:id="inputId"
 				:rules="[checkMax, checkMin, checkRequire]"
-			>
-			</v-text-field>
+				@keyup="keyUpInput"
+				@click="menuField = true"
+			/>
 		</template>
 		<v-date-picker
 			v-if="menuField"
@@ -45,12 +41,10 @@
 		</v-date-picker>
 	</v-menu>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib/components/VTextField';
 import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import DefaultButton from '../Buttons/DefaultButton';
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 /**
  * Componente de input com datepicker para data
@@ -58,10 +52,8 @@ import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helper
 export default Vue.extend({
 	name: 'farm-input-datepicker',
 	components: {
-		VTextField,
 		VMenu,
 		VDatePicker,
-		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**

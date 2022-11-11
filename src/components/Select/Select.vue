@@ -9,33 +9,39 @@
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
 		}"
+		v-if="!readonly && !disabled"
 	>
-		<div class="farm-textfield--input">
-			<button
-				type="button"
-				v-if="icon && iconPosition === 'left'"
-				@click="$emit('onClickIcon')"
-			>
-				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
-			</button>
-			<input
-				v-bind="$attrs"
-				v-model="innerValue"
-				v-mask="mask"		
-				:disabled="disabled"
-				:readonly="readonly"
-				@click="$emit('click')"
-				@keyup="onKeyUp"
-				@blur="onBlur"
-			/>
-			<button
-				type="button"
-				v-if="icon && iconPosition === 'right'"
-				@click="$emit('onClickIcon')"
-			>
-				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
-			</button>
-		</div>
+		<farm-contextmenu bottom v-model="isVisible">
+			<farm-list v-if="!readonly">
+				<farm-listitem
+					v-for="item in items"
+					clickable
+					hoverColorVariation="lighten"
+					hover-color="primary"
+					:key="'contextmenu_item_' + item.text"
+					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					@click="selectItem(item)"
+				>
+					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+				</farm-listitem>
+			</farm-list>
+			<template v-slot:activator="{}">
+				<div class="farm-textfield--input">
+					<input
+						v-model="selectedText"
+						:disabled="disabled"
+						:readonly="true"
+						@click="clickInput"
+						@keyup="onKeyUp"
+						@blur="onBlur"
+					/>
+					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
+						menu-down
+					</farm-icon>
+				</div>
+			</template>
+		</farm-contextmenu>
+
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
@@ -43,6 +49,7 @@
 			{{ hint }}
 		</farm-caption>
 	</div>
+	<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
 </template>
 
 <script lang="ts">
@@ -53,27 +60,13 @@ import validateFormMethodBuilder from '../../composition/validateFormMethodBuild
 import deepEqual from '../../composition/deepEqual';
 
 export default Vue.extend({
-	name: 'farm-textfield-v2',
+	name: 'farm-select',
 	inheritAttrs: true,
 	props: {
 		/**
 		 * v-model binding
 		 */
 		value: { type: [String, Number], default: '' },
-		/**
-		 * Show icon?
-		 */
-		icon: {
-			type: String,
-			default: null,
-		},
-		/**
-		 * Icon position
-		 */
-		iconPosition: { type: String as PropType<'left' | 'right'>, default: 'right' },
-		/**
-		 * Show hint text
-		 */
 		hint: {
 			type: String,
 			default: null,
@@ -102,18 +95,35 @@ export default Vue.extend({
 			default: () => [],
 		},
 		/**
-		 * Mask
+		 * An array of objects. Will look for a text, value and disabled keys.
+		 * This can be changed using the item-text ad item-value
 		 */
-		mask: {
-			default: '',
-			type: [String, Function],
+		items: {
+			type: Array,
+			default: () => [],
+		},
+		/**
+		 * Set property of items's text value
+		 */
+		itemText: {
+			type: String,
+			default: 'text',
+		},
+		/**
+		 * Set property of items's value
+		 */
+		itemValue: {
+			type: String,
+			default: 'value',
 		},
 	},
 	setup(props, { emit }) {
-		const { rules } = toRefs(props);
+		const { rules, items, itemText, itemValue } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const isVisible = ref(false);
+		const selectedText = ref('');
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -136,6 +146,8 @@ export default Vue.extend({
 		watch(
 			() => innerValue.value,
 			() => {
+				isTouched.value = true;
+				isBlured.value = true;
 				emit('input', innerValue.value);
 				emit('change', innerValue.value);
 			}
@@ -153,43 +165,65 @@ export default Vue.extend({
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
+			const selectedItem = items.value.find(
+				item => item[itemValue.value] === innerValue.value
+			);
+			if (selectedItem) {
+				selectedText.value = selectedItem[itemText.value];
+			}
 		});
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
-		const onKeyUp = (event: Event) => {
+		const reset = () => {
+			innerValue.value = '';
+			selectedText.value = '';
 			isTouched.value = true;
+			emit('input', innerValue.value);
+		};
+
+		const onKeyUp = (event: Event) => {
 			emit('keyup', event);
 		};
 
 		const onBlur = (event: Event) => {
 			isBlured.value = true;
+			validate(innerValue.value);
 			emit('blur', event);
 		};
 
-		const reset = () => {
-			innerValue.value = '';
+		const selectItem = item => {
+			selectedText.value = item[itemText.value];
+			innerValue.value = item[itemValue.value];
+		};
+
+		const clickInput = () => {
 			isTouched.value = true;
-			emit('input', innerValue.value);
+			emit('click');
 		};
 
 		return {
+			items,
 			innerValue,
+			selectedText,
 			errorBucket,
 			valid,
 			validatable,
 			hasError,
 			isTouched,
 			isBlured,
+			isVisible,
 			showErrorText,
 			validate,
+			reset,
+			selectItem,
 			onKeyUp,
 			onBlur,
-			reset,
+			clickInput,
 		};
 	},
 });
 </script>
 <style lang="scss" scoped>
-@import 'TextFieldV2';
+@import 'Select';
 </style>

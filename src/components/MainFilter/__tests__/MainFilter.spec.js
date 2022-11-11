@@ -19,6 +19,10 @@ describe('MainFilter component', () => {
 			component.onFilterClick();
 			expect(wrapper.emitted().onClick).toBeTruthy();
 		});
+
+		it('Should check if keyCode is valid', () => {
+			expect(component.isInvalidKey(120)).toBeTruthy();
+		});
 	});
 
 	describe('computed properties', () => {

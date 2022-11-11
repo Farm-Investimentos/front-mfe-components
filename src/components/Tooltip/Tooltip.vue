@@ -21,6 +21,7 @@
 </template>
 <script lang="ts">
 import Vue, { PropType, ref, computed, reactive, onBeforeUnmount } from 'vue';
+import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-tooltip',
@@ -60,6 +61,7 @@ export default Vue.extend({
 		const styles = reactive({
 			left: '0',
 			top: '0',
+			zIndex: 1,
 		});
 
 		const toggleComponent = computed(() => props.value);
@@ -86,7 +88,8 @@ export default Vue.extend({
 					window.scrollY -
 					(popupBoundingClientRect.height + 8) +
 					'px';
-				
+				styles.zIndex = calculateMainZindex();
+
 				hasBeenBoostrapped = true;
 			}
 		};

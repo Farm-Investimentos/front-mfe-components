@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Subtitle<br />
-				selector: <em>farm-subtitle</em>
+				selector: <em>farm-subtitle</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -16,7 +17,6 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-subtitle': Subtitle },
 	data() {
 		return {
 			types: [1, 2],
@@ -37,7 +37,6 @@ export const Primary = () => ({
 });
 
 export const CustomTag = () => ({
-	components: { 'farm-subtitle': Subtitle },
 	data() {
 		return {
 			tags: ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'legend', 'label', 'li'],

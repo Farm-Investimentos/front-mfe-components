@@ -8,6 +8,7 @@
 			[`farm-row--justify-${justify}`]: justify,
 			'farm-row--no-default-gutters': noDefaultGutters,
 			'farm-row--extra-decrease': extraDecrease,
+			'farm-row--y-grid-gutters': yGridGutters,
 		}"
 	>
 		<slot></slot>
@@ -57,6 +58,13 @@ export default Vue.extend({
 		 * Extra decrease margin
 		 */
 		extraDecrease: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Add gutters to farm-cols in Y axis
+		 */
+		yGridGutters: {
 			type: Boolean,
 			default: false,
 		},

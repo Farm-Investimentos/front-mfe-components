@@ -1,0 +1,13 @@
+@import '../TextFieldV2/TextFieldV2.scss';
+
+.farm-listitem--selected {
+	background-color: var(--farm-neutral-lighten);
+}
+
+.farm-icon {
+	transition: all ease 0.3s;
+	cursor: pointer;
+	&--rotate {
+		transform: rotate(180deg);
+	}
+}

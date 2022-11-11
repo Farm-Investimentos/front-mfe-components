@@ -71,3 +71,42 @@ export const Justify = () => ({
 export const NoDefaultGutters = () => ({
 	template: '<farm-row :no-default-gutters="true">no gutters</farm-row>',
 });
+
+export const DefaultGrid = () => ({
+	template: `<div>
+		<farm-row>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 1</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 2</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 3</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 4</div>
+			</farm-col>
+		</farm-row>
+	</div>`,
+});
+
+
+export const yGridGutters = () => ({
+	template: `<div>
+		<farm-row y-grid-gutters>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 1</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 2</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 3</div>
+			</farm-col>
+			<farm-col md="6">
+				<div style="border:1px solid red;">col 4</div>
+			</farm-col>
+		</farm-row>
+	</div>`,
+});
