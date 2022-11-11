@@ -1,7 +1,16 @@
 <template>
-	<farm-contextmenu v-model="value">
-		<template v-slot:activator="{}">
-			<farm-btn icon @click="toggleValue" title="Abrir opções" color="secondary">
+	<farm-contextmenu
+		:class="{ 'farm-context-menu': true, 'farm-context-menu--disabled': disabled }"
+		v-model="value"
+	>
+		<template v-slot:activator>
+			<farm-btn
+				icon
+				@click="toggleValue"
+				title="Abrir opções"
+				color="secondary"
+				:disabled="disabled"
+			>
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
 		</template>
@@ -46,6 +55,11 @@ export default Vue.extend({
 		items: {
 			type: Array as PropType<Array<IContextMenuOption>>,
 			required: true,
+		},
+
+		disabled: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {
