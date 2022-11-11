@@ -6,10 +6,10 @@
 		<template v-slot:activator>
 			<farm-btn
 				icon
-				@click="toggleValue"
 				title="Abrir opções"
 				color="secondary"
 				:disabled="disabled"
+				@click="toggleValue"
 			>
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
@@ -56,7 +56,9 @@ export default Vue.extend({
 			type: Array as PropType<Array<IContextMenuOption>>,
 			required: true,
 		},
-
+		/**
+		 * Is disabled?
+		 */
 		disabled: {
 			type: Boolean,
 			default: false,
