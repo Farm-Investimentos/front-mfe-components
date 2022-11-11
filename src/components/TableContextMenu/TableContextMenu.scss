@@ -1,17 +1,7 @@
-.v-list-item.v-list-item--link {
-	border-bottom: 1px solid var(--farm-stroke-base);
-}
-
-.v-list-item__title {
-	display: flex;
-	align-items: center;
-
-
-}
-
-::v-deep .v-application--wrap {
-	min-height: auto;
-	font-family: 'Montserrat', sans-serif !important;
+.farm-context-menu {
+	&--disabled {
+		pointer-events: none;
+	}
 }
 
 .farm-listitem {
