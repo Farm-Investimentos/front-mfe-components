@@ -195,15 +195,19 @@ export default Vue.extend({
 				this.$emit('onFileChange', newValue);
 				return;
 			}
-			const invalidTypeArray = newValue.filter(
-				file =>
+			const invalidTypeArray = newValue.filter(file => {
+				const type = file.type;
+
+				return (
 					this.acceptedFileTypes !== '*' &&
-					this.acceptedFileTypes.indexOf(file.type) === -1
-			);
+					(this.acceptedFileTypes.indexOf(file.type) === -1 || !type)
+				);
+			});
 
 			if (invalidTypeArray.length > 0) {
 				const validTypeArray = newValue.filter(file => {
-					if (this.acceptedFileTypes.indexOf(file.type) === -1) {
+					const type = file.type;
+					if (this.acceptedFileTypes.indexOf(file.type) === -1 || !type) {
 						return false;
 					}
 					return true;

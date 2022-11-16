@@ -28,6 +28,12 @@ export const Primary = () => ({
 	</div>`,
 });
 
+export const Disabled = () => ({
+	template: `<div style="padding-left: 80px">
+		<farm-context-menu disabled :items="[{ label: 'Remover', icon: { color: 'error', type: 'open-in-new' } }]" />
+	</div>`,
+});
+
 export const Icons = () => ({
 	template: `<div style="padding-left: 80px">
 		<farm-context-menu
@@ -70,7 +76,10 @@ export const OnRightSide = () => ({
 		return {
 			items: [
 				{ label: 'Novo', icon: { type: 'open-in-new' } },
-				{ label: 'Nome bem longo sem quebrar linha', icon: { color: 'secondary', type: 'open-in-new' } },
+				{
+					label: 'Nome bem longo sem quebrar linha',
+					icon: { color: 'secondary', type: 'open-in-new' },
+				},
 				{ label: 'Remover', icon: { color: 'error', type: 'delete' } },
 			],
 		};

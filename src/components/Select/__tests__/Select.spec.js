@@ -31,5 +31,10 @@ describe('Select component', () => {
 			component.onBlur();
 			expect(component.isBlured).toBeTruthy();
 		});
+
+		it('clickInput', () => {
+			component.clickInput();
+			expect(component.isTouched).toBeTruthy();
+		});
 	});
 });

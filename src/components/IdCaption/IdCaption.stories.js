@@ -183,3 +183,21 @@ export const CustomTooltipColor = () => ({
     </farm-idcaption>
     `,
 });
+
+
+export const Teste = () => ({
+	template: `
+    <farm-idcaption 
+    icon="account-box-outline"
+    copy-text=""
+    :link="true"
+    >
+        <template v-slot:title>
+            Upper Line Text
+        </template>
+        <template v-slot:subtitle>
+            0
+        </template>
+    </farm-idcaption>
+    `,
+});

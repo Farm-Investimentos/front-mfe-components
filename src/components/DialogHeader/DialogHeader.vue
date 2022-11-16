@@ -10,6 +10,7 @@
 		<farm-btn
 			v-if="hasCloseIcon"
 			icon
+			color="secondary"
 			class="farm-dialog-header__close"
 			title="Fechar"
 			@click="onClose"
