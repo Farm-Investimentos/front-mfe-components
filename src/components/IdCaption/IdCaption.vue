@@ -10,7 +10,7 @@
 					<farm-btn
 						v-if="link"
 						icon
-						color="gray"
+						color="primary"
 						class="farm-btn--clickable"
 						@click="$emit('onLinkClick')"
 					>
