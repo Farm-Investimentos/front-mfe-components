@@ -7,7 +7,13 @@
 			<farm-caption variation="medium" v-if="hasTitle">
 				<span>
 					<slot name="title"></slot>
-					<farm-btn icon color="gray" v-if="link" @click="$emit('onLinkClick')">
+					<farm-btn
+						v-if="link"
+						icon
+						color="primary"
+						class="farm-btn--clickable"
+						@click="$emit('onLinkClick')"
+					>
 						<farm-icon size="xs">open-in-new</farm-icon>
 					</farm-btn>
 				</span>

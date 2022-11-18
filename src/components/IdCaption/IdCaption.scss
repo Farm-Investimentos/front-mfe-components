@@ -1,6 +1,6 @@
 .idcaption {
 	display: flex;
-	
+
 	.farm-icon-box {
 		margin-right: 8px;
 	}
@@ -17,11 +17,12 @@
 		}
 
 		.farm-typography {
-			
+
 			margin-bottom: 0;
 			display: flex;
 			flex: none;
-			> span {
+
+			>span {
 				position: relative;
 			}
 		}
@@ -32,5 +33,10 @@
 			right: -30px;
 			top: -8px;
 		}
+	}
+
+	.farm-btn--clickable {
+		position: absolute;
+		top: -50%;
 	}
 }

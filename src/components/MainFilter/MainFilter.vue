@@ -124,7 +124,6 @@ export default Vue.extend({
 				this.timer = null;
 			}
 			this.timer = setTimeout(() => {
-				console.log(this.inputValue);
 				this.$emit('onInputChange', this.inputValue);
 			}, 750);
 		},

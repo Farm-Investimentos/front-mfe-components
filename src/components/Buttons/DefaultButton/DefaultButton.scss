@@ -3,255 +3,249 @@
 @import '../../../configurations/theme-colors';
 
 .farm-btn {
-    font-size: 14px;
-    align-items: center;
-    border-radius: 6px;
-    display: inline-flex;
-    flex: 0 0 auto;
-    font-weight: 700;
-    letter-spacing: 1.25px;
-    justify-content: center;
-    outline: 0;
-    position: relative;
-    text-decoration: none;
-    transition-duration: 0.28s;
-    transition-property: box-shadow, transform, opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    line-height: 16px;
-    height: 36px;
-    min-width: 64px;
-    padding: 0 16px;
+	font-size: 14px;
+	align-items: center;
+	border-radius: 6px;
+	display: inline-flex;
+	flex: 0 0 auto;
+	font-weight: 700;
+	letter-spacing: 1.25px;
+	justify-content: center;
+	outline: 0;
+	position: relative;
+	text-decoration: none;
+	transition-duration: 0.28s;
+	transition-property: box-shadow, transform, opacity;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	line-height: 16px;
+	height: 36px;
+	min-width: 64px;
+	padding: 0 16px;
 
-    &.farm-btn--full {
-        width: 100%;
-    }
+	&.farm-btn--full {
+		width: 100%;
+	}
 
-    @each $size,
-    $value in $sizes {
-        &#{'.farm-btn[size=' + $size +']'} {
-            font-size: $value;
-        }
-    }
+	@each $size, $value in $sizes {
+		&#{'.farm-btn[size=' + $size + ']'} {
+			font-size: $value;
+		}
+	}
 
-    &__content {
-        font-weight: 700;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
+	&__content {
+		font-weight: 700;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
 
-        ::v-deep i.mdi {
-            font-size: 1rem;
-        }
-    }
+		::v-deep i.mdi {
+			font-size: 1rem;
+		}
+	}
 
-    &--round {
-        border-radius: 50%;
-    }
+	&--round {
+		border-radius: 50%;
+	}
 
-    &.farm-btn--disabled {
-        background-color: #DADADA;
-        color: rgba(0, 0, 0, .26);
-        cursor: default;
-        border-color: #DADADA;
+	&.farm-btn--disabled {
+		background-color: #dadada;
+		color: rgba(0, 0, 0, 0.26);
+		cursor: default;
+		border-color: #dadada;
 
-        &:before {
-            display: none;
-        }
+		&:before {
+			display: none;
+		}
 
-        i.mdi.farm-icon {
-            color: rgba(0, 0, 0, .26);
-        }
-    }
+		i.mdi.farm-icon {
+			color: rgba(0, 0, 0, 0.26);
+		}
+	}
 
+	&:before {
+		transition: all 0.28s ease;
+		background-color: currentColor;
+		border-radius: inherit;
+		bottom: 0;
+		color: inherit;
+		content: '';
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 
-    
-    &:before {
-        transition: all 0.28s ease;
-        background-color: currentColor;
-        border-radius: inherit;
-        bottom: 0;
-        color: inherit;
-        content: '';
-        left: 0;
-        opacity: 0;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+	&:not(.farm-btn--plain):hover {
+		&:before {
+			opacity: 0.08;
+		}
+	}
 
-    &:not(.farm-btn--plain):hover {
-        &:before {
-            opacity: 0.08;
-        }
-    }
+	&:not(.farm-btn--plain):not(.farm-btn--disabled):active {
+		&:before {
+			opacity: 0.16;
+		}
+	}
 
-    &:not(.farm-btn--plain):not(.farm-btn--disabled):active {
+	&.farm-btn--plain {
+		background-color: transparent !important;
+		&:hover {
+			.farm-btn__content {
+				opacity: 0.68;
+			}
+		}
 
-        &:before {
-            opacity: 0.16;
-        }
-    }
+		&:active {
+			&:before {
+				opacity: 0.08;
+			}
+		}
+	}
 
-    &.farm-btn--plain {
-        &:hover {
-            .farm-btn__content {
-                opacity: 0.68;
-            }
-        }
-
-        &:active {
-            &:before {
-                opacity: 0.08;
-            }
-        }
-    }
-
-    &.farm-btn--rounded {
-        border-radius: 1rem;
-    }
+	&.farm-btn--rounded {
+		border-radius: 1rem;
+	}
 }
 
 .farm-btn.farm-btn--icon {
-    border: none;
-    background: transparent;
-    transition: color 0.5s ease;
+	border: none;
+	background: transparent;
+	transition: color 0.5s ease;
 
-    min-width: auto;
-    width: 36px;
+	min-width: auto;
+	width: 36px;
 
-    .farm-btn__content i.mdi {
-        color: gray;
-    }
+	.farm-btn__content i.mdi {
+		color: gray;
+	}
 
-    @each $size,
-    $value in $sizes {
-        &#{'.farm-btn[size=' + $size +']'} {
-            font-size: $value;
-        }
-    }
+	@each $size, $value in $sizes {
+		&#{'.farm-btn[size=' + $size + ']'} {
+			font-size: $value;
+		}
+	}
 
-    &[size='lg'] {
-        width: 48px;
-        height: 48px;
-    }
+	&[size='lg'] {
+		width: 48px;
+		height: 48px;
+	}
 
-    &[size='xl'] {
-        width: 64px;
-        height: 64px;
-    }
+	&[size='xl'] {
+		width: 64px;
+		height: 64px;
+	}
 
-    @each $color in $theme-colors-list {
-        &#{'.farm-btn--' + $color}:not(.farm-btn--disabled) {
-            &:hover {
-                color: var(--farm-#{$color}-base);
-            }
+	@each $color in $theme-colors-list {
+		&#{'.farm-btn--' + $color}:not(.farm-btn--disabled) {
+			&:hover {
+				color: var(--farm-#{$color}-base);
+			}
 
-            ::v-deep .farm-btn__content i.mdi {
-                color: var(--farm-#{$color}-base);
-            }
-        }
-    }
+			::v-deep .farm-btn__content i.mdi {
+				color: var(--farm-#{$color}-base);
+			}
+		}
+	}
 }
 
 @each $color in $theme-colors-list {
-    #{'.farm-btn--' + $color} {
-        border: 1px solid var(--farm-#{$color}-base);
-        background-color: var(--farm-#{$color}-base);
-        color: white;
+	#{'.farm-btn--' + $color} {
+		border: 1px solid var(--farm-#{$color}-base);
+		background-color: var(--farm-#{$color}-base);
+		color: white;
 
-        ::v-deep .farm-btn__content {
-            i.mdi {
-                color: white;
-            }
+		::v-deep .farm-btn__content {
+			i.mdi {
+				color: white;
+			}
 
-            .farm-btn__content i.mdi {
-                color: black
-            }
+			.farm-btn__content i.mdi {
+				color: black;
+			}
+		}
+	}
 
-        }
-    }
+	.farm-btn--extra,
+	.farm-btn--white {
+		color: black;
+	}
 
-    .farm-btn--extra,
-    .farm-btn--white {
-        color: black;
-    }
+	:not(.farm-btn--disabled) {
+		&.farm-btn--outlined#{'.farm-btn--' + $color} {
+			border: 1px solid var(--farm-#{$color}-base);
+			background: white;
+			color: var(--farm-#{$color}-base);
 
-    :not(.farm-btn--disabled) {
-        &.farm-btn--outlined#{'.farm-btn--' + $color} {
-            border: 1px solid var(--farm-#{$color}-base);
-            background: white;
-            color: var(--farm-#{$color}-base);
+			&.farm-btn--extra,
+			&.farm-btn--white {
+				color: black;
+				border: 1px solid black;
+			}
 
-            &.farm-btn--extra,
-            &.farm-btn--white {
-                color: black;
-                border: 1px solid black;
-            }
+			.farm-btn__content i.mdi {
+				color: var(--farm-#{$color}-base);
+			}
+		}
 
-            .farm-btn__content i.mdi {
-                color: var(--farm-#{$color}-base);
-            }
-        }
+		&.farm-btn--plain#{'.farm-btn--' + $color} {
+			border: none;
+			background: white;
+			color: var(--farm-#{$color}-base);
 
-        &.farm-btn--plain#{'.farm-btn--' + $color} {
-            border: none;
-            background: white;
-            color: var(--farm-#{$color}-base);
+			&.farm-btn--extra,
+			&.farm-btn--white {
+				color: black;
 
-            &.farm-btn--extra,
-            &.farm-btn--white {
-                color: black;
+				.farm-btn__content i.mdi {
+					color: black;
+				}
+			}
 
-                .farm-btn__content i.mdi {
-                    color: black
-                }
-            }
-
-            .farm-btn__content i.mdi {
-                color: var(--farm-#{$color}-base);
-            }
-        }
-    }
-
-
+			.farm-btn__content i.mdi {
+				color: var(--farm-#{$color}-base);
+			}
+		}
+	}
 }
 
 .farm-btn--outlined.farm-btn--disabled {
-    border: 1px solid #D6D6D6;
-    color: #D6D6D6;
-    background-color: white;
+	border: 1px solid #d6d6d6;
+	color: #d6d6d6;
+	background-color: white;
 
-    i.mdi.farm-icon {
-        color: #D6D6D6;
-    }
+	i.mdi.farm-icon {
+		color: #d6d6d6;
+	}
 }
 
 .farm-btn--plain.farm-btn--disabled {
-    background-color: transparent;
-    border: none;
+	background-color: transparent;
+	border: none;
 }
 
 .farm-btn--elevated {
-    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+	box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%),
+		0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 
 @include upToSm {
-    .farm-btn {
-        padding: 0 12px;
-        line-height: 12px;
-        min-width: 48px;
-        height: 32px;
-    }
+	.farm-btn {
+		padding: 0 12px;
+		line-height: 12px;
+		min-width: 48px;
+		height: 32px;
+	}
 }
 
 @include forXsOnly {
-    .farm-btn.farm-btn--responsive {
-        width: 100%;
-        margin: 0;
-    }
+	.farm-btn.farm-btn--responsive {
+		width: 100%;
+		margin: 0;
+	}
 }

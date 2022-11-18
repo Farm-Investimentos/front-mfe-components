@@ -4,9 +4,14 @@
 	background-color: var(--farm-neutral-lighten);
 }
 
+.farm-contextmenu {
+	width: 100%;
+}
+
 .farm-icon {
 	transition: all ease 0.3s;
 	cursor: pointer;
+
 	&--rotate {
 		transform: rotate(180deg);
 	}
