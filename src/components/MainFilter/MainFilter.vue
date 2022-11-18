@@ -4,10 +4,10 @@
 			<farm-label :for="elementId">
 				{{ label }}
 				<farm-tooltip v-if="tooltip">
-					<farm-caption>
+					<farm-caption color="white">
 						{{ tooltip }}
 					</farm-caption>
-					<template v-slot:activator="{}">
+					<template v-slot:activator>
 						<farm-icon size="sm" color="gray">help-circle</farm-icon>
 					</template>
 				</farm-tooltip>

@@ -26,7 +26,7 @@
 				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
-				<div class="farm-textfield--input">
+				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
 						v-model="selectedText"
 						:disabled="disabled"
@@ -165,7 +165,7 @@ export default Vue.extend({
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
-			
+
 			const selectedItem = items.value.find(
 				item => item[itemValue.value] === innerValue.value
 			);

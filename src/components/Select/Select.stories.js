@@ -33,7 +33,7 @@ export const Primary = () => ({
 			],
 		};
 	},
-	template: `<div style="width: 480px">
+	template: `<div style="width: 120px">
 		<farm-select v-model="v" :items="items" />
 		v-model: {{ v }}
 	</div>`,
