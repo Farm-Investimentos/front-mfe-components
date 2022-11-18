@@ -43,7 +43,6 @@ export default Vue.extend({
 
 		const recursiveFormField = $node => {
 			$node.$children.forEach($leaf => {
-				console.log($leaf, $leaf.validate);
 				if ($leaf.validate) {
 					console.log($leaf);
 					validationFields.push($leaf);

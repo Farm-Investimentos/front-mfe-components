@@ -1,8 +1,17 @@
 <template>
-	<input class="farm-radio" type="radio" :checked="isChecked" :value="value" @click="onClick" />
+	<input
+		:class="{
+			'farm-radio': true,
+			'farm-radio--checked': isChecked,
+		}"
+		type="radio"
+		:checked="isChecked"
+		:value="value"
+		@click="onClick"
+	/>
 </template>
 <script lang="ts">
-import Vue, { toRefs, ref } from 'vue';
+import Vue from 'vue';
 
 export default Vue.extend({
 	name: 'farm-radio',
