@@ -19,7 +19,13 @@ export default Vue.extend({
 		prop: 'modelValue',
 	},
 	props: {
+		/**
+		 * v-model binding
+		 */
 		modelValue: { default: '' },
+		/**
+		 * Value to be set to v-model
+		 */
 		value: { type: String, default: undefined },
 	},
 	computed: {
