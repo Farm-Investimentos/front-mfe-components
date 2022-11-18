@@ -18,7 +18,7 @@
 					clickable
 					hoverColorVariation="lighten"
 					hover-color="primary"
-					:key="'contextmenu_item_' + item.text"
+					:key="'contextmenu_item_' + item[itemText]"
 					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
 					@click="selectItem(item)"
 				>
@@ -165,6 +165,7 @@ export default Vue.extend({
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
+			
 			const selectedItem = items.value.find(
 				item => item[itemValue.value] === innerValue.value
 			);

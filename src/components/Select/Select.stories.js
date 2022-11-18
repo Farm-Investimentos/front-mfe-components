@@ -112,7 +112,6 @@ export const Validate = () => ({
 	</div>`,
 });
 
-
 export const Reset = () => ({
 	data() {
 		return {
@@ -130,7 +129,7 @@ export const Reset = () => ({
 	methods: {
 		click() {
 			this.$refs.select.reset();
-		}
+		},
 	},
 	template: `<div style="width: 480px">
 		<farm-select v-model="v" :items="items" ref="select" :rules="[rules.required]" />
@@ -138,5 +137,22 @@ export const Reset = () => ({
 		<farm-btn @click="click">
 			reset
 		</farm-btn>
+	</div>`,
+});
+
+export const CustomKeys = () => ({
+	data() {
+		return {
+			v: 1,
+			items: [
+				{ id: 1, label: ' value 1' },
+				{ id: 2, label: ' value 2' },
+				{ id: 3, label: ' value 3' },
+			],
+		};
+	},
+	template: `<div style="width: 480px">
+		<farm-select v-model="v" :items="items" item-text="label" item-value="id" />
+		v-model: {{ v }}
 	</div>`,
 });

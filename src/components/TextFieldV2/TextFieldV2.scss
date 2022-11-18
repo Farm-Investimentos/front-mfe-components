@@ -22,6 +22,11 @@
 			color: var(--farm-text-primary);
 			font-size: 12px;
 			font-weight: 400;
+			max-width: 100%;
+		}
+
+		&--iconed>input {
+			max-width: calc(100% - 32px);
 		}
 
 		width: 100%;

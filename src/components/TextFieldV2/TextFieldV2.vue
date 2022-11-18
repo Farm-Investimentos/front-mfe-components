@@ -10,7 +10,10 @@
 			'farm-textfield--disabled': disabled,
 		}"
 	>
-		<div class="farm-textfield--input">
+		<div :class="{
+			'farm-textfield--input': true,
+			'farm-textfield--input--iconed': icon
+		}">
 			<button
 				type="button"
 				v-if="icon && iconPosition === 'left'"
