@@ -82,6 +82,7 @@ export * from './components/Logger/LoggerItem';
 export * from './components/Icon';
 export * from './components/Modal';
 export * from './components/ProgressBar';
+export * from './components/Radio';
 export * from './components/RadioGroup';
 export * from './components/Select';
 export * from './components/Stepper';
