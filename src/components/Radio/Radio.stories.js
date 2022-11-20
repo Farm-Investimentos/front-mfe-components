@@ -13,6 +13,10 @@ export default {
 				<span style="color: var(--farm-extra-1-base);">development</span>
 				`,
 			},
+			design: {
+				type: 'figma',
+				url: 'https://www.figma.com/file/p62YDSTfWg0Mcnf5APfdvI/%E2%9C%8D-Design-System-%7C-v2?node-id=4913%3A20222&t=RIUg7AZerUGMSaM9-0',
+			},
 		},
 		viewMode: 'docs',
 	},
