@@ -26,22 +26,24 @@ export default Vue.extend({
 		/**
 		 * Value to be set to v-model
 		 */
-		value: { type: String, default: undefined },
+		value: { type: [String, Number, Boolean], default: undefined },
 	},
 	computed: {
 		isChecked() {
 			return this.modelValue == this.value;
 		},
 	},
-	methods: {
-		onClick(event) {
-			this.$emit('change', event.target.value);
-			this.$emit('input', event.target.value);
-		},
-		validate() {},
-		reset() {
-			this.$emit('input', null);
-		},
+	setup(_, { emit }) {
+		const onClick = event => {
+			emit('change', event.target.value);
+			emit('input', event.target.value);
+		};
+
+		const reset = () => {
+			emit('input', null);
+		};
+		const validate = () => {};
+		return { onClick, reset, validate };
 	},
 });
 </script>
