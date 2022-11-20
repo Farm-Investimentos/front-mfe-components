@@ -15,7 +15,7 @@
 			title="Fechar"
 			@click="onClose"
 		>
-			<farm-icon role="button"> close-thick </farm-icon>
+			<farm-icon role="button" size="md"> window-close </farm-icon>
 		</farm-btn>
 	</header>
 </template>
