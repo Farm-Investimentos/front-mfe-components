@@ -3,11 +3,12 @@
 		<span
 			:class="{
 				'farm-checkbox': true,
-				'farm-checkbox--checked': innerValue,
+				'farm-checkbox--checked': isChecked,
 				'farm-checkbox--disabled': disabled,
 				'farm-checkbox--indeterminate': indeterminate,
 				'farm-checkbox--lighten': variation === 'lighten',
 				'farm-checkbox--darken': variation === 'darken',
+				'farm-checkbox--error': showError,
 			}"
 			:size="$props.size"
 			@click="toggleValue"
@@ -30,11 +31,18 @@ import deepEqual from '../../composition/deepEqual';
 
 export default Vue.extend({
 	name: 'farm-checkbox',
+	model: {
+		prop: 'modelValue',
+	},
 	props: {
 		/**
 		 * v-model binding
 		 */
-		value: { type: Boolean, required: true },
+		modelValue: {},
+		/**
+		 * Value to be set to v-model
+		 */
+		value: { type: [String, Number, Boolean], default: undefined },
 		/**
 		 * Label
 		 */
@@ -85,28 +93,40 @@ export default Vue.extend({
 		indeterminate: { type: Boolean, default: false },
 	},
 	setup(props, { emit }) {
-		const innerValue = ref(props.value);
+		const innerValue = ref(props.modelValue);
 		const { label, disabled, rules } = toRefs(props);
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
-
+		const isTouched = ref(false);
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 
 		const toggleValue = () => {
 			if (disabled.value) {
 				return false;
 			}
-			innerValue.value = !innerValue.value;
+			isTouched.value = true;
+			if (isChecked.value) {
+				innerValue.value = null;
+			} else {
+				innerValue.value = props.value;
+			}
 			emit('input', innerValue.value);
 			validate(innerValue.value);
 		};
+
+		const isChecked = computed(() => {
+			return innerValue.value == props.value;
+		});
 
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
 
+		const showError = computed(() => hasError.value && isTouched.value);
+
 		watch(
 			() => props.value,
 			() => {
+				isTouched.value = true;
 				innerValue.value = props.value;
 				validate(innerValue.value);
 			}
@@ -126,7 +146,9 @@ export default Vue.extend({
 			if (disabled.value) {
 				return false;
 			}
-			innerValue.value = false;
+			isTouched.value = true;
+			innerValue.value = null;
+			validate(innerValue.value);
 			emit('input', innerValue.value);
 		};
 
@@ -144,9 +166,11 @@ export default Vue.extend({
 			valid,
 			validatable,
 			hasError,
+			isChecked,
 			toggleValue,
 			reset,
 			validate,
+			showError,
 		};
 	},
 });

@@ -26,7 +26,7 @@ export default Vue.extend({
 		/**
 		 * Value to be set to v-model
 		 */
-		value: { type: [String, Number, Boolean], default: undefined },
+		value: { type: [String, Number, Boolean], required: true },
 	},
 	computed: {
 		isChecked() {
