@@ -23,22 +23,24 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			isChecked: false,
+			isChecked: null,
 		};
 	},
 	template: `<div>
-		<farm-checkbox v-model="isChecked" />
+		<farm-checkbox v-model="isChecked" value="1" />
+		isChecked (value): {{ isChecked }}
 	</div>`,
 });
 
-export const DefaultTrue = () => ({
+export const DefaultCheck = () => ({
 	data() {
 		return {
 			isChecked: true,
 		};
 	},
 	template: `<div>
-		<farm-checkbox v-model="isChecked" />
+		<farm-checkbox v-model="isChecked" :value="true" />
+		isChecked (value): {{ isChecked }}
 	</div>`,
 });
 
@@ -49,7 +51,7 @@ export const WithLabel = () => ({
 		};
 	},
 	template: `<div>
-		<farm-checkbox v-model="isChecked" label="custom label" />
+		<farm-checkbox v-model="isChecked" value="1" label="custom label" />
 	</div>`,
 });
 
@@ -61,8 +63,8 @@ export const Disabled = () => ({
 		};
 	},
 	template: `<div>
-		<farm-checkbox v-model="isChecked" :disabled="true" /><br />
-		<farm-checkbox v-model="notIsChecked" :disabled="true" />
+		<farm-checkbox v-model="isChecked" :value="true" :disabled="true" /><br />
+		<farm-checkbox v-model="notIsChecked" value="" :disabled="true" />
 	</div>`,
 });
 
@@ -84,6 +86,7 @@ export const Colors = () => ({
 		>
 			<farm-checkbox
 				v-model="isChecked"
+				:value="true"
 				:color="color"
 				:variation="variation"
 				:label="variation || 'Base'"			
@@ -102,7 +105,7 @@ export const Sizes = () => ({
 	},
 	template: `<div style="display: flex; flex-direction: column; flex-wrap: wrap;">
         <div v-for="size of sizes">
-			<farm-checkbox v-model="isChecked" :size="size" :label="size" /><br />
+			<farm-checkbox v-model="isChecked" :size="size" :value="true" :label="size" /><br />
         </div>
 	</div>`,
 });
@@ -115,6 +118,6 @@ export const Indeterminate = () => ({
 		};
 	},
 	template: `<div>
-		<farm-checkbox :indeterminate="true" v-model="isChecked"  />
+		<farm-checkbox :indeterminate="true" v-model="isChecked" :value="true"  />
 	</div>`,
 });

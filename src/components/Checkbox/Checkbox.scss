@@ -37,6 +37,10 @@
     }
 
     @include activateRipple;
+
+    .farm-checkbox.farm-checkbox--error {
+        border-color: themeColor('error');
+    }
 }
 
 @include rippleStyles;
