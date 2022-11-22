@@ -23,73 +23,64 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			buttons: [
-				{ label: 'Random text', id: 1 },
-				{ label: 'In', id: 2 },
-				{ label: 'Radio Group', id: 3 },
-			],
-			checkedValue: 1,
+			checkedValue: null,
 		};
 	},
 	template: `<div>
-	    <farm-radio-group v-model="checkedValue" :buttons="buttons" />
+	    <farm-radio-group v-model="checkedValue">
+			<farm-radio v-model="checkedValue" value="1" /><farm-label>value 1</farm-label>
+			<farm-radio v-model="checkedValue" value="2" /><farm-label>value 2</farm-label>
+			<farm-radio v-model="checkedValue" value="3" /><farm-label>value 3</farm-label>
+		</farm-radio-group>
+		selectedValue: {{ checkedValue  }}
 	</div>`,
 });
 
 export const Reset = () => ({
 	data() {
 		return {
-			buttons: [
-				{ label: 'Button 1', id: 1 },
-				{ label: 'Button 2', id: 2 },
-				{ label: 'Button 3', id: 3 },
-			],
-			checkedValue: 1,
+			checkedValue: null,
 		};
 	},
 	methods: {
 		reset() {
-			this.$refs.radiogroupreset.reset();
+			this.$refs.radioGroup.reset();
 		},
 	},
 	template: `<div>
-	    <farm-radio-group v-model="checkedValue" :buttons="buttons" ref="radiogroupreset" /><br />
-		<farm-btn @click="reset">Reset</farm-btn>
+	    <farm-radio-group v-model="checkedValue" ref="radioGroup">
+			<farm-radio v-model="checkedValue" value="1" /><farm-label>value 1</farm-label>
+			<farm-radio v-model="checkedValue" value="2" /><farm-label>value 2</farm-label>
+			<farm-radio v-model="checkedValue" value="3" /><farm-label>value 3</farm-label>
+		</farm-radio-group>
+		selectedValue: {{ checkedValue  }}
+		<farm-btn @click="reset">reset</farm-btn>
 	</div>`,
 });
 
-export const Vertical = () => ({
+export const Validate = () => ({
 	data() {
 		return {
-			buttons: [
-				{ label: 'Button 1', id: 1 },
-				{ label: 'Button 2', id: 2 },
-				{ label: 'Button 3', id: 3 },
-			],
-			checkedValue: 1,
+			checkedValue: null,
+			rules: {
+				required: value => !!value || 'Required field',
+			},
 		};
 	},
-	template: `<div>
-	    <farm-radio-group v-model="checkedValue" vertical :buttons="buttons" />
-	</div>`,
-});
+	methods: {
+		reset() {
+			this.$refs.radioGroup.reset();
+		},
+	},
+	template: `<div style="width: 480px">
+		
+		<farm-radio-group v-model="checkedValue" ref="radioGroup" :rules="[rules.required]">
+			<farm-radio v-model="checkedValue" value="1" /><farm-label>value 1</farm-label>
+			<farm-radio v-model="checkedValue" value="2" /><farm-label>value 2</farm-label>
+			<farm-radio v-model="checkedValue" value="3" /><farm-label>value 3</farm-label>
+		</farm-radio-group>
+		selectedValue: {{ checkedValue  }}
+		<farm-btn @click="reset">reset</farm-btn>
 
-export const Colors = () => ({
-	data() {
-		return {
-			buttons: [
-				{ label: 'Button 1', id: 1 },
-				{ label: 'Button 2', id: 2 },
-				{ label: 'Button 3', id: 3 },
-			],
-			checkedValue: 1,
-			colors,
-		};
-	},
-	template: `<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-		<div v-for="color in colors" style="width: 33.3%; margin-bottom: 32px;">
-			<h4 style="margin-bottom: 16px">{{ color }}</h4>
-			<farm-radio-group v-model="checkedValue" vertical :color="color" :buttons="buttons" />
-		</div>
 	</div>`,
 });
