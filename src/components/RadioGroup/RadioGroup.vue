@@ -39,6 +39,7 @@ export default Vue.extend({
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
+		const isTouched = ref(false);
 
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 
@@ -46,11 +47,12 @@ export default Vue.extend({
 			return errorBucket.value.length > 0;
 		});
 
-		const showErrorText = computed(() => hasError.value);
+		const showErrorText = computed(() => hasError.value && isTouched.value);
 
 		watch(
 			() => props.value,
 			() => {
+				isTouched.value = true;
 				innerValue.value = props.value;
 				validate(innerValue.value);
 			}
@@ -73,20 +75,20 @@ export default Vue.extend({
 			emit('input', innerValue.value);
 		};
 
-		watch(
-			() => props.value,
-			() => {
-				innerValue.value = props.value;
-			}
-		);
+		onBeforeMount(() => {
+			validate(innerValue.value);
+		});
 
 		return {
 			innerValue,
 			errorBucket,
 			valid,
 			validatable,
+			hasError,
 			showErrorText,
+			isTouched,
 			reset,
+			validate,
 		};
 	},
 });
