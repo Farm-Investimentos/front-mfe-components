@@ -26,7 +26,7 @@ export default Vue.extend({
 		imgSrc() {
 			const href = window.location.href;
 			return `${
-				href.indexOf('localhost') || href.indexOf('front-farm-storybook')
+				href.indexOf('localhost') >= 0 || href.indexOf('front-farm-storybook') >= 0
 					? 'https://dev.plataforma.portalfarm.com.br'
 					: ''
 			}/public/logos/originadores/${this.id}/${this.variation}.svg`;
