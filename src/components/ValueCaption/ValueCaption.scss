@@ -5,24 +5,15 @@
 		margin-right: 8px;
 	}
 
-	&__body {
-
+	div.farm-valuecaption__content {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		align-content: flex-start;
 
-		.farm-typography {
-
+		p {
 			margin-bottom: 0;
-			display: flex;
-			flex: none;
-
-			>span {
-				position: relative;
-			}
+			word-break: break-word;
 		}
-
 	}
 
 }

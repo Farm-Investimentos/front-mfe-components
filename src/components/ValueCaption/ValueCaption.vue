@@ -1,7 +1,7 @@
 <template>
 	<div class="farm-valuecaption">
 		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
-		<div>
+		<div class="farm-valuecaption__content">
 			<farm-caption variation="regular" color="gray" v-if="hasTitle">
 				<slot name="title"></slot>
 			</farm-caption>

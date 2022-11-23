@@ -26,7 +26,7 @@ export const Primary = () => ({
             Upper Line Text
         </template>
         <template v-slot:subtitle>
-            Lower: Line Text Line Text Line Text
+            R$ 1.000.000,00
         </template>
     </farm-valuecaption>
     `,
