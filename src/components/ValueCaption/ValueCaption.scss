@@ -1,0 +1,19 @@
+.farm-valuecaption {
+	display: flex;
+
+	.farm-icon-box {
+		margin-right: 8px;
+	}
+
+	div.farm-valuecaption__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		p {
+			margin-bottom: 0;
+			word-break: break-word;
+		}
+	}
+
+}
