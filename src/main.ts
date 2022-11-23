@@ -91,6 +91,7 @@ export * from './components/TextField';
 export * from './components/TextFieldV2';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/ValueCaption';
 
 export * from './components/layout/Box';
 export * from './components/layout/Col';
