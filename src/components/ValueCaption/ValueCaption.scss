@@ -1,0 +1,28 @@
+.farm-valuecaption {
+	display: flex;
+
+	.farm-icon-box {
+		margin-right: 8px;
+	}
+
+	&__body {
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-content: flex-start;
+
+		.farm-typography {
+
+			margin-bottom: 0;
+			display: flex;
+			flex: none;
+
+			>span {
+				position: relative;
+			}
+		}
+
+	}
+
+}
