@@ -7,6 +7,7 @@
 			['farm-typography--weight-' + weight]: weight !== undefined,
 			'farm-typography--lighten': colorVariation === 'lighten',
 			'farm-typography--darken': colorVariation === 'darken',
+			'farm-typography--ellipsis': ellipsis,
 		}"
 		:style="style"
 		:color="color"
@@ -75,6 +76,13 @@ export default Vue.extend({
 		colorVariation: {
 			type: String,
 			default: '',
+		},
+		/**
+		 * Add css ellipsis
+		 */
+		ellipsis: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {
