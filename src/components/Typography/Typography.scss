@@ -31,6 +31,12 @@
 		color: var(--farm-text-secondary);
 	}
 
+	&.farm-typography--ellipsis {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 	@each $k in $theme-colors-list {
 		&#{'[color=' + $k + ']'} {
 			color: var(--farm-#{$k}-base);

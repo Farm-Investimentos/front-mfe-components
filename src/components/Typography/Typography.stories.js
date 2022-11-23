@@ -178,3 +178,9 @@ export const LineHeight = () => ({
 		</farm-typography>
 	</div>`,
 });
+
+export const Ellipsis = () => ({
+	template: `<div style="width: 100px;">
+		<farm-typography ellipsis>sample text for css text ellipsis</farm-typography>
+	</div>`,
+});
