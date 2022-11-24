@@ -36,5 +36,11 @@ describe('Select component', () => {
 			component.clickInput();
 			expect(component.isTouched).toBeTruthy();
 		});
+
+		it('updateSelectedTextValue', () => {
+			component.updateSelectedTextValue();
+			expect(component.selectedText).toBeDefined();
+		});
+		
 	});
 });

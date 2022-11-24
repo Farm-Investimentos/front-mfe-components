@@ -14,11 +14,11 @@
 		<farm-contextmenu bottom v-model="isVisible">
 			<farm-list v-if="!readonly">
 				<farm-listitem
-					v-for="item in items"
+					v-for="(item, index) in items"
 					clickable
 					hoverColorVariation="lighten"
 					hover-color="primary"
-					:key="'contextmenu_item_' + item[itemText]"
+					:key="'contextmenu_item_' + index"
 					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
 					@click="selectItem(item)"
 				>
@@ -85,8 +85,6 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
-
-		errorMessage: String,
 		/**
 		 * Array of rules used for validation
 		 */
@@ -140,6 +138,7 @@ export default Vue.extend({
 			() => {
 				innerValue.value = props.value;
 				validate(innerValue.value);
+				updateSelectedTextValue();
 			}
 		);
 
@@ -166,12 +165,7 @@ export default Vue.extend({
 		onBeforeMount(() => {
 			validate(innerValue.value);
 
-			const selectedItem = items.value.find(
-				item => item[itemValue.value] === innerValue.value
-			);
-			if (selectedItem) {
-				selectedText.value = selectedItem[itemText.value];
-			}
+			updateSelectedTextValue();
 		});
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
@@ -203,6 +197,15 @@ export default Vue.extend({
 			emit('click');
 		};
 
+		const updateSelectedTextValue = () => {
+			const selectedItem = items.value.find(
+				item => item[itemValue.value] === innerValue.value
+			);
+			if (selectedItem) {
+				selectedText.value = selectedItem[itemText.value];
+			}
+		};
+
 		return {
 			items,
 			innerValue,
@@ -221,6 +224,7 @@ export default Vue.extend({
 			onKeyUp,
 			onBlur,
 			clickInput,
+			updateSelectedTextValue,
 		};
 	},
 });

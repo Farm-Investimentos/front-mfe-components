@@ -27,9 +27,9 @@ export const Primary = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: 1, text: ' value 1' },
-				{ value: 2, text: ' value 2' },
-				{ value: 3, text: ' value 3' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
 			],
 		};
 	},
@@ -154,5 +154,30 @@ export const CustomKeys = () => ({
 	template: `<div style="width: 480px">
 		<farm-select v-model="v" :items="items" item-text="label" item-value="id" />
 		v-model: {{ v }}
+	</div>`,
+});
+
+export const OutsideChangeVmodel = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			],
+		};
+	},
+	methods: {
+		onClick() {
+			this.v = 2;
+		},
+	},
+	template: `<div style="width: 120px">
+		<farm-select v-model="v" :items="items" />
+		v-model: {{ v }}
+		<farm-btn @click="onClick">
+		change value
+		</farm-btn>
 	</div>`,
 });
