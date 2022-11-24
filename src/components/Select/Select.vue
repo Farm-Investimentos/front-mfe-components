@@ -14,11 +14,11 @@
 		<farm-contextmenu bottom v-model="isVisible">
 			<farm-list v-if="!readonly">
 				<farm-listitem
-					v-for="item in items"
+					v-for="item, index in items"
 					clickable
 					hoverColorVariation="lighten"
 					hover-color="primary"
-					:key="'contextmenu_item_' + item[itemText]"
+					:key="'contextmenu_item_' + index"
 					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
 					@click="selectItem(item)"
 				>
@@ -85,8 +85,6 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
-
-		errorMessage: String,
 		/**
 		 * Array of rules used for validation
 		 */
