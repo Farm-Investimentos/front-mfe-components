@@ -24,7 +24,7 @@ describe('Select component', () => {
 		it('reset', () => {
 			component.reset();
 			expect(component.isTouched).toBeTruthy();
-			expect(component.innerValue).toEqual('');
+			expect(component.innerValue).toEqual(null);
 		});
 
 		it('onBlur', () => {
@@ -41,6 +41,5 @@ describe('Select component', () => {
 			component.updateSelectedTextValue();
 			expect(component.selectedText).toBeDefined();
 		});
-		
 	});
 });

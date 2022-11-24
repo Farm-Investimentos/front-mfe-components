@@ -24,6 +24,9 @@
 				>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
+				<farm-listitem v-if="!items || items.length === 0">
+					{{ noDataText }}
+				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
 				<div class="farm-textfield--input farm-textfield--input--iconed">
@@ -112,6 +115,13 @@ export default Vue.extend({
 		itemValue: {
 			type: String,
 			default: 'value',
+		},
+		/**
+		 * No data text
+		 */
+		noDataText: {
+			type: String,
+			default: 'Não há dados',
 		},
 	},
 	setup(props, { emit }) {
