@@ -219,7 +219,7 @@ export default Vue.extend({
 		};
 
 		const updateSelectedTextValue = () => {
-			if (!items.value || items.value.length === 0) {
+			if (!items.value || items.value.length === 0 || !innerValue.value) {
 				selectedText.value = '';
 				return;
 			}
