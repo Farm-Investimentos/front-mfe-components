@@ -181,3 +181,16 @@ export const OutsideChangeVmodel = () => ({
 		</farm-btn>
 	</div>`,
 });
+
+export const NoItems = () => ({
+	data() {
+		return {
+			v: null,
+			items: [],
+		};
+	},
+	template: `<div style="width: 120px">
+		<farm-select v-model="v" :items="items" />
+		v-model: {{ v }}
+	</div>`,
+});
