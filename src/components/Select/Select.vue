@@ -41,7 +41,6 @@
 				</div>
 			</template>
 		</farm-contextmenu>
-
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
@@ -116,7 +115,7 @@ export default Vue.extend({
 		},
 	},
 	setup(props, { emit }) {
-		const { rules, items, itemText, itemValue } = toRefs(props);
+		const { rules, items, itemText, itemValue, disabled } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
@@ -126,6 +125,7 @@ export default Vue.extend({
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
 		let fieldValidator = validateFormFieldBuilder(rules.value);
+		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
@@ -135,8 +135,20 @@ export default Vue.extend({
 
 		watch(
 			() => props.value,
+			newValue => {
+				innerValue.value = newValue;
+				errorBucket.value = [];
+				validate(newValue);
+				updateSelectedTextValue();
+				emit('input', newValue);
+				emit('change', newValue);
+			}
+		);
+
+		watch(
+			() => props.items,
 			() => {
-				innerValue.value = props.value;
+				errorBucket.value = [];
 				validate(innerValue.value);
 				updateSelectedTextValue();
 			}
@@ -157,21 +169,20 @@ export default Vue.extend({
 			(newVal, oldVal) => {
 				if (deepEqual(newVal, oldVal)) return;
 				fieldValidator = validateFormFieldBuilder(rules.value);
-				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 				validate(innerValue.value);
 			}
 		);
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
-
 			updateSelectedTextValue();
 		});
 
-		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
-
 		const reset = () => {
-			innerValue.value = '';
+			if (disabled.value) {
+				return;
+			}
+			innerValue.value = null;
 			selectedText.value = '';
 			isTouched.value = true;
 			emit('input', innerValue.value);
@@ -198,6 +209,10 @@ export default Vue.extend({
 		};
 
 		const updateSelectedTextValue = () => {
+			if (!items.value || items.value.length === 0) {
+				selectedText.value = '';
+				return;
+			}
 			const selectedItem = items.value.find(
 				item => item[itemValue.value] === innerValue.value
 			);
