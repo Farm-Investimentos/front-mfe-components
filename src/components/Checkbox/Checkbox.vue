@@ -158,6 +158,10 @@ export default Vue.extend({
 
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const makePristine = () => {
+			isTouched.value = false;
+		};
+
 		return {
 			innerValue,
 			label,
@@ -171,6 +175,8 @@ export default Vue.extend({
 			reset,
 			validate,
 			showError,
+			makePristine,
+			isTouched,
 		};
 	},
 });

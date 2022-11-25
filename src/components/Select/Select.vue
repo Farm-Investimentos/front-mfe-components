@@ -218,6 +218,10 @@ export default Vue.extend({
 			emit('click');
 		};
 
+		const makePristine = () => {
+			isTouched.value = false;
+		};
+
 		const updateSelectedTextValue = () => {
 			if (!items.value || items.value.length === 0 || !innerValue.value) {
 				selectedText.value = '';
@@ -250,6 +254,7 @@ export default Vue.extend({
 			onBlur,
 			clickInput,
 			updateSelectedTextValue,
+			makePristine,
 		};
 	},
 });
