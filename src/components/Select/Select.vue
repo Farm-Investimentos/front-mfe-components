@@ -228,7 +228,7 @@ export default Vue.extend({
 				return;
 			}
 			const selectedItem = items.value.find(
-				item => item[itemValue.value] === innerValue.value
+				item => item[itemValue.value] == innerValue.value
 			);
 			if (selectedItem) {
 				selectedText.value = selectedItem[itemText.value];
