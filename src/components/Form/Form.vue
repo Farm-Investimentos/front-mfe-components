@@ -72,6 +72,7 @@ export default Vue.extend({
 			validationFields.forEach(field => {
 				watchInput(field);
 				field.validate(field.value);
+				if (field.makePristine) field.makePristine();
 			});
 		};
 

@@ -41,5 +41,11 @@ describe('Select component', () => {
 			component.updateSelectedTextValue();
 			expect(component.selectedText).toBeDefined();
 		});
+
+		it('makePristine', () => {
+			component.isTouched = true;
+			component.makePristine();
+			expect(component.isTouched).toBeFalsy();
+		});
 	});
 });

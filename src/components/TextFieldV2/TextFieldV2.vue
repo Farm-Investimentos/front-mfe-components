@@ -176,6 +176,11 @@ export default Vue.extend({
 			emit('input', innerValue.value);
 		};
 
+		const makePristine = () => {
+			isTouched.value = false;
+			isBlured.value = false;
+		};
+
 		return {
 			innerValue,
 			errorBucket,
@@ -189,6 +194,7 @@ export default Vue.extend({
 			onKeyUp,
 			onBlur,
 			reset,
+			makePristine,
 		};
 	},
 });

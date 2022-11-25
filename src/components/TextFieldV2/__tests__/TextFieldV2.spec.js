@@ -37,5 +37,12 @@ describe('TextFieldV2 component', () => {
 			expect(component.isBlured).toBeTruthy();
 		});
 
+		it('makePristine', () => {
+			component.isTouched = true;
+			component.isBlured = true;
+			component.makePristine();
+			expect(component.isTouched).toBeFalsy();
+			expect(component.isBlured).toBeFalsy();
+		});
 	});
 });
