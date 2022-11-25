@@ -1,7 +1,7 @@
 <template>
 	<farm-modal v-model="inputVal" size="sm" :offsetTop="48" :offsetBottom="68">
 		<template v-slot:header>
-			<DialogHeader :title="title" @onClose="close" />
+			<farm-dialog-header :title="title" @onClose="close" />
 		</template>
 		<template v-slot:content>
 			<section class="modal-content">
@@ -15,9 +15,10 @@
 		</template>
 
 		<template v-slot:footer>
-			<DialogFooter
+			<farm-dialog-footer
 				:confirmColor="confirmColor"
 				:confirmLabel="confirmLabel"
+				:closeLabel="closeLabel"
 				:isConfirmDisabled="!canConfirm"
 				@onConfirm="confirm"
 				@onClose="close"
@@ -26,47 +27,66 @@
 	</farm-modal>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-prompt-user',
 	props: {
 		/**
-		 * Habilita/desabilita o modal
+		 * Open/close modal
 		 */
 		value: {
 			required: true,
 		},
 		/**
-		 * Título do modal
+		 * Modal title
 		 */
 		title: {
 			required: true,
 			type: String,
 		},
 		/**
-		 * Subtítulo do modal
+		 * Modal subtitle
 		 */
 		subtitle: {
 			required: true,
 			type: String,
 		},
 		/**
-		 * Cor (do Vuetify) do botão de confirmar
+		 * Confirm button color
 		 */
 		confirmColor: {
-			type: String,
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
 			default: 'primary',
 		},
 		/**
-		 * Label do botão
+		 * Confirm button label
 		 */
 		confirmLabel: {
 			type: String,
 			default: 'Confirmar',
 		},
 		/**
-		 * String usada para dar match e habilitar
+		 * Close button label
+		 */
+		closeLabel: {
+			type: String,
+			default: 'Fechar',
+		},
+		/**
+		 * String to be matched (and enable confirm button)
 		 */
 		match: {
 			required: true,

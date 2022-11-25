@@ -30,8 +30,6 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import DefaultButton from '../Buttons/DefaultButton';
-import Icon from '../Icon';
 import IExtraButton from './IExtraButton';
 
 /**
@@ -39,10 +37,6 @@ import IExtraButton from './IExtraButton';
  */
 export default Vue.extend({
 	name: 'farm-dialog-footer',
-	components: {
-		'farm-btn': DefaultButton,
-		'farm-icon': Icon,
-	},
 	props: {
 		/**
 		 * Label do botão de confirmação

@@ -35,6 +35,7 @@ export const Primary = () => ({
 			</farm-btn>
 		</div>`,
 });
+
 export const Error = () => ({
 	data() {
 		return {
@@ -44,6 +45,29 @@ export const Error = () => ({
 	template: `<div>
 		<farm-prompt-user match="REMOVER" title="Título" subtitle="Digite REMOVER para habilitar" v-model="showPrompt" confirmColor="error" confirmLabel="Remover" />
 			<farm-btn color="primary" @click="showPrompt = true;">
+			reabrir
+			</farm-btn>
+		</div>`,
+});
+
+
+export const ButtonLabels = () => ({
+	data() {
+		return {
+			showPrompt: false,
+		};
+	},
+	template: `<div>
+		<farm-prompt-user
+			match="CONFIRMAR"
+			title="Título"
+			subtitle="Digite CONFIRMAR para habilitar"
+			confirmLabel="SIM"
+			closeLabel="NÃO"
+			v-model="showPrompt"
+		/>
+			click:
+			<farm-btn @click="showPrompt = true;">
 			reabrir
 			</farm-btn>
 		</div>`,
