@@ -2,8 +2,7 @@
 	<section
 		class="logger__item"
 		:class="{
-			'logger__item--error': item.status === 'error',
-			'logger__item--success': item.status === 'success',
+			['logger__item--' + item.status]: true,
 		}"
 	>
 		<farm-icon>{{ mdiIconName }}</farm-icon>
@@ -25,9 +24,9 @@
 			title="Ver Detalhes"
 			:color="buttonColor"
 			@click="callDetails"
-			>
-				Ver Detalhes
-			</farm-btn>
+		>
+			Ver Detalhes
+		</farm-btn>
 	</section>
 </template>
 <script lang="ts">

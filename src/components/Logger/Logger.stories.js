@@ -31,6 +31,7 @@ export const Primary = () => ({
 					formattedDate: '13/06/2022  20:40',
 					status: 'error',
 				},
+				
 				{
 					message: 'Aprovado entre as pré elegíveis',
 					userName: 'Cleyton Rasta',
@@ -53,7 +54,13 @@ export const Primary = () => ({
 					message: 'Recusado entre as pré elegíveis',
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
-					status: 'error',
+					status: 'success',
+				},
+				{
+					message: 'Info',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'info',
 				},
 			],
 		};
