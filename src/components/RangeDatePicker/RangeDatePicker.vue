@@ -16,7 +16,8 @@
 				readonly
 				:id="inputId"
 				:rules="required ? [requiredRule] : []"
-				@click="menuField = true"
+				@click="openDatepicker"
+				@onClickIcon="openDatepicker"
 			/>
 		</template>
 		<v-date-picker
@@ -30,7 +31,7 @@
 			color="secondary"
 			locale="pt-br"
 		>
-			<farm-btn outlined color="secondary" @click="menuField = false" title="Fechar">
+			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
 				Fechar
 			</farm-btn>
 			<farm-btn outlined class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
@@ -133,6 +134,12 @@ export default Vue.extend({
 		clear() {
 			this.dateField = [];
 			this.save();
+		},
+		openDatepicker() {
+			this.menuField = true;
+		},
+		closeDatepicker() {
+			this.menuField = false;
 		},
 	},
 	computed: {

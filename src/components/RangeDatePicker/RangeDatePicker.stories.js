@@ -8,8 +8,9 @@ export default {
 	parameters: {
 		docs: {
 			description: {
-				component: `Range I put Date Picker<br />
-				selector: <em>farm-input-rangedatepicker</em>
+				component: `Range Input Date Picker<br />
+				selector: <em>farm-input-rangedatepicker</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
