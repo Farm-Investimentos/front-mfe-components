@@ -12,13 +12,14 @@
 			<farm-textfield-v2
 				icon="calendar"
 				v-model="fieldRange"
+				autocomplete="off"
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
-				autocomplete="off"
 				:id="inputId"
 				:rules="[checkMax, checkMin, checkRequire]"
 				@keyup="keyUpInput"
-				@click="menuField = true"
+				@click="openDatepicker"
+				@onClickIcon="openDatepicker"
 			/>
 		</template>
 		<v-date-picker
@@ -31,7 +32,7 @@
 			:max="max"
 			:min="min"
 		>
-			<farm-btn outlined color="secondary" @click="menuField = false" title="Fechar">
+			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
 				Fechar
 			</farm-btn>
 			<farm-btn outlined class="ml-2" @click="clear"> Limpar </farm-btn>
@@ -57,23 +58,29 @@ export default Vue.extend({
 	},
 	props: {
 		/**
-		 * String usada no como id do input e for do label
+		 * Input's id
 		 */
 		inputId: {
 			type: String,
 			required: true,
 		},
 		/**
-		 * Variável usada como v-model
+		 * v-model bind
 		 */
 		value: {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Max date (ISO format)
+		 */
 		max: {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Min date (ISO format)
+		 */
 		min: {
 			type: String,
 			default: null,
@@ -172,6 +179,12 @@ export default Vue.extend({
 			const onlyDMY = d.split(' ')[0];
 			const arr = onlyDMY.split('/');
 			return new Date(arr[2], arr[1] - 1, arr[0]);
+		},
+		openDatepicker() {
+			this.menuField = true;
+		},
+		closeDatepicker() {
+			this.menuField = false;
 		},
 	},
 	computed: {
