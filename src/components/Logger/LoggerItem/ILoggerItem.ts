@@ -4,6 +4,7 @@ interface ILoggerItem {
 	formattedDate: string;
 	message: string;
 	status: string;
+	extraMessage?: string;
 	details: Function;
 }
 
