@@ -2,7 +2,8 @@
 	<section :class="{ 'justify-end': justifyEnd === true }">
 		<fieldset v-if="hasInitialInput">
 			<farm-label :for="elementId">
-				{{ label }}
+				{{ !hasSlotData ? label : '' }}
+				<slot v-if="hasSlotData"></slot>
 				<farm-tooltip v-if="tooltip">
 					<farm-caption color="white">
 						{{ tooltip }}
@@ -86,6 +87,9 @@ export default Vue.extend({
 		},
 	},
 	computed: {
+		hasSlotData() {
+			return this.$slots.default;
+		},
 		extraFiltersBtnLabel() {
 			return `${this.showFilters ? 'Esconder' : 'Ver'} Filtros`;
 		},
