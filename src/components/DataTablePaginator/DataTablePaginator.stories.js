@@ -23,6 +23,10 @@ export default {
 };
 
 export const Primary = () => ({
+	template: '<farm-datatable-paginator :totalPages="190000" :page="1" />',
+});
+
+export const HidePerPageOptions = () => ({
 	template: '<farm-datatable-paginator :hidePerPageOptions="true" :totalPages="190000" :page="1" />',
 });
 
