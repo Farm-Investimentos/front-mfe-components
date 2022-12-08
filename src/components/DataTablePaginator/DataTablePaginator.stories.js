@@ -23,28 +23,23 @@ export default {
 };
 
 export const Primary = () => ({
-	data() {
-		return {
-			totalPages: 8,
-		};
-	},
-	template: '<farm-datatable-paginator :totalPages="totalPages" :page="1" />',
-	mounted() {
-		setTimeout(() => {
-			this.totalPages = 2;
-		}, 1000);
-	},
-});
-
-export const Secondary = () => ({
 	template: '<farm-datatable-paginator :hidePerPageOptions="true" :totalPages="190000" :page="1" />',
 });
 
 export const Disabled = () => ({
-	template: '<farm-datatable-paginator :disabled="true":totalPages="19" :page="1" />',
+	template: '<farm-datatable-paginator :disabled="true" :totalPages="19" :page="1" />',
 });
 
 export const CustomPerPage = () => ({
 	template:
-		'<farm-datatable-paginator :perPageOptions="[1, 2, 4, 12, 27]" :totalPages="19" :page="1" />',
+		'<farm-datatable-paginator :perPageOptions="[1, 2, 4, 12, 27]" :initialLimitPerPage="2" :totalPages="19" :page="1" />',
+});
+
+export const OnChangeLimitPerPage = () => ({
+	methods: {
+		onChangeLimitPerPage: (newValue) => {
+			alert(newValue);
+		}
+	},
+	template: '<farm-datatable-paginator :totalPages="19" :page="1" @onChangeLimitPerPage="onChangeLimitPerPage" />',
 });
