@@ -5,13 +5,8 @@
 			<div
 				v-if="hasDivider(index)"
 				:class="{
-					'logger__divider': true,
-					'logger__divider--success': isPreviousLogAndCurrentLogSuccess(index),
-					'logger__divider--error': isPreviousLogAndCurrentLogError(index),
-					'logger__divider--success-to-error':
-						isPreviousLogErrorAndCurrentLogSuccess(index),
-					'logger__divider--error-to-success':
-						isPreviousLogSuccessAndCurrentLogError(index),
+					logger__divider: true,
+					[dividerCssClass(index)]: true,
 				}"
 				:key="'divider_' + index"
 			></div>
@@ -34,23 +29,10 @@ export default Vue.extend({
 		hasDivider(index: number): boolean {
 			return index < this.items.length - 1;
 		},
-		isPreviousLogAndCurrentLogError(index: number): boolean {
-			return this.isError(index) && this.isError(index + 1);
-		},
-		isPreviousLogAndCurrentLogSuccess(index: number): boolean {
-			return this.isSuccess(index) && this.isSuccess(index + 1);
-		},
-		isPreviousLogErrorAndCurrentLogSuccess(index: number): boolean {
-			return this.isSuccess(index) && this.isError(index + 1);
-		},
-		isPreviousLogSuccessAndCurrentLogError(index: number): boolean {
-			return this.isError(index) && this.isSuccess(index + 1);
-		},
-		isError(index: number): boolean {
-			return this.items[index].status === 'error';
-		},
-		isSuccess(index: number): boolean {
-			return this.items[index].status === 'success';
+		dividerCssClass(index: number): string {
+			const previous = this.items[index].status;
+			const next = this.items[index + 1].status;
+			return `logger__divider--${previous}-to-${next}`;
 		},
 	},
 });

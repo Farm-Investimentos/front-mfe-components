@@ -182,10 +182,6 @@ export const InitInvalid = () => ({
     `,
 });
 
-
-
-
-
 export const Grid = () => ({
 	data() {
 		return {};
@@ -333,6 +329,58 @@ export const ValidateRadioGroup = () => ({
             <div class="footer" :style="[styles.footer]">
 				<farm-btn color="secondary" outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
 				<farm-btn color="secondary" :disabled="!validForm">Salvar</farm-btn>
+            </div>
+        </farm-form>
+    `,
+});
+
+export const RestartValidation = () => ({
+	data() {
+		return {
+			form: {
+				document: null,
+				name: null,
+				checkbox: null,
+				birthDate: '',
+				selectId: null,
+				rangeDate: [],
+			},
+			validForm: true,
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+				checked: value => !!value || 'Deve estar marcado',
+			},
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
+			styles,
+		};
+	},
+	template: `
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+			{{ validForm }}
+
+			<farm-label :required="true">Nome</farm-label>
+			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" />
+			
+			<div>
+				<farm-label :required="true">Documento</farm-label>
+				<farm-textfield-v2 v-model="form.document" :rules="[rules.required]" />
+			</div>
+		
+			
+			<farm-label :required="true">True/false</farm-label>
+			<farm-checkbox v-model="form.checkbox" value="1" :rules="[rules.checked]" />
+			
+			<farm-label :required="true">Select</farm-label>
+			<farm-select :rules="[rules.required]" :items="items" v-model="form.selectId"/>
+			
+            <div class="footer" :style="[styles.footer]">
+			<farm-btn outlined @click="$refs.form.restartValidation()" class="mr-3">Restart Validation</farm-btn>
+				<farm-btn outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn :disabled="!validForm">Salvar</farm-btn>
             </div>
         </farm-form>
     `,

@@ -60,6 +60,34 @@ export const Error = () => ({
 	template: `<farm-logger-item :item="item" />`,
 });
 
+export const Info = () => ({
+	data() {
+		return {
+			item: {
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+				status: 'info',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});
+
+export const ExtraMessage = () => ({
+	data() {
+		return {
+			item: {
+				message: 'Recusado entre as pré elegíveis',
+				extraMessage: 'More text',
+				formattedDate: '13/06/2022  20:40',
+				status: 'info',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});
+
 export const CustomIcon = () => ({
 	data() {
 		return {

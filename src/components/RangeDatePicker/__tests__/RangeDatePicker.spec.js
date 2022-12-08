@@ -3,6 +3,7 @@ import RangeDatePicker from '../RangeDatePicker';
 
 describe('RangeDatePicker component', () => {
 	let wrapper;
+	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(RangeDatePicker, {
@@ -10,6 +11,7 @@ describe('RangeDatePicker component', () => {
 				inputId: 'someid',
 			},
 		});
+		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {
@@ -29,9 +31,21 @@ describe('RangeDatePicker component', () => {
 				min: '2022-01-17',
 				max: '2022-01-31',
 			});
-			expect(wrapper.vm.inputId).toBe('someid');
-			expect(wrapper.vm.min).toBe('2022-01-17');
-			expect(wrapper.vm.max).toBe('2022-01-31');
+			expect(component.inputId).toBe('someid');
+			expect(component.min).toBe('2022-01-17');
+			expect(component.max).toBe('2022-01-31');
+		});
+	});
+
+	describe('methods', () => {
+		it('openDatepicker', () => {
+			component.openDatepicker();
+			expect(component.menuField).toBeTruthy();
+		});
+
+		it('closeDatepicker', () => {
+			component.closeDatepicker();
+			expect(component.menuField).toBeFalsy();
 		});
 	});
 });

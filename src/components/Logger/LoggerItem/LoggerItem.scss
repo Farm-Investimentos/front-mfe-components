@@ -27,7 +27,10 @@
 
     &.logger__item--success {
         @include loggerMessage(var(--farm-primary-base));
+    }
 
+    &.logger__item--info {
+        @include loggerMessage(var(--farm-info-base));
     }
 }
 
@@ -53,7 +56,8 @@
 }
 
 .logger__date,
-.logger__username {
+.logger__username,
+.logger__extramessage {
     font-size: 10px;
     font-weight: 400;
 }

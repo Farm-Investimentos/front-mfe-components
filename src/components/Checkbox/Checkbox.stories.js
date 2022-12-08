@@ -32,6 +32,30 @@ export const Primary = () => ({
 	</div>`,
 });
 
+export const Value = () => ({
+	data() {
+		return {
+			option1: 'option1',
+			option2: 'option2',
+			option3: 'option3',
+		};
+	},
+	template: `<div>
+	<div class="d-flex">
+	<farm-checkbox v-model="option1" value="1" class="mr-2" /> 
+		option1 : {{option1}}
+	</div>
+	<div class="d-flex align-center">
+	<farm-checkbox v-model="option2" value="2" class="mr-2 my-2" /> 
+		option2 : {{option2}}
+	</div>
+	<div class="d-flex">
+	<farm-checkbox v-model="option3" value="3" class="mr-2" /> 
+		option3 : {{option3}}
+	</div>
+	</div>`,
+});
+
 export const DefaultCheck = () => ({
 	data() {
 		return {

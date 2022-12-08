@@ -2,24 +2,43 @@
 	display: flex;
 	flex-direction: column;
 }
+
 .logger__divider {
 	height: 40px;
 	margin: -4px 0 -4px 16px;
 	width: 1px;
 
-	&.logger__divider--success {
+	&.logger__divider--success-to-success  {
 		background: var(--farm-primary-base);
 	}
 
-	&.logger__divider--error {
+	&.logger__divider--error-to-error {
 		background: var(--farm-error-base);
 	}
 
-	&.logger__divider--error-to-success {
-		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-primary-base));
+	&.logger__divider--info-to-info {
+		background: var(--farm-error-base);
 	}
 
 	&.logger__divider--success-to-error {
 		background: linear-gradient(to bottom, var(--farm-primary-base), var(--farm-error-base));
 	}
+	&.logger__divider--success-to-info {
+		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-info-base));
+	}
+
+	&.logger__divider--error-to-success {
+		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-primary-base));
+	}
+	&.logger__divider--error-to-info {
+		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-info-base));
+	}
+
+	&.logger__divider--info-to-success {
+		background: linear-gradient(to bottom, var(--farm-info-base), var(--farm-primary-base));
+	}
+	&.logger__divider--info-to-error {
+		background: linear-gradient(to bottom, var(--farm-info-base), var(--farm-error-base));
+	}
+	
 }

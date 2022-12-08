@@ -71,7 +71,8 @@ export default Vue.extend({
 			recursiveFormField(instance);
 			validationFields.forEach(field => {
 				watchInput(field);
-				field.validate();
+				field.validate(field.value);
+				if (field.makePristine) field.makePristine();
 			});
 		};
 

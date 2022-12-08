@@ -24,7 +24,7 @@ describe('Select component', () => {
 		it('reset', () => {
 			component.reset();
 			expect(component.isTouched).toBeTruthy();
-			expect(component.innerValue).toEqual('');
+			expect(component.innerValue).toEqual(null);
 		});
 
 		it('onBlur', () => {
@@ -35,6 +35,17 @@ describe('Select component', () => {
 		it('clickInput', () => {
 			component.clickInput();
 			expect(component.isTouched).toBeTruthy();
+		});
+
+		it('updateSelectedTextValue', () => {
+			component.updateSelectedTextValue();
+			expect(component.selectedText).toBeDefined();
+		});
+
+		it('makePristine', () => {
+			component.isTouched = true;
+			component.makePristine();
+			expect(component.isTouched).toBeFalsy();
 		});
 	});
 });

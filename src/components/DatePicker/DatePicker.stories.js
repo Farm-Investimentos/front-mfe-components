@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Input Date Picker<br />
-				selector: <em>farm-input-datepicker</em>
+				selector: <em>farm-input-datepicker</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

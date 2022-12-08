@@ -34,4 +34,16 @@ describe('DatePicker component', () => {
 			expect(wrapper.emitted().input).toBeDefined();
 		});
 	});
+
+	describe('methods', () => {
+		it('openDatepicker', () => {
+			component.openDatepicker();
+			expect(component.menuField).toBeTruthy();
+		});
+
+		it('closeDatepicker', () => {
+			component.closeDatepicker();
+			expect(component.menuField).toBeFalsy();
+		});
+	});
 });

@@ -14,15 +14,18 @@
 		<farm-contextmenu bottom v-model="isVisible">
 			<farm-list v-if="!readonly">
 				<farm-listitem
-					v-for="item in items"
+					v-for="(item, index) in items"
 					clickable
 					hoverColorVariation="lighten"
 					hover-color="primary"
-					:key="'contextmenu_item_' + item[itemText]"
+					:key="'contextmenu_item_' + index"
 					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
 					@click="selectItem(item)"
 				>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+				</farm-listitem>
+				<farm-listitem v-if="!items || items.length === 0">
+					{{ noDataText }}
 				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
@@ -41,7 +44,6 @@
 				</div>
 			</template>
 		</farm-contextmenu>
-
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
@@ -85,8 +87,6 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
-
-		errorMessage: String,
 		/**
 		 * Array of rules used for validation
 		 */
@@ -116,9 +116,16 @@ export default Vue.extend({
 			type: String,
 			default: 'value',
 		},
+		/**
+		 * No data text
+		 */
+		noDataText: {
+			type: String,
+			default: 'Não há dados',
+		},
 	},
 	setup(props, { emit }) {
-		const { rules, items, itemText, itemValue } = toRefs(props);
+		const { rules, items, itemText, itemValue, disabled } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
@@ -128,6 +135,7 @@ export default Vue.extend({
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
 		let fieldValidator = validateFormFieldBuilder(rules.value);
+		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
@@ -137,9 +145,22 @@ export default Vue.extend({
 
 		watch(
 			() => props.value,
+			newValue => {
+				innerValue.value = newValue;
+				errorBucket.value = [];
+				validate(newValue);
+				updateSelectedTextValue();
+				emit('input', newValue);
+				emit('change', newValue);
+			}
+		);
+
+		watch(
+			() => props.items,
 			() => {
-				innerValue.value = props.value;
+				errorBucket.value = [];
 				validate(innerValue.value);
+				updateSelectedTextValue();
 			}
 		);
 
@@ -158,26 +179,20 @@ export default Vue.extend({
 			(newVal, oldVal) => {
 				if (deepEqual(newVal, oldVal)) return;
 				fieldValidator = validateFormFieldBuilder(rules.value);
-				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 				validate(innerValue.value);
 			}
 		);
 
 		onBeforeMount(() => {
 			validate(innerValue.value);
-
-			const selectedItem = items.value.find(
-				item => item[itemValue.value] === innerValue.value
-			);
-			if (selectedItem) {
-				selectedText.value = selectedItem[itemText.value];
-			}
+			updateSelectedTextValue();
 		});
 
-		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
-
 		const reset = () => {
-			innerValue.value = '';
+			if (disabled.value) {
+				return;
+			}
+			innerValue.value = null;
 			selectedText.value = '';
 			isTouched.value = true;
 			emit('input', innerValue.value);
@@ -203,6 +218,23 @@ export default Vue.extend({
 			emit('click');
 		};
 
+		const makePristine = () => {
+			isTouched.value = false;
+		};
+
+		const updateSelectedTextValue = () => {
+			if (!items.value || items.value.length === 0 || !innerValue.value) {
+				selectedText.value = '';
+				return;
+			}
+			const selectedItem = items.value.find(
+				item => item[itemValue.value] == innerValue.value
+			);
+			if (selectedItem) {
+				selectedText.value = selectedItem[itemText.value];
+			}
+		};
+
 		return {
 			items,
 			innerValue,
@@ -221,6 +253,8 @@ export default Vue.extend({
 			onKeyUp,
 			onBlur,
 			clickInput,
+			updateSelectedTextValue,
+			makePristine,
 		};
 	},
 });
