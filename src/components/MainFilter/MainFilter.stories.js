@@ -28,6 +28,10 @@ export const CustomLabel = () => ({
 	template: '<farm-form-mainfilter label="Custom" />',
 });
 
+export const WithSlot = () => ({
+	template: '<farm-form-mainfilter>With Slot</farm-form-mainfilter>',
+});
+
 export const MainFilters = () => ({
 	data() {
 		return {
