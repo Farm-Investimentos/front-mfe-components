@@ -13,9 +13,12 @@
 			<span class="logger__message">
 				{{ item.message }}
 			</span>
-			<span class="logger__username">
+			<span v-if="item.userName" class="logger__username">
 				<i class="mdi mdi-account-circle" />
 				{{ item.userName }}
+			</span>
+			<span class="logger__extramessage">
+				{{ item.extraMessage }}
 			</span>
 		</div>
 		<farm-btn
@@ -32,6 +35,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import ILoggerItem from './ILoggerItem';
+import mappingIconKeys from './mappingIconKeys';
 
 export default Vue.extend({
 	name: 'farm-logger-item',
@@ -40,6 +44,7 @@ export default Vue.extend({
 		 * Logger item
 		 */
 		item: { required: true, type: Object as PropType<ILoggerItem> },
+		customIcon: { type: String, required: false },
 	},
 	methods: {
 		callDetails(): void {
@@ -54,7 +59,8 @@ export default Vue.extend({
 			if (!this.item.status) {
 				return '';
 			}
-			return `${this.item.status === 'success' ? 'check' : 'close'}`;
+
+			return this.item.status ? mappingIconKeys[this.item.status] : 'error';
 		},
 		buttonColor(): string {
 			if (this.item.status === 'success') {
