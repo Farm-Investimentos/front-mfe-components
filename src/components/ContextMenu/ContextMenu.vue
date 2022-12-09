@@ -86,6 +86,9 @@ export default Vue.extend({
 					window.addEventListener('resize', resizeWindowHandler);
 					calculatePosition();
 				} else {
+					styles.top = 0;
+					styles.left = 0;
+					styles.zIndex = 0;
 					window.removeEventListener('click', outClick);
 				}
 			}
@@ -113,7 +116,7 @@ export default Vue.extend({
 					? parseInt(activatorBoundingClientRect.width)
 					: 96) + 'px';
 
-			if(activatorBoundingClientRect.width < 96) {
+			if (activatorBoundingClientRect.width < 96) {
 				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
 				offsetLeft =
 					activatorBoundingClientRect.left +
