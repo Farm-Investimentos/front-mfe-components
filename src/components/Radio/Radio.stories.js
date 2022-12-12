@@ -1,5 +1,6 @@
 import { withDesign } from 'storybook-addon-designs';
 import Radio from './Radio.vue';
+import sizes from '../../configurations/sizes';
 
 export default {
 	title: 'Form/Radio',
@@ -79,5 +80,19 @@ export const Checked = () => ({
 	template: `<div style="width: 480px">
 		<farm-radio v-model="v" value="1" />
 		v-model: {{ v }}
+	</div>`,
+});
+
+export const Sizes = () => ({
+	data() {
+		return {
+			sizes,
+			v: 1,
+		};
+	},
+	template: `<div style="width: 480px">
+		<div v-for="size in sizes" :key="size" class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="size" :size="size"  />&nbsp;&nbsp;{{ size }}
+		</div>
 	</div>`,
 });
