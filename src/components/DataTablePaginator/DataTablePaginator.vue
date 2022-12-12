@@ -1,19 +1,17 @@
 <template>
 	<section
 		:class="{
-			'v-data-table-custom-footer': true,
+			'farm-paginator-footer': true,
 			'hidden-perpageoptions': hidePerPageOptions,
 			'farm-paginator--gutter': hasGutter,
 		}"
 	>
 		<div v-if="!hidePerPageOptions">
-			<v-select
-				outlined
+			<farm-select
 				v-model="selectedLimit"
-				:disabled="!totalPages || totalPages < 1"
+				:disabled="disabled || !totalPages || totalPages < 1"
 				:items="perPageBuiltItems"
-				dense
-			></v-select>
+			/>
 		</div>
 
 		<ul
@@ -61,7 +59,6 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { VSelect } from 'vuetify/lib/components/VSelect';
 
 /**
  * Componente de paginação usado em tabelas e listas
@@ -69,49 +66,49 @@ import { VSelect } from 'vuetify/lib/components/VSelect';
  */
 export default Vue.extend({
 	name: 'farm-datatable-paginator',
-	components: {
-		VSelect,
-	},
 	props: {
 		/**
-		 * Lista de opções para o controle de registros por página
+		 * Ietms per page list
 		 */
 		perPageOptions: {
 			type: Array,
 			default: () => [5, 10, 20, 50, 100],
 		},
 		/**
-		 * Páginas atual
+		 * Current page
 		 */
 		page: null,
 		/**
-		 * Total de páginas
+		 * Total pages
 		 */
 		totalPages: {
 			type: Number,
 			default: null,
 		},
 		/**
-		 * Desabilita controles
+		 * DDisable controls
 		 */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Esconde controle de registros por página
+		 * Hide items per page select 
 		 */
 		hidePerPageOptions: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Valor inicial de limite por página
+		 * Items per page initial value
 		 */
 		initialLimitPerPage: {
 			type: Number,
 			default: 10,
 		},
+		/**
+		 * Toggle gutters
+		*/
 		hasGutter: {
 			type: Boolean,
 			default: true,
@@ -213,7 +210,6 @@ export default Vue.extend({
 			this.selectedLimit = newValue;
 		},
 	},
-	
 });
 </script>
 
