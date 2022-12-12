@@ -11,7 +11,7 @@ export default {
 			description: {
 				component: `Radio<br />
 				selector: <em>farm-radio</em><br />
-				<span style="color: var(--farm-extra-1-base);">development</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 			design: {
