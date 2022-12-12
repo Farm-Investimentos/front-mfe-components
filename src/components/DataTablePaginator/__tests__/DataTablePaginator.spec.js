@@ -6,7 +6,11 @@ describe('DataTablePaginator component', () => {
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(DataTablePaginator);
+		wrapper = shallowMount(DataTablePaginator, {
+			propsData: {
+				title: '',
+			},
+		});
 		component = wrapper.vm;
 	});
 

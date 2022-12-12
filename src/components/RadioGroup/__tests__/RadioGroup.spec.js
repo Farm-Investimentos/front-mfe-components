@@ -5,7 +5,11 @@ describe('RadioGroup component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(RadioGroup, {});
+		wrapper = shallowMount(RadioGroup, {
+			propsData: {
+				value: 1,
+			},
+		});
 	});
 
 	test('Created hook', () => {

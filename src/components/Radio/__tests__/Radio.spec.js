@@ -8,7 +8,9 @@ describe('Radio component', () => {
 
 	beforeEach(() => {
 		wrapper = shallowMount(Radio, {
-			propsData: {},
+			propsData: {
+				value: 1,
+			},
 		});
 		component = wrapper.vm;
 	});
