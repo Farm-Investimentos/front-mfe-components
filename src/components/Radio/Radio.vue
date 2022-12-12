@@ -5,13 +5,14 @@
 			'farm-radio--checked': isChecked,
 		}"
 		type="radio"
+		:size="$props.size"
 		:checked="isChecked"
 		:value="value"
 		@click="onClick"
 	/>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-radio',
@@ -27,6 +28,13 @@ export default Vue.extend({
 		 * Value to be set to v-model
 		 */
 		value: { type: [String, Number, Boolean], required: true },
+		/**
+		 * Size
+		 */
+		size: {
+			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
+			default: 'md',
+		},
 	},
 	computed: {
 		isChecked() {
