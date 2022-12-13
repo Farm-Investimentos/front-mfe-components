@@ -8,9 +8,9 @@
 			<farm-icon
 				v-if="icon"
 				class="farm-alert-box__icon"
-				:color="color"
 				variation="darken"
 				size="md"
+				:color="color"
 				>{{ icon }}</farm-icon
 			>
 			<div
@@ -20,10 +20,10 @@
 				}"
 			>
 				<farm-bodytext
-					:type="1"
 					variation="regular"
-					:color="color"
 					color-variation="darken"
+					:type="1"
+					:color="color"
 				>
 					<slot></slot>
 				</farm-bodytext>
