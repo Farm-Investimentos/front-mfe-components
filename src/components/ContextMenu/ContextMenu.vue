@@ -78,6 +78,7 @@ export default Vue.extend({
 			() => inputValue.value,
 			newValue => {
 				if (newValue) {
+					styles.display = 'block';
 					if (!hasBeenBoostrapped) {
 						document.querySelector('body').appendChild(popup.value);
 						hasBeenBoostrapped = true;
@@ -86,6 +87,7 @@ export default Vue.extend({
 					window.addEventListener('resize', resizeWindowHandler);
 					calculatePosition();
 				} else {
+					styles.display = 'none';
 					styles.top = 0;
 					styles.left = 0;
 					styles.zIndex = 0;
@@ -106,8 +108,6 @@ export default Vue.extend({
 				parentBoundingClientRect.top +
 				window.scrollY +
 				(!bottom.value ? 0 : activatorBoundingClientRect.height);
-
-			//
 
 			let offsetLeft = activatorBoundingClientRect.left;
 
