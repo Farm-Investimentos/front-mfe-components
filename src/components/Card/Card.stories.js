@@ -24,4 +24,17 @@ export const Primary = () => ({
 	`,
 });
 
-
+export const Events = () => ({
+	methods: {
+		handleEvent(type) {
+			alert(type);
+		},
+	},
+	template: `
+		<farm-card
+			@click.stop="handleEvent('click')"
+		>
+		Card content
+		</farm-card>
+	`,
+});
