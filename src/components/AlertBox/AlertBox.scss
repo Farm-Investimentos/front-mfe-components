@@ -1,13 +1,18 @@
 @import '../../configurations/theme-colors';
 
 .farm-alert-box {
-	background-color: themeColor('primary', 'lighten');
 	border-radius: 5px;
-	color: themeColor('primary', 'darken');
 	display: flex;
 	padding: 8px 16px;
 	position: relative;
 	min-height: 40px;
+
+	@each $color in $theme-colors-list {
+		&#{'[color=' + $color + ']'} {
+			background-color: themeColor($color, 'lighten');
+			color: themeColor($color, 'darken');
+		}
+	}
 
 	&__content {
 		flex: 1;
