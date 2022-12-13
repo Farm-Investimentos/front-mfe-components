@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType, reactive, ref, toRefs, watch } from 'vue';
+import Vue, { onBeforeUnmount, onMounted, PropType, reactive, ref, toRefs, watch } from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
 export default Vue.extend({
@@ -61,6 +61,7 @@ export default Vue.extend({
 		},
 	},
 	setup(props, { emit }) {
+		let hasBeenBoostrapped = false;
 		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
 		const inputValue = ref(props.value);
 		const styleObject = reactive({ zIndex: 1 });
@@ -84,17 +85,32 @@ export default Vue.extend({
 			newValue => {
 				inputValue.value = newValue;
 				if (newValue) {
-					(styleObject.zIndex = calculateMainZindex()),
-						window.addEventListener('keyup', escHandler);
+					bootstrap();
 				}
 			}
 		);
+
+		onMounted(() => {
+			bootstrap();
+		});
 
 		const escHandler = event => {
 			if (event.key === 'Escape') {
 				close();
 			}
 		};
+
+		const bootstrap = () => {
+			styleObject.zIndex = calculateMainZindex();
+			window.addEventListener('keyup', escHandler);
+			hasBeenBoostrapped = true;
+		};
+
+		onBeforeUnmount(() => {
+			if (hasBeenBoostrapped) {
+				window.removeEventListener('resize', escHandler);
+			}
+		});
 
 		return {
 			inputValue,

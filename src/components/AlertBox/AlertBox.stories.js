@@ -1,4 +1,6 @@
 import AlertBox from './AlertBox.vue';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Feedback/AlertBox',
@@ -47,4 +49,16 @@ export const moreThanOneLine = () => ({
 		};
 	},
 	template: '<farm-alertbox icon="book" dismissable>{{text}}</farm-alertbox>',
+});
+
+export const Colors = () => ({
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `
+		<div>
+		<farm-alertbox class="mt-3" v-for="color of colors" :key="'random_10_' + color" :color="color" icon="book" dismissable>alert box</farm-alertbox>
+		</div> `,
 });

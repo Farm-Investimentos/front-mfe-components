@@ -1,6 +1,6 @@
 <template>
-	<section :class="{ 'justify-end': justifyEnd === true }">
-		<fieldset v-if="hasInitialInput">
+	<farm-row :class="{ 'justify-end': justifyEnd === true }">
+		<farm-col v-if="hasInitialInput" md="6">
 			<farm-label :for="elementId">
 				{{ !hasSlotData ? label : '' }}
 				<slot v-if="hasSlotData"></slot>
@@ -14,16 +14,17 @@
 				</farm-tooltip>
 			</farm-label>
 			<farm-textfield-v2 v-model="inputValue" :id="elementId" @keyup="onKeyUp" />
-		</fieldset>
+		</farm-col>
 		<farm-btn
 			v-if="hasExtraFilters"
-			class="farm-btn--responsive mt-14 mt-sm-8"
+			class="farm-btn__cta"
+			:title="extraFiltersBtnLabel"
 			@click="onFilterClick"
 		>
 			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
 			{{ extraFiltersBtnLabel }}
 		</farm-btn>
-	</section>
+	</farm-row>
 </template>
 
 <script lang="ts">

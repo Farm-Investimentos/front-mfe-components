@@ -1,5 +1,5 @@
 <template>
-	<component class="farm-card" :is="tag">
+	<component class="farm-card" :is="tag" v-on="$listeners">
 		<slot></slot>
 	</component>
 </template>
