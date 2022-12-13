@@ -1,12 +1,16 @@
 <template>
 	<transition name="fade">
-		<div v-if="visible" :class="{ 'farm-alert-box': true, 'farm-alert-box--dense': dense }">
+		<div
+			v-if="visible"
+			:color="color"
+			:class="{ 'farm-alert-box': true, 'farm-alert-box--dense': dense }"
+		>
 			<farm-icon
 				v-if="icon"
 				class="farm-alert-box__icon"
-				color="primary"
 				variation="darken"
 				size="md"
+				:color="color"
 				>{{ icon }}</farm-icon
 			>
 			<div
@@ -16,23 +20,30 @@
 				}"
 			>
 				<farm-bodytext
-					:type="1"
 					variation="regular"
-					color="primary"
 					color-variation="darken"
+					:type="1"
+					:color="color"
 				>
 					<slot></slot>
 				</farm-bodytext>
 			</div>
-			<farm-btn class="farm-alert-box__close" v-if="dismissable" icon size="md">
-				<farm-icon color="primary" variation="darken" size="md">close</farm-icon>
+			<farm-btn
+				class="farm-alert-box__close"
+				v-if="dismissable"
+				icon
+				size="md"
+				:color="color"
+				@click="close"
+			>
+				<farm-icon variation="darken" size="md" :color="color">close</farm-icon>
 			</farm-btn>
 		</div>
 	</transition>
 </template>
 
 <script lang="ts">
-import Vue, { ref } from 'vue';
+import Vue, { ref, PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-alertbox',
@@ -57,6 +68,24 @@ export default Vue.extend({
 		dense: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
 		},
 	},
 	setup() {

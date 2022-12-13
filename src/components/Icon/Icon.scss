@@ -31,3 +31,17 @@
 		}
 	}
 }
+
+@each $color in $theme-colors-list {
+	.farm-btn.farm-btn--icon.farm-btn--#{$color}:not(.farm-btn--disabled)
+		.farm-btn__content
+		i.mdi.farm-icon--darken {
+		color: var(--farm-#{$color}-darken);
+	}
+
+	.farm-btn.farm-btn--icon.farm-btn--#{$color}:not(.farm-btn--disabled)
+		.farm-btn__content
+		i.mdi.farm-icon--lighten {
+		color: var(--farm-#{$color}-lighten);
+	}
+}
