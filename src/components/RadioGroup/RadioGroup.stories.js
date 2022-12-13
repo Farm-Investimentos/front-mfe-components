@@ -1,11 +1,10 @@
 import RadioGroup from './RadioGroup';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
-
-const colors = Object.keys(baseThemeColors);
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
 	title: 'Form/RadioGroup',
 	component: RadioGroup,
+	decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {
