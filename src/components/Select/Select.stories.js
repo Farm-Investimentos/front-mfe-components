@@ -27,6 +27,7 @@ export const Primary = () => ({
 		return {
 			v: null,
 			items: [
+				{ value: 0, text: 'value 0' },
 				{ value: 1, text: 'value 1' },
 				{ value: 2, text: 'value 2' },
 				{ value: 3, text: 'value 3' },
