@@ -1,29 +1,16 @@
-section {
-	display: flex;
-	flex-direction: row;
+.farm-tooltip {
+	margin-left: 4px;
+}
 
-	.farm-btn {
-		margin-left: 16px;
-	}
-
-	fieldset {
-		border: 0;
-	}
-
-	.farm-tooltip {
-		margin-left: 4px;
-	}
-
+.farm-btn {
+	margin-left: 12px;
 }
 
 @media screen and (max-width: 600px) {
-	section {
-		flex-direction: column;
-		margin-bottom: 1rem;
-
-		.farm-btn {
-			margin-left: 0;
-			margin-top: 0 !important;
-		}
+	.farm-btn {
+		width: calc(100% - 24px);
+		margin-left: 12px;
+		margin-top: 0 !important;
 	}
+
 }

@@ -1,5 +1,7 @@
 import { withDesign } from 'storybook-addon-designs';
 import ValueCaption from '.';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Display/ValueCaption',
@@ -30,4 +32,27 @@ export const Primary = () => ({
         </template>
     </farm-valuecaption>
     `,
+});
+
+export const Colors = () => ({
+	data() {
+		return {
+			colors: [...colors],
+		};
+	},
+	template: `<div class="d-flex flex-column">
+       <farm-valuecaption
+			icon="account-box-outline"
+			v-for="color of colors":key="color"
+			:iconBoxColor="color"
+			class="mb-3"
+		>
+			<template v-slot:title>
+				color: {{ color }}
+			</template>
+			<template v-slot:subtitle>
+				R$ 1.000,00
+			</template>
+		</farm-valuecaption>
+	</div>`,
 });
