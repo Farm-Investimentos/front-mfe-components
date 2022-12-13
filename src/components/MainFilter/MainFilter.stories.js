@@ -47,7 +47,7 @@ export const Tooltip = () => ({
 export const Application = () => ({
 	data() {
 		return {
-			showFilters: false,
+			showFilters: true,
 		};
 	},
 	template: `<div>
@@ -58,7 +58,7 @@ export const Application = () => ({
 		</farm-row>
 		<farm-row v-if="showFilters">
 			<farm-col cols="12">
-			Aqui são os filtros extras
+			Extra filters
 			</farm-col>
 			<farm-col cols="12" md="3">
 				<farm-textfield />

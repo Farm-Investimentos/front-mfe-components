@@ -17,7 +17,8 @@
 		</farm-col>
 		<farm-btn
 			v-if="hasExtraFilters"
-			class="mt-14 mt-sm-8"
+			class="farm-btn__cta"
+			:title="extraFiltersBtnLabel"
 			@click="onFilterClick"
 		>
 			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
