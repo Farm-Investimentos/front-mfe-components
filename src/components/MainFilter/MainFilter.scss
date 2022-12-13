@@ -2,15 +2,15 @@
 	margin-left: 4px;
 }
 
-.farm-btn {
+.farm-btn.farm-btn__cta {
 	margin-left: 12px;
+	margin-top: 32px;
 }
 
 @media screen and (max-width: 600px) {
-	.farm-btn {
+	.farm-btn.farm-btn__cta {
 		width: calc(100% - 24px);
 		margin-left: 12px;
 		margin-top: 0 !important;
 	}
-
 }
