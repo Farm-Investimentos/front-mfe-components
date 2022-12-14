@@ -34,7 +34,7 @@ export default Vue.extend({
 		 */
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
-			default: 'md',
+			default: 'sm',
 		},
 		/**
 		 * Color

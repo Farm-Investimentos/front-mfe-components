@@ -112,3 +112,19 @@ export const Colors = () => ({
 		</div>
 	</div>`,
 });
+
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 1,
+		};
+	},
+	template: `<div style="width: 480px">
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="2" disabled  />&nbsp;&nbsp;Disabled
+		</div>
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="1" disabled />&nbsp;&nbsp;Checked and Disabled
+		</div>
+	</div>`,
+});
