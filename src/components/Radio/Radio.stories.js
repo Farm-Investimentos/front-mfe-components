@@ -1,6 +1,8 @@
 import { withDesign } from 'storybook-addon-designs';
 import Radio from './Radio.vue';
 import sizes from '../../configurations/sizes';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Form/Radio',
@@ -93,6 +95,20 @@ export const Sizes = () => ({
 	template: `<div style="width: 480px">
 		<div v-for="size in sizes" :key="size" class="d-flex flex-row align-center mb-3">
 			<farm-radio v-model="v" :value="size" :size="size"  />&nbsp;&nbsp;{{ size }}
+		</div>
+	</div>`,
+});
+
+export const Colors = () => ({
+	data() {
+		return {
+			colors,
+			v: 1,
+		};
+	},
+	template: `<div style="width: 480px">
+		<div v-for="color in colors" :key="color" class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="1" :color="color"  />&nbsp;&nbsp;{{ color }}
 		</div>
 	</div>`,
 });

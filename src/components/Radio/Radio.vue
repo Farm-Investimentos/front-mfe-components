@@ -5,6 +5,7 @@
 			'farm-radio--checked': isChecked,
 		}"
 		type="radio"
+		:color="color"
 		:size="$props.size"
 		:checked="isChecked"
 		:value="value"
@@ -34,6 +35,24 @@ export default Vue.extend({
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'md',
+		},
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'success'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
 		},
 	},
 	computed: {
