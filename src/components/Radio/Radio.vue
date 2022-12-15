@@ -1,16 +1,23 @@
 <template>
-	<input
-		:class="{
-			'farm-radio': true,
-			'farm-radio--checked': isChecked,
-		}"
-		type="radio"
-		:color="color"
-		:size="$props.size"
-		:checked="isChecked"
-		:value="value"
-		@click="onClick"
-	/>
+	<div class="farm-radio-wrapper">
+		<input
+			:class="{
+				'farm-radio': true,
+				'farm-radio--checked': isChecked,
+			}"
+			:id="id"
+			type="radio"
+			:color="color"
+			:size="$props.size"
+			:checked="isChecked"
+			:value="value"
+			v-bind="$attrs"
+			@click="onClick"
+		/>
+		<farm-label v-if="label" class="ml-2" :for="id">
+			{{ label }}
+		</farm-label>
+	</div>
 </template>
 <script lang="ts">
 import Vue, { PropType } from 'vue';
@@ -53,6 +60,20 @@ export default Vue.extend({
 				| 'extra-2'
 			>,
 			default: 'primary',
+		},
+		/**
+		 * Label
+		 */
+		label: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * ID
+		 */
+		id: {
+			type: String,
+			default: '',
 		},
 	},
 	computed: {
