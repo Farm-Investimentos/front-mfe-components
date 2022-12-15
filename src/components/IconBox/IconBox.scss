@@ -18,6 +18,10 @@
 	&--neutral .farm-icon.farm-icon {
 		color: var(--farm-neutral-darken);
 	}
+	&--secondary .farm-icon.farm-icon,
+	&--gray .farm-icon.farm-icon {
+		color: white;
+	}
 }
 
 .farm-icon-box--inverted.farm-icon-box {

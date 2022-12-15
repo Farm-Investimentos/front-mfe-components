@@ -79,16 +79,15 @@
 				</div>
 			</li>
 		</ul>
-
 		<farm-btn
-			v-if="hasFiles"
+			v-if="canAddMoreFiles && hasFiles"
 			outlined
-			title="Escolher Outro"
+			title="Escolher Arquivo"
 			class="farm-btn--responsive"
 			:disabled="disabledButton"
 			@click="addMoreFiles"
 		>
-			Escolher Outro
+			Escolher Arquivo
 		</farm-btn>
 	</section>
 </template>
@@ -144,6 +143,9 @@ export default Vue.extend({
 	computed: {
 		hasFiles(): boolean {
 			return this.files.length > 0 || this.downloadFiles.length > 0;
+		},
+		canAddMoreFiles(): boolean {
+			return this.filesLength < this.maxFilesNumber;
 		},
 		filesLength(): number {
 			return this.files.length + this.downloadFiles.length;

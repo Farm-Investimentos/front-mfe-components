@@ -42,15 +42,15 @@ export const Value = () => ({
 	},
 	template: `<div>
 	<div class="d-flex">
-	<farm-checkbox v-model="option1" value="1" class="mr-2" /> 
+	<farm-checkbox v-model="option1" value="option1" class="mr-2" /> 
 		option1 : {{option1}}
 	</div>
 	<div class="d-flex align-center">
-	<farm-checkbox v-model="option2" value="2" class="mr-2 my-2" /> 
+	<farm-checkbox v-model="option2" value="option2" class="mr-2 my-2" /> 
 		option2 : {{option2}}
 	</div>
 	<div class="d-flex">
-	<farm-checkbox v-model="option3" value="3" class="mr-2" /> 
+	<farm-checkbox v-model="option3" value="option3" class="mr-2" /> 
 		option3 : {{option3}}
 	</div>
 	</div>`,
@@ -143,5 +143,31 @@ export const Indeterminate = () => ({
 	},
 	template: `<div>
 		<farm-checkbox :indeterminate="true" v-model="isChecked" :value="true"  />
+	</div>`,
+});
+
+export const ResetByValue = () => ({
+	data() {
+		return {
+			isChecked: true,
+		};
+	},
+	template: `<div>
+		<farm-checkbox v-model="isChecked" :value="true" />
+		isChecked (value): {{ isChecked }}
+		<farm-btn @click="isChecked = null;">reset</farm-btn>
+	</div>`,
+});
+
+export const ResetByMethod = () => ({
+	data() {
+		return {
+			isChecked: true,
+		};
+	},
+	template: `<div>
+		<farm-checkbox v-model="isChecked" :value="true" ref="checkbox" />
+		isChecked (value): {{ isChecked }}
+		<farm-btn @click="$refs.checkbox.reset()">reset</farm-btn>
 	</div>`,
 });
