@@ -1,18 +1,14 @@
 <template>
 	<div class="farm-checkbox__container" :color="$props.color">
-		<span
-			:class="{
-				'farm-checkbox': true,
-				'farm-checkbox--checked': isChecked,
-				'farm-checkbox--disabled': disabled,
-				'farm-checkbox--indeterminate': indeterminate,
-				'farm-checkbox--lighten': variation === 'lighten',
-				'farm-checkbox--darken': variation === 'darken',
-				'farm-checkbox--error': showError,
-			}"
-			:size="$props.size"
-			@click="toggleValue"
-		>
+		<span :class="{
+			'farm-checkbox': true,
+			'farm-checkbox--checked': isChecked,
+			'farm-checkbox--disabled': disabled,
+			'farm-checkbox--indeterminate': indeterminate,
+			'farm-checkbox--lighten': variation === 'lighten',
+			'farm-checkbox--darken': variation === 'darken',
+			'farm-checkbox--error': showError,
+		}" :size="$props.size" @click="toggleValue">
 			<farm-icon :size="$props.size" v-if="innerValue && !indeterminate">check</farm-icon>
 			<farm-icon :size="$props.size" v-if="indeterminate">minus</farm-icon>
 		</span>
@@ -123,14 +119,16 @@ export default Vue.extend({
 
 		const showError = computed(() => hasError.value && isTouched.value);
 
+		
 		watch(
-			() => props.value,
-			() => {
+			() => props.modelValue,
+			(newValue) => {
 				isTouched.value = true;
-				innerValue.value = props.value;
+				innerValue.value = newValue;
 				validate(innerValue.value);
 			}
 		);
+		
 
 		watch(
 			() => props.rules,
