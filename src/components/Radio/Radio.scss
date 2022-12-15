@@ -31,12 +31,12 @@ input[type='radio'] {
 		outline-offset: none;
 	}
 
-	/* 	&:hover {
+	&:hover {
 		box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
 		background-color: rgba(0, 0, 0, 0.1);
 		border-radius: 50%;
 		opacity: 1;
-	} */
+	}
 
 	&:active {
 		animation: pulse 0.2s 1 ease-out;
@@ -52,7 +52,7 @@ input[type='radio'] {
 				border-color: themeColor($color, 'base');
 			}
 
-			&:hover {
+			&.farm-radio--checked:hover {
 				box-shadow: 0px 0px 0px 8px themeColor($color, 'lighten');
 				background-color: themeColor($color, 'lighten');
 				border-radius: 50%;
