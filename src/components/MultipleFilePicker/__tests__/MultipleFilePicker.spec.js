@@ -143,6 +143,18 @@ describe('MultipleFilePicker component', () => {
 				expect(component.disabledButton).toBeTruthy();
 			});
 		});
+
+		describe('canAddMoreFiles', () => {
+			it('should return files and downloadFiles length', async () => {
+				await wrapper.setProps({
+					maxFilesNumber: 2,
+					downloadFiles: [new File([], 'test')],
+				});
+				component.files = [new File([], 'test2')];
+
+				expect(component.canAddMoreFiles).toBeFalsy();
+			});
+		});
 	});
 
 	describe('Watch', () => {
