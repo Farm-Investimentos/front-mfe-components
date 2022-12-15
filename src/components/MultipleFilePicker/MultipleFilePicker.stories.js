@@ -24,7 +24,10 @@ export const MaxFileSize = () => ({
 });
 
 export const MaxFilesNumber = () => ({
-	template: '<farm-multiple-filepicker :maxFileSize="5" :maxFilesNumber="1" />',
+	template: `<div>
+		<farm-multiple-filepicker :maxFileSize="5" :maxFilesNumber="2" />
+		max files allowed: 2
+	</div>`,
 });
 
 export const Download = () => ({
