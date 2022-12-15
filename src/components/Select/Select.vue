@@ -211,6 +211,7 @@ export default Vue.extend({
 		const selectItem = item => {
 			selectedText.value = item[itemText.value];
 			innerValue.value = item[itemValue.value];
+			isVisible.value = false;
 		};
 
 		const clickInput = () => {

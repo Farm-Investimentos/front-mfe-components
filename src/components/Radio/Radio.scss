@@ -1,63 +1,69 @@
 @import '../../configurations/variables';
+@import '../../configurations/theme-colors';
 
-input[type="radio"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #ffffff;
-    margin: 0;
-    font: inherit;
-    color: rgba(0, 0, 0, .6);
-    border: 1.5px solid rgba(0, 0, 0, .6);
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-    cursor: pointer;
+input[type='radio'] {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #ffffff;
+	margin: 0;
+	font: inherit;
+	color: rgba(0, 0, 0, 0.6);
+	border: 1.5px solid rgba(0, 0, 0, 0.6);
+	border-radius: 50%;
+	display: grid;
+	place-content: center;
+	cursor: pointer;
 
-    &::before {
-        content: "";
-        border-radius: 50%;
-        transform: scale(0);
-        transition: 120ms transform ease-in-out;
-        background-color: CanvasText;
-    }
+	&::before {
+		content: '';
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		background-color: CanvasText;
+	}
 
-    &.farm-radio--checked::before {
-        transform: scale(1);
-        box-shadow: inset 16px 16px var(--farm-primary-base);
-    }
+	&.farm-radio--checked::before {
+		transform: scale(1);
+	}
 
-    &.farm-radio--checked {
-        border-color: var(--farm-primary-base);
-    }
+	&:focus {
+		outline: none;
+		outline-offset: none;
+	}
 
-    &:focus {
-        outline: none;
-        outline-offset: none;
-    }
+	&:hover {
+		box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+		background-color: rgba(0, 0, 0, 0.1);
+		border-radius: 50%;
+		opacity: 1;
+	}
 
-    &:hover {
-        box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        opacity: 1;
-    }
+	&:active {
+		animation: pulse 0.2s 1 ease-out;
+	}
 
-    &:active {
-        animation: pulse 0.2s 1 ease-out;
-    }
+	@each $color in $theme-colors-list {
+		&#{'[color=' + $color + ']'} {
+			&.farm-radio--checked::before {
+				box-shadow: inset 16px 16px themeColor($color, 'base');
+			}
+
+			&.farm-radio--checked {
+				border-color: themeColor($color, 'base');
+			}
+		}
+	}
 }
 
+@each $size, $value in $sizes {
+	#{'input[type="radio"][size=' + $size + ']'} {
+		width: $value;
+		height: $value;
 
-@each $size,
-$value in $sizes {
-    #{'input[type="radio"][size=' + $size +']'} {
-        width: $value;
-        height: $value;
-
-        &::before {
-            content: "";
-            width: $value / 2;
-            height: $value / 2;
-        }
-    }
+		&::before {
+			content: '';
+			width: $value / 2;
+			height: $value / 2;
+		}
+	}
 }
