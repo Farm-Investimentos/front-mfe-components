@@ -4,14 +4,10 @@
 			<slot name="activator"></slot>
 		</span>
 
-		<div
-			ref="popup"
-			:class="{
-				'farm-contextmenu__popup': true,
-				'farm-contextmenu__popup--visible': inputValue,
-			}"
-			:style="styles"
-		>
+		<div ref="popup" :class="{
+			'farm-contextmenu__popup': true,
+			'farm-contextmenu__popup--visible': inputValue,
+		}" :style="styles">
 			<slot></slot>
 		</div>
 	</div>
