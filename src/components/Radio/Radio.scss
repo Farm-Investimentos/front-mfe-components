@@ -55,13 +55,6 @@ input[type='radio'] {
 			&.farm-radio--checked {
 				border-color: themeColor($color, 'base');
 			}
-
-			&.farm-radio--checked:hover {
-				box-shadow: 0px 0px 0px 8px rgba(themeColor($color, 'base'), 0.1);
-				background-color: rgba(themeColor($color, 'base'), 0.1);
-				border-radius: 50%;
-				opacity: 1;
-			}
 		}
 	}
 
