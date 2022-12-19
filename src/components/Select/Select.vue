@@ -22,7 +22,21 @@
 					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
 					@click="selectItem(item)"
 				>
-					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+					<farm-checkbox
+						class="farm-select__checkbox"
+						v-model="checked"
+						value="1"
+						size="sm"
+						v-if="isChecked(item)"
+					></farm-checkbox>
+					<farm-checkbox
+						class="farm-select__checkbox"
+						v-model="checked"
+						value="2"
+						size="sm"
+						v-else-if="multiple"
+					></farm-checkbox
+					><farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 				<farm-listitem v-if="!items || items.length === 0">
 					{{ noDataText }}
@@ -68,7 +82,7 @@ export default Vue.extend({
 		/**
 		 * v-model binding
 		 */
-		value: { type: [String, Number], default: '' },
+		value: { type: [String, Number, Array], default: '' },
 		hint: {
 			type: String,
 			default: null,
@@ -123,14 +137,24 @@ export default Vue.extend({
 			type: String,
 			default: 'Não há dados',
 		},
+		/**
+		 * Set a multiple select
+		 */
+		multiple: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
-		const { rules, items, itemText, itemValue, disabled } = toRefs(props);
+		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
 		const isVisible = ref(false);
 		const selectedText = ref('');
+		const multipleValues = ref([]);
+		const checked = ref('1');
+		const notChecked = ref(false);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -193,8 +217,13 @@ export default Vue.extend({
 				return;
 			}
 			innerValue.value = null;
+			multipleValues.value = [];
 			selectedText.value = '';
 			isTouched.value = true;
+			if (multiple.value) {
+				emit('input', multipleValues.value);
+				return;
+			}
 			emit('input', innerValue.value);
 		};
 
@@ -209,6 +238,32 @@ export default Vue.extend({
 		};
 
 		const selectItem = item => {
+			if (multiple.value) {
+				const alreadyAdded = multipleValues.value.findIndex(val => val === item.value);
+				checked.value = '1';
+				if (alreadyAdded !== -1) {
+					multipleValues.value.splice(alreadyAdded, 1);
+				} else {
+					multipleValues.value.push(item.value);
+				}
+
+				innerValue.value = multipleValues.value;
+				const labelItem = items.value.find(item => item.value === multipleValues.value[0]);
+
+				if (innerValue.value.length === 0) {
+					selectedText.value = '';
+					return;
+				} else if (innerValue.value.length === 1) {
+					selectedText.value = labelItem.text;
+					return;
+				}
+
+				selectedText.value = `${labelItem.text} (${innerValue.value.length - 1} ${
+					innerValue.value.length - 1 === 1 ? 'outro' : 'outros'
+				})`;
+
+				return;
+			}
 			selectedText.value = item[itemText.value];
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
@@ -236,6 +291,17 @@ export default Vue.extend({
 			}
 		};
 
+		const isChecked = item => {
+			if (
+				multiple.value &&
+				multipleValues.value.findIndex(val => val === item.value) !== -1
+			) {
+				return true;
+			}
+
+			return false;
+		};
+
 		return {
 			items,
 			innerValue,
@@ -256,6 +322,9 @@ export default Vue.extend({
 			clickInput,
 			updateSelectedTextValue,
 			makePristine,
+			checked,
+			notChecked,
+			isChecked,
 		};
 	},
 });
