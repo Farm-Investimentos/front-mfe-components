@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Line<br />
-				selector: <em>farm-line</em>
+				selector: <em>farm-line</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

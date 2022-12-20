@@ -7,7 +7,8 @@ export default {
 		docs: {
 			description: {
 				component: `Button Toggle<br />
-				selector: <em>farm-button-toggle</em>
+				selector: <em>farm-button-toggle</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

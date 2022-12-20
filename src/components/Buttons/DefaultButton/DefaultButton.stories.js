@@ -13,7 +13,8 @@ export default {
 		docs: {
 			description: {
 				component: `Default button<br />
-				selector: <em>farm-btn</em>
+				selector: <em>farm-btn</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 			design: {

@@ -12,11 +12,11 @@ export default {
 	decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
-
 		docs: {
 			description: {
 				component: `ListItem<br />
-				selector: <em>farm-listitem</em>`,
+				selector: <em>farm-listitem</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},

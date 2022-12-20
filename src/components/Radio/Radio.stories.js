@@ -94,7 +94,7 @@ export const Sizes = () => ({
 	},
 	template: `<div style="width: 480px">
 		<div v-for="size in sizes" :key="size" class="d-flex flex-row align-center mb-3">
-			<farm-radio v-model="v" :value="size" :size="size"  />&nbsp;&nbsp;{{ size }}
+			<farm-radio v-model="v" :id="size" :value="size" :size="size"  />&nbsp;&nbsp;<label  :for="size">{{ size }}</label>
 		</div>
 	</div>`,
 });
@@ -108,7 +108,39 @@ export const Colors = () => ({
 	},
 	template: `<div style="width: 480px">
 		<div v-for="color in colors" :key="color" class="d-flex flex-row align-center mb-3">
-			<farm-radio v-model="v" :value="1" :color="color"  />&nbsp;&nbsp;{{ color }}
+			<farm-radio v-model="v" :id="color" :value="1" :color="color" :label="color" />
+		</div>
+	</div>`,
+});
+
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 1,
+		};
+	},
+	template: `<div style="width: 480px">
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="2" disabled label="Disabled" />
+		</div>
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="1" disabled label="Checked and Disabled" />
+		</div>
+	</div>`,
+});
+
+export const Label = () => ({
+	data() {
+		return {
+			v: 1,
+		};
+	},
+	template: `<div style="width: 480px">
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="2" id="option1" label="Option 1" />
+		</div>
+		<div class="d-flex flex-row align-center mb-3">
+			<farm-radio v-model="v" :value="1" id="option2" label="Option 2" />
 		</div>
 	</div>`,
 });

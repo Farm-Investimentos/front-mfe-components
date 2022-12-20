@@ -3,6 +3,16 @@ import Switch from './Switcher';
 export default {
 	title: 'Form/Switcher',
 	component: Switch,
+	parameters: {
+		viewMode: 'docs',
+		docs: {
+			description: {
+				component: `Switcher<br />
+				selector: <em>farm-switcher</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
+			},
+		},
+	},
 };
 
 export const Primary = () => ({
