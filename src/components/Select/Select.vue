@@ -11,7 +11,7 @@
 		}"
 		v-if="!readonly && !disabled"
 	>
-		<farm-contextmenu bottom v-model="isVisible">
+		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple">
 			<farm-list v-if="!readonly">
 				<farm-listitem
 					v-for="(item, index) in items"
