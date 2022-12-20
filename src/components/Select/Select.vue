@@ -265,7 +265,9 @@ export default Vue.extend({
 
 				return;
 			}
+
 			selectedText.value = item[itemText.value];
+
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
 		};
@@ -284,7 +286,7 @@ export default Vue.extend({
 				!items.value ||
 				items.value.length === 0 ||
 				innerValue.value === null ||
-				multipleValues.value.length === 0
+				(multiple.value && multipleValues.value.length === 0)
 			) {
 				selectedText.value = '';
 				return;
