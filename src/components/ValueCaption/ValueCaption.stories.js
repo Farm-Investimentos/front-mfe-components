@@ -11,8 +11,8 @@ export default {
 		docs: {
 			description: {
 				component: `Value Caption<br />
-				selector: <em>farm-valuecaption</em>
-				`,
+				selector: <em>farm-valuecaption</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 		viewMode: 'docs',
