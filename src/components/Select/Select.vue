@@ -193,6 +193,7 @@ export default Vue.extend({
 			() => {
 				isTouched.value = true;
 				isBlured.value = true;
+				validate(innerValue.value);
 				emit('input', innerValue.value);
 				emit('change', innerValue.value);
 			}
@@ -221,7 +222,7 @@ export default Vue.extend({
 			selectedText.value = '';
 			isTouched.value = true;
 			if (multiple.value) {
-				emit('input', multipleValues.value);
+				innerValue.value = [];
 				return;
 			}
 			emit('input', innerValue.value);
@@ -247,7 +248,7 @@ export default Vue.extend({
 					multipleValues.value.push(item.value);
 				}
 
-				innerValue.value = multipleValues.value;
+				innerValue.value = [...multipleValues.value];
 				const labelItem = items.value.find(item => item.value === multipleValues.value[0]);
 
 				if (innerValue.value.length === 0) {
@@ -258,7 +259,7 @@ export default Vue.extend({
 					return;
 				}
 
-				selectedText.value = `${labelItem.text} (${innerValue.value.length - 1} ${
+				selectedText.value = `${labelItem.text} (+${innerValue.value.length - 1} ${
 					innerValue.value.length - 1 === 1 ? 'outro' : 'outros'
 				})`;
 
@@ -279,7 +280,12 @@ export default Vue.extend({
 		};
 
 		const updateSelectedTextValue = () => {
-			if (!items.value || items.value.length === 0 || innerValue.value === null) {
+			if (
+				!items.value ||
+				items.value.length === 0 ||
+				innerValue.value === null ||
+				multipleValues.value.length === 0
+			) {
 				selectedText.value = '';
 				return;
 			}
