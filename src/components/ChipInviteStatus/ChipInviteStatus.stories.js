@@ -3,6 +3,16 @@ import ChipInviteStatus from './ChipInviteStatus.vue';
 export default {
 	title: 'Display/Chips/Onboarding/InviteStatus',
 	component: ChipInviteStatus,
+	parameters: {
+		docs: {
+			description: {
+				component: `Chip Invite Status<br />
+					selector: <em>farm-chip-invite</em><br />
+					<span style="color: var(--farm-primary-base);">ready for use</span>`,
+			},
+		},
+		viewMode: 'docs',
+	},
 };
 
 export const Primary = () => ({

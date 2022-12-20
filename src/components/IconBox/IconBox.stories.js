@@ -13,7 +13,9 @@ export default {
 		viewMode: 'docs',
 		docs: {
 			description: {
-				component: `IconBox`,
+				component: `IconBox<br />
+				selector: <em>farm-icon-box</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},

@@ -14,7 +14,8 @@ export default {
 		docs: {
 			description: {
 				component: `Label<br />
-				selector: <em>farm-label</em>`,
+				selector: <em>farm-label</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},
