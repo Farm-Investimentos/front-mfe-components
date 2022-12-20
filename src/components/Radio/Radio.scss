@@ -1,6 +1,11 @@
 @import '../../configurations/variables';
 @import '../../configurations/theme-colors';
 
+.farm-radio-wrapper {
+	align-items: baseline;
+	display: flex;
+}
+
 input[type='radio'] {
 	-webkit-appearance: none;
 	appearance: none;
@@ -8,7 +13,7 @@ input[type='radio'] {
 	margin: 0;
 	font: inherit;
 	color: rgba(0, 0, 0, 0.6);
-	border: 1.5px solid rgba(0, 0, 0, 0.6);
+	border: 2.5px solid themeColor('neutral', 'darken');
 	border-radius: 50%;
 	display: grid;
 	place-content: center;
@@ -19,7 +24,6 @@ input[type='radio'] {
 		border-radius: 50%;
 		transform: scale(0);
 		transition: 120ms transform ease-in-out;
-		background-color: CanvasText;
 	}
 
 	&.farm-radio--checked::before {
@@ -51,6 +55,27 @@ input[type='radio'] {
 			&.farm-radio--checked {
 				border-color: themeColor($color, 'base');
 			}
+		}
+	}
+
+	&:disabled {
+		border: 2.5px solid themeColor('neutral', 'base');
+		cursor: auto;
+
+		&.farm-radio--checked::before {
+			box-shadow: inset 16px 16px themeColor('neutral', 'base');
+		}
+
+		&.farm-radio--checked {
+			border-color: themeColor('neutral', 'base');
+		}
+
+		&:hover,
+		&.farm-radio--checked:hover {
+			box-shadow: none;
+			background-color: transparent;
+			border-radius: 50%;
+			opacity: 1;
 		}
 	}
 }

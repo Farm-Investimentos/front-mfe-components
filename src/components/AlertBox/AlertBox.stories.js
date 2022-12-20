@@ -10,7 +10,7 @@ export default {
 			description: {
 				component: `Alert Box<br />
 					selector: <em>farm-alertbox</em><br />
-					<span style="color: var(--farm-extra-1-base);">development</span>
+					<span style="color: var(--farm-primary-base);">ready for use</span>
 `,
 			},
 		},

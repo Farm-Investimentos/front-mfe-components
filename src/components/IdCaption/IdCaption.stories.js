@@ -9,7 +9,8 @@ export default {
 		docs: {
 			description: {
 				component: `Id Caption<br />
-				selector: <em>farm-idcaption</em>
+				selector: <em>farm-idcaption</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},

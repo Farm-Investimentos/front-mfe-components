@@ -11,7 +11,8 @@ export default {
 		docs: {
 			description: {
 				component: `List<br />
-				selector: <em>farm-list</em>`,
+				selector: <em>farm-list</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},
