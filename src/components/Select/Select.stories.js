@@ -219,15 +219,15 @@ export const MultipleInitValue = () => ({
 		return {
 			v: [2, 3],
 			items: [
-				{ id: 0, text: 'value 0' },
-				{ id: 1, text: 'value 1' },
-				{ id: 2, text: 'value 2' },
-				{ id: 3, text: 'value 3' },
+				{ id: 0, label: 'value 0' },
+				{ id: 1, label: 'value 1' },
+				{ id: 2, label: 'value 2' },
+				{ id: 3, label: 'value 3' },
 			],
 		};
 	},
 	template: `<div style="width: 400px">
-		<farm-select v-model="v" item-value="id" :items="items" multiple />
+		<farm-select v-model="v" item-value="id" item-text="label" :items="items" multiple />
 		v-model: {{ v }}
 	</div>`,
 });

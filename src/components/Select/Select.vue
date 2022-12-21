@@ -152,7 +152,7 @@ export default Vue.extend({
 		const isBlured = ref(false);
 		const isVisible = ref(false);
 		const selectedText = ref('');
-		const multipleValues = ref([]);
+		const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
 		const checked = ref('1');
 		const notChecked = ref(false);
 
@@ -240,33 +240,19 @@ export default Vue.extend({
 
 		const selectItem = item => {
 			if (multiple.value) {
-				const alreadyAdded = multipleValues.value.findIndex(val => val === item.value);
+				const alreadyAdded = multipleValues.value.findIndex(
+					val => val === item[itemValue.value]
+				);
 				checked.value = '1';
 				if (alreadyAdded !== -1) {
 					multipleValues.value.splice(alreadyAdded, 1);
 				} else {
-					multipleValues.value.push(item.value);
+					multipleValues.value.push(item[itemValue.value]);
 				}
-
 				innerValue.value = [...multipleValues.value];
-				const labelItem = items.value.find(item => item.value === multipleValues.value[0]);
-
-				if (innerValue.value.length === 0) {
-					selectedText.value = '';
-					return;
-				} else if (innerValue.value.length === 1) {
-					selectedText.value = labelItem.text;
-					return;
-				}
-
-				selectedText.value = `${labelItem.text} (+${innerValue.value.length - 1} ${
-					innerValue.value.length - 1 === 1 ? 'outro' : 'outros'
-				})`;
 
 				return;
 			}
-
-			selectedText.value = item[itemText.value];
 
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
@@ -294,20 +280,35 @@ export default Vue.extend({
 			const selectedItem = items.value.find(
 				item => item[itemValue.value] == innerValue.value
 			);
+
 			if (selectedItem) {
 				selectedText.value = selectedItem[itemText.value];
+			}
+
+			if (multiple.value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
+				const labelItem = items.value.find(
+					item => item[itemValue.value] === innerValue.value[0]
+				);
+
+				if (innerValue.value.length === 0) {
+					selectedText.value = '';
+					return;
+				} else if (innerValue.value.length === 1) {
+					selectedText.value = labelItem[itemText.value];
+					return;
+				}
+
+				selectedText.value = `${labelItem[itemText.value]} (+${
+					innerValue.value.length - 1
+				} ${innerValue.value.length - 1 === 1 ? 'outro' : 'outros'})`;
 			}
 		};
 
 		const isChecked = item => {
-			if (
+			return (
 				multiple.value &&
-				multipleValues.value.findIndex(val => val === item.value) !== -1
-			) {
-				return true;
-			}
-
-			return false;
+				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
+			);
 		};
 
 		return {
