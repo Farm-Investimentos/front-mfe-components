@@ -226,8 +226,23 @@ export const MultipleInitValue = () => ({
 			],
 		};
 	},
+	methods: {
+		click() {
+			this.$refs.select.reset();
+		},
+	},
 	template: `<div style="width: 400px">
-		<farm-select v-model="v" item-value="id" item-text="label" :items="items" multiple />
+		<farm-select
+			v-model="v"
+			item-value="id"
+			item-text="label"
+			ref="select"
+			multiple
+			:items="items"
+		/>
 		v-model: {{ v }}
+		<farm-btn @click="click">
+			reset
+		</farm-btn>
 	</div>`,
 });
