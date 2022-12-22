@@ -285,6 +285,10 @@ export default Vue.extend({
 				selectedText.value = selectedItem[itemText.value];
 			}
 
+			addLabelToMultiple();
+		};
+
+		const addLabelToMultiple = () => {
 			if (multiple.value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
 				const labelItem = items.value.find(
 					item => item[itemValue.value] === innerValue.value[0]
@@ -334,6 +338,8 @@ export default Vue.extend({
 			checked,
 			notChecked,
 			isChecked,
+			multipleValues,
+			addLabelToMultiple,
 		};
 	},
 });
