@@ -4,10 +4,14 @@
 			<slot name="activator"></slot>
 		</span>
 
-		<div ref="popup" :class="{
-			'farm-contextmenu__popup': true,
-			'farm-contextmenu__popup--visible': inputValue,
-		}" :style="styles">
+		<div
+			ref="popup"
+			:class="{
+				'farm-contextmenu__popup': true,
+				'farm-contextmenu__popup--visible': inputValue,
+			}"
+			:style="styles"
+		>
 			<slot></slot>
 		</div>
 	</div>
@@ -41,12 +45,19 @@ export default Vue.extend({
 			type: [Number, String],
 			default: 320,
 		},
+		/**
+		 * Should stay open when click inside
+		 */
+		stayOpen: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const { bottom, maxHeight } = toRefs(props);
+		const { bottom, maxHeight, stayOpen } = toRefs(props);
 
 		const styles = reactive({
 			minWidth: 0,
@@ -59,8 +70,16 @@ export default Vue.extend({
 
 		let hasBeenBoostrapped = false;
 
-		const outClick = (event: Event) => {
-			if (activator && !activator.value.contains(event.target)) {
+		const outClick = (event: Record<string, any>) => {
+			const isInside =
+				event.path.some((e: HTMLElement) => {
+					if (e.classList) {
+						return e.classList.contains('farm-contextmenu__popup--visible');
+					}
+					return false;
+				}) && stayOpen.value;
+
+			if (activator && !activator.value.contains(event.target) && !isInside) {
 				emit('input', false);
 				inputValue.value = false;
 			}
