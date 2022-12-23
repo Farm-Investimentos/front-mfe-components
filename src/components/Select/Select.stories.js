@@ -195,3 +195,54 @@ export const NoItems = () => ({
 		v-model: {{ v }}
 	</div>`,
 });
+
+export const Multiple = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			],
+		};
+	},
+	template: `<div style="width: 400px">
+		<farm-select v-model="v" :items="items" multiple />
+		v-model: {{ v }}
+	</div>`,
+});
+
+export const MultipleInitValue = () => ({
+	data() {
+		return {
+			v: [2, 3],
+			items: [
+				{ id: 0, label: 'value 0' },
+				{ id: 1, label: 'value 1' },
+				{ id: 2, label: 'value 2' },
+				{ id: 3, label: 'value 3' },
+			],
+		};
+	},
+	methods: {
+		click() {
+			this.$refs.select.reset();
+		},
+	},
+	template: `<div style="width: 400px">
+		<farm-select
+			v-model="v"
+			item-value="id"
+			item-text="label"
+			ref="select"
+			multiple
+			:items="items"
+		/>
+		v-model: {{ v }}
+		<farm-btn @click="click">
+			reset
+		</farm-btn>
+	</div>`,
+});

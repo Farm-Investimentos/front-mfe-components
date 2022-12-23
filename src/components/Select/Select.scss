@@ -16,3 +16,14 @@
 		transform: rotate(180deg);
 	}
 }
+
+.farm-select__checkbox {
+	margin-right: 8px;
+}
+
+::v-deep .farm-listitem:hover .farm-checkbox .farm-icon {
+	color: var(--farm-primary-lighten);
+}
+::v-deep .farm-listitem:hover .farm-checkbox.farm-checkbox--checked .farm-icon {
+	color: white;
+}
