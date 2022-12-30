@@ -8,6 +8,7 @@
 .farm-contextmenu__popup {
 	visibility: hidden;
 	opacity: 0;
+	padding: 2px;
 	position: absolute;
 	display: block;
 	overflow-y: auto;
@@ -18,11 +19,10 @@
 	transform-origin: left top;
 	transition: visibility 0.1s linear, opacity 0.1s linear;
 
-	border-radius: 4px;
 	left: 0;
 
-	background: #FFFFFF;
-	border: 1px solid var(--farm-stroke-base);
+	background: #ffffff;
+
 	@include addShadow;
 	border-radius: 5px;
 

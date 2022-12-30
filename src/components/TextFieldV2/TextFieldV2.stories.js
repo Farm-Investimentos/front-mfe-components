@@ -19,7 +19,7 @@ export default {
 		docs: {
 			description: {
 				component: `Text field v2<br />
-				selector: <em>farm-texfield-v2</em><br />
+				selector: <em>farm-textfield-v2</em><br />
 				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
@@ -38,7 +38,7 @@ export const Primary = () => ({
 			v: 'input text',
 		};
 	},
-	template: `<div style="width: 480px">
+	template: `<div style="width: 480px;">
 		<farm-textfield-v2 v-model="v" />
 		v-model: {{ v }}
 	</div>`,
