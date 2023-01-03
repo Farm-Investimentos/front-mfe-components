@@ -1,29 +1,30 @@
 .farm-dialog-header__close {
-    position: absolute;
-    margin-top: 0;
-    font-size: 16px;
+	position: absolute;
+	margin-top: 0;
+	font-size: 16px;
 
-    transition: all 0.4s;
+	transition: all 0.4s;
 
-    &:hover {
-        opacity: 0.8;
-    }
+	&:hover {
+		opacity: 0.8;
+	}
 }
 
 header {
-    font-size: 12px;
-    padding: 6px 16px;
-    background-color: #fff;
-    font-weight: 700;
-    color: var(--farm-primary-base);
-    border-bottom: 1px solid var(--farm-stroke-divider);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+	font-size: 12px;
+	padding: 6px 16px;
+	background-color: #fff;
+	font-weight: 700;
+	color: var(--farm-primary-base);
+	border-bottom: 1px solid var(--farm-stroke-divider);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 48px;
 
-    >.farm-typography.farm-caption {
-        align-items: center;
-        width: 100%;
-        margin-bottom: 0;
-    }
+	> .farm-typography.farm-caption {
+		align-items: center;
+		width: 100%;
+		margin-bottom: 0;
+	}
 }
