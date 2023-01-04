@@ -61,3 +61,9 @@ export const TemplateSlot = () => ({
 		</farm-dialog-header>
 	</div>`,
 });
+
+export const VeryLongTitle = () => ({
+	template: `<div style="max-width: 480px; position: relative;">
+		<farm-dialog-header title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt leo nec orci hendrerit, in sagittis magna tincidunt." />
+	</div>`,
+});
