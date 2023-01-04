@@ -1,104 +1,88 @@
 <template>
-	<v-col cols="12" sm="12" :md="config.md ? config.md : 2" class="v-col-fieldset-default">
-		<div class="v-text-field">
-			<label :for="inputId">
+	<farm-col cols="12" sm="12" :md="config.md ? config.md : 2">
+		<div>
+			<farm-label :for="inputId">
 				{{ label }}
 				<span class="required" v-if="config.required">*</span>
-			</label>
-			<v-text-field
-				append-icon="mdi-magnify "
-				color="secondary"
-				outlined
-				v-on:keyup="clearTextField"
-				dense
+			</farm-label>
+			<farm-textfield-v2
+				icon="magnify"
 				readonly
 				:id="inputId"
 				:value="selectedValueText"
 				@click="openModal"
+				@keyup="clearTextField"
 			/>
 		</div>
-		<v-dialog content-class="modal-default modal-default-small" v-model="showModal">
-			<DialogHeader class="dialog-header" :title="modalTitle" @onClose="closeModal" />
+		<farm-modal v-model="showModal" size="md" :offsetTop="48" :offsetBottom="68">
+			<template v-slot:header>
+				<farm-dialog-header :title="modalTitle" @onClose="closeModal" />
+			</template>
+			<template v-slot:content>
+				<div class="mx-n4">
+					<farm-box class="mt-3">
+						<farm-loader class="text-center mb-2" v-if="isLoading" />
+						<fieldset class="fieldset-default mx-4 mb-3" v-if="!isLoading">
+							<farm-label for="searchInput"> {{ label }} </farm-label>
+							<farm-textfield-v2
+								id="searchInput"
+								v-model="searchValue"
+								:placeholder="placeholder"
+							/>
+						</fieldset>
 
-			<v-main class="mt-9">
-				<Loader class="text-center mb-2" v-if="isLoading" />
-				<fieldset class="fieldset-default mx-4 mb-3" v-if="!isLoading">
-					<label for="searchInput"> {{ label }} </label>
-					<v-text-field
-						color="secondary"
-						id="searchInput"
-						outlined
-						dense
-						hide-details
-						:placeholder="placeholder"
-						v-model="searchValue"
-					/>
-				</fieldset>
+						<v-data-table
+							v-if="!isLoading"
+							id="inputModalOptionsTable"
+							class="v-data-table__clickable v-data-table__select-modal"
+							hide-default-footer
+							hide-default-header
+							:items="items"
+							:headers="headers"
+							:options.sync="pagination"
+							:search="searchValue"
+							:custom-filter="customFilter"
+							@click:row="handleClick"
+							@pagination="handlePagination"
+						>
+							<template slot="no-data">
+								<farm-emptywrapper />
+							</template>
+							<template slot="no-results">
+								<farm-emptywrapper />
+							</template>
+							<template v-slot:[`item.label`]="{ item }">
+								<td :title="getItemLabel(item)" aria-role="button">
+									{{ getItemLabel(item) }}
+								</td>
+							</template>
 
-				<v-data-table
-					v-if="!isLoading"
-					id="inputModalOptionsTable"
-					class="v-data-table__clickable v-data-table__select-modal"
-					hide-default-footer
-					hide-default-header
-					:items="items"
-					:headers="headers"
-					:options.sync="pagination"
-					:search="searchValue"
-					:custom-filter="customFilter"
-					@click:row="handleClick"
-					@pagination="handlePagination"
-				>
-					<template slot="no-data">
-						<DataTableEmptyWrapper />
-					</template>
-					<template slot="no-results">
-						<DataTableEmptyWrapper />
-					</template>
-					<template v-slot:[`item.label`]="{ item }">
-						<td :title="getItemLabel(item)" aria-role="button">
-							{{ getItemLabel(item) }}
-						</td>
-					</template>
+							<template v-slot:footer>
+								<farm-datatable-paginator
+									class="my-6"
+									hidePerPageOptions
+									:initialLimitPerPage="pagination.itemsPerPage"
+									:page="pagination.page"
+									:totalPages="pagination.pages"
+									@onChangePage="onChangePage"
+								/>
+							</template>
+						</v-data-table>
+					</farm-box>
+				</div>
+			</template>
 
-					<template v-slot:footer>
-						<DataTablePaginator
-							class="my-6"
-							hidePerPageOptions
-							:initialLimitPerPage="pagination.itemsPerPage"
-							:page="pagination.page"
-							:totalPages="pagination.pages"
-							@onChangePage="onChangePage"
-						/>
-					</template>
-				</v-data-table>
-			</v-main>
-			<DialogFooter :hasConfirm="false" @onClose="closeModal" />
-		</v-dialog>
-	</v-col>
+			<template v-slot:footer>
+				<farm-dialog-footer :hasConfirm="false" @onClose="closeModal" />
+			</template>
+		</farm-modal>
+	</farm-col>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
-import VTextField from 'vuetify/lib/components/VTextField';
-import { VCol } from 'vuetify/lib/components/VGrid';
-import { VMain } from 'vuetify/lib/components/VMain';
-import { VDataTable } from 'vuetify/lib/components/VDataTable/';
-import { VDialog } from 'vuetify/lib/components/VDialog/';
-import { DialogHeader, DialogFooter, DataTableEmptyWrapper, DataTablePaginator } from '../../main';
 
 export default Vue.extend({
 	name: 'farm-select-modal-options',
-	components: {
-		VTextField,
-		VCol,
-		VMain,
-		VDataTable,
-		VDialog,
-		DialogHeader,
-		DialogFooter,
-		DataTableEmptyWrapper,
-		DataTablePaginator,
-	},
 	props: {
 		/**
 		 * Input Label
@@ -277,11 +261,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.v-text-field::v-deep {
-	margin-top: 0;
-	padding-top: 0;
-	input {
-		cursor: pointer;
-	}
-}
+@import 'SelectModalOptions.scss';
 </style>
