@@ -26,5 +26,8 @@ header {
 		align-items: center;
 		width: 100%;
 		margin-bottom: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
