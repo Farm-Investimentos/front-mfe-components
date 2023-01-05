@@ -72,3 +72,24 @@ export const ButtonLabels = () => ({
 			</farm-btn>
 		</div>`,
 });
+
+export const Slot = () => ({
+	data() {
+		return {
+			showPrompt: false,
+		};
+	},
+	template: `<div>
+		<farm-prompt-user match="CONFIRMAR" title="Título" subtitle="" v-model="showPrompt">
+		<template v-slot:subtitle>
+			<farm-caption>Using caption and <farm-chip dense>chip</farm-chip></farm-caption>
+			<br />
+			Digite <strong>CONFIRMAR</strong> para habilitar
+		</template>
+		</farm-prompt-user>
+			click:
+			<farm-btn color="primary" @click="showPrompt = true;">
+			reabrir
+			</farm-btn>
+		</div>`,
+});

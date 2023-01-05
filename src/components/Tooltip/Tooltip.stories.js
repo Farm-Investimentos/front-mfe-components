@@ -86,7 +86,7 @@ export const Visibility = () => ({
 	</div>`,
 });
 
-export const TooltipTest = () => ({
+export const InsideCard = () => ({
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
         <farm-card style="padding: 32px">
 			<farm-tooltip>
