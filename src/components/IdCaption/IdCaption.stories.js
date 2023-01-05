@@ -23,11 +23,17 @@ export default {
 };
 
 export const Primary = () => ({
+    methods: {
+        onLinkClick() {
+            alert('onLinkClick');
+        }
+    },
 	template: `
     <farm-idcaption 
     icon="account-box-outline"
     copyText="texto a copiar"
     :link="true"
+    @onLinkClick="onLinkClick"
     >
         <template v-slot:title>
             Upper Line Text
@@ -77,7 +83,6 @@ export const NoUpperText = () => ({
     <farm-idcaption 
     icon="account-box-outline"
     copyText="texto a copiar"
-    :link="true"
     >
         <template v-slot:subtitle>
             Lower:Line Text
@@ -90,7 +95,6 @@ export const NoBottomText = () => ({
 	template: `
     <farm-idcaption 
     icon="account-box-outline" 
-    copyText="texto a copiar"
     :link="true"
     >
         <template v-slot:title>
@@ -100,10 +104,11 @@ export const NoBottomText = () => ({
     `,
 });
 
-export const NoTextToClip = () => ({
+export const NoTextToCopy = () => ({
 	template: `
     <farm-idcaption 
-    icon="account-box-outline" 
+    icon="account-box-outline"
+    copyText=""
     :link="true"
     >
         <template v-slot:title>
@@ -185,20 +190,20 @@ export const CustomTooltipColor = () => ({
     `,
 });
 
-
-export const Teste = () => ({
+export const LongTitles = () => ({
 	template: `
+    <farm-col sm="3">
     <farm-idcaption 
     icon="account-box-outline"
-    copy-text=""
+    copyText="texto a copiar"
     :link="true"
     >
         <template v-slot:title>
-            Upper Line Text
+            Upper Line Text Upper Line Text
         </template>
         <template v-slot:subtitle>
-            0
+            Lower: Line Text Line Text Line Text Line
         </template>
     </farm-idcaption>
-    `,
+    </farm-col>`,
 });

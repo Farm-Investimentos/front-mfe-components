@@ -1,8 +1,14 @@
 .idcaption {
 	display: flex;
 	min-height: 48px;
+	max-width: 100%;
+
 	.farm-icon-box {
 		margin-right: 8px;
+	}
+
+	&.farm-idcaption--noicon .idcaption__body {
+		max-width: 100%;
 	}
 
 	&__body {
@@ -11,6 +17,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-content: flex-start;
+		max-width: calc(100% - 48px);
 
 		&--single {
 			justify-content: center;
@@ -21,22 +28,21 @@
 			margin-bottom: 0;
 			display: flex;
 			flex: none;
+			position: relative;
+			align-items: center;
+			height: 18px;
 
 			>span {
-				position: relative;
+				max-width: 100%;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 		}
 
-		.farm-btn,
 		.farm-tooltip {
-			position: absolute;
-			right: -30px;
-			top: -8px;
+			padding-right: 1px;
 		}
 	}
 
-	.farm-btn--clickable {
-		position: absolute;
-		top: -50%;
-	}
 }

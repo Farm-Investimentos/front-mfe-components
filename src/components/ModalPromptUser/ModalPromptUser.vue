@@ -5,6 +5,7 @@
 		</template>
 		<template v-slot:content>
 			<section class="modal-content">
+				<slot name="subtitle"></slot>
 				<farm-promptusertoconfirm
 					v-if="inputVal"
 					v-model="canConfirm"
