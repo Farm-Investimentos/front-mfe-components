@@ -1,21 +1,20 @@
 <template>
 	<farm-col cols="12" sm="12" :md="config.md ? config.md : 2">
-		<div>
-			<farm-label :for="inputId">
-				{{ label }}
-				<span class="required" v-if="config.required">*</span>
-			</farm-label>
-			<farm-textfield-v2
-				ref="searchTextField"
-				icon="magnify"
-				readonly
-				:id="inputId"
-				:value="selectedValueText"
-				@click="openModal"
-				@keyup="clearTextField"
-			/>
-		</div>
-		<farm-modal v-model="showModal" size="md" :offsetTop="48" :offsetBottom="68">
+		<farm-label :for="inputId">
+			{{ label }}
+			<span class="required" v-if="config.required">*</span>
+		</farm-label>
+		<farm-textfield-v2
+			ref="searchTextField"
+			icon="magnify"
+			readonly
+			:id="inputId"
+			:value="selectedValueText"
+			@click="openModal"
+			@keyup="clearTextField"
+		/>
+
+		<farm-modal v-model="showModal" size="sm" :offsetTop="48" :offsetBottom="68">
 			<template v-slot:header>
 				<farm-dialog-header :title="modalTitle" @onClose="closeModal" />
 			</template>
