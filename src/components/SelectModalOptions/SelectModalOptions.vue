@@ -6,6 +6,7 @@
 				<span class="required" v-if="config.required">*</span>
 			</farm-label>
 			<farm-textfield-v2
+				ref="searchTextField"
 				icon="magnify"
 				readonly
 				:id="inputId"
@@ -232,7 +233,11 @@ export default Vue.extend({
 			this.showModal = true;
 		},
 		closeModal() {
+			this.focusOnInput();
 			this.showModal = false;
+		},
+		focusOnInput() {
+			this.$refs.searchTextField.$el.firstChild.firstElementChild.focus();
 		},
 		onChangePage(newPage) {
 			this.pagination.page = newPage;
@@ -247,6 +252,7 @@ export default Vue.extend({
 			this.inputVal = item[this.selectIdentifier];
 			this.showModal = false;
 			this.selectedItem = item;
+			this.focusOnInput();
 		},
 		customFilter(_, search, item) {
 			const label = this.getItemLabel(item);
