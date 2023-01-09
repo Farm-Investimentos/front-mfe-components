@@ -1,8 +1,7 @@
 <template>
 	<farm-col cols="12" :md="config.md ? config.md : 2">
-		<farm-label :for="inputId">
+		<farm-label :for="inputId" :required="config.required">
 			{{ label }}
-			<span class="required" v-if="config.required">*</span>
 		</farm-label>
 		<farm-textfield-v2
 			ref="searchTextField"
