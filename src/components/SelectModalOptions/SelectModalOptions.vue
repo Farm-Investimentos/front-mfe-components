@@ -1,5 +1,5 @@
 <template>
-	<farm-col cols="12" sm="12" :md="config.md ? config.md : 2">
+	<farm-col cols="12" :md="config.md ? config.md : 2">
 		<farm-label :for="inputId">
 			{{ label }}
 			<span class="required" v-if="config.required">*</span>
