@@ -1,5 +1,5 @@
 <template>
-	<div class="idcaption farm-idcaption">
+	<div :class="{ idcaption: true, 'farm-idcaption': true, 'farm-idcaption--noicon': !icon }">
 		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
 		<div
 			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
@@ -7,28 +7,28 @@
 			<farm-caption variation="medium" v-if="hasTitle">
 				<span>
 					<slot name="title"></slot>
-					<farm-btn
-						v-if="link"
-						icon
-						color="primary"
-						class="farm-btn--clickable"
-						@click="$emit('onLinkClick')"
-					>
-						<farm-icon size="xs">open-in-new</farm-icon>
-					</farm-btn>
 				</span>
+				<farm-btn
+					v-if="link"
+					icon
+					color="primary"
+					class="farm-btn--clickable"
+					@click="$emit('onLinkClick')"
+				>
+					<farm-icon size="xs">open-in-new</farm-icon>
+				</farm-btn>
 			</farm-caption>
 
 			<farm-caption variation="regular" color="gray" v-if="hasSubtitle">
 				<span>
 					<slot name="subtitle"></slot>
-					<farm-copytoclipboard
-						v-if="copyText"
-						:toCopy="copyText"
-						:successMessage="successMessage"
-						:tooltipColor="tooltipColor"
-					/>
 				</span>
+				<farm-copytoclipboard
+					v-if="copyText"
+					:toCopy="copyText"
+					:successMessage="successMessage"
+					:tooltipColor="tooltipColor"
+				/>
 			</farm-caption>
 		</div>
 	</div>
