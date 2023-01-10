@@ -1,3 +1,5 @@
+@import '../../configurations/mixins';
+
 .idcaption {
 	display: flex;
 	min-height: 48px;
@@ -34,9 +36,7 @@
 
 			>span {
 				max-width: 100%;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
+				@include ellipsis;
 			}
 		}
 
