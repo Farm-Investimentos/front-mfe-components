@@ -4,6 +4,7 @@
 
 .farm-typography {
 	font-size: 16px;
+	color: var(--farm-text-primary);
 
 	&[bold] {
 		font-weight: bold;
@@ -25,16 +26,12 @@
 		margin-bottom: auto;
 	}
 
-	color: var(--farm-text-primary);
-
 	&--lighten {
 		color: var(--farm-text-secondary);
 	}
 
 	&.farm-typography--ellipsis {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+		@include ellipsis;
 	}
 
 	@each $k in $theme-colors-list {

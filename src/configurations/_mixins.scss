@@ -76,10 +76,17 @@
         }
     }
 }
+
 @mixin activateRipple {
     &:hover {
         .farm-ripple:before {
             opacity: 0.3;
         }
     }
+}
+
+@mixin ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

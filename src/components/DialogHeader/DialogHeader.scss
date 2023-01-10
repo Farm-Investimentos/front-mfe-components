@@ -1,3 +1,5 @@
+@import '../../configurations/mixins';
+
 .farm-dialog-header__close {
 	position: absolute;
 	margin-top: 0;
@@ -26,8 +28,6 @@ header {
 		align-items: center;
 		width: 100%;
 		margin-bottom: 0;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		@include ellipsis;
 	}
 }
