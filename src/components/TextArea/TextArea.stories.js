@@ -32,3 +32,15 @@ export const Primary = () => ({
 		v-model: {{ v }}
 	</div>`,
 });
+
+export const Rows = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px;">
+		<farm-textarea v-model="v" rows="10" />
+		<farm-textarea v-model="v" rows="3" />
+	</div>`,
+});

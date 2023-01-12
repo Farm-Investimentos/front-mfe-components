@@ -17,6 +17,7 @@
 			<textarea
 				v-bind="$attrs"
 				v-model="innerValue"
+                :rows="$props.rows"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -85,6 +86,13 @@ export default Vue.extend({
 			default: '',
 			type: [String, Function],
 		},
+        /**
+         * 
+         */
+        rows: {
+            default: 5,
+            type: [String, Number],
+        }
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
