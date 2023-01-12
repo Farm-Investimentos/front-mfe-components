@@ -79,15 +79,8 @@ export default Vue.extend({
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
-		/**
-		 * Mask
-		 */
-		mask: {
-			default: '',
-			type: [String, Function],
-		},
         /**
-         * 
+         * Textarea rows
          */
         rows: {
             default: 5,
