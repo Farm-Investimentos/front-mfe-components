@@ -88,3 +88,9 @@ export const CustomTypography = () => ({
 		</farm-chip>
 	</div>`,
 });
+
+export const Ellipsis = () => ({
+	template: `<div style="width: 100px;">
+		<farm-chip color="primary">Very long text here</farm-chip>
+	</div>`,
+});

@@ -19,6 +19,7 @@ describe('SelectModalOptions component', () => {
 			},
 		});
 		component = wrapper.vm;
+		jest.spyOn(component, 'focusOnInput').mockImplementationOnce(() => {});
 	});
 
 	test('SelectModalOptions created', () => {

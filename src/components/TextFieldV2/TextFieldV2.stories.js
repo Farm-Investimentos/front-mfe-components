@@ -230,27 +230,3 @@ export const ToggleVisibility = () => ({
 		<farm-textfield-v2 v-model="v" :type="visible ? 'text' : 'password'"  :icon="visible ? 'eye-off' : 'eye'" @onClickIcon="toggle" />
 	</div>`,
 });
-
-
-export const Compare = () => ({
-	data() {
-		return {
-			v1: '',
-			rules: {
-				required: value => !!value || 'Required field',
-				email: v =>
-					!v ||
-					/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-					'Must be an e-mail',
-			},
-		};
-	},
-	template: `<div style="width: 480px">
-
-		<farm-label required>Required and e-mail</farm-label>
-		<farm-textfield-v2 v-model="v1" :rules="[rules.required, rules.email]" />
-
-		<farm-textfield v-model="v1" :rules="[rules.required, rules.email]" />
-
-	</div>`,
-});
