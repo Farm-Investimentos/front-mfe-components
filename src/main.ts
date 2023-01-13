@@ -87,6 +87,7 @@ export * from './components/RadioGroup';
 export * from './components/Select';
 export * from './components/Stepper';
 export * from './components/Switcher';
+export * from './components/TextArea';
 export * from './components/TextField';
 export * from './components/TextFieldV2';
 export * from './components/Tooltip';
