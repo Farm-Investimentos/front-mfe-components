@@ -1,0 +1,62 @@
+.farm-textarea {
+	min-height: 64px;
+
+	&--textarea {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		border: 1px solid;
+		border-color: var(--farm-gray-lighten);
+		min-height: 36px;
+		border-radius: 5px;
+		padding: 8px 0 0 8px;
+		margin-bottom: 4px;
+		background-color: white;
+		width: 100%;
+
+
+		&>textarea {
+			flex: 1;
+			outline: none;
+			color: var(--farm-text-primary);
+			font-size: 12px;
+			font-weight: 400;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+	&--disabled {
+		textarea {
+			color: var(--farm-gray-base);
+		}
+	}
+
+	.farm-caption {
+		line-height: 12px;
+	}
+}
+
+.farm-textarea--touched.farm-textarea--validatable {
+	&.farm-textarea--error {
+		.farm-textarea {
+			&--textarea {
+				border-color: var(--farm-error-base);
+
+				&>textarea {
+					color: var(--farm-neutral-darken);
+				}
+			}
+		}
+	}
+}
+
+.farm-textarea--blured.farm-textarea--validatable:not(.farm-textarea--error) {
+	.farm-textarea--textarea {
+		border-color: var(--farm-primary-base);
+
+		&>textarea {
+			color: var(--farm-neutral-darken);
+		}
+	}
+}

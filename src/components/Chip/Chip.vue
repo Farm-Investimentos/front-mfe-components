@@ -8,7 +8,7 @@
 			'farm-chip--darken': variation === 'darken',
 		}"
 	>
-		<farm-typography tag="span" size="sm" color="white"> <slot></slot> </farm-typography>
+		<farm-typography tag="span" size="sm" color="white" ellipsis> <slot></slot> </farm-typography>
 	</span>
 </template>
 <script lang="ts">
