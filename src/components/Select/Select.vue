@@ -8,6 +8,7 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
 	>
@@ -141,6 +142,13 @@ export default Vue.extend({
 		 * Set a multiple select
 		 */
 		multiple: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Hides hint and validation errors
+		 */
+		 hideDetails: {
 			type: Boolean,
 			default: false,
 		},
