@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import Vue, { ref, PropType } from 'vue';
+import valueWatcher from './valueWatcher';
 
 export default Vue.extend({
 	name: 'farm-alertbox',
@@ -87,13 +88,20 @@ export default Vue.extend({
 			>,
 			default: 'primary',
 		},
+		value: {
+			type: Boolean,
+			default: true,
+		},
 	},
-	setup() {
+	setup(props, { emit }) {
 		const visible = ref(true);
 
 		function close() {
 			visible.value = false;
+			emit('input', false);
 		}
+
+		valueWatcher(props, visible);
 
 		return {
 			visible,
@@ -101,6 +109,8 @@ export default Vue.extend({
 		};
 	},
 });
+
+
 </script>
 <style lang="scss" scoped>
 @import './AlertBox';
