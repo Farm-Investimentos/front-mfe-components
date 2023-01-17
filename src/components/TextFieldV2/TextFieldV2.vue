@@ -8,12 +8,15 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--hiddendetails': hideDetails,
 		}"
 	>
-		<div :class="{
-			'farm-textfield--input': true,
-			'farm-textfield--input--iconed': icon
-		}">
+		<div
+			:class="{
+				'farm-textfield--input': true,
+				'farm-textfield--input--iconed': icon,
+			}"
+		>
 			<button
 				type="button"
 				v-if="icon && iconPosition === 'left'"
@@ -24,7 +27,7 @@
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
-				v-mask="mask"		
+				v-mask="mask"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -39,10 +42,14 @@
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
-		<farm-caption v-if="showErrorText" color="error" variation="regular">
+		<farm-caption v-if="!hideDetails && showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+		<farm-caption
+			v-if="!hideDetails && hint && !showErrorText"
+			color="gray"
+			variation="regular"
+		>
 			{{ hint }}
 		</farm-caption>
 	</div>
@@ -110,6 +117,13 @@ export default Vue.extend({
 		mask: {
 			default: '',
 			type: [String, Function],
+		},
+		/**
+		 * Hides hint and validation errors
+		 */
+		hideDetails: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props, { emit }) {

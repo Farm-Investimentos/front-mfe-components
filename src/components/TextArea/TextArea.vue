@@ -8,6 +8,7 @@
 			'farm-textarea--blured': isBlured,
 			'farm-textarea--error': hasError,
 			'farm-textarea--disabled': disabled,
+			'farm-textarea--hiddendetails': hideDetails,
 		}"
 	>
 		<div :class="{
@@ -85,7 +86,14 @@ export default Vue.extend({
         rows: {
             default: 5,
             type: [String, Number],
-        }
+        },
+		/**
+		 * Hides hint and validation errors
+		 */
+		 hideDetails: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
