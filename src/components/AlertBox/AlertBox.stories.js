@@ -62,3 +62,17 @@ export const Colors = () => ({
 		<farm-alertbox class="mt-3" v-for="color of colors" :key="'random_10_' + color" :color="color" icon="book" dismissable>alert box</farm-alertbox>
 		</div> `,
 });
+
+export const withDismissableShowAgain = () => ({
+	data() {
+		return {
+			v: true,
+		}
+	},
+	template: `<div>
+		<farm-alertbox v-model="v" dismissable>alert box</farm-alertbox>
+		<farm-btn v-if="!v" @click="v = true;">
+			show
+		</farm-btn>
+	</div>`,
+});
