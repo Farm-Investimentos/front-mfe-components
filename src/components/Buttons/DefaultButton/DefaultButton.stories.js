@@ -172,17 +172,17 @@ export const Icons = () => ({
 	template: `<div class="buttons-container">
 		<h4>Full</h4>
         <farm-btn v-for="color of colors":key="'random_3_' + color" :color="color">
-            <v-icon>mdi-book</v-icon> book
+			<farm-icon>book</farm-icon> book
         </farm-btn>
 
 		<h4>Outlined</h4>
         <farm-btn v-for="color of colors":key="color + 'outlined'" :color="color" outlined>
-            <v-icon>mdi-book</v-icon> book
+			<farm-icon>book</farm-icon> book
         </farm-btn>
 
 		<h4>Plain</h4>
         <farm-btn v-for="color of colors":key="color + 'plain'" :color="color" plain>
-            <v-icon>mdi-book</v-icon> book
+			<farm-icon color="primary">book</farm-icon> book
         </farm-btn>
 		
 
