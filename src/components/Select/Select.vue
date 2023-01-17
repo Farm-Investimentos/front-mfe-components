@@ -148,7 +148,7 @@ export default Vue.extend({
 		/**
 		 * Hides hint and validation errors
 		 */
-		 hideDetails: {
+		hideDetails: {
 			type: Boolean,
 			default: false,
 		},

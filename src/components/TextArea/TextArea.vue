@@ -11,14 +11,15 @@
 			'farm-textarea--hiddendetails': hideDetails,
 		}"
 	>
-		<div :class="{
-			'farm-textarea--textarea': true,
-		}">
-			
+		<div
+			:class="{
+				'farm-textarea--textarea': true,
+			}"
+		>
 			<textarea
 				v-bind="$attrs"
 				v-model="innerValue"
-                :rows="$props.rows"
+				:rows="$props.rows"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -80,17 +81,17 @@ export default Vue.extend({
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
-        /**
-         * Textarea rows
-         */
-        rows: {
-            default: 5,
-            type: [String, Number],
-        },
+		/**
+		 * Textarea rows
+		 */
+		rows: {
+			default: 5,
+			type: [String, Number],
+		},
 		/**
 		 * Hides hint and validation errors
 		 */
-		 hideDetails: {
+		hideDetails: {
 			type: Boolean,
 			default: false,
 		},
