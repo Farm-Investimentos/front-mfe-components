@@ -1,6 +1,10 @@
 .farm-textfield {
 	height: 64px;
 
+	&--hiddendetails {
+		height: 40px;
+	}
+
 	&--input {
 		display: flex;
 		align-items: center;
