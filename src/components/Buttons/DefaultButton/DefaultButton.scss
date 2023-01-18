@@ -1,6 +1,14 @@
 @import '../../../configurations/variables';
 @import '../../../configurations/mixins';
 @import '../../../configurations/theme-colors';
+$butonSizes: (
+	"xs": 12px,
+	"sm": 16px,
+	"md": 24px,
+	"lg": 48px,
+	"xl": 56px,
+	'default': 36px,
+);
 
 .farm-btn {
 	font-size: 14px;
@@ -29,9 +37,11 @@
 		width: 100%;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
+			height: map-get($butonSizes, $size);
 		}
 	}
 
@@ -95,6 +105,7 @@
 
 	&.farm-btn--plain {
 		background-color: transparent !important;
+
 		&:hover {
 			.farm-btn__content {
 				opacity: 0.68;
@@ -125,7 +136,8 @@
 		color: gray;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 		}
@@ -165,12 +177,13 @@
 				i.mdi {
 					color: white;
 				}
+
 				.farm-btn__content i.mdi {
 					color: black;
 				}
 			}
 		}
-		
+
 	}
 
 	.farm-btn--extra,
