@@ -160,15 +160,17 @@
 		background-color: var(--farm-#{$color}-base);
 		color: white;
 
-		::v-deep .farm-btn__content {
-			i.mdi {
-				color: white;
-			}
-
-			.farm-btn__content i.mdi {
-				color: black;
+		&:not(.farm-btn--outlined):not(.farm-btn--plain):not(.farm-btn--icon) {
+			::v-deep .farm-btn__content {
+				i.mdi {
+					color: white;
+				}
+				.farm-btn__content i.mdi {
+					color: black;
+				}
 			}
 		}
+		
 	}
 
 	.farm-btn--extra,

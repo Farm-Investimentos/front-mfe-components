@@ -1,6 +1,5 @@
 <template>
 	<div
-		class="farm-textfield"
 		:class="{
 			'farm-textfield': true,
 			'farm-textfield--validatable': rules.length > 0,
@@ -11,8 +10,9 @@
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
+		:id="customId"
 	>
-		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple">
+		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 			<farm-list v-if="!readonly">
 				<farm-listitem
 					v-for="(item, index) in items"
@@ -29,15 +29,15 @@
 						value="1"
 						size="sm"
 						v-if="isChecked(item)"
-					></farm-checkbox>
+					/>
 					<farm-checkbox
 						class="farm-select__checkbox"
 						v-model="checked"
 						value="2"
 						size="sm"
 						v-else-if="multiple"
-					></farm-checkbox
-					><farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+					/>
+					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 				<farm-listitem v-if="!items || items.length === 0">
 					{{ noDataText }}
@@ -46,9 +46,9 @@
 			<template v-slot:activator="{}">
 				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
+						v-bind="$attrs"
+						:id="$props.id"
 						v-model="selectedText"
-						:disabled="disabled"
-						:readonly="true"
 						@click="clickInput"
 						@keyup="onKeyUp"
 						@blur="onBlur"
@@ -75,6 +75,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-select',
@@ -152,6 +153,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Select id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
@@ -172,6 +180,8 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+
+		const customId = 'farm-select-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
@@ -334,6 +344,7 @@ export default Vue.extend({
 			isTouched,
 			isBlured,
 			isVisible,
+			customId,
 			showErrorText,
 			validate,
 			reset,
