@@ -17,8 +17,9 @@
 			}"
 		>
 			<textarea
-				v-bind="$attrs"
 				v-model="innerValue"
+				v-bind="$attrs"
+				:id="$props.id"
 				:rows="$props.rows"
 				:disabled="disabled"
 				:readonly="readonly"
@@ -42,6 +43,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-textarea',
@@ -95,6 +97,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Select id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
@@ -109,6 +118,7 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const customId = 'farm-textarea-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
@@ -171,6 +181,7 @@ export default Vue.extend({
 			valid,
 			validatable,
 			hasError,
+			customId,
 			isTouched,
 			isBlured,
 			showErrorText,

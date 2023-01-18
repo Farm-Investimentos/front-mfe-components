@@ -35,8 +35,12 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div style="width: 120px;">
-		<farm-select v-model="v" :items="items" />
+		<farm-label for="select_id">
+			label
+		</farm-label>
+		<farm-select id="select_id" v-model="v" :items="items" />
 		v-model: {{ v }}
+
 	</div>`,
 });
 
