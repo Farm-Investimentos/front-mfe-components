@@ -1,14 +1,18 @@
 <template>
 	<div class="farm-checkbox__container" :color="$props.color">
-		<span :class="{
-			'farm-checkbox': true,
-			'farm-checkbox--checked': isChecked,
-			'farm-checkbox--disabled': disabled,
-			'farm-checkbox--indeterminate': indeterminate,
-			'farm-checkbox--lighten': variation === 'lighten',
-			'farm-checkbox--darken': variation === 'darken',
-			'farm-checkbox--error': showError,
-		}" :size="$props.size" @click="toggleValue">
+		<span
+			:class="{
+				'farm-checkbox': true,
+				'farm-checkbox--checked': isChecked,
+				'farm-checkbox--disabled': disabled,
+				'farm-checkbox--indeterminate': indeterminate,
+				'farm-checkbox--lighten': variation === 'lighten',
+				'farm-checkbox--darken': variation === 'darken',
+				'farm-checkbox--error': showError,
+			}"
+			:size="$props.size"
+			@click="toggleValue"
+		>
 			<farm-icon :size="$props.size" v-if="innerValue && !indeterminate">check</farm-icon>
 			<farm-icon :size="$props.size" v-if="indeterminate">minus</farm-icon>
 		</span>
@@ -24,6 +28,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import modelValueWatcher from './modelValueWatcher';
 
 export default Vue.extend({
 	name: 'farm-checkbox',
@@ -100,45 +105,14 @@ export default Vue.extend({
 				return false;
 			}
 			isTouched.value = true;
-			if (isChecked.value) {
-				innerValue.value = null;
-			} else {
-				innerValue.value = props.value;
-			}
+			innerValue.value = isChecked.value ? null : props.value;
 			emit('input', innerValue.value);
 			validate(innerValue.value);
 		};
 
-		const isChecked = computed(() => {
-			return innerValue.value == props.value;
-		});
-
-		const hasError = computed(() => {
-			return errorBucket.value.length > 0;
-		});
-
+		const isChecked = computed(() => innerValue.value == props.value);
+		const hasError = computed(() => errorBucket.value.length > 0);
 		const showError = computed(() => hasError.value && isTouched.value);
-
-		
-		watch(
-			() => props.modelValue,
-			(newValue) => {
-				isTouched.value = true;
-				innerValue.value = newValue;
-				validate(innerValue.value);
-			}
-		);
-		
-
-		watch(
-			() => props.rules,
-			(newVal, oldVal) => {
-				if (deepEqual(newVal, oldVal)) return;
-				fieldValidator = validateFormFieldBuilder(rules.value);
-				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
-				validate(innerValue.value);
-			}
-		);
 
 		const reset = () => {
 			if (disabled.value) {
@@ -159,6 +133,18 @@ export default Vue.extend({
 		const makePristine = () => {
 			isTouched.value = false;
 		};
+
+		modelValueWatcher(props, isTouched, innerValue, validate);
+
+		watch(
+			() => props.rules,
+			(newVal, oldVal) => {
+				if (deepEqual(newVal, oldVal)) return;
+				fieldValidator = validateFormFieldBuilder(rules.value);
+				validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
+				validate(innerValue.value);
+			}
+		);
 
 		return {
 			innerValue,
