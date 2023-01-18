@@ -10,6 +10,7 @@
 			'farm-textfield--disabled': disabled,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
+		:id="customId"
 	>
 		<div
 			:class="{
@@ -28,6 +29,7 @@
 				v-bind="$attrs"
 				v-model="innerValue"
 				v-mask="mask"
+				:id="$props.id"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -61,6 +63,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-textfield-v2',
@@ -125,6 +128,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Input id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
@@ -139,6 +149,7 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const customId = 'farm-textfield-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
@@ -201,6 +212,7 @@ export default Vue.extend({
 			valid,
 			validatable,
 			hasError,
+			customId,
 			isTouched,
 			isBlured,
 			showErrorText,

@@ -39,7 +39,10 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div style="width: 480px;">
-		<farm-textfield-v2 v-model="v" />
+		<farm-label for="select_label">
+			label
+		</farm-label>
+		<farm-textfield-v2 id="select_label" v-model="v" />
 		v-model: {{ v }}
 	</div>`,
 });
