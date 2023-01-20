@@ -225,7 +225,7 @@ export const Rounded = () => ({
 export const Sizes = () => ({
 	data() {
 		return {
-			sizes: ['xs', 'sm', 'md', 'lg', 'xl'],
+			sizes: ['xs', 'sm', 'md', 'lg', 'xl', 'default'],
 			styles: {
 				display: 'flex',
 				flexDirection: 'row',
