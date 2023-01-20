@@ -200,21 +200,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.datepicker :deep(.v-picker__actions) {
-	padding: 0;
-	margin: 0 16px 16px;
-}
-.datepicker :deep(.v-btn--active) {
-	background: var(--farm-primary-base);
-}
-.datepicker :deep(.v-date-picker-table__current) {
-	border-color: var(--farm-primary-base);
-	color: var(--farm-primary-base);
-}
-.btn-clean {
-	margin: 0 8px;
-}
-.farm-contextmenu {
-	width: 100%;
-}
+@import './DatePicker.scss';
 </style>
