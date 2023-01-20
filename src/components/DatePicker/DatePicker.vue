@@ -25,7 +25,7 @@
 				Confirmar
 			</farm-btn>
 		</v-date-picker>
-		<template v-slot:activator="{ on, attrs }">
+		<template v-slot:activator="{ }">
 			<farm-textfield-v2
 				icon="calendar"
 				v-model="fieldRange"
