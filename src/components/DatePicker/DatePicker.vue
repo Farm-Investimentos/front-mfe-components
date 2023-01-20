@@ -1,5 +1,12 @@
 <template>
-	<farm-contextmenu stay-open v-model="menuField">
+	<farm-contextmenu
+		stay-open
+		v-model="menuField"
+		ref="contextmenu"
+		maxHeight="auto"
+		bottom
+		popup-width="320"
+	>
 		<v-date-picker
 			v-if="menuField"
 			v-model="dateField"
@@ -9,7 +16,6 @@
 			class="datepicker"
 			:max="max"
 			:min="min"
-			@click="testAlert"
 		>
 			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
 				Fechar
@@ -34,50 +40,7 @@
 			/>
 		</template>
 	</farm-contextmenu>
-	<!--
-	<v-menu
-		ref="menuField"
-		v-model="menuField"
-		:close-on-content-click="false"
-		:return-value.sync="fieldRange"
-		transition="scale-transition"
-		offset-y
-		min-width="290px"
-	>
-		<template v-slot:activator="{}">
-			<farm-textfield-v2
-				icon="calendar"
-				v-model="fieldRange"
-				autocomplete="off"
-				:readonly="readonly"
-				:mask="`${readonly ? '' : '##/##/####'}`"
-				:id="inputId"
-				:rules="[checkMax, checkMin, checkRequire]"
-				@keyup="keyUpInput"
-				@click="openDatepicker"
-				@onClickIcon="openDatepicker"
-			/>
-		</template>
-		<v-date-picker
-			v-if="menuField"
-			v-model="dateField"
-			no-title
-			scrollable
-			color="secondary"
-			locale="pt-br"
-			:max="max"
-			:min="min"
-		>
-			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
-				Fechar
-			</farm-btn>
-			<farm-btn outlined class="ml-2" @click="clear"> Limpar </farm-btn>
-			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
-				Confirmar
-			</farm-btn>
-		</v-date-picker>
-	</v-menu>
---></template>
+</template>
 <script lang="ts">
 import Vue from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
@@ -189,10 +152,10 @@ export default Vue.extend({
 			return dateDefaultFormatter(date);
 		},
 		save() {
-			//this.$refs.menuField.save(this.formatDateRange(this.dateField));
 			this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
+			this.closeDatepicker();
 		},
 		clear() {
 			this.dateField = '';
@@ -221,9 +184,7 @@ export default Vue.extend({
 		},
 		closeDatepicker() {
 			this.menuField = false;
-		},
-		testAlert(event) {
-			alert(event);
+			this.$refs.contextmenu.inputValue = false;
 		},
 	},
 	computed: {
@@ -238,11 +199,22 @@ export default Vue.extend({
 	},
 });
 </script>
-<style lang="scss">
-.datepicker .v-btn--active {
+<style lang="scss" scoped>
+.datepicker :deep(.v-picker__actions) {
+	padding: 0;
+	margin: 0 16px 16px;
+}
+.datepicker :deep(.v-btn--active) {
 	background: var(--farm-primary-base);
+}
+.datepicker :deep(.v-date-picker-table__current) {
+	border-color: var(--farm-primary-base);
+	color: var(--farm-primary-base);
 }
 .btn-clean {
 	margin: 0 8px;
+}
+.farm-contextmenu {
+	width: 100%;
 }
 </style>
