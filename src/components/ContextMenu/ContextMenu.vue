@@ -70,9 +70,10 @@ export default Vue.extend({
 
 		let hasBeenBoostrapped = false;
 
-		const outClick = (event: Record<string, any>) => {
+		const outClick = event => {
+			const path = event.path || (event.composedPath && event.composedPath());
 			const isInside =
-				event.path.some((e: HTMLElement) => {
+				path.some((e: HTMLElement) => {
 					if (e.classList) {
 						return e.classList.contains('farm-contextmenu__popup--visible');
 					}
