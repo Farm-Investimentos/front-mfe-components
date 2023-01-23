@@ -27,7 +27,7 @@
 				Confirmar
 			</farm-btn>
 		</v-date-picker>
-		<template v-slot:activator="{ }">
+		<template v-slot:activator="{}">
 			<farm-textfield-v2
 				v-model="fieldRange"
 				icon="calendar"
@@ -65,9 +65,7 @@ export default Vue.extend({
 		 */
 		value: {
 			type: Array,
-			default: () => {
-				return [];
-			},
+			default: () => [],
 		},
 		/**
 		 * Variável usada para definir a data máxima (yyyy-mm-dd)
@@ -95,7 +93,7 @@ export default Vue.extend({
 		const s = this.formatDateRange(this.value);
 		return {
 			menuField: false,
-			dateField: this.value,
+			dateField: this.value || [],
 			fieldRange: s,
 			requiredRule: value => {
 				return !!value || value != '' || 'Campo obrigatório';
