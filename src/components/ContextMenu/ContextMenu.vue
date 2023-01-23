@@ -52,6 +52,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Popup Width
+		 */
+		popupWidth: {
+			type: [Number, String],
+			default: null,
+		},
 	},
 	setup(props, { emit }) {
 		const parent = ref(null);
@@ -127,10 +134,14 @@ export default Vue.extend({
 
 			let offsetLeft = activatorBoundingClientRect.left;
 
-			styles.minWidth =
-				(activatorBoundingClientRect.width > 96
-					? parseInt(activatorBoundingClientRect.width)
-					: 96) + 'px';
+			if (props.popupWidth) {
+				styles.minWidth = props.popupWidth + 'px';
+			} else {
+				styles.minWidth =
+					(activatorBoundingClientRect.width > 96
+						? parseInt(activatorBoundingClientRect.width)
+						: 96) + 'px';
+			}
 
 			if (activatorBoundingClientRect.width < 96) {
 				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;
