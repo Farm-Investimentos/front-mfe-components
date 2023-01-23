@@ -67,7 +67,7 @@ export const withDismissableShowAgain = () => ({
 	data() {
 		return {
 			v: true,
-		}
+		};
 	},
 	template: `<div>
 		<farm-alertbox v-model="v" dismissable>alert box</farm-alertbox>

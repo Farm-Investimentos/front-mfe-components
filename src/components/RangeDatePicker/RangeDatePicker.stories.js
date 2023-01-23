@@ -25,7 +25,7 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			date: [],
+			date: null,
 		};
 	},
 	template: `<div style='max-width: 320px'>
@@ -34,8 +34,16 @@ export const Primary = () => ({
 	</div>`,
 });
 
-export const Secondary = () => ({
-	template: `<RangeDatePicker inputId="input-custom-id" :value="['2021-08-01', '2021-08-05']" />`,
+export const InitialValue = () => ({
+	data() {
+		return {
+			date: ['2023-08-01', '2023-08-05'],
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<RangeDatePicker inputId="input-custom-id" :value="date" />
+		date: {{ date }}
+	</div>`,
 });
 
 export const MinMax = () => ({
