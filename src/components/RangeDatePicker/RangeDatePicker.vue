@@ -23,7 +23,7 @@
 				Fechar
 			</farm-btn>
 			<farm-btn outlined class="btn-clean" @click="clear"> Limpar </farm-btn>
-			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
+			<farm-btn class="ml-2" title="Confirmar" :disabled="dateField.length != 2" @click="save()">
 				Confirmar
 			</farm-btn>
 		</v-date-picker>
