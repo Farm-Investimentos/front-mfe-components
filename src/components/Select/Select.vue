@@ -161,6 +161,12 @@ export default Vue.extend({
 			default: '',
 		},
 	},
+	/**
+	 * Define the event just before the function block
+	 *
+	 * @event onClickWhenDisabled
+	 * @property { String } prop1 - first prop given by the event
+	 */
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
 		const innerValue = ref(props.value);
@@ -193,7 +199,6 @@ export default Vue.extend({
 				validate(newValue);
 				updateSelectedTextValue();
 				emit('input', newValue);
-				emit('change', newValue);
 			}
 		);
 
