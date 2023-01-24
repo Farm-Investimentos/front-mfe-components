@@ -160,13 +160,39 @@ export default Vue.extend({
 			type: String,
 			default: '',
 		},
+		/**
+		 * The updated bound model<br />
+		 * _event_
+		 */
+		input: {
+			type: Function,
+			default: (value: [String, Number, Array<any>]) => {},
+		},
+		/**
+		 * Emitted when the select is changed by user interaction<br />
+		 * _event_
+		 */
+		change: {
+			type: Function,
+			default: (value: [String, Number, Array<any>]) => {},
+		},
+		/**
+		 * Emitted when any key is pressed<br />
+		 * _event_
+		 */
+		keyup: {
+			type: Function,
+			default: (event: Event) => {},
+		},
+		/**
+		 * Emitted when the select is blurred<br />
+		 * _event_
+		 */
+		blur: {
+			type: Function,
+			default: (event: Event) => {},
+		},
 	},
-	/**
-	 * Define the event just before the function block
-	 *
-	 * @event onClickWhenDisabled
-	 * @property { String } prop1 - first prop given by the event
-	 */
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
 		const innerValue = ref(props.value);

@@ -265,7 +265,7 @@ export const ChangeEvennt = () => ({
 	},
 	methods: {
 		onChange(value) {
-			alert(value);
+			alert('Selected value: ' + value);
 		},
 	},
 	template: `<div style="width: 120px;">
