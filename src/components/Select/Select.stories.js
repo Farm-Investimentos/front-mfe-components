@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import Select from './Select.vue';
 
 export default {
-	title: 'Form/SelectV2',
+	title: 'Form/Select',
 	component: Select,
 	decorators: [withDesign],
 	parameters: {
@@ -10,7 +10,7 @@ export default {
 			description: {
 				component: `Select<br />
 				selector: <em>farm-select</em><br />
-				<span style="color: var(--farm-extra-1-base);">development</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span>
 				`,
 			},
 		},
@@ -248,5 +248,31 @@ export const MultipleInitValue = () => ({
 		<farm-btn @click="click">
 			reset
 		</farm-btn>
+	</div>`,
+});
+
+export const ChangeEvennt = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			],
+		};
+	},
+	methods: {
+		onChange(value) {
+			alert('Selected value: ' + value);
+		},
+	},
+	template: `<div style="width: 120px;">
+		<farm-label for="select_id">
+			label
+		</farm-label>
+		<farm-select id="select_id" v-model="v" :items="items" @change="onChange" />
+
 	</div>`,
 });
