@@ -2,7 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import Select from './Select.vue';
 
 export default {
-	title: 'Form/SelectV2',
+	title: 'Form/Select',
 	component: Select,
 	decorators: [withDesign],
 	parameters: {
@@ -265,7 +265,7 @@ export const ChangeEvennt = () => ({
 	},
 	methods: {
 		onChange(value) {
-			alert(value);
+			alert('Selected value: ' + value);
 		},
 	},
 	template: `<div style="width: 120px;">
