@@ -138,7 +138,8 @@ export default Vue.extend({
 		},
 
 		/**
-		 * Input text uppercase
+		 * uppercase
+		 * leaves only the text in the input in uppercase does not affect the value of the v-model
 		 */
 		uppercase: {
 			type: Boolean,
@@ -151,8 +152,6 @@ export default Vue.extend({
 		const isTouched = ref(false);
 		const isBlured = ref(false);
 		const isUppercase = ref(props.uppercase);
-
-		console.log('isUppercase', isUppercase.value);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
