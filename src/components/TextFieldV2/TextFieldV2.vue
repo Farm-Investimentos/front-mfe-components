@@ -9,6 +9,7 @@
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
 			'farm-textfield--hiddendetails': hideDetails,
+			'farm-textfield--uppercase': isUppercase,
 		}"
 		:id="customId"
 	>
@@ -135,12 +136,23 @@ export default Vue.extend({
 			type: String,
 			default: '',
 		},
+
+		/**
+		 * Input text uppercase
+		 */
+		uppercase: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const isUppercase = ref(props.uppercase);
+
+		console.log('isUppercase', isUppercase.value);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -215,6 +227,7 @@ export default Vue.extend({
 			customId,
 			isTouched,
 			isBlured,
+			isUppercase,
 			showErrorText,
 			validate,
 			onKeyUp,
