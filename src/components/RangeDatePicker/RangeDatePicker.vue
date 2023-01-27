@@ -1,27 +1,15 @@
 <template>
-	<v-menu
-		ref="menuField"
+	<farm-contextmenu
+		stay-open
 		v-model="menuField"
-		:close-on-content-click="false"
-		:nudge-right="40"
-		:return-value.sync="fieldRange"
-		transition="scale-transition"
-		offset-y
-		min-width="290px"
+		ref="contextmenu"
+		maxHeight="auto"
+		bottom
+		popup-width="320"
 	>
-		<template v-slot:activator="{}">
-			<farm-textfield-v2
-				v-model="fieldRange"
-				icon="calendar"
-				readonly
-				:id="inputId"
-				:rules="required ? [requiredRule] : []"
-				@click="openDatepicker"
-				@onClickIcon="openDatepicker"
-			/>
-		</template>
 		<v-date-picker
 			v-if="menuField"
+			class="datepicker"
 			v-model="dateField"
 			no-title
 			scrollable
@@ -34,18 +22,27 @@
 			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
 				Fechar
 			</farm-btn>
-			<farm-btn outlined class="ml-2" @click="clear()" title="Limpar"> Limpar</farm-btn>
-			<farm-btn class="ml-2" :disabled="canConfirm" @click="save()" title="Confirmar">
+			<farm-btn outlined class="btn-clean" @click="clear"> Limpar </farm-btn>
+			<farm-btn class="ml-2" title="Confirmar" :disabled="dateField.length != 2" @click="save()">
 				Confirmar
 			</farm-btn>
 		</v-date-picker>
-	</v-menu>
+		<template v-slot:activator="{}">
+			<farm-textfield-v2
+				v-model="fieldRange"
+				icon="calendar"
+				readonly
+				:id="inputId"
+				:rules="required ? [requiredRule] : []"
+				@click="openDatepicker"
+				@onClickIcon="openDatepicker"
+			/>
+		</template>
+	</farm-contextmenu>
 </template>
 <script>
 import Vue from 'vue';
-import { VMenu } from 'vuetify/lib/components/VMenu';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import DefaultButton from '../Buttons/DefaultButton';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 /**
  * Componente de input com datepicker para range de data
@@ -53,9 +50,7 @@ import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 export default Vue.extend({
 	name: 'farm-input-rangedatepicker',
 	components: {
-		VMenu,
 		VDatePicker,
-		'farm-btn': DefaultButton,
 	},
 	props: {
 		/**
@@ -70,9 +65,7 @@ export default Vue.extend({
 		 */
 		value: {
 			type: Array,
-			default: () => {
-				return [];
-			},
+			default: () => [],
 		},
 		/**
 		 * Variável usada para definir a data máxima (yyyy-mm-dd)
@@ -100,7 +93,7 @@ export default Vue.extend({
 		const s = this.formatDateRange(this.value);
 		return {
 			menuField: false,
-			dateField: this.value,
+			dateField: this.value || [],
 			fieldRange: s,
 			requiredRule: value => {
 				return !!value || value != '' || 'Campo obrigatório';
@@ -127,9 +120,10 @@ export default Vue.extend({
 			return dateDefaultFormatter(dateStart) + ' a ' + dateDefaultFormatter(dateEnd);
 		},
 		save() {
-			this.$refs.menuField.save(this.formatDateRange(this.dateField));
+			this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
+			this.closeDatepicker();
 		},
 		clear() {
 			this.dateField = [];
@@ -140,6 +134,7 @@ export default Vue.extend({
 		},
 		closeDatepicker() {
 			this.menuField = false;
+			this.$refs.contextmenu.inputValue = false;
 		},
 	},
 	computed: {
@@ -158,7 +153,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.theme--light.v-input.v-input--dense.v-text-field.v-text-field--outlined.error--text:after {
-	content: '' !important;
-}
+@import '../DatePicker/DatePicker.scss';
 </style>

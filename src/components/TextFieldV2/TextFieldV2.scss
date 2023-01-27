@@ -1,6 +1,10 @@
 .farm-textfield {
 	height: 64px;
 
+	&--hiddendetails {
+		height: 40px;
+	}
+
 	&--input {
 		display: flex;
 		align-items: center;
@@ -13,11 +17,11 @@
 		margin-bottom: 4px;
 		background-color: white;
 
-		>button {
+		> button {
 			display: flex;
 		}
 
-		&>input {
+		& > input {
 			flex: 1;
 			outline: none;
 			color: var(--farm-text-primary);
@@ -26,12 +30,11 @@
 			max-width: 100%;
 		}
 
-		&--iconed>input {
+		&--iconed > input {
 			max-width: calc(100% - 32px);
 		}
 
 		width: 100%;
-
 	}
 
 	&--disabled {
@@ -55,7 +58,7 @@
 			&--input {
 				border-color: var(--farm-error-base);
 
-				&>input {
+				& > input {
 					color: var(--farm-neutral-darken);
 				}
 
@@ -71,7 +74,7 @@
 	.farm-textfield--input {
 		border-color: var(--farm-primary-base);
 
-		&>input {
+		& > input {
 			color: var(--farm-neutral-darken);
 		}
 
@@ -79,4 +82,8 @@
 			color: var(--farm-primary-base);
 		}
 	}
+}
+
+.farm-textfield--uppercase input {
+	text-transform: uppercase;
 }

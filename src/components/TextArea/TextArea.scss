@@ -1,6 +1,10 @@
 .farm-textarea {
 	min-height: 64px;
 
+	&--hiddendetails {
+		height: 40px;
+	}
+
 	&--textarea {
 		display: flex;
 		align-items: center;

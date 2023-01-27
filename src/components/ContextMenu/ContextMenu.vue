@@ -52,6 +52,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Popup Width
+		 */
+		popupWidth: {
+			type: [Number, String],
+			default: null,
+		},
 	},
 	setup(props, { emit }) {
 		const parent = ref(null);
@@ -70,9 +77,10 @@ export default Vue.extend({
 
 		let hasBeenBoostrapped = false;
 
-		const outClick = (event: Record<string, any>) => {
+		const outClick = event => {
+			const path = event.path || (event.composedPath && event.composedPath());
 			const isInside =
-				event.path.some((e: HTMLElement) => {
+				path.some((e: HTMLElement) => {
 					if (e.classList) {
 						return e.classList.contains('farm-contextmenu__popup--visible');
 					}
@@ -126,10 +134,14 @@ export default Vue.extend({
 
 			let offsetLeft = activatorBoundingClientRect.left;
 
-			styles.minWidth =
-				(activatorBoundingClientRect.width > 96
-					? parseInt(activatorBoundingClientRect.width)
-					: 96) + 'px';
+			if (props.popupWidth) {
+				styles.minWidth = props.popupWidth + 'px';
+			} else {
+				styles.minWidth =
+					(activatorBoundingClientRect.width > 96
+						? parseInt(activatorBoundingClientRect.width)
+						: 96) + 'px';
+			}
 
 			if (activatorBoundingClientRect.width < 96) {
 				const w = popupClientRect.width < 96 ? 96 : popupClientRect.width;

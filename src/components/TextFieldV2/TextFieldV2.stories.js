@@ -39,7 +39,10 @@ export const Primary = () => ({
 		};
 	},
 	template: `<div style="width: 480px;">
-		<farm-textfield-v2 v-model="v" />
+		<farm-label for="select_label">
+			label
+		</farm-label>
+		<farm-textfield-v2 id="select_label" v-model="v" />
 		v-model: {{ v }}
 	</div>`,
 });
@@ -228,5 +231,19 @@ export const ToggleVisibility = () => ({
 	},
 	template: `<div style="width: 480px">
 		<farm-textfield-v2 v-model="v" :type="visible ? 'text' : 'password'"  :icon="visible ? 'eye-off' : 'eye'" @onClickIcon="toggle" />
+	</div>`,
+});
+
+export const Uppercase = () => ({
+	data() {
+		return {
+			v: 'value',
+		};
+	},
+	template: `<div style="width: 480px;">
+		<farm-label for="select_label">
+			label
+		</farm-label>
+		<farm-textfield-v2 id="select_label" v-model="v" uppercase/>
 	</div>`,
 });

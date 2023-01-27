@@ -1,6 +1,5 @@
 <template>
 	<div
-		class="farm-textfield"
 		:class="{
 			'farm-textfield': true,
 			'farm-textfield--validatable': rules.length > 0,
@@ -8,10 +7,12 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
+		:id="customId"
 	>
-		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple">
+		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 			<farm-list v-if="!readonly">
 				<farm-listitem
 					v-for="(item, index) in items"
@@ -28,15 +29,15 @@
 						value="1"
 						size="sm"
 						v-if="isChecked(item)"
-					></farm-checkbox>
+					/>
 					<farm-checkbox
 						class="farm-select__checkbox"
 						v-model="checked"
 						value="2"
 						size="sm"
 						v-else-if="multiple"
-					></farm-checkbox
-					><farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+					/>
+					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 				<farm-listitem v-if="!items || items.length === 0">
 					{{ noDataText }}
@@ -45,9 +46,9 @@
 			<template v-slot:activator="{}">
 				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
+						v-bind="$attrs"
+						:id="$props.id"
 						v-model="selectedText"
-						:disabled="disabled"
-						:readonly="true"
 						@click="clickInput"
 						@keyup="onKeyUp"
 						@blur="onBlur"
@@ -74,6 +75,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-select',
@@ -144,6 +146,56 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Hides hint and validation errors
+		 */
+		hideDetails: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Select id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The updated bound model<br />
+		 * _event_
+		 */
+		input: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (value: [String, Number, Array<any>]) => {},
+		},
+		/**
+		 * Emitted when the select is changed by user interaction<br />
+		 * _event_
+		 */
+		change: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (value: [String, Number, Array<any>]) => {}, 
+		},
+		/**
+		 * Emitted when any key is pressed<br />
+		 * _event_
+		 */
+		keyup: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (event: Event) => {},
+		},
+		/**
+		 * Emitted when the select is blurred<br />
+		 * _event_
+		 */
+		blur: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (event: Event) => {},
+		},
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
@@ -165,6 +217,8 @@ export default Vue.extend({
 			return errorBucket.value.length > 0;
 		});
 
+		const customId = 'farm-select-' + (props.id || randomId(2));
+
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
 		watch(
@@ -175,7 +229,6 @@ export default Vue.extend({
 				validate(newValue);
 				updateSelectedTextValue();
 				emit('input', newValue);
-				emit('change', newValue);
 			}
 		);
 
@@ -326,6 +379,7 @@ export default Vue.extend({
 			isTouched,
 			isBlured,
 			isVisible,
+			customId,
 			showErrorText,
 			validate,
 			reset,

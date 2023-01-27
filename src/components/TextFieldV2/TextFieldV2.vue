@@ -8,12 +8,17 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--hiddendetails': hideDetails,
+			'farm-textfield--uppercase': isUppercase,
 		}"
+		:id="customId"
 	>
-		<div :class="{
-			'farm-textfield--input': true,
-			'farm-textfield--input--iconed': icon
-		}">
+		<div
+			:class="{
+				'farm-textfield--input': true,
+				'farm-textfield--input--iconed': icon,
+			}"
+		>
 			<button
 				type="button"
 				v-if="icon && iconPosition === 'left'"
@@ -24,7 +29,8 @@
 			<input
 				v-bind="$attrs"
 				v-model="innerValue"
-				v-mask="mask"		
+				v-mask="mask"
+				:id="$props.id"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -39,10 +45,14 @@
 				<farm-icon color="gray" size="20px">{{ icon }}</farm-icon>
 			</button>
 		</div>
-		<farm-caption v-if="showErrorText" color="error" variation="regular">
+		<farm-caption v-if="!hideDetails && showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+		<farm-caption
+			v-if="!hideDetails && hint && !showErrorText"
+			color="gray"
+			variation="regular"
+		>
 			{{ hint }}
 		</farm-caption>
 	</div>
@@ -54,6 +64,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-textfield-v2',
@@ -111,12 +122,36 @@ export default Vue.extend({
 			default: '',
 			type: [String, Function],
 		},
+		/**
+		 * Hides hint and validation errors
+		 */
+		hideDetails: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Input id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
+
+		/**
+		 * uppercase
+		 * leaves only the text in the input in uppercase does not affect the value of the v-model
+		 */
+		uppercase: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const isUppercase = ref(props.uppercase);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -125,6 +160,7 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const customId = 'farm-textfield-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
@@ -187,8 +223,10 @@ export default Vue.extend({
 			valid,
 			validatable,
 			hasError,
+			customId,
 			isTouched,
 			isBlured,
+			isUppercase,
 			showErrorText,
 			validate,
 			onKeyUp,

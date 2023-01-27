@@ -8,16 +8,19 @@
 			'farm-textarea--blured': isBlured,
 			'farm-textarea--error': hasError,
 			'farm-textarea--disabled': disabled,
+			'farm-textarea--hiddendetails': hideDetails,
 		}"
 	>
-		<div :class="{
-			'farm-textarea--textarea': true,
-		}">
-			
+		<div
+			:class="{
+				'farm-textarea--textarea': true,
+			}"
+		>
 			<textarea
-				v-bind="$attrs"
 				v-model="innerValue"
-                :rows="$props.rows"
+				v-bind="$attrs"
+				:id="$props.id"
+				:rows="$props.rows"
 				:disabled="disabled"
 				:readonly="readonly"
 				@click="$emit('click')"
@@ -40,6 +43,7 @@ import validateFormStateBuilder from '../../composition/validateFormStateBuilder
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
+import randomId from '../../helpers/randomId';
 
 export default Vue.extend({
 	name: 'farm-textarea',
@@ -79,13 +83,27 @@ export default Vue.extend({
 			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
-        /**
-         * Textarea rows
-         */
-        rows: {
-            default: 5,
-            type: [String, Number],
-        }
+		/**
+		 * Textarea rows
+		 */
+		rows: {
+			default: 5,
+			type: [String, Number],
+		},
+		/**
+		 * Hides hint and validation errors
+		 */
+		hideDetails: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Select id
+		 */
+		id: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
@@ -100,6 +118,7 @@ export default Vue.extend({
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const customId = 'farm-textarea-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
@@ -162,6 +181,7 @@ export default Vue.extend({
 			valid,
 			validatable,
 			hasError,
+			customId,
 			isTouched,
 			isBlured,
 			showErrorText,

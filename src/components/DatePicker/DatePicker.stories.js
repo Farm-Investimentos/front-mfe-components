@@ -29,25 +29,40 @@ export const Primary = () => ({
 });
 
 export const InitValue = () => ({
-	template: `<div style='max-width: 320px'><farm-input-datepicker inputId="input-custom-id-1" value="2021-08-01" /></div>`,
+	data() {
+		return {
+			date: '2023-08-01',
+		};
+	},
+	template: `<div style='max-width: 320px'><farm-input-datepicker inputId="input-custom-id-1" v-model="date" /></div>`,
 });
 
 export const MinMaxDates = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker inputId="input-custom-id-2" max="2021-12-02" min="2021-07-01" />
+        <farm-input-datepicker inputId="input-custom-id-2" max="2021-12-02" min="2021-07-01" v-model="date" />
         max="2021-12-02" min="2021-07-01"
     </div>`,
 });
 
 export const RequiredDates = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker inputId="input-custom-id-3" :required="true" />
+        <farm-input-datepicker inputId="input-custom-id-3" v-model="date" :required="true" />
     </div>`,
 });
 
-export const ReadonlyFalse = () => ({
+export const Readonly = () => ({
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker :readonly="false" inputId="input-custom-id-3"/>
+        <farm-input-datepicker :readonly="true"  value="2021-08-01" inputId="input-custom-id-3"/>
     </div>`,
 });
 
