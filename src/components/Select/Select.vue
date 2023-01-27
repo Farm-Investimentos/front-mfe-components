@@ -166,6 +166,7 @@ export default Vue.extend({
 		 */
 		input: {
 			type: Function,
+			// eslint-disable-next-line
 			default: (value: [String, Number, Array<any>]) => {},
 		},
 		/**
@@ -174,7 +175,8 @@ export default Vue.extend({
 		 */
 		change: {
 			type: Function,
-			default: (value: [String, Number, Array<any>]) => {},
+			// eslint-disable-next-line
+			default: (value: [String, Number, Array<any>]) => {}, 
 		},
 		/**
 		 * Emitted when any key is pressed<br />
@@ -182,6 +184,7 @@ export default Vue.extend({
 		 */
 		keyup: {
 			type: Function,
+			// eslint-disable-next-line
 			default: (event: Event) => {},
 		},
 		/**
@@ -190,6 +193,7 @@ export default Vue.extend({
 		 */
 		blur: {
 			type: Function,
+			// eslint-disable-next-line
 			default: (event: Event) => {},
 		},
 	},
