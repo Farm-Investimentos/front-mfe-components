@@ -11,8 +11,9 @@
 				variation="darken"
 				size="md"
 				:color="color"
-				>{{ icon }}</farm-icon
 			>
+				{{ icon }}
+			</farm-icon>
 			<div
 				:class="{
 					'farm-alert-box__content': true,
@@ -22,9 +23,11 @@
 				<farm-bodytext
 					variation="regular"
 					color-variation="darken"
+					:tag="tag"
 					:type="1"
 					:color="color"
 				>
+					<!-- @slot default -->
 					<slot></slot>
 				</farm-bodytext>
 			</div>
@@ -92,6 +95,13 @@ export default Vue.extend({
 			type: Boolean,
 			default: true,
 		},
+		/**
+		 * Html tag (will be forwarded to farm-typography)
+		 */
+		tag: {
+			type: String,
+			default: 'p',
+		},
 	},
 	setup(props, { emit }) {
 		const visible = ref(true);
@@ -109,8 +119,6 @@ export default Vue.extend({
 		};
 	},
 });
-
-
 </script>
 <style lang="scss" scoped>
 @import './AlertBox';
