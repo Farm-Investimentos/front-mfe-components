@@ -51,7 +51,7 @@ describe('Typography component', () => {
 		it('Should not allow invalid html tag', async () => {
 			const wrapperTest = shallowMount(Typography, {
 				propsData: {
-					tag: 'div',
+					tag: 'section',
 				},
 			});
 			expect(wrapperTest.vm.tag).toEqual('p');
