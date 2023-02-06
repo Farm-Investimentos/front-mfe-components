@@ -164,6 +164,13 @@ $butonSizes: (
 			}
 		}
 	}
+
+	&#{'.farm-btn--white'}:not(.farm-btn--disabled) {
+
+		::v-deep .farm-btn__content i.mdi {
+			color: white;
+		}
+	}
 }
 
 @each $color in $theme-colors-list {

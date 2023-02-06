@@ -25,6 +25,10 @@
 		}
 	}
 
+	&--white {
+		color: white;
+	}
+
 	@each $size, $value in $sizes {
 		&#{'.farm-icon[size=' + $size + ']'} {
 			font-size: $value;
