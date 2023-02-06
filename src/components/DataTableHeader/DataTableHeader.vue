@@ -37,6 +37,7 @@
 					<farm-checkbox
 						size="sm"
 						v-model="inputVal"
+						:value="true"
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
 						@input="selectAll"
 					/>
