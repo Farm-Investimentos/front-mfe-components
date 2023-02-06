@@ -192,7 +192,7 @@ export const Icons = () => ({
 export const Iconed = () => ({
 	data() {
 		return {
-			colors,
+			colors: [...colors, 'white'],
 		};
 	},
 	template: `<div class="buttons-container">
