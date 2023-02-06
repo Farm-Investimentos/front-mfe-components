@@ -176,7 +176,7 @@ export default Vue.extend({
 		change: {
 			type: Function,
 			// eslint-disable-next-line
-			default: (value: [String, Number, Array<any>]) => {}, 
+			default: (value: [String, Number, Array<any>]) => {},
 		},
 		/**
 		 * Emitted when any key is pressed<br />
@@ -248,7 +248,6 @@ export default Vue.extend({
 				isBlured.value = true;
 				validate(innerValue.value);
 				emit('input', innerValue.value);
-				emit('change', innerValue.value);
 			}
 		);
 
@@ -309,6 +308,9 @@ export default Vue.extend({
 
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
+			setTimeout(() => {
+				emit('change', innerValue.value);
+			}, 100);
 		};
 
 		const clickInput = () => {
