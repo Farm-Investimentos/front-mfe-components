@@ -29,7 +29,18 @@ export default Vue.extend({
 		 */
 		tag: {
 			type: String as PropType<
-				'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend' | 'label' | 'li'
+				| 'p'
+				| 'span'
+				| 'h1'
+				| 'h2'
+				| 'h3'
+				| 'h4'
+				| 'h5'
+				| 'h6'
+				| 'legend'
+				| 'label'
+				| 'li'
+				| 'div'
 			>,
 			default: 'p',
 		},

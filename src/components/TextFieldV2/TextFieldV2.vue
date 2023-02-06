@@ -145,6 +145,15 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Emitted when any key is pressed<br />
+		 * _event_
+		 */
+		keyup: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (event: Event) => {},
+		},
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
@@ -176,7 +185,6 @@ export default Vue.extend({
 			() => innerValue.value,
 			() => {
 				emit('input', innerValue.value);
-				emit('change', innerValue.value);
 			}
 		);
 
@@ -199,6 +207,10 @@ export default Vue.extend({
 		const onKeyUp = (event: Event) => {
 			isTouched.value = true;
 			emit('keyup', event);
+
+			setTimeout(() => {
+				emit('change', innerValue.value);
+			}, 100);
 		};
 
 		const onBlur = (event: Event) => {
