@@ -110,7 +110,7 @@ export default Vue.extend({
 			default: 'secondary',
 		},
 		/**
-		 * noSpacing remove min-height of 48px
+		 * noHeight remove min-height of 48px
 		 */
 		noHeight: {
 			type: Boolean,
