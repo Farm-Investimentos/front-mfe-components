@@ -1,8 +1,6 @@
 // .storybook/vuetify_storybook.js
 import Vue from 'vue';
 import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
-import VuetifyDialog from 'vuetify-dialog';
 
 import VueMask from 'v-mask';
 

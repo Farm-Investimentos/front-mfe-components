@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import { addDecorator } from '@storybook/vue';
-import VuetifyDialog from 'vuetify-dialog';
 import vuetify from './vuetify_storybook';
 import VuejsDialog from 'vuejs-dialog';
 
