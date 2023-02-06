@@ -1,5 +1,10 @@
 <template>
-	<div :class="{ idcaption: true, 'farm-idcaption': true, 'farm-idcaption--noicon': !icon }">
+	<div :class="{ 
+		idcaption: true, 
+		'farm-idcaption': true, 
+		'farm-idcaption--noicon': !icon, 
+		'farm-idcaption--no-spacing': noSpacing }"
+	>
 		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
 		<div
 			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
@@ -103,6 +108,13 @@ export default Vue.extend({
 				| 'extra-2'
 			>,
 			default: 'secondary',
+		},
+		/**
+		 * noSpacing remove min-height of 48px
+		 */
+		noSpacing: {
+			type: Boolean,
+			default: false,
 		},
 	},
 

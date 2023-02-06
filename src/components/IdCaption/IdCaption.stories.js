@@ -207,3 +207,17 @@ export const LongTitles = () => ({
     </farm-idcaption>
     </farm-col>`,
 });
+
+export const NoSpacing = () => ({
+	template: `
+    <farm-col sm="3">
+    <farm-idcaption 
+    copyText=""
+    :noSpacing="true"
+    >
+        <template v-slot:subtitle>
+            Lower: Line Text Line Text Line Text Line
+        </template>
+    </farm-idcaption>
+    </farm-col>`,
+});
