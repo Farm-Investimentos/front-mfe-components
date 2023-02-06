@@ -3,7 +3,7 @@
 		idcaption: true, 
 		'farm-idcaption': true, 
 		'farm-idcaption--noicon': !icon, 
-		'farm-idcaption--no-height': noHeight }"
+		'farm-idcaption--noheight': noHeight }"
 	>
 		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
 		<div
