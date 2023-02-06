@@ -3,7 +3,7 @@
 		idcaption: true, 
 		'farm-idcaption': true, 
 		'farm-idcaption--noicon': !icon, 
-		'farm-idcaption--no-spacing': noSpacing }"
+		'farm-idcaption--no-height': noHeight }"
 	>
 		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
 		<div
@@ -112,7 +112,7 @@ export default Vue.extend({
 		/**
 		 * noSpacing remove min-height of 48px
 		 */
-		noSpacing: {
+		noHeight: {
 			type: Boolean,
 			default: false,
 		},

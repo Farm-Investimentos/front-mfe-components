@@ -208,12 +208,12 @@ export const LongTitles = () => ({
     </farm-col>`,
 });
 
-export const NoSpacing = () => ({
+export const NoHeight = () => ({
 	template: `
     <farm-col sm="3">
     <farm-idcaption 
     copyText=""
-    :noSpacing="true"
+    :noHeight="true"
     >
         <template v-slot:subtitle>
             Lower: Line Text Line Text Line Text Line
