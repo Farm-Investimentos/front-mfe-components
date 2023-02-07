@@ -36,6 +36,8 @@
 				@click="$emit('click')"
 				@keyup="onKeyUp"
 				@blur="onBlur"
+				@focusin="onFocus(true)"
+				@focusout="onFocus(false)"
 			/>
 			<button
 				type="button"
@@ -50,6 +52,10 @@
 		</farm-caption>
 		<farm-caption
 			v-if="!hideDetails && hint && !showErrorText"
+			class="farm-textfield__hint-text"
+			:class="{
+				'farm-textfield__hint-text--show': persistentHint || isFocus,
+			}"
 			color="gray"
 			variation="regular"
 		>
@@ -91,6 +97,13 @@ export default Vue.extend({
 		hint: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * Always show hint text
+		 */
+		persistentHint: {
+			type: Boolean,
+			default: false,
 		},
 		/**
 		 * Disabled the input
@@ -160,6 +173,7 @@ export default Vue.extend({
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
+		const isFocus = ref(false);
 		const isUppercase = ref(props.uppercase);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
@@ -218,6 +232,10 @@ export default Vue.extend({
 			emit('blur', event);
 		};
 
+		const onFocus = (focus: boolean) => {
+			isFocus.value = focus;
+		};
+
 		const reset = () => {
 			innerValue.value = '';
 			isTouched.value = true;
@@ -239,10 +257,12 @@ export default Vue.extend({
 			isTouched,
 			isBlured,
 			isUppercase,
+			isFocus,
 			showErrorText,
 			validate,
 			onKeyUp,
 			onBlur,
+			onFocus,
 			reset,
 			makePristine,
 		};
