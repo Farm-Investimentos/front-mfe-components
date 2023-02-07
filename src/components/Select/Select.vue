@@ -49,9 +49,12 @@
 						v-bind="$attrs"
 						:id="$props.id"
 						v-model="selectedText"
+						ref="inputField"
 						@click="clickInput"
 						@keyup="onKeyUp"
 						@blur="onBlur"
+						@focusin="onFocus(true)"
+						@focusout="onFocus(false)"
 					/>
 					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
 						menu-down
@@ -62,7 +65,15 @@
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+		<farm-caption
+			v-if="hint && !showErrorText"
+			class="farm-select__hint-text"
+			:class="{
+				'farm-select__hint-text--show': persistentHint || isFocus,
+			}"
+			color="gray"
+			variation="regular"
+		>
 			{{ hint }}
 		</farm-caption>
 	</div>
@@ -88,6 +99,13 @@ export default Vue.extend({
 		hint: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * Always show hint text
+		 */
+		persistentHint: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * Disabled the input
@@ -201,12 +219,14 @@ export default Vue.extend({
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
 		const innerValue = ref(props.value);
 		const isTouched = ref(false);
+		const isFocus = ref(false);
 		const isBlured = ref(false);
 		const isVisible = ref(false);
 		const selectedText = ref('');
 		const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
 		const checked = ref('1');
 		const notChecked = ref(false);
+		const inputField = ref();
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -290,7 +310,12 @@ export default Vue.extend({
 			emit('blur', event);
 		};
 
+		const onFocus = (focus: boolean) => {
+			isFocus.value = focus;
+		};
+
 		const selectItem = item => {
+			inputField.value.focus();
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -308,6 +333,7 @@ export default Vue.extend({
 
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
+
 			setTimeout(() => {
 				emit('change', innerValue.value);
 			}, 100);
@@ -380,6 +406,7 @@ export default Vue.extend({
 			hasError,
 			isTouched,
 			isBlured,
+			isFocus,
 			isVisible,
 			customId,
 			showErrorText,
@@ -388,6 +415,7 @@ export default Vue.extend({
 			selectItem,
 			onKeyUp,
 			onBlur,
+			onFocus,
 			clickInput,
 			updateSelectedTextValue,
 			makePristine,
@@ -396,6 +424,7 @@ export default Vue.extend({
 			isChecked,
 			multipleValues,
 			addLabelToMultiple,
+			inputField,
 		};
 	},
 });

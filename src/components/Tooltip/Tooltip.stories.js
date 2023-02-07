@@ -78,9 +78,9 @@ export const Visibility = () => ({
 			some <em>sample</em> text<br />
 			some <em>sample</em> text<br />
             <template v-slot:activator="{ on, attrs }">
-			<v-btn @click="show = !show">
+			<farm-btn @click="show = !show">
 				toggle me
-			</v-btn>
+			</farm-btn>
             </template>
         </farm-tooltip>
 	</div>`,

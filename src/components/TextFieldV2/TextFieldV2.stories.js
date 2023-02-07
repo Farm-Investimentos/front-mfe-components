@@ -133,6 +133,17 @@ export const HintText = () => ({
 	</div>`,
 });
 
+export const PersistentHintText = () => ({
+	data() {
+		return {
+			v: 'input text',
+		};
+	},
+	template: `<div style="width: 480px; display: flex;">
+		<farm-textfield-v2 v-model="v" hint="Hint text" persistent-hint />
+	</div>`,
+});
+
 export const UpdateValue = () => ({
 	data() {
 		return {
