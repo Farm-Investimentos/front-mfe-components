@@ -38,9 +38,9 @@ export const Secondary = () => ({
 			},
 		};
 	},
-	template: `<v-form>
+	template: `<farm-form>
 		<DefaultTextField :item="item" v-model="model" :required="true" :rules='[rules.required]' />
-	</v-form>`,
+	</farm-form>`,
 });
 
 export const ReadOnly = () => ({

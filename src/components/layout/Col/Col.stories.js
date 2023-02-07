@@ -121,29 +121,6 @@ export const TagP = () => ({
 	template: '<farm-col tag="p">col</farm-col>',
 });
 
-export const CompareToVCol = () => ({
-	data() {
-		return {
-			style,
-		};
-	},
-	template: `<div>
-
-		<h4>LG 3</h4>
-		<farm-col lg="3" :style="style">farm</farm-col>
-		<v-col lg="3" :style="style">v-col</v-col>
-
-		<h4>MD 3</h4>
-		<farm-col md="3" :style="style">farm</farm-col>
-		<v-col md="3" :style="style">v-col</v-col>
-
-
-		<h4>SM 3</h4>
-		<farm-col sm="3" :style="style">farm</farm-col>
-		<v-col sm="3" :style="style">v-col</v-col>
-		</div>`,
-});
-
 export const NoGutters = () => ({
 	data() {
 		return {
