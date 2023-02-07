@@ -1,92 +1,103 @@
 @mixin forXsOnly {
-    @media (max-width: 599px) {
-        @content;
-    }
+	@media (max-width: 599px) {
+		@content;
+	}
 }
 
 @mixin upToSm {
-    @media (max-width: 959px) {
-        @content;
-    }
+	@media (max-width: 959px) {
+		@content;
+	}
 }
 
 @mixin upToMd {
-    @media (max-width: 1263px) {
-        @content;
-    }
+	@media (max-width: 1263px) {
+		@content;
+	}
 }
 
 @mixin fromXs {
-    @media (min-width: 600px) {
-        @content;
-    }
+	@media (min-width: 600px) {
+		@content;
+	}
 }
 
 @mixin fromSm {
-    @media (min-width: 960px) {
-        @content;
-    }
+	@media (min-width: 960px) {
+		@content;
+	}
 }
 
 @mixin fromMd {
-    @media (min-width: 1264px) {
-        @content;
-    }
+	@media (min-width: 1264px) {
+		@content;
+	}
 }
 
 @mixin fromLg {
-    @media (min-width: 1904px) {
-        @content;
-    }
+	@media (min-width: 1904px) {
+		@content;
+	}
 }
 
 @mixin addShadow {
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16);
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16);
 }
 
 @mixin buildCol($code) {
-    @for $i from 1 through 12 {
-        .farm-col--#{$code}-#{$i * 1} {
-            flex: 0 0 (100/12 * $i)+#{"%"};
-            max-width: (100/12 * $i)+#{"%"};
-        }
-    }
+	@for $i from 1 through 12 {
+		.farm-col--#{$code}-#{$i * 1} {
+			flex: 0 0 (100/12 * $i) +#{'%'};
+			max-width: (100/12 * $i) +#{'%'};
+		}
+	}
 }
 
 @mixin rippleStyles {
-    .farm-ripple {
-        border-radius: 50%;
-        cursor: pointer;
-        position: absolute;
-        transition: all 0.4s;
-        z-index: 1;
+	.farm-ripple {
+		border-radius: 50%;
+		cursor: pointer;
+		position: absolute;
+		transition: all 0.4s;
+		z-index: 1;
 
-        &:before {
-            transition: all 0.2s;
-            border-radius: inherit;
-            bottom: 0;
-            content: "";
-            position: absolute;
-            opacity: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            transform-origin: center center;
-            background-color: var(--farm-stroke-base);
-        }
-    }
+		&:before {
+			transition: all 0.2s;
+			border-radius: inherit;
+			bottom: 0;
+			content: '';
+			position: absolute;
+			opacity: 0;
+			left: 0;
+			right: 0;
+			top: 0;
+			transform-origin: center center;
+			background-color: var(--farm-stroke-base);
+		}
+	}
 }
 
 @mixin activateRipple {
-    &:hover {
-        .farm-ripple:before {
-            opacity: 0.3;
-        }
-    }
+	&:hover {
+		.farm-ripple:before {
+			opacity: 0.3;
+		}
+	}
 }
 
 @mixin ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin hintText {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s;
+
+	&--show {
+		opacity: 1;
+		visibility: visible;
+	}
 }

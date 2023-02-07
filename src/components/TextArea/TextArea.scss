@@ -1,3 +1,5 @@
+@import '../../configurations/mixins';
+
 .farm-textarea {
 	min-height: 64px;
 
@@ -40,14 +42,7 @@
 	}
 
 	&__hint-text {
-		opacity: 0;
-		visibility: hidden;
-		transition: opacity 0.3s;
-
-		&--show {
-			opacity: 1;
-			visibility: visible;
-		}
+		@include hintText;
 	}
 }
 
