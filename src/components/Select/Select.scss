@@ -1,4 +1,11 @@
 @import '../TextFieldV2/TextFieldV2.scss';
+@import '../../configurations/mixins';
+
+.farm-select {
+	&__hint-text {
+		@include hintText;
+	}
+}
 
 .farm-listitem--selected {
 	background-color: var(--farm-neutral-lighten);
