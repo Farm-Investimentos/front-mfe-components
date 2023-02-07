@@ -1,3 +1,5 @@
+@import '../../configurations/mixins';
+
 .farm-textarea {
 	min-height: 64px;
 
@@ -18,8 +20,7 @@
 		background-color: white;
 		width: 100%;
 
-
-		&>textarea {
+		& > textarea {
 			flex: 1;
 			outline: none;
 			color: var(--farm-text-primary);
@@ -39,6 +40,10 @@
 	.farm-caption {
 		line-height: 12px;
 	}
+
+	&__hint-text {
+		@include hintText;
+	}
 }
 
 .farm-textarea--touched.farm-textarea--validatable {
@@ -47,7 +52,7 @@
 			&--textarea {
 				border-color: var(--farm-error-base);
 
-				&>textarea {
+				& > textarea {
 					color: var(--farm-neutral-darken);
 				}
 			}
@@ -59,7 +64,7 @@
 	.farm-textarea--textarea {
 		border-color: var(--farm-primary-base);
 
-		&>textarea {
+		& > textarea {
 			color: var(--farm-neutral-darken);
 		}
 	}
