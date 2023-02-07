@@ -50,6 +50,17 @@
 	.farm-caption {
 		line-height: 12px;
 	}
+
+	&__hint-text {
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s;
+
+		&--show {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }
 
 .farm-textfield--touched.farm-textfield--validatable {
