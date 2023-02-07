@@ -9,7 +9,6 @@ import MultipleFilePicker from './components/MultipleFilePicker';
 import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
-import DefaultTextField from './components/DefaultTextField';
 import RangeDatePicker from './components/RangeDatePicker';
 import DatePicker from './components/DatePicker';
 import ManagersList from './components/ManagersList';
@@ -36,7 +35,6 @@ export {
 	Tabs,
 	DialogHeader,
 	DialogFooter,
-	DefaultTextField,
 	RangeDatePicker,
 	DatePicker,
 	ManagersList,
