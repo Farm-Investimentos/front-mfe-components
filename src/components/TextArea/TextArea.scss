@@ -18,8 +18,7 @@
 		background-color: white;
 		width: 100%;
 
-
-		&>textarea {
+		& > textarea {
 			flex: 1;
 			outline: none;
 			color: var(--farm-text-primary);
@@ -39,6 +38,17 @@
 	.farm-caption {
 		line-height: 12px;
 	}
+
+	&__hint-text {
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s;
+
+		&--show {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
 }
 
 .farm-textarea--touched.farm-textarea--validatable {
@@ -47,7 +57,7 @@
 			&--textarea {
 				border-color: var(--farm-error-base);
 
-				&>textarea {
+				& > textarea {
 					color: var(--farm-neutral-darken);
 				}
 			}
@@ -59,7 +69,7 @@
 	.farm-textarea--textarea {
 		border-color: var(--farm-primary-base);
 
-		&>textarea {
+		& > textarea {
 			color: var(--farm-neutral-darken);
 		}
 	}
