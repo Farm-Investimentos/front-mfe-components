@@ -142,3 +142,33 @@ export const AlignSelf = () => ({
 			<farm-col :style="style" v-for="align in aligns" :key="align" :align-self="align">{{ align }}</farm-col>
 	</farm-row>`,
 });
+
+export const Offsets = () => ({
+	data() {
+		return {
+			style,
+			items
+		};
+	},
+	template: `<farm-box>
+		<farm-row>
+			<farm-col :style="style" md="1" offset-md="3">offset-md 3</farm-col>
+			<farm-col :style="style" md="1" offset-md="1">offset-md 1</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset-sm="1">offset-sm 1</farm-col>
+			<farm-col :style="style" md="1" offset-sm="4">offset-sm 4</farm-col>
+			<farm-col :style="style" md="1" offset-sm="2">offset-sm 2</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset-sm="1" offset-md="3">offset-sm 1 md 3</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset="1">offset 1</farm-col>
+			<farm-col :style="style" md="1" offset="1" offset-md="0">offset md 0</farm-col>
+		</farm-row>
+	</farm-box>`,
+});
