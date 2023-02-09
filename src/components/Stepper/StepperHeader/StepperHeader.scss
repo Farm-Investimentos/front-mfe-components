@@ -22,27 +22,25 @@ $step-height: 64px;
 		font-weight: 700;
 
 		&.stepper__header-step--previous {
-			@include stepperHeaderStepColor(var(--v-secondary-base));
+			@include stepperHeaderStepColor(var(--farm-primary-base));
 		}
 
 		&.stepper__header-step--current {
-			@include stepperHeaderStepColor(var(--v-accent-base));
+			@include stepperHeaderStepColor(#5089de);
 		}
 
 		&.stepper__header-step--error {
-			@include stepperHeaderStepColor(var(--v-error-base));
+			@include stepperHeaderStepColor(var(--farm-error-base));
 		}
 
 		&.stepper__header-step--next {
 			.farm-icon,
 			.farm-icon__number {
-				color: var(--v-gray-lighten1);
+				color: var(--farm-gray-base);
 			}
 		}
 
-		span:not(.farm-icon__number) {
-			font-size: 0.75rem;
-			font-weight: 700;
+		.farm-bodytext--2 {
 			margin-top: 8px;
 			text-align: center;
 		}
@@ -56,10 +54,10 @@ $step-height: 64px;
 
 		border: none;
 		margin: 16px -16px 0;
-		background: var(--v-gray-lighten2);
+		background: var(--farm-gray-base);
 
 		&.stepper__divider--previous {
-			background: var(--v-secondary-base);
+			background: var(--farm-primary-base);
 		}
 
 		@include stepperDividerGradient('right');
@@ -79,7 +77,7 @@ $step-height: 64px;
 				float: left;
 			}
 
-			span:not(.farm-icon__number) {
+			.farm-bodytext--2 {
 				display: flex;
 				align-items: center;
 				width: calc(100% - 40px);
@@ -98,10 +96,10 @@ $step-height: 64px;
 			height: 32px;
 			margin: -24px 0 8px 16px;
 			width: 1px;
-			background-color: var(--v-gray-lighten2);
+			background-color: var(----farm-gray-lighten);
 
 			&.stepper__divider--previous {
-				background-color: var(--v-secondary-base);
+				background-color: var(--farm-primary-base);
 			}
 
 			@include stepperDividerGradient('bottom');
@@ -111,7 +109,7 @@ $step-height: 64px;
 
 .farm-icon,
 .farm-icon__number {
-	border: 1px solid var(--v-gray-lighten2);
+	border: 1px solid var(--farm-gray-base);
 	border-radius: 50%;
 	width: 32px;
 	height: 32px;
