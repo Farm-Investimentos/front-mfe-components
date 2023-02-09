@@ -1,31 +1,36 @@
 @mixin stepperHeaderStepColor($color) {
+	color: $color;
 
-    .farm-icon,
-    .farm-icon__number {
-        background-color: $color;
-        border-color: $color;
-    }
+	.farm-icon,
+	.farm-icon__number {
+		background-color: $color;
+		border-color: $color;
+	}
 
-    .farm-icon:before,
-    .farm-icon__number {
-        color: white;
-    }
+	.farm-icon:before,
+	.farm-icon__number {
+		color: white;
+	}
 }
 
 @mixin stepperDividerGradient($direction) {
-    &.stepper__divider--previous-to-current {
-        background: linear-gradient(to #{$direction}, var(--v-secondary-base), var(--v-accent-base));
-    }
+	&.stepper__divider--previous-to-current {
+		background: linear-gradient(
+			to #{$direction},
+			var(--v-secondary-base),
+			var(--v-accent-base)
+		);
+	}
 
-    &.stepper__divider--previous-to-error {
-        background: linear-gradient(to #{$direction}, var(--v-secondary-base), var(--v-error-base));
-    }
+	&.stepper__divider--previous-to-error {
+		background: linear-gradient(to #{$direction}, var(--v-secondary-base), var(--v-error-base));
+	}
 
-    &.stepper__divider--error-to-next {
-        background: linear-gradient(to #{$direction}, var(--v-error-base), var(--v-gray-lighten2));
-    }
+	&.stepper__divider--error-to-next {
+		background: linear-gradient(to #{$direction}, var(--v-error-base), var(--v-gray-lighten2));
+	}
 
-    &.stepper__divider--current-to-next {
-        background: linear-gradient(to #{$direction}, var(--v-accent-base), var(--v-gray-lighten2));
-    }
+	&.stepper__divider--current-to-next {
+		background: linear-gradient(to #{$direction}, var(--v-accent-base), var(--v-gray-lighten2));
+	}
 }
