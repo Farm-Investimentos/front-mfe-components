@@ -21,4 +21,9 @@ export const Primary = () => ({
 	template: '<farm-container-footer>Footer content</farm-container-footer>',
 });
 
+export const noTop = () => ({
+	components: { 'farm-container-footer': ContainerFooter },
+	template: '<farm-container-footer noTop>Footer content</farm-container-footer>',
+});
+
 Primary.storyName = 'Basic';
