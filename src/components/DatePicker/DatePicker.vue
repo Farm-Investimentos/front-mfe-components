@@ -14,18 +14,20 @@
 			scrollable
 			locale="pt-br"
 			class="datepicker"
+			show-adjacent-months
 			:max="max"
 			:min="min"
 		>
-			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
-				Fechar
+			<farm-btn plain title="Limpar" color="gray" @click="clear"> Limpar </farm-btn>
+			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+				Cancelar
 			</farm-btn>
-			<farm-btn outlined class="btn-clean" @click="clear"> Limpar </farm-btn>
+
 			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
-				Confirmar
+				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</v-date-picker>
-		<template v-slot:activator="{ }">
+		<template v-slot:activator="{}">
 			<farm-textfield-v2
 				icon="calendar"
 				v-model="fieldRange"
