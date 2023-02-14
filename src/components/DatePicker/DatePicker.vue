@@ -17,6 +17,7 @@
 			show-adjacent-months
 			:max="max"
 			:min="min"
+			@date="test"
 		>
 			<farm-btn plain title="Limpar" color="gray" @click="clear"> Limpar </farm-btn>
 			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
@@ -187,6 +188,9 @@ export default Vue.extend({
 		closeDatepicker() {
 			this.menuField = false;
 			this.$refs.contextmenu.inputValue = false;
+		},
+		test(a) {
+			console.log('a', a);
 		},
 	},
 	computed: {

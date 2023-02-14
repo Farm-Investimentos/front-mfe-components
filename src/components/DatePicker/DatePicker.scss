@@ -6,6 +6,10 @@
 	background: var(--farm-primary-base);
 }
 
+.datepicker :deep(.v-picker__body) {
+	width: 341px !important;
+}
+
 .datepicker :deep(.v-date-picker-table__current.v-btn--active) {
 	color: white;
 }
@@ -17,16 +21,38 @@
 }
 
 .datepicker :deep(.v-date-picker-header) {
-	width: 290px;
 	padding: 0;
 	margin-top: 16px;
 	margin-bottom: 16px;
+	margin-left: 4px;
 
 	.mdi-chevron-left::before,
 	.mdi-chevron-right::before {
 		color: var(--farm-neutral-darken);
 		font-size: 20px;
 		font-weight: 900;
+	}
+}
+
+.datepicker :deep(.v-picker__body:has(div > .v-date-picker-years)) {
+	width: 100% !important;
+
+	li {
+		color: var(--farm-neutral-darken);
+		font-size: 12px;
+		font-weight: 500;
+		width: 70px;
+		margin: 0 auto;
+		border-radius: 5px;
+
+		&.active {
+			color: var(--farm-primary-base);
+			border: 1px solid var(--farm-primary-base);
+		}
+
+		&:hover {
+			background-color: var(--farm-primary-lighten);
+		}
 	}
 }
 
@@ -87,9 +113,13 @@
 		border-radius: 5px;
 	}
 
-	table tbody td .v-btn:hover {
-		&::before {
+	table tbody td .v-btn {
+		&:not(.v-btn--active):hover::before {
 			background-color: var(--farm-primary-lighten);
+			opacity: 1;
+		}
+		&::before {
+			background-color: transparent;
 		}
 	}
 }

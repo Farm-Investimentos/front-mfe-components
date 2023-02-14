@@ -14,17 +14,19 @@
 			no-title
 			scrollable
 			range
-			:max="max"
-			:min="min"
+			show-adjacent-months
 			color="secondary"
 			locale="pt-br"
+			:max="max"
+			:min="min"
 		>
-			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
-				Fechar
+			<farm-btn plain title="Limpar" color="gray" @click="clear"> Limpar </farm-btn>
+			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+				Cancelar
 			</farm-btn>
-			<farm-btn outlined class="btn-clean" @click="clear"> Limpar </farm-btn>
-			<farm-btn class="ml-2" title="Confirmar" :disabled="dateField.length != 2" @click="save()">
-				Confirmar
+
+			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
+				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</v-date-picker>
 		<template v-slot:activator="{}">
@@ -153,5 +155,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import '../DatePicker/DatePicker.scss';
+@import './RangeDatePicker.scss';
 </style>
