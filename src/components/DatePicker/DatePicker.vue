@@ -19,7 +19,9 @@
 			:max="max"
 			:min="min"
 		>
-			<farm-btn plain title="Limpar" color="gray" @click="clear"> Limpar </farm-btn>
+			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+				Limpar
+			</farm-btn>
 			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
 				Cancelar
 			</farm-btn>
@@ -200,6 +202,9 @@ export default Vue.extend({
 			set(val) {
 				this.$emit('input', val);
 			},
+		},
+		isDisabled(): boolean {
+			return this.value.length === 0 ? true : false;
 		},
 	},
 });

@@ -15,6 +15,5 @@ const monthNumberToMonthName = {
 
 export function formatDatePickerHeader(date: string): string {
 	const [year, month] = date.split('-');
-	console.log('date', month);
 	return `${month ? monthNumberToMonthName[month] + ' ' : ''}${year}`;
 }
