@@ -15,9 +15,9 @@
 			locale="pt-br"
 			class="datepicker"
 			show-adjacent-months
+			:header-date-format="formatDatePickerHeader"
 			:max="max"
 			:min="min"
-			@date="test"
 		>
 			<farm-btn plain title="Limpar" color="gray" @click="clear"> Limpar </farm-btn>
 			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
@@ -48,6 +48,7 @@
 import Vue from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
+import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
@@ -189,9 +190,7 @@ export default Vue.extend({
 			this.menuField = false;
 			this.$refs.contextmenu.inputValue = false;
 		},
-		test(a) {
-			console.log('a', a);
-		},
+		formatDatePickerHeader,
 	},
 	computed: {
 		inputVal: {

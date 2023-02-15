@@ -92,7 +92,7 @@ tr.v-data-table__empty-wrapper {
 	}
 	.v-date-picker-header {
 		display: grid;
-		grid-template-columns: 1fr 2rem 2rem;
+		grid-template-columns: 1fr 60px 36px;
 		grid-template-areas: ' a b c ';
 		margin-top: 0.5rem;
 

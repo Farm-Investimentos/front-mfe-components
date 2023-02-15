@@ -35,8 +35,6 @@
 }
 
 .datepicker :deep(.v-picker__body:has(div > .v-date-picker-years)) {
-	width: 100% !important;
-
 	li {
 		color: var(--farm-neutral-darken);
 		font-size: 12px;
@@ -46,11 +44,12 @@
 		border-radius: 5px;
 
 		&.active {
-			color: var(--farm-primary-base);
+			color: #fff;
+			background-color: var(--farm-primary-base);
 			border: 1px solid var(--farm-primary-base);
 		}
 
-		&:hover {
+		&:hover:not(.active) {
 			background-color: var(--farm-primary-lighten);
 		}
 	}
@@ -64,6 +63,7 @@
 
 .datepicker :deep(.v-date-picker-table) {
 	padding: 0 40px;
+	margin-bottom: 24px;
 }
 
 .datepicker :deep(.v-picker__actions) {
@@ -72,7 +72,6 @@
 
 .datepicker :deep(.v-date-picker-table) {
 	table {
-		padding-bottom: 24px;
 		height: 100%;
 	}
 }

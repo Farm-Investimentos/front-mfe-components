@@ -15,6 +15,7 @@
 			scrollable
 			range
 			show-adjacent-months
+			:header-date-format="formatDatePickerHeader"
 			color="secondary"
 			locale="pt-br"
 			:max="max"
@@ -46,6 +47,7 @@
 import Vue from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
+import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para range de data
  */
@@ -138,6 +140,7 @@ export default Vue.extend({
 			this.menuField = false;
 			this.$refs.contextmenu.inputValue = false;
 		},
+		formatDatePickerHeader,
 	},
 	computed: {
 		inputVal: {
