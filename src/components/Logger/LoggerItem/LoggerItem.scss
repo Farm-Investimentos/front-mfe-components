@@ -1,68 +1,54 @@
 @mixin loggerMessage($color) {
-    >i.mdi {
-        border-color: $color;
-        background-color: $color;
-    }
+	> .farm-icon {
+		border-color: $color;
+		background-color: $color;
+	}
 
-    .logger__message {
-        color: $color;
-    }
+	.farm-bodytext--2 {
+		color: $color;
+	}
 }
 
 .logger__item {
-    display: flex;
-    flex-direction: row;
-    height: 64px;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	height: 64px;
+	align-items: center;
 
-    >div {
-        display: flex;
-        flex-direction: column;
-        padding-left: 8px;
-    }
+	> div {
+		display: flex;
+		flex-direction: column;
+		padding-left: 8px;
+	}
 
-    &.logger__item--error {
-        @include loggerMessage(var(--farm-error-base));
-    }
+	&.logger__item--error {
+		@include loggerMessage(var(--farm-error-base));
+	}
 
-    &.logger__item--success {
-        @include loggerMessage(var(--farm-primary-base));
-    }
+	&.logger__item--success {
+		@include loggerMessage(var(--farm-primary-base));
+	}
 
-    &.logger__item--info {
-        @include loggerMessage(var(--farm-info-base));
-    }
+	&.logger__item--info {
+		@include loggerMessage(var(--farm-info-base));
+	}
 }
 
+.logger__item > .farm-icon {
+	border: 1px solid var(--farm-stroke-base);
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	display: block;
 
-.logger__item>i.mdi {
-    border: 1px solid var(--farm-stroke-base);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	border-color: var(--farm-neutral-base);
+	background-color: var(--farm-neutral-base);
 
-    border-color: var(--farm-neutral-base);
-    background-color: var(--farm-neutral-base);
-
-    &:before {
-        font-size: 16px;
-        color: white;
-    }
-}
-
-.logger__date,
-.logger__username,
-.logger__extramessage {
-    font-size: 10px;
-    font-weight: 400;
-}
-
-.logger__message {
-    font-size: 14px;
-    font-weight: 700;
+	&:before {
+		color: white;
+	}
 }
