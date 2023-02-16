@@ -47,11 +47,11 @@
 				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
 						v-bind="$attrs"
-						:id="$props.id"
 						v-model="selectedText"
 						ref="inputField"
+						readonly
+						:id="$props.id"
 						@click="clickInput"
-						@keyup="onKeyUp"
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
@@ -300,10 +300,6 @@ export default Vue.extend({
 			emit('input', innerValue.value);
 		};
 
-		const onKeyUp = (event: Event) => {
-			emit('keyup', event);
-		};
-
 		const onBlur = (event: Event) => {
 			isBlured.value = true;
 			validate(innerValue.value);
@@ -413,7 +409,6 @@ export default Vue.extend({
 			validate,
 			reset,
 			selectItem,
-			onKeyUp,
 			onBlur,
 			onFocus,
 			clickInput,
