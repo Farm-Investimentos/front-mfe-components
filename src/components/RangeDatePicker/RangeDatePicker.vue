@@ -9,7 +9,7 @@
 	>
 		<v-date-picker
 			v-if="menuField"
-			class="datepicker"
+			class="rangedatepicker datepicker"
 			v-model="dateField"
 			no-title
 			scrollable
@@ -163,5 +163,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import './RangeDatePicker.scss';
+@import '../DatePicker/DatePicker.scss';
 </style>

@@ -106,6 +106,124 @@ tr.v-data-table__empty-wrapper {
 			grid-area: c;
 		}
 	}
+
+	.v-date-picker-table__current.v-btn--active {
+		color: white;
+	}
+	.v-date-picker-header {
+		padding: 0;
+		margin-top: 16px;
+		margin-bottom: 16px;
+		margin-left: 4px;
+
+		.mdi-chevron-left::before,
+		.mdi-chevron-right::before {
+			color: var(--farm-neutral-darken);
+			font-size: 20px;
+			font-weight: 900;
+		}
+	}
+
+	.v-picker__body:has(div > .v-date-picker-years) {
+		li {
+			color: var(--farm-neutral-darken);
+			font-size: 12px;
+			font-weight: 500;
+			width: 70px;
+			margin: 0 auto;
+			border-radius: 5px;
+
+			&.active {
+				color: #fff;
+				background-color: var(--farm-primary-base);
+				border: 1px solid var(--farm-primary-base);
+			}
+
+			&:hover:not(.active) {
+				background-color: var(--farm-primary-lighten);
+			}
+		}
+	}
+
+	.v-date-picker-header__value {
+		button {
+			padding-left: 0;
+		}
+	}
+
+	.v-picker__actions {
+		margin-bottom: 24px;
+	}
+
+	.v-date-picker-table {
+		padding: 0 40px;
+		margin-bottom: 24px;
+
+		table {
+			height: 100%;
+		}
+
+		table thead th {
+			color: var(--farm-neutral-darken);
+			font-size: 16px;
+			font-weight: 700;
+		}
+
+		table tbody td .v-btn {
+			color: var(--farm-neutral-darken);
+			font-size: 12px;
+			font-weight: 500;
+		}
+
+		table tbody td .v-btn.v-btn--disabled {
+			color: var(--farm-gray-lighten);
+		}
+
+		table tbody td .v-btn.v-date-picker-table__current,
+		.v-btn.v-btn--active {
+			border-radius: 5px;
+			border-color: var(--farm-primary-base);
+			border-width: 2px;
+		}
+
+		table tbody td .v-btn.v-date-picker-table__current {
+			color: var(--farm-primary-base);
+		}
+
+		table tbody td .v-btn.v-btn--active {
+			color: white;
+		}
+
+		table tbody td .v-btn--rounded {
+			border-radius: 5px;
+		}
+
+		table tbody td .v-btn {
+			&:not(.v-btn--active):hover::before {
+				background-color: var(--farm-primary-lighten);
+				opacity: 1;
+			}
+			&::before {
+				background-color: transparent;
+			}
+		}
+	}
+
+	&.rangedatepicker .v-date-picker-table {
+		table tbody td .v-btn.v-btn--active {
+			&:not(.v-date-picker--first-in-range, .v-date-picker--last-in-range) {
+				background: var(--farm-primary-lighten);
+				color: var(--farm-primary-base);
+				border-radius: 0;
+				width: 37px;
+			}
+
+			&.v-date-picker--first-in-range,
+			&.v-date-picker--last-in-range {
+				width: 37px;
+			}
+		}
+	}
 }
 
 .v-icon.v-icon__extral4 {
