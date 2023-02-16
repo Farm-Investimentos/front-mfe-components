@@ -87,6 +87,7 @@ import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
+import { buildData } from './composition';
 
 export default Vue.extend({
 	name: 'farm-select',
@@ -217,16 +218,19 @@ export default Vue.extend({
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
-		const innerValue = ref(props.value);
-		const isTouched = ref(false);
-		const isFocus = ref(false);
-		const isBlured = ref(false);
-		const isVisible = ref(false);
-		const selectedText = ref('');
-		const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
-		const checked = ref('1');
-		const notChecked = ref(false);
-		const inputField = ref();
+
+		const {
+			multipleValues,
+			innerValue,
+			isTouched,
+			isFocus,
+			isBlured,
+			isVisible,
+			selectedText,
+			checked,
+			notChecked,
+			inputField,
+		} = buildData(props);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
