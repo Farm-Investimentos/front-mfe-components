@@ -88,7 +88,7 @@ export const Disabled = () => ({
 	},
 	template: `<div>
 		<farm-checkbox v-model="isChecked" :value="true" :disabled="true" /><br />
-		<farm-checkbox v-model="notIsChecked" value="" :disabled="true" />
+		<farm-checkbox v-model="notIsChecked" value="1" :disabled="true" />
 	</div>`,
 });
 

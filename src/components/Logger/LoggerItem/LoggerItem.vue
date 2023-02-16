@@ -5,21 +5,21 @@
 			['logger__item--' + item.status]: true,
 		}"
 	>
-		<farm-icon>{{ mdiIconName }}</farm-icon>
+		<farm-icon size="16px">{{ mdiIconName }}</farm-icon>
 		<div>
-			<span class="logger__date">
+			<farm-caption variation="regular">
 				{{ item.formattedDate }}
-			</span>
-			<span class="logger__message">
+			</farm-caption>
+			<farm-bodytext :type="2" variation="bold">
 				{{ item.message }}
-			</span>
-			<span v-if="item.userName" class="logger__username">
-				<i class="mdi mdi-account-circle" />
+			</farm-bodytext>
+			<farm-caption variation="regular" v-if="item.userName">
+				<farm-icon color="black" size="xs">account-circle</farm-icon>
 				{{ item.userName }}
-			</span>
-			<span class="logger__extramessage">
+			</farm-caption>
+			<farm-caption variation="regular">
 				{{ item.extraMessage }}
-			</span>
+			</farm-caption>
 		</div>
 		<farm-btn
 			v-if="hasDetails"
