@@ -24,8 +24,13 @@ export const MaxFileSize = () => ({
 });
 
 export const MaxFilesNumber = () => ({
+	methods: {
+		onMaxFilesNumberWarning() {
+			alert('Max files count reached');
+		},
+	},
 	template: `<div>
-		<farm-multiple-filepicker :maxFileSize="5" :maxFilesNumber="2" />
+		<farm-multiple-filepicker :maxFileSize="5" :maxFilesNumber="2" @onMaxFilesNumberWarning="onMaxFilesNumberWarning" />
 		max files allowed: 2
 	</div>`,
 });

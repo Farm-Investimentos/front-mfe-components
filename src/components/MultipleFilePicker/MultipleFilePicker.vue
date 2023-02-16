@@ -5,9 +5,6 @@
 			name="file"
 			multiple
 			ref="upload"
-			:class="{
-				'hidden-input': hasFiles,
-			}"
 			:accept="acceptedFileTypes"
 			@change="fileChange($event.target.files)"
 		/>

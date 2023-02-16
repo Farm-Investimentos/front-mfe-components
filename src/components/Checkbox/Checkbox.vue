@@ -10,16 +10,15 @@
 				'farm-checkbox--darken': variation === 'darken',
 				'farm-checkbox--error': showError,
 			}"
-			:size="$props.size"
+			:size="sizeValue"
 			@click="toggleValue"
 		>
-			<farm-icon :size="$props.size" v-if="innerValue && !indeterminate">check</farm-icon>
-			<farm-icon :size="$props.size" v-if="indeterminate">minus</farm-icon>
+			<farm-icon :size="sizeValue" v-if="innerValue && !indeterminate">check</farm-icon>
+			<farm-icon :size="sizeValue" v-if="indeterminate">minus</farm-icon>
 		</span>
-		<farm-label v-if="label">
-			{{ label }}
-		</farm-label>
-		<div class="farm-ripple" :size="$props.size" v-if="!disabled"></div>
+		<farm-label v-if="label">{{ label }} </farm-label>
+
+		<div class="farm-ripple" :size="sizeValue" v-if="!disabled"></div>
 	</div>
 </template>
 <script lang="ts">
@@ -113,6 +112,14 @@ export default Vue.extend({
 		const isChecked = computed(() => innerValue.value == props.value);
 		const hasError = computed(() => errorBucket.value.length > 0);
 		const showError = computed(() => hasError.value && isTouched.value);
+		const sizeValue = computed(() => {
+			if (props.size === 'sm') {
+				return '16px';
+			} else if (props.size === 'md') {
+				return '24px';
+			}
+			return props.size;
+		});
 
 		const reset = () => {
 			if (disabled.value) {
@@ -161,6 +168,7 @@ export default Vue.extend({
 			showError,
 			makePristine,
 			isTouched,
+			sizeValue,
 		};
 	},
 });

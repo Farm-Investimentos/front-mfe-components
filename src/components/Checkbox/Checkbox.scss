@@ -3,84 +3,106 @@
 @import '../../configurations/mixins';
 
 .farm-checkbox__container {
-    display: flex;
-    flex-direction: row;
-    position: relative;
+	display: flex;
+	flex-direction: row;
+	position: relative;
 
-    .farm-label {
-        margin-left: 8px;
-    }
+	.farm-label {
+		margin-left: 8px;
+	}
 
-    @each $color in $theme-colors-list {
-        &#{'[color=' + $color + ']'} {
+	@each $color in $theme-colors-list {
+		&#{'[color=' + $color + ']'} {
+			.farm-checkbox--checked,
+			.farm-checkbox--indeterminate {
+				background-color: themeColor($color);
+				border-color: themeColor($color);
 
-            .farm-checkbox--checked,
-            .farm-checkbox--indeterminate {
-                background-color: themeColor($color);
-                border-color: themeColor($color);
+				&.farm-checkbox--lighten {
+					background-color: themeColor($color, 'lighten');
+					border-color: themeColor($color, 'lighten');
 
-                &.farm-checkbox--lighten {
-                    background-color: themeColor($color, 'lighten');
-                    border-color: themeColor($color, 'lighten');
+					.farm-icon {
+						color: themeColor($color, 'darken');
+					}
+				}
 
-                    .farm-icon {
-                        color: themeColor($color, 'darken');
-                    }
-                }
+				&.farm-checkbox--darken {
+					background-color: themeColor($color, 'darken');
+					border-color: themeColor($color, 'darken');
+				}
+			}
+		}
+	}
 
-                &.farm-checkbox--darken {
-                    background-color: themeColor($color, 'darken');
-                    border-color: themeColor($color, 'darken');
-                }
-            }
-        }
-    }
+	@include activateRipple;
 
-    @include activateRipple;
-
-    .farm-checkbox.farm-checkbox--error {
-        border-color: themeColor('error');
-    }
+	.farm-checkbox.farm-checkbox--error {
+		border-color: themeColor('error');
+	}
 }
 
 @include rippleStyles;
 
 .farm-checkbox {
-    display: flex;
-    justify-content: center;
-    border: 2px solid #5c5c5c;
-    border-radius: 2px;
-    cursor: pointer;
-    line-height: 0;
-    transition: all 0.4s;
-    z-index: 2;
+	display: flex;
+	justify-content: center;
+	border: 2px solid themeColor('neutral', 'darken');
+	border-radius: 2px;
+	cursor: pointer;
+	line-height: 0;
+	transition: all 0.4s;
+	z-index: 2;
 
-    &--disabled {
-        border-color: #dadada;
-        cursor: default;
-        opacity: 0.6;
+	&--disabled {
+		border-color: themeColor('neutral', 'base') !important;
+		cursor: default;
+		opacity: 0.6;
 
-        &.farm-checkbox--checked {
-            background-color: #dadada;
-        }
-    }
+		&.farm-checkbox--checked {
+			background-color: themeColor('neutral', 'base') !important;
+		}
+	}
 
-    .farm-icon {
-        color: white;
-    }
+	.farm-icon {
+		color: white;
+	}
 }
 
-@each $size,
-$value in $sizes {
-    #{'.farm-checkbox[size=' + $size +']'} {
-        width: $value;
-        height: $value;
-    }
+.farm-checkbox[size='16px'] {
+	width: 16px;
+	height: 16px;
+}
 
-    #{'.farm-ripple[size=' + $size +']'} {
-        height: $value*1.75;
-        width: $value*1.75;
-        left: -$value*0.4;
-        top: -$value*0.4 ;
-    }
+.farm-checkbox[size='24px'] {
+	width: 24px;
+	height: 24px;
+}
+
+.farm-ripple[size='16px'] {
+	height: 16px * 1.75;
+	width: 16px * 1.75;
+	left: -16px * 0.4;
+	top: -16px * 0.4;
+}
+
+.farm-ripple[size='24px'] {
+	height: 24px * 1.75;
+	width: 24px * 1.75;
+	left: -24px * 0.4;
+	top: -24px * 0.4;
+}
+
+@each $size, $value in $sizes {
+	#{'.farm-checkbox[size=' + $size + ']'} {
+		width: $value;
+		height: $value;
+	}
+
+	#{'.farm-ripple[size=' + $size + ']'} {
+		height: $value * 1.75;
+		width: $value * 1.75;
+		left: -$value * 0.4;
+		top: -$value * 0.4;
+	}
 }

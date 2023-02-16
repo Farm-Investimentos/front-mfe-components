@@ -1,9 +1,13 @@
 @import '../../../configurations/functions';
 
 .farm-container-footer {
-    width: 100%;
-    padding: gutter('lg');
-    padding-bottom: 0;
-    border-top: 1px solid var(--farm-stroke-base);
-    margin-top: gutter('lg');
+	width: 100%;
+	padding: gutter('lg');
+	padding-bottom: 0;
+	border-top: 1px solid var(--farm-stroke-base);
+	margin-top: gutter('lg');
+
+	&.farm-container-footer--notop {
+		margin-top: gutter('none');
+	}
 }

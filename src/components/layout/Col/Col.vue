@@ -11,6 +11,11 @@
 			[`farm-col--xs-${xs}`]: xs,
 			[`farm-col--cols-${cols}`]: cols,
 			'farm-col--no-gutters': noGutters,
+			[`farm-col--offset-${offset}`]: offset,
+			[`farm-col--offset-xl-${offsetXl}`]: offsetXl,
+			[`farm-col--offset-lg-${offsetLg}`]: offsetLg,
+			[`farm-col--offset-md-${offsetMd}`]: offsetMd,
+			[`farm-col--offset-sm-${offsetSm}`]: offsetSm,
 		}"
 	>
 		<slot></slot>
@@ -81,6 +86,51 @@ export default Vue.extend({
 		alignSelf: {
 			type: String as PropType<'start' | 'center' | 'end' | 'auto' | 'baseline' | 'stretch'>,
 			default: '',
+		},
+		/**
+		 * Sets the default offset for the column.
+		 */
+		offset: {
+			type: [String, Number] as PropType<
+				0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+			>,
+			default: null,
+		},
+		/**
+		 * Changes the offset of the component on extra large and greater breakpoints.
+		 */
+		offsetXl: {
+			type: [String, Number] as PropType<
+				0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+			>,
+			default: null,
+		},
+		/**
+		 * Changes the offset of the component on large and greater breakpoints.
+		 */
+		offsetLg: {
+			type: [String, Number] as PropType<
+				0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+			>,
+			default: null,
+		},
+		/**
+		 * Changes the offset of the component on medium and greater breakpoints.
+		 */
+		offsetMd: {
+			type: [String, Number] as PropType<
+				0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+			>,
+			default: null,
+		},
+		/**
+		 * Changes the offset of the component on small and greater breakpoints.
+		 */
+		offsetSm: {
+			type: [String, Number] as PropType<
+				0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+			>,
+			default: null,
 		},
 	},
 	inheritAttrs: true,
