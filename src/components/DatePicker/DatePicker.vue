@@ -14,18 +14,23 @@
 			scrollable
 			locale="pt-br"
 			class="datepicker"
+			show-adjacent-months
+			:header-date-format="formatDatePickerHeader"
 			:max="max"
 			:min="min"
 		>
-			<farm-btn outlined color="secondary" @click="closeDatepicker" title="Fechar">
-				Fechar
+			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+				Limpar
 			</farm-btn>
-			<farm-btn outlined class="btn-clean" @click="clear"> Limpar </farm-btn>
+			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+				Cancelar
+			</farm-btn>
+
 			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
-				Confirmar
+				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</v-date-picker>
-		<template v-slot:activator="{ }">
+		<template v-slot:activator="{}">
 			<farm-textfield-v2
 				icon="calendar"
 				v-model="fieldRange"
@@ -45,6 +50,7 @@
 import Vue from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
+import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
@@ -186,6 +192,7 @@ export default Vue.extend({
 			this.menuField = false;
 			this.$refs.contextmenu.inputValue = false;
 		},
+		formatDatePickerHeader,
 	},
 	computed: {
 		inputVal: {
@@ -195,6 +202,9 @@ export default Vue.extend({
 			set(val) {
 				this.$emit('input', val);
 			},
+		},
+		isDisabled(): boolean {
+			return this.value.length === 0 ? true : false;
 		},
 	},
 });

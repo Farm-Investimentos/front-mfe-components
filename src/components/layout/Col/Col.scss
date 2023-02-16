@@ -24,13 +24,19 @@
         flex: 0 0 (100/12 * $i)+#{"%"};
         max-width: (100/12 * $i)+#{"%"};
     }
-}
 
-@for $i from 1 through 12 {
     .farm-col--xs-#{$i * 1} {
         flex: 0 0 (100/12 * $i)+#{"%"};
         max-width: (100/12 * $i)+#{"%"};
     }
+
+    .farm-col--offset-#{$i * 1} {
+        margin-left: (100/12 * $i)+#{"%"};
+    }
+}
+
+.farm-col--offset-0 {
+    margin-left: 0%;
 }
 
 @include fromXs {
@@ -39,6 +45,14 @@
             flex: 0 0 (100/12 * $i)+#{"%"};
             max-width: (100/12 * $i)+#{"%"};
         }
+
+        .farm-col--offset-sm-#{$i * 1} {
+            margin-left: (100/12 * $i)+#{"%"};
+        }
+    }
+
+    .farm-col--offset-sm-0 {
+        margin-left: 0%;
     }
 }
 
@@ -48,7 +62,17 @@
             flex: 0 0 (100/12 * $i)+#{"%"};
             max-width: (100/12 * $i)+#{"%"};
         }
+
+        .farm-col--offset-md-#{$i * 1} {
+            margin-left: (100/12 * $i)+#{"%"};
+        }
+
     }
+
+    .farm-col--offset-md-0 {
+        margin-left: 0%;
+    }
+
 }
 
 @include fromMd {
@@ -57,6 +81,14 @@
             flex: 0 0 (100/12 * $i)+#{"%"};
             max-width: (100/12 * $i)+#{"%"};
         }
+
+        .farm-col--offset-lg-#{$i * 1} {
+            margin-left: (100/12 * $i)+#{"%"};
+        }
+    }
+
+    .farm-col--offset-lg-0 {
+        margin-left: 0%;
     }
 }
 
@@ -66,5 +98,13 @@
             flex: 0 0 (100/12 * $i)+#{"%"};
             max-width: (100/12 * $i)+#{"%"};
         }
+
+        .farm-col--offset-xl-#{$i * 1} {
+            margin-left: (100/12 * $i)+#{"%"};
+        }
+    }
+
+    .farm-col--offset-xl-0 {
+        margin-left: 0%;
     }
 }

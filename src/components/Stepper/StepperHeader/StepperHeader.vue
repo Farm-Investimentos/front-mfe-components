@@ -15,12 +15,12 @@
 					<farm-icon v-if="step.icon">
 						{{ step.icon }}
 					</farm-icon>
-					<span v-else class="farm-icon__number">
+					<farm-bodytext :type="2" variation="bold" v-else class="farm-icon__number">
 						{{ index + 1 }}
-					</span>
-					<span>
+					</farm-bodytext>
+					<farm-bodytext :type="2" variation="bold">
 						{{ step.label }}
-					</span>
+					</farm-bodytext>
 				</div>
 				<div
 					:class="{

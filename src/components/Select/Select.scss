@@ -1,4 +1,11 @@
 @import '../TextFieldV2/TextFieldV2.scss';
+@import '../../configurations/mixins';
+
+.farm-select {
+	&__hint-text {
+		@include hintText;
+	}
+}
 
 .farm-listitem--selected {
 	background-color: var(--farm-neutral-lighten);
@@ -21,9 +28,11 @@
 	margin-right: 8px;
 }
 
-::v-deep .farm-listitem:hover .farm-checkbox .farm-icon {
+:deep(.farm-listitem:hover .farm-checkbox .farm-icon) {
 	color: var(--farm-primary-lighten);
 }
-::v-deep .farm-listitem:hover .farm-checkbox.farm-checkbox--checked .farm-icon {
+
+
+:deep(.farm-listitem:hover .farm-checkbox.farm-checkbox--checked .farm-icon) {
 	color: white;
 }

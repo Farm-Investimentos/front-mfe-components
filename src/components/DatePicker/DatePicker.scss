@@ -5,16 +5,15 @@
 .datepicker :deep(.v-btn--active) {
 	background: var(--farm-primary-base);
 }
-.datepicker :deep(.v-date-picker-table__current) {
-	border-color: var(--farm-primary-base);
-	color: var(--farm-primary-base);
+
+.datepicker :deep(.v-picker__body) {
+	width: 341px !important;
 }
-.datepicker :deep(.v-date-picker-table__current.v-btn--active) {
-	color: white;
-}
-.btn-clean {
+
+.btn-cancel {
 	margin: 0 8px;
 }
+
 .farm-contextmenu {
 	width: 100%;
 }

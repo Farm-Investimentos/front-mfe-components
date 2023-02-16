@@ -121,29 +121,6 @@ export const TagP = () => ({
 	template: '<farm-col tag="p">col</farm-col>',
 });
 
-export const CompareToVCol = () => ({
-	data() {
-		return {
-			style,
-		};
-	},
-	template: `<div>
-
-		<h4>LG 3</h4>
-		<farm-col lg="3" :style="style">farm</farm-col>
-		<v-col lg="3" :style="style">v-col</v-col>
-
-		<h4>MD 3</h4>
-		<farm-col md="3" :style="style">farm</farm-col>
-		<v-col md="3" :style="style">v-col</v-col>
-
-
-		<h4>SM 3</h4>
-		<farm-col sm="3" :style="style">farm</farm-col>
-		<v-col sm="3" :style="style">v-col</v-col>
-		</div>`,
-});
-
 export const NoGutters = () => ({
 	data() {
 		return {
@@ -164,4 +141,34 @@ export const AlignSelf = () => ({
 		<farm-row style="height: 150px">
 			<farm-col :style="style" v-for="align in aligns" :key="align" :align-self="align">{{ align }}</farm-col>
 	</farm-row>`,
+});
+
+export const Offsets = () => ({
+	data() {
+		return {
+			style,
+			items
+		};
+	},
+	template: `<farm-box>
+		<farm-row>
+			<farm-col :style="style" md="1" offset-md="3">offset-md 3</farm-col>
+			<farm-col :style="style" md="1" offset-md="1">offset-md 1</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset-sm="1">offset-sm 1</farm-col>
+			<farm-col :style="style" md="1" offset-sm="4">offset-sm 4</farm-col>
+			<farm-col :style="style" md="1" offset-sm="2">offset-sm 2</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset-sm="1" offset-md="3">offset-sm 1 md 3</farm-col>
+		</farm-row>
+		<br />
+		<farm-row>
+			<farm-col :style="style" md="1" offset="1">offset 1</farm-col>
+			<farm-col :style="style" md="1" offset="1" offset-md="0">offset md 0</farm-col>
+		</farm-row>
+	</farm-box>`,
 });

@@ -47,11 +47,14 @@
 				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
 						v-bind="$attrs"
-						:id="$props.id"
 						v-model="selectedText"
+						ref="inputField"
+						readonly
+						:id="$props.id"
 						@click="clickInput"
-						@keyup="onKeyUp"
 						@blur="onBlur"
+						@focusin="onFocus(true)"
+						@focusout="onFocus(false)"
 					/>
 					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
 						menu-down
@@ -62,7 +65,15 @@
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption v-if="hint && !showErrorText" color="gray" variation="regular">
+		<farm-caption
+			v-if="hint && !showErrorText"
+			class="farm-select__hint-text"
+			:class="{
+				'farm-select__hint-text--show': persistentHint || isFocus,
+			}"
+			color="gray"
+			variation="regular"
+		>
 			{{ hint }}
 		</farm-caption>
 	</div>
@@ -70,12 +81,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
+import { buildData } from './composition';
 
 export default Vue.extend({
 	name: 'farm-select',
@@ -88,6 +100,13 @@ export default Vue.extend({
 		hint: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * Always show hint text
+		 */
+		persistentHint: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * Disabled the input
@@ -199,14 +218,19 @@ export default Vue.extend({
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
-		const innerValue = ref(props.value);
-		const isTouched = ref(false);
-		const isBlured = ref(false);
-		const isVisible = ref(false);
-		const selectedText = ref('');
-		const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
-		const checked = ref('1');
-		const notChecked = ref(false);
+
+		const {
+			multipleValues,
+			innerValue,
+			isTouched,
+			isFocus,
+			isBlured,
+			isVisible,
+			selectedText,
+			checked,
+			notChecked,
+			inputField,
+		} = buildData(props);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -280,17 +304,18 @@ export default Vue.extend({
 			emit('input', innerValue.value);
 		};
 
-		const onKeyUp = (event: Event) => {
-			emit('keyup', event);
-		};
-
 		const onBlur = (event: Event) => {
 			isBlured.value = true;
 			validate(innerValue.value);
 			emit('blur', event);
 		};
 
+		const onFocus = (focus: boolean) => {
+			isFocus.value = focus;
+		};
+
 		const selectItem = item => {
+			inputField.value.focus();
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -308,6 +333,7 @@ export default Vue.extend({
 
 			innerValue.value = item[itemValue.value];
 			isVisible.value = false;
+
 			setTimeout(() => {
 				emit('change', innerValue.value);
 			}, 100);
@@ -380,14 +406,15 @@ export default Vue.extend({
 			hasError,
 			isTouched,
 			isBlured,
+			isFocus,
 			isVisible,
 			customId,
 			showErrorText,
 			validate,
 			reset,
 			selectItem,
-			onKeyUp,
 			onBlur,
+			onFocus,
 			clickInput,
 			updateSelectedTextValue,
 			makePristine,
@@ -396,6 +423,7 @@ export default Vue.extend({
 			isChecked,
 			multipleValues,
 			addLabelToMultiple,
+			inputField,
 		};
 	},
 });
