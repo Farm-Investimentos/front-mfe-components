@@ -20,6 +20,9 @@
 			locale="pt-br"
 			:max="max"
 			:min="min"
+			:class="{
+				'invert-date': isInvertedDate,
+			}"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -158,6 +161,15 @@ export default Vue.extend({
 		},
 		isDisabled() {
 			return this.value?.length === 0 ? true : false;
+		},
+		isInvertedDate() {
+			if (this.dateField.length === 2) {
+				const firstDate = new Date(this.dateField[0]);
+				const secondDate = new Date(this.dateField[1]);
+
+				return firstDate.getTime() > secondDate.getTime();
+			}
+			return false;
 		},
 	},
 });
