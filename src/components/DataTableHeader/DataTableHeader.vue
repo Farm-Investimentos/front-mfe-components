@@ -26,7 +26,8 @@
 						v-bind:class="[
 							sortClick[$index][item.value] ? 'farm-icon--desc' : 'farm-icon--asc',
 						]"
-						size="sm"
+						class="ml-2"
+						size="12px"
 						color="gray"
 					>
 						sort-descending

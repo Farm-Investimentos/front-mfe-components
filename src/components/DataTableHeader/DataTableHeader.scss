@@ -33,3 +33,18 @@ th span.span-checkbox {
 	justify-content: flex-start;
 	padding-left: 4px;
 }
+
+thead {
+	height: 51px;
+}
+
+th {
+	color: var(--farm-secondary-base);
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+:deep(.mdi-sort-descending)::before {
+	font-weight: 900;
+}

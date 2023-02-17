@@ -5,7 +5,7 @@ $defaultLefts: 0, 4rem, 4rem;
 			font-size: 0.75rem;
 		}
 		tbody tr:nth-of-type(odd) td {
-			background-color: #f0f0f0;
+			background-color: var(--farm-neutral-lighten);
 		}
 		tr td {
 			background-color: white;
@@ -64,6 +64,37 @@ $defaultLefts: 0, 4rem, 4rem;
 			li button.v-pagination__item--active:hover {
 				cursor: default;
 			}
+		}
+
+		th[role='columnheader'] {
+			color: var(--farm-secondary-base);
+			font-size: 14px;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		td {
+			color: var(--farm-text-primary);
+			font-size: 14px;
+			font-weight: 400;
+		}
+
+		thead {
+			height: 51px;
+		}
+
+		th[role='columnheader']:has(> .v-data-table__checkbox) {
+			max-width: 71px !important;
+		}
+
+		.v-data-table-header__icon {
+			color: var(--farm-gray-base) !important;
+			font-size: 12px;
+			margin-left: 8px;
+		}
+
+		.v-data-table__checkbox .mdi {
+			margin-left: 18px;
 		}
 	}
 }
