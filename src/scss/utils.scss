@@ -222,6 +222,41 @@ tr.v-data-table__empty-wrapper {
 			&.v-date-picker--last-in-range {
 				width: 37px;
 			}
+
+			&.v-date-picker--first-in-range {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			&.v-date-picker--last-in-range {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+
+			&.v-date-picker--last-in-range.v-date-picker--first-in-range {
+				border-radius: 5px;
+			}
+		}
+	}
+	&.rangedatepicker.invert-date .v-date-picker-table {
+		table tbody td .v-btn.v-btn--active {
+			&.v-date-picker--first-in-range {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+			&.v-date-picker--last-in-range {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 		}
 	}
 }
