@@ -30,7 +30,7 @@ jobs:
         run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
       
       - name: Write the package version in introduction file
-      - run: sed -i '/Currrent version/c\Currrent version\:\ ${{ env.PACKAGE_VERSION }}' src/stories/Introduction.stories.mdx
+        run: sed -i 's/{VERSION}/${{ env.PACKAGE_VERSION }}/' src/stories/Introduction.stories.mdx
       
       - name: Build storybook
         run: npm run build-storybook
