@@ -1,10 +1,11 @@
 <template>
 	<farm-typography
+		v-bind="$attrs"
+		v-on="$listeners"
 		:weight="weight"
 		:size="size"
 		:key="key"
 		:class="{ [`farm-subtitle--${type}`]: true, [`farm-subtitle--${variation}`]: true }"
-		v-bind="$attrs"
 	>
 		<slot></slot>
 	</farm-typography>

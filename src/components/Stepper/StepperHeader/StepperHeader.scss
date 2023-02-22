@@ -40,7 +40,7 @@ $step-height: 64px;
 			}
 		}
 
-		.farm-bodytext--2 {
+		.farm-bodytext--2:not(.farm-icon__number) {
 			margin-top: 8px;
 			text-align: center;
 		}
