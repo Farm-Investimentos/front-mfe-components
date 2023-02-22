@@ -10,18 +10,14 @@ $defaultLefts: 0, 4rem, 4rem;
 		tr td {
 			background-color: white;
 		}
-		.v-data-table-header tr th {
-			color: var(--v-primary-base);
-			text-transform: uppercase;
-			font-weight: bold;
-		}
+
 		tr:not(:last-child) td,
 		tr th {
 			border-bottom: none;
 		}
 		.v-data-table__wrapper {
-			border-top: 1px solid var(--v-gray-lighten2);
-			border-bottom: 1px solid var(--v-gray-lighten2);
+			border-top: 1px solid var(--farm-gray-lighten);
+			border-bottom: 1px solid var(--farm-gray-lighten);
 		}
 		tr td:first-child,
 		th:first-child {
@@ -87,14 +83,20 @@ $defaultLefts: 0, 4rem, 4rem;
 			max-width: 71px !important;
 		}
 
+		.v-data-table-header tr th {
+			box-shadow: 0px 1px 0px 0px var(--farm-gray-lighten);
+		}
+
 		.v-data-table-header__icon {
 			color: var(--farm-gray-base) !important;
 			font-size: 12px;
+			font-weight: 900;
 			margin-left: 8px;
 		}
 
 		.v-data-table__checkbox .mdi {
 			margin-left: 18px;
+			font-size: 24px;
 		}
 	}
 }

@@ -10,6 +10,7 @@ const headers = [
 		value: 'id',
 		width: 80,
 		align: 'left',
+		sortable: true,
 	},
 	{
 		text: 'Name',
