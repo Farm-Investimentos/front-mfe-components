@@ -1,5 +1,11 @@
 <template>
-	<farm-typography v-bind="$attrs" size="10px" class="farm-overlaytext" :weight="400">
+	<farm-typography
+		v-bind="$attrs"
+		v-on="$listeners"
+		size="10px"
+		class="farm-overlaytext"
+		:weight="400"
+	>
 		<slot></slot>
 	</farm-typography>
 </template>
