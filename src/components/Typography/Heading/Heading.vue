@@ -1,5 +1,7 @@
 <template>
 	<farm-typography
+		v-bind="$attrs"
+		v-on="$listeners"
 		:weight="weight"
 		:size="size"
 		:tag="tag"
@@ -18,9 +20,9 @@ export default Vue.extend({
 	inheritAttrs: true,
 	name: 'farm-heading',
 	props: {
-        /**
-         * Type of the heading
-         */
+		/**
+		 * Type of the heading
+		 */
 		type: { type: [String, Number] as PropType<1 | 2 | 3 | 4 | 5 | 6>, default: 1 },
 	},
 	setup(props) {
