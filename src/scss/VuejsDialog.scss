@@ -1,6 +1,7 @@
 @import 'vuejs-dialog/dist/vuejs-dialog.min';
 @import '../components/Buttons/DefaultButton/DefaultButton.scss';
 
+
 .dg-main-content {
     font-family: Montserrat, sans-serif !important;
 }
@@ -27,6 +28,11 @@
     margin: 24px 0;
     font-size: 12px;
     line-height: 20px;
+    word-break: break-all;
+
+    ul {
+        margin-left: 16px;
+    }
 }
 
 .dg-content-footer {
@@ -53,7 +59,7 @@
     background-color: rgba(0, 0, 0, .46);
 }
 
-.dg-parent-nofooter{
+.dg-parent-nofooter {
     .dg-content-footer {
         display: none;
     }
@@ -73,6 +79,7 @@
     .dg-btn--ok {
         @extend .farm-btn--error;
     }
+
     .dg-title {
         color: var(--farm-error-base);
     }

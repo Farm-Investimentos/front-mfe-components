@@ -47,11 +47,11 @@
 				<div class="farm-textfield--input farm-textfield--input--iconed">
 					<input
 						v-bind="$attrs"
-						:id="$props.id"
 						v-model="selectedText"
 						ref="inputField"
+						readonly
+						:id="$props.id"
 						@click="clickInput"
-						@keyup="onKeyUp"
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
@@ -81,12 +81,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
+import { buildData } from './composition';
 
 export default Vue.extend({
 	name: 'farm-select',
@@ -217,16 +218,19 @@ export default Vue.extend({
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
-		const innerValue = ref(props.value);
-		const isTouched = ref(false);
-		const isFocus = ref(false);
-		const isBlured = ref(false);
-		const isVisible = ref(false);
-		const selectedText = ref('');
-		const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
-		const checked = ref('1');
-		const notChecked = ref(false);
-		const inputField = ref();
+
+		const {
+			multipleValues,
+			innerValue,
+			isTouched,
+			isFocus,
+			isBlured,
+			isVisible,
+			selectedText,
+			checked,
+			notChecked,
+			inputField,
+		} = buildData(props);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -298,10 +302,6 @@ export default Vue.extend({
 				return;
 			}
 			emit('input', innerValue.value);
-		};
-
-		const onKeyUp = (event: Event) => {
-			emit('keyup', event);
 		};
 
 		const onBlur = (event: Event) => {
@@ -413,7 +413,6 @@ export default Vue.extend({
 			validate,
 			reset,
 			selectItem,
-			onKeyUp,
 			onBlur,
 			onFocus,
 			clickInput,
