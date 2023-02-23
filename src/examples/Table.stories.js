@@ -6,11 +6,10 @@ import DataTablePaginator from '../components/DataTablePaginator';
 const headers = [
 	{
 		text: 'ID',
-		sortable: false,
+		sortable: true,
 		value: 'id',
 		width: 80,
 		align: 'left',
-		sortable: true,
 	},
 	{
 		text: 'Name',
@@ -110,11 +109,7 @@ export const TableSampleDataWithCheckbox = () => ({
 });
 
 export const TableSampleLocalPagination = () => ({
-	components: { 'v-data-table': VDataTable },
-	components: {
-		DataTableEmptyWrapper,
-		DataTablePaginator,
-	},
+	components: { 'v-data-table': VDataTable, DataTableEmptyWrapper, DataTablePaginator },
 	data() {
 		return {
 			headers,
