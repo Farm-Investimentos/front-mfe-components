@@ -1,7 +1,7 @@
 .header-text {
 	position: relative;
-	color: var(--v-primary-base);
-	font-size: 12px;
+	color: var(--farm-secondary-base);
+	font-size: 14px;
 
 	.farm-icon {
 		position: absolute;
@@ -32,4 +32,27 @@ th span.span-checkbox {
 	display: flex;
 	justify-content: flex-start;
 	padding-left: 4px;
+}
+
+thead {
+	height: 51px;
+}
+
+th {
+	color: var(--farm-secondary-base);
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	box-shadow: 0px -1px 0px var(--farm-gray-lighten), 0px 1px 0px var(--farm-gray-lighten);
+}
+
+:deep(.mdi-sort-descending)::before {
+	color: var(--farm-gray-base);
+	font-size: 12px;
+	font-weight: 900;
+}
+
+.farm-icon--desc,
+.farm-icon--asc {
+	margin-top: 3.5px;
 }

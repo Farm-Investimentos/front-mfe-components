@@ -26,7 +26,8 @@
 						v-bind:class="[
 							sortClick[$index][item.value] ? 'farm-icon--desc' : 'farm-icon--asc',
 						]"
-						size="sm"
+						class="ml-2"
+						size="12px"
 						color="gray"
 					>
 						sort-descending
@@ -35,7 +36,7 @@
 
 				<span v-if="isTHDataTableSelect(item) && showCheckbox" class="span-checkbox">
 					<farm-checkbox
-						size="sm"
+						size="md"
 						v-model="inputVal"
 						:value="true"
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
@@ -151,7 +152,7 @@ export default Vue.extend({
 		},
 		thWidth(item) {
 			if (this.isTHDataTableSelect(item)) {
-				return '64px';
+				return '72px';
 			}
 			return item.width ? item.width + 'px' : 'auto';
 		},

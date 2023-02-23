@@ -1,11 +1,12 @@
 import { withDesign } from 'storybook-addon-designs';
+import { VDataTable } from 'vuetify/lib/components';
 import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
 import DataTablePaginator from '../components/DataTablePaginator';
 
 const headers = [
 	{
 		text: 'ID',
-		sortable: false,
+		sortable: true,
 		value: 'id',
 		width: 80,
 		align: 'left',
@@ -37,6 +38,7 @@ export default {
 };
 
 export const TableNoData = () => ({
+	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
@@ -59,6 +61,7 @@ export const TableNoData = () => ({
 });
 
 export const TableSampleData = () => ({
+	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
@@ -80,12 +83,33 @@ export const TableSampleData = () => ({
     </v-data-table>
 	</div>`,
 });
+export const TableSampleDataWithCheckbox = () => ({
+	components: { 'v-data-table': VDataTable },
+	data() {
+		return {
+			headers,
+			items: [
+				{ id: 1, name: 'name 1' },
+				{ id: 2, name: 'name 2' },
+				{ id: 3, name: 'name 3' },
+			],
+		};
+	},
+	template: `<div>
+	<v-data-table
+        hide-default-footer
+		id="v-data-table--default"
+		:headers="headers"
+        :items="items"
+		show-select
+	>
+    
+    </v-data-table>
+	</div>`,
+});
 
 export const TableSampleLocalPagination = () => ({
-	components: {
-		DataTableEmptyWrapper,
-		DataTablePaginator,
-	},
+	components: { 'v-data-table': VDataTable, DataTableEmptyWrapper, DataTablePaginator },
 	data() {
 		return {
 			headers,
@@ -143,6 +167,10 @@ TableNoData.story = {
 
 TableSampleData.story = {
 	name: 'With data',
+};
+
+TableSampleDataWithCheckbox.story = {
+	name: 'With data and checkbox',
 };
 
 TableSampleLocalPagination.story = {
