@@ -4,10 +4,11 @@
     font-size: 12px;
     margin-bottom: 8px;
     line-height: 24px;
+    color: var(--farm-text-primary);
 
     &.farm-label--required::after {
         content: '*';
         margin-left: 2px;
-        color: var(--v-error-base);
+        color: var(--farm-error-base);
     }
 }

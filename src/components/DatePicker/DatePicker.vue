@@ -35,6 +35,7 @@
 				icon="calendar"
 				v-model="fieldRange"
 				autocomplete="off"
+				ref="inputCalendar"
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
 				:id="inputId"
@@ -166,6 +167,7 @@ export default Vue.extend({
 		clear() {
 			this.dateField = '';
 			this.save();
+			this.$refs.inputCalendar.reset();
 		},
 		validation(date) {
 			const pattern =

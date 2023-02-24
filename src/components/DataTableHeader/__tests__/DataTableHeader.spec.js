@@ -48,7 +48,7 @@ describe('DataTableHeader component', () => {
 		});
 
 		it('Should get th width', () => {
-			expect(component.thWidth({ value: 'data-table-select' })).toEqual('64px');
+			expect(component.thWidth({ value: 'data-table-select' })).toEqual('72px');
 			expect(component.thWidth({ width: 24 })).toEqual('24px');
 			expect(component.thWidth({})).toEqual('auto');
 		});

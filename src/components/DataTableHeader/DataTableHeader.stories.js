@@ -26,19 +26,30 @@ export const Primary = () => ({
 			firstSelected: false,
 		};
 	},
-	template: `<farm-datatable-header :headers="headers" :sortClick="sortClick" :firstSelected="firstSelected" />`,
+	template: `<farm-datatable-header :headers="headers" :sortClick="sortClick" :showCheckbox="false" :firstSelected="firstSelected" />`,
 });
 
 export const CheckBox = () => ({
 	data() {
 		return {
-			headers,
+			headers: [
+				{
+					text: 'check',
+					sortable: true,
+					value: 'data-table-select',
+					align: 'left',
+				},
+				...headers,
+			],
+			headerProps,
 			sortClick: [],
 			firstSelected: false,
 		};
 	},
-	template: `<farm-datatable-header :headers="headers" :sortClick="sortClick" :firstSelected="firstSelected" :showCheckbox="true" :selectedIndex="1" />`,
+	template: `<farm-datatable-header :headers="headers" :headerProps="headerProps" :sortClick="sortClick" :firstSelected="firstSelected" :showCheckbox="true" :selectedIndex="1" />`,
 });
+
+const headerProps = { someItems: true, everyItem: true };
 
 const headers = [
 	{
