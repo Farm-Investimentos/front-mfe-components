@@ -184,3 +184,14 @@ export const Ellipsis = () => ({
 		<farm-typography ellipsis>sample text for css text ellipsis</farm-typography>
 	</div>`,
 });
+
+export const Listener = () => ({
+	methods: {
+		handleEvent(type) {
+			alert(type);
+		},
+	},
+	template: `<farm-bodytext @click="handleEvent">
+		Click me
+	</farm-bodytext>`,
+});

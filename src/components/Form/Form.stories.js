@@ -193,31 +193,31 @@ export const Grid = () => ({
 			<farm-row>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 1</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 2</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 3</farm-label>
-					<farm-textfield hint="some hint text" :persistent-hint="true"  />
+					<farm-textfield-v2 hint="some hint text" :persistent-hint="true"  />
 				</farm-col>
 				<farm-col cols="12" md="3">
 					<farm-label>Label 4</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 				<farm-col cols="12" md="6">
 					<farm-label>Label 6</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 				<farm-col cols="12" md="2">
 					<farm-label>Label 7</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 				<farm-col cols="12" md="4">
 					<farm-label>Label 4</farm-label>
-					<farm-textfield />
+					<farm-textfield-v2 />
 				</farm-col>
 			</farm-row>
 			
@@ -360,7 +360,7 @@ export const RestartValidation = () => ({
 	},
 	template: `
         <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
-			{{ validForm }}
+			Is valid form: {{ validForm }}
 
 			<farm-label :required="true">Nome</farm-label>
 			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" />
