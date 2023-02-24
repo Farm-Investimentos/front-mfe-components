@@ -1,7 +1,7 @@
 import SelectModalOptions from './SelectModalOptions';
 
 export default {
-	title: 'INteractions/SelectModalOptions',
+	title: 'Interactions/SelectModalOptions',
 	component: SelectModalOptions,
 };
 
