@@ -79,9 +79,13 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import { VDataTable } from 'vuetify/lib';
 
 export default Vue.extend({
 	name: 'farm-select-modal-options',
+	components: {
+		'v-data-table': VDataTable,
+	},
 	props: {
 		/**
 		 * Input Label
