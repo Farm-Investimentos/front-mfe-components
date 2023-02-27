@@ -66,3 +66,13 @@ export const Readonly = () => ({
     </div>`,
 });
 
+export const IsNull = () => ({
+	data() {
+		return {
+			date: null,
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-8" v-model="date" :required="true" />
+    </div>`,
+});

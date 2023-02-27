@@ -25,6 +25,48 @@ describe('RangeDatePicker component', () => {
 	});
 
 	describe('computed values', () => {
+		it('isDisabled to be true when value is empty', async () => {
+			await wrapper.setProps({
+				value: [],
+			});
+			expect(component.isDisabled).toBe(true);
+		});
+
+		it('isDisabled to be true when value is null', async () => {
+			await wrapper.setProps({
+				value: null,
+			});
+			expect(component.isDisabled).toBe(true);
+		});
+
+		it('isDisabled to be false when value is valid', async () => {
+			await wrapper.setProps({
+				value: ['2023-02-02'],
+			});
+			expect(component.isDisabled).toBe(false);
+		});
+
+		it('isDateFieldDisabled to be true when dateField is empty', async () => {
+			await wrapper.setProps({
+				value: [],
+			});
+			expect(component.isDateFieldDisabled).toBe(true);
+		});
+
+		it('isDateFieldDisabled to be true when dateField is null', async () => {
+			await wrapper.setProps({
+				value: null,
+			});
+			expect(component.isDateFieldDisabled).toBe(true);
+		});
+
+		it('isDateFieldDisabled to be false when dateField is valid', async () => {
+			await wrapper.setProps({
+				value: ['2023-02-02'],
+			});
+			expect(component.isDateFieldDisabled).toBe(false);
+		});
+
 		it('min max correctly', async () => {
 			await wrapper.setProps({
 				inputId: 'someid',
