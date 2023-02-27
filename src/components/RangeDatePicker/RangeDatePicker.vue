@@ -165,7 +165,10 @@ export default Vue.extend({
 			return !this.dateField || this.dateField.length == 1;
 		},
 		isDisabled() {
-			return this.value?.length === 0 ? true : false;
+			if (this.value) {
+				return this.value.length === 0 ? true : false;
+			}
+			return true;
 		},
 		isDateFieldDisabled() {
 			if (this.dateField) {
