@@ -116,6 +116,9 @@ export default Vue.extend({
 	},
 	watch: {
 		value(newValue) {
+			if (newValue?.length === 1) {
+				newValue.push(newValue[0]);
+			}
 			this.dateField = newValue;
 			this.fieldRange = this.formatDateRange(newValue);
 		},

@@ -90,4 +90,18 @@ describe('RangeDatePicker component', () => {
 			expect(component.menuField).toBeFalsy();
 		});
 	});
+
+	describe('watchs', () => {
+		it('should show dateField and fieldRange correctly when it has one date', () => {
+			component.$options.watch.value.call(component, ['2023-02-27']);
+			expect(component.dateField).toEqual(['2023-02-27', '2023-02-27']);
+			expect(component.fieldRange).toEqual('27/02/2023 a 27/02/2023');
+		});
+
+		it('should show dateField and fieldRange correctly when it has two dates', () => {
+			component.$options.watch.value.call(component, ['2023-02-27', '2023-02-28']);
+			expect(component.dateField).toEqual(['2023-02-27', '2023-02-28']);
+			expect(component.fieldRange).toEqual('27/02/2023 a 28/02/2023');
+		});
+	});
 });
