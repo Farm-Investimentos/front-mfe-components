@@ -167,8 +167,8 @@ export default Vue.extend({
 	created() {
 		for (let i = 0; i < this.headers.length; i += 1) {
 			this.sortClick.push({
-				[this.headers[i].value]: false,
-				descending: 'ASC',
+				[this.headers[i].value]: this.firstSelected && i === this.selectedIndex && this.headers[i].order === 'DESC',
+				descending: this.headers[i].order || 'ASC',
 				field: this.headers[i].value,
 				clicked: this.checkFirstSelected(i),
 				show: this.checkFirstSelected(i),
