@@ -2,11 +2,11 @@
 @import '../../../configurations/mixins';
 @import '../../../configurations/theme-colors';
 $butonSizes: (
-	"xs": 20px,
-	"sm": 28px,
-	"md": 32px,
-	"lg": 48px,
-	"xl": 56px,
+	'xs': 20px,
+	'sm': 28px,
+	'md': 32px,
+	'lg': 48px,
+	'xl': 56px,
 	'default': 36px,
 );
 
@@ -37,8 +37,7 @@ $butonSizes: (
 		width: 100%;
 	}
 
-	@each $size,
-	$value in $sizes {
+	@each $size, $value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 			height: map-get($butonSizes, $size);
@@ -136,8 +135,7 @@ $butonSizes: (
 		color: gray;
 	}
 
-	@each $size,
-	$value in $sizes {
+	@each $size, $value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 		}
@@ -162,11 +160,30 @@ $butonSizes: (
 			::v-deep .farm-btn__content i.mdi {
 				color: var(--farm-#{$color}-base);
 			}
+
+			&.lighten-variation-icon {
+				&:hover {
+					color: var(--farm-#{$color}-lighten);
+				}
+
+				::v-deep .farm-btn__content i.mdi {
+					color: var(--farm-#{$color}-lighten);
+				}
+			}
+
+			&.darken-variation-icon {
+				&:hover {
+					color: var(--farm-#{$color}-darken);
+				}
+
+				::v-deep .farm-btn__content i.mdi {
+					color: var(--farm-#{$color}-darken);
+				}
+			}
 		}
 	}
 
 	&#{'.farm-btn--white'}:not(.farm-btn--disabled) {
-
 		::v-deep .farm-btn__content i.mdi {
 			color: white;
 		}
@@ -190,7 +207,6 @@ $butonSizes: (
 				}
 			}
 		}
-
 	}
 
 	.farm-btn--extra,
