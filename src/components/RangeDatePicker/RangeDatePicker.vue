@@ -31,7 +31,12 @@
 				Cancelar
 			</farm-btn>
 
-			<farm-btn class="ml-2" title="Confirmar" :disabled="!dateField.length" @click="save()">
+			<farm-btn
+				class="ml-2"
+				title="Confirmar"
+				:disabled="isDateFieldDisabled"
+				@click="save()"
+			>
 				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</v-date-picker>
@@ -111,6 +116,9 @@ export default Vue.extend({
 	},
 	watch: {
 		value(newValue) {
+			if (newValue?.length === 1) {
+				newValue.push(newValue[0]);
+			}
 			this.dateField = newValue;
 			this.fieldRange = this.formatDateRange(newValue);
 		},
@@ -160,7 +168,16 @@ export default Vue.extend({
 			return !this.dateField || this.dateField.length == 1;
 		},
 		isDisabled() {
-			return this.value?.length === 0 ? true : false;
+			if (this.value) {
+				return this.value.length === 0 ? true : false;
+			}
+			return true;
+		},
+		isDateFieldDisabled() {
+			if (this.dateField) {
+				return this.dateField.length === 0 ? true : false;
+			}
+			return true;
 		},
 		isInvertedDate() {
 			if (this.dateField.length === 2) {
