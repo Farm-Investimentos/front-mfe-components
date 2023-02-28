@@ -23,10 +23,37 @@ export const Primary = () => ({
 		return {
 			headers,
 			sortClick: [],
-			firstSelected: false,
+			firstSelected: true,
+			
 		};
 	},
-	template: `<farm-datatable-header :headers="headers" :sortClick="sortClick" :showCheckbox="false" :firstSelected="firstSelected" />`,
+	template: `<farm-datatable-header
+		:headers="headers"
+		:sortClick="sortClick"
+		:showCheckbox="false"
+		:firstSelected="firstSelected"
+		:selectedIndex="1"
+	/>`,
+});
+
+export const SetDescInititalOrder = () => ({
+	data() {
+		let customHeaders = [...headers];
+		customHeaders[1].order = 'DESC';
+		return {
+			headers: customHeaders,
+			sortClick: [],
+			firstSelected: true,
+			
+		};
+	},
+	template: `<farm-datatable-header
+		:headers="headers"
+		:sortClick="sortClick"
+		:showCheckbox="false"
+		:firstSelected="firstSelected"
+		:selectedIndex="1"
+	/>`,
 });
 
 export const CheckBox = () => ({
@@ -46,7 +73,13 @@ export const CheckBox = () => ({
 			firstSelected: false,
 		};
 	},
-	template: `<farm-datatable-header :headers="headers" :headerProps="headerProps" :sortClick="sortClick" :firstSelected="firstSelected" :showCheckbox="true" :selectedIndex="1" />`,
+	template: `<farm-datatable-header
+		:headers="headers"
+		:headerProps="headerProps"
+		:sortClick="sortClick"
+		:firstSelected="firstSelected"
+		:showCheckbox="true"
+		:selectedIndex="1" />`,
 });
 
 const headerProps = { someItems: true, everyItem: true };
