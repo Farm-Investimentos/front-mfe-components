@@ -14,7 +14,8 @@ export default {
 		docs: {
 			description: {
 				component: `ProgressBar<br />
-				selector: <em>farm-progressbar</em>`,
+				selector: <em>farm-progressbar</em><br />
+				<span style="color: var(--farm-primary-base);">ready for use</span>`,
 			},
 		},
 	},
@@ -35,7 +36,7 @@ export const CustomColors = () => ({
 			val: 35,
 		};
 	},
-	template: '<farm-progressbar :value="val" backgroundColor="accent" valueColor="secondary" />',
+	template: '<farm-progressbar :value="val" background-color="info" value-color="secondary" />',
 });
 
 export const CustomHexaColors = () => ({
@@ -44,5 +45,5 @@ export const CustomHexaColors = () => ({
 			val: 35,
 		};
 	},
-	template: '<farm-progressbar :value="val" backgroundColor="#FFFF00" valueColor="#00FF00" />',
+	template: '<farm-progressbar :value="val" background-color="#FFFF00" value-color="#00FF00" />',
 });

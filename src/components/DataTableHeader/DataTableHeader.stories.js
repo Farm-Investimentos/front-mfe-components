@@ -90,13 +90,14 @@ const headers = [
 		sortable: true,
 		value: 'name',
 		align: 'left',
+		width: 120,
 	},
 	{
 		text: 'Aprovado',
 		sortable: true,
 		value: 'approvedAmount',
 		align: 'center',
-		width: 320,
+		width: 160,
 	},
 	{
 		text: 'Disponível',
