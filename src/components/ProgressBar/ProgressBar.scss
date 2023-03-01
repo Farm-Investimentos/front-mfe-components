@@ -14,11 +14,11 @@ $radius: 5px;
 
     @each $color in $colors {
         &#{'.farm-progressbar--' + $color} {
-            background-color: var(--v-#{$color}-base);
+            background-color: var(--farm-#{$color}-base);
         }
 
         &#{'.farm-progressbar--value-' + $color}>div {
-            background-color: var(--v-#{$color}-base);
+            background-color: var(--farm-#{$color}-base);
         }
     }
 
