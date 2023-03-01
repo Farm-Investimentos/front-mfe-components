@@ -77,12 +77,13 @@ export default Vue.extend({
 			this.$emit('update', this.tabs[index]);
 		},
 		next() {
-			if (this.tabs.length - 1 > this.selected + 1) return;
+			if (this.tabs.length - 1 > this.selected + 1)
+				return this.$emit('update', this.tabs[this.selected]);
 			this.selected = this.selected + 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},
 		previous() {
-			if (this.selected - 1 < 0) return;
+			if (this.selected - 1 < 0) return this.$emit('update', this.tabs[this.selected]);
 			this.selected = this.selected - 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},
