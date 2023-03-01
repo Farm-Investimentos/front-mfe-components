@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-progressbar',
@@ -12,11 +12,39 @@ export default Vue.extend({
 		/**
 		 * backgroundColor
 		 */
-		backgroundColor: { type: String, default: 'secondary' },
+		backgroundColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+				| any
+			>,
+			default: 'primary',
+		},
 		/**
 		 * color
 		 */
-		valueColor: { type: String, default: 'error' },
+		valueColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+				| any
+			>,
+			default: 'error',
+		},
 		/**
 		 * Value (form 0 to 100)
 		 */
