@@ -1,11 +1,10 @@
 <template>
-	<div class="tabs">
+	<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
 		<div
 			v-for="(tab, index) in tabs"
 			class="tabs__tab"
 			:key="index"
 			:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
-			:disabled="!allowUserChange"
 			@click="changeTab(tab, index)"
 		>
 			<div
@@ -73,14 +72,17 @@ export default Vue.extend({
 			return index === this.selected;
 		},
 		changeTab(_, index) {
+			if (!this.allowUserChange) return;
 			this.selected = index;
 			this.$emit('update', this.tabs[index]);
 		},
 		next() {
+			if (this.tabs.length - 1 > this.selected + 1) return;
 			this.selected = this.selected + 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},
 		previous() {
+			if (this.selected - 1 < 0) return;
 			this.selected = this.selected - 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},

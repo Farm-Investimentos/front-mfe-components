@@ -1,11 +1,10 @@
 .tabs {
 	display: flex;
-	overflow: hidden;
 
 	&__tab {
 		border-bottom: 1px solid var(--farm-gray-lighten);
 		cursor: pointer;
-
+		display: inline-flex;
 		padding: 16px 24px;
 		height: 54px;
 
@@ -27,6 +26,22 @@
 
 			span {
 				font-weight: 500;
+			}
+		}
+	}
+
+	&--disabled {
+		.tabs__tab {
+			cursor: default;
+
+			&:hover {
+				background-color: transparent;
+			}
+
+			&--selected {
+				&:hover {
+					background-color: transparent;
+				}
 			}
 		}
 	}

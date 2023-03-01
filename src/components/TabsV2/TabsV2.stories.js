@@ -49,3 +49,20 @@ export const WithoutCounter = () => ({
 				<p class="mt-2">selected: {{v}}</p>
 			</div>`,
 });
+
+export const Disabled = () => ({
+	data() {
+		return {
+			v: 'Seleção',
+		};
+	},
+	methods: {
+		updateValue(value) {
+			this.v = value.name;
+		},
+	},
+	template: `<div>
+				<farm-tabs-v2 :showCounter="false" :allow-user-change="false" @update="updateValue" /> 
+				<p class="mt-2">selected: {{v}}</p>
+			</div>`,
+});
