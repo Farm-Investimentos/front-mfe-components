@@ -10,6 +10,7 @@
 	}
 
 	.farm-icon {
+		transition: transform .8s ease-in-out;  
 		&.farm-icon--asc {
 			transform: rotateX(180deg);
 		}
@@ -19,13 +20,19 @@
 th.sortable {
 	cursor: pointer;
 
+
 	&:not(.active) {
 		&:hover {
-			.farm-icon {
-				opacity: 0.5 !important;
+			.farm-icon::before {
+				color: var(--farm-gray-base) !important;
 			}
 		}
 	}
+
+	.header-text {
+		transition: color 0.5s ease;
+	}
+
 }
 
 th span.span-checkbox {
@@ -47,7 +54,7 @@ th {
 }
 
 :deep(.mdi-sort-descending)::before {
-	color: var(--farm-gray-base);
+	color: var(--farm-secondary-base);
 	font-size: 12px;
 	font-weight: 900;
 }
