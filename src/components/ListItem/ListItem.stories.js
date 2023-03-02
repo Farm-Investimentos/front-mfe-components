@@ -23,7 +23,9 @@ export default {
 };
 
 export const Primary = () => ({
-	template: '<farm-listitem>aaa</farm-listitem>',
+	template: `<farm-listitem>
+	Item
+	</farm-listitem>`,
 });
 
 export const HoverColors = () => ({
@@ -33,8 +35,16 @@ export const HoverColors = () => ({
 			variations,
 		};
 	},
-	template: `<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-		<div class="chips-container" v-for="color in colors" :key="color" style="width: 33.3%; margin-bottom: 32px;">
+	methods: {
+		getIconVariation(variation) {
+			if (variation === 'base' || variation === 'lighten') {
+				return 'darken';
+			}
+			return 'base';
+		},
+	},
+	template: `<farm-row>
+		<farm-col v-for="color in colors" :key="color" cols="12" md="4" class="mb-4">
 			<h4>{{ color }}</h4>
 			<farm-listitem
 				v-for="variation in variations"
@@ -42,24 +52,25 @@ export const HoverColors = () => ({
 				:hoverColor="color"
 				:hoverColorVariation="variation"
 				>
+				<farm-icon
+					:color="color"
+					:variation="getIconVariation(variation)"
+				>
+					book
+				</farm-icon>
 				{{ color }} {{ variation }}
 			</farm-listitem>
-		</div>
-	</div>`,
+		</farm-col>
+	</farm-row>`,
 });
 
-export const ClickableCursor = () => ({
-	template: '<farm-listitem clickable>Clickable cursor</farm-listitem>',
-});
-
-export const ClickListener = () => ({
+export const Clickable = () => ({
 	methods: {
 		onClick() {
 			alert('Clicked');
-		}
+		},
 	},
-	template:
-		`<farm-listitem
+	template: `<farm-listitem
 			clickable
 			hoverColor="error"
 			hoverColorVariation="lighten"
