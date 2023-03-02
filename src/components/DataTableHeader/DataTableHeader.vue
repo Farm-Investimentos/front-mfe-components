@@ -8,6 +8,7 @@
 					item.sortable ? 'sortable' : '',
 					sortClick[$index].clicked ? 'active' : '',
 					item.sortable ? (sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC') : '',
+					showCheckbox && $index == 0 ? 'checkbox-container' : ''
 				]"
 				v-bind:style="{
 					textAlign: item.align ? item.align : '',

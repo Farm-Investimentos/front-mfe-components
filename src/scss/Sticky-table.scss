@@ -103,7 +103,13 @@ $defaultLefts: 0, 4rem, 4rem;
 		.v-data-table__checkbox .mdi {
 			margin-left: 0;
 			font-size: 20px;
-			margin-left: -4px;
+			margin-left: -2px;
+		}
+
+		.v-input--selection-controls__input {
+			width: 20px;
+			height: 20px;
+			margin-right: 0 !important;
 		}
 	}
 }
