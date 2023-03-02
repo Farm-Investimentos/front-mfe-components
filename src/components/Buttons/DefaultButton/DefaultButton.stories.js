@@ -96,6 +96,9 @@ export const ActiveButtons = () => ({
         <farm-btn v-for="color of colors":key="'random_9_' + color" :color="color">
             {{ color }}
         </farm-btn>
+		<farm-btn v-for="color of colors":key="'random_9_lighten_' + color" :color="color" variation="lighten">
+            {{ color }} lighten
+        </farm-btn>
 	</div>`,
 });
 
