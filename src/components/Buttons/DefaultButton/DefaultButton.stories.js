@@ -92,14 +92,31 @@ export const ActiveButtons = () => ({
 			colors,
 		};
 	},
-	template: `<div class="buttons-container">
-        <farm-btn v-for="color of colors":key="'random_9_' + color" :color="color">
-            {{ color }}
-        </farm-btn>
-		<farm-btn v-for="color of colors":key="'random_9_lighten_' + color" :color="color" variation="lighten">
-            {{ color }} lighten
-        </farm-btn>
-	</div>`,
+	template: `<farm-box>
+		<farm-row>
+		
+		<farm-col cols="12" md="3" class="d-flex flex-column">
+			Base
+			<farm-btn v-for="color of colors":key="'random_9_' + color" :color="color" class="mb-2">
+				{{ color }}
+			</farm-btn>
+		</farm-col>
+	
+		<farm-col cols="12" md="3"  class="d-flex flex-column">
+			Lighten
+			<farm-btn v-for="color of colors":key="'random_9_lighten_' + color" :color="color" variation="lighten" class="mb-2">
+				{{ color }}
+			</farm-btn>
+		</farm-col>
+
+			<farm-col cols="12" md="3"  class="d-flex flex-column">
+			Darken
+			<farm-btn v-for="color of colors":key="'random_9_darken_' + color" :color="color" variation="darken" class="mb-2">
+				{{ color }}
+			</farm-btn>
+		</farm-col>
+		<farm-row>
+	</farm-box>`,
 });
 
 export const OutlinedButtons = () => ({
@@ -198,28 +215,41 @@ export const Iconed = () => ({
 			colors: [...colors, 'white'],
 		};
 	},
-	template: `<div class="buttons-container">
-		<h4>Icon</h4>
+	template: `<farm-box>
+	<farm-row>
+	
+	<farm-col cols="12" md="3" class="d-flex flex-column">
+		Base
         <farm-btn icon v-for="color of colors" :key="'random_2_' + color" :color="color">
             <farm-icon>book</farm-icon>
         </farm-btn>
+	</farm-col>
+	
+	<farm-col cols="12" md="3"  class="d-flex flex-column">
 
-		<h4>Darken Icon</h4>
+		<h4>Darken</h4>
         <farm-btn icon v-for="color of colors" :key="'random_2_' + color" :color="color" variation="darken">
             <farm-icon>book</farm-icon>
         </farm-btn>
+		</farm-col>
+	
+	<farm-col cols="12" md="3"  class="d-flex flex-column">
 
-		<h4>Lighten Icon</h4>
+		<h4>Lighten </h4>
         <farm-btn icon v-for="color of colors" :key="'random_2_' + color" :color="color" variation="lighten">
             <farm-icon>book</farm-icon>
         </farm-btn>
+	</farm-col>
 
-		<h4>Disabled Icon</h4>
+	<farm-col cols="12" md="3"  class="d-flex flex-column">
+
+		<h4>Disabled</h4>
         <farm-btn icon v-for="color of colors" :key="'disabled_random_2_' + color" :color="color" :disabled="true">
             <farm-icon>book</farm-icon>
         </farm-btn>
-
-	</div>`,
+		</farm-col>
+	</farm-row>
+	</farm-box>`,
 });
 
 export const Rounded = () => ({

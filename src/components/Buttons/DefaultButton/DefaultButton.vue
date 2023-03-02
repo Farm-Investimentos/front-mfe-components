@@ -112,7 +112,7 @@ export default Vue.extend({
 				'farm-btn--icon': this.icon,
 				'farm-btn--full': this.full,
 				['farm-btn--' + this.color]: true,
-				[this.variation + '-variation-icon']: true,
+				['farm-btn--variation-' + this.variation]: true,
 				...obj,
 			};
 		},
