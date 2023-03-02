@@ -30,6 +30,11 @@ $defaultLefts: 0, 4rem, 4rem;
 			}
 		}
 
+		&.v-data-table > .v-data-table__wrapper > table > tbody > tr > td:first-child,
+		&.v-data-table > .v-data-table__wrapper > table > thead > tr > th:first-child {
+			padding-left: 24px;
+		}
+
 		@if $columns > 0 {
 			@for $i from 1 through $columns {
 				tr td:nth-child(#{$i}),
@@ -81,6 +86,7 @@ $defaultLefts: 0, 4rem, 4rem;
 
 		th[role='columnheader']:has(> .v-data-table__checkbox) {
 			max-width: 71px !important;
+			padding-left: 24px;
 		}
 
 		.v-data-table-header tr th {
@@ -95,8 +101,9 @@ $defaultLefts: 0, 4rem, 4rem;
 		}
 
 		.v-data-table__checkbox .mdi {
-			margin-left: 18px;
-			font-size: 24px;
+			margin-left: 0;
+			font-size: 20px;
+			margin-left: -4px;
 		}
 	}
 }
