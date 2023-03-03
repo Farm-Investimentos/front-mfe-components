@@ -55,6 +55,7 @@
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
+						@keydown="onKeydown"
 					/>
 					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
 						menu-down
@@ -396,6 +397,36 @@ export default Vue.extend({
 			);
 		};
 
+		function onKeydown(e: KeyboardEvent) {
+			console.log('CAIU', e.code);
+			if (props.readonly) return;
+
+			if (['Enter', ' ', 'ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.code)) {
+				e.preventDefault();
+			}
+
+			if (['Enter', 'ArrowDown', ' '].includes(e.code)) {
+				console.log('CAIU 2');
+				isVisible.value = true;
+			}
+
+			if (['Escape', 'Tab'].includes(e.code)) {
+				console.log('CAIU', 3);
+				isVisible.value = false;
+				console.log('isVisible.value', isVisible.value);
+			}
+
+			/*  if (e.key === 'ArrowDown') {
+        listRef.value?.focus('next')
+      } else if (e.key === 'ArrowUp') {
+        listRef.value?.focus('prev')
+      } else if (e.key === 'Home') {
+        listRef.value?.focus('first')
+      } else if (e.key === 'End') {
+        listRef.value?.focus('last')
+      } */
+		}
+
 		return {
 			items,
 			innerValue,
@@ -424,6 +455,7 @@ export default Vue.extend({
 			multipleValues,
 			addLabelToMultiple,
 			inputField,
+			onKeydown,
 		};
 	},
 });
