@@ -7,6 +7,7 @@ import Loader from './components/Loader';
 import FilePicker from './components/FilePicker';
 import MultipleFilePicker from './components/MultipleFilePicker';
 import Tabs from './components/Tabs';
+import TabsV2 from './components/TabsV2';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 import RangeDatePicker from './components/RangeDatePicker';
@@ -33,6 +34,7 @@ export {
 	FilePicker,
 	MultipleFilePicker,
 	Tabs,
+	TabsV2,
 	DialogHeader,
 	DialogFooter,
 	RangeDatePicker,
