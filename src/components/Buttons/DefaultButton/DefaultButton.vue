@@ -87,6 +87,13 @@ export default Vue.extend({
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
 			default: 'default',
 		},
+		/**
+		 * Color Variation to Icons
+		 */
+		variation: {
+			type: String as PropType<'base' | 'lighten' | 'darken'>,
+			default: 'base',
+		},
 	},
 
 	computed: {
@@ -105,6 +112,7 @@ export default Vue.extend({
 				'farm-btn--icon': this.icon,
 				'farm-btn--full': this.full,
 				['farm-btn--' + this.color]: true,
+				['farm-btn--variation-' + this.variation]: true,
 				...obj,
 			};
 		},

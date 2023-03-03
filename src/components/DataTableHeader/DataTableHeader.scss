@@ -10,6 +10,7 @@
 	}
 
 	.farm-icon {
+		transition: transform .8s ease-in-out;  
 		&.farm-icon--asc {
 			transform: rotateX(180deg);
 		}
@@ -18,20 +19,24 @@
 
 th.sortable {
 	cursor: pointer;
-
 	&:not(.active) {
 		&:hover {
-			.farm-icon {
-				opacity: 0.5 !important;
+			.farm-icon::before {
+				color: var(--farm-gray-base) !important;
 			}
 		}
 	}
+
+	.header-text {
+		transition: color 0.5s ease;
+	}
+
 }
 
 th span.span-checkbox {
 	display: flex;
 	justify-content: flex-start;
-	padding-left: 4px;
+	padding-left: 0;
 }
 
 thead {
@@ -44,10 +49,14 @@ th {
 	font-weight: 700;
 	text-transform: uppercase;
 	box-shadow: 0px -1px 0px var(--farm-gray-lighten), 0px 1px 0px var(--farm-gray-lighten);
+	&.checkbox-container {
+		width: 60px !important;
+		min-width: 60px !important;
+	}
 }
 
 :deep(.mdi-sort-descending)::before {
-	color: var(--farm-gray-base);
+	color: var(--farm-secondary-base);
 	font-size: 12px;
 	font-weight: 900;
 }

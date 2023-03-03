@@ -8,6 +8,7 @@
 					item.sortable ? 'sortable' : '',
 					sortClick[$index].clicked ? 'active' : '',
 					item.sortable ? (sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC') : '',
+					showCheckbox && $index == 0 ? 'checkbox-container' : ''
 				]"
 				v-bind:style="{
 					textAlign: item.align ? item.align : '',
@@ -36,7 +37,7 @@
 
 				<span v-if="isTHDataTableSelect(item) && showCheckbox" class="span-checkbox">
 					<farm-checkbox
-						size="md"
+						size="sm"
 						v-model="inputVal"
 						:value="true"
 						:indeterminate="headerProps.someItems && !headerProps.everyItem"
@@ -118,10 +119,13 @@ export default Vue.extend({
 			return value ? 'DESC' : 'ASC';
 		},
 		clickSort(value, index) {
+			const isClicked = this.sortClick[index].clicked;
 			this.removeClicked();
 			this.sortClick[index].clicked = true;
 			this.sortClick[index].show = true;
-			this.sortClick[index][value] = !this.sortClick[index][value];
+			if (isClicked) {
+				this.sortClick[index][value] = !this.sortClick[index][value];
+			}
 			this.sortClick[index].descending = this.getTypeSort(this.sortClick[index][value]);
 			this.$emit('onClickSort', this.sortClick[index]);
 		},
@@ -167,8 +171,11 @@ export default Vue.extend({
 	created() {
 		for (let i = 0; i < this.headers.length; i += 1) {
 			this.sortClick.push({
-				[this.headers[i].value]: false,
-				descending: 'ASC',
+				[this.headers[i].value]:
+					this.firstSelected &&
+					i === this.selectedIndex &&
+					this.headers[i].order === 'DESC',
+				descending: this.headers[i].order || 'ASC',
 				field: this.headers[i].value,
 				clicked: this.checkFirstSelected(i),
 				show: this.checkFirstSelected(i),
