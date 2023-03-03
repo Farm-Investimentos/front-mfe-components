@@ -12,8 +12,9 @@
 		v-if="!readonly && !disabled"
 		:id="customId"
 	>
+		{{ isVisible }}
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
-			<farm-list v-if="!readonly">
+			<farm-list v-if="!readonly" ref="listRef">
 				<farm-listitem
 					v-for="(item, index) in items"
 					clickable
@@ -57,7 +58,11 @@
 						@focusout="onFocus(false)"
 						@keydown="onKeydown"
 					/>
-					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
+					<farm-icon
+						color="gray"
+						:class="{ 'farm-icon--rotate': isVisible }"
+						@click="addFocusToInput"
+					>
 						menu-down
 					</farm-icon>
 				</div>
@@ -82,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, toRefs, watch, ref } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -232,6 +237,8 @@ export default Vue.extend({
 			notChecked,
 			inputField,
 		} = buildData(props);
+
+		const listRef = ref();
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -398,33 +405,34 @@ export default Vue.extend({
 		};
 
 		function onKeydown(e: KeyboardEvent) {
-			console.log('CAIU', e.code);
+			console.log('onKeydown', e.code);
 			if (props.readonly) return;
 
-			if (['Enter', ' ', 'ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.code)) {
+			if (['Enter', ' ', 'ArrowDown', 'ArrowUp', 'Home', 'End', 'Space'].includes(e.code)) {
 				e.preventDefault();
 			}
 
-			if (['Enter', 'ArrowDown', ' '].includes(e.code)) {
-				console.log('CAIU 2');
+			if (['Enter', 'ArrowDown', ' ', 'Space'].includes(e.code)) {
 				isVisible.value = true;
 			}
 
 			if (['Escape', 'Tab'].includes(e.code)) {
-				console.log('CAIU', 3);
 				isVisible.value = false;
-				console.log('isVisible.value', isVisible.value);
 			}
+			console.log('listRef.value', listRef.value);
+			if (e.key === 'ArrowDown') {
+				listRef.value.focus('next');
+			} else if (e.key === 'ArrowUp') {
+				listRef.value.focus('prev');
+			} else if (e.key === 'Home') {
+				listRef.value.focus('first');
+			} else if (e.key === 'End') {
+				listRef.value.focus('last');
+			}
+		}
 
-			/*  if (e.key === 'ArrowDown') {
-        listRef.value?.focus('next')
-      } else if (e.key === 'ArrowUp') {
-        listRef.value?.focus('prev')
-      } else if (e.key === 'Home') {
-        listRef.value?.focus('first')
-      } else if (e.key === 'End') {
-        listRef.value?.focus('last')
-      } */
+		function addFocusToInput() {
+			inputField.value.focus();
 		}
 
 		return {
@@ -456,6 +464,8 @@ export default Vue.extend({
 			addLabelToMultiple,
 			inputField,
 			onKeydown,
+			addFocusToInput,
+			listRef,
 		};
 	},
 });
