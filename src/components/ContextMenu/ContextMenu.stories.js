@@ -75,14 +75,20 @@ export const VModel = () => ({
 	},
 	methods: {
 		toggleValue() {
-			this.value = !this.value;
+			this.value = true;
+
+			setTimeout(() => {
+				this.value = false;
+			}, 2000);
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
-        <farm-contextmenu v-model="value">
+        <farm-contextmenu bottom v-model="value">
             some text
             <template v-slot:activator="{ on, attrs }">
-                <farm-btn @click="toggleValue">toggle</farm-btn>
+                <farm-btn :disabled="value" @click="toggleValue">
+					{{ !value ? 'Open' : 'Will close in 2s' }}
+				</farm-btn>
             </template>
         </farm-contextmenu>
 	</div>`,

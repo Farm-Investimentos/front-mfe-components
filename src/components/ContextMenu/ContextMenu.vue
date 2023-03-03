@@ -98,6 +98,13 @@ export default Vue.extend({
 		};
 
 		watch(
+			() => props.value,
+			newValue => {
+				if (hasBeenBoostrapped) inputValue.value = newValue;
+			}
+		);
+
+		watch(
 			() => inputValue.value,
 			newValue => {
 				if (newValue) {
@@ -115,6 +122,7 @@ export default Vue.extend({
 					styles.left = 0;
 					styles.zIndex = 0;
 					window.removeEventListener('click', outClick);
+					hasBeenBoostrapped = false;
 				}
 			}
 		);
