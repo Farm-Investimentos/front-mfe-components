@@ -55,6 +55,7 @@
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
+						@keydown="onKeyDown"
 					/>
 					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
 						menu-down
@@ -81,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -396,6 +397,18 @@ export default Vue.extend({
 			);
 		};
 
+		const contextmenu = ref(null);
+
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (['Space'].includes(event.code)) {
+				isVisible.value = true;
+			}
+			if (['Escape'].includes(event.code)) {
+				isVisible.value = false;
+			}
+			event.preventDefault();
+		};
+
 		return {
 			items,
 			innerValue,
@@ -410,6 +423,7 @@ export default Vue.extend({
 			isVisible,
 			customId,
 			showErrorText,
+			contextmenu,
 			validate,
 			reset,
 			selectItem,
@@ -424,6 +438,7 @@ export default Vue.extend({
 			multipleValues,
 			addLabelToMultiple,
 			inputField,
+			onKeyDown,
 		};
 	},
 });
