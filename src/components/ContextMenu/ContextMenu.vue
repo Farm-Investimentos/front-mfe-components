@@ -74,7 +74,7 @@ export default Vue.extend({
 		} as any);
 
 		const inputValue = ref(props.value);
-
+		
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {
@@ -100,7 +100,7 @@ export default Vue.extend({
 		watch(
 			() => props.value,
 			newValue => {
-				if (hasBeenBoostrapped) inputValue.value = newValue;
+				inputValue.value = newValue;
 			}
 		);
 
@@ -122,7 +122,6 @@ export default Vue.extend({
 					styles.left = 0;
 					styles.zIndex = 0;
 					window.removeEventListener('click', outClick);
-					hasBeenBoostrapped = false;
 				}
 			}
 		);

@@ -56,7 +56,7 @@
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
-						@keydown="onKeydown"
+						@keydown="onKeyDown"
 					/>
 					<farm-icon
 						color="gray"
@@ -406,23 +406,21 @@ export default Vue.extend({
 			);
 		};
 
-		function onKeydown(e: KeyboardEvent) {
-			console.log('onKeydown', e.code);
+		function onKeyDown(e: KeyboardEvent) {
+			console.log('onKeyDown', e.code);
 			if (props.readonly) return;
 
-			if (['Enter', ' ', 'ArrowDown', 'ArrowUp', 'Home', 'End', 'Space'].includes(e.code)) {
-				e.preventDefault();
-			}
-
 			if (['Space'].includes(e.code)) {
-				contextmenu.value.click();
+				isVisible.value = true;
 			}
 			if (['Escape'].includes(e.code)) {
 				isVisible.value = false;
 			}
+			listRef.value.$el.firstChild.focus();
 			console.log('listRef.value', listRef.value);
 			if (e.key === 'ArrowDown') {
-				listRef.value.focus('next');
+				console.log('document.activeElement', document.querySelector(':focus'));
+				//listRef.value.focus('next');
 			} else if (e.key === 'ArrowUp') {
 				listRef.value.focus('prev');
 			} else if (e.key === 'Home') {
@@ -430,6 +428,7 @@ export default Vue.extend({
 			} else if (e.key === 'End') {
 				listRef.value.focus('last');
 			}
+			e.preventDefault();
 		}
 
 		function addFocusToInput() {
@@ -464,7 +463,7 @@ export default Vue.extend({
 			multipleValues,
 			addLabelToMultiple,
 			inputField,
-			onKeydown,
+			onKeyDown,
 			addFocusToInput,
 			listRef,
 			contextmenu,
