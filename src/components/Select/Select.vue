@@ -240,6 +240,8 @@ export default Vue.extend({
 
 		const listRef = ref();
 
+		const contextmenu = ref(null);
+
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
 		let fieldValidator = validateFormFieldBuilder(rules.value);
@@ -412,11 +414,10 @@ export default Vue.extend({
 				e.preventDefault();
 			}
 
-			if (['Enter', 'ArrowDown', ' ', 'Space'].includes(e.code)) {
-				isVisible.value = true;
+			if (['Space'].includes(e.code)) {
+				contextmenu.value.click();
 			}
-
-			if (['Escape', 'Tab'].includes(e.code)) {
+			if (['Escape'].includes(e.code)) {
 				isVisible.value = false;
 			}
 			console.log('listRef.value', listRef.value);
@@ -466,6 +467,7 @@ export default Vue.extend({
 			onKeydown,
 			addFocusToInput,
 			listRef,
+			contextmenu,
 		};
 	},
 });
