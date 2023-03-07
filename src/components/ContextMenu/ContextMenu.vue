@@ -74,7 +74,7 @@ export default Vue.extend({
 		} as any);
 
 		const inputValue = ref(props.value);
-
+		
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {
@@ -96,6 +96,13 @@ export default Vue.extend({
 		const resizeWindowHandler = () => {
 			calculatePosition();
 		};
+
+		watch(
+			() => props.value,
+			newValue => {
+				inputValue.value = newValue;
+			}
+		);
 
 		watch(
 			() => inputValue.value,

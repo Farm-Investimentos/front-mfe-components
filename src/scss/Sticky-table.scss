@@ -2,7 +2,7 @@ $defaultLefts: 0, 4rem, 4rem;
 @mixin stickytable($selector, $columns: 1, $lefts: $defaultLefts) {
 	#{$selector} {
 		tbody {
-			font-size: 0.75rem;
+			font-size: 12px;
 		}
 		tbody tr:nth-of-type(odd) td {
 			background-color: var(--farm-neutral-lighten);
@@ -51,6 +51,10 @@ $defaultLefts: 0, 4rem, 4rem;
 					left: nth($lefts, $i);
 				}
 			}
+		}
+
+		tr td:first-child, tr th:first-child  {
+			padding-left: 24px;
 		}
 
 		.v-chip {

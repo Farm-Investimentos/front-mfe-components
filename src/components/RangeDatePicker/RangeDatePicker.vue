@@ -47,8 +47,6 @@
 				readonly
 				:id="inputId"
 				:rules="required ? [requiredRule] : []"
-				@click="openDatepicker"
-				@onClickIcon="openDatepicker"
 			/>
 		</template>
 	</farm-contextmenu>

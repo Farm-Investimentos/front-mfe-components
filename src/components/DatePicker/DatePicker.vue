@@ -46,8 +46,6 @@
 				:id="inputId"
 				:rules="[checkMax, checkMin, checkRequire]"
 				@keyup="keyUpInput"
-				@click="openDatepicker"
-				@onClickIcon="openDatepicker"
 			/>
 		</template>
 	</farm-contextmenu>
@@ -192,8 +190,9 @@ export default Vue.extend({
 			const arr = onlyDMY.split('/');
 			return new Date(arr[2], arr[1] - 1, arr[0]);
 		},
-		openDatepicker() {
+		openDatepicker(event: MouseEvent) {
 			this.menuField = true;
+			event.stopPropagation();
 		},
 		closeDatepicker() {
 			this.menuField = false;

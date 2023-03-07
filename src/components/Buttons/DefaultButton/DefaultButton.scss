@@ -37,7 +37,8 @@ $butonSizes: (
 		width: 100%;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 			height: map-get($butonSizes, $size);
@@ -125,7 +126,8 @@ $butonSizes: (
 
 .farm-btn.farm-btn--icon {
 	border: none;
-	background: transparent;
+	background: transparent !important;
+	border: transparent !important;
 	transition: color 0.5s ease;
 
 	min-width: auto;
@@ -135,7 +137,8 @@ $butonSizes: (
 		color: gray;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 		}
@@ -157,26 +160,26 @@ $butonSizes: (
 				color: var(--farm-#{$color}-base);
 			}
 
-			::v-deep .farm-btn__content i.mdi {
+			.farm-btn__content :deep(i.mdi) {
 				color: var(--farm-#{$color}-base);
 			}
 
-			&.lighten-variation-icon {
+			&.farm-btn--variation-lighten {
 				&:hover {
 					color: var(--farm-#{$color}-lighten);
 				}
 
-				::v-deep .farm-btn__content i.mdi {
+				.farm-btn__content :deep(i.mdi) {
 					color: var(--farm-#{$color}-lighten);
 				}
 			}
 
-			&.darken-variation-icon {
+			&.farm-btn--variation-darken {
 				&:hover {
 					color: var(--farm-#{$color}-darken);
 				}
 
-				::v-deep .farm-btn__content i.mdi {
+				.farm-btn__content :deep(i.mdi) {
 					color: var(--farm-#{$color}-darken);
 				}
 			}
@@ -206,6 +209,16 @@ $butonSizes: (
 					color: black;
 				}
 			}
+		}
+
+		&.farm-btn--variation-lighten {
+			border: 1px solid var(--farm-#{$color}-lighten);
+			background-color: var(--farm-#{$color}-lighten);
+			color: var(--farm-text-primary);
+		}
+		&.farm-btn--variation-darken {
+			border: 1px solid var(--farm-#{$color}-darken);
+			background-color: var(--farm-#{$color}-darken);
 		}
 	}
 

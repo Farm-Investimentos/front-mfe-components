@@ -75,8 +75,9 @@ export default Vue.extend({
 				this.$emit(handler);
 			}
 		},
-		toggleValue() {
+		toggleValue(event: MouseEvent) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 });

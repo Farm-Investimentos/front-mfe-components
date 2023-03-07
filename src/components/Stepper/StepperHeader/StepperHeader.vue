@@ -64,42 +64,41 @@ export default Vue.extend({
 		 */
 		errorCurrentStepStatus: { type: Boolean, default: false },
 	},
-	methods: {
-		isStepCurrent(index: number): boolean {
-			return this.currentStep === index + 1;
-		},
-		isStepPrevious(index: number): boolean {
-			return this.currentStep > index + 1;
-		},
-		isStepError(index: number): boolean {
-			return this.currentStep === index + 1 && this.errorCurrentStepStatus;
-		},
-		hasDivider(index: number): boolean {
-			return index < this.steps.length - 1;
-		},
-		isStepPreviousToCurrent(index: number): boolean {
-			return (
-				index + 2 == this.currentStep &&
-				this.isStepCurrent(index + 1) &&
-				!this.isStepError(index + 1)
-			);
-		},
-		isStepPreviousToError(index: number): boolean {
-			return (
-				index + 2 == this.currentStep &&
-				this.isStepCurrent(index + 1) &&
-				this.isStepError(index + 1)
-			);
-		},
-		isStepNext(index: number): boolean {
-			return index + 1 > this.currentStep;
-		},
-		isStepErrorToNext(index: number): boolean {
-			return this.errorCurrentStepStatus && index + 1 === this.currentStep;
-		},
-		isStepCurrentToNext(index: number): boolean {
-			return !this.errorCurrentStepStatus && index + 1 === this.currentStep;
-		},
+	setup(props) {
+		const isStepCurrent = (index: number) => props.currentStep === index + 1;
+
+		const isStepPrevious = (index: number) => props.currentStep > index + 1;
+
+		const isStepError = (index: number) =>
+			props.currentStep === index + 1 && props.errorCurrentStepStatus;
+
+		const hasDivider = (index: number) => index < props.steps.length - 1;
+
+		const isStepPreviousToCurrent = (index: number) =>
+			index + 2 === props.currentStep && isStepCurrent(index + 1) && !isStepError(index + 1);
+
+		const isStepPreviousToError = (index: number) =>
+			index + 2 === props.currentStep && isStepCurrent(index + 1) && isStepError(index + 1);
+
+		const isStepNext = (index: number) => index + 1 > props.currentStep;
+
+		const isStepErrorToNext = (index: number) =>
+			props.errorCurrentStepStatus && index + 1 === props.currentStep;
+
+		const isStepCurrentToNext = (index: number) =>
+			!props.errorCurrentStepStatus && index + 1 === props.currentStep;
+
+		return {
+			isStepCurrent,
+			isStepPrevious,
+			isStepError,
+			isStepPreviousToCurrent,
+			isStepPreviousToError,
+			isStepNext,
+			isStepErrorToNext,
+			isStepCurrentToNext,
+			hasDivider,
+		};
 	},
 });
 </script>
