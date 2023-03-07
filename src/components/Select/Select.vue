@@ -81,7 +81,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, toRefs, watch } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -396,6 +396,9 @@ export default Vue.extend({
 			);
 		};
 
+		const contextmenu = ref(null);
+
+
 		return {
 			items,
 			innerValue,
@@ -410,6 +413,7 @@ export default Vue.extend({
 			isVisible,
 			customId,
 			showErrorText,
+			contextmenu,
 			validate,
 			reset,
 			selectItem,

@@ -67,27 +67,6 @@ export const IconActivator = () => ({
 	</div>`,
 });
 
-export const VModel = () => ({
-	data() {
-		return {
-			value: false,
-		};
-	},
-	methods: {
-		toggleValue() {
-			this.value = !this.value;
-		},
-	},
-	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
-        <farm-contextmenu v-model="value">
-            some text
-            <template v-slot:activator="{ on, attrs }">
-                <farm-btn @click="toggleValue">toggle</farm-btn>
-            </template>
-        </farm-contextmenu>
-	</div>`,
-});
-
 export const LongContent = () => ({
 	data() {
 		return {
@@ -95,8 +74,9 @@ export const LongContent = () => ({
 		};
 	},
 	methods: {
-		toggleValue() {
+		toggleValue(event) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px;">
@@ -117,8 +97,9 @@ export const Bottom = () => ({
 		};
 	},
 	methods: {
-		toggleValue() {
+		toggleValue(event) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
@@ -138,8 +119,9 @@ export const ComplexContent = () => ({
 		};
 	},
 	methods: {
-		toggleValue() {
+		toggleValue(event) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
@@ -159,8 +141,9 @@ export const OverflowContent = () => ({
 		};
 	},
 	methods: {
-		toggleValue() {
+		toggleValue(event) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex; flex-direction: column">
@@ -190,8 +173,9 @@ export const MaxHeight = () => ({
 		};
 	},
 	methods: {
-		toggleValue() {
+		toggleValue(event) {
 			this.value = !this.value;
+			event.stopPropagation();
 		},
 	},
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex; flex-direction: column;">
@@ -206,6 +190,35 @@ export const MaxHeight = () => ({
 			new line<br />new line<br />last line<br />
             <template v-slot:activator="{ on, attrs }">
                 <farm-btn @click="toggleValue">toggle</farm-btn>
+            </template>
+        </farm-contextmenu>
+	</div>`,
+});
+
+export const VModel = () => ({
+	data() {
+		return {
+			value: false,
+		};
+	},
+	methods: {
+		toggleValue(event) {
+			this.value = true;
+
+			setTimeout(() => {
+				this.value = false;
+			}, 2000);
+			event.preventDefault();
+			event.stopPropagation();
+		},
+	},
+	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
+        <farm-contextmenu bottom v-model="value">
+            some text
+            <template v-slot:activator="{ on, attrs }">
+                <farm-btn :disabled="value" @click="toggleValue">
+					{{ !value ? 'Open' : 'Will close in 2s' }}
+				</farm-btn>
             </template>
         </farm-contextmenu>
 	</div>`,

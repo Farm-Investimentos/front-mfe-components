@@ -77,7 +77,7 @@ describe('DatePicker component', () => {
 
 	describe('methods', () => {
 		it('openDatepicker', () => {
-			component.openDatepicker();
+			component.openDatepicker({ stopPropagation: jest.fn() });
 			expect(component.menuField).toBeTruthy();
 		});
 

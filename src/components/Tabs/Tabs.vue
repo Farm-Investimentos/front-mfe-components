@@ -1,27 +1,40 @@
 <template>
-	<v-tabs color="secondary" v-model="selected">
-		<v-tab
+	<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
+		<div
 			v-for="(tab, index) in tabs"
+			class="tabs__tab"
 			:key="index"
-			:class="{ hideCounter: !showCounter }"
-			@change="changeTab(tab, index)"
-			:disabled="!allowUserChange"
+			:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
+			@click="changeTab(tab, index)"
 		>
 			<div
 				v-if="showCounter"
+				class="mr-2 rounded-circle d-inline-flex align-center justify-center white--text"
 				:class="{ 'is-selected': isSelected(index) }"
-				class="pl-3 pr-3 pt-2 pb-2 mr-2 rounded-circle d-inline-block white--text"
 			>
-				<span>{{ index + 1 }}</span>
+				<farm-subtitle
+					color="white"
+					tag="span"
+					:type="2"
+					:color-variation="isSelected(index) ? 'base' : 'darken'"
+				>
+					{{ index + 1 }}
+				</farm-subtitle>
 			</div>
-			<span class="black--text text-capitalize">{{ tab.name }}</span>
-		</v-tab>
-	</v-tabs>
+			<farm-subtitle
+				tag="span"
+				:type="2"
+				:color="isSelected(index) ? 'primary' : 'gray'"
+				:color-variation="isSelected(index) ? 'base' : 'darken'"
+			>
+				{{ tab.name }}
+			</farm-subtitle>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { VTabs, VTab } from 'vuetify/lib/components/VTabs';
 export default Vue.extend({
 	name: 'farm-tabs',
 	data: () => ({
@@ -59,13 +72,18 @@ export default Vue.extend({
 			return index === this.selected;
 		},
 		changeTab(_, index) {
+			if (!this.allowUserChange) return;
+			this.selected = index;
 			this.$emit('update', this.tabs[index]);
 		},
 		next() {
+			if (this.tabs.length - 1 > this.selected + 1)
+				return this.$emit('update', this.tabs[this.selected]);
 			this.selected = this.selected + 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},
 		previous() {
+			if (this.selected - 1 < 0) return this.$emit('update', this.tabs[this.selected]);
 			this.selected = this.selected - 1;
 			this.$emit('update', this.tabs[this.selected]);
 		},
@@ -83,20 +101,8 @@ export default Vue.extend({
 	created() {
 		this.selected = this.initialSelect;
 	},
-	components: {
-		VTabs,
-		VTab,
-	},
 });
 </script>
 <style scoped lang="scss">
-div.rounded-circle {
-	background-color: var(--v-gray-lighten3);
-	&.is-selected {
-		background-color: var(--v-secondary-base);
-	}
-}
-.v-tab--active.v-tab--disabled {
-	opacity: 1;
-}
+@import './Tabs.scss';
 </style>
