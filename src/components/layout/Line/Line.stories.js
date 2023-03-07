@@ -1,4 +1,6 @@
 import Line from './Line.vue';
+import baseThemeColors from '../../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Layout/Line',
@@ -17,14 +19,21 @@ export default {
 };
 
 export const Primary = () => ({
-	components: { 'farm-line': Line },
 	template: '<farm-line />',
 });
 
-export const Spacing = () => ({
-	components: { 'farm-line': Line },
+export const NoSpacing = () => ({
 	template: '<farm-line :noSpacing="true" />',
 });
 
-Primary.storyName = 'Basic';
-Spacing.storyName = 'No Spacing';
+export const Colors = () => ({
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `<div>
+		<farm-line />
+		<farm-line v-for="color of colors":key="'hr_' + color" :color="color" />
+	</div>`,
+});
