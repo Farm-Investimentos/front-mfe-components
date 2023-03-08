@@ -43,7 +43,7 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 			>,
-			default: 'secondary',
+			default: 'secondary-green',
 		},
 		/**
 		 * Control visibility
