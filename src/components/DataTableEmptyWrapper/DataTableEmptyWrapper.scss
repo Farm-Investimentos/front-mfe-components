@@ -1,20 +1,21 @@
 div {
-    border-top: 1px solid var(--farm-stroke-divider);
     padding: 64px 24px 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
 
-    p:first-of-type {
-        margin: 24px auto 16px;
+    p {
+        &:first-of-type {
+            margin: 24px auto 16px;
+        }
+    
+        &:last-child {
+            color: var(--farm-text-secondary);
+        }
     }
 
-    p:last-child {
-        color: var(--farm-text-secondary);
-    }
-
-    .farm-icon.farm-icon--primary {
-        color: var(--farm-text-disabled);
+    &.farm-emptywrapper--bordered {
+        border-top: 1px solid var(--farm-stroke-divider);
     }
 }

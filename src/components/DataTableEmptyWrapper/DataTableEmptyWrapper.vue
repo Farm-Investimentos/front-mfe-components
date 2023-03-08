@@ -1,6 +1,11 @@
 <template>
-	<div>
-		<farm-icon size="lg">magnify</farm-icon>
+	<div
+		:class="{
+			'farm-emptywrapper': true,
+			'farm-emptywrapper--bordered': bordered,
+		}"
+	>
+		<farm-icon size="lg" color="gray" variation="lighten">magnify</farm-icon>
 		<farm-caption bold>{{ title }}</farm-caption>
 		<farm-caption variation="regular" v-if="subtitle">{{ subtitle }}</farm-caption>
 	</div>
@@ -25,6 +30,13 @@ export default Vue.extend({
 			type: String,
 			default:
 				'Tente filtrar novamente sua pesquisa ou faça uma importação para ver mais resultados',
+		},
+		/**
+		 * Has border?
+		 */
+		bordered: {
+			type: Boolean,
+			default: true,
 		},
 	},
 });
