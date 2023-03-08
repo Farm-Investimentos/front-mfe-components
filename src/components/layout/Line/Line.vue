@@ -1,13 +1,36 @@
 <template>
-	<hr :class="{ 'farm-line': true, 'farm-line--spacing': !noSpacing }" />
+	<hr
+		:class="{
+			'farm-line': true,
+			'farm-line--spacing': !noSpacing,
+			['farm-line--' + color]: true,
+		}"
+	/>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-line',
 	props: {
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'default',
+		},
 		/**
 		 * Remove default margins
 		 */
@@ -20,5 +43,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import './Line'
+@import './Line';
 </style>
