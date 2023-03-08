@@ -3,11 +3,9 @@ import DataTableEmptyWrapper from '../DataTableEmptyWrapper';
 
 describe('DataTableEmptyWrapper component', () => {
 	let wrapper;
-	let component;
 
 	beforeEach(() => {
 		wrapper = shallowMount(DataTableEmptyWrapper, {});
-		component = wrapper.vm;
 	});
 
 	test('Created hook', () => {

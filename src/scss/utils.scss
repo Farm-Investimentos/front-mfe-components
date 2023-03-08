@@ -43,24 +43,12 @@
 	}
 }
 
-.tabs-container {
-	border-bottom: 1px solid var(--v-gray-lighten2);
-}
-
 tr.v-data-table__empty-wrapper {
 	td {
 		background-color: white !important;
 		cursor: default !important;
 		opacity: 1 !important;
 		padding: 0 !important;
-	}
-}
-
-.v-tabs {
-	.v-tab {
-		font-weight: 700;
-		font-size: 0.875rem;
-		padding: 1rem 2rem;
 	}
 }
 

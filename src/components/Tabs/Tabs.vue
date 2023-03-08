@@ -1,34 +1,43 @@
 <template>
-	<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
-		<div
-			v-for="(tab, index) in tabs"
-			class="tabs__tab"
-			:key="index"
-			:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
-			@click="changeTab(tab, index)"
-		>
+	<div class="farm-tabs">
+		<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
 			<div
-				v-if="showCounter"
-				class="mr-2 rounded-circle d-inline-flex align-center justify-center white--text"
-				:class="{ 'is-selected': isSelected(index) }"
+				v-for="(tab, index) in tabs"
+				class="tabs__tab"
+				:key="index"
+				:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
+				@click="changeTab(tab, index)"
 			>
+				<div
+					v-if="showCounter"
+					class="
+						mr-2
+						rounded-circle
+						d-inline-flex
+						align-center
+						justify-center
+						white--text
+					"
+					:class="{ 'is-selected': isSelected(index) }"
+				>
+					<farm-subtitle
+						color="white"
+						tag="span"
+						:type="2"
+						:color-variation="isSelected(index) ? 'base' : 'darken'"
+					>
+						{{ index + 1 }}
+					</farm-subtitle>
+				</div>
 				<farm-subtitle
-					color="white"
 					tag="span"
 					:type="2"
+					:color="isSelected(index) ? 'primary' : 'gray'"
 					:color-variation="isSelected(index) ? 'base' : 'darken'"
 				>
-					{{ index + 1 }}
+					{{ tab.name }}
 				</farm-subtitle>
 			</div>
-			<farm-subtitle
-				tag="span"
-				:type="2"
-				:color="isSelected(index) ? 'primary' : 'gray'"
-				:color-variation="isSelected(index) ? 'base' : 'darken'"
-			>
-				{{ tab.name }}
-			</farm-subtitle>
 		</div>
 	</div>
 </template>
