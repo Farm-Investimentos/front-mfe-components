@@ -26,11 +26,9 @@ addDecorator(() => ({
 	vuetify,
 	template: `
     <v-app>
-      <v-main>
-        <v-container fluid >
+        <farm-box >
           <story/>
-        </v-container>
-      </v-main>
+        </farm-box>
     </v-app>
     `,
 }));
