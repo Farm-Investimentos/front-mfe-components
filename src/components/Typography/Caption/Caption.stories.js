@@ -19,7 +19,7 @@ export default {
 export const Primary = () => ({
 	data() {
 		return {
-			variations: ['regular', 'medium'],
+			variations: ['regular', 'medium', 'semiBold'],
 		};
 	},
 	template: `<div>
