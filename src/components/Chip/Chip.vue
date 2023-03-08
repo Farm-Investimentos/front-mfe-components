@@ -24,7 +24,7 @@ export default Vue.extend({
 		/**
 		 * Color
 		 */
-		 color: {
+		color: {
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
