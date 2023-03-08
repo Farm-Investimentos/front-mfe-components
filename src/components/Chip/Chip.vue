@@ -4,15 +4,16 @@
 			'farm-chip': true,
 			'farm-chip--dense': dense,
 			'farm-chip--outlined': outlined,
+			'farm-chip--base': variation === 'base' || !variation,
 			'farm-chip--lighten': variation === 'lighten',
 			'farm-chip--darken': variation === 'darken',
 		}"
 	>
-		<farm-typography tag="span" size="sm" color="white" ellipsis> <slot></slot> </farm-typography>
+		<farm-caption tag="span" color="white" ellipsis> <slot></slot> </farm-caption>
 	</span>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { computed, toRefs } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-chip',
@@ -34,7 +35,7 @@ export default Vue.extend({
 		},
 		variation: {
 			type: String,
-			default: '',
+			default: 'base',
 		},
 	},
 });

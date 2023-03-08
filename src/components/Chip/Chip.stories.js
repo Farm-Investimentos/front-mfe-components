@@ -22,13 +22,13 @@ export default {
 };
 
 export const Primary = () => ({
-	template: `<div class="chips-container chips-container-full-example">
+	template: `<farm-box>
 		<farm-chip color="primary">Chip (100% width)</farm-chip>
-	</div>`,
+	</farm-box>`,
 });
 
 export const Dense = () => ({
-	template: `<div class="chips-container">
+	template: `<div>
 		<farm-chip color="primary" :dense="true">prop</farm-chip>
 		<farm-chip color="secondary" dense>attribute</farm-chip>
 	</div>`,
@@ -42,8 +42,8 @@ export const Colors = () => ({
 		};
 	},
 	template: `
-	<div class="grid">
-		<div class="chips-container" v-for="color in colors">
+	<farm-row>
+		<farm-col cols="12" md="4" class="chips-container" v-for="color in colors" :key="'color_' + color">
 			<h4>{{ color }}</h4>
 			<farm-chip 
 				v-for="variation in variations"
@@ -52,9 +52,9 @@ export const Colors = () => ({
 				:variation="variation">
 					{{ variation || 'base' }}
 			</farm-chip>
-		</div>
+		</farm-col>
 
-	</div>`,
+	</farm-row>`,
 });
 
 export const ColorsOutlined = () => ({
@@ -65,8 +65,8 @@ export const ColorsOutlined = () => ({
 		};
 	},
 	template: `
-	<div class="grid">
-		<div class="chips-container" v-for="color in colors">
+	<farm-row>
+		<farm-col cols="12" md="4" class="chips-container" v-for="color in colors">
 			<h4>{{ color }}</h4>
 			<farm-chip 
 				v-for="variation in variations"
@@ -76,14 +76,14 @@ export const ColorsOutlined = () => ({
 				:variation="variation">
 					{{ variation || 'base' }}
 			</farm-chip>
-		</div>
+		</farm-col>
 
-	</div>`,
+	</arm-row>`,
 });
 
 export const CustomTypography = () => ({
-	template: `<div class="chips-container">
-		<farm-chip color="primary">
+	template: `<div>
+		<farm-chip color="primary" dense>
 			<farm-bodytext :type="2">BodyText 2</farm-bodytext>
 		</farm-chip>
 	</div>`,
