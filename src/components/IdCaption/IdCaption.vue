@@ -57,6 +57,8 @@ export default Vue.extend({
 		iconBoxColor: {
 			type: String as PropType<
 				| 'primary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'secondary'
 				| 'neutral'
 				| 'info'
@@ -98,6 +100,8 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'

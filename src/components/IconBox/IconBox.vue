@@ -28,6 +28,8 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'
