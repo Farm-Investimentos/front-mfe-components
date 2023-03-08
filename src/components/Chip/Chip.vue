@@ -1,5 +1,7 @@
 <template>
 	<span
+		v-bind="$props"
+		v-on="$listeners"
 		:class="{
 			'farm-chip': true,
 			'farm-chip--dense': dense,
@@ -13,12 +15,31 @@
 	</span>
 </template>
 <script lang="ts">
-import Vue, { computed, toRefs } from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-chip',
 	inheritAttrs: true,
 	props: {
+		/**
+		 * Color
+		 */
+		 color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
+		},
 		/**
 		 * Is dense (not 100% width)?
 		 */
