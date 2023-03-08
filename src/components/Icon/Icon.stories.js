@@ -125,7 +125,7 @@ export const ListOfIcons = () => ({
 		},
 	},
 	template: `<div>
-        <farm-textfield v-model="filterKey" style="margin: 0 auto; width: 240px;" />
+        <farm-textfield-v2 v-model="filterKey" style="margin: 0 auto; width: 240px;" />
         <div class="icons-container__list">
             <div v-for="icon of iconsList" :key="'icon_' + icon">
                 <farm-icon>

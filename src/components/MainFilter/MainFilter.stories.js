@@ -61,16 +61,16 @@ export const Application = () => ({
 			Extra filters
 			</farm-col>
 			<farm-col cols="12" md="3">
-				<farm-textfield />
+				<farm-textfield-v2 />
 			</farm-col>
 			<farm-col cols="12" md="3">
-				<farm-textfield />
+				<farm-textfield-v2 />
 			</farm-col>
 			<farm-col cols="12" md="3">
-				<farm-textfield />
+				<farm-textfield-v2 />
 			</farm-col>
 			<farm-col cols="12" md="3">
-				<farm-textfield />
+				<farm-textfield-v2 />
 			</farm-col>
 		</farm-row>
 	</div>`,

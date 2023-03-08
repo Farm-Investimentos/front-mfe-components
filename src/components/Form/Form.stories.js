@@ -125,7 +125,7 @@ export const Secondary = () => ({
 			<section>
 				<div>
 					<farm-label>not</farm-label>
-					<farm-textfield v-model="form.not" />
+					<farm-textfield-v2 v-model="form.not" />
 				</div>
 			</section>
 
