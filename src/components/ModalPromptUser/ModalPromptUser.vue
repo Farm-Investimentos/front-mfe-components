@@ -5,6 +5,9 @@
 		</template>
 		<template v-slot:content>
 			<section class="modal-content">
+				<!--
+				@slot subtitle content
+				-->
 				<slot name="subtitle"></slot>
 				<farm-promptusertoconfirm
 					v-if="inputVal"
@@ -114,6 +117,11 @@ export default Vue.extend({
 			this.inputVal = false;
 		},
 		confirm() {
+			/**
+			 * input is correct filled and confirm button is triggered
+			 *
+			 * @event onConfirm
+			 */
 			this.$emit('onConfirm');
 			this.inputVal = false;
 		},
