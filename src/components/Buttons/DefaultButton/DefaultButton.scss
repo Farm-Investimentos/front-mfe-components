@@ -17,7 +17,7 @@ $butonSizes: (
 	display: inline-flex;
 	flex: 0 0 auto;
 	font-weight: 700;
-	letter-spacing: 1.25px;
+	letter-spacing: 0.5px;
 	justify-content: center;
 	outline: 0;
 	position: relative;
@@ -37,8 +37,7 @@ $butonSizes: (
 		width: 100%;
 	}
 
-	@each $size,
-	$value in $sizes {
+	@each $size, $value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 			height: map-get($butonSizes, $size);
@@ -137,8 +136,7 @@ $butonSizes: (
 		color: gray;
 	}
 
-	@each $size,
-	$value in $sizes {
+	@each $size, $value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 		}
