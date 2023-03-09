@@ -7,7 +7,6 @@ import { installComponents } from '@farm-investimentos/front-mfe-libs-ts';
 import '../src/scss/ButtonOverrides.scss';
 import '../src/scss/DefaultModal.scss';
 import '../src/scss/VuejsDialog.scss';
-import '../src/scss/FormOverrides.scss';
 import '../src/scss/VMenuOverrides.scss';
 import '../src/scss/utils.scss';
 import '../src/scss/Sticky-table.scss';
