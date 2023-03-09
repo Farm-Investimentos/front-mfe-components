@@ -22,18 +22,6 @@
 	min-height: 8rem;
 }
 
-.v-data-table__clickable {
-	tbody tr {
-		cursor: pointer;
-		&:hover td {
-			opacity: 1;
-			.status-chip {
-				cursor: pointer;
-			}
-		}
-	}
-}
-
 .v-list__clickable {
 	.v-list-item__title {
 		cursor: pointer;
