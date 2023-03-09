@@ -18,7 +18,6 @@ header {
 	background-color: #fff;
 	font-weight: 700;
 	color: var(--farm-primary-base);
-	border-bottom: 1px solid var(--farm-stroke-divider);
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -28,6 +27,7 @@ header {
 		align-items: center;
 		width: 100%;
 		margin-bottom: 0;
+		color: var(--farm-bw-black-80);
 		@include ellipsis;
 	}
 }
