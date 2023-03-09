@@ -8,6 +8,7 @@
 			['farm-typography--weight-' + weight]: weight !== undefined,
 			'farm-typography--lighten': colorVariation === 'lighten',
 			'farm-typography--darken': colorVariation === 'darken',
+			['farm-typography--black-' + colorVariation]: color === 'black',
 			'farm-typography--ellipsis': ellipsis,
 		}"
 		:style="style"
@@ -81,8 +82,10 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 				| 'gray'
+				| 'black'
+				| 'white'
 			>,
-			default: 'default',
+			default: '',
 		},
 		/**
 		 * Color variation
