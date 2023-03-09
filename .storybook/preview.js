@@ -4,7 +4,6 @@ import vuetify from './vuetify_storybook';
 import VuejsDialog from 'vuejs-dialog';
 
 import { installComponents } from '@farm-investimentos/front-mfe-libs-ts';
-import '../src/scss/ButtonOverrides.scss';
 import '../src/scss/DefaultModal.scss';
 import '../src/scss/VuejsDialog.scss';
 import '../src/scss/FormOverrides.scss';
