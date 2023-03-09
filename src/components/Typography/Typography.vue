@@ -82,7 +82,7 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 				| 'gray'
-				| 'bw'
+				| 'black'
 				| 'white'
 			>,
 			default: '',
