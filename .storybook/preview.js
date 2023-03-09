@@ -4,13 +4,12 @@ import vuetify from './vuetify_storybook';
 import VuejsDialog from 'vuejs-dialog';
 
 import { installComponents } from '@farm-investimentos/front-mfe-libs-ts';
-import '../src/scss/DefaultModal.scss';
+
 import '../src/scss/VuejsDialog.scss';
 import '../src/scss/VMenuOverrides.scss';
 import '../src/scss/utils.scss';
 import '../src/scss/Sticky-table.scss';
 import '../src/scss/Table.scss';
-
 import '../src/scss/cssVariablesGenerator.scss';
 
 Vue.use(VuejsDialog);
