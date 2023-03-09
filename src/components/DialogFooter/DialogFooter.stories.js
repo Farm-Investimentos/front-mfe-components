@@ -30,8 +30,8 @@ export const ExtraButton = () => ({
 export const ConfirmIcon = () => ({
 	template: `<div>
         <farm-dialog-footer confirmIcon="check" />
-        <farm-dialog-footer confirmIcon="check" confirmColor="yellow" />
-        <farm-dialog-footer confirmIcon="check" confirmColor="accent" />
+        <farm-dialog-footer confirmIcon="check" confirmColor="warning" />
+        <farm-dialog-footer confirmIcon="check" confirmColor="extra-1" />
     </div>
 	`,
 });
