@@ -92,28 +92,39 @@ $butonSizes: (
 
 	&:not(.farm-btn--plain):hover {
 		&:before {
-			opacity: 0.08;
+			opacity: 0.14;
 		}
 	}
 
 	&:not(.farm-btn--plain):not(.farm-btn--disabled):active {
 		&:before {
-			opacity: 0.16;
+			opacity: 0.27;
 		}
 	}
 
 	&.farm-btn--plain {
 		background-color: transparent !important;
-
-		&:hover {
+		&:hover:not(.farm-btn--disabled) {
 			.farm-btn__content {
-				opacity: 0.68;
+				opacity: 0.86;
+				position: relative;
+			}
+
+			.farm-btn__content:before {
+				content: '';
+				transition: all 0.28s ease;
+				background-color: currentColor;
+				top: 110%;
+				left: 0;
+				position: absolute;
+				width: 100%;
+				height: 1px;
 			}
 		}
 
 		&:active {
 			&:before {
-				opacity: 0.08;
+				opacity: 0.73;
 			}
 		}
 	}
@@ -124,7 +135,6 @@ $butonSizes: (
 }
 
 .farm-btn.farm-btn--icon {
-	border: none;
 	background: transparent !important;
 	border: transparent !important;
 	transition: color 0.5s ease;
@@ -193,9 +203,12 @@ $butonSizes: (
 
 @each $color in $theme-colors-list {
 	#{'.farm-btn--' + $color} {
-		border: 1px solid var(--farm-#{$color}-base);
 		background-color: var(--farm-#{$color}-base);
 		color: white;
+
+		&.farm-btn--outlined {
+			border: 1px solid var(--farm-#{$color}-base);
+		}
 
 		&:not(.farm-btn--outlined):not(.farm-btn--plain):not(.farm-btn--icon) {
 			::v-deep .farm-btn__content {
@@ -270,6 +283,12 @@ $butonSizes: (
 
 	i.mdi.farm-icon {
 		color: #d6d6d6;
+	}
+}
+
+.farm-btn--primary.farm-btn--disabled:not(.farm-btn--outlined) {
+	.farm-btn__content i.mdi {
+		color: rgba(0, 0, 0, 0.26) !important;
 	}
 }
 
