@@ -3,10 +3,9 @@
 .farm-dialog-header__close {
 	position: absolute;
 	margin-top: 0;
+	margin-right: -8px;
 	font-size: 16px;
-
 	transition: all 0.4s;
-
 	&:hover {
 		opacity: 0.8;
 	}
