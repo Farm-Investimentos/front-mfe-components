@@ -1,13 +1,23 @@
-.farm-switch--selected {
-    background-color: var(--farm-primary-base);
+@import '../../configurations/theme-colors';
+
+
+
+.farm-switch {
+    @each $color in $theme-colors-list {
+        &#{'[color=' + $color + ']'} {
+            .farm-switch--selected {
+                background-color: themeColor($color);
+            }
+
+            .farm-switch--disabled-on {
+                background-color: rgba(themeColor($color), 0.27);
+            }
+        }
+    }
 }
 
 .farm-switch--idle {
     background-color: var(--farm-neutral-base);
-}
-
-.farm-switch--disabled-on {
-    background-color: var(--farm-primary-lighten);
 }
 
 .farm-switch--disabled-off {
@@ -17,7 +27,7 @@
 .farm-switch {
     display: inline-block;
     position: relative;
-    cursor: pointer;
+
     width: 24px;
     height: 16px;
     border-radius: 9999px;
@@ -30,6 +40,13 @@
         display: block;
     }
 
+    cursor: pointer;
+
+    &:has(.farm-switch--disabled-on),
+    &:has(.farm-switch--disabled-off) {
+        cursor: default;
+    }
+
 }
 
 .farm-switch__background {
@@ -38,7 +55,6 @@
     margin-top: 0;
     height: 12px;
     width: 100%;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color .4s ease;
 }
 

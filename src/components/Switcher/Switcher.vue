@@ -2,6 +2,7 @@
 	<div
 		:class="{ 'farm-switch': true }"
 		role="checkbox"
+		v-bind="$props"
 		@click="toggle"
 		@keydown.space.prevent="toggle"
 	>
@@ -10,11 +11,31 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-switcher',
 	props: {
+		/**
+		 * Color
+		 */
+		 color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
+			default: 'primary',
+		 },
 		/**
 		 * v-model binding
 		 */
