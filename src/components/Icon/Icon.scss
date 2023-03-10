@@ -34,6 +34,12 @@
 			font-size: $value;
 		}
 	}
+
+	@each $v in $bwVariations {
+		&.farm-icon--black-#{$v} {
+			color: var(--farm-bw-black-#{$v});
+		}
+	}
 }
 
 @each $color in $theme-colors-list {

@@ -2,6 +2,7 @@ import { withDesign } from 'storybook-addon-designs';
 import Icon from './Icon.vue';
 import sizes from '../../configurations/sizes';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
 import iconsList from './icons_list';
 const colors = Object.keys(baseThemeColors);
 
@@ -65,6 +66,23 @@ export const ColorsDarken = () => ({
 	},
 	template: `<div class="icons-container">
         <farm-icon v-for="color of colors":key="color" :color="color" variation="darken">
+            book
+        </farm-icon>
+	</div>`,
+});
+
+export const ColorsBlack = () => ({
+	data() {
+		return {
+			bwColors: Object.keys(bwThemeColors),
+		};
+	},
+	template: `<div class="icons-container">
+        <farm-icon 
+			v-for="bw in bwColors"
+			:key="color" 
+			:color="bw.split('-')[0]"
+			:variation="bw.split('-')[1]">
             book
         </farm-icon>
 	</div>`,
