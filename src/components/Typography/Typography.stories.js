@@ -5,8 +5,6 @@ import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
 
 const colors = Object.keys(baseThemeColors);
 
-console.log(bwThemeColors);
-
 export default {
 	title: 'Typography/Atom',
 	component: Typography,

@@ -25,10 +25,11 @@ export default Vue.extend({
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 				| 'gray'
+				| 'black'
+				| 'white'
 			>,
 			default: 'primary',
 		},
@@ -39,7 +40,9 @@ export default Vue.extend({
 			default: 'default',
 		},
 		variation: {
-			type: String as PropType<'lighten' | 'base' | 'darken'>,
+			type: String as PropType<
+				'lighten' | 'base' | 'darken' | '80' | '50' | '40' | '30' | '10'
+			>,
 			default: 'base',
 		},
 	},
@@ -60,6 +63,7 @@ export default Vue.extend({
 				['mdi-' + this.icon]: true,
 				'farm-icon--lighten': this.variation === 'lighten',
 				'farm-icon--darken': this.variation === 'darken',
+				['farm-icon--black-' + this.variation]: this.color === 'black',
 				...obj,
 			};
 		},
