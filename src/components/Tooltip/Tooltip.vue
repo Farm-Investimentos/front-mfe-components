@@ -42,8 +42,9 @@ export default Vue.extend({
 				| 'warning'
 				| 'extra-1'
 				| 'extra-2'
+				| 'gray'
 			>,
-			default: 'secondary-green',
+			default: 'gray',
 		},
 		/**
 		 * Control visibility
