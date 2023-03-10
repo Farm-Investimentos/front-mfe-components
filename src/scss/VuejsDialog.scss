@@ -6,7 +6,7 @@
 }
 
 .dg-content-body {
-	border-bottom: 1px solid var(--farm-stroke-base);
+	border-bottom: 1px solid var(--farm-gray-lighten);
 	margin: 0 -15px;
 	padding: 0 16px;
 	color: var(--farm-text-base);
@@ -15,11 +15,12 @@
 
 .dg-title {
 	margin: 0 -15px;
-	border-bottom: 1px solid var(--farm-stroke-base);
+	border-bottom: 0;
 	padding: 0 16px;
-	color: var(--farm-primary-base);
+	color: var(--farm-bw-black-80);
 	height: 32px;
 	font-size: 12px;
+	font-weight: 600;
 }
 
 .dg-content-body--has-title .dg-content,
@@ -42,6 +43,7 @@
 
 .dg-btn {
 	@extend .farm-btn;
+	border: 0;
 }
 
 .dg-btn--ok {
@@ -50,8 +52,14 @@
 
 .dg-btn--cancel {
 	@extend .farm-btn--primary;
-	@extend .farm-btn--outlined;
+	@extend .farm-btn--plain;
 	margin-right: 8px;
+
+	&:hover{
+		text-decoration: underline;
+		text-underline-offset: 6px;
+		opacity: 0.86;
+	}
 }
 
 .dg-backdrop {
