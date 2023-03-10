@@ -44,22 +44,22 @@ export const PrimaryInactive = () => ({
 	template:
 		'<farm-btn disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
-export const SecondaryActive = () => ({
+export const OutlinedActive = () => ({
 	template:
 		'<farm-btn outlined> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
-export const SecondaryInactive = () => ({
+export const OutlinedInactive = () => ({
 	template:
 		'<farm-btn outlined disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
-export const TertiaryActive = () => ({
+export const PlainActive = () => ({
 	template:
 		'<farm-btn plain> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
 
-export const TertiaryInactive = () => ({
+export const PlainInactive = () => ({
 	template:
 		'<farm-btn plain disabled> <farm-icon>plus</farm-icon> Pass text as slot <farm-icon>plus</farm-icon></farm-btn>',
 });
