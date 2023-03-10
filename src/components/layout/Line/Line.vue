@@ -3,7 +3,7 @@
 		:class="{
 			'farm-line': true,
 			'farm-line--spacing': !noSpacing,
-			['farm-line--' + color]: color ? true : false,
+			['farm-line--' + color]: !!color,
 			'farm-line--lighten': variation === 'lighten',
 			'farm-line--darken': variation === 'darken',
 		}"
