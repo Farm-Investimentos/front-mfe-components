@@ -1,10 +1,21 @@
 @import '../../../configurations/variables';
 @import '../../../configurations/functions';
+@import '../../../configurations/_theme-colors';
 
 .farm-card__content {
     @each $k in map-keys($gutters) {
         &#{'[gutter=' + $k + ']'} {
             padding: map-get($gutters, $k);
         }
+    }
+
+
+}
+
+@each $k in map-keys($background-colors) {
+    @debug $k;
+
+    #{'.farm-card__content--' + $k} {
+        background-color: map-get($background-colors, $k);
     }
 }
