@@ -32,6 +32,7 @@ export default Vue.extend({
 				| 'warning'
 				| 'extra-1'
 				| 'extra-2'
+				| 'gray'
 			>,
 			default: 'primary',
 		 },
