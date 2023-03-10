@@ -19,7 +19,7 @@ export default Vue.extend({
 		/**
 		 * Color
 		 */
-		 color: {
+		color: {
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
@@ -35,7 +35,7 @@ export default Vue.extend({
 				| 'gray'
 			>,
 			default: 'primary',
-		 },
+		},
 		/**
 		 * v-model binding
 		 */
@@ -58,8 +58,8 @@ export default Vue.extend({
 			return {
 				'farm-switch--selected': this.value && !this.isDisabled,
 				'farm-switch--idle': !this.value && !this.isDisabled,
-				'farm-switch--disabled-on': this.value && this.isDisabled,   
-				'farm-switch--disabled-off': !this.value && this.isDisabled,   
+				'farm-switch--disabled-on': this.value && this.isDisabled,
+				'farm-switch--disabled-off': !this.value && this.isDisabled,
 			};
 		},
 		indicatorStyles() {
