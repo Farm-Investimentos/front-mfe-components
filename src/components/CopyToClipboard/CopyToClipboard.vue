@@ -3,10 +3,10 @@
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
 			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
-				<farm-icon size="xs">content-copy</farm-icon>
+				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 			</farm-btn>
 			<farm-btn v-else outlined title="Copiar" :disabled="disabled" @click="onClick">
-				<farm-icon>content-copy</farm-icon>
+				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 				Copiar
 			</farm-btn>
 		</template>
@@ -29,6 +29,15 @@ export default Vue.extend({
 		 */
 		isIcon: { type: Boolean, default: true },
 		/**
+		 * sizeIcon: icon size setting
+		 */
+		sizeIcon: {
+			type: String as PropType<
+				'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'other (examples: 12px, 3rem)'
+			>,
+			default: 'xs',
+		},
+		/**
 		 * Success message content after copy
 		 */
 		successMessage: {
@@ -49,7 +58,6 @@ export default Vue.extend({
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 			>,
@@ -67,6 +75,7 @@ export default Vue.extend({
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
+		const sizeIcon = ref(props.sizeIcon);
 		const { toCopy, isIcon, successMessage, successTimeout } = toRefs(props);
 
 		const onClick = async () => {
@@ -88,6 +97,7 @@ export default Vue.extend({
 		return {
 			show,
 			isIcon,
+			sizeIcon,
 			feedbackMessage,
 			disabled,
 			onClick,
