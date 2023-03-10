@@ -3,7 +3,9 @@
 		:class="{
 			'farm-line': true,
 			'farm-line--spacing': !noSpacing,
-			['farm-line--' + color]: true,
+			['farm-line--' + color]: !!color,
+			'farm-line--lighten': variation === 'lighten',
+			'farm-line--darken': variation === 'darken',
 		}"
 	/>
 </template>
@@ -32,6 +34,13 @@ export default Vue.extend({
 				| 'extra-2'
 			>,
 			default: 'default',
+		},
+		/**
+		 * Variation Color
+		 */
+		variation: {
+			type: String,
+			default: 'base',
 		},
 		/**
 		 * Remove default margins

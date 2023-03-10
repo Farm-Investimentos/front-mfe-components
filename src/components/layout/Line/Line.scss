@@ -1,5 +1,4 @@
 @import '../../../configurations/theme-colors';
-
 .farm-line {
 	width: 100%;
 	border: none;
@@ -13,6 +12,14 @@
 	@each $color in $theme-colors-list {
 		&#{'.farm-line--' + $color} {
 			border-bottom-color: var(--farm-#{$color}-base);
+
+			&.farm-line--lighten {
+				border-bottom-color: themeColor($color, 'lighten');
+			}
+
+			&.farm-line--darken {
+				border-bottom-color: themeColor($color, 'darken');
+			}
 		}
 	}
 }
