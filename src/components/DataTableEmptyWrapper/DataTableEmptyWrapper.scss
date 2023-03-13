@@ -7,11 +7,7 @@ div {
 
     p {
         &:first-of-type {
-            margin: 24px auto 16px;
-        }
-    
-        &:last-child {
-            color: var(--farm-text-secondary);
+            margin: 24px auto;
         }
     }
 
