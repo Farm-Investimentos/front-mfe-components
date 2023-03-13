@@ -68,7 +68,8 @@ export const Reset = () => ({
 			<farm-radio v-model="v" value="2" />
 			<farm-radio v-model="v" value="3" />
 			v-model: {{ v }}
-			<farm-btn @click="reset">reset</farm-btn>
+			<farm-btn @click="reset">reset by method</farm-btn>
+			<farm-btn @click="v = null">reset by value</farm-btn>
 		</farm-form>
 	</div>`,
 });

@@ -14,7 +14,7 @@
 			v-bind="$attrs"
 			@click="onClick"
 		/>
-		<farm-label v-if="label" class="ml-2" :for="id">
+		<farm-label v-if="label" :for="id">
 			{{ label }}
 		</farm-label>
 	</div>
