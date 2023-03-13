@@ -4,11 +4,11 @@
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
 					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-						<farm-icon size="md">
+						<farm-icon size="md" color="secondary-green">
 							{{ icon }}
 						</farm-icon>
 					</div>
-					<farm-heading type="6">
+					<farm-heading type="6" color="black">
 						{{ title }}
 					</farm-heading>
 				</div>
