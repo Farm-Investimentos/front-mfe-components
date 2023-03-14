@@ -50,6 +50,8 @@ export const Multi = () => ({
 				{ label: 'Novo', icon: { type: 'open-in-new' } },
 				{ label: 'Editar', icon: { color: 'secondary', type: 'open-in-new' } },
 				{ label: 'Remover', icon: { color: 'error', type: 'delete' } },
+				{ label: 'Outro', icon: { color: 'black', type: 'cog' } },
+				{ label: 'Book', icon: { color: 'gray', type: 'book' } },
 			],
 		};
 	},
