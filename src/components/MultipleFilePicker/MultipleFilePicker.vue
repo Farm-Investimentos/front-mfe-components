@@ -162,6 +162,7 @@ export default Vue.extend({
 		},
 		reset(): void {
 			this.$refs.container.querySelector('input').value = '';
+			this.files = [];
 		},
 		fileChange(fileList): void {
 			this.files.push(...fileList);
