@@ -9,6 +9,7 @@
 			'farm-textarea--error': hasError,
 			'farm-textarea--disabled': disabled,
 			'farm-textarea--hiddendetails': hideDetails,
+			'farm-textarea--focused': isFocus && !readonly,
 		}"
 	>
 		<div

@@ -3,10 +3,6 @@
 		pointer-events: none;
 	}
 }
-
-:deep(.farm-listitem:hover) {
-	border-radius: 5px;
-}
 :deep(.farm-listitem .farm-icon) {
 	vertical-align: sub;
 	margin-right: 8px;

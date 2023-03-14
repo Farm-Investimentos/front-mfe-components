@@ -18,6 +18,8 @@
 
     &:hover {
 
+        border-radius: 5px;
+
         @each $color in $theme-colors-list {
 
             &#{'.farm-listitem--' + $color + '-base'} {

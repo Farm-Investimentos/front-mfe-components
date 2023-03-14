@@ -7,6 +7,7 @@
 			'farm-textfield--touched': isTouched,
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
+			'farm-textfield--focused': isFocus && !readonly,
 			'farm-textfield--disabled': disabled,
 			'farm-textfield--hiddendetails': hideDetails,
 			'farm-textfield--uppercase': isUppercase,
