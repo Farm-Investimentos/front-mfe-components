@@ -7,6 +7,7 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--focused': isFocus || isVisible,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
