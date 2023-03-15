@@ -69,7 +69,6 @@ export default Vue.extend({
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 			>,
