@@ -37,7 +37,8 @@ $butonSizes: (
 		width: 100%;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 			height: map-get($butonSizes, $size);
@@ -104,13 +105,11 @@ $butonSizes: (
 
 	&.farm-btn--plain {
 		background-color: transparent !important;
-		&:hover:not(.farm-btn--disabled) {
-			.farm-btn__content {
-				opacity: 0.86;
-				position: relative;
-			}
 
-			.farm-btn__content:before {
+		.farm-btn__content {
+			position: relative;
+
+			&:before {
 				content: '';
 				transition: all 0.28s ease;
 				background-color: currentColor;
@@ -119,6 +118,14 @@ $butonSizes: (
 				position: absolute;
 				width: 100%;
 				height: 1px;
+				opacity: 0;
+			}
+		}
+
+		&:hover:not(.farm-btn--disabled) {
+			.farm-btn__content,
+			.farm-btn__content:before {
+				opacity: 0.86;
 			}
 		}
 
@@ -146,7 +153,8 @@ $butonSizes: (
 		color: gray;
 	}
 
-	@each $size, $value in $sizes {
+	@each $size,
+	$value in $sizes {
 		&#{'.farm-btn[size=' + $size + ']'} {
 			font-size: $value;
 		}
@@ -227,6 +235,7 @@ $butonSizes: (
 			background-color: var(--farm-#{$color}-lighten);
 			color: var(--farm-text-primary);
 		}
+
 		&.farm-btn--variation-darken {
 			border: 1px solid var(--farm-#{$color}-darken);
 			background-color: var(--farm-#{$color}-darken);
