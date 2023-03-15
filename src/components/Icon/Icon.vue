@@ -41,7 +41,7 @@ export default Vue.extend({
 		},
 		variation: {
 			type: String as PropType<
-				'lighten' | 'base' | 'darken' | '80' | '50' | '40' | '30' | '10'
+				'lighten' | 'base' | 'darken' | '80' | '50' | '40' | '30' | '10' | '5'
 			>,
 			default: 'base',
 		},
