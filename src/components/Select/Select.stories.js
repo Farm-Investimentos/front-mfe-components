@@ -269,7 +269,7 @@ export const MultipleInitValue = () => ({
 			this.$refs.select.reset();
 		},
 	},
-	template: `<div>
+	template: `<div style="width: 400px">
 		<farm-select
 			v-model="v"
 			item-value="id"
@@ -280,15 +280,12 @@ export const MultipleInitValue = () => ({
 		/>
 		v-model: {{ v }}
 		<farm-btn @click="click">
-			reset by method
-		</farm-btn>
-		<farm-btn @click="v = null">
-			reset by value
+			reset
 		</farm-btn>
 	</div>`,
 });
 
-export const ChangeEvent = () => ({
+export const ChangeEvennt = () => ({
 	data() {
 		return {
 			v: null,
