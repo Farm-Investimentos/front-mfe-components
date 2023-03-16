@@ -7,24 +7,41 @@
 	>
 		<farm-icon size="16px">{{ mdiIconName }}</farm-icon>
 		<div>
-			<farm-caption variation="regular">
+			<farm-bodysmall
+				variation="regular"
+				color="black"
+				colorVariation="50"
+				class="logger__item--spacing-bottom"
+			>
 				{{ item.formattedDate }}
-			</farm-caption>
-			<farm-bodytext :type="2" variation="bold">
+			</farm-bodysmall>
+			<farm-bodytext
+				:type="2"
+				variation="bold"
+				color="black"
+				colorVariation="50"
+				class="logger__item--spacing-bottom"
+			>
 				{{ item.message }}
 			</farm-bodytext>
-			<farm-caption variation="regular" v-if="item.userName">
-				<farm-icon color="black" size="xs">account-circle</farm-icon>
+			<farm-bodysmall
+				variation="regular"
+				color="black"
+				colorVariation="50"
+				v-if="item.userName"
+			>
+				<farm-icon color="black" variation="50" size="xs">account-circle</farm-icon>
 				{{ item.userName }}
-			</farm-caption>
+			</farm-bodysmall>
 			<farm-caption variation="regular">
 				{{ item.extraMessage }}
 			</farm-caption>
 		</div>
 		<farm-btn
 			v-if="hasDetails"
-			plain
+			outlined
 			title="Ver Detalhes"
+			class="logger__item--button"
 			:color="buttonColor"
 			@click="callDetails"
 		>
@@ -69,7 +86,7 @@ export default Vue.extend({
 				return 'error';
 			}
 
-			return 'secondary';
+			return 'primary';
 		},
 		hasDetails(): boolean {
 			return !!this.item.details;

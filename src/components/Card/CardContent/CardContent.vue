@@ -1,5 +1,9 @@
 <template>
-	<component :is="tag" class="farm-card__content" :gutter="gutter">
+	<component
+		:is="tag"
+		:class="{ 'farm-card__content': true, ['farm-card__content--' + background]: background }"
+		:gutter="gutter"
+	>
 		<slot></slot>
 	</component>
 </template>
@@ -20,6 +24,10 @@ export default Vue.extend({
 		gutter: {
 			type: String as PropType<'none' | 'xs' | 'sm' | 'vuetify' | 'md' | 'lg' | 'xl'>,
 			default: 'md',
+		},
+		background: {
+			type: String as PropType<'base' | 'lighten' | 'darken'> | null,
+			default: null,
 		},
 	},
 	inheritAttrs: true,

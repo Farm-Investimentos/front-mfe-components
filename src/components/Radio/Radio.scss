@@ -2,7 +2,7 @@
 @import '../../configurations/theme-colors';
 
 .farm-radio-wrapper {
-	align-items: baseline;
+	align-items: center;
 	display: flex;
 }
 
@@ -80,15 +80,29 @@ input[type='radio'] {
 	}
 }
 
-@each $size, $value in $sizes {
+@each $size,
+$value in $sizes {
 	#{'input[type="radio"][size=' + $size + ']'} {
 		width: $value;
 		height: $value;
 
 		&::before {
 			content: '';
-			width: $value / 2;
-			height: $value / 2;
+
+			@if $value == 14px {
+				width: 6px;
+				height: 6px;
+			}
+
+			@else {
+				width: $value / 2;
+				height: $value / 2;
+			}
 		}
 	}
+}
+
+.farm-label {
+	margin-left: 10px;
+	margin-bottom: 0;
 }

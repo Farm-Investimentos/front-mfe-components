@@ -2,20 +2,16 @@
 
 .farm-chip {
     display: inline-flex;
-    padding: 0 8px;
+    padding: 2px 8px 0;
     border-radius: 16px;
-    background-color: themeColor('primary');
     height: 24px;
     min-width: 80px;
     max-width: 100%;
-    vertical-align: middle;
     text-align: center;
     align-items: center;
     color: white;
     width: 100%;
     border: 1px solid themeColor('primary');
-    font-size: 12px;
-    font-weight: 500;
 
     &--dense {
         min-width: auto;
@@ -47,23 +43,27 @@
         }
     }
 
+
     &[color='neutral'] {
         span {
-            color: themeColor('secondary');
+            color: var(--farm-secondary-green-base);
         }
-
-        &.farm-chip--lighten span {
-            color: themeColor('secondary');
-        }
-
         &.farm-chip--darken span {
             color: white;
         }
     }
 
-    &[color='secondary'] {
+    &[color='secondary'],
+    &[color='secondary-golden'] {
+        &:not(.farm-chip--outlined).farm-chip--base span {
+            color: var(--farm-bw-black);
+        }
+    }
+
+
+    &[color='secondary-green'] {
         &.farm-chip--lighten span {
-            color: white;
+            color: var(--farm-bw-white);
         }
     }
 
@@ -98,11 +98,11 @@
 
         &[color='neutral'] {
             span {
-                color: themeColor('secondary');
+                color: themeColor('secondary-green');
             }
 
             &.farm-chip--lighten span {
-                color: themeColor('secondary');
+                color: themeColor('secondary-green');
             }
         }
     }

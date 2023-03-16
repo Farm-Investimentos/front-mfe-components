@@ -27,7 +27,6 @@ export const Primary = () => ({
 
 export const Required = () => ({
 	template: `<div>
-		<farm-label :required="true">Label</farm-label>
 		<farm-label required>Label</farm-label>
 	</div>`,
 });

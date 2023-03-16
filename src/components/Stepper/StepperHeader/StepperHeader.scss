@@ -17,7 +17,7 @@ $step-height: 64px;
 		flex-direction: column;
 		align-items: center;
 		justify-items: center;
-		color: var(--v-gray-lighten1);
+		color: var(--farm-bw-black-5);
 		font-size: 14px;
 		font-weight: 700;
 
@@ -26,7 +26,7 @@ $step-height: 64px;
 		}
 
 		&.stepper__header-step--current {
-			@include stepperHeaderStepColor(#5089de);
+			@include stepperHeaderStepColor(var(--farm-info-base));
 		}
 
 		&.stepper__header-step--error {
@@ -36,7 +36,7 @@ $step-height: 64px;
 		&.stepper__header-step--next {
 			.farm-icon,
 			.farm-icon__number {
-				color: var(--farm-gray-base);
+				color: var(--farm-bw-black-50);
 			}
 		}
 
@@ -54,7 +54,7 @@ $step-height: 64px;
 
 		border: none;
 		margin: 16px -16px 0;
-		background: var(--farm-gray-base);
+		background: var(--farm-bw-black-5);
 
 		&.stepper__divider--previous {
 			background: var(--farm-primary-base);
@@ -96,7 +96,7 @@ $step-height: 64px;
 			height: 32px;
 			margin: -24px 0 8px 16px;
 			width: 1px;
-			background-color: var(----farm-gray-lighten);
+			background-color: var(--farm-bw-black-5);
 
 			&.stepper__divider--previous {
 				background-color: var(--farm-primary-base);
@@ -109,7 +109,7 @@ $step-height: 64px;
 
 .farm-icon,
 .farm-icon__number {
-	border: 1px solid var(--farm-gray-base);
+	border: 1px solid var(--farm-bw-black-5);
 	border-radius: 50%;
 	width: 32px;
 	height: 32px;
@@ -122,6 +122,6 @@ $step-height: 64px;
 
 	&:before {
 		font-size: 16px;
-		color: var(--v-gray-lighten1);
+		color: var(--farm-bw-black-50);
 	}
 }

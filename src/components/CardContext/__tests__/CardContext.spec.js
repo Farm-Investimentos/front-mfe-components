@@ -6,7 +6,11 @@ describe('CardContext component', () => {
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(CardContext);
+		wrapper = shallowMount(CardContext, {
+			propsData: {
+				title: 'title',
+			},
+		});
 		component = wrapper.vm;
 	});
 
@@ -21,7 +25,6 @@ describe('CardContext component', () => {
 	});
 
 	describe('Computed properties', () => {
-
 		it('Should compute isLargeLoading for false', () => {
 			expect(component.isLargeLoading).toEqual('small');
 		});

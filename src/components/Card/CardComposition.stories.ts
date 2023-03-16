@@ -55,8 +55,14 @@ export const Shadow = () => ({
 export const BackgroundChildren = () => ({
 	template: `<div style="width: 480px;">
     <farm-card>
-		<farm-card-content style="background: #DADADA">
-			Content!
+	<farm-card-content background="lighten">
+			Lighten bg
+		</farm-card-content>
+		<farm-card-content>
+			No bg
+		</farm-card-content>
+		<farm-card-content background="base">
+			Base bg
 		</farm-card-content>
 	</farm-card>
     </div>`,

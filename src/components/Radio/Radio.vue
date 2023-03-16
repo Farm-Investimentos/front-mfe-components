@@ -14,7 +14,7 @@
 			v-bind="$attrs"
 			@click="onClick"
 		/>
-		<farm-label v-if="label" class="ml-2" :for="id">
+		<farm-label v-if="label" :for="id">
 			{{ label }}
 		</farm-label>
 	</div>
@@ -50,6 +50,8 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'

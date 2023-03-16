@@ -1,28 +1,28 @@
 <template>
 	<div class="farm-resource-metainfo">
 		<div v-if="showCreate">
-			<farm-icon color="gray" size="sm">calendar-blank</farm-icon>
-			<farm-caption color="gray" variation="regular">
+			<farm-icon color="black" variation="40" size="sm">calendar-blank</farm-icon>
+			<farm-caption color="black" color-variation="40" variation="regular">
 				Data de cadastro:
-				<farm-caption color="gray" variation="medium" tag="span">
+				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
 					{{ formattedCreatedAt }}
 				</farm-caption>
 			</farm-caption>
 		</div>
 		<div v-if="showUpdate">
-			<farm-icon color="gray" size="sm">history</farm-icon>
+			<farm-icon color="black" variation="40" size="sm">history</farm-icon>
 
-			<farm-caption color="gray" variation="regular">
+			<farm-caption color="black" color-variation="40" variation="regular">
 				Última atualização feita por
-				<farm-caption color="gray" variation="medium" tag="span">
+				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
 					{{ formattedUsername }}
 				</farm-caption>
 				, dia
-				<farm-caption color="gray" variation="medium" tag="span">
+				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
 					{{ formattedUpdatedAt }}
 				</farm-caption>
 				às
-				<farm-caption color="gray" variation="medium" tag="span">
+				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
 					{{ formattedUpdatedHours }}
 				</farm-caption>
 			</farm-caption>

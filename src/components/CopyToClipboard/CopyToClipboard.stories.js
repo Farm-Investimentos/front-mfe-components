@@ -24,6 +24,12 @@ export const Primary = () => ({
     </div>`,
 });
 
+export const SizeIcon = () => ({
+	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
+		<farm-copytoclipboard toCopy="To be copied" sizeIcon="20px" />
+    </div>`,
+});
+
 export const NoIcon = () => ({
 	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
 		<farm-copytoclipboard toCopy="To be copied" :isIcon="false" />

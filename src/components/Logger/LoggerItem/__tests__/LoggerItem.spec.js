@@ -73,7 +73,7 @@ describe('LoggerItem component', () => {
 					status: 'primary',
 				},
 			});
-			expect(component.buttonColor).toEqual('secondary');
+			expect(component.buttonColor).toEqual('primary');
 		});
 
 		it('Should not have a detail button', async () => {
