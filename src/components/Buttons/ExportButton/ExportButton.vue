@@ -2,11 +2,10 @@
 	<farm-btn
 		v-if="optionsList.length == 0"
 		@click="onClick"
-		dense
 		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
-		color="secondary"
+		color="secondary-green"
 		:disabled="disabled"
 	>
 		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
