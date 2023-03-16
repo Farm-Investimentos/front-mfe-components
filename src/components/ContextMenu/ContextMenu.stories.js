@@ -20,9 +20,9 @@ export default {
 
 export const Primary = () => ({
 	template: `<div style="padding-left: 120px; padding-top: 80px; display: flex;">
-        <farm-contextmenu>
-            some text
-            <template v-slot:activator="{ on, attrs }">
+		<farm-contextmenu>
+			some text
+			<template v-slot:activator="{ on, attrs }">
                 <farm-btn
 					v-bind="attrs"
 					v-on="on"

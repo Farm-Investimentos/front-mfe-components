@@ -69,6 +69,15 @@ describe('MultipleFilePicker component', () => {
 			});
 		});
 
+		describe('reset', () => {
+			it('should reset', () => {
+				const file = new File([], 'test');
+				component.files = [file];
+				component.reset();
+				expect(component.files.length).toEqual(0);
+			});
+		});
+
 		describe('remove', () => {
 			it('should remove an item and call reset method when files length is 1', () => {
 				const spy = jest.spyOn(component, 'reset');

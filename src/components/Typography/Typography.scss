@@ -64,6 +64,16 @@
 			font-weight: $w;
 		}
 	}
+
+}
+
+.farm-typography[color=black] {
+	color: var(--farm-bw-black);
+	@each $v in $bwVariations {
+		&.farm-typography--black-#{$v} {
+			color: var(--farm-bw-black-#{$v});
+		}
+	}
 }
 
 @include upToSm {

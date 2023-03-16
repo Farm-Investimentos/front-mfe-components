@@ -1,4 +1,7 @@
 import Collapsible from './Collapsible';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
+const variations = ['', 'darken', 'lighten'];
 
 export default {
 	title: 'Surfaces/Collapsible',
@@ -22,7 +25,8 @@ export const Title = () => ({
 });
 
 export const Icon = () => ({
-	template: '<farm-collapsible icon="book" title="With Icon">collapsible content</farm-collapsible>',
+	template:
+		'<farm-collapsible icon="plus" title="With Icon">collapsible content</farm-collapsible>',
 });
 
 export const Opened = () => ({
@@ -43,7 +47,70 @@ export const Opened = () => ({
     </div>`,
 });
 
+export const ColorsChips = () => ({
+	data() {
+		return {
+			colors,
+			variations,
+		};
+	},
+	template: `
+	<farm-row>
+		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
+			<h4 style="margin:15px">{{ color }}</h4>
+			<farm-collapsible 
+				style="margin-top:15px"
+				v-for="variation in variations"
+				icon="plus" 
+				textChip="chip"
+				title="color chip" 
+				:key="color + '_' + variation"
+				:showChip="true" 
+				:colorChip="color"
+				:variation="variation"
+			>
+			</farm-collapsible>
+		</farm-col>
+	</farm-row>`,
+});
+
+export const ColorsOutlinedChips = () => ({
+	data() {
+		return {
+			colors,
+			variations,
+		};
+	},
+	template: `
+	<farm-row>
+		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
+			<h4 style="margin:15px">{{ color }}</h4>
+			<farm-collapsible 
+				style="margin-top:15px"
+				v-for="variation in variations"
+				icon="plus" 
+				textChip="chip"
+				title="color chip" 
+				:key="color + '_' + variation"
+				:showChip="true"
+				:outlined="true"
+				:colorChip="color"
+				:variation="variation"
+			>
+			</farm-collapsible>
+		</farm-col>
+	</farm-row>`,
+});
+
+export const Dense = () => ({
+	template:
+		'<farm-collapsible icon="plus" title="With Icon" textChip="chip" dense showChip>collapsible content</farm-collapsible>',
+});
+
 Primary.storyName = 'Basic';
 Title.storyName = 'Title';
 Icon.storyName = 'Icon';
 Opened.storyName = 'Opened';
+ColorsChips.storyName = 'Colors';
+ColorsOutlinedChips.storyName = 'Outlined';
+Dense.storyName = 'Dense';

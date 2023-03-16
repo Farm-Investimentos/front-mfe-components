@@ -28,6 +28,10 @@
 	margin-right: 8px;
 }
 
+:deep(.farm-listitem:hover .farm-typography) {
+	color: var(--farm-primary-base);
+}
+
 :deep(.farm-listitem:hover .farm-checkbox .farm-icon) {
 	color: var(--farm-primary-lighten);
 }

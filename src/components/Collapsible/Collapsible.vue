@@ -4,18 +4,30 @@
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
 					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-						<farm-icon size="md">
+						<farm-icon size="md" color="secondary-green">
 							{{ icon }}
 						</farm-icon>
 					</div>
-					<farm-typography bold size="lg">
+					<farm-heading type="6" color="black">
 						{{ title }}
-					</farm-typography>
+					</farm-heading>
 				</div>
-				<div class="collapsible__icon collapsible__icon--arrow">
-					<farm-icon size="md" color="secondary">
-						{{ arrowIcon }}
-					</farm-icon>
+				<div class="collapsible__content-right">
+					<div class="collapsible__icon" v-if="showChip">
+						<farm-chip
+							:color="colorChip"
+							:dense="dense"
+							:variation="variation"
+							:outlined="outlined"
+						>
+							{{ textChip }}
+						</farm-chip>
+					</div>
+					<div class="collapsible__icon collapsible__icon--arrow">
+						<farm-icon size="md" color="primary">
+							{{ arrowIcon }}
+						</farm-icon>
+					</div>
 				</div>
 			</div>
 			<transition name="fade">
@@ -28,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-collapsible',
@@ -55,6 +67,54 @@ export default Vue.extend({
 		open: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * show Chip
+		 */
+		showChip: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * text of Chip
+		 */
+		textChip: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * color of Chip
+		 */
+		colorChip: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
+		},
+		dense: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Is outlined
+		 */
+		outlined: {
+			type: Boolean,
+			default: false,
+		},
+		variation: {
+			type: String,
+			default: 'base',
 		},
 	},
 

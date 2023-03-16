@@ -1,15 +1,26 @@
 <template>
-	<div :class="{ 
-		idcaption: true, 
-		'farm-idcaption': true, 
-		'farm-idcaption--noicon': !icon, 
-		'farm-idcaption--noheight': noHeight }"
+	<div
+		:class="{
+			idcaption: true,
+			'farm-idcaption': true,
+			'farm-idcaption--noicon': !icon,
+			'farm-idcaption--noheight': noHeight,
+		}"
 	>
-		<farm-icon-box v-if="icon" :icon="icon" :color="iconBoxColor" size="md" />
+		<farm-icon-box
+			v-if="icon"
+			:icon="icon"
+			:color="iconBoxColor"
+			variation="darken"
+			size="md"
+		/>
 		<div
-			:class="{ idcaption__body: true, 'idcaption__body--single': !hasTitle || !hasSubtitle }"
+			:class="{
+				idcaption__body: true,
+				'idcaption__body--single': !hasTitle || !hasSubtitle,
+			}"
 		>
-			<farm-caption variation="medium" v-if="hasTitle">
+			<farm-caption variation="semiBold" v-if="hasTitle">
 				<span>
 					<slot name="title"></slot>
 				</span>
@@ -20,16 +31,17 @@
 					class="farm-btn--clickable"
 					@click="$emit('onLinkClick')"
 				>
-					<farm-icon size="xs">open-in-new</farm-icon>
+					<farm-icon size="16px">open-in-new</farm-icon>
 				</farm-btn>
 			</farm-caption>
 
-			<farm-caption variation="regular" color="gray" v-if="hasSubtitle">
+			<farm-caption variation="regular" color="black" colorVariation="50" v-if="hasSubtitle">
 				<span>
 					<slot name="subtitle"></slot>
 				</span>
 				<farm-copytoclipboard
 					v-if="copyText"
+					sizeIcon="16px"
 					:toCopy="copyText"
 					:successMessage="successMessage"
 					:tooltipColor="tooltipColor"
@@ -57,18 +69,19 @@ export default Vue.extend({
 		iconBoxColor: {
 			type: String as PropType<
 				| 'primary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'secondary'
 				| 'neutral'
 				| 'info'
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 				| 'gray'
 			>,
-			default: 'primary',
+			default: 'secondary-golden',
 		},
 		/**
 		 * Text to be copied to clipboard
@@ -98,12 +111,13 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 			>,

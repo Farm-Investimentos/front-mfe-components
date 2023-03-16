@@ -1,11 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
-import TextField from '../TextField';
+import DataTableEmptyWrapper from '../DataTableEmptyWrapper';
 
-describe('TextField component', () => {
+describe('DataTableEmptyWrapper component', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallowMount(TextField);
+		wrapper = shallowMount(DataTableEmptyWrapper, {});
 	});
 
 	test('Created hook', () => {

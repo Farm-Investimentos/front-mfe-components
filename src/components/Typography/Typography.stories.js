@@ -1,6 +1,7 @@
 import Typography from './Typography';
 import sizes from '../../configurations/sizes';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
 
 const colors = Object.keys(baseThemeColors);
 
@@ -91,7 +92,8 @@ export const CustomSizes = () => ({
 export const Colors = () => ({
 	data() {
 		return {
-			colors: ['default', ...colors, 'white'],
+			colors: ['default', ...colors],
+			bwColors: Object.keys(bwThemeColors),
 		};
 	},
 	template: `<div>
@@ -102,6 +104,17 @@ export const Colors = () => ({
 		>
 			Typography - color {{ color }}
 		</farm-typography>
+
+		<farm-typography
+			v-for="bw in bwColors"
+			:style="{ backgroundColor: bw === 'white' ? 'black' : 'white' }"
+			:color="bw.split('-')[0]"
+			:color-variation="bw.split('-')[1]"
+			:key="bw"
+		>
+			Typography - color {{ bw }}
+		</farm-typography>
+
 	</div>`,
 });
 

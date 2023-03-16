@@ -1,6 +1,6 @@
 .collapsible {
 	width: 100%;
-	
+
 	&__header {
 		width: 100%;
 		display: flex;
@@ -15,8 +15,13 @@
 		justify-content: flex-start;
 	}
 
-	&__icon {
+	&__content-right {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
+	&__icon {
 		&--main {
 			margin-right: 0.5rem;
 		}

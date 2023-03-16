@@ -8,7 +8,7 @@
 					item.sortable ? 'sortable' : '',
 					sortClick[$index].clicked ? 'active' : '',
 					item.sortable ? (sortClick[$index].descending === 'DESC' ? 'DESC' : 'ASC') : '',
-					showCheckbox && $index == 0 ? 'checkbox-container' : ''
+					showCheckbox && $index == 0 ? 'checkbox-container' : '',
 				]"
 				v-bind:style="{
 					textAlign: item.align ? item.align : '',
@@ -28,10 +28,11 @@
 							sortClick[$index][item.value] ? 'farm-icon--desc' : 'farm-icon--asc',
 						]"
 						class="ml-2"
-						size="12px"
-						color="gray"
+						size="16px"
+						color="black"
+						variation="30"
 					>
-						sort-descending
+						sort-reverse-variant
 					</farm-icon>
 				</span>
 

@@ -22,10 +22,11 @@
 		}
 	}
 
-	&__icon {
-		align-items: center;
+	&__icon.farm-icon {
+		align-items: self-start;
 		display: flex;
 		margin-right: 16px;
+		margin-top: 3px;
 	}
 
 	&__close {
