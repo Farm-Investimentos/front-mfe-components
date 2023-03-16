@@ -1,3 +1,4 @@
 import { formatDatePickerHeader } from './formatDatePickerHeader';
 export { default as calculateMainZindex } from './calculateMainZindex';
-export { formatDatePickerHeader };
+import isChildOfFixedElement from './isChildOfFixedElement';
+export { formatDatePickerHeader, isChildOfFixedElement };
