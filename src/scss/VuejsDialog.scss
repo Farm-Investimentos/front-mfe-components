@@ -1,86 +1,93 @@
 @import 'vuejs-dialog/dist/vuejs-dialog.min';
 @import '../components/Buttons/DefaultButton/DefaultButton.scss';
 
-
 .dg-main-content {
-    font-family: Montserrat, sans-serif !important;
+	font-family: 'Manrope', sans-serif !important;
 }
 
 .dg-content-body {
-    border-bottom: 1px solid var(--farm-stroke-base);
-    margin: 0 -15px;
-    padding: 0 16px;
-    color: var(--farm-text-base);
-    font-size: 12px;
+	border-bottom: 1px solid var(--farm-gray-lighten);
+	margin: 0 -15px;
+	padding: 0 16px;
+	color: var(--farm-text-base);
+	font-size: 12px;
 }
 
 .dg-title {
-    margin: 0 -15px;
-    border-bottom: 1px solid var(--farm-stroke-base);
-    padding: 0 16px;
-    color: var(--farm-primary-base);
-    height: 32px;
-    font-size: 12px;
+	margin: 0 -15px;
+	border-bottom: 0;
+	padding: 0 16px;
+	color: var(--farm-bw-black-80);
+	height: 32px;
+	font-size: 12px;
+	font-weight: 600;
 }
 
 .dg-content-body--has-title .dg-content,
 .dg-content {
-    margin: 24px 0;
-    font-size: 12px;
-    line-height: 20px;
-    word-break: break-word;
+	margin: 24px 0;
+	font-size: 12px;
+	line-height: 20px;
+	word-break: break-word;
 
-    ul {
-        margin-left: 16px;
-    }
+	ul {
+		margin-left: 16px;
+	}
 }
 
 .dg-content-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 }
 
 .dg-btn {
-    @extend .farm-btn;
+	@extend .farm-btn;
+	border: 0;
 }
 
 .dg-btn--ok {
-    @extend .farm-btn--primary;
+	@extend .farm-btn--primary;
 }
 
 .dg-btn--cancel {
-    @extend .farm-btn--primary;
-    @extend .farm-btn--outlined;
-    margin-right: 8px;
+	@extend .farm-btn--primary;
+	@extend .farm-btn--plain;
+	margin-right: 8px;
+
+	&:hover{
+		text-decoration: underline;
+		text-underline-offset: 6px;
+		opacity: 0.86;
+	}
 }
 
 .dg-backdrop {
-    background-color: rgba(0, 0, 0, .46);
+	background-color: rgba(0, 0, 0, 0.46);
 }
 
 .dg-parent-nofooter {
-    .dg-content-footer {
-        display: none;
-    }
+	.dg-content-footer {
+		display: none;
+	}
 
-    .dg-content-body {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
+	.dg-content-body {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
 
-    .dg-content-body--has-title .dg-content,
-    .dg-content {
-        margin-bottom: 8px;
-    }
+	.dg-content-body--has-title .dg-content,
+	.dg-content {
+		margin-bottom: 8px;
+	}
 }
 
 .dg-parent-error {
-    .dg-btn--ok {
-        @extend .farm-btn--error;
-    }
+	.dg-btn--ok {
+		@extend .farm-btn--error;
+	}
 
-    .dg-title {
-        color: var(--farm-error-base);
-    }
+	.dg-title {
+		color: var(--farm-error-base);
+	}
 }

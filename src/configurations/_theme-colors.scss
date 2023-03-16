@@ -1,91 +1,122 @@
 $primary: (
-    base: #00B493,
-    lighten: #EBFFFB,
-    darken: #099A82,
+	base: #4f8406,
+	lighten: #d5e7bb,
+	darken: #395f05,
 );
 
 $secondary: (
-    base: #1A3738,
-    lighten: #467D7E,
-    darken: #0B1A1B,
+	base: #e2c076,
+	lighten: #f1e6cc,
+	darken: #968254,
+);
+
+$secondary-green: (
+	base: #3e4e4b,
+	lighten: #6e7a78,
+	darken: #00231d,
+);
+
+$secondary-golden: (
+	base: #e2c076,
+	lighten: #f1e6cc,
+	darken: #968254,
 );
 
 $neutral: (
-    base: #E0E0E0,
-    lighten: #F5F5F5,
-    darken: #5C5C5C,
+	base: #e0e0e0,
+	lighten: #f5f5f5,
+	darken: #5c5c5c,
 );
 
 $error: (
-    base: #F44336,
-    lighten: #FFEBEE,
-    darken: #B71C1C,
+	base: #f44336,
+	lighten: #ffebee,
+	darken: #b71c1c,
 );
 
 $warning: (
-    base: #FF9800,
-    lighten: #FFF3E0,
-    darken: #FF6D00,
+	base: #ff9800,
+	lighten: #fff3e0,
+	darken: #ff6d00,
 );
 
 $info: (
-    base: #2196F3,
-    lighten: #E3F2FD,
-    darken: #0D47A1,
+	base: #2196f3,
+	lighten: #e3f2fd,
+	darken: #0d47a1,
 );
 
 $success: (
-    base: #4CAF50,
-    lighten: #E8F5E9,
-    darken: #1B5E20,
+	base: #4caf50,
+	lighten: #e8f5e9,
+	darken: #1b5e20,
 );
 
 $extra-1: (
-    base: #8E24AA,
-    lighten: #F3E5F5,
-    darken: #4A148C,
+	base: #8e24aa,
+	lighten: #f3e5f5,
+	darken: #4a148c,
 );
 
 $extra-2: (
-    base: #EC407A,
-    lighten: #FCE4EC,
-    darken: #880E4F,
+	base: #ec407a,
+	lighten: #fce4ec,
+	darken: #880e4f,
 );
 
 $gray: (
-    base: #858585,
-    lighten: #D6D6D6,
-    darken: #5C5C5C,
+	base: #858585,
+	lighten: #d6d6d6,
+	darken: #5c5c5c,
 );
 
 $theme-colors: (
-    "primary": $primary,
-    "secondary": $secondary,
-    "neutral": $neutral,
-    "info": $info,
-    "error": $error,
-    "warning": $warning,
-    "success": $success,
-    "extra-1": $extra-1,
-    "extra-2": $extra-2,
-    "gray": $gray
+	'primary': $primary,
+	'secondary': $secondary,
+	'secondary-green': $secondary-green,
+	'secondary-golden': $secondary-golden,
+	'neutral': $neutral,
+	'info': $info,
+	'error': $error,
+	'warning': $warning,
+	'success': $success,
+	'extra-1': $extra-1,
+	'extra-2': $extra-2,
+	'gray': $gray,
 );
 
 $text-colors: (
-    "primary": #1C1C1C,
-    "secondary": #757575,
-    "disabled": #BDBDBD
+	'primary': #1c1c1c,
+	'secondary': #757575,
+	'disabled': #858585,
 );
 
 $stroke-colors: (
-    "base": #E0E0E0,
-    "disabled": #BDBDBD,
-    "divider": #E0E0E0
+	'base': #e0e0e0,
+	'disabled': #bdbdbd,
+	'divider': #e0e0e0,
+);
+
+$bw-colors: (
+	'black': #1c1c1c,
+	'black-80': #333333,
+	'black-50': #5c5c5c,
+	'black-40': #757575,
+	'black-30': #858585,
+	'black-10': #d6d6d6,
+	'black-5': #f5f5f5,
+	'white': #ffffff,
+);
+
+$background-colors: (
+	'base': #f5f5f5,
+	'lighten': #FAFAFA,
+	'white': #FFFFFF,
 );
 
 $theme-colors-list: map-keys($theme-colors);
 
 @function themeColor($name, $variation: 'base') {
-    $theme-color: map-get($theme-colors, $name);
-    @return map-get($theme-color, $variation)
+	$theme-color: map-get($theme-colors, $name);
+	@return map-get($theme-color, $variation);
 }

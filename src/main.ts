@@ -4,7 +4,6 @@ import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
-import FilePicker from './components/FilePicker';
 import MultipleFilePicker from './components/MultipleFilePicker';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
@@ -29,7 +28,6 @@ export {
 	DataTableHeader,
 	MainFilter,
 	Loader,
-	FilePicker,
 	MultipleFilePicker,
 	DialogHeader,
 	DialogFooter,
@@ -85,7 +83,6 @@ export * from './components/Stepper';
 export * from './components/Switcher';
 export * from './components/Tabs';
 export * from './components/TextArea';
-export * from './components/TextField';
 export * from './components/TextFieldV2';
 export * from './components/Tooltip';
 export * from './components/Typography';

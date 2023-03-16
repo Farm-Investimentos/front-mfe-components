@@ -1,8 +1,17 @@
 <template>
-	<div>
-		<farm-icon size="lg">magnify</farm-icon>
-		<farm-caption bold>{{ title }}</farm-caption>
-		<farm-caption variation="regular" v-if="subtitle">{{ subtitle }}</farm-caption>
+	<div
+		:class="{
+			'farm-emptywrapper': true,
+			'farm-emptywrapper--bordered': bordered,
+		}"
+	>
+		<farm-icon size="xl" color="gray">magnify</farm-icon>
+		<farm-bodytext type="2" variation="bold" color="black" color-variation="40">
+			{{ title }}
+		</farm-bodytext>
+		<farm-caption v-if="subtitle" variation="regular" color-variation="30">
+			{{ subtitle }}
+		</farm-caption>
 	</div>
 </template>
 <script lang="ts">
@@ -24,7 +33,14 @@ export default Vue.extend({
 		subtitle: {
 			type: String,
 			default:
-				'Tente filtrar novamente sua pesquisa ou faça uma importação para ver mais resultados',
+				'Tente filtrar novamente sua pesquisa.',
+		},
+		/**
+		 * Has border?
+		 */
+		bordered: {
+			type: Boolean,
+			default: true,
 		},
 	},
 });

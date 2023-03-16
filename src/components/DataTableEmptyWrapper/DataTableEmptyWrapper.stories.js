@@ -24,3 +24,7 @@ export const CustomTitles = () => ({
 	template:
 		'<farm-emptywrapper title="Título customizado" subtitle="Subtítulo customizado" />',
 });
+
+export const NoBorder = () => ({
+	template: '<farm-emptywrapper :bordered="false" />',
+});

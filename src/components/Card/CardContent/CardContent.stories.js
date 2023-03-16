@@ -34,3 +34,14 @@ export const Gutters = () => ({
 		</farm-card-content>
     </div>`,
 });
+
+export const Background = () => ({
+	data() {
+		return { bgs: ['base', 'lighten', 'white'] };
+	},
+	template: `<div style="width: 480px;">
+		<farm-card-content v-for="bg in bgs" :key="bg" style="margin-bottom: 16px" :background="bg">
+			Content with {{ bg }} background
+		</farm-card-content>
+    </div>`,
+});

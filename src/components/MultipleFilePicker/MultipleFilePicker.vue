@@ -9,10 +9,12 @@
 			@change="fileChange($event.target.files)"
 		/>
 		<div v-if="!hasFiles" class="selectfile-container">
-			<farm-icon class="upload-icon" size="lg" @click="addMoreFiles">
-				cloud-upload
+			<farm-icon class="upload-icon" color="primary" size="lg" @click="addMoreFiles">
+				cloud-upload-outline
 			</farm-icon>
-			<p>Clique para selecionar ou arraste o arquivo aqui</p>
+			<farm-subtitle :type="2" variation="regular" color="primary">
+				Arraste e solte o arquivo <br/> ou clique aqui
+			</farm-subtitle>
 		</div>
 
 		<ul
@@ -25,18 +27,20 @@
 			<li class="itemFilesStyled" v-for="file in downloadFiles" :key="file.id">
 				<div class="itemFilesContentStyled">
 					<div class="fileDocumentStyled">
-						<farm-icon color="white" size="md">file</farm-icon>
+						<farm-icon color="black" variation="50" size="sm">attachment</farm-icon>
 					</div>
 					<div>
-						<span clas="textStyled">
+						<farm-bodysmall  color="black" color-variation="50">
 							Arquivo selecionado: {{ file.name }} ({{ sizeOf(file.size) }})
-						</span>
+						</farm-bodysmall>
 					</div>
 				</div>
 				<div class="itemFilesContentButtonStyled">
 					<farm-btn
-						class="download-button"
 						plain
+						color="black"
+						variation="50"
+						class="download-button"
 						title="Baixar Arquivo"
 						@click.prevent="onDownload(file.id)"
 					>
@@ -53,20 +57,22 @@
 		<ul class="listFilesStyled" v-if="files.length > 0">
 			<li class="itemFilesStyled" v-for="(file, index) in files" :key="index">
 				<div class="itemFilesContentStyled">
+					
 					<div class="fileDocumentStyled">
-						<farm-icon color="white" size="md">file</farm-icon>
+						<farm-icon color="black" variation="50" size="sm">attachment</farm-icon>
 					</div>
 					<div>
-						<span clas="textStyled">
+						<farm-bodysmall  color="black" color-variation="50">
 							Arquivo selecionado: {{ file.name }} ({{ sizeOf(file.size) }})
-						</span>
+						</farm-bodysmall>
 					</div>
 				</div>
 				<div class="itemFilesContentButtonStyled">
 					<farm-btn
 						icon
 						title="Remover"
-						color="neutral"
+						color="black"
+						variation="50"
 						size="md"
 						@click.prevent="remove(index)"
 					>
@@ -162,6 +168,7 @@ export default Vue.extend({
 		},
 		reset(): void {
 			this.$refs.container.querySelector('input').value = '';
+			this.files = [];
 		},
 		fileChange(fileList): void {
 			this.files.push(...fileList);

@@ -12,7 +12,7 @@
 		align-items: center;
 		gap: 8px;
 		border: 1px solid;
-		border-color: var(--farm-gray-lighten);
+		border-color: var(--farm-bw-black-10);
 		height: 36px;
 		border-radius: 5px;
 		padding: 8px;
@@ -26,7 +26,7 @@
 		& > input {
 			flex: 1;
 			outline: none;
-			color: var(--farm-text-primary);
+			color: var(--farm-bw-black-50);
 			font-size: 12px;
 			font-weight: 400;
 			max-width: 100%;
@@ -39,12 +39,16 @@
 		width: 100%;
 	}
 
+	&--focused .farm-textfield--input {
+		border-color: var(--farm-bw-black-30);
+	}
+
 	&--disabled {
 		input {
-			color: var(--farm-gray-base);
+			color: var(--farm-bw-black-30);
 		}
 		.farm-icon {
-			color: var(--farm-gray-lighten);
+			color: var(--farm-bw-black-30);
 			cursor: default;
 		}
 	}

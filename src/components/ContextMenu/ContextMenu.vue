@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
-import { calculateMainZindex } from '../../helpers';
+import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-contextmenu',
@@ -74,7 +74,7 @@ export default Vue.extend({
 		} as any);
 
 		const inputValue = ref(props.value);
-		
+
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {
@@ -130,6 +130,8 @@ export default Vue.extend({
 			if (!parent.value || !activator.value.children[0]) {
 				return;
 			}
+			const activatorChildOfFixedElement = isChildOfFixedElement(activator.value);
+
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
 			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
@@ -173,8 +175,18 @@ export default Vue.extend({
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
 
+			if (activatorChildOfFixedElement) {
+				styles.position = 'fixed';
+				offsetTop =
+					parentBoundingClientRect.top +
+					(!bottom.value ? 0 : activatorBoundingClientRect.height);
+			} else {
+				styles.position = 'absolute';
+			}
+
 			styles.top = `${offsetTop}px`;
 			styles.left = `${offsetLeft}px`;
+
 			styles.zIndex = calculateMainZindex();
 		};
 

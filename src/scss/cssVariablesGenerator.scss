@@ -1,22 +1,25 @@
 @import '../configurations/theme-colors';
 
 :root {
+	@each $name, $color in $theme-colors {
+		#{"--farm-" + $name + "-base"}: themeColor($name, 'base');
+		#{"--farm-" + $name + "-lighten"}: themeColor($name, 'lighten');
+		#{"--farm-" + $name + "-darken"}: themeColor($name, 'darken');
+	}
 
-    @each $name,
-    $color in $theme-colors {
-        #{"--farm-" + $name + "-base"}: themeColor($name, "base");
-        #{"--farm-" + $name + "-lighten"}: themeColor($name, "lighten");
-        #{"--farm-" + $name + "-darken"}: themeColor($name, "darken");
-    }
+	@each $name, $color in $text-colors {
+		#{"--farm-text-" + $name}: $color;
+	}
 
-    @each $name,
-    $color in $text-colors {
-        #{"--farm-text-" + $name}: $color;
-    }
+	@each $name, $color in $stroke-colors {
+		#{"--farm-stroke-" + $name}: $color;
+	}
 
+	@each $name, $color in $bw-colors {
+		#{"--farm-bw-" + $name}: $color;
+	}
 
-    @each $name,
-    $color in $stroke-colors {
-        #{"--farm-stroke-" + $name}: $color;
-    }
+	@each $name, $color in $background-colors {
+		#{"--farm-background-" + $name}: $color;
+	}
 }

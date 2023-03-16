@@ -1,4 +1,6 @@
 import Switch from './Switcher';
+import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Form/Switcher',
@@ -57,4 +59,35 @@ export const OffDisabled = () => ({
 	template: `<div>
 	<farm-switcher v-model="selectedValue" block :disabled="true" />
 	</div>`,
+});
+
+export const Colors = () => ({
+	data() {
+		return {
+			colors,
+			selectedValue: true,
+		};
+	},
+	template: `
+	<farm-row>
+		<farm-col
+			cols="12"
+			md="3"
+			v-for="color in colors"
+			:key="'color_' + color"
+		>
+			<farm-bodytext>{{ color }}</farm-bodytext>
+			<farm-switcher
+				v-model="selectedValue"
+				:color="color"
+			/>
+			<farm-caption>Desabilitado</farm-caption>
+			<farm-switcher
+				disabled
+				v-model="selectedValue"
+				:color="color"
+			/>
+		</farm-col>
+
+	</farm-row>`,
 });

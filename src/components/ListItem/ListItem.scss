@@ -18,18 +18,20 @@
 
     &:hover {
 
+        border-radius: 5px;
+
         @each $color in $theme-colors-list {
 
             &#{'.farm-listitem--' + $color + '-base'} {
-                background-color: themeColor($color);
+                background-color: rgba(themeColor($color), 0.27);
             }
 
             &#{'.farm-listitem--' + $color + '-lighten'} {
-                background-color: themeColor($color, 'lighten');
+                background-color: rgba(themeColor($color, 'lighten'), 0.27);
             }
 
             &#{'.farm-listitem--' + $color + '-darken'} {
-                background-color: themeColor($color, 'darken');
+                background-color: rgba(themeColor($color, 'darken'), 0.27);
             }
         }
     }

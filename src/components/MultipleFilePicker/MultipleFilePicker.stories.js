@@ -60,3 +60,15 @@ export const InvalidFiles = () => ({
 			@onInvalidFiles="onInvalidFiles" />
 	</div>`,
 });
+
+export const Reset = () => ({
+	methods: {
+		onReset() {
+			this.$refs.picker.reset();
+		}
+	},
+	template: `<div>
+		<farm-multiple-filepicker ref="picker" />
+		<farm-btn @click="onReset" class="mt-1">reset</farm-btn>
+	</div>`,
+});

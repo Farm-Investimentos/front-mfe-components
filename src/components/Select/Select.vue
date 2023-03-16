@@ -7,6 +7,7 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--focused': isFocus || isVisible,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
@@ -250,6 +251,9 @@ export default Vue.extend({
 			newValue => {
 				innerValue.value = newValue;
 				errorBucket.value = [];
+				if(multiple.value && newValue === null || (Array.isArray(newValue) && newValue.length === 0)) {
+					multipleValues.value = [];
+				}
 				validate(newValue);
 				updateSelectedTextValue();
 				emit('input', newValue);
