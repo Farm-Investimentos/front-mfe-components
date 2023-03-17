@@ -6,8 +6,8 @@ $loader-overlay-transition: all 0.6s ease-in-out !default;
 .farm-loader {
 	width: 70px;
 	height: 70px;
-	color: var(--v-secondary-base) !important;
-	caret-color: var(--v-secondary-base) !important;
+	color: var(--farm-primary-base) !important;
+	caret-color: var(--farm-primary-base) !important;
 	position: relative;
 	display: inline-flex;
 	vertical-align: middle;

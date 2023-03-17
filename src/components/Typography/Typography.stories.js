@@ -183,7 +183,7 @@ export const LineHeight = () => ({
 			tag="p"
 			:lineHeight="h"
 			:key="h"
-			style="border: 1px solid var(--v-gray-lighten2); padding: 8px;"
+			style="border: 1px solid var(--farm-gray-base); padding: 8px;"
 		>
 			Typography - height {{ h }}<br />
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit,
