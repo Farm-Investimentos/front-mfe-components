@@ -2,7 +2,7 @@
 	<farm-contextmenu v-model="value" :bottom="true">
 		<template v-slot:activator="{}">
 			<farm-btn outlined title="Importar" v-bind="$attrs">
-				Importar {{ value }}
+				Importar
 				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
 		</template>
