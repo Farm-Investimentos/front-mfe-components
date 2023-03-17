@@ -1,7 +1,7 @@
 @import '../../configurations/functions';
 
 .farm-alert-reload {
-    border: 1px solid var(--v-error-base);
+    border: 1px solid var(--farm-error-base);
     border-radius: 8px;
     padding: gutter('sm') gutter('md');
     display: flex;
