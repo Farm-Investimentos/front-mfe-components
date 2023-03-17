@@ -1,8 +1,8 @@
 <template>
 	<farm-contextmenu v-model="value" :bottom="true">
 		<template v-slot:activator="{}">
-			<farm-btn outlined title="Importar" color="secondary" @click="toggleValue">
-				Importar
+			<farm-btn outlined title="Importar" v-bind="$attrs">
+				Importar {{ value }}
 				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
 		</template>
@@ -10,7 +10,7 @@
 			<farm-listitem
 				v-for="item in optionsList"
 				clickable
-				hoverColor="primary"
+				:hoverColor="$attrs.color || 'primary'"
 				hoverColorVariation="lighten"
 				:key="'importbutton_key_' + item.title"
 				:title="item.title"
@@ -48,9 +48,6 @@ export default Vue.extend({
 	methods: {
 		onClick(key) {
 			this.$emit('onClick', key);
-		},
-		toggleValue() {
-			this.value = !this.value;
 		},
 	},
 });

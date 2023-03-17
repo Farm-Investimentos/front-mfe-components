@@ -13,3 +13,11 @@ export const CustomLabel = () => ({
 	components: { ImportButton },
 	template: '<farm-btn-import label="Label custom" />',
 });
+
+export const CustomColors = () => ({
+	components: { ImportButton },
+	template: `<div>
+		<farm-btn-import color="info" variation="lighten" />
+		<farm-btn-import color="info" variation="darken" />
+	</div>`,
+});
