@@ -15,7 +15,6 @@ import ModalPromptUser from './components/ModalPromptUser';
 
 import TableContextMenu from './components/TableContextMenu';
 import IconBox from './components/IconBox';
-import CardContext from './components/CardContext';
 
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
@@ -39,7 +38,6 @@ export {
 	ModalPromptUser,
 	DefaultButton,
 	IconBox,
-	CardContext,
 	Collapsible,
 	IdCaption,
 	ResourceMetaInfo,

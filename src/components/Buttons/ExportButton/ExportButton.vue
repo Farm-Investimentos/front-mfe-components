@@ -2,11 +2,10 @@
 	<farm-btn
 		v-if="optionsList.length == 0"
 		@click="onClick"
-		dense
 		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
-		color="secondary"
+		color="primary"
 		:disabled="disabled"
 	>
 		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
@@ -14,7 +13,7 @@
 	</farm-btn>
 	<farm-contextmenu v-else v-model="value" :bottom="true">
 		<template v-slot:activator="{}">
-			<farm-btn outlined title="Exportar" color="secondary" @click="toggleValue">
+			<farm-btn outlined title="Exportar" color="primary" @click="toggleValue">
 				Exportar
 				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
