@@ -19,7 +19,7 @@ export default {
 	},
 };
 
-export const Primary = () => ({
+export const Default = () => ({
 	data() {
 		return {
 			item: {

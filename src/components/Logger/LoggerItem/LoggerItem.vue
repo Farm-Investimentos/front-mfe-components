@@ -77,16 +77,10 @@ export default Vue.extend({
 				return '';
 			}
 
-			return this.item.status ? mappingIconKeys[this.item.status] : 'error';
+			return this.item.status ? mappingIconKeys[this.item.status] : 'success';
 		},
 		buttonColor(): string {
-			if (this.item.status === 'success') {
-				return 'primary';
-			} else if (this.item.status === 'error') {
-				return 'error';
-			}
-
-			return 'primary';
+			return this.item.status ? this.item.status : 'success';
 		},
 		hasDetails(): boolean {
 			return !!this.item.details;
