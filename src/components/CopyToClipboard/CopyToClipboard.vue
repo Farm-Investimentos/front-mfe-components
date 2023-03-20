@@ -61,7 +61,7 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 			>,
-			default: 'secondary',
+			default: 'primary',
 		},
 		/**
 		 * Success message timeout (in ms)
