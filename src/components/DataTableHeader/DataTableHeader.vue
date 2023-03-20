@@ -19,7 +19,13 @@
 				@mouseover="changeShow($index)"
 				@mouseout="changeHidden($index)"
 			>
-				<span class="header-text" v-if="!isTHDataTableSelect(item)">
+				<span
+					class="header-text"
+					v-if="!isTHDataTableSelect(item)"
+					:title="
+						item.sortable && sortClick[$index].show ? `Ordernar por ${item.text}` : null
+					"
+				>
 					{{ item.text }}
 
 					<farm-icon
