@@ -18,16 +18,16 @@
 
 th.sortable {
 	cursor: pointer;
+	.farm-icon::before {
+		transition: all 0.3s linear;
+	}
+	
 	&:not(.active) {
 		&:hover {
 			.farm-icon::before {
-				color: var(--farm-bw-black-30) !important;
+				color: var(--farm-bw-black-10) !important;
 			}
 		}
-	}
-
-	.header-text {
-		transition: color 0.5s ease;
 	}
 }
 
