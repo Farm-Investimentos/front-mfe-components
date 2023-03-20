@@ -117,9 +117,8 @@ export default Vue.extend({
 					window.addEventListener('resize', resizeWindowHandler);
 					calculatePosition();
 				} else {
-					styles.display = 'none';
-					styles.top = 0;
-					styles.left = 0;
+					styles.top = '-10000px';
+					styles.left = '-10000px';
 					styles.zIndex = 0;
 					window.removeEventListener('click', outClick);
 				}
@@ -161,7 +160,6 @@ export default Vue.extend({
 			}
 
 			//Do not allow to open outside window
-
 			const rightEdge = offsetLeft + popupClientRect.width;
 			const clientWidth = document.documentElement.clientWidth;
 
