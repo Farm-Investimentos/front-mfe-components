@@ -173,11 +173,12 @@ export const CustomSuccessMessageAfterCopyToClipboard = () => ({
     `,
 });
 
-export const CustomTooltipColor = () => ({
+export const CustomColors = () => ({
 	template: `
     <farm-idcaption 
         icon="account-box-outline"
         copy-text="Custom Success Message to be copied"
+        buttons-color="extra-1"
         tooltip-color="info"
     >
         <template v-slot:title>

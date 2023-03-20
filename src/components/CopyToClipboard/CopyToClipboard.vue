@@ -1,8 +1,8 @@
 <template>
-	<farm-tooltip v-model="show" :color="tooltipColor">
+	<farm-tooltip v-model="show" :color="tooltipColor || buttonColor">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
-			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
+			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" :color="buttonColor" @click="onClick">
 				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 			</farm-btn>
 			<farm-btn v-else outlined title="Copiar" :disabled="disabled" @click="onClick">
@@ -45,6 +45,25 @@ export default Vue.extend({
 			default: 'Conteúdo copiado para a área de trabalho',
 		},
 		/**
+		 * Button color
+		 */
+		 buttonColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
+		},
+		/**
 		 * Tooltip color
 		 */
 		tooltipColor: {
@@ -61,7 +80,7 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 			>,
-			default: 'primary',
+			default: null,
 		},
 		/**
 		 * Success message timeout (in ms)
