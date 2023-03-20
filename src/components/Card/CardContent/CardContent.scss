@@ -8,13 +8,9 @@
             padding: map-get($gutters, $k);
         }
     }
-
-
 }
 
 @each $k in map-keys($background-colors) {
-    @debug $k;
-
     #{'.farm-card__content--' + $k} {
         background-color: map-get($background-colors, $k);
     }
