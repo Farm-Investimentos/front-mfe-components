@@ -195,6 +195,29 @@ export const MaxHeight = () => ({
 	</div>`,
 });
 
+export const Right = () => ({
+	template: `<div style="width: 100%; display: flex; justify-content: right;">
+			<farm-contextmenu>
+				<farm-list>
+				<farm-listitem clickable hoverColor="primary">primary</farm-listitem>
+				<farm-listitem clickable hoverColor="extra-1" hoverColorVariation="lighten">extra 1 lighten</farm-listitem>
+				<farm-listitem clickable hoverColor="error" hoverColorVariation="lighten">
+					<farm-icon size="sm" color="error">trash-can</farm-icon>
+					<farm-typography color="error" tag="span">Error</farm-typography>
+				</farm-listitem>
+			</farm-list>
+			<template v-slot:activator="{ on, attrs }">
+                <farm-btn
+					v-bind="attrs"
+					v-on="on"
+				>
+					open
+				</farm-btn>
+            </template>
+        </farm-contextmenu>
+	</div>`,
+});
+
 export const VModel = () => ({
 	data() {
 		return {
