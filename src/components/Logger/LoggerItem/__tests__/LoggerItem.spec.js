@@ -55,7 +55,7 @@ describe('LoggerItem component', () => {
 					status: 'success',
 				},
 			});
-			expect(component.buttonColor).toEqual('primary');
+			expect(component.buttonColor).toEqual('success');
 		});
 
 		it('Should return error button color', async () => {
