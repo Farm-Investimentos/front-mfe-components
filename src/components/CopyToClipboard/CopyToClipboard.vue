@@ -2,7 +2,14 @@
 	<farm-tooltip v-model="show" :color="tooltipColor || buttonColor">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
-			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" :color="buttonColor" @click="onClick">
+			<farm-btn
+				v-if="isIcon"
+				title="Copiar"
+				icon
+				:disabled="disabled"
+				:color="buttonColor"
+				@click="onClick"
+			>
 				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 			</farm-btn>
 			<farm-btn v-else outlined title="Copiar" :disabled="disabled" @click="onClick">
@@ -47,7 +54,7 @@ export default Vue.extend({
 		/**
 		 * Button color
 		 */
-		 buttonColor: {
+		buttonColor: {
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'

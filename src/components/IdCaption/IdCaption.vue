@@ -88,7 +88,7 @@ export default Vue.extend({
 		/**
 		 * Buttons Color (change from link and copy to clipboard)
 		 */
-		 buttonsColor: {
+		buttonsColor: {
 			type: String as PropType<
 				| 'primary'
 				| 'secondary-green'
