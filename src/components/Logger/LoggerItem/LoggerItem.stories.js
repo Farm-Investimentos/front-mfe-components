@@ -19,7 +19,7 @@ export default {
 	},
 };
 
-export const Primary = () => ({
+export const Default = () => ({
 	data() {
 		return {
 			item: {
@@ -129,10 +129,10 @@ export const Details = () => ({
 				},
 				{
 					icon: 'book',
-					message: 'Reprovado entre as pré elegíveis',
+					message: 'Info',
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
-					status: 'primary',
+					status: 'info',
 					details() {
 						alert('Ver Detalhes');
 					},

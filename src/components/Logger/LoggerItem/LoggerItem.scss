@@ -26,7 +26,7 @@
 	}
 
 	&.logger__item--success {
-		@include loggerMessage(var(--farm-primary-base));
+		@include loggerMessage(var(--farm-success-base));
 	}
 
 	&.logger__item--info {
