@@ -27,8 +27,9 @@
 				<farm-btn
 					v-if="link"
 					icon
-					color="primary"
 					class="farm-btn--clickable"
+					title="Ver mais"
+					:color="buttonsColor"
 					@click="$emit('onLinkClick')"
 				>
 					<farm-icon size="16px">open-in-new</farm-icon>
@@ -44,7 +45,8 @@
 					sizeIcon="16px"
 					:toCopy="copyText"
 					:successMessage="successMessage"
-					:tooltipColor="tooltipColor"
+					:buttonColor="buttonsColor"
+					:tooltipColor="tooltipColor || buttonsColor"
 				/>
 			</farm-caption>
 		</div>
@@ -84,6 +86,26 @@ export default Vue.extend({
 			default: 'secondary-golden',
 		},
 		/**
+		 * Buttons Color (change from link and copy to clipboard)
+		 */
+		buttonsColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'secondary'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+				| 'gray'
+			>,
+			default: 'primary',
+		},
+		/**
 		 * Text to be copied to clipboard
 		 */
 		copyText: {
@@ -121,7 +143,7 @@ export default Vue.extend({
 				| 'extra-1'
 				| 'extra-2'
 			>,
-			default: 'secondary',
+			default: 'primary',
 		},
 		/**
 		 * noHeight remove min-height of 48px

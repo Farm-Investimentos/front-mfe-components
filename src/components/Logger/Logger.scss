@@ -3,42 +3,18 @@
 	flex-direction: column;
 }
 
+$colorsList: success, error, info;
+
 .logger__divider {
 	height: 40px;
 	margin: -4px 0 -4px 16px;
 	width: 1px;
 
-	&.logger__divider--success-to-success  {
-		background: var(--farm-primary-base);
+	@each $fromColor in $colorsList {
+		@each $toColor in $colorsList {
+			&.logger__divider--#{$fromColor}-to-#{$toColor} {
+				background: linear-gradient(to bottom, var(--farm-#{$fromColor}-base), var(--farm-#{$toColor}-base));
+			}
+		}
 	}
-
-	&.logger__divider--error-to-error {
-		background: var(--farm-error-base);
-	}
-
-	&.logger__divider--info-to-info {
-		background: var(--farm-info-base);
-	}
-
-	&.logger__divider--success-to-error {
-		background: linear-gradient(to bottom, var(--farm-primary-base), var(--farm-error-base));
-	}
-	&.logger__divider--success-to-info {
-		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-info-base));
-	}
-
-	&.logger__divider--error-to-success {
-		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-primary-base));
-	}
-	&.logger__divider--error-to-info {
-		background: linear-gradient(to bottom, var(--farm-error-base), var(--farm-info-base));
-	}
-
-	&.logger__divider--info-to-success {
-		background: linear-gradient(to bottom, var(--farm-info-base), var(--farm-primary-base));
-	}
-	&.logger__divider--info-to-error {
-		background: linear-gradient(to bottom, var(--farm-info-base), var(--farm-error-base));
-	}
-	
 }
