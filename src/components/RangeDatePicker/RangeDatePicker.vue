@@ -178,11 +178,13 @@ export default Vue.extend({
 			return true;
 		},
 		isInvertedDate() {
-			if (this.dateField.length === 2) {
-				const firstDate = new Date(this.dateField[0]);
-				const secondDate = new Date(this.dateField[1]);
-
-				return firstDate.getTime() > secondDate.getTime();
+			if (Array.isArray(this.dateField)) {
+				if (this.dateField.length === 2) {
+					const firstDate = new Date(this.dateField[0]);
+					const secondDate = new Date(this.dateField[1]);
+					return firstDate.getTime() > secondDate.getTime();
+				}
+				return false;
 			}
 			return false;
 		},
