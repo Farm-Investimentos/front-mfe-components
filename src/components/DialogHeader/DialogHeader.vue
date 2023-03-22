@@ -1,7 +1,7 @@
 <template>
 	<header>
-		<farm-icon v-if="iconTitle" size="16px" color="primary">{{ iconTitle }}</farm-icon>
-		<farm-caption v-if="title" variation="regular" color="primary" bold>
+		<farm-icon v-if="iconTitle" size="16px" color="primary" class="mr-2">{{ iconTitle }}</farm-icon>
+		<farm-caption v-if="title" variation="semiBold">
 			{{ title }}
 		</farm-caption>
 
@@ -10,12 +10,12 @@
 		<farm-btn
 			v-if="hasCloseIcon"
 			icon
-			color="secondary"
+			color="primary"
 			class="farm-dialog-header__close"
 			title="Fechar"
 			@click="onClose"
 		>
-			<farm-icon role="button" size="md"> window-close </farm-icon>
+			<farm-icon role="button" size="24px"> window-close </farm-icon>
 		</farm-btn>
 	</header>
 </template>

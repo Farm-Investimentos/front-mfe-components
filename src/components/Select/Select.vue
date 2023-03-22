@@ -7,6 +7,7 @@
 			'farm-textfield--blured': isBlured,
 			'farm-textfield--error': hasError,
 			'farm-textfield--disabled': disabled,
+			'farm-textfield--focused': isFocus || isVisible,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
 		v-if="!readonly && !disabled"
@@ -87,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, toRefs, watch, ref } from 'vue';
+import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -260,6 +261,12 @@ export default Vue.extend({
 			newValue => {
 				innerValue.value = newValue;
 				errorBucket.value = [];
+				if (
+					(multiple.value && newValue === null) ||
+					(Array.isArray(newValue) && newValue.length === 0)
+				) {
+					multipleValues.value = [];
+				}
 				validate(newValue);
 				updateSelectedTextValue();
 				emit('input', newValue);
@@ -449,6 +456,7 @@ export default Vue.extend({
 			isVisible,
 			customId,
 			showErrorText,
+			contextmenu,
 			validate,
 			reset,
 			selectItem,

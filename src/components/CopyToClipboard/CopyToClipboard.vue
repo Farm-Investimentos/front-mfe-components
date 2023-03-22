@@ -1,12 +1,19 @@
 <template>
-	<farm-tooltip v-model="show" :color="tooltipColor">
+	<farm-tooltip v-model="show" :color="tooltipColor || buttonColor">
 		{{ feedbackMessage }}
 		<template v-slot:activator="{}">
-			<farm-btn v-if="isIcon" title="Copiar" icon :disabled="disabled" @click="onClick">
-				<farm-icon size="xs">content-copy</farm-icon>
+			<farm-btn
+				v-if="isIcon"
+				title="Copiar"
+				icon
+				:disabled="disabled"
+				:color="buttonColor"
+				@click="onClick"
+			>
+				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 			</farm-btn>
 			<farm-btn v-else outlined title="Copiar" :disabled="disabled" @click="onClick">
-				<farm-icon>content-copy</farm-icon>
+				<farm-icon :size="sizeIcon">content-copy</farm-icon>
 				Copiar
 			</farm-btn>
 		</template>
@@ -29,11 +36,39 @@ export default Vue.extend({
 		 */
 		isIcon: { type: Boolean, default: true },
 		/**
+		 * sizeIcon: icon size setting
+		 */
+		sizeIcon: {
+			type: String as PropType<
+				'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'other (examples: 12px, 3rem)'
+			>,
+			default: 'xs',
+		},
+		/**
 		 * Success message content after copy
 		 */
 		successMessage: {
 			type: String,
 			default: 'Conteúdo copiado para a área de trabalho',
+		},
+		/**
+		 * Button color
+		 */
+		buttonColor: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
 		},
 		/**
 		 * Tooltip color
@@ -42,16 +77,17 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 			>,
-			default: 'secondary',
+			default: null,
 		},
 		/**
 		 * Success message timeout (in ms)
@@ -65,6 +101,7 @@ export default Vue.extend({
 		const show = ref(false);
 		const feedbackMessage = ref('');
 		const disabled = ref(false);
+		const sizeIcon = ref(props.sizeIcon);
 		const { toCopy, isIcon, successMessage, successTimeout } = toRefs(props);
 
 		const onClick = async () => {
@@ -86,6 +123,7 @@ export default Vue.extend({
 		return {
 			show,
 			isIcon,
+			sizeIcon,
 			feedbackMessage,
 			disabled,
 			onClick,

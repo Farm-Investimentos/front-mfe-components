@@ -6,8 +6,8 @@
 		<template v-slot:activator>
 			<farm-btn
 				icon
-				title="Abrir opções"
-				color="secondary"
+				title="Ver opções"
+				color="secondary-green"
 				:disabled="disabled"
 				@click="toggleValue"
 			>
@@ -26,7 +26,7 @@
 				<farm-icon v-if="item.icon" size="sm" :color="item.icon.color || 'primary'">
 					{{ item.icon.type }}
 				</farm-icon>
-				<farm-caption bold tag="span">{{ item.label }}</farm-caption>
+				<farm-caption bold tag="span" :color="item.icon.color || 'primary'">{{ item.label }}</farm-caption>
 			</farm-listitem>
 		</farm-list>
 	</farm-contextmenu>

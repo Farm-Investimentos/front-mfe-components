@@ -28,7 +28,9 @@ $fontSizes: (
 
 $fontWeights: 100, 200, 300, 400, 500, 600, 700;
 
-$aligns: start,center,end,auto,baseline,stretch;
-$align-contents: start,center,end,space-between,space-around,stretch;
-$justifications: start,center,end,space-between,space-around;
-$directions: row,row-reverse,column,column-reverse;
+$bwVariations: 80, 50, 40, 30, 10, 5;
+
+$aligns: start, center, end, auto, baseline, stretch;
+$align-contents: start, center, end, space-between, space-around, stretch;
+$justifications: start, center, end, space-between, space-around;
+$directions: row, row-reverse, column, column-reverse;

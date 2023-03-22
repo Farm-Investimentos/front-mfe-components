@@ -12,7 +12,7 @@
 		align-items: center;
 		gap: 8px;
 		border: 1px solid;
-		border-color: var(--farm-gray-lighten);
+		border-color: var(--farm-bw-black-10);
 		min-height: 36px;
 		border-radius: 5px;
 		padding: 8px 0 0 8px;
@@ -23,7 +23,7 @@
 		& > textarea {
 			flex: 1;
 			outline: none;
-			color: var(--farm-text-primary);
+			color: var(--farm-bw-black-50);
 			font-size: 12px;
 			font-weight: 400;
 			max-width: 100%;
@@ -31,9 +31,13 @@
 		}
 	}
 
+	&--focused .farm-textarea--textarea {
+		border-color: var(--farm-bw-black-30);
+	}
+
 	&--disabled {
 		textarea {
-			color: var(--farm-gray-base);
+			color: var(--farm-bw-black-30);
 		}
 	}
 

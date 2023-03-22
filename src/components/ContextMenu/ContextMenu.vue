@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
-import { calculateMainZindex } from '../../helpers';
+import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
 export default Vue.extend({
 	name: 'farm-contextmenu',
@@ -117,9 +117,8 @@ export default Vue.extend({
 					window.addEventListener('resize', resizeWindowHandler);
 					calculatePosition();
 				} else {
-					styles.display = 'none';
-					styles.top = 0;
-					styles.left = 0;
+					styles.top = '-10000px';
+					styles.left = '-10000px';
 					styles.zIndex = 0;
 					window.removeEventListener('click', outClick);
 				}
@@ -130,6 +129,8 @@ export default Vue.extend({
 			if (!parent.value || !activator.value.children[0]) {
 				return;
 			}
+			const activatorChildOfFixedElement = isChildOfFixedElement(activator.value);
+
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
 			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
 			const popupClientRect = popup.value.getBoundingClientRect();
@@ -159,7 +160,6 @@ export default Vue.extend({
 			}
 
 			//Do not allow to open outside window
-
 			const rightEdge = offsetLeft + popupClientRect.width;
 			const clientWidth = document.documentElement.clientWidth;
 
@@ -173,8 +173,18 @@ export default Vue.extend({
 				offsetTop -= bottomEdge - window.scrollY - clientHeight + 12;
 			}
 
+			if (activatorChildOfFixedElement) {
+				styles.position = 'fixed';
+				offsetTop =
+					parentBoundingClientRect.top +
+					(!bottom.value ? 0 : activatorBoundingClientRect.height);
+			} else {
+				styles.position = 'absolute';
+			}
+
 			styles.top = `${offsetTop}px`;
 			styles.left = `${offsetLeft}px`;
+
 			styles.zIndex = calculateMainZindex();
 		};
 

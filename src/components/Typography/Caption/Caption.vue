@@ -22,7 +22,10 @@ export default Vue.extend({
 		/**
 		 * Variation of the caption
 		 */
-		variation: { type: String as PropType<'regular' | 'medium'>, default: 'medium' },
+		variation: {
+			type: String as PropType<'regular' | 'medium' | 'semiBold'>,
+			default: 'medium',
+		},
 	},
 	setup(props) {
 		const { variation } = toRefs(props);

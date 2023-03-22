@@ -1,19 +1,22 @@
 <template>
 	<farm-btn
 		@click="onClick"
-		dense
+		v-bind="$attrs"
 		class="farm-btn--responsive"
 		:class="{
 			'v-btn_icon--prepend': prepend,
 			'v-btn_icon--apppend': !prepend,
 		}"
-		:color="color"
 		:outlined="!open"
 		:title="label"
 	>
-		<farm-icon v-if="prepend" class="mr-3 ml-0">{{ `chevron-${open ? 'up' : 'down'}` }}</farm-icon>
+		<farm-icon v-if="prepend" class="mr-3 ml-0">{{
+			`chevron-${open ? 'up' : 'down'}`
+		}}</farm-icon>
 		{{ label }}
-		<farm-icon v-if="!prepend" class="ml-3 mr-0">{{ `chevron-${open ? 'up' : 'down'}` }}</farm-icon>
+		<farm-icon v-if="!prepend" class="ml-3 mr-0">{{
+			`chevron-${open ? 'up' : 'down'}`
+		}}</farm-icon>
 	</farm-btn>
 </template>
 <script lang="ts">
@@ -34,13 +37,6 @@ export default Vue.extend({
 		label: {
 			type: String,
 			default: '',
-		},
-		/**
-		 * Cor do botão - usando as do tema do vuetify
-		 */
-		color: {
-			type: String,
-			default: 'primary',
 		},
 		/**
 		 * Pressionado ou não

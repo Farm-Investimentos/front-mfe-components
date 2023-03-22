@@ -4,9 +4,7 @@ import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
 import Loader from './components/Loader';
-import FilePicker from './components/FilePicker';
 import MultipleFilePicker from './components/MultipleFilePicker';
-import Tabs from './components/Tabs';
 import DialogHeader from './components/DialogHeader';
 import DialogFooter from './components/DialogFooter';
 import RangeDatePicker from './components/RangeDatePicker';
@@ -17,7 +15,6 @@ import ModalPromptUser from './components/ModalPromptUser';
 
 import TableContextMenu from './components/TableContextMenu';
 import IconBox from './components/IconBox';
-import CardContext from './components/CardContext';
 
 import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
@@ -30,9 +27,7 @@ export {
 	DataTableHeader,
 	MainFilter,
 	Loader,
-	FilePicker,
 	MultipleFilePicker,
-	Tabs,
 	DialogHeader,
 	DialogFooter,
 	RangeDatePicker,
@@ -43,7 +38,6 @@ export {
 	ModalPromptUser,
 	DefaultButton,
 	IconBox,
-	CardContext,
 	Collapsible,
 	IdCaption,
 	ResourceMetaInfo,
@@ -85,8 +79,8 @@ export * from './components/RadioGroup';
 export * from './components/Select';
 export * from './components/Stepper';
 export * from './components/Switcher';
+export * from './components/Tabs';
 export * from './components/TextArea';
-export * from './components/TextField';
 export * from './components/TextFieldV2';
 export * from './components/Tooltip';
 export * from './components/Typography';

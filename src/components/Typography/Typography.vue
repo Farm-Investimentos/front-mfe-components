@@ -8,6 +8,7 @@
 			['farm-typography--weight-' + weight]: weight !== undefined,
 			'farm-typography--lighten': colorVariation === 'lighten',
 			'farm-typography--darken': colorVariation === 'darken',
+			['farm-typography--black-' + colorVariation]: color === 'black',
 			'farm-typography--ellipsis': ellipsis,
 		}"
 		:style="style"
@@ -70,17 +71,20 @@ export default Vue.extend({
 			type: String as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'info'
 				| 'success'
 				| 'error'
 				| 'warning'
-				| 'success'
 				| 'extra-1'
 				| 'extra-2'
 				| 'gray'
+				| 'black'
+				| 'white'
 			>,
-			default: 'default',
+			default: '',
 		},
 		/**
 		 * Color variation

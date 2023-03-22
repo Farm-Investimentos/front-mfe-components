@@ -1,24 +1,29 @@
 $defaultLefts: 0, 4rem, 4rem;
+
 @mixin stickytable($selector, $columns: 1, $lefts: $defaultLefts) {
 	#{$selector} {
 		tbody {
 			font-size: 12px;
 		}
+
 		tbody tr:nth-of-type(odd) td {
-			background-color: var(--farm-neutral-lighten);
+			background-color: var(--farm-background-base);
 		}
+
 		tr td {
-			background-color: white;
+			background-color: var(--farm-background-white);
 		}
 
 		tr:not(:last-child) td,
 		tr th {
 			border-bottom: none;
 		}
+
 		.v-data-table__wrapper {
 			border-top: 1px solid var(--farm-gray-lighten);
 			border-bottom: 1px solid var(--farm-gray-lighten);
 		}
+
 		tr td:first-child,
 		th:first-child {
 			&:after {
@@ -30,22 +35,27 @@ $defaultLefts: 0, 4rem, 4rem;
 			}
 		}
 
-		&.v-data-table > .v-data-table__wrapper > table > tbody > tr > td:first-child,
-		&.v-data-table > .v-data-table__wrapper > table > thead > tr > th:first-child {
-			padding-left: 24px;
+		&.v-data-table>.v-data-table__wrapper>table {
+
+			>tbody>tr>td:first-child,
+			>thead>tr>th:first-child {
+				padding-left: 24px;
+			}
 		}
 
-		@if $columns > 0 {
+		@if $columns >0 {
 			@for $i from 1 through $columns {
+
 				tr td:nth-child(#{$i}),
 				th:nth-child(#{$i}) {
 					position: sticky;
 					z-index: 4;
-					background-color: white;
+					background-color: var(--farm-bw-white);
 				}
 			}
 
 			@for $i from 1 through $columns {
+
 				tr td:nth-child(#{$i}),
 				th:nth-child(#{$i}) {
 					left: nth($lefts, $i);
@@ -53,33 +63,20 @@ $defaultLefts: 0, 4rem, 4rem;
 			}
 		}
 
-		tr td:first-child, tr th:first-child  {
+		tr td:first-child,
+		tr th:first-child {
 			padding-left: 24px;
 		}
 
-		.v-chip {
-			font-size: 0.75rem;
-			padding: 0 1.5rem;
-		}
-
-		.v-pagination {
-			li button:not([disabled]):not(.v-pagination__item--active):hover {
-				opacity: 0.6;
-			}
-			li button.v-pagination__item--active:hover {
-				cursor: default;
-			}
-		}
-
 		th[role='columnheader'] {
-			color: var(--farm-secondary-base);
+			color: var(--farm-secondary-green-darken);
 			font-size: 14px;
 			font-weight: 700;
 			text-transform: uppercase;
 		}
 
 		td {
-			color: var(--farm-text-primary);
+			color: var(--farm-bw-black);
 			font-size: 14px;
 			font-weight: 400;
 		}
@@ -93,10 +90,6 @@ $defaultLefts: 0, 4rem, 4rem;
 			padding-left: 24px;
 		}
 
-		.v-data-table-header tr th {
-			box-shadow: 0px 1px 0px 0px var(--farm-gray-lighten);
-		}
-
 		.v-data-table-header__icon {
 			color: var(--farm-gray-base) !important;
 			font-size: 12px;
@@ -106,7 +99,7 @@ $defaultLefts: 0, 4rem, 4rem;
 
 		.v-data-table__checkbox .mdi {
 			margin-left: 0;
-			font-size: 20px;
+			font-size: 22px;
 			margin-left: -2px;
 		}
 
@@ -115,5 +108,7 @@ $defaultLefts: 0, 4rem, 4rem;
 			height: 20px;
 			margin-right: 0 !important;
 		}
+
+
 	}
 }

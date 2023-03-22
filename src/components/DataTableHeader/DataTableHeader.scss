@@ -1,16 +1,15 @@
 .header-text {
 	position: relative;
-	color: var(--farm-secondary-base);
+	color: var(--farm-secondary-green-darken);
 	font-size: 14px;
+	font-weight: 700;
 
 	.farm-icon {
 		position: absolute;
 		right: -20px;
 		top: -1px;
-	}
+		transition: transform 0.8s ease-in-out;
 
-	.farm-icon {
-		transition: transform .8s ease-in-out;  
 		&.farm-icon--asc {
 			transform: rotateX(180deg);
 		}
@@ -19,18 +18,17 @@
 
 th.sortable {
 	cursor: pointer;
+	.farm-icon::before {
+		transition: all 0.3s linear;
+	}
+	
 	&:not(.active) {
 		&:hover {
 			.farm-icon::before {
-				color: var(--farm-gray-base) !important;
+				color: var(--farm-bw-black-10) !important;
 			}
 		}
 	}
-
-	.header-text {
-		transition: color 0.5s ease;
-	}
-
 }
 
 th span.span-checkbox {
@@ -55,13 +53,13 @@ th {
 	}
 }
 
-:deep(.mdi-sort-descending)::before {
-	color: var(--farm-secondary-base);
-	font-size: 12px;
-	font-weight: 900;
+:deep(.mdi-sort-reverse-variant)::before {
+	color: var(--farm-bw-black-30);
+	font-size: 16px;
+	font-weight: 400;
 }
 
 .farm-icon--desc,
 .farm-icon--asc {
-	margin-top: 3.5px;
+	margin-top: 3px;
 }

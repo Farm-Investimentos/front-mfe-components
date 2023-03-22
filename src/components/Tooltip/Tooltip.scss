@@ -8,14 +8,12 @@
 
 .farm-tooltip__popup {
 	background-color: rgba(themeColor('primary'), 0.95);
-
-	@each $color in $colors {
-		@each $color in $theme-colors-list {
-			&.farm-tooltip--#{$color} {
-				background-color: rgba(themeColor($color), 0.95);
-			}
+	@each $color in $theme-colors-list {
+		&.farm-tooltip--#{$color} {
+			background-color: rgba(themeColor($color), 0.95);
 		}
 	}
+
 }
 
 .farm-tooltip__popup {
@@ -26,10 +24,10 @@
 	width: 160px;
 	contain: content;
 	color: white;
-	background-color: themeColor('primary');
-	border-radius: 4px;
-	font-family: 'Montserrat', sans-serif !important;
-	font-size: 14px;
+	border-radius: 5px;
+	font-family: 'Manrope', sans-serif !important;
+	font-size: 12px;
+	font-weight: 500px;
 	padding: 8px 12px;
 	display: block;
 

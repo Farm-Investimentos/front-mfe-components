@@ -24,6 +24,12 @@ export const Primary = () => ({
     </div>`,
 });
 
+export const SizeIcon = () => ({
+	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
+		<farm-copytoclipboard toCopy="To be copied" sizeIcon="20px" />
+    </div>`,
+});
+
 export const NoIcon = () => ({
 	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
 		<farm-copytoclipboard toCopy="To be copied" :isIcon="false" />
@@ -36,9 +42,21 @@ export const CustomSuccessMessage = () => ({
     </div>`,
 });
 
+export const CustomButtonColor = () => ({
+	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
+		<farm-copytoclipboard toCopy="To be copied" button-color="error" />
+    </div>`,
+});
+
 export const CustomTooltipColor = () => ({
 	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
 		<farm-copytoclipboard toCopy="To be copied" tooltip-color="info" />
+    </div>`,
+});
+
+export const CustomButtonAndTooltipColor = () => ({
+	template: `<div style="max-width: 480px; padding-top: 80px; padding-left: 80px;">
+		<farm-copytoclipboard toCopy="To be copied" button-color="error" tooltip-color="extra-1" />
     </div>`,
 });
 

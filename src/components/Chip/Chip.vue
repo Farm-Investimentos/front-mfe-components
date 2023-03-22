@@ -1,23 +1,45 @@
 <template>
 	<span
+		v-bind="$props"
+		v-on="$listeners"
 		:class="{
 			'farm-chip': true,
 			'farm-chip--dense': dense,
 			'farm-chip--outlined': outlined,
+			'farm-chip--base': variation === 'base' || !variation,
 			'farm-chip--lighten': variation === 'lighten',
 			'farm-chip--darken': variation === 'darken',
 		}"
 	>
-		<farm-typography tag="span" size="sm" color="white" ellipsis> <slot></slot> </farm-typography>
+		<farm-caption tag="span" color="white" ellipsis> <slot></slot> </farm-caption>
 	</span>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-chip',
 	inheritAttrs: true,
 	props: {
+		/**
+		 * Color
+		 */
+		color: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'primary',
+		},
 		/**
 		 * Is dense (not 100% width)?
 		 */
@@ -34,7 +56,7 @@ export default Vue.extend({
 		},
 		variation: {
 			type: String,
-			default: '',
+			default: 'base',
 		},
 	},
 });

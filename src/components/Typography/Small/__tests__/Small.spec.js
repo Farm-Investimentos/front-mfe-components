@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import CardContext from '../CardContext';
+import Small from '../Small.vue';
 
-describe('CardContext component', () => {
+describe('Small component', () => {
 	let wrapper;
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(CardContext);
+		wrapper = shallowMount(Small, {});
 		component = wrapper.vm;
 	});
 
@@ -21,16 +21,11 @@ describe('CardContext component', () => {
 	});
 
 	describe('Computed properties', () => {
-
-		it('Should compute isLargeLoading for false', () => {
-			expect(component.isLargeLoading).toEqual('small');
-		});
-
-		it('Should compute isLargeLoading for true', async () => {
+		it('Should return weight 500', async () => {
 			await wrapper.setProps({
-				largeLoading: true,
+				variation: 'medium',
 			});
-			expect(component.isLargeLoading).toEqual('normal');
+			expect(component.weight).toEqual(500);
 		});
 	});
 });

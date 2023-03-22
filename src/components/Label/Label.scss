@@ -4,11 +4,23 @@
     font-size: 12px;
     margin-bottom: 8px;
     line-height: 24px;
-    color: var(--farm-text-primary);
+    color: var(--farm-bw-black-50);
+    font-weight: 600;
 
-    &.farm-label--required::after {
-        content: '*';
-        margin-left: 2px;
-        color: var(--farm-error-base);
+    &.farm-label--required:not(:has(.farm-tooltip)) {
+        &::after {
+            content: '*';
+            margin-left: 2px;
+            color: var(--farm-error-base);
+        }
+    }
+
+    &:has(.farm-tooltip) {
+        .farm-tooltip::before {
+            content: '*';
+            margin-left: 1px;
+            margin-right: 2px;
+            color: var(--farm-error-base);
+        }
     }
 }

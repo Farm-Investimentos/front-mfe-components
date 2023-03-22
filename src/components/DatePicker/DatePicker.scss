@@ -1,13 +1,9 @@
-.datepicker :deep(.v-picker__actions) {
-	padding: 0;
-	margin: 0 16px 16px;
-}
 .datepicker :deep(.v-btn--active) {
 	background: var(--farm-primary-base);
 }
 
 .datepicker :deep(.v-picker__body) {
-	width: 341px !important;
+	width: 304px !important;
 }
 
 .btn-cancel {
@@ -16,4 +12,8 @@
 
 .farm-contextmenu {
 	width: 100%;
+}
+
+.v-picker ::v-deep   {
+	@import './vDatePicker.scss';
 }

@@ -93,3 +93,29 @@ export const Slot = () => ({
 			</farm-btn>
 		</div>`,
 });
+
+export const OnConfirm = () => ({
+	data() {
+		return {
+			showPrompt: false,
+		};
+	},
+	methods: {
+		onConfirm() {
+			alert('On confirm triggered');
+		}
+	},
+	template: `<div>
+		<farm-prompt-user
+			match="CONFIRMAR"
+			title="Título"
+			subtitle="Digite CONFIRMAR para habilitar"
+			v-model="showPrompt"
+			@onConfirm="onConfirm"
+		/>
+		click:
+		<farm-btn color="primary" @click="showPrompt = true;">
+		reabrir
+		</farm-btn>
+		</div>`,
+});

@@ -32,6 +32,8 @@ export default Vue.extend({
 			type: [String, null] as PropType<
 				| 'primary'
 				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
 				| 'neutral'
 				| 'error'
 				| 'warning'
