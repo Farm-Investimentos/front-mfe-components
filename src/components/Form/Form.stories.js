@@ -31,11 +31,12 @@ export const Primary = () => ({
 		return {
 			form: {
 				document: 'Document',
-				name: 'Name',
+				name: '',
 				checkbox: '2',
 				birthDate: new Date('1980/09/20').toISOString(),
 				selectId: 1,
 				rangeDate: [],
+				cityName: null,
 			},
 			validForm: false,
 			rules: {
@@ -51,14 +52,14 @@ export const Primary = () => ({
 		};
 	},
 	template: `
-        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+        <farm-form v-model="validForm" :style="[styles.vForm]" ref="form" autocomplete="off">
 			<div>
 				<farm-label :required="true">Documento</farm-label>
 				<farm-textfield-v2 v-model="form.document" :rules="[rules.required]" />
 			</div>
 			<farm-label :required="true">Nome</farm-label>
-			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" />
-			
+			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" hint="Seu nome igual ao do RG" />
+
 			<farm-label :required="true">True/false</farm-label>
 			<farm-checkbox v-model="form.checkbox" value="1" :rules="[rules.checked]" />
 
