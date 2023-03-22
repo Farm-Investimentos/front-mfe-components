@@ -49,3 +49,23 @@ export const InitialValue = () => ({
 export const MinMax = () => ({
 	template: `<RangeDatePicker inputId="input-custom-id" min="2022-01-17" max="2022-02-15" />`,
 });
+
+export const Reset = () => ({
+	data() {
+		return {
+			date: null,
+		};
+	},
+	methods: {
+		click() {
+			this.$refs.datepickerExemple.clear();
+		},
+	},
+	template: `<div style="width: 480px">
+	<RangeDatePicker ref="datepickerExemple" inputId="input-custom-id" v-model="date" />
+	date: {{ date }}
+		<farm-btn @click="click">
+			reset
+		</farm-btn>
+	</div>`,
+});

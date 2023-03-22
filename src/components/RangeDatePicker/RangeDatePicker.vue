@@ -178,10 +178,9 @@ export default Vue.extend({
 			return true;
 		},
 		isInvertedDate() {
-			if (this.dateField.length === 2) {
+			if ((Array.isArray(this.dateField)) && this.dateField.length === 2) {
 				const firstDate = new Date(this.dateField[0]);
 				const secondDate = new Date(this.dateField[1]);
-
 				return firstDate.getTime() > secondDate.getTime();
 			}
 			return false;
