@@ -73,11 +73,11 @@ export default Vue.extend({
 			}
 		}
 
-		function onFocusin(e: FocusEvent) {
+		function onFocusin() {
 			isFocused.value = true;
 		}
 
-		function onFocusout(e: FocusEvent) {
+		function onFocusout() {
 			isFocused.value = false;
 		}
 
