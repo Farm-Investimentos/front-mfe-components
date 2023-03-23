@@ -15,8 +15,9 @@
 	>
 		{{ isVisible }}
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
-			<farm-list v-if="!readonly" ref="listRef">
+			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
+					tabindex="0"
 					v-for="(item, index) in items"
 					clickable
 					hoverColorVariation="lighten"
@@ -46,7 +47,10 @@
 				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
-				<div class="farm-textfield--input farm-textfield--input--iconed">
+				<div
+					class="farm-textfield--input farm-textfield--input--iconed"
+					@keydown="onKeyDown"
+				>
 					<input
 						v-bind="$attrs"
 						v-model="selectedText"
@@ -57,7 +61,6 @@
 						@blur="onBlur"
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
-						@keydown="onKeyDown"
 					/>
 					<farm-icon
 						color="gray"
@@ -413,21 +416,19 @@ export default Vue.extend({
 			);
 		};
 
-		function onKeyDown(e: KeyboardEvent) {
-			console.log('onKeyDown', e.code);
+		function onKeyDown(e) {
 			if (props.readonly) return;
 
 			if (['Space'].includes(e.code)) {
 				isVisible.value = true;
+				e.currentTarget.click();
 			}
 			if (['Escape'].includes(e.code)) {
 				isVisible.value = false;
 			}
-			listRef.value.$el.firstChild.focus();
-			console.log('listRef.value', listRef.value);
+
 			if (e.key === 'ArrowDown') {
-				console.log('document.activeElement', document.querySelector(':focus'));
-				//listRef.value.focus('next');
+				listRef.value.focus('next');
 			} else if (e.key === 'ArrowUp') {
 				listRef.value.focus('prev');
 			} else if (e.key === 'Home') {
@@ -474,7 +475,6 @@ export default Vue.extend({
 			onKeyDown,
 			addFocusToInput,
 			listRef,
-			contextmenu,
 		};
 	},
 });

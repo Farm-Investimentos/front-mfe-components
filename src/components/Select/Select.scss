@@ -32,10 +32,17 @@
 	color: var(--farm-primary-base);
 }
 
+:deep(.farm-listitem:focus .farm-typography) {
+	color: var(--farm-primary-base);
+}
+
 :deep(.farm-listitem:hover .farm-checkbox .farm-icon) {
 	color: var(--farm-primary-lighten);
 }
 
+:deep(.farm-listitem:focus .farm-checkbox .farm-icon) {
+	color: var(--farm-primary-lighten);
+}
 
 :deep(.farm-listitem:hover .farm-checkbox.farm-checkbox--checked .farm-icon) {
 	color: white;
