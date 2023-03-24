@@ -124,5 +124,51 @@ describe('Select component', () => {
 				expect(component.selectedText).toBe('value 0 (+2 outros)');
 			});
 		});
+
+		describe('onKeyDown', () => {
+			it('should open the ContextMenu and click on current element', () => {
+				const event = {
+					code: 'Space',
+					preventDefault: jest.fn(),
+					currentTarget: {
+						click: jest.fn(),
+					},
+				};
+				component.onKeyDown(event);
+
+				expect(component.isVisible).toBeTruthy();
+				expect(event.currentTarget.click).toHaveBeenCalled();
+				expect(event.preventDefault).toHaveBeenCalled();
+			});
+			it('should open the ContextMenu and click on current element when prop readonly is true', async () => {
+				await wrapper.setProps({
+					readonly: true,
+				});
+				const event = {
+					code: 'Space',
+					preventDefault: jest.fn(),
+					currentTarget: {
+						click: jest.fn(),
+					},
+				};
+				component.onKeyDown(event);
+
+				expect(component.isVisible).toBeFalsy();
+				expect(event.currentTarget.click).not.toHaveBeenCalled();
+				expect(event.preventDefault).not.toHaveBeenCalled();
+			});
+
+			it('should close the ContextMenu', () => {
+				const event = {
+					code: 'Escape',
+					preventDefault: jest.fn(),
+				};
+				component.onKeyDown(event);
+
+				expect(component.isVisible).toBeFalsy();
+
+				expect(event.preventDefault).toHaveBeenCalled();
+			});
+		});
 	});
 });

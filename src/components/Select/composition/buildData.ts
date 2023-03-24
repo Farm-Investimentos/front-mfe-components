@@ -11,6 +11,12 @@ export default function (props) {
 	const checked = ref('1');
 	const notChecked = ref(false);
 	const inputField = ref();
+	const keys = {
+		ArrowDown: 'next',
+		ArrowUp: 'prev',
+		Home: 'first',
+		End: 'last',
+	};
 
 	return {
 		multipleValues,
@@ -23,5 +29,6 @@ export default function (props) {
 		checked,
 		notChecked,
 		inputField,
+		keys,
 	};
 }

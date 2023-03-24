@@ -14,8 +14,9 @@
 		:id="customId"
 	>
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
-			<farm-list v-if="!readonly">
+			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
+					tabindex="0"
 					v-for="(item, index) in items"
 					clickable
 					hoverColorVariation="lighten"
@@ -45,7 +46,10 @@
 				</farm-listitem>
 			</farm-list>
 			<template v-slot:activator="{}">
-				<div class="farm-textfield--input farm-textfield--input--iconed">
+				<div
+					class="farm-textfield--input farm-textfield--input--iconed"
+					@keydown="onKeyDown"
+				>
 					<input
 						v-bind="$attrs"
 						v-model="selectedText"
@@ -57,7 +61,11 @@
 						@focusin="onFocus(true)"
 						@focusout="onFocus(false)"
 					/>
-					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }">
+					<farm-icon
+						color="gray"
+						:class="{ 'farm-icon--rotate': isVisible }"
+						@click="addFocusToInput"
+					>
 						menu-down
 					</farm-icon>
 				</div>
@@ -231,7 +239,12 @@ export default Vue.extend({
 			checked,
 			notChecked,
 			inputField,
+			keys,
 		} = buildData(props);
+
+		const listRef = ref();
+
+		const contextmenu = ref(null);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -251,7 +264,10 @@ export default Vue.extend({
 			newValue => {
 				innerValue.value = newValue;
 				errorBucket.value = [];
-				if(multiple.value && newValue === null || (Array.isArray(newValue) && newValue.length === 0)) {
+				if (
+					(multiple.value && newValue === null) ||
+					(Array.isArray(newValue) && newValue.length === 0)
+				) {
 					multipleValues.value = [];
 				}
 				validate(newValue);
@@ -400,8 +416,27 @@ export default Vue.extend({
 			);
 		};
 
-		const contextmenu = ref(null);
+		function onKeyDown(e) {
+			if (props.readonly) return;
 
+			if (['Space'].includes(e.code)) {
+				isVisible.value = true;
+				e.currentTarget.click();
+			}
+			if (['Escape'].includes(e.code)) {
+				isVisible.value = false;
+			}
+
+			if (keys[e.code]) {
+				listRef.value.focus(keys[e.code]);
+			}
+
+			e.preventDefault();
+		}
+
+		function addFocusToInput() {
+			inputField.value.focus();
+		}
 
 		return {
 			items,
@@ -432,6 +467,9 @@ export default Vue.extend({
 			multipleValues,
 			addLabelToMultiple,
 			inputField,
+			onKeyDown,
+			addFocusToInput,
+			listRef,
 		};
 	},
 });

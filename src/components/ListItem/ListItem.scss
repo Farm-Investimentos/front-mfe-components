@@ -1,39 +1,37 @@
 @import '../../configurations/theme-colors';
 
 .farm-listitem {
-    list-style-type: none;
-    transition: background-color 300ms linear;
-    padding: 8px;
-    height: 36px;
-    display: flex;
-    align-items: center;
+	list-style-type: none;
+	transition: background-color 300ms linear;
+	padding: 8px;
+	height: 36px;
+	display: flex;
+	align-items: center;
 
-    &--clickable {
-        cursor: pointer;
-    }
+	&--clickable {
+		cursor: pointer;
+	}
 
-    >a {
-        text-decoration: none;
-    }
+	> a {
+		text-decoration: none;
+	}
 
-    &:hover {
+	&:hover,
+	&:focus {
+		border-radius: 5px;
 
-        border-radius: 5px;
+		@each $color in $theme-colors-list {
+			&#{'.farm-listitem--' + $color + '-base'} {
+				background-color: rgba(themeColor($color), 0.27);
+			}
 
-        @each $color in $theme-colors-list {
+			&#{'.farm-listitem--' + $color + '-lighten'} {
+				background-color: rgba(themeColor($color, 'lighten'), 0.27);
+			}
 
-            &#{'.farm-listitem--' + $color + '-base'} {
-                background-color: rgba(themeColor($color), 0.27);
-            }
-
-            &#{'.farm-listitem--' + $color + '-lighten'} {
-                background-color: rgba(themeColor($color, 'lighten'), 0.27);
-            }
-
-            &#{'.farm-listitem--' + $color + '-darken'} {
-                background-color: rgba(themeColor($color, 'darken'), 0.27);
-            }
-        }
-    }
-
+			&#{'.farm-listitem--' + $color + '-darken'} {
+				background-color: rgba(themeColor($color, 'darken'), 0.27);
+			}
+		}
+	}
 }
