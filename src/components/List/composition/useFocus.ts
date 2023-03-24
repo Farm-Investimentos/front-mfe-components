@@ -19,13 +19,13 @@ export default function useFocus(contentRef: Ref<HTMLElement>): UseFocusReturn {
 				focusable[0].focus();
 			}
 		} else if (location === 'first') {
-			let savedTabIndex = focusable[0].getAttribute('tabindex');
+			const savedTabIndex = focusable[0].getAttribute('tabindex');
 
 			focusable[0].setAttribute('tabindex', '-1');
 			focusable[0].focus();
 			focusable[0].setAttribute('tabindex', savedTabIndex);
 		} else if (location === 'last') {
-			focusable.at(-1).focus();
+			focusable[focusable.length - 1].focus();
 		} else {
 			let el;
 			let idxx = idx;
