@@ -240,6 +240,7 @@ export default Vue.extend({
 			checked,
 			notChecked,
 			inputField,
+			keys,
 		} = buildData(props);
 
 		const listRef = ref();
@@ -427,15 +428,10 @@ export default Vue.extend({
 				isVisible.value = false;
 			}
 
-			if (e.key === 'ArrowDown') {
-				listRef.value.focus('next');
-			} else if (e.key === 'ArrowUp') {
-				listRef.value.focus('prev');
-			} else if (e.key === 'Home') {
-				listRef.value.focus('first');
-			} else if (e.key === 'End') {
-				listRef.value.focus('last');
+			if (keys[e.code]) {
+				listRef.value.focus(keys[e.code]);
 			}
+
 			e.preventDefault();
 		}
 

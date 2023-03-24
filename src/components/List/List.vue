@@ -5,12 +5,14 @@
 </template>
 <script lang="ts">
 import Vue, { onMounted, onUnmounted, ref } from 'vue';
+import { useFocus } from './composition';
 
 export default Vue.extend({
 	name: 'farm-list',
 	setup(_, { emit }) {
 		const contentRef = ref<HTMLElement>();
 		const isFocused = ref(false);
+		const { focus } = useFocus(contentRef);
 
 		onMounted(() => {
 			contentRef.value.querySelectorAll('[tabindex]:not([tabindex="-1"]), li').forEach(tag =>
@@ -24,54 +26,19 @@ export default Vue.extend({
 		});
 
 		onUnmounted(() => {
-			contentRef.value.querySelectorAll('[tabindex]:not([tabindex="-1"]), li').forEach(tag =>
-				tag.removeEventListener('keydown', (e: KeyboardEvent) => {
-					e.preventDefault();
-					if (isFocused.value) {
-						emit('keydown', e);
-					}
-				})
-			);
-		});
-
-		function focus(location?: 'next' | 'prev' | 'first' | 'last') {
-			if (!contentRef.value) return;
-
-			const focusable = [
-				...contentRef.value.querySelectorAll('[tabindex]:not([tabindex="-1"]), li'),
-			].filter(el => !el.hasAttribute('disabled')) as HTMLElement[];
-
-			const idx = focusable.indexOf(document.activeElement as HTMLElement);
-
-			if (!location) {
-				if (!contentRef.value.contains(document.activeElement)) {
-					focusable[0].focus();
-				}
-			} else if (location === 'first') {
-				let savedTabIndex = focusable[0].getAttribute('tabindex');
-
-				focusable[0].setAttribute('tabindex', '-1');
-				focusable[0].focus();
-				focusable[0].setAttribute('tabindex', savedTabIndex);
-			} else if (location === 'last') {
-				focusable.at(-1).focus();
-			} else {
-				let el;
-				let idxx = idx;
-				const inc = location === 'next' ? 1 : -1;
-
-				do {
-					idxx += inc;
-					el = focusable[idxx];
-					console.log('el', el);
-				} while ((!el || el.offsetParent == null) && idxx < focusable.length && idxx >= 0);
-				if (el) {
-					el.focus();
-				} else {
-					focus(location === 'next' ? 'first' : 'last');
-				}
+			if (contentRef.value) {
+				contentRef.value
+					.querySelectorAll('[tabindex]:not([tabindex="-1"]), li')
+					.forEach(tag =>
+						tag.removeEventListener('keydown', (e: KeyboardEvent) => {
+							e.preventDefault();
+							if (isFocused.value) {
+								emit('keydown', e);
+							}
+						})
+					);
 			}
-		}
+		});
 
 		function onFocusin() {
 			isFocused.value = true;
@@ -83,8 +50,10 @@ export default Vue.extend({
 
 		function onFocus(e: FocusEvent) {
 			if (
-				!isFocused.value &&
-				!(e.relatedTarget && contentRef.value.contains(e.relatedTarget as Node))
+				!(
+					isFocused.value ||
+					(e.relatedTarget && contentRef.value.contains(e.relatedTarget as Node))
+				)
 			) {
 				focus();
 			}
