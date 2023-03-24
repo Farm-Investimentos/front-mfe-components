@@ -13,7 +13,6 @@
 		v-if="!readonly && !disabled"
 		:id="customId"
 	>
-		{{ isVisible }}
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
