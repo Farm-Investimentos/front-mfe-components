@@ -91,3 +91,22 @@ export const Colors = () => ({
 
 	</farm-row>`,
 });
+
+export const OutsideChangeVmodel = () => ({
+	data() {
+		return {
+			selectedValue: true,
+		};
+	},
+	methods: {
+		onClick() {
+			this.selectedValue = !this.selectedValue;
+		},
+	},
+	template: `<div>
+		<farm-switcher v-model="selectedValue" block />
+		<farm-btn @click="onClick">
+		toggle selection: {{ selectedValue }}
+		</farm-btn>
+	</div>`,
+});
