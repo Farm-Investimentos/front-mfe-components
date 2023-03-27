@@ -47,6 +47,15 @@ export default Vue.extend({
 		 * Is disabled?
 		 */
 		disabled: { type: Boolean, default: false },
+		/**
+		 * The updated bound model<br />
+		 * _event_
+		 */
+		 input: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (value: [String, Number]) => {},
+		},
 	},
 	setup(props, { emit }) {
 		const isDisabled = ref(props.disabled);
