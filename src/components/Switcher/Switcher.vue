@@ -51,7 +51,7 @@ export default Vue.extend({
 		 * The updated bound model<br />
 		 * _event_
 		 */
-		 input: {
+		input: {
 			type: Function,
 			// eslint-disable-next-line
 			default: (value: [String, Number]) => {},
