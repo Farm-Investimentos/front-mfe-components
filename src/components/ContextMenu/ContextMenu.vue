@@ -74,7 +74,7 @@ export default Vue.extend({
 		} as any);
 
 		const inputValue = ref(props.value);
-
+		
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {

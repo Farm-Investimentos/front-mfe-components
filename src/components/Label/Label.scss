@@ -23,4 +23,11 @@
             color: var(--farm-error-base);
         }
     }
+
+    &:has(.farm-tooltip):not(.farm-label--required) {
+        .farm-tooltip::before {
+            content: '';
+            margin-left: 2px;
+        }
+    }
 }

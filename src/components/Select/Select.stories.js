@@ -134,7 +134,6 @@ export const Validate = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: '' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
