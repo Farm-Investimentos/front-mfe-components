@@ -62,7 +62,7 @@ export const Primary = () => ({
 
 			<farm-label :required="true">True/false</farm-label>
 			<farm-checkbox v-model="form.checkbox" value="1" :rules="[rules.checked]" />
-
+			
 			<farm-label :required="true">Select</farm-label>
 			<farm-select :rules="[rules.required]" :items="items" v-model="form.selectId"/>
 
