@@ -79,7 +79,6 @@ export default Vue.extend({
 			this.$emit('onClick', key);
 		},
 		toggleValue(event: MouseEvent) {
-			console.log('this.disabled', this.disabled);
 			if (this.disabled) return;
 			this.value = !this.value;
 			event.stopPropagation();
