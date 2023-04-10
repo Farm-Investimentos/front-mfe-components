@@ -86,7 +86,7 @@ export default Vue.extend({
 		 */
 		size: {
 			type: String as PropType<'xs' | 'sm' | 'md' | 'lg' | 'xl'>,
-			default: 'md',
+			default: 'sm',
 		},
 		/**
 		 * Sets an indeterminate state for the simple checkbox
