@@ -59,12 +59,19 @@ export default Vue.extend({
 			type: [Number, String],
 			default: null,
 		},
+		/**
+		 * Disabled Click Propagation
+		 */
+		disabledClickPropagation: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const { bottom, maxHeight, stayOpen } = toRefs(props);
+		const { bottom, maxHeight, stayOpen, disabledClickPropagation } = toRefs(props);
 
 		const styles = reactive({
 			minWidth: 0,
@@ -74,7 +81,7 @@ export default Vue.extend({
 		} as any);
 
 		const inputValue = ref(props.value);
-		
+
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {
@@ -197,6 +204,7 @@ export default Vue.extend({
 		});
 
 		const click = () => {
+			if (disabledClickPropagation.value) return;
 			inputValue.value = !inputValue.value;
 			emit('input', inputValue.value);
 		};

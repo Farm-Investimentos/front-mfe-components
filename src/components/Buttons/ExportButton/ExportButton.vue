@@ -11,10 +11,16 @@
 		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
 		Exportar
 	</farm-btn>
-	
-	<farm-contextmenu v-else v-model="value" :bottom="true">
+
+	<farm-contextmenu v-else v-model="value" :bottom="true" :disabled-click-propagation="true">
 		<template v-slot:activator="{}">
-			<farm-btn outlined title="Exportar" :color="$attrs.color" @click="toggleValue">
+			<farm-btn
+				outlined
+				title="Exportar"
+				:color="$attrs.color"
+				:disabled="disabled"
+				@click="toggleValue"
+			>
 				Exportar
 				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
@@ -73,6 +79,8 @@ export default Vue.extend({
 			this.$emit('onClick', key);
 		},
 		toggleValue(event: MouseEvent) {
+			console.log('this.disabled', this.disabled);
+			if (this.disabled) return;
 			this.value = !this.value;
 			event.stopPropagation();
 		},
