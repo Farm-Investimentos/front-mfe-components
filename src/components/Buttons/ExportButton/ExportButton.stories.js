@@ -28,6 +28,10 @@ export const List = () => ({
 	template: `<farm-btn-export :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
 });
 
+export const DisabledList = () => ({
+	template: `<farm-btn-export :disabled="true" :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />`,
+});
+
 export const CustomColor = () => ({
 	template: `<div>
 		<farm-btn-export color="info" />

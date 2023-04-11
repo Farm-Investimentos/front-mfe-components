@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "15.0.6",
+	"version": "15.1.0",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",

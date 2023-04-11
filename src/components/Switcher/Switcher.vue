@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue, { PropType, computed, ref, watch } from 'vue';
 
 export default Vue.extend({
 	name: 'farm-switcher',
@@ -47,37 +47,45 @@ export default Vue.extend({
 		 * Is disabled?
 		 */
 		disabled: { type: Boolean, default: false },
-	},
-	data() {
-		return {
-			isDisabled: this.disabled,
-		};
-	},
-	computed: {
-		backgroundStyles() {
-			return {
-				'farm-switch--selected': this.value && !this.isDisabled,
-				'farm-switch--idle': !this.value && !this.isDisabled,
-				'farm-switch--disabled-on': this.value && this.isDisabled,
-				'farm-switch--disabled-off': !this.value && this.isDisabled,
-			};
-		},
-		indicatorStyles() {
-			return { transform: this.value ? 'translateX(16px)' : 'translateX(0)' };
+		/**
+		 * The updated bound model<br />
+		 * _event_
+		 */
+		input: {
+			type: Function,
+			// eslint-disable-next-line
+			default: (value: [String, Number]) => {},
 		},
 	},
-	watch: {
-		disabled(newValue: boolean) {
-			this.isDisabled = newValue;
-		},
-	},
-	methods: {
-		toggle() {
-			if (this.isDisabled) {
+	setup(props, { emit }) {
+		const isDisabled = ref(props.disabled);
+
+		const backgroundStyles = computed(() => ({
+			'farm-switch--selected': props.value && !isDisabled.value,
+			'farm-switch--idle': !props.value && !isDisabled.value,
+			'farm-switch--disabled-on': props.value && isDisabled.value,
+			'farm-switch--disabled-off': !props.value && isDisabled.value,
+		}));
+
+		const indicatorStyles = computed(() => ({
+			transform: props.value ? 'translateX(16px)' : 'translateX(0)',
+		}));
+
+		watch(
+			() => props.disabled,
+			newValue => {
+				isDisabled.value = newValue;
+			}
+		);
+
+		const toggle = () => {
+			if (isDisabled.value) {
 				return false;
 			}
-			this.$emit('input', !this.value);
-		},
+			emit('input', !props.value);
+		};
+
+		return { isDisabled, backgroundStyles, indicatorStyles, toggle };
 	},
 });
 </script>

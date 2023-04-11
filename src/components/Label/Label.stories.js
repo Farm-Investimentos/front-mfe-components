@@ -33,6 +33,20 @@ export const Required = () => ({
 
 export const Tooltip = () => ({
 	template: `<div>
+		<farm-label>
+			Label with tooltip
+			<farm-tooltip>
+				this is the tooltip!
+				<template v-slot:activator="{ on, attrs }">
+					<farm-icon size="sm" color="gray">help-circle</farm-icon>
+				</template>
+			</farm-tooltip>
+		</farm-label>
+	</div>`,
+});
+
+export const TooltipWithRequired = () => ({
+	template: `<div>
 		<farm-label required>
 			Label with tooltip
 			<farm-tooltip>
