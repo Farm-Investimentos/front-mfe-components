@@ -1,17 +1,18 @@
 <template>
 	<farm-btn
-		v-if="optionsList.length == 0"
-		@click="onClick"
+		v-if="optionsList.length == 0 || disabled"
 		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
 		:color="$attrs.color"
 		:disabled="disabled"
+		@click="onClick"
 	>
-		<i :class="{ 'mr-2': true, 'mdi-file-export-outline': true, mdi: true }"></i>
+		<farm-icon v-if="optionsList.length == 0" class="mr-2"> file-export-outline </farm-icon>
 		Exportar
+		<farm-icon v-if="optionsList.length != 0" class="ml-2"> chevron-down </farm-icon>
 	</farm-btn>
-	
+
 	<farm-contextmenu v-else v-model="value" :bottom="true">
 		<template v-slot:activator="{}">
 			<farm-btn outlined title="Exportar" :color="$attrs.color" @click="toggleValue">
@@ -23,8 +24,8 @@
 			<farm-listitem
 				v-for="item in optionsList"
 				clickable
-				:hoverColor="$attrs.color || 'primary'"
 				hoverColorVariation="lighten"
+				:hoverColor="$attrs.color || 'primary'"
 				:key="'exportbutton_key_' + item.label"
 				:title="item.label"
 				@click="onClick(item.key)"
