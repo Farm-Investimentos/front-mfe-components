@@ -1,12 +1,12 @@
 <template>
 	<farm-btn
 		v-if="optionsList.length == 0 || disabled"
-		@click="onClick"
 		class="farm-btn--responsive"
 		outlined
 		title="Exportar"
 		:color="$attrs.color"
 		:disabled="disabled"
+		@click="onClick"
 	>
 		<farm-icon v-if="optionsList.length == 0" class="mr-2"> file-export-outline </farm-icon>
 		Exportar
@@ -24,8 +24,8 @@
 			<farm-listitem
 				v-for="item in optionsList"
 				clickable
-				:hoverColor="$attrs.color || 'primary'"
 				hoverColorVariation="lighten"
+				:hoverColor="$attrs.color || 'primary'"
 				:key="'exportbutton_key_' + item.label"
 				:title="item.label"
 				@click="onClick(item.key)"
