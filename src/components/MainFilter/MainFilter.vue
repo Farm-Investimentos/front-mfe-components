@@ -1,6 +1,6 @@
 <template>
 	<farm-row :class="{ 'justify-end': justifyEnd === true }">
-		<farm-col v-if="hasInitialInput" md="6">
+		<farm-col v-if="hasInitialInput" :md="fullWidth ? 12 : 6">
 			<farm-label :for="elementId">
 				{{ !hasSlotData ? label : '' }}
 				<slot v-if="hasSlotData"></slot>
@@ -79,6 +79,13 @@ export default Vue.extend({
 		tooltip: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * Input full width
+		 */
+		fullWidth: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
