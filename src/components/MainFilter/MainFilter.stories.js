@@ -75,3 +75,10 @@ export const Application = () => ({
 		</farm-row>
 	</div>`,
 });
+
+export const FullWidth = () => ({
+	template: `
+	<div style="max-width: 480px; padding-top: 32px; margin-left: 32px;">
+		<farm-form-mainfilter  label="Label" fullWidth :hasExtraFilters="false"/>
+	</div>`,
+});
