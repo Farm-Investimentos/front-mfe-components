@@ -284,7 +284,42 @@ export const MultipleInitValue = () => ({
 	</div>`,
 });
 
-export const ChangeEvennt = () => ({
+export const MultipleResetByValue = () => ({
+	data() {
+		return {
+			filters: {
+				v: [2, 3],
+			},
+			items: [
+				{ id: 0, label: 'value 0' },
+				{ id: 1, label: 'value 1' },
+				{ id: 2, label: 'value 2' },
+				{ id: 3, label: 'value 3' },
+			],
+		};
+	},
+	methods: {
+		click() {
+			this.filters.v = [1];
+		},
+	},
+	template: `<div style="width: 400px">
+		<farm-select
+			v-model="filters.v"
+			item-value="id"
+			item-text="label"
+			ref="select"
+			multiple
+			:items="items"
+		/>
+		v-model: {{ filters.v }}
+		<farm-btn @click="click">
+			reset
+		</farm-btn>
+	</div>`,
+});
+
+export const ChangeEvent = () => ({
 	data() {
 		return {
 			v: null,

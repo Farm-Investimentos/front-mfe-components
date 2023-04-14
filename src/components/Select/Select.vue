@@ -264,11 +264,15 @@ export default Vue.extend({
 			newValue => {
 				innerValue.value = newValue;
 				errorBucket.value = [];
+
 				if (
 					(multiple.value && newValue === null) ||
 					(Array.isArray(newValue) && newValue.length === 0)
 				) {
 					multipleValues.value = [];
+				}
+				if (Array.isArray(newValue) && newValue.length > 0) {
+					multipleValues.value = [...newValue];
 				}
 				validate(newValue);
 				updateSelectedTextValue();
