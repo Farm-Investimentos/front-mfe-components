@@ -2,10 +2,25 @@
 	<div class="farm-resource-metainfo">
 		<div v-if="showCreate">
 			<farm-icon color="black" variation="40" size="sm">calendar-blank</farm-icon>
-			<farm-caption color="black" color-variation="40" variation="regular">
+			<farm-caption
+				v-if="!showCreatedBy && !showCreatedHours"
+				color="black"
+				color-variation="40"
+				variation="regular"
+			>
 				Data de cadastro:
 				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
-					{{ formattedCreatedAt }}
+					<b>{{ formattedCreatedAt }}</b
+					>.
+				</farm-caption>
+			</farm-caption>
+
+			<farm-caption v-else color="black" color-variation="40" variation="regular">
+				Cadastro realizado por
+				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
+					<b>{{ formattedCreatedBy }}</b
+					>, dia <b>{{ formattedCreatedAt }}</b> às <b>{{ formattedCreatedHours }}</b
+					>.
 				</farm-caption>
 			</farm-caption>
 		</div>
@@ -15,15 +30,15 @@
 			<farm-caption color="black" color-variation="40" variation="regular">
 				Última atualização feita por
 				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
-					{{ formattedUsername }}
-				</farm-caption>
-				, dia
+					<b>{{ formattedUsername }}</b> </farm-caption
+				>, dia
 				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
-					{{ formattedUpdatedAt }}
+					<b>{{ formattedUpdatedAt }}</b>
 				</farm-caption>
 				às
 				<farm-caption color="black" color-variation="40" variation="medium" tag="span">
-					{{ formattedUpdatedHours }}
+					<b>{{ formattedUpdatedHours }}</b
+					>.
 				</farm-caption>
 			</farm-caption>
 		</div>
@@ -34,9 +49,11 @@ import Vue, { computed, PropType, toRefs } from 'vue';
 
 interface ResourceMetaInfoProps {
 	createdAt: string;
+	createdBy?: string;
 	updatedAt: string;
 	username: string;
 	updatedHours: string;
+	createdHours?: string;
 }
 
 export default Vue.extend({
@@ -79,18 +96,41 @@ export default Vue.extend({
 				showEmptyCreate.value
 		);
 
+		const showCreatedBy = computed(
+			() =>
+				(infos.value.createdBy !== null && infos.value.createdBy !== undefined) ||
+				showEmptyCreate.value
+		);
+
+		const showCreatedHours = computed(
+			() =>
+				(infos.value.createdHours !== null && infos.value.createdHours !== undefined) ||
+				showEmptyCreate.value
+		);
+
 		const formattedCreatedAt = computed(() => infos.value.createdAt || 'N/A');
+
+		const formattedCreatedBy = computed(() => infos.value.createdBy || 'N/A');
+
 		const formattedUpdatedAt = computed(() => infos.value.updatedAt || 'N/A');
+
 		const formattedUsername = computed(() => infos.value.username || 'N/A');
+
 		const formattedUpdatedHours = computed(() => infos.value.updatedHours || 'N/A');
+
+		const formattedCreatedHours = computed(() => infos.value.createdHours || 'N/A');
 
 		return {
 			showUpdate,
 			showCreate,
+			showCreatedBy,
+			showCreatedHours,
 			formattedCreatedAt,
+			formattedCreatedBy,
 			formattedUpdatedAt,
 			formattedUsername,
 			formattedUpdatedHours,
+			formattedCreatedHours,
 		};
 	},
 });
