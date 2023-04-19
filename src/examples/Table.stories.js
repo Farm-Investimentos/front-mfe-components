@@ -83,6 +83,7 @@ export const TableSampleData = () => ({
     </v-data-table>
 	</div>`,
 });
+
 export const TableSampleDataWithCheckbox = () => ({
 	components: { 'v-data-table': VDataTable },
 	data() {
@@ -93,6 +94,7 @@ export const TableSampleDataWithCheckbox = () => ({
 				{ id: 2, name: 'name 2' },
 				{ id: 3, name: 'name 3' },
 			],
+			selectedItems: [],
 		};
 	},
 	template: `<div>
@@ -102,8 +104,8 @@ export const TableSampleDataWithCheckbox = () => ({
 		:headers="headers"
         :items="items"
 		show-select
+		v-model="selectedItems"
 	>
-    
     </v-data-table>
 	</div>`,
 });
@@ -161,18 +163,43 @@ export const TableSampleLocalPagination = () => ({
 	</div>`,
 });
 
-TableNoData.story = {
-	name: 'No data',
-};
-
-TableSampleData.story = {
-	name: 'With data',
-};
-
-TableSampleDataWithCheckbox.story = {
-	name: 'With data and checkbox',
-};
-
-TableSampleLocalPagination.story = {
-	name: 'With data and local pagination',
-};
+export const TableSampleDataWithFarmCheckbox = () => ({
+	components: { 'v-data-table': VDataTable },
+	data() {
+		return {
+			headers,
+			items: [
+				{ id: 1, name: 'name 1' },
+				{ id: 2, name: 'name 2' },
+				{ id: 3, name: 'name 3' },
+			],
+			selectedItems: [],
+		};
+	},
+	methods: {
+		onSelect({ item }) {
+			if (item.id === 2)
+				this.selectedItems = [...this.selectedItems].filter(
+					innerItem => innerItem.id !== 2
+				);
+		},
+		isItemSelected(item) {
+			return this.selectedItems.some(innerItem => innerItem.id === item.id);
+		},
+	},
+	template: `<div>{{selectedItems}}
+	<v-data-table
+        hide-default-footer
+		id="v-data-table--default"
+		v-model="selectedItems"
+		show-select
+		:headers="headers"
+        :items="items"
+		@item-selected="onSelect"
+	>
+		<template v-slot:item.data-table-select="{ isSelected, select, item }">
+			<farm-checkbox :value="item.id" :check="isItemSelected(item)" @input="select($event)"/>
+		</template>
+    </v-data-table>
+	</div>`,
+});
