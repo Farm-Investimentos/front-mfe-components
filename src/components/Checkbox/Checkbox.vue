@@ -3,7 +3,7 @@
 		<span
 			:class="{
 				'farm-checkbox': true,
-				'farm-checkbox--checked': isChecked,
+				'farm-checkbox--checked': isChecked && (forceCheck === undefined || forceCheck),
 				'farm-checkbox--disabled': disabled,
 				'farm-checkbox--indeterminate': indeterminate,
 				'farm-checkbox--lighten': variation === 'lighten',
@@ -92,12 +92,17 @@ export default Vue.extend({
 		 * Sets an indeterminate state for the simple checkbox
 		 */
 		indeterminate: { type: Boolean, default: false },
+		/**
+		 * Control if is check by prop
+		 */
+		checked: { type: Boolean, default: undefined },
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.modelValue);
-		const { label, disabled, rules } = toRefs(props);
+		const { label, disabled, rules, checked } = toRefs(props);
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 		const isTouched = ref(false);
+		const forceCheck = ref(checked.value);
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 
 		const toggleValue = () => {
@@ -154,6 +159,14 @@ export default Vue.extend({
 			}
 		);
 
+		watch(
+			() => props.checked,
+			newValue => {
+				forceCheck.value = newValue;
+				innerValue.value = newValue ? props.value : null;
+			}
+		);
+
 		return {
 			innerValue,
 			label,
@@ -163,6 +176,7 @@ export default Vue.extend({
 			validatable,
 			hasError,
 			isChecked,
+			forceCheck,
 			toggleValue,
 			reset,
 			validate,
