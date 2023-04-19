@@ -198,7 +198,7 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 		@item-selected="onSelect"
 	>
 		<template v-slot:item.data-table-select="{ isSelected, select, item }">
-			<farm-checkbox :value="item.id" :check="isItemSelected(item)" @input="select($event)"/>
+			<farm-checkbox :value="item.id" :checked="isItemSelected(item)" @input="select($event)"/>
 		</template>
     </v-data-table>
 	</div>`,

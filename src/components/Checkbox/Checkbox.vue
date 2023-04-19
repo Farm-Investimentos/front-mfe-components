@@ -95,14 +95,14 @@ export default Vue.extend({
 		/**
 		 * Control if is check by prop
 		 */
-		check: { type: Boolean, default: undefined },
+		 checked: { type: Boolean, default: undefined },
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.modelValue);
-		const { label, disabled, rules, check } = toRefs(props);
+		const { label, disabled, rules, checked } = toRefs(props);
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 		const isTouched = ref(false);
-		const forceCheck = ref(check.value);
+		const forceCheck = ref(checked.value);
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 
 		const toggleValue = () => {
@@ -160,7 +160,7 @@ export default Vue.extend({
 		);
 
 		watch(
-			() => props.check,
+			() => props.checked,
 			newValue => {
 				forceCheck.value = newValue;
 				innerValue.value = newValue ? props.value : null;
