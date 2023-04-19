@@ -95,7 +95,7 @@ export default Vue.extend({
 		/**
 		 * Control if is check by prop
 		 */
-		 checked: { type: Boolean, default: undefined },
+		checked: { type: Boolean, default: undefined },
 	},
 	setup(props, { emit }) {
 		const innerValue = ref(props.modelValue);
