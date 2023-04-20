@@ -14,8 +14,9 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, PropType } from 'vue';
-export default Vue.extend({
+import { computed, PropType, defineComponent } from 'vue';
+
+export default defineComponent({
 	name: 'farm-valuecaption',
 	props: {
 		/**

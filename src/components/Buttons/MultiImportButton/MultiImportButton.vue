@@ -22,14 +22,14 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 
 export interface IImportOption {
 	title: String;
 	listenerKey: String;
 }
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-btn-multipleimport',
 	props: {
 		/**

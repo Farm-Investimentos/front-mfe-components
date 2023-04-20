@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -98,7 +98,7 @@ import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
 import { buildData } from './composition';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-select',
 	inheritAttrs: true,
 	props: {

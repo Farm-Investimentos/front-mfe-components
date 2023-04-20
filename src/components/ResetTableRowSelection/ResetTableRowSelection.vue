@@ -8,11 +8,11 @@
 	</div>
 </template>
 <script>
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import VIcon from 'vuetify/lib/components/VIcon';
 import DefaultButton from '../Buttons/DefaultButton';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-tablerowselection',
 	components: {
 		VIcon,

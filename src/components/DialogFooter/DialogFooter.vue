@@ -29,13 +29,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import IExtraButton from './IExtraButton';
 
 /**
  * Footer de dialog/modal
  */
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-dialog-footer',
 	props: {
 		/**

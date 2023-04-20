@@ -10,9 +10,9 @@
 	</farm-typography>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
 	inheritAttrs: true,
 	name: 'farm-overlaytext',
 });

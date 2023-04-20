@@ -2,11 +2,11 @@
 	<form class="farm-form"><slot></slot></form>
 </template>
 <script lang="ts">
-import Vue, { onMounted, reactive, ref, getCurrentInstance } from 'vue';
+import { onMounted, reactive, ref, getCurrentInstance, defineComponent } from 'vue';
 
 type ErrorsBag = Record<number, boolean>;
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-form',
 	props: {
 		value: { type: [Boolean] },

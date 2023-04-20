@@ -20,11 +20,11 @@
 	</header>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 /**
  * Header de dialog/modal
  */
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-dialog-header',
 	props: {
 		/**
