@@ -16,9 +16,9 @@
 	</li>
 </template>
 <script lang="ts">
-import Vue, { computed, PropType, toRefs } from 'vue';
+import { defineComponent, computed, PropType, toRefs } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-listitem',
 	props: {
 		to: {

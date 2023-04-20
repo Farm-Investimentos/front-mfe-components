@@ -21,10 +21,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType, ref, toRefs } from 'vue';
+import { PropType, defineComponent, ref, toRefs } from 'vue';
 import { toClipboard } from '@farm-investimentos/front-mfe-libs-ts';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-copytoclipboard',
 	props: {
 		/**

@@ -4,10 +4,10 @@
 	</ul>
 </template>
 <script lang="ts">
-import Vue, { onMounted, onUnmounted, ref } from 'vue';
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useFocus } from './composition';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-list',
 	setup(_, { emit }) {
 		const contentRef = ref<HTMLElement>();

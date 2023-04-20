@@ -52,14 +52,15 @@
 	</farm-contextmenu>
 </template>
 <script>
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
+
 /**
  * Componente de input com datepicker para range de data
  */
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-input-rangedatepicker',
 	components: {
 		VDatePicker,
@@ -178,7 +179,7 @@ export default Vue.extend({
 			return true;
 		},
 		isInvertedDate() {
-			if ((Array.isArray(this.dateField)) && this.dateField.length === 2) {
+			if (Array.isArray(this.dateField) && this.dateField.length === 2) {
 				const firstDate = new Date(this.dateField[0]);
 				const secondDate = new Date(this.dateField[1]);
 				return firstDate.getTime() > secondDate.getTime();

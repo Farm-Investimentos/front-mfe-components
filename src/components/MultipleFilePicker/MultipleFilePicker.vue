@@ -13,7 +13,8 @@
 				cloud-upload-outline
 			</farm-icon>
 			<farm-subtitle :type="2" variation="regular" color="primary">
-				Arraste e solte o arquivo <br/> ou clique aqui
+				Arraste e solte o arquivo <br />
+				ou clique aqui
 			</farm-subtitle>
 		</div>
 
@@ -30,7 +31,7 @@
 						<farm-icon color="black" variation="50" size="sm">attachment</farm-icon>
 					</div>
 					<div>
-						<farm-bodysmall  color="black" color-variation="50">
+						<farm-bodysmall color="black" color-variation="50">
 							Arquivo selecionado: {{ file.name }} ({{ sizeOf(file.size) }})
 						</farm-bodysmall>
 					</div>
@@ -57,12 +58,11 @@
 		<ul class="listFilesStyled" v-if="files.length > 0">
 			<li class="itemFilesStyled" v-for="(file, index) in files" :key="index">
 				<div class="itemFilesContentStyled">
-					
 					<div class="fileDocumentStyled">
 						<farm-icon color="black" variation="50" size="sm">attachment</farm-icon>
 					</div>
 					<div>
-						<farm-bodysmall  color="black" color-variation="50">
+						<farm-bodysmall color="black" color-variation="50">
 							Arquivo selecionado: {{ file.name }} ({{ sizeOf(file.size) }})
 						</farm-bodysmall>
 					</div>
@@ -95,7 +95,7 @@
 	</section>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { sizeOf } from '@farm-investimentos/front-mfe-libs-ts';
 
 export type DownloadFiles = {
@@ -104,7 +104,7 @@ export type DownloadFiles = {
 	size: number;
 };
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-multiple-filepicker',
 
 	props: {

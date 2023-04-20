@@ -1,23 +1,17 @@
 <template>
 	<div class="ml-6 mr-3 d-flex align-center">
 		Total de linhas selecionadas: {{ length }}
-		<farm-btn color="error" @click="reset" small dense class="ml-3" v-if="length > 0">
-			<v-icon small> mdi-trash-can </v-icon>
+		<farm-btn color="error" @click="reset" small class="ml-3" v-if="length > 0">
+			<farm-icon size="sm">trash-can </farm-icon>
 			Desmarcar
 		</farm-btn>
 	</div>
 </template>
 <script>
-import Vue from 'vue';
-import VIcon from 'vuetify/lib/components/VIcon';
-import DefaultButton from '../Buttons/DefaultButton';
+import { defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-tablerowselection',
-	components: {
-		VIcon,
-		'farm-btn': DefaultButton,
-	},
 	props: {
 		/**
 		 * Current items length selected

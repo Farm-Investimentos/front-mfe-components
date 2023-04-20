@@ -45,7 +45,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { computed, PropType, toRefs } from 'vue';
+import { computed, defineComponent, PropType, toRefs } from 'vue';
 
 interface ResourceMetaInfoProps {
 	createdAt: string;
@@ -56,7 +56,7 @@ interface ResourceMetaInfoProps {
 	createdHours?: string;
 }
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-resource-metainfo',
 	props: {
 		/**

@@ -17,10 +17,10 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
+import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-contextmenu',
 	props: {
 		/**

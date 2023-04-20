@@ -20,10 +20,10 @@
 	</span>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref, computed, reactive, onBeforeUnmount } from 'vue';
+import { PropType, ref, computed, reactive, onBeforeUnmount, defineComponent } from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-tooltip',
 	props: {
 		/*
