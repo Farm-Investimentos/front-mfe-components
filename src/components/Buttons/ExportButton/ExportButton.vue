@@ -36,7 +36,7 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
 export interface IExportOption {
 	label: String;
@@ -46,7 +46,7 @@ export interface IExportOption {
 /**
  * BExport Button: standalone or menu list
  */
-export default defineComponent({
+export default {
 	name: 'farm-btn-export',
 	props: {
 		/**
@@ -78,5 +78,5 @@ export default defineComponent({
 			event.stopPropagation();
 		},
 	},
-});
+};
 </script>

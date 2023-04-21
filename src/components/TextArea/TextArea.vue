@@ -49,14 +49,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
+import {  computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
 
-export default defineComponent({
+export default {
 	name: 'farm-textarea',
 	inheritAttrs: true,
 	props: {
@@ -217,7 +217,7 @@ export default defineComponent({
 			makePristine,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'TextArea';

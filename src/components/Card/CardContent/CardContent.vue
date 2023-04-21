@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-card-content',
 	props: {
 		/**
@@ -31,7 +31,7 @@ export default defineComponent({
 		},
 	},
 	inheritAttrs: true,
-});
+};
 </script>
 
 <style lang="scss" scoped>

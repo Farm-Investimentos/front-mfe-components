@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-export default defineComponent({
+
+export default {
 	name: 'farm-multiple-select-shortener',
 	props: {
 		/**
@@ -38,7 +38,7 @@ export default defineComponent({
 			type: Number,
 		},
 	},
-});
+};
 </script>
 
 <style scoped>

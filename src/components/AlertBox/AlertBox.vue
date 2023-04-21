@@ -46,10 +46,10 @@
 </template>
 
 <script lang="ts">
-import { ref, PropType, defineComponent } from 'vue';
+import { ref, PropType } from 'vue';
 import valueWatcher from './valueWatcher';
 
-export default defineComponent({
+export default {
 	name: 'farm-alertbox',
 	props: {
 		/**
@@ -120,7 +120,7 @@ export default defineComponent({
 			close,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './AlertBox';

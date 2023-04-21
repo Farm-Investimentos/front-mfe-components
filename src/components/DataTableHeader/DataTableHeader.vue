@@ -58,9 +58,9 @@
 
 <script lang="ts">
 /* eslint-disable */
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-datatable-header',
 	props: {
 		/**
@@ -189,7 +189,7 @@ export default defineComponent({
 			});
 		}
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

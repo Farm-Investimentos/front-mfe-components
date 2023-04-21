@@ -16,9 +16,9 @@
 	</li>
 </template>
 <script lang="ts">
-import { defineComponent, computed, PropType, toRefs } from 'vue';
+import {  computed, PropType, toRefs } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-listitem',
 	props: {
 		to: {
@@ -77,7 +77,7 @@ export default defineComponent({
 			onClick,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './ListItem';

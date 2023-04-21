@@ -28,9 +28,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-form-mainfilter',
 	props: {
 		/**
@@ -140,7 +140,7 @@ export default defineComponent({
 			}, 750);
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import './MainFilter.scss';

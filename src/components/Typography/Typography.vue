@@ -18,11 +18,11 @@
 	</component>
 </template>
 <script lang="ts">
-import { defineComponent, computed, PropType, ref, toRefs } from 'vue';
+import {  computed, PropType, ref, toRefs } from 'vue';
 import breakPoints from '../../configurations/sizes';
 import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
-export default defineComponent({
+export default {
 	inheritAttrs: true,
 	name: 'farm-typography',
 	props: {
@@ -104,7 +104,10 @@ export default defineComponent({
 	setup(props) {
 		const { size, lineHeight } = toRefs(props);
 
-		let style = ref({});
+		let style = ref({
+			lineHeight: undefined,
+			fontSize: undefined,
+		});
 		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size.value));
@@ -116,13 +119,14 @@ export default defineComponent({
 			style.value.lineHeight = lineHeight.value;
 		}
 
+		// eslint-disable-next-line
 		return {
 			style,
 			isSizeFromBreakpoints,
 			tag,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './Typography.scss';

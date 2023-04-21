@@ -52,18 +52,18 @@
 	</farm-contextmenu>
 </template>
 <script>
-import { defineComponent } from 'vue';
-import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
+
+//import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 
 /**
  * Componente de input com datepicker para range de data
  */
-export default defineComponent({
+export default {
 	name: 'farm-input-rangedatepicker',
 	components: {
-		VDatePicker,
+		//VDatePicker,
 	},
 	props: {
 		/**
@@ -187,7 +187,7 @@ export default defineComponent({
 			return false;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import '../DatePicker/DatePicker.scss';

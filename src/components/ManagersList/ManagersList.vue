@@ -6,8 +6,8 @@
 	</ul>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
+
+export default {
 	name: 'farm-managers-list',
 	props: {
 		managersString: {
@@ -20,7 +20,7 @@ export default defineComponent({
 			return !this.managersString ? [] : this.managersString.split(',');
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 ul {

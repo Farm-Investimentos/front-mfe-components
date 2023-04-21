@@ -4,10 +4,10 @@
 	</ul>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import {  onMounted, onUnmounted, ref } from 'vue';
 import { useFocus } from './composition';
 
-export default defineComponent({
+export default {
 	name: 'farm-list',
 	setup(_, { emit }) {
 		const contentRef = ref<HTMLElement>();
@@ -68,7 +68,7 @@ export default defineComponent({
 			isFocused,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './List';

@@ -8,9 +8,9 @@
 	</div>
 </template>
 <script>
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-tablerowselection',
 	props: {
 		/**
@@ -26,7 +26,7 @@ export default defineComponent({
 			this.$emit('onReset');
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 div {

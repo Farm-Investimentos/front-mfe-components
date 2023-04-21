@@ -20,12 +20,12 @@
 	</farm-btn>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+
 
 /**
  * Botão de Toggle, emitindo e guardando status
  */
-export default defineComponent({
+export default {
 	name: 'farm-btn-toggle',
 	data: () => ({
 		open: false,
@@ -71,5 +71,5 @@ export default defineComponent({
 			return this.position === 'left';
 		},
 	},
-});
+};
 </script>

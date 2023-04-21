@@ -2,9 +2,9 @@
 	<img :src="imgSrc" />
 </template>
 <script>
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-imglogo-product',
 	inheritAttrs: true,
 	props: {
@@ -32,5 +32,5 @@ export default defineComponent({
 			}/public/logos/products/${this.id}/${this.variation}.svg`;
 		},
 	},
-});
+};
 </script>

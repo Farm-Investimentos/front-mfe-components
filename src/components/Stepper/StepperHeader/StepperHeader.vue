@@ -1,7 +1,7 @@
 <template>
 	<div class="horizontal-step-size">
 		<section :class="{ stepper__header: true, 'stepper__header--vertical': vertical }">
-			<template v-for="(step, index) in steps">
+			<div v-for="(step, index) in steps" :key="step.label">
 				<div
 					:class="{
 						'stepper__header-step': true,
@@ -10,7 +10,6 @@
 						'stepper__header-step--error': isStepError(index),
 						'stepper__header-step--next': isStepNext(index),
 					}"
-					:key="step.label"
 				>
 					<farm-icon v-if="step.icon">
 						{{ step.icon }}
@@ -35,15 +34,15 @@
 					v-if="hasDivider(index)"
 					:key="'divider_' + step.label"
 				/>
-			</template>
+			</div>
 		</section>
 	</div>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 import IStep from './IStep';
 
-export default defineComponent({
+export default {
 	name: 'farm-stepper-header',
 	props: {
 		/**
@@ -100,7 +99,7 @@ export default defineComponent({
 			hasDivider,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './StepperHeader.scss';

@@ -51,10 +51,10 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+
 import { calculateMainZindex } from '../../helpers';
 
-export default defineComponent({
+export default {
 	name: 'farm-loader',
 	props: {
 		mode: {
@@ -79,7 +79,7 @@ export default defineComponent({
 			return this.size === 'small' ? 'farm-loader--small' : '';
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Loader';

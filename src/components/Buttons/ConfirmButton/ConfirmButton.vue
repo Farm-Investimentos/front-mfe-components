@@ -7,9 +7,9 @@
 	</farm-btn>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-btn-confirm',
 	inheritAttrs: true,
 	props: {
@@ -28,6 +28,6 @@ export default defineComponent({
 			default: 'check',
 		},
 	},
-});
+};
 </script>
 

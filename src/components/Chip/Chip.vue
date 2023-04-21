@@ -15,9 +15,9 @@
 	</span>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-chip',
 	inheritAttrs: true,
 	props: {
@@ -59,7 +59,7 @@ export default defineComponent({
 			default: 'base',
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './Chip.scss';

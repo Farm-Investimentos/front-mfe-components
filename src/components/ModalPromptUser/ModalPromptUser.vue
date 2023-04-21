@@ -31,9 +31,9 @@
 	</farm-modal>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-prompt-user',
 	props: {
 		/**
@@ -128,7 +128,7 @@ export default defineComponent({
 			this.inputVal = false;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './ModalPromptUser';

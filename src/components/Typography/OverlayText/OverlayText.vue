@@ -10,12 +10,12 @@
 	</farm-typography>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	inheritAttrs: true,
 	name: 'farm-overlaytext',
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'OverlayText';

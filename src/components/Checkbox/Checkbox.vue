@@ -22,14 +22,14 @@
 	</div>
 </template>
 <script lang="ts">
-import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import { computed, onBeforeMount, PropType, ref, toRefs, watch } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import modelValueWatcher from './modelValueWatcher';
 
-export default defineComponent({
+export default {
 	name: 'farm-checkbox',
 	model: {
 		prop: 'modelValue',
@@ -186,7 +186,7 @@ export default defineComponent({
 			sizeValue,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './Checkbox.scss';

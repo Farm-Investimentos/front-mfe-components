@@ -2,11 +2,11 @@
 	<i v-on="$listeners" v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 
 const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-export default defineComponent({
+export default {
 	name: 'farm-icon',
 	inheritAttrs: true,
 
@@ -91,7 +91,7 @@ export default defineComponent({
 			this.icon = this.$slots.default[0].text!.trim();
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Icon.scss';

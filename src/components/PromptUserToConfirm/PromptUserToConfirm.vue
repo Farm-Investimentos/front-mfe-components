@@ -9,8 +9,8 @@
 	</farm-form>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
+
+export default {
 	name: 'farm-promptusertoconfirm',
 	props: {
 		/**
@@ -58,5 +58,5 @@ export default defineComponent({
 	mounted() {
 		this.matchInput = null;
 	},
-});
+};
 </script>

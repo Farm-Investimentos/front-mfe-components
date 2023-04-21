@@ -39,7 +39,7 @@ import {
 } from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
-export default defineComponent({
+export default {
 	name: 'farm-modal',
 	props: {
 		/**
@@ -129,7 +129,7 @@ export default defineComponent({
 			close,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './Modal';

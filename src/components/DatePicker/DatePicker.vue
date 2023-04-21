@@ -51,17 +51,17 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
+
+//import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
-export default defineComponent({
+export default {
 	name: 'farm-input-datepicker',
 	components: {
-		VDatePicker,
+		//VDatePicker,
 	},
 	props: {
 		/**
@@ -222,7 +222,7 @@ export default defineComponent({
 			return true;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './DatePicker.scss';

@@ -9,9 +9,9 @@
 	</farm-chip>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+
 import keys from './keys';
-export default defineComponent({
+export default {
 	name: 'farm-chip-invite',
 	props: {
 		/**
@@ -34,5 +34,5 @@ export default defineComponent({
 			return keys[this.status];
 		},
 	},
-});
+};
 </script>

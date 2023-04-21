@@ -8,9 +8,9 @@
 	</label>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-label',
 	props: {
 		/**
@@ -21,7 +21,7 @@ export default defineComponent({
 			default: false,
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Label';

@@ -12,11 +12,11 @@
 	</farm-typography>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs, PropType } from 'vue';
+import {  computed, ref, watch, toRefs, PropType } from 'vue';
 
 import { Keys } from './configurations';
 
-export default defineComponent({
+export default {
 	inheritAttrs: true,
 	name: 'farm-heading',
 	props: {
@@ -43,7 +43,7 @@ export default defineComponent({
 
 		return { weight, size, tag, config, key };
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Heading';

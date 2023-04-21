@@ -20,9 +20,9 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-radio',
 	model: {
 		prop: 'modelValue',
@@ -95,7 +95,7 @@ export default defineComponent({
 		const validate = () => {};
 		return { onClick, reset, validate };
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Radio';

@@ -20,11 +20,11 @@
 	</header>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+
 /**
  * Header de dialog/modal
  */
-export default defineComponent({
+export default {
 	name: 'farm-dialog-header',
 	props: {
 		/**
@@ -54,7 +54,7 @@ export default defineComponent({
 			this.$emit('onClose', {});
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'DialogHeader';

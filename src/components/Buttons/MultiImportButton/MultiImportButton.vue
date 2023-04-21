@@ -22,14 +22,14 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
 export interface IImportOption {
 	title: String;
 	listenerKey: String;
 }
 
-export default defineComponent({
+export default {
 	name: 'farm-btn-multipleimport',
 	props: {
 		/**
@@ -50,5 +50,5 @@ export default defineComponent({
 			this.$emit('onClick', key);
 		},
 	},
-});
+};
 </script>

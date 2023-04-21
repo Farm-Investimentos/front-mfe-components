@@ -17,10 +17,10 @@
 	</div>
 </template>
 <script lang="ts">
-import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent } from 'vue';
+import { ref, watch, reactive, onBeforeUnmount, toRefs } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
-export default defineComponent({
+export default {
 	name: 'farm-contextmenu',
 	props: {
 		/**
@@ -210,7 +210,7 @@ export default defineComponent({
 			click,
 		};
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

@@ -9,9 +9,9 @@
 	</footer>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-container-footer',
 	props: {
 		noTop: {
@@ -20,7 +20,7 @@ export default defineComponent({
 		},
 	},
 	inheritAttrs: true,
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'ContainerFooter.scss';

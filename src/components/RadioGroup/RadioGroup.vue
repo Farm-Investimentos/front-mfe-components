@@ -11,13 +11,13 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, watch, PropType, toRefs, computed, onBeforeMount } from 'vue';
+import {  ref, watch, PropType, toRefs, computed, onBeforeMount } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 
-export default defineComponent({
+export default {
 	name: 'farm-radio-group',
 	props: {
 		/**
@@ -91,5 +91,5 @@ export default defineComponent({
 			validate,
 		};
 	},
-});
+};
 </script>

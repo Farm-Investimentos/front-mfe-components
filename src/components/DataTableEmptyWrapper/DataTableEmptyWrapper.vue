@@ -15,9 +15,9 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-emptywrapper',
 	props: {
 		/**
@@ -43,7 +43,7 @@ export default defineComponent({
 			default: true,
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import './DataTableEmptyWrapper';

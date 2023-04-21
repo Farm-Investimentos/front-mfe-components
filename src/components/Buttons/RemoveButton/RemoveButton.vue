@@ -12,9 +12,9 @@
 	</farm-btn>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-btn-remove',
 	props: {
 		/**
@@ -37,7 +37,7 @@ export default defineComponent({
 			this.$emit('onClick');
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import './RemoveButton';

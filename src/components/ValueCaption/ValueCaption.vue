@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType, defineComponent } from 'vue';
+import { computed, PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-valuecaption',
 	props: {
 		/**
@@ -55,7 +55,7 @@ export default defineComponent({
 
 		return { hasSubtitle, hasTitle };
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

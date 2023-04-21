@@ -29,13 +29,13 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 import IExtraButton from './IExtraButton';
 
 /**
  * Footer de dialog/modal
  */
-export default defineComponent({
+export default {
 	name: 'farm-dialog-footer',
 	props: {
 		/**
@@ -95,7 +95,7 @@ export default defineComponent({
 			default: () => [],
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'DialogFooter';

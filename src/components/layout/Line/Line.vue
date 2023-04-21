@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-line',
 	props: {
 		/**
@@ -50,7 +50,7 @@ export default defineComponent({
 			default: false,
 		},
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

@@ -11,11 +11,11 @@
 	</farm-typography>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, watch, toRefs, PropType } from 'vue';
+import {  computed, ref, watch, toRefs, PropType } from 'vue';
 
 import { Keys } from './configurations';
 
-export default defineComponent({
+export default {
 	inheritAttrs: true,
 	name: 'farm-bodysmall',
 	props: {
@@ -40,7 +40,7 @@ export default defineComponent({
 		const size = computed(() => config.value.size);
 		return { weight, size, key, variation };
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Small';

@@ -43,9 +43,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-tabs',
 	data() {
 		return {
@@ -123,7 +123,7 @@ export default defineComponent({
 	created() {
 		this.selected = this.initialSelect;
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import './Tabs.scss';

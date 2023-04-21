@@ -11,9 +11,9 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, computed, ref, watch } from 'vue';
+import {  PropType, computed, ref, watch } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-switcher',
 	props: {
 		/**
@@ -87,7 +87,7 @@ export default defineComponent({
 
 		return { isDisabled, backgroundStyles, indicatorStyles, toggle };
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Switcher';

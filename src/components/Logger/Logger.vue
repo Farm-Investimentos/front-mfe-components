@@ -1,7 +1,7 @@
 <template>
 	<section class="logger">
-		<template v-for="(item, index) in items">
-			<farm-logger-item :item="item" :key="`logger_item_${index}`" />
+		<div v-for="(item, index) in items" :key="`logger_item_${index}`">
+			<farm-logger-item :item="item" />
 			<div
 				v-if="hasDivider(index)"
 				:class="{
@@ -10,14 +10,14 @@
 				}"
 				:key="'divider_' + index"
 			></div>
-		</template>
+		</div>
 	</section>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 import ILoggerItem from './LoggerItem/ILoggerItem';
 
-export default defineComponent({
+export default {
 	name: 'farm-logger',
 	props: {
 		/*
@@ -35,7 +35,7 @@ export default defineComponent({
 			return `logger__divider--${previous}-to-${next}`;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './Logger';

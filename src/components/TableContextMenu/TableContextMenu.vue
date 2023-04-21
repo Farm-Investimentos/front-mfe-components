@@ -34,7 +34,7 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
 export interface IContextMenuOption {
 	label: string;
@@ -47,7 +47,7 @@ export interface IContextMenuOptionIcon {
 	type: string;
 }
 
-export default defineComponent({
+export default {
 	name: 'farm-context-menu',
 	components: {},
 	props: {
@@ -82,7 +82,7 @@ export default defineComponent({
 			event.stopPropagation();
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'TableContextMenu';

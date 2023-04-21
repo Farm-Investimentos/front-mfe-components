@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-icon-box',
 	props: {
 		/**
@@ -70,7 +70,7 @@ export default defineComponent({
 			return `farm-icon-box--${this.color}`;
 		},
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

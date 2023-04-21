@@ -10,9 +10,9 @@
 	</farm-btn>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-btn-import',
 	props: {
 		/**
@@ -28,7 +28,7 @@ export default defineComponent({
 			this.$emit('onClick');
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import 'ImportButton';

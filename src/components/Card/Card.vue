@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-card',
 	inheritAttrs: true,
 	props: {
@@ -16,7 +16,7 @@ export default defineComponent({
 		 */
 		tag: { type: String, default: 'div' },
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

@@ -21,10 +21,10 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent, ref, toRefs } from 'vue';
+import { PropType, ref, toRefs } from 'vue';
 import { toClipboard } from '@farm-investimentos/front-mfe-libs-ts';
 
-export default defineComponent({
+export default {
 	name: 'farm-copytoclipboard',
 	props: {
 		/**
@@ -129,5 +129,5 @@ export default defineComponent({
 			onClick,
 		};
 	},
-});
+};
 </script>

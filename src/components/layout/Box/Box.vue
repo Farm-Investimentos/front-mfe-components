@@ -12,9 +12,9 @@
 	</component>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-box',
 	props: {
 		/**
@@ -30,7 +30,7 @@ export default defineComponent({
 		},
 	},
 	inheritAttrs: true,
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'Box';

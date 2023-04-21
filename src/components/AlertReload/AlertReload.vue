@@ -18,9 +18,9 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+
+export default {
 	name: 'farm-alert-reload',
 	props: {
 		/**
@@ -38,7 +38,7 @@ export default defineComponent({
 			default: false,
 		},
 	},
-});
+};
 </script>
 
 <style lang="scss" scoped>

@@ -19,9 +19,9 @@
 	</router-link>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-btn',
 	inheritAttrs: true,
 
@@ -122,7 +122,7 @@ export default defineComponent({
 			return Boolean(this.icon || this.fab);
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'DefaultButton';

@@ -78,13 +78,13 @@
 	</farm-col>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { VDataTable } from 'vuetify/lib';
 
-export default defineComponent({
+//import { VDataTable } from 'vuetify/lib';
+
+export default {
 	name: 'farm-select-modal-options',
 	components: {
-		'v-data-table': VDataTable,
+		//'v-data-table': VDataTable,
 	},
 	props: {
 		/**
@@ -266,7 +266,7 @@ export default defineComponent({
 			}
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'SelectModalOptions.scss';

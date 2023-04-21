@@ -12,10 +12,10 @@
 	</div>
 </template>
 <script lang="ts">
-import { PropType, ref, defineComponent } from 'vue';
+import { PropType, ref } from 'vue';
 import IButtonToggle from './IButtonToggle';
 
-export default defineComponent({
+export default {
 	name: 'farm-button-toggle',
 	props: {
 		/**
@@ -46,7 +46,7 @@ export default defineComponent({
 			isSelected,
 		};
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './ButtonToggle';

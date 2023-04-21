@@ -50,11 +50,11 @@
 	</section>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 import ILoggerItem from './ILoggerItem';
 import mappingIconKeys from './mappingIconKeys';
 
-export default defineComponent({
+export default {
 	name: 'farm-logger-item',
 	props: {
 		/**
@@ -86,7 +86,7 @@ export default defineComponent({
 			return !!this.item.details;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import './LoggerItem.scss';

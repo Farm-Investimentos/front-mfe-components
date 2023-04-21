@@ -95,7 +95,7 @@
 	</section>
 </template>
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 import { sizeOf } from '@farm-investimentos/front-mfe-libs-ts';
 
 export type DownloadFiles = {
@@ -104,7 +104,7 @@ export type DownloadFiles = {
 	size: number;
 };
 
-export default defineComponent({
+export default {
 	name: 'farm-multiple-filepicker',
 
 	props: {
@@ -254,7 +254,7 @@ export default defineComponent({
 			this.$emit('onFileChange', this.files);
 		},
 	},
-});
+};
 </script>
 <style scoped lang="scss">
 @import './MultipleFilePicker.scss';

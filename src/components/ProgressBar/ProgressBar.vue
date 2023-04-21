@@ -4,9 +4,9 @@
 	</div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import {  PropType } from 'vue';
 
-export default defineComponent({
+export default {
 	name: 'farm-progressbar',
 	props: {
 		/**
@@ -92,7 +92,7 @@ export default defineComponent({
 			return obj;
 		},
 	},
-});
+};
 </script>
 <style lang="scss" scoped>
 @import 'ProgressBar.scss';
