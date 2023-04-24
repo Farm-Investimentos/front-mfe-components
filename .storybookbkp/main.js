@@ -1,35 +1,18 @@
 const path = require('path');
 
 module.exports = {
-	//stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-	//stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-	stories: ['../src/components/AlertBox/AlertBox.stories.js'],
+	stories: [
+		'../src/stories/Introduction.stories.mdx',
+		'../src/**/*.stories.mdx',
+		'../src/**/*.stories.@(js|jsx|ts|tsx)',
+	],
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
-		'@storybook/addon-interactions',
-		'@storybook/addon-mdx-gfm',
-		{
-			name: `@storybook/preset-scss`,
-			options: {
-				rule: {
-					test: /\base.scss$/,
-				},
-				cssLoaderOptions: {
-					modules: {
-						localIdentName: '[name]__[local]--[hash:base64:5]',
-					},
-				},
-			},
-		},
+		'@storybook/addon-docs',
+		'@socheatsok78/storybook-addon-vuetify',
+		'storybook-addon-designs/register',
 	],
-	framework: {
-		name: '@storybook/vue3-webpack5',
-		options: {},
-	},
-	docs: {
-		autodocs: true,
-	},
 	webpackFinal: async (config, { configType }) => {
 		// `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
 		// You can change the configuration based on that.
@@ -45,5 +28,8 @@ module.exports = {
 
 		// Return the altered config
 		return config;
+	},
+	features: {
+		postcss: false,
 	},
 };

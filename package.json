@@ -1,71 +1,81 @@
 {
-	"name": "@farm-investimentos/front-mfe-components",
-	"version": "15.2.3",
-	"author": "farm investimentos",
-	"private": false,
-	"main": "./dist/front-mfe-components.common.js",
-	"unpkg": "dist/front-mfe-components.umd.min.js",
-	"jsdelivr": "dist/front-mfe-components.umd.min.js",
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "npm run build:components",
-		"build:components": "vue-cli-service build --target lib --name front-mfe-components src/main.ts",
-		"lint": "vue-cli-service lint --fix",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
-		"test:unit": "jest --updateSnapshot",
-		"test:coverage": "jest --updateSnapshot --coverage",
-		"prepare": "husky install"
-	},
-	"files": [
-		"dist/*",
-		"src/*"
-	],
-	"dependencies": {
-		"core-js": "^3.6.5",
-		"vue": "3.2.31",
-		"vuetify": "^3.0.0"
-	},
-	"devDependencies": {
-		"@babel/core": "7.17.9",
-		"@babel/generator": "7.17.9",
-		"@farm-investimentos/front-mfe-libs-ts": "^1.0.9",
-		"@types/jest": "^24.9.1",
-		"@typescript-eslint/eslint-plugin": "^4.18.0",
-		"@typescript-eslint/parser": "^4.18.0",
-		"@vue/cli-plugin-babel": "~4.5.0",
-		"@vue/cli-plugin-eslint": "~4.5.0",
-		"@vue/cli-plugin-typescript": "~4.5.0",
-		"@vue/cli-plugin-unit-jest": "^4.5.12",
-		"@vue/cli-service": "^4.5.13",
-		"@vue/compiler-sfc": "^3.0.0",
-		"@vue/eslint-config-typescript": "^7.0.0",
-		"@vue/test-utils": "^1.0.3",
-		"babel-eslint": "^10.1.0",
-		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-		"eslint": "^6.7.2",
-		"eslint-plugin-vue": "^7.1.0",
-		"husky": "^8.0.0",
-		"sass": "~1.32.0",
-		"sass-loader": "^10.0.0",
-		"text-mask-addons": "^3.8.0",
-		"typescript": "~4.1.5",
-		"v-mask": "^2.3.0",
-		"vuejs-dialog": "^1.4.2"
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/Farm-Investimentos/front-mfe-components.git"
-	},
-	"publishConfig": {
-		"@farm-investimentos:registry": "https://registry.npmjs.org"
-	},
-	"engines": {
-		"node": ">=14.0.0 <15.0.0"
-	}
+  "name": "@farm-investimentos/front-mfe-components",
+  "version": "15.2.3",
+  "author": "farm investimentos",
+  "private": false,
+  "main": "./dist/front-mfe-components.common.js",
+  "unpkg": "dist/front-mfe-components.umd.min.js",
+  "jsdelivr": "dist/front-mfe-components.umd.min.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "npm run build:components",
+    "build:components": "vue-cli-service build --target lib --name front-mfe-components src/main.ts",
+    "lint": "vue-cli-service lint --fix",
+    "test:unit": "jest --updateSnapshot",
+    "test:coverage": "jest --updateSnapshot --coverage",
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "3.2.31",
+    "vuetify": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.17.9",
+    "@babel/generator": "7.17.9",
+    "@farm-investimentos/front-mfe-libs-ts": "^1.0.9",
+    "@storybook/addon-actions": "^7.0.6",
+    "@storybook/addon-essentials": "^7.0.6",
+    "@storybook/addon-interactions": "^7.0.6",
+    "@storybook/addon-links": "^7.0.6",
+    "@storybook/addon-mdx-gfm": "^7.0.6",
+    "@storybook/cli": "^7.0.6",
+    "@storybook/testing-library": "^0.1.0",
+    "@storybook/vue3": "^7.0.6",
+    "@storybook/vue3-webpack5": "^7.0.6",
+    "@types/jest": "^24.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.12",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.3.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.1.0",
+    "husky": "^8.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "storybook": "^7.0.6",
+    "text-mask-addons": "^3.8.0",
+    "typescript": "~4.1.5",
+    "v-mask": "^2.3.0",
+    "vue-loader": "^16.8.3",
+    "vuejs-dialog": "^1.4.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Farm-Investimentos/front-mfe-components.git"
+  },
+  "publishConfig": {
+    "@farm-investimentos:registry": "https://registry.npmjs.org"
+  }
 }

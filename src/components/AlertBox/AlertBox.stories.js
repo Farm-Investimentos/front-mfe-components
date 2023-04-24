@@ -1,6 +1,8 @@
 import AlertBox from './AlertBox.vue';
 import baseThemeColors from '../../configurations/_theme-colors-base.scss';
-const colors = Object.keys(baseThemeColors);
+console.log(baseThemeColors);
+//const colors = Object.keys(baseThemeColors);
+
 
 export default {
 	title: 'Feedback/AlertBox',
@@ -22,6 +24,7 @@ export const Primary = () => ({
 	template: '<farm-alertbox>alert box</farm-alertbox>',
 });
 
+/*
 export const withIcon = () => ({
 	template: '<farm-alertbox icon="book">alert box</farm-alertbox>',
 });
@@ -76,3 +79,4 @@ export const withDismissableShowAgain = () => ({
 		</farm-btn>
 	</div>`,
 });
+*/

@@ -1,10 +1,14 @@
-import Vue from 'vue';
-import { addDecorator } from '@storybook/vue';
-import vuetify from './vuetify_storybook';
-import VuejsDialog from 'vuejs-dialog';
-
-import { installComponents } from '@farm-investimentos/front-mfe-libs-ts';
-
+/*
+export const parameters = {
+	actions: { argTypesRegex: '^on[A-Z].*' },
+	controls: {
+		matchers: {
+			color: /(background|color)$/i,
+			date: /Date$/,
+		},
+	},
+};
+*/
 import '../src/scss/VuejsDialog.scss';
 import '../src/scss/VMenuOverrides.scss';
 import '../src/scss/utils.scss';
@@ -12,19 +16,13 @@ import '../src/scss/Sticky-table.scss';
 import '../src/scss/Table.scss';
 import '../src/scss/cssVariablesGenerator.scss';
 
-Vue.use(VuejsDialog);
+import * as components from '../src/main';
 
-import * as farmComponents from '../src/main';
+import { setup } from '@storybook/vue3';
 
-installComponents(Vue, farmComponents);
-
-addDecorator(() => ({
-	vuetify,
-	template: `
-    <v-app>
-        <farm-box >
-          <story/>
-        </farm-box>
-    </v-app>
-    `,
-}));
+setup(app => {
+	Object.keys(components).forEach(key => {
+		const component = components[key];
+		app.component(component.name, component);
+	});
+});
