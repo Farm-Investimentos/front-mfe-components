@@ -1,8 +1,8 @@
 <template>
-	<i v-on="$listeners" v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
+	<i v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
 </template>
 <script lang="ts">
-import {  PropType } from 'vue';
+import { PropType } from 'vue';
 
 const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -88,9 +88,7 @@ export default {
 				this.icon = '';
 				return;
 			}
-			console.log(1111);
 			this.icon = this.$slots.default()[0].children!.trim();
-			console.log(this.icon);
 			//this.$slots.default[0].text!.trim()
 		},
 	},

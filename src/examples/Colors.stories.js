@@ -1,7 +1,7 @@
 import baseThemeColors from '../configurations/_theme-colors-base.module.scss';
 import textThemeColors from '../configurations/_theme-colors-text.scss';
 import strokeThemeColors from '../configurations/_theme-colors-stroke.scss';
-import bwThemeColors from '../configurations/_theme-colors-bw.scss';
+import bwThemeColors from '../configurations/_theme-colors-bw.module.scss';
 import backgroundThemeColors from '../configurations/_theme-colors-background.scss';
 import variationThemeColors from '../configurations/_theme-colors-variations.scss';
 import('./Colors.stories.scss');

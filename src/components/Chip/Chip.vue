@@ -1,7 +1,7 @@
 <template>
 	<span
 		v-bind="$props"
-		v-on="$listeners"
+		
 		:class="{
 			'farm-chip': true,
 			'farm-chip--dense': dense,

@@ -1,5 +1,5 @@
+export * from './components/DataTableEmptyWrapper';
 
-import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
@@ -22,7 +22,6 @@ import IdCaption from './components/IdCaption';
 import ResourceMetaInfo from './components/ResourceMetaInfo';
 
 export {
-	DataTableEmptyWrapper,
 	DataTablePaginator,
 	DataTableHeader,
 	MainFilter,
@@ -43,9 +42,7 @@ export {
 	ResourceMetaInfo,
 };
 
-
 export * from './components/AlertBox';
-
 export * from './components/AlertReload';
 export * from './components/ButtonToggle';
 export * from './components/Buttons/DefaultButton';

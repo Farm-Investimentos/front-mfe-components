@@ -37,4 +37,5 @@ setup(app => {
 	});
 
 	app.directive('mask', vMaskV3);
+	
 });

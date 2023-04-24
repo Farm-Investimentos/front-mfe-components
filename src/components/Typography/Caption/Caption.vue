@@ -1,7 +1,7 @@
 <template>
 	<farm-typography
 		v-bind="$attrs"
-		v-on="$listeners"
+		
 		:weight="weight"
 		:size="size"
 		:key="key"

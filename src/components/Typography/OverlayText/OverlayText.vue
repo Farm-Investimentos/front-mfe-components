@@ -1,7 +1,7 @@
 <template>
 	<farm-typography
 		v-bind="$attrs"
-		v-on="$listeners"
+		
 		size="10px"
 		class="farm-overlaytext"
 		:weight="400"

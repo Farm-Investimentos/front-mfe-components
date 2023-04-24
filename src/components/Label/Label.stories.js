@@ -32,7 +32,7 @@ export const Required = () => ({
 });
 
 export const Tooltip = () => ({
-	template: `<div>
+	template: `<div class="pt-9">
 		<farm-label>
 			Label with tooltip
 			<farm-tooltip>
@@ -46,7 +46,7 @@ export const Tooltip = () => ({
 });
 
 export const TooltipWithRequired = () => ({
-	template: `<div>
+	template: `<div class="pt-9">
 		<farm-label required>
 			Label with tooltip
 			<farm-tooltip>

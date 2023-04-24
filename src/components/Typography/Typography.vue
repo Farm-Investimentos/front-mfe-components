@@ -1,6 +1,6 @@
 <template>
 	<component
-		v-on="$listeners"
+		
 		:is="tag"
 		:class="{
 			'farm-typography': true,

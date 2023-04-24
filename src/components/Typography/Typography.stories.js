@@ -1,7 +1,7 @@
 import Typography from './Typography';
 import sizes from '../../configurations/sizes';
 import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
-import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
+import bwThemeColors from '../../configurations/_theme-colors-bw.module.scss';
 
 const colors = Object.keys(baseThemeColors);
 
@@ -200,8 +200,8 @@ export const Ellipsis = () => ({
 
 export const Listener = () => ({
 	methods: {
-		handleEvent(type) {
-			alert(type);
+		handleEvent(event) {
+			alert(event);
 		},
 	},
 	template: `<farm-bodytext @click="handleEvent">

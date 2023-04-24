@@ -1,5 +1,5 @@
 <template>
-	<farm-btn v-bind="$attrs" v-on="$listeners">
+	<farm-btn v-bind="$attrs" >
 		<farm-icon v-if="icon" class="'mr-3">
 			{{ customIcon }}
 		</farm-icon>
