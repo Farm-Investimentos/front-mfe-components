@@ -1,12 +1,12 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import Tooltip from '.';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Interactions/Tooltip',
 	component: Tooltip,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

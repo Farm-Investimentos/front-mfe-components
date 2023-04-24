@@ -1,5 +1,5 @@
-import { withDesign } from 'storybook-addon-designs';
-import baseThemeColors from '../../../configurations/_theme-colors-base.scss';
+// import { withDesign } from 'storybook-addon-designs';
+import baseThemeColors from '../../../configurations/_theme-colors-base.module.scss';
 import './Buttons.stories.scss';
 import DefaultButton from './DefaultButton.vue';
 const colors = Object.keys(baseThemeColors);
@@ -8,7 +8,7 @@ export default {
 	title: 'Buttons/Default',
 	component: DefaultButton,
 
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

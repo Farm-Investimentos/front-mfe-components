@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import ContextMenu from './';
 
 export default {
 	title: 'Interactions/ContextMenu',
 	component: ContextMenu,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

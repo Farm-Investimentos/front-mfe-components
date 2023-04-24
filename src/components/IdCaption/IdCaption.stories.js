@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import IdCaption from './';
 
 export default {
 	title: 'Display/IdCaption',
 	component: IdCaption,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

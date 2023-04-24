@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import List from './List.vue';
 
 export default {
 	title: 'Display/List/List',
 	component: List,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 

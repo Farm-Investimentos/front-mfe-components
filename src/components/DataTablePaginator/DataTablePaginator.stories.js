@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import DataTablePaginator from './DataTablePaginator.vue';
 
 export default {
 	title: 'Display/Table/DataTablePaginator',
 	component: DataTablePaginator,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

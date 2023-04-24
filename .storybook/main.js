@@ -2,13 +2,14 @@ const path = require('path');
 
 module.exports = {
 	//stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-	//stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-	stories: ['../src/components/AlertBox/AlertBox.stories.js'],
+	stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
+	// stories: ['../src/components/AlertBox/AlertBox.stories.js'],
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
 		'@storybook/addon-interactions',
-		'@storybook/addon-mdx-gfm',
+		// '@storybook/addon-mdx-gfm',
+		/*
 		{
 			name: `@storybook/preset-scss`,
 			options: {
@@ -22,6 +23,7 @@ module.exports = {
 				},
 			},
 		},
+		*/
 	],
 	framework: {
 		name: '@storybook/vue3-webpack5',

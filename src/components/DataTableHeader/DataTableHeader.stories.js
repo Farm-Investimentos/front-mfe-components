@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import DataTableHeader from './DataTableHeader.vue';
 
 export default {
 	title: 'Display/Table/DataTableHeader',
 	component: DataTableHeader,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

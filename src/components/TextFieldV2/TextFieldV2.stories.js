@@ -1,4 +1,4 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import TextFieldV2 from './TextFieldV2.vue';
 
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -14,7 +14,7 @@ const currencyMask = createNumberMask({
 export default {
 	title: 'Form/TextFieldV2',
 	component: TextFieldV2,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

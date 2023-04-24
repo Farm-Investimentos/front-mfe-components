@@ -1,10 +1,10 @@
 import RadioGroup from './RadioGroup';
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 
 export default {
 	title: 'Form/RadioGroup',
 	component: RadioGroup,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

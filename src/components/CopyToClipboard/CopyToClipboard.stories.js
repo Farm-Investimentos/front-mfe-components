@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import CopyToClipboard from './CopyToClipboard.vue';
 
 export default {
 	title: 'Interactions/CopyToClipboard',
 	component: CopyToClipboard,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

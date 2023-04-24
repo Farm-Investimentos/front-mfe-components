@@ -1,9 +1,9 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import AlertReload from './AlertReload';
 
 export default {
 	title: 'Feedback/AlertReload',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {

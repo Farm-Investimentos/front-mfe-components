@@ -1,4 +1,4 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import { VDataTable } from 'vuetify/lib/components';
 import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
 import DataTablePaginator from '../components/DataTablePaginator';
@@ -22,7 +22,7 @@ const headers = [
 
 export default {
 	title: 'Display/Table/Examples',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		design: {
 			type: 'figma',

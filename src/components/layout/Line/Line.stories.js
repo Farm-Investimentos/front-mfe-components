@@ -1,5 +1,5 @@
 import Line from './Line.vue';
-import baseThemeColors from '../../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 const variations = ['base', 'lighten', 'darken'];
 

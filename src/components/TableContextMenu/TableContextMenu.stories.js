@@ -1,9 +1,9 @@
 import TableContextMenu from './TableContextMenu';
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 
 export default {
 	title: 'Navigation/TableContextMenu',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	component: TableContextMenu,
 	parameters: {
 		design: {

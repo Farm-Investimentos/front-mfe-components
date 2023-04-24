@@ -1,5 +1,5 @@
 import Chip from './Chip.vue';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 import('./Chip.stories.scss');
 
 const colors = Object.keys(baseThemeColors);

@@ -1,8 +1,8 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 
 export default {
 	title: 'Surfaces/Card/Molecules',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {

@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import Label from './Label.vue';
 
 export default {
 	title: 'Form/Label',
 	component: Label,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		design: {

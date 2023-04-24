@@ -1,4 +1,4 @@
-import baseThemeColors from '../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../configurations/_theme-colors-base.module.scss';
 import textThemeColors from '../configurations/_theme-colors-text.scss';
 import strokeThemeColors from '../configurations/_theme-colors-stroke.scss';
 import bwThemeColors from '../configurations/_theme-colors-bw.scss';

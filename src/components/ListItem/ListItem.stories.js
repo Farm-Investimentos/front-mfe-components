@@ -1,7 +1,7 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import ListItem from './ListItem.vue';
 
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 
 const colors = Object.keys(baseThemeColors);
 const variations = ['base', 'darken', 'lighten'];
@@ -9,7 +9,7 @@ const variations = ['base', 'darken', 'lighten'];
 export default {
 	title: 'Display/List/ListItem',
 	component: ListItem,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {

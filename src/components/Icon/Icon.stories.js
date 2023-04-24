@@ -1,7 +1,7 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import Icon from './Icon.vue';
 import sizes from '../../configurations/sizes';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
 import iconsList from './icons_list';
 const colors = Object.keys(baseThemeColors);
@@ -10,7 +10,7 @@ import('./Icons.stories.scss');
 
 export default {
 	title: 'Display/Icons',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	component: Icon,
 	parameters: {
 		viewMode: 'docs',

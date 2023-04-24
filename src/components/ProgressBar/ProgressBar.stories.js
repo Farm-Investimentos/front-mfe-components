@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import ProgressBar from './ProgressBar.vue';
 
 export default {
 	title: 'Feedback/ProgressBar',
 	component: ProgressBar,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		design: {

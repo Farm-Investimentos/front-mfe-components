@@ -1,5 +1,5 @@
 import Switch from './Switcher';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 
 export default {

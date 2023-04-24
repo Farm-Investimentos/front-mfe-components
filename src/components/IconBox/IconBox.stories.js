@@ -1,6 +1,6 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import IconBox from './IconBox';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 import sizes from '../../configurations/sizes';
 import('../Icon/Icons.stories.scss');
@@ -8,7 +8,7 @@ import('../Icon/Icons.stories.scss');
 export default {
 	title: 'Display/IconBox',
 	component: IconBox,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {

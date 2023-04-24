@@ -1,9 +1,9 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import { Loader } from '../../main';
 
 export default {
 	title: 'Feedback/Loader',
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {

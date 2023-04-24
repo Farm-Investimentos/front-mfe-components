@@ -1,13 +1,13 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import Radio from './Radio.vue';
 import sizes from '../../configurations/sizes';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Form/Radio',
 	component: Radio,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

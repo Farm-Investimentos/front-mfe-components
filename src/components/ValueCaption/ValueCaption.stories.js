@@ -1,12 +1,12 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import ValueCaption from '.';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 const colors = Object.keys(baseThemeColors);
 
 export default {
 	title: 'Display/ValueCaption',
 	component: ValueCaption,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		docs: {
 			description: {

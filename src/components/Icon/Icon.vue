@@ -88,7 +88,8 @@ export default {
 				this.icon = '';
 				return;
 			}
-			this.icon = this.$slots.default[0].text!.trim();
+			this.icon = this.$slots.default()[0].children!.trim();
+			//this.$slots.default[0].text!.trim()
 		},
 	},
 };

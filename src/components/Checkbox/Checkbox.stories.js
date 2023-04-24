@@ -1,5 +1,5 @@
 import Checkbox from './Checkbox';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 import sizes from '../../configurations/sizes';
 const colors = Object.keys(baseThemeColors);
 const variations = ['', 'darken', 'lighten'];

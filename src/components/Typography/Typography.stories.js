@@ -1,6 +1,6 @@
 import Typography from './Typography';
 import sizes from '../../configurations/sizes';
-import baseThemeColors from '../../configurations/_theme-colors-base.scss';
+import baseThemeColors from '../../configurations/_theme-colors-base.module.scss';
 import bwThemeColors from '../../configurations/_theme-colors-bw.scss';
 
 const colors = Object.keys(baseThemeColors);

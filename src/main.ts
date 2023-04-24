@@ -1,5 +1,5 @@
-import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 
+import DataTableEmptyWrapper from './components/DataTableEmptyWrapper';
 import DataTablePaginator from './components/DataTablePaginator';
 import DataTableHeader from './components/DataTableHeader';
 import MainFilter from './components/MainFilter';
@@ -43,7 +43,9 @@ export {
 	ResourceMetaInfo,
 };
 
+
 export * from './components/AlertBox';
+
 export * from './components/AlertReload';
 export * from './components/ButtonToggle';
 export * from './components/Buttons/DefaultButton';
@@ -59,8 +61,6 @@ export * from './components/Checkbox';
 export * from './components/Chip';
 export * from './components/ContextMenu';
 export * from './components/CopyToClipboard';
-export * from './components/Logos/ProductLogo';
-export * from './components/Logos/OriginatorLogo';
 export * from './components/ResetTableRowSelection';
 export * from './components/MultipleSelectShortener';
 export * from './components/SelectModalOptions';
@@ -92,3 +92,4 @@ export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
+

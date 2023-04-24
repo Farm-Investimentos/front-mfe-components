@@ -1,10 +1,10 @@
-import { withDesign } from 'storybook-addon-designs';
+// import { withDesign } from 'storybook-addon-designs';
 import ModalPromptUser from './ModalPromptUser.vue';
 
 export default {
 	title: 'Interactions/ModalPromptUser',
 	component: ModalPromptUser,
-	decorators: [withDesign],
+	// decorators: [withDesign],
 	parameters: {
 		viewMode: 'docs',
 		docs: {
