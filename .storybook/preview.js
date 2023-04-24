@@ -10,6 +10,14 @@ export const parameters = {
 };
 */
 
+import 'vuetify/styles';
+
+import { createVuetify } from 'vuetify';
+import * as vuetifyComponents from 'vuetify/components';
+const vuetify = createVuetify({
+	components: vuetifyComponents,
+});
+
 import { VueMaskDirective } from 'v-mask';
 
 const vMaskV2 = VueMaskDirective;
@@ -37,5 +45,5 @@ setup(app => {
 	});
 
 	app.directive('mask', vMaskV3);
-	
+	app.use(vuetify);
 });

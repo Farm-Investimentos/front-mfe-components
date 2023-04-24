@@ -1,18 +1,18 @@
 // import { withDesign } from 'storybook-addon-designs';
-import { VDataTable } from 'vuetify/lib/components';
+import { VDataTable } from 'vuetify/labs/components';
 import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
 import DataTablePaginator from '../components/DataTablePaginator';
 
 const headers = [
 	{
-		text: 'ID',
+		title: 'ID',
 		sortable: true,
 		value: 'id',
 		width: 80,
 		align: 'left',
 	},
 	{
-		text: 'Name',
+		title: 'Name',
 		sortable: false,
 		value: 'id',
 		width: 160,
@@ -52,7 +52,7 @@ export const TableNoData = () => ({
 		:headers="headers"
 	>
     <template slot="no-data">
-        <DataTableEmptyWrapper
+        <farm-emptywrapper
             subtitle="Tente filtrar novamente sua pesquisa"
         />
     </template>

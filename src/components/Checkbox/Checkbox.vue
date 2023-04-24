@@ -111,7 +111,7 @@ export default {
 			}
 			isTouched.value = true;
 			innerValue.value = isChecked.value ? null : props.value;
-			emit('input', innerValue.value);
+			emit('update:modelValue', innerValue.value);
 			validate(innerValue.value);
 		};
 

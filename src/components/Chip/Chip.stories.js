@@ -78,7 +78,7 @@ export const ColorsOutlined = () => ({
 			</farm-chip>
 		</farm-col>
 
-	</arm-row>`,
+	</farm-row>`,
 });
 
 export const CustomTypography = () => ({
