@@ -178,9 +178,10 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 	},
 	methods: {
 		onSelect({ item }) {
+			console.log(item);
 			if (item.id === 2)
 				this.selectedItems = [...this.selectedItems].filter(
-					innerItem => innerItem.id !== 2
+					innerItem => innerItem.value !== 2
 				);
 		},
 		isItemSelected(item) {
@@ -198,7 +199,7 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 		@item-selected="onSelect"
 	>
 		<template v-slot:item.data-table-select="{ isSelected, select, item }">
-			<farm-checkbox :value="item.id" :checked="isItemSelected(item)" @input="select($event)"/>
+			<farm-checkbox :value="item.value" :checked="isItemSelected(item)" @input="select($event)"/>
 		</template>
     </v-data-table>
 	</div>`,
