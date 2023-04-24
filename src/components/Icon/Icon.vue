@@ -88,7 +88,9 @@ export default {
 				this.icon = '';
 				return;
 			}
+			console.log(1111);
 			this.icon = this.$slots.default()[0].children!.trim();
+			console.log(this.icon);
 			//this.$slots.default[0].text!.trim()
 		},
 	},

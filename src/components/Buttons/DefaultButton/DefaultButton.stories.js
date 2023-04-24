@@ -97,21 +97,21 @@ export const ActiveButtons = () => ({
 		
 		<farm-col cols="12" md="3" class="d-flex flex-column">
 			Base
-			<farm-btn v-for="color of colors":key="'random_9_' + color" :color="color" class="mb-2">
+			<farm-btn v-for="color of colors" :key="'random_9_' + color" :color="color" class="mb-2">
 				{{ color }}
 			</farm-btn>
 		</farm-col>
 	
 		<farm-col cols="12" md="3"  class="d-flex flex-column">
 			Lighten
-			<farm-btn v-for="color of colors":key="'random_9_lighten_' + color" :color="color" variation="lighten" class="mb-2">
+			<farm-btn v-for="color of colors" :key="'random_9_lighten_' + color" :color="color" variation="lighten" class="mb-2">
 				{{ color }}
 			</farm-btn>
 		</farm-col>
 
 			<farm-col cols="12" md="3"  class="d-flex flex-column">
 			Darken
-			<farm-btn v-for="color of colors":key="'random_9_darken_' + color" :color="color" variation="darken" class="mb-2">
+			<farm-btn v-for="color of colors" :key="'random_9_darken_' + color" :color="color" variation="darken" class="mb-2">
 				{{ color }}
 			</farm-btn>
 		</farm-col>
@@ -130,7 +130,7 @@ export const OutlinedButtons = () => ({
 	},
 	template: `<div class="buttons-container">
 		<h4>Outlined</h4>
-        <farm-btn v-for="color of colors":key="'random_8_' + color" :color="color" outlined>
+        <farm-btn v-for="color of colors" :key="'random_8_' + color" :color="color" outlined>
             {{ color }}
         </farm-btn>
 	</div>`,
@@ -148,22 +148,22 @@ export const DisabledButtons = () => ({
 	},
 	template: `<div class="buttons-container">
 		<h4>Default</h4>
-        <farm-btn v-for="color of colors":key="'random_5_' + color" :color="color" disabled>
+        <farm-btn v-for="color of colors" :key="'random_5_' + color" :color="color" disabled>
             {{ color }}
         </farm-btn>
 		<h4>Outlined</h4>
-		<farm-btn v-for="color of colors":key="'random_6_' + color" :color="color" outlined disabled>
+		<farm-btn v-for="color of colors" :key="'random_6_' + color" :color="color" outlined disabled>
             {{ color }}
         </farm-btn>
 		<h4>Plain</h4>
-		<farm-btn v-for="color of colors":key="'random_7_' + color" :color="color" plain disabled>
+		<farm-btn v-for="color of colors" :key="'random_7_' + color" :color="color" plain disabled>
             {{ color }}
         </farm-btn>
 		<h4>Icon</h4>
-        <farm-btn v-for="color of colors":key="color + '_disabled_icon'" :color="color" plain disabled>
+        <farm-btn v-for="color of colors" :key="color + '_disabled_icon'" :color="color" plain disabled>
             <farm-icon>book</farm-icon> {{ color }}
         </farm-btn>
-		<farm-btn v-for="color of colors":key="'random_icon_' + color" :color="color" disabled>
+		<farm-btn v-for="color of colors" :key="'random_icon_' + color" :color="color" disabled>
 			<farm-icon>book</farm-icon>
 			{{ color }}
 	</farm-btn>
@@ -177,7 +177,7 @@ export const Plain = () => ({
 		};
 	},
 	template: `<div class="buttons-container">
-        <farm-btn v-for="color of colors":key="'random_4_' + color" :color="color" plain>
+        <farm-btn v-for="color of colors" :key="'random_4_' + color" :color="color" plain>
             {{ color }}
         </farm-btn>
 	</div>`,
@@ -191,17 +191,17 @@ export const Icons = () => ({
 	},
 	template: `<div class="buttons-container">
 		<h4>Full</h4>
-        <farm-btn v-for="color of colors":key="'random_3_' + color" :color="color">
+        <farm-btn v-for="color of colors" :key="'random_3_' + color" :color="color">
 			<farm-icon>book</farm-icon> book
         </farm-btn>
 
 		<h4>Outlined</h4>
-        <farm-btn v-for="color of colors":key="color + 'outlined'" :color="color" outlined>
+        <farm-btn v-for="color of colors" :key="color + 'outlined'" :color="color" outlined>
 			<farm-icon>book</farm-icon> book
         </farm-btn>
 
 		<h4>Plain</h4>
-        <farm-btn v-for="color of colors":key="color + 'plain'" :color="color" plain>
+        <farm-btn v-for="color of colors" :key="color + 'plain'" :color="color" plain>
 			<farm-icon color="primary">book</farm-icon> book
         </farm-btn>
 		

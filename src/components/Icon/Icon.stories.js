@@ -39,7 +39,7 @@ export const Colors = () => ({
 		};
 	},
 	template: `<div class="icons-container">
-        <farm-icon v-for="color of colors":key="color" :color="color">
+        <farm-icon v-for="color of colors" :key="color" :color="color">
             book
         </farm-icon>
 	</div>`,
@@ -52,7 +52,7 @@ export const ColorsLighten = () => ({
 		};
 	},
 	template: `<div class="icons-container">
-        <farm-icon v-for="color of colors":key="color" :color="color" variation="lighten">
+        <farm-icon v-for="color of colors" :key="color" :color="color" variation="lighten">
             book
         </farm-icon>
 	</div>`,
@@ -65,7 +65,7 @@ export const ColorsDarken = () => ({
 		};
 	},
 	template: `<div class="icons-container">
-        <farm-icon v-for="color of colors":key="color" :color="color" variation="darken">
+        <farm-icon v-for="color of colors" :key="color" :color="color" variation="darken">
             book
         </farm-icon>
 	</div>`,

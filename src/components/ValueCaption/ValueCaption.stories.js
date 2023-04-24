@@ -43,7 +43,7 @@ export const Colors = () => ({
 	template: `<div class="d-flex flex-column">
        <farm-valuecaption
 			icon="account-box-outline"
-			v-for="color of colors":key="color"
+			v-for="color of colors" :key="color"
 			:iconBoxColor="color"
 			class="mb-3"
 		>

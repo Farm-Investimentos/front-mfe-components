@@ -9,6 +9,16 @@ export const parameters = {
 	},
 };
 */
+
+import { VueMaskDirective } from 'v-mask';
+
+const vMaskV2 = VueMaskDirective;
+const vMaskV3 = {
+	beforeMount: vMaskV2.bind,
+	updated: vMaskV2.componentUpdated,
+	unmounted: vMaskV2.unbind,
+};
+
 import '../src/scss/VuejsDialog.scss';
 import '../src/scss/VMenuOverrides.scss';
 import '../src/scss/utils.scss';
@@ -25,4 +35,6 @@ setup(app => {
 		const component = components[key];
 		app.component(component.name, component);
 	});
+
+	app.directive('mask', vMaskV3);
 });
