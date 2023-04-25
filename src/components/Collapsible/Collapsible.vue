@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { computed, PropType, ref, toRefs, watch } from 'vue';
 
 export default {
 	name: 'farm-collapsible',
@@ -118,22 +118,23 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			status: this.$props.open,
-		};
-	},
+	setup(props, { emit }) {
+		const { open } = toRefs(props);
+		const status = ref(open.value);
 
-	computed: {
-		arrowIcon(): string {
-			return this.status ? 'menu-up' : 'menu-down';
-		},
-	},
-	methods: {
-		onToggleCollapsible(status: boolean): void {
-			this.status = !status;
-			this.$emit('open', this.status);
-		},
+		const arrowIcon = computed(() => (status.value ? 'menu-up' : 'menu-down'));
+
+		function onToggleCollapsible(currentStatus: boolean): void {
+			status.value = !currentStatus;
+			console.log(status.value);
+			emit('open', status.value);
+		}
+
+		return {
+			status,
+			arrowIcon,
+			onToggleCollapsible,
+		};
 	},
 };
 </script>

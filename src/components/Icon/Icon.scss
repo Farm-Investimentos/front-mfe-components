@@ -11,6 +11,10 @@
 	position: relative;
 	text-indent: 0;
 
+	> span {
+		display: none;
+	}
+
 	@each $color in $theme-colors-list {
 		&#{'--' + $color} {
 			color: var(--farm-#{$color}-base);

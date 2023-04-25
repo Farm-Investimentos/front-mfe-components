@@ -1,5 +1,7 @@
 <template>
-	<i v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
+	<i v-bind="$attrs" :class="classes" :size="$props.size" ref="el" >
+		<span>{{ checkForSlotContent() }}</span>
+	</i>
 </template>
 <script lang="ts">
 import { PropType } from 'vue';
@@ -76,20 +78,11 @@ export default {
 			this.$el.style.fontSize = this.fontSize;
 		}
 	},
-	created() {
-		this.checkForSlotContent();
-	},
-	beforeUpdate() {
-		this.checkForSlotContent();
-	},
 	methods: {
 		checkForSlotContent() {
-			if (!this.$slots.default) {
-				this.icon = '';
-				return;
-			}
-			this.icon = this.$slots.default()[0].children!.trim();
-			//this.$slots.default[0].text!.trim()
+			this.icon = !this.$slots.default ? '' : this.$slots.default()[0].children!.trim();
+
+			return this.icon;
 		},
 	},
 };
