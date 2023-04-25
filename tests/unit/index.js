@@ -6,3 +6,5 @@ Object.keys(farmComponents).forEach(key => {
 	const component = farmComponents[key];
 	config.global.components[component.name] = component;
 });
+
+config.global.stubs = ['router-link'];

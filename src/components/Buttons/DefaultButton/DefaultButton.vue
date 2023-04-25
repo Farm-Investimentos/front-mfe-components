@@ -118,7 +118,7 @@ export default {
 			};
 		},
 		isRound(): boolean {
-			return Boolean(this.icon || this.fab);
+			return Boolean(this.icon);
 		},
 	},
 };
