@@ -80,7 +80,7 @@ export const ColorsBlack = () => ({
 	template: `<div class="icons-container">
         <farm-icon 
 			v-for="bw in bwColors"
-			:key="color" 
+			:key="bw.split('-')[0]" 
 			:color="bw.split('-')[0]"
 			:variation="bw.split('-')[1]">
             book
