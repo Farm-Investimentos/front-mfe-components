@@ -1,13 +1,8 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import { installComponents } from '@farm-investimentos/front-mfe-libs-ts';
+import { config } from '@vue/test-utils';
 
 import * as farmComponents from '../../src/main';
 
-installComponents(Vue, farmComponents);
-
-Vue.use(Vuetify);
-
-Vue.directive('mask', (el, key) => {
-	el.innerText = key.value;
+Object.keys(farmComponents).forEach(key => {
+	const component = farmComponents[key];
+	config.global.components[component.name] = component;
 });
