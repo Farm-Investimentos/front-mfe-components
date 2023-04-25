@@ -192,6 +192,7 @@ export default {
 			() => props.value,
 			() => {
 				innerValue.value = props.value;
+				console.log(innerValue.value);
 				validate(innerValue.value);
 			}
 		);
@@ -200,6 +201,7 @@ export default {
 			() => innerValue.value,
 			() => {
 				emit('input', innerValue.value);
+				validate(innerValue.value);
 			}
 		);
 

@@ -52,7 +52,8 @@
 </template>
 <script lang="ts">
 
-//import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
+// import { VDatePicker } from 'vuetify/components/VDatePicker';
+
 import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
@@ -61,7 +62,7 @@ import { formatDatePickerHeader } from '../../helpers';
 export default {
 	name: 'farm-input-datepicker',
 	components: {
-		//VDatePicker,
+	//	VDatePicker,
 	},
 	props: {
 		/**

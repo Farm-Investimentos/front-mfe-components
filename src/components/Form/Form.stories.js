@@ -95,6 +95,7 @@ export const Primary = () => ({
     `,
 });
 
+/*
 export const Secondary = () => ({
 	data() {
 		return {
@@ -386,3 +387,4 @@ export const RestartValidation = () => ({
         </farm-form>
     `,
 });
+*/

@@ -16,7 +16,7 @@ export default {
 		const innerValue = ref(props.value);
 		let errorsBag = reactive({} as ErrorsBag);
 		let validationFields = [];
-		const instance = getCurrentInstance().proxy;
+		const instance = getCurrentInstance();
 
 		const dispatchError = () => {
 			const keys = Object.keys(errorsBag);
@@ -42,13 +42,16 @@ export default {
 		};
 
 		const recursiveFormField = $node => {
-			$node.$children.forEach($leaf => {
+			if(!Array.isArray($node.children)) {
+				return;
+			}
+			$node.children.forEach($leaf => {
 				if ($leaf.validate) {
 					validationFields.push($leaf);
-				} else if ($leaf.$children.length > 1) {
+				} else if ($leaf.children && $leaf.children.length > 1) {
 					recursiveFormField($leaf);
-				} else if ($leaf.$children[0] && $leaf.$children[0].validate) {
-					validationFields.push($leaf.$children[0]);
+				} else if ($leaf.children && $leaf.children[0] && $leaf.children[0].validate) {
+					validationFields.push($leaf.children[0]);
 				} else if ($leaf.validatable) {
 					validationFields.push($leaf);
 				} else {
@@ -59,7 +62,7 @@ export default {
 
 		onMounted(() => {
 			validationFields = [];
-			recursiveFormField(instance);
+			recursiveFormField(instance.subTree);
 			validationFields.forEach(field => {
 				watchInput(field);
 			});

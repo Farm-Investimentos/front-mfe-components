@@ -117,7 +117,7 @@ export default {
 			setTimeout(() => {
 				show.value = false;
 				disabled.value = false;
-			}, successTimeout.value);
+			}, parseInt(successTimeout.value as string, 10));
 		};
 
 		return {
