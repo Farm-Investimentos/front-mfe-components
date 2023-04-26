@@ -8,7 +8,7 @@
 			:id="id"
 			type="radio"
 			:color="color"
-			:size="$props.size"
+			:custom-size="$props.size"
 			:checked="isChecked"
 			:value="value"
 			v-bind="$attrs"

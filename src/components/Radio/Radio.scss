@@ -82,7 +82,7 @@ input[type='radio'] {
 
 @each $size,
 $value in $sizes {
-	#{'input[type="radio"][size=' + $size + ']'} {
+	#{'input[type="radio"][custom-size=' + $size + ']'} {
 		width: $value;
 		height: $value;
 
