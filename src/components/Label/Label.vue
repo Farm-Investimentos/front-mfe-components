@@ -1,7 +1,6 @@
 <template>
 	<label
 		:class="{ 'farm-label': true, 'farm-label--required': required }"
-		
 		v-bind="$attrs"
 	>
 		<slot></slot>
