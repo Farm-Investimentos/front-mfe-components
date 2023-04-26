@@ -86,11 +86,11 @@ export default {
 	setup(_, { emit }) {
 		const onClick = event => {
 			emit('change', event.target.value);
-			emit('input', event.target.value);
+			emit('update:modelValue', event.target.value);
 		};
 
 		const reset = () => {
-			emit('input', null);
+			emit('update:modelValue', null);
 		};
 		const validate = () => {};
 		return { onClick, reset, validate };

@@ -134,7 +134,7 @@ export default {
 			isTouched.value = true;
 			innerValue.value = null;
 			validate(innerValue.value);
-			emit('input', innerValue.value);
+			emit('update:modelValue', innerValue.value);
 		};
 
 		onBeforeMount(() => {
