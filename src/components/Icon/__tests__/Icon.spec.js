@@ -6,7 +6,11 @@ describe('Icon component', () => {
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Icon);
+		wrapper = shallowMount(Icon, {
+			slots: {
+				default: '  book ',
+			},
+		});
 		component = wrapper.vm;
 	});
 
@@ -20,7 +24,7 @@ describe('Icon component', () => {
 		});
 
 		it('get icon', () => {
-			expect(component.icon).toEqual('');
+			expect(component.icon).toEqual('book');
 		});
 
 		it('get fontSize', () => {

@@ -126,7 +126,6 @@ export default {
 
 		function onToggleCollapsible(currentStatus: boolean): void {
 			status.value = !currentStatus;
-			console.log(status.value);
 			emit('open', status.value);
 		}
 
