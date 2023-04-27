@@ -1,3 +1,4 @@
+
 <template>
 	<div class="farm-loader__overlay" v-if="mode === 'overlay'" :style="styleObject">
 		<div
@@ -51,7 +52,7 @@
 	</div>
 </template>
 <script lang="ts">
-
+import { ref, toRefs, computed } from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
 export default {
@@ -66,21 +67,17 @@ export default {
 			default: 'normal',
 		},
 	},
-	data() {
-		return {
-			styleObject: {
-				zIndex: calculateMainZindex(),
-			},
-		};
-	},
-
-	computed: {
-		calculateSize() {
-			return this.size === 'small' ? 'farm-loader--small' : '';
-		},
+	setup(props) {
+		const { size}= toRefs(props);
+		const styleObject = ref({
+			zIndex: calculateMainZindex(),
+		});
+		const calculateSize = computed(() => size.value === 'small' ? 'farm-loader--small' : '')
+		return { styleObject, calculateSize };
 	},
 };
 </script>
 <style lang="scss" scoped>
 @import 'Loader';
 </style>
+

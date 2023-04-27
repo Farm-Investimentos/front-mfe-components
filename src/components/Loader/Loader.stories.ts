@@ -36,7 +36,7 @@ export const Overlay = () => ({
 	},
 	template: `<div style="width: 480px;">
     <farm-loader mode="overlay" v-if="show" />
-		<button @click="onClick">click to show</button>
+		<farm-btn @click="onClick">click to show</farm-btn>
 	</div>`,
 	methods: {
 		onClick() {
