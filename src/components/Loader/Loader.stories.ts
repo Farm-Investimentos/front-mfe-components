@@ -1,5 +1,4 @@
 // import { withDesign } from 'storybook-addon-designs';
-import { Loader } from '../../main';
 
 export default {
 	title: 'Feedback/Loader',
