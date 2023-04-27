@@ -46,8 +46,8 @@ export default {
 				return;
 			}
 			$node.children.forEach($leaf => {
-				if ($leaf.validate) {
-					validationFields.push($leaf);
+				if ($leaf.component?.ctx?.validate) {
+					validationFields.push($leaf.component?.ctx);
 				} else if ($leaf.children && $leaf.children.length > 1) {
 					recursiveFormField($leaf);
 				} else if ($leaf.children && $leaf.children[0] && $leaf.children[0].validate) {
