@@ -58,13 +58,13 @@
 	</section>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent } from 'vue';
 
 /**
  * Componente de paginação usado em tabelas e listas
  * com opção de itens por página
  */
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-datatable-paginator',
 	props: {
 		/**

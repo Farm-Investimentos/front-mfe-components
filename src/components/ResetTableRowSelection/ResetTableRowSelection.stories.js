@@ -11,5 +11,5 @@ export const Primary = () => ({
 			items: [1, 2, 3],
 		};
 	},
-	template: `<ResetTableRowSelection v-model="items" />`,
+	template: `<ResetTableRowSelection :length="items.length" />`,
 });

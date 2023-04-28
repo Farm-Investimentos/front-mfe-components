@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "15.2.3",
+	"version": "15.3.0",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -22,11 +22,13 @@
 		"src/*"
 	],
 	"dependencies": {
-		"core-js": "^3.8.3",
+		"core-js": "^3.6.5",
 		"vue": "2.7.10",
 		"vuetify": "^2.4.5"
 	},
 	"devDependencies": {
+		"@babel/core": "7.17.9",
+		"@babel/generator": "7.17.9",
 		"@farm-investimentos/front-mfe-libs-ts": "^1.0.9",
 		"@socheatsok78/storybook-addon-vuetify": "^0.1.9",
 		"@storybook/addon-actions": "6.5.8",
@@ -44,6 +46,7 @@
 		"@vue/eslint-config-typescript": "^7.0.0",
 		"@vue/test-utils": "^1.0.3",
 		"babel-eslint": "^10.1.0",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^6.2.2",
 		"husky": "^8.0.0",

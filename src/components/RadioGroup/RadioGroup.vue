@@ -11,13 +11,13 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { ref, watch, PropType, toRefs, computed, onBeforeMount } from 'vue';
+import { defineComponent, ref, watch, PropType, toRefs, computed, onBeforeMount } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-radio-group',
 	props: {
 		/**

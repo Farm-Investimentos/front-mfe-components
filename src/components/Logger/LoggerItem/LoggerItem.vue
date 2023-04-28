@@ -50,11 +50,11 @@
 	</section>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import ILoggerItem from './ILoggerItem';
 import mappingIconKeys from './mappingIconKeys';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-logger-item',
 	props: {
 		/**

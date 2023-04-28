@@ -40,10 +40,10 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import IStep from './IStep';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-stepper-header',
 	props: {
 		/**

@@ -27,10 +27,19 @@
 </template>
 
 <script lang="ts">
-import Vue, { onBeforeUnmount, onMounted, PropType, reactive, ref, toRefs, watch } from 'vue';
+import {
+	defineComponent,
+	onBeforeUnmount,
+	onMounted,
+	PropType,
+	reactive,
+	ref,
+	toRefs,
+	watch,
+} from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-modal',
 	props: {
 		/**

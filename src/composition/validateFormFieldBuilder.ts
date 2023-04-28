@@ -8,9 +8,8 @@ export default function (rules) {
 			if (valid === false || typeof valid === 'string') {
 				innerErrorBucket.push(valid || '');
 			} else if (typeof valid !== 'boolean') {
-				console.error(
-					`Rules should return a string or boolean, received '${typeof valid}' instead`,
-					this
+				throw new Error(
+					`Rules should return a string or boolean, received '${typeof valid}' instead`
 				);
 			}
 		}

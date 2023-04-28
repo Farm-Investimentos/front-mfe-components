@@ -2,11 +2,11 @@
 	<i v-on="$listeners" v-bind="$attrs" :class="classes" :size="$props.size" ref="el" />
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 const breakPoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-icon',
 	inheritAttrs: true,
 

@@ -33,6 +33,25 @@ export const Primary = () => ({
 	</div>`,
 });
 
+export const WithCreatedBy = () => ({
+	data() {
+		return {
+			value: false,
+			info: {
+				createdAt: '21/10/2022',
+				createdBy: 'Test User',
+				createdHours: '10:10:10',
+				updatedAt: '21/10/2022',
+				username: 'Test User',
+				updatedHours: '10:10:10',
+			},
+		};
+	},
+	template: `<div>
+	<farm-resource-metainfo :infos="info" />
+	</div>`,
+});
+
 export const WithoutUpdate = () => ({
 	data() {
 		return {

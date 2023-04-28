@@ -18,11 +18,11 @@
 	</component>
 </template>
 <script lang="ts">
-import Vue, { computed, PropType, ref, toRefs } from 'vue';
+import { defineComponent, computed, PropType, ref, toRefs } from 'vue';
 import breakPoints from '../../configurations/sizes';
 import typographyHtmlTags from '../../configurations/typographyHtmlTags';
 
-export default Vue.extend({
+export default defineComponent({
 	inheritAttrs: true,
 	name: 'farm-typography',
 	props: {
