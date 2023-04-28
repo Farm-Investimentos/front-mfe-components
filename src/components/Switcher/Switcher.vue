@@ -11,9 +11,9 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType, computed, ref, watch } from 'vue';
+import { defineComponent, PropType, computed, ref, watch } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-switcher',
 	props: {
 		/**

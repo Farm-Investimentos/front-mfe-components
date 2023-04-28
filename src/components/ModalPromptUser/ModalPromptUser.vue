@@ -31,9 +31,9 @@
 	</farm-modal>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-prompt-user',
 	props: {
 		/**

@@ -46,10 +46,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { ref, PropType } from 'vue';
+import { ref, PropType, defineComponent } from 'vue';
 import valueWatcher from './valueWatcher';
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-alertbox',
 	props: {
 		/**

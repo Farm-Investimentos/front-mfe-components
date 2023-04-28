@@ -12,9 +12,10 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { PropType, ref } from 'vue';
+import { PropType, ref, defineComponent } from 'vue';
 import IButtonToggle from './IButtonToggle';
-export default Vue.extend({
+
+export default defineComponent({
 	name: 'farm-button-toggle',
 	props: {
 		/**

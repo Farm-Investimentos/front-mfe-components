@@ -11,11 +11,11 @@
 	</farm-typography>
 </template>
 <script lang="ts">
-import Vue, { computed, ref, watch, toRefs, PropType } from 'vue';
+import { defineComponent, computed, ref, watch, toRefs, PropType } from 'vue';
 
 import { Keys } from './configurations';
 
-export default Vue.extend({
+export default defineComponent({
 	inheritAttrs: true,
 	name: 'farm-bodysmall',
 	props: {

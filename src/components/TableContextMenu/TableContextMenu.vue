@@ -26,13 +26,15 @@
 				<farm-icon v-if="item.icon" size="sm" :color="item.icon.color || 'primary'">
 					{{ item.icon.type }}
 				</farm-icon>
-				<farm-caption bold tag="span" :color="item.icon.color || 'primary'">{{ item.label }}</farm-caption>
+				<farm-caption bold tag="span" :color="item.icon.color || 'primary'">{{
+					item.label
+				}}</farm-caption>
 			</farm-listitem>
 		</farm-list>
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue';
 
 export interface IContextMenuOption {
 	label: string;
@@ -45,7 +47,7 @@ export interface IContextMenuOptionIcon {
 	type: string;
 }
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'farm-context-menu',
 	components: {},
 	props: {
