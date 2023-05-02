@@ -20,7 +20,7 @@
 	</div>
 </template>
 <script lang="ts">
-import {  PropType } from 'vue';
+import { PropType, ref, watch } from 'vue';
 
 export default {
 	name: 'farm-radio',
@@ -78,12 +78,19 @@ export default {
 			default: '',
 		},
 	},
-	computed: {
-		isChecked() {
-			return this.modelValue == this.value;
-		},
-	},
-	setup(_, { emit }) {
+	setup(props, { emit }) {
+		const innerValue = ref(props.modelValue);
+		const value = ref(props.value);
+
+		const isChecked = ref<Boolean>(innerValue.value == value.value);
+
+		watch(
+			() => props.modelValue,
+			newValue => {
+				isChecked.value = newValue == value.value;
+			}
+		);
+
 		const onClick = event => {
 			emit('change', event.target.value);
 			emit('update:modelValue', event.target.value);
@@ -93,7 +100,8 @@ export default {
 			emit('update:modelValue', null);
 		};
 		const validate = () => {};
-		return { onClick, reset, validate };
+
+		return { isChecked, onClick, reset, validate };
 	},
 };
 </script>
