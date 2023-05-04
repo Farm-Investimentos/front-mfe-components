@@ -62,7 +62,8 @@
 	}
 }
 
-.farm-textfield--touched.farm-textfield--validatable {
+
+.farm-textfield--touched.farm-textfield--blured.farm-textfield--validatable {
 	&.farm-textfield--error {
 		.farm-textfield {
 			&--input {
