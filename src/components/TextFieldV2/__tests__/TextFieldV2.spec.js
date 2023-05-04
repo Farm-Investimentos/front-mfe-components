@@ -6,7 +6,11 @@ describe('TextFieldV2 component', () => {
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(TextFieldV2);
+		wrapper = shallowMount(TextFieldV2, {
+			directives: {
+				mask: () => {},
+			},
+		});
 		component = wrapper.vm;
 	});
 

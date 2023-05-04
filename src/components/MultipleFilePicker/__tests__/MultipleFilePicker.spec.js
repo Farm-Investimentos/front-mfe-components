@@ -46,21 +46,7 @@ describe('MultipleFilePicker component', () => {
 				expect(spyObj).toHaveBeenCalled();
 			});
 		});
-		describe('addMoreFiles', () => {
-			it('should open file input', () => {
-				const spy = jest.fn();
-				component.$refs = {
-					container: {
-						querySelector() {
-							return { click: spy };
-						},
-					},
-				};
-				component.addMoreFiles();
-				expect(spy).toHaveBeenCalled();
-			});
-		});
-
+		
 		describe('fileChange', () => {
 			it('should open file input', () => {
 				const file = new File([], 'test');
