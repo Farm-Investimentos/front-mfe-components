@@ -72,7 +72,7 @@ export default {
 		const styleObject = ref({
 			zIndex: calculateMainZindex(),
 		});
-		const calculateSize = computed(() => size.value === 'small' ? 'farm-loader--small' : '')
+		const calculateSize = computed(() => size.value === 'small' ? 'farm-loader--small' : '');
 		return { styleObject, calculateSize };
 	},
 };

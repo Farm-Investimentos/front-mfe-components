@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType, ref, toRefs, watch } from 'vue';
+import { computed, PropType, ref, toRefs } from 'vue';
 
 export default {
 	name: 'farm-collapsible',

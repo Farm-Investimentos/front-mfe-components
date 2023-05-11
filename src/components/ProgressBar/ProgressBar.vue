@@ -3,8 +3,9 @@
 		<div :style="valueStyle"></div>
 	</div>
 </template>
+
 <script lang="ts">
-import {  PropType } from 'vue';
+import { computed, PropType, toRefs } from 'vue';
 
 export default {
 	name: 'farm-progressbar',
@@ -57,43 +58,54 @@ export default {
 			required: true,
 		},
 	},
-	computed: {
-		classes() {
+
+	setup(props) {
+		const { backgroundColor, valueColor, value } = toRefs(props);
+
+		const classes = computed(() => {
 			const obj = {};
 
-			if (!this.backgroundColor.startsWith('#')) {
-				obj['farm-progressbar--' + this.backgroundColor] = true;
+			if (!backgroundColor.value.startsWith('#')) {
+				obj['farm-progressbar--' + backgroundColor.value] = true;
 			}
-			if (!this.valueColor.startsWith('#')) {
-				obj['farm-progressbar--value-' + this.valueColor] = true;
+			if (!valueColor.value.startsWith('#')) {
+				obj['farm-progressbar--value-' + valueColor.value] = true;
 			}
 
 			return {
 				'farm-progressbar': true,
 				...obj,
 			};
-		},
-		valueStyle() {
+		});
+
+		const valueStyle = computed(() => {
 			const obj = {
-				width: `${this.value}%`,
+				width: `${value.value}%`,
 			};
-			if (this.valueColor.startsWith('#')) {
-				obj['background-color'] = this.valueColor;
+			if (valueColor.value.startsWith('#')) {
+				obj['background-color'] = valueColor.value;
 			}
 			return obj;
-		},
-		containerStyle() {
+		});
+
+		const containerStyle = computed(() => {
 			const obj = {};
 
-			if (this.backgroundColor.startsWith('#')) {
-				obj['background-color'] = this.backgroundColor;
+			if (backgroundColor.value.startsWith('#')) {
+				obj['background-color'] = backgroundColor.value;
 			}
 
 			return obj;
-		},
+		});
+
+		return { classes, valueStyle, containerStyle };
 	},
 };
 </script>
+
+
 <style lang="scss" scoped>
 @import 'ProgressBar.scss';
 </style>
+
+
