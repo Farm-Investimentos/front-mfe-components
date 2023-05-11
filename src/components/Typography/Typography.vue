@@ -30,20 +30,7 @@ export default defineComponent({
 		 * Html tag
 		 */
 		tag: {
-			type: String as PropType<
-				| 'p'
-				| 'span'
-				| 'h1'
-				| 'h2'
-				| 'h3'
-				| 'h4'
-				| 'h5'
-				| 'h6'
-				| 'legend'
-				| 'label'
-				| 'li'
-				| 'div'
-			>,
+			type: String as PropType<typeof typographyHtmlTags[number]>,
 			default: 'p',
 		},
 		/**
@@ -104,7 +91,7 @@ export default defineComponent({
 	setup(props) {
 		const { size, lineHeight } = toRefs(props);
 
-		let style = ref({});
+		let style = ref({} as { fontSize: string; lineHeight: string });
 		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size.value));
