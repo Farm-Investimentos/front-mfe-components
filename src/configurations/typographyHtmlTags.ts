@@ -13,4 +13,4 @@ export default [
 	'div',
 	'dd',
 	'dt',
-] as const;
+];
