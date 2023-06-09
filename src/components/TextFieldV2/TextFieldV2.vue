@@ -186,7 +186,7 @@ export default defineComponent({
 		});
 		const customId = 'farm-textfield-' + (props.id || randomId(2));
 
-		const showErrorText = computed(() => hasError.value && isTouched.value);
+		const showErrorText = computed(() => hasError.value && isTouched.value && isBlured.value);
 
 		watch(
 			() => props.value,
