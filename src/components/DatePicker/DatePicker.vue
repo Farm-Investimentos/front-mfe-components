@@ -44,7 +44,7 @@
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
 				:id="inputId"
-				:rules="[checkMax, checkMin, checkRequire]"
+				:rules="[checkDateValid, checkMax, checkMin, checkRequire]"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -53,7 +53,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter, convertDate } from '../../helpers/date';
+import { defaultFormat as dateDefaultFormatter, convertDate, checkDateValid } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
@@ -110,6 +110,13 @@ export default defineComponent({
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
+			checkDateValid: value => {
+				if(value.length > 0) {
+					const isValid = checkDateValid(value);
+					return  isValid ? true : 'Data inválida';
+				}
+				return true;
+			},
 			checkRequire: value => {
 				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
@@ -119,28 +126,15 @@ export default defineComponent({
 					: true;
 			},
 			checkMin: value => {
-				const selectedDateUTCString = new Date(convertDate(value))
-					.toUTCString()
-					.slice(0, -4);
-
-				const selectedDate = new Date(selectedDateUTCString);
-				selectedDate.setDate(selectedDate.getDate() + 1);
-
-				const locatedSelectedDate = new Date(selectedDate.toUTCString()).toLocaleString(
-					'pt-BR',
-					{
-						timeZone: 'America/Sao_Paulo',
+				if(this.min) {
+					const dateSelected = new Date(convertDate(value));
+					const dateMin = new Date(convertDate(this.min));
+					if(dateSelected.getTime() >= dateMin.getTime()){
+						return true;
 					}
-				);
-				const locatedMinDate = new Date(this.min).toLocaleString('pt-BR', {
-					timeZone: 'America/Sao_Paulo',
-				});
-
-				return this.min &&
-					this.getUniversalDate(locatedSelectedDate) <
-						this.getUniversalDate(locatedMinDate)
-					? 'A data está fora do período permitido'
-					: true;
+					return 'A data está fora do período permitido';
+				}
+				return true;
 			},
 		};
 	},
