@@ -121,11 +121,17 @@ export default defineComponent({
 				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
 			checkMax: value => {
+				if(!this.required && value.length === 0) {
+					return true;
+				}
 				return this.max && new Date(convertDate(value)) > new Date(this.max)
 					? 'A data está fora do período permitido'
 					: true;
 			},
 			checkMin: value => {
+				if(!this.required && value.length === 0) {
+					return true;
+				}
 				if(this.min) {
 					const dateSelected = new Date(convertDate(value));
 					const dateMin = new Date(convertDate(this.min));
