@@ -27,7 +27,7 @@
 						</farm-chip>
 					</div>
 					<div class="collapsible__icon collapsible__icon--arrow">
-						<farm-icon size="md">
+						<farm-icon size="md" color="primary">
 							{{ arrowIcon }}
 						</farm-icon>
 					</div>
