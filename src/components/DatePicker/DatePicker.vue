@@ -4,7 +4,7 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
-		bottom
+		:bottom="bottom"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -53,7 +53,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter, convertDate, checkDateValid } from '../../helpers/date';
+import {
+	defaultFormat as dateDefaultFormatter,
+	convertDate,
+	checkDateValid,
+} from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
@@ -103,6 +107,10 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		bottom: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -111,9 +119,9 @@ export default defineComponent({
 			dateField: this.value,
 			fieldRange: s,
 			checkDateValid: value => {
-				if(value.length > 0) {
+				if (value.length > 0) {
 					const isValid = checkDateValid(value);
-					return  isValid ? true : 'Data inválida';
+					return isValid ? true : 'Data inválida';
 				}
 				return true;
 			},
@@ -126,10 +134,10 @@ export default defineComponent({
 					: true;
 			},
 			checkMin: value => {
-				if(this.min) {
+				if (this.min) {
 					const dateSelected = new Date(convertDate(value));
 					const dateMin = new Date(convertDate(this.min));
-					if(dateSelected.getTime() >= dateMin.getTime()){
+					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
 					return 'A data está fora do período permitido';
