@@ -20,6 +20,7 @@
 			class="farm-btn__cta"
 			:title="extraFiltersBtnLabel"
 			@click="onFilterClick"
+			:outlined="outlined"
 		>
 			<farm-icon class="mr-2">{{ extraFiltersBtnIcon }}</farm-icon>
 			{{ extraFiltersBtnLabel }}
@@ -84,6 +85,13 @@ export default defineComponent({
 		 * Input full width
 		 */
 		fullWidth: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 *  Layout outlined
+		 */
+		outlined: {
 			type: Boolean,
 			default: false,
 		},
