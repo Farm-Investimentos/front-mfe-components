@@ -141,15 +141,11 @@ export default defineComponent({
 			}
 		);
 
-		const getElementClientRects = () => {
-			const rects = {
-				parentBoundingClientRect: parent.value.getBoundingClientRect(),
-				activatorBoundingClientRect: activator.value.children[0].getBoundingClientRect(),
-				popupClientRect: popup.value.getBoundingClientRect(), // Only has height when popup is showing on screen
-			};
-
-			return rects;
-		};
+		const getElementClientRects = () => ({
+			parentBoundingClientRect: parent.value.getBoundingClientRect(),
+			activatorBoundingClientRect: activator.value.children[0].getBoundingClientRect(),
+			popupClientRect: popup.value.getBoundingClientRect(), // Only has height when popup is showing on screen
+		});
 
 		const calculateOffsetTop = () => {
 			const { parentBoundingClientRect, activatorBoundingClientRect, popupClientRect } =
