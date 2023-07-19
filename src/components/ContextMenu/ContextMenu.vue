@@ -17,7 +17,7 @@
 	</div>
 </template>
 <script lang="ts">
-import Vue, { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent, nextTick } from 'vue';
+import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent, nextTick } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
 export default defineComponent({
@@ -141,10 +141,19 @@ export default defineComponent({
 			}
 		);
 
+		const getElementClientRects = () => {
+			const rects = {
+				parentBoundingClientRect: parent.value.getBoundingClientRect(),
+				activatorBoundingClientRect: activator.value.children[0].getBoundingClientRect(),
+				popupClientRect: popup.value.getBoundingClientRect(), // Only has height when popup is showing on screen
+			};
+
+			return rects;
+		};
+
 		const calculateOffsetTop = () => {
-			const parentBoundingClientRect = parent.value.getBoundingClientRect();
-			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
-			const popupClientRect = popup.value.getBoundingClientRect(); // Only has height when popup is showing on screen
+			const { parentBoundingClientRect, activatorBoundingClientRect, popupClientRect } =
+				getElementClientRects();
 
 			let offsetTop =
 				window.scrollY +
@@ -162,9 +171,8 @@ export default defineComponent({
 			}
 			const activatorChildOfFixedElement = isChildOfFixedElement(activator.value);
 
-			const parentBoundingClientRect = parent.value.getBoundingClientRect();
-			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
-			const popupClientRect = popup.value.getBoundingClientRect(); // Only has height when popup is showing on screen
+			const { parentBoundingClientRect, activatorBoundingClientRect, popupClientRect } =
+				getElementClientRects();
 
 			let offsetTop = calculateOffsetTop();
 
