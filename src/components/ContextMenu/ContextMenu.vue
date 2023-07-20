@@ -17,7 +17,7 @@
 	</div>
 </template>
 <script lang="ts">
-import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent } from 'vue';
+import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent, nextTick } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
 export default defineComponent({
@@ -35,6 +35,13 @@ export default defineComponent({
 		 * Aligns the component towards the bottom
 		 */
 		bottom: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Aligns the component towards the top
+		 */
+		top: {
 			type: Boolean,
 			default: false,
 		},
@@ -64,7 +71,7 @@ export default defineComponent({
 		const parent = ref(null);
 		const popup = ref(null);
 		const activator = ref(null);
-		const { bottom, maxHeight, stayOpen } = toRefs(props);
+		const { top, bottom, maxHeight, stayOpen } = toRefs(props);
 
 		const styles = reactive({
 			minWidth: 0,
@@ -74,7 +81,7 @@ export default defineComponent({
 		} as any);
 
 		const inputValue = ref(props.value);
-		
+
 		let hasBeenBoostrapped = false;
 
 		const outClick = event => {
@@ -114,8 +121,17 @@ export default defineComponent({
 						hasBeenBoostrapped = true;
 					}
 					window.addEventListener('click', outClick);
-					window.addEventListener('resize', resizeWindowHandler);
+					window.addEventListener('resize', resizeWindowHandler, {
+						passive: true,
+					});
 					calculatePosition();
+
+					if (top.value) {
+						nextTick(() => {
+							const offsetTop = calculateOffsetTop();
+							styles.top = `${offsetTop}px`;
+						});
+					}
 				} else {
 					styles.top = '-10000px';
 					styles.left = '-10000px';
@@ -125,20 +141,36 @@ export default defineComponent({
 			}
 		);
 
+		const getElementClientRects = () => ({
+			parentBoundingClientRect: parent.value.getBoundingClientRect(),
+			activatorBoundingClientRect: activator.value.children[0].getBoundingClientRect(),
+			popupClientRect: popup.value.getBoundingClientRect(), // Only has height when popup is showing on screen
+		});
+
+		const calculateOffsetTop = () => {
+			const { parentBoundingClientRect, activatorBoundingClientRect, popupClientRect } =
+				getElementClientRects();
+
+			let offsetTop =
+				window.scrollY +
+				parentBoundingClientRect.top +
+				(!bottom.value ? 0 : activatorBoundingClientRect.height);
+
+			offsetTop = top.value ? offsetTop - popupClientRect.height - 12 : offsetTop;
+
+			return offsetTop;
+		};
+
 		const calculatePosition = () => {
 			if (!parent.value || !activator.value.children[0]) {
 				return;
 			}
 			const activatorChildOfFixedElement = isChildOfFixedElement(activator.value);
 
-			const parentBoundingClientRect = parent.value.getBoundingClientRect();
-			const activatorBoundingClientRect = activator.value.children[0].getBoundingClientRect();
-			const popupClientRect = popup.value.getBoundingClientRect();
+			const { parentBoundingClientRect, activatorBoundingClientRect, popupClientRect } =
+				getElementClientRects();
 
-			let offsetTop =
-				parentBoundingClientRect.top +
-				window.scrollY +
-				(!bottom.value ? 0 : activatorBoundingClientRect.height);
+			let offsetTop = calculateOffsetTop();
 
 			let offsetLeft = activatorBoundingClientRect.left;
 

@@ -76,3 +76,15 @@ export const IsNull = () => ({
         <farm-input-datepicker inputId="input-custom-id-8" v-model="date" :required="true" />
     </div>`,
 });
+
+export const TopPositioned = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="top" />
+		{{ date }}
+    </div>`,
+});
