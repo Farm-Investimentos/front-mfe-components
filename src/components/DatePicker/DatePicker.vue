@@ -4,7 +4,8 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
-		bottom
+		:bottom="position === 'bottom'"
+		:top="position === 'top'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -51,9 +52,13 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter, convertDate, checkDateValid } from '../../helpers/date';
+import {
+	defaultFormat as dateDefaultFormatter,
+	convertDate,
+	checkDateValid,
+} from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
@@ -93,6 +98,13 @@ export default defineComponent({
 			default: null,
 		},
 		/**
+		 * Min date (ISO format)
+		 */
+		position: {
+			type: String as PropType<'top' | 'bottom'>,
+			default: 'bottom',
+		},
+		/**
 		 * Required field (inside form)
 		 */
 		required: {
@@ -111,9 +123,9 @@ export default defineComponent({
 			dateField: this.value,
 			fieldRange: s,
 			checkDateValid: value => {
-				if(value.length > 0) {
+				if (value.length > 0) {
 					const isValid = checkDateValid(value);
-					return  isValid ? true : 'Data inválida';
+					return isValid ? true : 'Data inválida';
 				}
 				return true;
 			},
@@ -121,7 +133,7 @@ export default defineComponent({
 				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
 			checkMax: value => {
-				if(!this.required && value.length === 0) {
+				if (!this.required && value.length === 0) {
 					return true;
 				}
 				return this.max && new Date(convertDate(value)) > new Date(this.max)
@@ -129,13 +141,13 @@ export default defineComponent({
 					: true;
 			},
 			checkMin: value => {
-				if(!this.required && value.length === 0) {
+				if (!this.required && value.length === 0) {
 					return true;
 				}
-				if(this.min) {
+				if (this.min) {
 					const dateSelected = new Date(convertDate(value));
 					const dateMin = new Date(convertDate(this.min));
-					if(dateSelected.getTime() >= dateMin.getTime()){
+					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
 					return 'A data está fora do período permitido';
