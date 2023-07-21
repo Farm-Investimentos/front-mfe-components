@@ -83,7 +83,7 @@ export const BottomFalse = () => ({
 			date: '2023-08-01',
 		};
 	},
-	template: `<div style='max-width: 320px'><farm-input-datepicker :bottom="false" inputId="input-custom-id-1" v-model="date" /></div>`,
+	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" inputId="input-custom-id-1" v-model="date" /></div>`,
 });
 export const TopPositioned = () => ({
 	data() {
@@ -93,6 +93,18 @@ export const TopPositioned = () => ({
 	},
 	template: `<div style='max-width: 320px'>
         <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="top" />
+		{{ date }}
+    </div>`,
+});
+
+export const CenterPositioned = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="center" />
 		{{ date }}
     </div>`,
 });
