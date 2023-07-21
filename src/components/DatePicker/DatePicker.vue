@@ -101,7 +101,7 @@ export default defineComponent({
 		 * Min date (ISO format)
 		 */
 		position: {
-			type: String as PropType<'top' | 'bottom'>,
+			type: String as PropType<'top' | 'bottom' | 'center'>,
 			default: 'bottom',
 		},
 		/**
