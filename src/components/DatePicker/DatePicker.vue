@@ -4,7 +4,8 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
-		:bottom="bottom"
+		:bottom="position === 'bottom'"
+		:top="position === 'top'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -51,7 +52,7 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
 import {
 	defaultFormat as dateDefaultFormatter,
@@ -95,6 +96,13 @@ export default defineComponent({
 		min: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * Min date (ISO format)
+		 */
+		position: {
+			type: String as PropType<'top' | 'bottom'>,
+			default: 'bottom',
 		},
 		/**
 		 * Required field (inside form)

@@ -85,3 +85,14 @@ export const BottomFalse = () => ({
 	},
 	template: `<div style='max-width: 320px'><farm-input-datepicker :bottom="false" inputId="input-custom-id-1" v-model="date" /></div>`,
 });
+export const TopPositioned = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="top" />
+		{{ date }}
+    </div>`,
+});
