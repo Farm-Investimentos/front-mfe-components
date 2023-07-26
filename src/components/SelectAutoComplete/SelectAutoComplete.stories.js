@@ -10,7 +10,6 @@ export const Primary = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 0, text: 'value 0' },
 				{ value: 1, text: 'value 1' },
 				{ value: 2, text: 'value 2' },
@@ -33,7 +32,6 @@ export const InitialValue = () => ({
 		return {
 			v: 1,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -51,7 +49,6 @@ export const Readonly = () => ({
 		return {
 			v: 1,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -69,7 +66,6 @@ export const HintText = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -87,7 +83,6 @@ export const PersistentHintText = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -105,7 +100,6 @@ export const Disabled = () => ({
 		return {
 			v: 1,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -123,7 +117,6 @@ export const Validate = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -145,7 +138,6 @@ export const Reset = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: ' value 1' },
 				{ value: 2, text: ' value 2' },
 				{ value: 3, text: ' value 3' },
@@ -174,7 +166,6 @@ export const CustomKeys = () => ({
 		return {
 			v: null,
 			items: [
-				{ id: null, label: 'Nenhum' },
 				{ id: 1, label: ' value 1' },
 				{ id: 2, label: ' value 2' },
 				{ id: 3, label: ' value 3' },
@@ -192,7 +183,6 @@ export const OutsideChangeVmodel = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 1, text: 'value 1' },
 				{ value: 2, text: 'value 2' },
 				{ value: 3, text: 'value 3' },
@@ -316,7 +306,6 @@ export const ChangeEvent = () => ({
 		return {
 			v: null,
 			items: [
-				{ value: null, text: 'Nenhum' },
 				{ value: 0, text: 'value 0' },
 				{ value: 1, text: 'value 1' },
 				{ value: 2, text: 'value 2' },

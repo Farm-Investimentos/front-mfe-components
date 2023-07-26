@@ -14,7 +14,7 @@
 		:id="customId"
 	>
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
-			<farm-list v-if="!readonly" ref="listRef">
+			<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
 				<farm-listitem
 					tabindex="0"
 					v-for="(item, index) in showFilteredItems ? filteredItems : items"
@@ -56,6 +56,7 @@
 						@focusout="onFocus(false)"
 						@input="onInput"
 						@blur="onBlur"
+						@keyup="onKeyUp"
 						autocomplete="off"
 					/>
 					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
@@ -231,7 +232,6 @@ export default defineComponent({
 			notChecked,
 			filteredItems,
 			inputField,
-			keys,
 		} = buildData(props);
 		
 		const listRef = ref();
@@ -251,28 +251,25 @@ export default defineComponent({
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 		
+		const searchText = ref('');
 		const filterOptions = () => {
-			const searchText = selectedText.value.toLowerCase();
-			if (!searchText || searchText.includes('+')) {
+			searchText.value = selectedText.value.toLowerCase();
+			if (!searchText || searchText.value.includes('+')) {
 				filteredItems.value = items.value;
 				return;
 			}
 
 			filteredItems.value = items.value.filter(
-				(item) => item[itemText.value].toLowerCase().includes(searchText)
+				(item) => item[itemText.value].toLowerCase().includes(searchText.value)
 			);
 
-			if (filteredItems.value.length === 0 && selectedText.value.trim() !== '') {
+			if (filteredItems.value.length === 0 && searchText.value.trim() !== '') {
 				filteredItems.value = [];
 			}
 		};
 
 		const showFilteredItems = computed(() => {
-			return isVisible.value && selectedText.value.trim() !== '';
-		});
-
-		watch(selectedText, () => {
-			filterOptions();
+			return isVisible.value && searchText.value.trim() !== '';
 		});
 		
 		watch(
@@ -348,10 +345,15 @@ export default defineComponent({
 			isBlured.value = true;
 			validate(innerValue.value);
 			emit('blur', event);
+			
 			setTimeout(() => {
-				if (innerValue.value == null) {
-					selectedText.value = '';
-				} else if (!multiple.value){
+				if (innerValue.value != null && selectedText.value.trim() == '' && !multiple.value) {
+					searchText.value = '';
+					innerValue.value = null;
+					return;
+				}
+
+				if (!multiple.value) {
 					const selectedItem = items.value.find(item => item[itemValue.value] === innerValue.value);
 					if (selectedItem) {
 						selectedText.value = selectedItem[itemText.value];
@@ -359,17 +361,16 @@ export default defineComponent({
 						selectedText.value = '';
 					}
 				} else {
+					searchText.value = '';
 					addLabelToMultiple();
 				}
+				
+				
 			}, 150);
 		};
 
 		const onFocus = (focus: boolean) => {
-			if (focus) {
-				setTimeout(() => {
-					selectedText.value = '';
-				}, 150);
-			}
+			
 			isFocus.value = focus;
 		};
 
@@ -457,25 +458,12 @@ export default defineComponent({
 		
 		const onInput = () => {
 			isVisible.value = true; 
-			filterOptions();
 		};
 
-		function onKeyDown(e) {
+		function onKeyUp(event) {
 			if (props.readonly) return;
-
-			if (['Space'].includes(e.code)) {
-				isVisible.value = true;
-				e.currentTarget.click();
-			}
-			if (['Escape'].includes(e.code)) {
-				isVisible.value = false;
-			}
-
-			if (keys[e.code]) {
-				listRef.value.focus(keys[e.code]);
-			}
-
-			e.preventDefault();
+			filterOptions();
+			event.preventDefault();
 		}
 
 		function addFocusToInput() {
@@ -511,13 +499,14 @@ export default defineComponent({
 			multipleValues,
 			addLabelToMultiple,
 			inputField,
-			onKeyDown,
+			onKeyUp,
 			addFocusToInput,
 			filterOptions,
 			onInput,
 			listRef,
 			filteredItems,
-			showFilteredItems
+			showFilteredItems,
+			searchText
 		};
 	},
 });
