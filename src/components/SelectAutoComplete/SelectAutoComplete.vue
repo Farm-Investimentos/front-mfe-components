@@ -253,7 +253,7 @@ export default defineComponent({
 		
 		const filterOptions = () => {
 			const searchText = selectedText.value.toLowerCase();
-			if (!searchText) {
+			if (!searchText || searchText.includes('+')) {
 				filteredItems.value = items.value;
 				return;
 			}
@@ -365,12 +365,15 @@ export default defineComponent({
 		};
 
 		const onFocus = (focus: boolean) => {
+			if (focus) {
+				setTimeout(() => {
+					selectedText.value = '';
+				}, 150);
+			}
 			isFocus.value = focus;
 		};
 
 		const selectItem = item => {
-			
-			inputField.value.focus();
 			
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
