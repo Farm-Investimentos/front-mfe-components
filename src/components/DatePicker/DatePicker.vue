@@ -19,6 +19,7 @@
 			:header-date-format="formatDatePickerHeader"
 			:max="max"
 			:min="min"
+			:allowed-dates="allowedDates"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -45,7 +46,7 @@
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
 				:id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire]"
+				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -105,6 +106,13 @@ export default defineComponent({
 			default: 'bottom',
 		},
 		/**
+		 * Allowed dates to be selected and validated
+		 */
+		allowedDates: {
+			type: Function,
+			default: () => {},
+		},
+		/**
 		 * Required field (inside form)
 		 */
 		required: {
@@ -153,6 +161,15 @@ export default defineComponent({
 					return 'A data está fora do período permitido';
 				}
 				return true;
+			},
+			checkIsInAllowedDates: value => {
+				const dateSelected = convertDate(value);
+
+				if (!this.required && value.length === 0) {
+					return true;
+				}
+
+				return this.allowedDates(dateSelected) || 'Data inválida';
 			},
 		};
 	},
