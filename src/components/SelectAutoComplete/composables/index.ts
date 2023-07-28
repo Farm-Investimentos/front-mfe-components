@@ -1,3 +1,3 @@
-import buildData from './buildData';
+import useSelectAutoComplete from './useSelectAutoComplete';
 
-export { buildData };
+export { useSelectAutoComplete };

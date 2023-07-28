@@ -90,7 +90,7 @@ import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
 import deepEqual from '../../composition/deepEqual';
 import randomId from '../../helpers/randomId';
-import { buildData } from './composition';
+import { useSelectAutoComplete } from './composables';
 
 export default defineComponent({
 	name: 'farm-select-auto-complete',
@@ -234,7 +234,7 @@ export default defineComponent({
 			notChecked,
 			filteredItems,
 			inputField,
-		} = buildData(props);
+		} = useSelectAutoComplete(props);
 		
 		const listRef = ref();
 
