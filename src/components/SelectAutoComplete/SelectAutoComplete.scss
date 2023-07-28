@@ -1,0 +1,49 @@
+@import '../TextFieldV2/TextFieldV2.scss';
+@import '../../configurations/mixins';
+
+.farm-select {
+	&__hint-text {
+		@include hintText;
+	}
+}
+
+.farm-listitem--selected {
+	background-color: var(--farm-neutral-lighten);
+}
+
+.farm-contextmenu {
+	width: 100%;
+}
+
+.farm-icon {
+	transition: all ease 0.3s;
+	cursor: pointer;
+
+	&--rotate {
+		transform: rotate(180deg);
+	}
+}
+
+.farm-select__checkbox {
+	margin-right: 8px;
+}
+
+:deep(.farm-listitem:hover .farm-typography) {
+	color: var(--farm-primary-base);
+}
+
+:deep(.farm-listitem:focus .farm-typography) {
+	color: var(--farm-primary-base);
+}
+
+:deep(.farm-listitem:hover .farm-checkbox .farm-icon) {
+	color: var(--farm-primary-lighten);
+}
+
+:deep(.farm-listitem:focus .farm-checkbox .farm-icon) {
+	color: var(--farm-primary-lighten);
+}
+
+:deep(.farm-listitem:hover .farm-checkbox.farm-checkbox--checked .farm-icon) {
+	color: white;
+}

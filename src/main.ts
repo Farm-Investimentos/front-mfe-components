@@ -77,6 +77,7 @@ export * from './components/ProgressBar';
 export * from './components/Radio';
 export * from './components/RadioGroup';
 export * from './components/Select';
+export * from './components/SelectAutoComplete';
 export * from './components/Stepper';
 export * from './components/Switcher';
 export * from './components/Tabs';
@@ -85,7 +86,6 @@ export * from './components/TextFieldV2';
 export * from './components/Tooltip';
 export * from './components/Typography';
 export * from './components/ValueCaption';
-
 export * from './components/layout/Box';
 export * from './components/layout/Col';
 export * from './components/layout/Container';
