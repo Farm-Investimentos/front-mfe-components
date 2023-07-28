@@ -73,6 +73,47 @@ export const IsNull = () => ({
 		};
 	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker inputId="input-custom-id-8" v-model="date" :required="true" />
+		<farm-input-datepicker inputId="input-custom-id-8" v-model="date" :required="true" />
+    </div>`,
+});
+
+export const OnlyAllowedDates = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	props: {
+		allowedDates: {
+			default: () => (value) => {
+				const day = parseInt(value.split('-')[2], 10);
+				return [5, 10, 15, 20, 25].includes(day);
+			}
+		}
+	},
+	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" :allowed-dates="allowedDates" inputId="input-custom-id-1" v-model="date" /></div>`,
+});
+
+export const TopPositioned = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="top" />
+		{{ date }}
+    </div>`,
+});
+
+export const CenterPositioned = () => ({
+	data() {
+		return {
+			date: '',
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="center" />
+		{{ date }}
     </div>`,
 });

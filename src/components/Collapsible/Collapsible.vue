@@ -4,13 +4,16 @@
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
 					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
-						<farm-icon size="md" color="secondary-green">
+						<farm-icon size="md" :color="colorIcon">
 							{{ icon }}
 						</farm-icon>
 					</div>
 					<farm-heading type="6" color="black">
 						{{ title }}
 					</farm-heading>
+					<farm-btn outlined class="ml-6" v-if="hasButton" @click.stop="onClick()">
+						{{ labelButton }}
+					</farm-btn>
 				</div>
 				<div class="collapsible__content-right">
 					<div class="collapsible__icon" v-if="showChip">
@@ -83,6 +86,27 @@ export default defineComponent({
 			default: '',
 		},
 		/**
+		 * has butotn
+		 */
+		hasButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * export button
+		 */
+		onExport: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * label button
+		 */
+		labelButton: {
+			type: String,
+			default: 'Exportar',
+		},
+		/**
 		 * color of Chip
 		 */
 		colorChip: {
@@ -101,6 +125,25 @@ export default defineComponent({
 			>,
 			default: 'primary',
 		},
+		colorIcon: {
+			type: String as PropType<
+				| 'primary'
+				| 'secondary'
+				| 'secondary-green'
+				| 'secondary-golden'
+				| 'neutral'
+				| 'info'
+				| 'success'
+				| 'error'
+				| 'warning'
+				| 'extra-1'
+				| 'extra-2'
+			>,
+			default: 'secondary-green',
+		},
+		/**
+		 * Is dense
+		 */
 		dense: {
 			type: Boolean,
 			default: false,
@@ -112,6 +155,9 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Is variation
+		 */
 		variation: {
 			type: String,
 			default: 'base',
@@ -133,6 +179,9 @@ export default defineComponent({
 		onToggleCollapsible(status: boolean): void {
 			this.status = !status;
 			this.$emit('open', this.status);
+		},
+		onClick(): void {
+			this.$emit('onClick');
 		},
 	},
 });
