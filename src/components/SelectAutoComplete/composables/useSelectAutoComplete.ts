@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export default function (props) {
+export default function useSelectAutoComplete (props) {
 	const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
 	const innerValue = ref(props.value);
 	const isTouched = ref(false);

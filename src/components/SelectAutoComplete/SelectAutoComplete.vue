@@ -1,88 +1,90 @@
 <template>
-	<div
-		:class="{
-			'farm-textfield': true,
-			'farm-textfield--validatable': rules.length > 0,
-			'farm-textfield--touched': isTouched,
-			'farm-textfield--blured': isBlured,
-			'farm-textfield--error': hasError,
-			'farm-textfield--disabled': disabled,
-			'farm-textfield--focused': isFocus || isVisible,
-			'farm-textfield--hiddendetails': hideDetails,
-		}"
-		v-if="!readonly && !disabled"
-		:id="customId"
-	>
-		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
-			<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
-				<farm-listitem
-					tabindex="0"
-					v-for="(item, index) in showFilteredItems ? filteredItems : items"
-					clickable
-					hoverColorVariation="lighten"
-					hover-color="primary"
-					:key="'contextmenu_item_' + index"
-					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
-					@click='selectItem(item)'
-				>
-					<farm-checkbox
-						class="farm-select__checkbox"
-						v-model="checked"
-						value="1"
-						size="sm"
-						v-if="isChecked(item)"
-					/>
-					<farm-checkbox
-						class="farm-select__checkbox"
-						v-model="checked"
-						value="2"
-						size="sm"
-						v-else-if="multiple"
-					/>
-					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
-				</farm-listitem>
-				<farm-listitem v-if=" (!items || items.length === 0) || (showFilteredItems && filteredItems.length === 0)">
-					{{ noDataText }}
-				</farm-listitem>
-			</farm-list>
-			<template v-slot:activator="{}">
-				<div class="farm-textfield--input farm-textfield--input--iconed">
-					<input
-						v-bind="$attrs"
-						v-model="selectedText"
-						ref="inputField"
-						:id="$props.id"
-						@focusin="onFocus(true)"
-						@focusout="onFocus(false)"
-						@input="onInput"
-						@blur="onBlur"
-						@keyup="onKeyUp"
-						autocomplete="off"
-					/>
-					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
-						menu-down
-					</farm-icon>
-				</div>
-			</template>
-		</farm-contextmenu>	
-		<farm-caption v-if="showErrorText" color="error" variation="regular">
-			{{ errorBucket[0] }}
-		</farm-caption>
-		<farm-caption
-			v-if="hint && !showErrorText"
-			class="farm-select__hint-text"
-			:class="{ 'farm-select__hint-text--show': persistentHint || isFocus }"
-			color="gray"
-			variation="regular"
+	<div ref="outsideClickHandler" @click="handleOutsideClick">
+		<div
+			:class="{
+				'farm-textfield': true,
+				'farm-textfield--validatable': rules.length > 0,
+				'farm-textfield--touched': isTouched,
+				'farm-textfield--blured': isBlured,
+				'farm-textfield--error': hasError,
+				'farm-textfield--disabled': disabled,
+				'farm-textfield--focused': isFocus || isVisible,
+				'farm-textfield--hiddendetails': hideDetails,
+			}"
+			v-if="!readonly && !disabled"
+			:id="customId"
 		>
-			{{ hint }}
-		</farm-caption>
+			<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
+				<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
+					<farm-listitem
+						tabindex="0"
+						v-for="(item, index) in showFilteredItems ? filteredItems : items"
+						clickable
+						hoverColorVariation="lighten"
+						hover-color="primary"
+						:key="'contextmenu_item_' + index"
+						:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+						@click='selectItem(item)'
+					>
+						<farm-checkbox
+							class="farm-select__checkbox"
+							v-model="checked"
+							value="1"
+							size="sm"
+							v-if="isChecked(item)"
+						/>
+						<farm-checkbox
+							class="farm-select__checkbox"
+							v-model="checked"
+							value="2"
+							size="sm"
+							v-else-if="multiple"
+						/>
+						<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
+					</farm-listitem>
+					<farm-listitem v-if=" (!items || items.length === 0) || (showFilteredItems && filteredItems.length === 0)">
+						{{ noDataText }}
+					</farm-listitem>
+				</farm-list>
+				<template v-slot:activator="{}">
+					<div class="farm-textfield--input farm-textfield--input--iconed">
+						<input
+							v-bind="$attrs"
+							v-model="selectedText"
+							ref="inputField"
+							:id="$props.id"
+							@focusin="onFocus(true)"
+							@focusout="onFocus(false)"
+							@input="onInput"
+							@blur="onBlur"
+							@keyup="onKeyUp"
+							autocomplete="off"
+						/>
+						<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
+							menu-down
+						</farm-icon>
+					</div>
+				</template>
+			</farm-contextmenu>	
+			<farm-caption v-if="showErrorText" color="error" variation="regular">
+				{{ errorBucket[0] }}
+			</farm-caption>
+			<farm-caption
+				v-if="hint && !showErrorText"
+				class="farm-select__hint-text"
+				:class="{ 'farm-select__hint-text--show': persistentHint || isFocus }"
+				color="gray"
+				variation="regular"
+			>
+				{{ hint }}
+			</farm-caption>
+		</div>
+		<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
 	</div>
-	<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -252,6 +254,7 @@ export default defineComponent({
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 		
 		const searchText = ref('');
+		
 		const filterOptions = () => {
 			searchText.value = selectedText.value.toLowerCase();
 			if (!searchText || searchText.value.includes('+')) {
@@ -267,7 +270,7 @@ export default defineComponent({
 				filteredItems.value = [];
 			}
 		};
-
+			
 		const showFilteredItems = computed(() => {
 			return isVisible.value && searchText.value.trim() !== '';
 		});
@@ -320,10 +323,21 @@ export default defineComponent({
 				validate(innerValue.value);
 			}
 		);
+		
 
+		const handleOutsideClick = (event) => {
+			clearSearchAndReturnSelection(event);
+
+		};
+		
 		onBeforeMount(() => {
 			validate(innerValue.value);
 			updateSelectedTextValue();
+			document.removeEventListener('click', handleOutsideClick);
+		});
+
+		onMounted(() => {
+			document.addEventListener('click', handleOutsideClick);
 		});
 
 		const reset = () => {
@@ -347,26 +361,25 @@ export default defineComponent({
 			emit('blur', event);
 			
 			setTimeout(() => {
-				if (innerValue.value != null && selectedText.value.trim() == '' && !multiple.value) {
-					searchText.value = '';
-					innerValue.value = null;
-					return;
-				}
-
-				if (!multiple.value) {
-					const selectedItem = items.value.find(item => item[itemValue.value] === innerValue.value);
-					if (selectedItem) {
-						selectedText.value = selectedItem[itemText.value];
-					} else {
-						selectedText.value = '';
-					}
-				} else {
+				if (multiple.value){
 					searchText.value = '';
 					addLabelToMultiple();
+					return;
 				}
-				
-				
-			}, 150);
+			}, 100);
+			
+		};
+
+		const clearSearchAndReturnSelection = (event) => {
+			if (!event.srcElement.className.includes('farm-listitem')) {
+				if (innerValue.value !== null) {
+					if (!selectedText.value) {
+						innerValue.value = null;
+					}
+					searchText.value = '';
+				}
+				updateSelectedTextValue();
+			}
 		};
 
 		const onFocus = (focus: boolean) => {
@@ -396,10 +409,12 @@ export default defineComponent({
 
 			setTimeout(() => {
 				emit('change', innerValue.value);
+				searchText.value = '';
 			}, 100);
 		};
 
 		const clickInput = () => {
+		
 			isTouched.value = true;
 			emit('click');
 		};
@@ -506,7 +521,8 @@ export default defineComponent({
 			listRef,
 			filteredItems,
 			showFilteredItems,
-			searchText
+			searchText,
+			handleOutsideClick
 		};
 	},
 });

@@ -1,6 +1,6 @@
 import buildData from '../composition/buildData';
 
-describe('buildData', () => {
+describe('useSelectAutoComplete', () => {
 	it('should initialize with empty arrays and false values', () => {
 		const props = { value: [] };
 		const result = buildData(props);
