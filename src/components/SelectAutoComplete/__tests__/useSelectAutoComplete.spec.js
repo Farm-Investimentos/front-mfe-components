@@ -1,9 +1,9 @@
-import buildData from '../composition/buildData';
+import useSelectAutoComplete from '../composables/useSelectAutoComplete';
 
 describe('useSelectAutoComplete', () => {
 	it('should initialize with empty arrays and false values', () => {
 		const props = { value: [] };
-		const result = buildData(props);
+		const result = useSelectAutoComplete(props);
 
 		expect(result.multipleValues.value).toEqual([]);
 		expect(result.innerValue.value).toEqual([]);
@@ -20,7 +20,7 @@ describe('useSelectAutoComplete', () => {
 
 	it('should initialize with provided values', () => {
 		const props = { value: 'test' };
-		const result = buildData(props);
+		const result = useSelectAutoComplete(props);
 
 		expect(result.multipleValues.value).toEqual([]);
 		expect(result.innerValue.value).toBe('test');
