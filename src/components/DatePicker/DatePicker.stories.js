@@ -77,14 +77,23 @@ export const IsNull = () => ({
     </div>`,
 });
 
-export const BottomFalse = () => ({
+export const OnlyAllowedDates = () => ({
 	data() {
 		return {
-			date: '2023-08-01',
+			date: '',
 		};
 	},
-	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" inputId="input-custom-id-1" v-model="date" /></div>`,
+	props: {
+		allowedDates: {
+			default: () => (value) => {
+				const day = parseInt(value.split('-')[2], 10);
+				return [5, 10, 15, 20, 25].includes(day);
+			}
+		}
+	},
+	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" :allowed-dates="allowedDates" inputId="input-custom-id-1" v-model="date" /></div>`,
 });
+
 export const TopPositioned = () => ({
 	data() {
 		return {
