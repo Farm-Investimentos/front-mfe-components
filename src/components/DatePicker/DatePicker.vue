@@ -110,7 +110,7 @@ export default defineComponent({
 		 */
 		allowedDates: {
 			type: Function,
-			default: () => {},
+			default: () => true,
 		},
 		/**
 		 * Required field (inside form)
