@@ -20,7 +20,7 @@
 			:max="max"
 			:min="min"
 			:allowed-dates="allowedDates"
-			:picker-date.sync="pickerDate"
+			:picker-date.sync="internalPickerDate"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -135,6 +135,7 @@ export default defineComponent({
 	data() {
 		const s = this.formatDateRange(this.value);
 		return {
+			internalPickerDate: this.pickerDate,
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
