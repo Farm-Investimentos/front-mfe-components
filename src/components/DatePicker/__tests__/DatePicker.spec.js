@@ -73,6 +73,23 @@ describe('DatePicker component', () => {
 			});
 			expect(component.isDateFieldDisabled).toBe(false);
 		});
+
+		it('should allow all dates', async () => {
+			await wrapper.setProps({
+				allowedDates: () => true
+			});
+			expect(component.checkIsInAllowedDates('2023-07-03')).toBe(true);
+			expect(component.checkIsInAllowedDates('2099-12-20')).toBe(true);
+			expect(component.checkIsInAllowedDates('1985-01-23')).toBe(true);
+		});
+
+		it('should allow only dates in year 2077', async () => {
+			await wrapper.setProps({
+				allowedDates: (value) => new Date(value).getFullYear() === 2077
+			});
+			expect(component.checkIsInAllowedDates('2077-05-03')).toBe(true);
+			expect(component.checkIsInAllowedDates('2023-05-03')).toBe('Data inválida');
+		});
 	});
 
 	describe('methods', () => {
