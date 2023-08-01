@@ -20,6 +20,7 @@
 			:max="max"
 			:min="min"
 			:allowed-dates="allowedDates"
+			:picker-date.sync="pickerDate"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -111,6 +112,13 @@ export default defineComponent({
 		allowedDates: {
 			type: Function,
 			default: () => true,
+		},
+		/**
+		 * Current month/year to show when opened
+		 */
+		pickerDate: {
+			type: String,
+			default: '',
 		},
 		/**
 		 * Required field (inside form)
