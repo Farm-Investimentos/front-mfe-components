@@ -376,8 +376,8 @@ export default defineComponent({
 					if (!selectedText.value) {
 						innerValue.value = null;
 					}
-					searchText.value = '';
 				}
+				searchText.value = '';
 				updateSelectedTextValue();
 			}
 		};
