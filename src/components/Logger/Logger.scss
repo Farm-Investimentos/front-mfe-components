@@ -1,9 +1,33 @@
+$colorsList: success, error, info;
+
 .logger {
 	display: flex;
 	flex-direction: column;
-}
 
-$colorsList: success, error, info;
+	&--horizontal {
+		flex-direction: row;
+		gap: 48px;
+
+		.logger__divider {
+			width: auto;
+			min-width: 192px;
+			height: 1px;
+			margin: 16px -96px 0 -96px;
+
+			@each $fromColor in $colorsList {
+				@each $toColor in $colorsList {
+					&.logger__divider--#{$fromColor}-to-#{$toColor} {
+						background: linear-gradient(
+							to right,
+							var(--farm-#{$fromColor}-base),
+							var(--farm-#{$toColor}-base)
+						);
+					}
+				}
+			}
+		}
+	}
+}
 
 .logger__divider {
 	height: 40px;
@@ -13,7 +37,11 @@ $colorsList: success, error, info;
 	@each $fromColor in $colorsList {
 		@each $toColor in $colorsList {
 			&.logger__divider--#{$fromColor}-to-#{$toColor} {
-				background: linear-gradient(to bottom, var(--farm-#{$fromColor}-base), var(--farm-#{$toColor}-base));
+				background: linear-gradient(
+					to bottom,
+					var(--farm-#{$fromColor}-base),
+					var(--farm-#{$toColor}-base)
+				);
 			}
 		}
 	}

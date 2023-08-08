@@ -15,6 +15,26 @@
 	height: 74px;
 	align-items: center;
 
+	&--horizontal {
+		flex-direction: column;
+		height: auto;
+
+		> div {
+			align-items: center;
+			text-align: center;
+			gap: 8px;
+			margin-bottom: 8px;
+
+			.logger__item--spacing-bottom {
+				margin-bottom: 0 !important;
+			}
+		}
+
+		> .farm-icon {
+			margin-bottom: 8px;
+		}
+	}
+
 	> div {
 		display: flex;
 		flex-direction: column;
@@ -37,6 +57,8 @@
 .logger__item > .farm-icon {
 	border: 1px solid var(--farm-stroke-base);
 	border-radius: 50%;
+	min-width: 32px;
+	min-height: 32px;
 	width: 32px;
 	height: 32px;
 	display: block;

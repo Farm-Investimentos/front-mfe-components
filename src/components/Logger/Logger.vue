@@ -1,7 +1,11 @@
 <template>
-	<section class="logger">
+	<section class="logger" :class="{ 'logger--horizontal': !vertical }">
 		<template v-for="(item, index) in items">
-			<farm-logger-item :item="item" :key="`logger_item_${index}`" />
+			<farm-logger-item
+				:item="item"
+				:key="`logger_item_${index}`"
+				:class="{ 'logger__item--horizontal': !vertical }"
+			/>
 			<div
 				v-if="hasDivider(index)"
 				:class="{
@@ -24,6 +28,10 @@ export default defineComponent({
 		 * List of logger items
 		 */
 		items: { required: true, type: Array as PropType<Array<ILoggerItem>> },
+		/**
+		 * Vertical or horizontal
+		 */
+		vertical: { type: Boolean, default: true },
 	},
 	methods: {
 		hasDivider(index: number): boolean {
