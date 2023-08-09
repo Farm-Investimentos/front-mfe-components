@@ -27,6 +27,14 @@ $colorsList: success, error, info;
 			}
 		}
 	}
+
+	&--left-aligned {
+		align-items: flex-start;
+
+		.logger__divider {
+			margin: 16px -32px 0 -160px;
+		}
+	}
 }
 
 .logger__divider {

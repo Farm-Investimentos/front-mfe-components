@@ -87,4 +87,13 @@
 			margin-left: 0;
 		}
 	}
+
+	&--left-aligned {
+		align-items: flex-start;
+
+		> div {
+			align-items: flex-start;
+			text-align: left;
+		}
+	}
 }

@@ -180,3 +180,49 @@ export const Horizontal = () => ({
 	},
 	template: `<farm-logger :items="items" :vertical="false" />`,
 });
+
+export const HorizontalLeftAligned = () => ({
+	data() {
+		return {
+			items: [
+				{
+					message: 'Recusado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+				{
+					message: 'Aprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'success',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+				{
+					message: 'Aprovado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'success',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+				{
+					message: 'Recusado entre as pré elegíveis',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'error',
+					details() {
+						alert('Ver Detalhes');
+					},
+				}
+			],
+		};
+	},
+	template: `<farm-logger :items="items" :vertical="false" align="left" />`,
+});

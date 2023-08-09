@@ -1,10 +1,16 @@
 <template>
-	<section class="logger" :class="{ 'logger--horizontal': !vertical }">
+	<section
+		class="logger"
+		:class="{ 'logger--horizontal': !vertical, 'logger--left-aligned': align === 'left' }"
+	>
 		<template v-for="(item, index) in items">
 			<farm-logger-item
 				:item="item"
 				:key="`logger_item_${index}`"
-				:class="{ 'logger__item--horizontal': !vertical }"
+				:class="{
+					'logger__item--horizontal': !vertical,
+					'logger__item--left-aligned': align === 'left',
+				}"
 			/>
 			<div
 				v-if="hasDivider(index)"
@@ -32,6 +38,10 @@ export default defineComponent({
 		 * Vertical or horizontal
 		 */
 		vertical: { type: Boolean, default: true },
+		/**
+		 * Items alignment
+		 */
+		align: { type: String as PropType<'center' | 'left'>, default: 'center' },
 	},
 	methods: {
 		hasDivider(index: number): boolean {
