@@ -94,6 +94,19 @@ export const OnlyAllowedDates = () => ({
 	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" :allowed-dates="allowedDates" inputId="input-custom-id-1" v-model="date" /></div>`,
 });
 
+export const WithInitialMonth = () => ({
+	data() {
+		return {
+			date: '',
+			pickerDate: '2023-01'
+		};
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" position="center" :picker-date.sync="pickerDate" />
+		{{ date }}
+    </div>`,
+});
+
 export const TopPositioned = () => ({
 	data() {
 		return {
