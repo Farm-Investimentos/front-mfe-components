@@ -1,0 +1,197 @@
+name: Gitflow Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Branch name to build and deploy'
+        required: true
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - uat
+        - prod
+      type_project:
+        description: 'Type of Project'
+        required: true
+        default: 'jar'
+        type: choice
+        options:
+        - jar
+        - catalina
+        - nest
+        - node
+      only_deploy:
+        description: 'Only Deploy'
+        required: true
+        default: 'false'
+        type: boolean         
+jobs:   
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        if: ${{ github.event.inputs.only_deploy == 'false' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch_name }}
+      
+      - name: Set up JDK 11
+        if: ${{ github.event.inputs.only_deploy == 'false' && github.event.inputs.type_project == 'jar' }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build with Maven
+        if: ${{ github.event.inputs.only_deploy == 'false' && github.event.inputs.type_project == 'jar' }}
+        run: mvn package -DskipTests=true
+        
+      - name: Configure dep NPM
+        if: ${{ github.event.inputs.only_deploy == 'false' && github.event.inputs.type_project == 'nest' }}
+        run: |
+          eval `ssh-agent -s`
+          echo '${{ secrets.PRIVATE_PACKAGES_KEY }}' > id
+          chmod 0600 id
+          mkdir -p /home/runner/.ssh/
+          ssh-keygen -F github.com || ssh-keyscan github.com >> /home/runner/.ssh/known_hosts && chmod 0600 /home/runner/.ssh/known_hosts
+          ssh-add id
+          npm install
+          npm i git+ssh://github.com/Farm-Investimentos/cadastros-nest-base#main
+          
+          npm run build
+      - uses: nelonoel/branch-name@v1.0.1
+
+      - name: Configure AWS credentials PROD
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TERRAFORM_PRD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_PRD_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      
+      - name: Set environment variables
+        id: vars
+        run: |
+          echo ::set-output name=repo_name::${GITHUB_REPOSITORY#*\/}
+      - name: Build, tag, and push image to Amazon ECR
+        if: ${{ github.event.inputs.only_deploy == 'false' }}
+        id: build-image
+        env:
+          ECR_REGISTRY: "700250599162.dkr.ecr.us-east-1.amazonaws.com"
+          IMAGE_BRANCH: ${{ github.ref }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          IMAGE_TAG=${{ github.event.inputs.branch_name }}-latest
+          ls -lah
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image_tag::$IMAGE_TAG"
+          echo "::set-output name=ecr::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Configure AWS credentials DEV
+        if: ${{ github.event.inputs.environment == 'dev' }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TERRAFORM_DEV_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_DEV_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Configure AWS credentials UAT
+        if: ${{ github.event.inputs.environment == 'uat' }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TERRAFORM_PRD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_PRD_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Configure AWS credentials prod
+        if: ${{ github.event.inputs.environment == 'prod' }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TERRAFORM_PRD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_PRD_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          
+      - name: Install and configure kubeclt
+        run: | 
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+          curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator && \
+          chmod +x /usr/local/bin/aws-iam-authenticator && \
+          chmod +x ./kubectl && \
+          mv ./kubectl /usr/local/bin/kubectl
+          
+      - name: Download K8s template
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            aws s3 cp s3://"${{ secrets.BUCKET_DEVOPS_DEV }}"/templates/k8s/deploy/develop_${{ github.event.inputs.type_project }}.yaml .
+          elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
+            aws s3 cp s3://"${{ secrets.BUCKET_DEVOPS_UAT }}"/templates/k8s/deploy/${{ github.event.inputs.environment }}_${{ github.event.inputs.type_project }}.yaml .
+          else
+            aws s3 cp s3://"${{ secrets.BUCKET_DEVOPS_PROD }}"/templates/k8s/deploy/${{ github.event.inputs.environment }}_${{ github.event.inputs.type_project }}.yaml .
+          fi
+      - name: Update Image name
+        id: update-image
+        run: |
+          REPO="${{ steps.vars.outputs.repo_name }}"
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            export URL="${{ secrets.URL_DEV }}"
+          elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
+            export URL="${{ secrets.URL_UAT }}"
+          else
+            export URL="${{ secrets.URL_PROD }}"
+          fi
+          
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            export FILE=develop_${{ github.event.inputs.type_project }}.yaml
+          else
+            export FILE=${{ github.event.inputs.environment }}_${{ github.event.inputs.type_project }}.yaml
+          fi
+          sed -i 's/repo/'$REPO'/g' $FILE
+          sed -i 's/url/'$URL'/g' $FILE
+          sed -i '/image\:/c\        image: ${{ steps.build-image.outputs.ecr }}' $FILE
+          cat $FILE
+          echo "::set-output name=file::$FILE"
+          
+      - name: Deploy to K8s
+        env:
+          ECR_REGISTRY: "700250599162.dkr.ecr.us-east-1.amazonaws.com"
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+        run: |
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            export CLUSTER="${{ secrets.CLUSTER_NAME_DEV }}"
+          elif [ "${{ github.event.inputs.environment }}" = "uat" ]; then
+            export CLUSTER="${{ secrets.CLUSTER_NAME_UAT}}"
+          else
+            export CLUSTER="${{ secrets.CLUSTER_NAME_PROD}}"
+          fi
+
+          set -e
+          aws eks update-kubeconfig --name "$CLUSTER" || {
+              echo "Erro ao atualizar o kubeconfig para o cluster $CLUSTER"
+              exit 1
+          }
+          kubectl apply -f "${{ steps.update-image.outputs.file }}" || {
+              echo "Erro ao aplicar o arquivo ${{ steps.update-image.outputs.file }}"
+              echo "Reiniciando a aplicação para baixar a nova imagem..."
+
+              REPO="${{ steps.vars.outputs.repo_name }}"
+              echo $REPO
+              NS="${{ github.event.inputs.environment }}"
+              echo $NS
+              IMAGE_TAG=${{ github.event.inputs.branch_name }}-latest
+              echo $IMAGE_TAG
+              IMAGE=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+              echo $IMAGE
+
+              kubectl -n "$NS" set image deployment/$REPO $IMAGE
+              kubectl -n "$NS" rollout restart deployment/$REPO
+  
+              exit 0
+          }
