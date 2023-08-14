@@ -13,7 +13,6 @@ on:
         options:
         - dev
         - uat
-        - prod
       type_project:
         description: 'Type of Project'
         required: true
