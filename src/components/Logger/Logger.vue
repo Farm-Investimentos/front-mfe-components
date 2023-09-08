@@ -1,20 +1,19 @@
 <template>
-	<section class="logger">
+	<section :class="{ 'logger': true, 'logger--horizontal': !vertical, 'logger--left-aligned': align === 'left' }">
 		<div v-for="(item, index) in items" :key="`logger_item_${index}`">
-			<farm-logger-item :item="item" />
-			<div
-				v-if="hasDivider(index)"
-				:class="{
-					logger__divider: true,
-					[dividerCssClass(index)]: true,
-				}"
-				:key="'divider_' + index"
-			></div>
+			<farm-logger-item :item="item" :class="{
+				'logger__item--horizontal': !vertical,
+				'logger__item--left-aligned': align === 'left',
+			}" />
+			<div v-if="hasDivider(index)" :class="{
+				logger__divider: true,
+				[dividerCssClass(index)]: true,
+			}" :key="'divider_' + index"></div>
 		</div>
 	</section>
 </template>
 <script lang="ts">
-import {  PropType } from 'vue';
+import { PropType } from 'vue';
 import ILoggerItem from './LoggerItem/ILoggerItem';
 
 export default {
@@ -24,6 +23,14 @@ export default {
 		 * List of logger items
 		 */
 		items: { required: true, type: Array as PropType<Array<ILoggerItem>> },
+		/**
+		 * Vertical or horizontal
+		 */
+		vertical: { type: Boolean, default: true },
+		/**
+		 * Items alignment
+		 */
+		align: { type: String as PropType<'center' | 'left'>, default: 'center' },
 	},
 	methods: {
 		hasDivider(index: number): boolean {

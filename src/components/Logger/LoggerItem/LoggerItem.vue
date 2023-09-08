@@ -28,12 +28,13 @@
 				variation="regular"
 				color="black"
 				colorVariation="50"
+				class="logger__item--user"
 				v-if="item.userName"
 			>
 				<farm-icon color="black" variation="50" size="xs">account-circle</farm-icon>
 				{{ item.userName }}
 			</farm-bodysmall>
-			<farm-caption variation="regular">
+			<farm-caption variation="regular" v-if="item.extraMessage">
 				{{ item.extraMessage }}
 			</farm-caption>
 		</div>
@@ -61,6 +62,10 @@ export default {
 		 * Logger item
 		 */
 		item: { required: true, type: Object as PropType<ILoggerItem> },
+		/**
+		 * Vertical or horizontal
+		 */
+		vertical: { type: Boolean, default: true },
 		customIcon: { type: String, required: false },
 	},
 	methods: {

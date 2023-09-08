@@ -26,7 +26,39 @@ export const Title = () => ({
 
 export const Icon = () => ({
 	template:
-		'<farm-collapsible icon="plus" title="With Icon">collapsible content</farm-collapsible>',
+		'<farm-collapsible icon="clipboard" title="With Icon">collapsible content</farm-collapsible>',
+});
+
+export const ColorIcons = () => ({
+	data() {
+		return {
+			colors,
+		};
+	},
+	template: `
+	<farm-row>
+		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
+			<h4 style="margin:15px">{{ color }}</h4>
+			<farm-collapsible 
+				style="margin-top:15px"
+				icon="clipboard" 
+				title="color icon" 
+				:colorIcon="color"
+			>
+			</farm-collapsible>
+		</farm-col>
+	</farm-row>`,
+});
+
+export const Export = () => ({
+	data() {
+		return {
+			clicked: false,
+		};
+	},
+	template: `<div>
+		clicked: {{clicked}} <farm-collapsible icon="clipboard" title="With Button" :hasButton="true" @onClick="value => clicked = !clicked" >collapsible content</farm-collapsible>
+		</div>`,
 });
 
 export const Opened = () => ({
@@ -110,7 +142,9 @@ export const Dense = () => ({
 Primary.storyName = 'Basic';
 Title.storyName = 'Title';
 Icon.storyName = 'Icon';
+Export.storyName = 'Export';
 Opened.storyName = 'Opened';
-ColorsChips.storyName = 'Colors';
+ColorIcons.storyName = 'Icon Colors';
+ColorsChips.storyName = 'Chip Colors';
 ColorsOutlinedChips.storyName = 'Outlined';
 Dense.storyName = 'Dense';

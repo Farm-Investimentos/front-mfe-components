@@ -43,6 +43,8 @@ export default {
 				| 'label'
 				| 'li'
 				| 'div'
+				| 'dd'
+				| 'dt'
 			>,
 			default: 'p',
 		},
@@ -104,10 +106,7 @@ export default {
 	setup(props) {
 		const { size, lineHeight } = toRefs(props);
 
-		let style = ref({
-			lineHeight: undefined,
-			fontSize: undefined,
-		});
+		let style = ref({} as { fontSize: string; lineHeight: string });
 		let tag = ref(typographyHtmlTags.includes(props.tag) ? props.tag : 'p');
 
 		const isSizeFromBreakpoints = computed(() => breakPoints.includes(size.value));

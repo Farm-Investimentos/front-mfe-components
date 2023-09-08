@@ -152,6 +152,19 @@ export default {
 			this.menuField = false;
 			this.$refs.contextmenu.inputValue = false;
 		},
+		sortDates(dates) {
+			if(dates?.length !== 2) {
+				return dates;
+			}
+			const firstDate = new Date(dates[0]);
+			const secondDate = new Date(dates[1]);
+
+			if (firstDate.getTime() < secondDate.getTime()) {
+				return [dates[0], dates[1]];
+			}
+
+			return [dates[1], dates[0]];
+		},
 		formatDatePickerHeader,
 	},
 	computed: {
@@ -160,6 +173,7 @@ export default {
 				return this.value;
 			},
 			set(val) {
+				val = this.sortDates(val);
 				this.$emit('input', val);
 			},
 		},
