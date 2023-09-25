@@ -15,7 +15,7 @@
 						outlined
 						class="ml-6"
 						v-if="hasButton"
-						:disabled="disabled"
+						:disabled="disabledButton"
 						@click.stop="onClick()"
 					>
 						{{ labelButton }}
@@ -101,7 +101,7 @@ export default defineComponent({
 		/**
 		 * export button disabled toggle
 		 */
-		disabled: {
+		disabledButton: {
 			type: Boolean,
 			default: false,
 		},
