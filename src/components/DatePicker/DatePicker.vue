@@ -4,7 +4,8 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
-		bottom
+		:bottom="position === 'bottom'"
+		:top="position === 'top'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -18,6 +19,8 @@
 			:header-date-format="formatDatePickerHeader"
 			:max="max"
 			:min="min"
+			:allowed-dates="allowedDates"
+			:picker-date.sync="internalPickerDate"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -44,16 +47,20 @@
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
 				:id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire]"
+				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
 				@keyup="keyUpInput"
 			/>
 		</template>
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter, convertDate, checkDateValid } from '../../helpers/date';
+import {
+	defaultFormat as dateDefaultFormatter,
+	convertDate,
+	checkDateValid,
+} from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
@@ -93,6 +100,27 @@ export default defineComponent({
 			default: null,
 		},
 		/**
+		 * Min date (ISO format)
+		 */
+		position: {
+			type: String as PropType<'top' | 'bottom' | 'center'>,
+			default: 'bottom',
+		},
+		/**
+		 * Allowed dates to be selected and validated
+		 */
+		allowedDates: {
+			type: Function,
+			default: () => true,
+		},
+		/**
+		 * Current month/year to show when opened
+		 */
+		pickerDate: {
+			type: String,
+			default: '',
+		},
+		/**
 		 * Required field (inside form)
 		 */
 		required: {
@@ -107,13 +135,14 @@ export default defineComponent({
 	data() {
 		const s = this.formatDateRange(this.value);
 		return {
+			internalPickerDate: this.pickerDate,
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
 			checkDateValid: value => {
-				if(value.length > 0) {
+				if (value.length > 0) {
 					const isValid = checkDateValid(value);
-					return  isValid ? true : 'Data inválida';
+					return isValid ? true : 'Data inválida';
 				}
 				return true;
 			},
@@ -121,7 +150,7 @@ export default defineComponent({
 				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
 			},
 			checkMax: value => {
-				if(!this.required && value.length === 0) {
+				if (!this.required && value.length === 0) {
 					return true;
 				}
 				return this.max && new Date(convertDate(value)) > new Date(this.max)
@@ -129,18 +158,27 @@ export default defineComponent({
 					: true;
 			},
 			checkMin: value => {
-				if(!this.required && value.length === 0) {
+				if (!this.required && value.length === 0) {
 					return true;
 				}
-				if(this.min) {
+				if (this.min) {
 					const dateSelected = new Date(convertDate(value));
 					const dateMin = new Date(convertDate(this.min));
-					if(dateSelected.getTime() >= dateMin.getTime()){
+					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
 					return 'A data está fora do período permitido';
 				}
 				return true;
+			},
+			checkIsInAllowedDates: value => {
+				const dateSelected = convertDate(value);
+
+				if (!this.required && value.length === 0) {
+					return true;
+				}
+
+				return this.allowedDates(dateSelected) || 'Data inválida';
 			},
 		};
 	},
