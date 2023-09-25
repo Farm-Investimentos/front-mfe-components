@@ -99,7 +99,7 @@ export default defineComponent({
 			default: false,
 		},
 		/**
-		 * Has export button but is disabled
+		 * export button disabled toggle
 		 */
 		disabled: {
 			type: Boolean,
