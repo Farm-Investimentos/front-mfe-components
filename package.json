@@ -23,6 +23,7 @@
 	],
 	"dependencies": {
 		"core-js": "^3.6.5",
+		"pnpm": "^8.7.6",
 		"vue": "2.7.10",
 		"vuetify": "^2.4.5"
 	},

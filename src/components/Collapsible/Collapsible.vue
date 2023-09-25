@@ -11,7 +11,13 @@
 					<farm-heading type="6" color="black">
 						{{ title }}
 					</farm-heading>
-					<farm-btn outlined class="ml-6" v-if="hasButton" @click.stop="onClick()">
+					<farm-btn
+						outlined
+						class="ml-6"
+						v-if="hasButton"
+						:disabled="disabled"
+						@click.stop="onClick()"
+					>
 						{{ labelButton }}
 					</farm-btn>
 				</div>
@@ -93,7 +99,14 @@ export default defineComponent({
 			default: false,
 		},
 		/**
-		 * export button
+		 * Has export button but is disabled
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * export button emit
 		 */
 		onExport: {
 			type: Boolean,
