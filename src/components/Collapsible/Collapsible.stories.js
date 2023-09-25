@@ -61,6 +61,17 @@ export const Export = () => ({
 		</div>`,
 });
 
+export const ExportDisabled = () => ({
+	data() {
+		return {
+			clicked: false,
+		};
+	},
+	template: `<div>
+		clicked: {{clicked}} <farm-collapsible :disabledButton="true" icon="clipboard" title="With Button" :hasButton="true"  @onClick="value => clicked = !clicked" >collapsible content</farm-collapsible>
+		</div>`,
+});
+
 export const Opened = () => ({
 	data() {
 		return {
