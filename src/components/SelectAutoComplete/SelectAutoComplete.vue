@@ -264,7 +264,7 @@ export default defineComponent({
 			}
 
 			filteredItems.value = (items.value as any).filter(
-				(item) => item[parseInt(itemText.value.toString())].toLowerCase().includes(searchText.value)
+				(item) => item[(itemText.value as any)].toLowerCase().includes(searchText.value)
 			);
 
 			if (filteredItems.value.length === 0 && searchText.value.trim() !== '') {
@@ -470,7 +470,7 @@ export default defineComponent({
 		const isChecked = item => {
 			return (
 				multiple.value &&
-				multipleValues.value.findIndex(val => val === item[parseInt(itemValue.value as string)]) !== -1
+				multipleValues.value.findIndex(val => val === item[itemValue.value as any]) !== -1
 			);
 		};
 		
