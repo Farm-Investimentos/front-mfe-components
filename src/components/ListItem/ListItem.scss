@@ -34,4 +34,20 @@
 			}
 		}
 	}
+
+	&:active {
+		@each $color in $theme-colors-list {
+			&#{'.farm-listitem--' + $color + '-base'} {
+				background-color: rgba(themeColor($color), 0.8);
+			}
+
+			&#{'.farm-listitem--' + $color + '-lighten'} {
+				background-color: rgba(themeColor($color, 'lighten'), 0.8);
+			}
+
+			&#{'.farm-listitem--' + $color + '-darken'} {
+				background-color: rgba(themeColor($color, 'darken'), 0.8);
+			}
+		}
+	}
 }
