@@ -36,7 +36,14 @@
 	}
 
 	&--disabled {
+		.farm-textarea--textarea {
+			background-color: var(--farm-neutral-lighten);
+			border-color: var(--farm-gray-lighten);
+			color: var(--farm-bw-black-30);
+		}
 		textarea {
+			background-color: var(--farm-neutral-lighten);
+			border-color: var(--farm-gray-lighten);
 			color: var(--farm-bw-black-30);
 		}
 	}
