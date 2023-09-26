@@ -46,6 +46,18 @@ export const InitialValue = () => ({
 	</div>`,
 });
 
+export const readOnly = () => ({
+	data() {
+		return {
+			date: ['2023-08-01', '2023-08-05'],
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<RangeDatePicker readonly inputId="input-custom-id" :value="date" />
+		date: {{ date }}
+	</div>`,
+});
+
 export const MinMax = () => ({
 	template: `<RangeDatePicker inputId="input-custom-id" min="2022-01-17" max="2022-02-15" />`,
 });
