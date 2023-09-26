@@ -27,7 +27,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vue": "3.2.31",
-    "vuetify": "^3.0.0"
+    "vuetify": "^3.0.0",
+    "webpack": "^4.39.3"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",

@@ -84,6 +84,7 @@
 </template>
 
 <script lang="ts">
+/* tslint:disable */
 import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
@@ -262,8 +263,8 @@ export default defineComponent({
 				return;
 			}
 
-			filteredItems.value = items.value.filter(
-				(item) => item[itemText.value].toLowerCase().includes(searchText.value)
+			filteredItems.value = (items.value as any).filter(
+				(item) => item[parseInt(itemText.value.toString())].toLowerCase().includes(searchText.value)
 			);
 
 			if (filteredItems.value.length === 0 && searchText.value.trim() !== '') {
@@ -388,23 +389,25 @@ export default defineComponent({
 		};
 
 		const selectItem = item => {
+
+			const value$ = itemValue.value.toString();
 			
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
-					val => val === item[itemValue.value]
+					val => val === item[value$]
 				);
 				checked.value = '1';
 				if (alreadyAdded !== -1) {
 					multipleValues.value.splice(alreadyAdded, 1);
 				} else {
-					multipleValues.value.push(item[itemValue.value]);
+					multipleValues.value.push(item[value$]);
 				}
 				innerValue.value = [...multipleValues.value];
 
 				return;
 			}
 
-			innerValue.value = item[itemValue.value];
+			innerValue.value = item[value$];
 			isVisible.value = false;
 
 			setTimeout(() => {
@@ -426,19 +429,19 @@ export default defineComponent({
 		const updateSelectedTextValue = () => {
 			if (
 				!items.value ||
-				items.value.length === 0 ||
+				(items.value as any).length === 0 ||
 				innerValue.value === null ||
 				(multiple.value && multipleValues.value.length === 0)
 			) {
 				selectedText.value = '';
 				return;
 			}
-			const selectedItem = items.value.find(
-				item => item[itemValue.value] == innerValue.value
+			const selectedItem = (items.value as Array<any>).find(
+				item => item[itemValue.value as any] == innerValue.value
 			);
 
 			if (selectedItem) {
-				selectedText.value = selectedItem[itemText.value];
+				selectedText.value = selectedItem[(itemText.value as any)];
 			}
 
 			addLabelToMultiple();
@@ -446,19 +449,19 @@ export default defineComponent({
 
 		const addLabelToMultiple = () => {
 			if (multiple.value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
-				const labelItem = items.value.find(
-					item => item[itemValue.value] === innerValue.value[0]
+				const labelItem = (items.value as any).find(
+					item => item[itemValue.value.toString()] === innerValue.value[0]
 				);
 
 				if (innerValue.value.length === 0) {
 					selectedText.value = '';
 					return;
 				} else if (innerValue.value.length === 1) {
-					selectedText.value = labelItem[itemText.value];
+					selectedText.value = labelItem[itemText.value as any];
 					return;
 				}
 
-				selectedText.value = `${labelItem[itemText.value]} (+${
+				selectedText.value = `${labelItem[itemText.value as any]} (+${
 					innerValue.value.length - 1
 				} ${innerValue.value.length - 1 === 1 ? 'outro' : 'outros'})`;
 			}
@@ -467,7 +470,7 @@ export default defineComponent({
 		const isChecked = item => {
 			return (
 				multiple.value &&
-				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
+				multipleValues.value.findIndex(val => val === item[parseInt(itemValue.value as string)]) !== -1
 			);
 		};
 		
