@@ -44,9 +44,18 @@
 	}
 
 	&--disabled {
-		input {
+		.farm-textfield--input {
+			background-color: var(--farm-neutral-lighten);
+			border-color: var(--farm-gray-lighten);
 			color: var(--farm-bw-black-30);
 		}
+
+		input {
+			background-color: var(--farm-neutral-lighten);
+			border-color: var(--farm-gray-lighten);
+			color: var(--farm-bw-black-30);
+		}
+
 		.farm-icon {
 			color: var(--farm-bw-black-30);
 			cursor: default;
@@ -61,7 +70,6 @@
 		@include hintText;
 	}
 }
-
 
 .farm-textfield--touched.farm-textfield--blured.farm-textfield--validatable {
 	&.farm-textfield--error {
