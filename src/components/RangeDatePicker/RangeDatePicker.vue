@@ -40,13 +40,16 @@
 				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</v-date-picker>
-		<template v-slot:activator="{}">
+		<template v-slot:activator>
 			<farm-textfield-v2
 				v-model="fieldRange"
 				icon="calendar"
-				readonly
+				ref="inputCalendar"
+				:readonly="readonly"
 				:id="inputId"
-				:rules="required ? [requiredRule] : []"
+				:mask="`${readonly ? [''] : ['##/##/####' + ' a ' + '##/##/####']}`"
+				:rules="[checkDateValid, checkRequire]"
+				@keyup="keyUpInput"
 			/>
 		</template>
 	</farm-contextmenu>
@@ -54,7 +57,11 @@
 <script>
 import { defineComponent } from 'vue';
 import { VDatePicker } from 'vuetify/lib/components/VDatePicker';
-import { defaultFormat as dateDefaultFormatter } from '../../helpers/date';
+import {
+	defaultFormat as dateDefaultFormatter,
+	convertDate,
+	checkDateValid,
+} from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 
 /**
@@ -101,6 +108,13 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Readonly field
+		 */
+		readonly: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -108,8 +122,16 @@ export default defineComponent({
 			menuField: false,
 			dateField: this.value || [],
 			fieldRange: s,
-			requiredRule: value => {
-				return !!value || value != '' || 'Campo obrigatório';
+			checkRequire: value => {
+				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
+			},
+			checkDateValid: value => {
+				if (value.length) {
+					const checkPartOne = checkDateValid(value.slice(0, 10));
+					const checkPartTwo = checkDateValid(value.slice(13));
+					return checkPartOne && checkPartTwo ? true : 'Data inválida';
+				}
+				return true;
 			},
 		};
 	},
@@ -136,6 +158,11 @@ export default defineComponent({
 			return dateDefaultFormatter(dateStart) + ' a ' + dateDefaultFormatter(dateEnd);
 		},
 		save() {
+			if (this.readonly) {
+				this.menuField = false;
+				this.closeDatepicker();
+				return;
+			}
 			this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
@@ -144,6 +171,7 @@ export default defineComponent({
 		clear() {
 			this.dateField = [];
 			this.save();
+			this.$refs.inputCalendar.reset();
 		},
 		openDatepicker() {
 			this.menuField = true;
@@ -153,7 +181,7 @@ export default defineComponent({
 			this.$refs.contextmenu.inputValue = false;
 		},
 		sortDates(dates) {
-			if(dates?.length !== 2) {
+			if (dates?.length !== 2) {
 				return dates;
 			}
 			const firstDate = new Date(dates[0]);
@@ -164,6 +192,24 @@ export default defineComponent({
 			}
 
 			return [dates[1], dates[0]];
+		},
+		validation(date) {
+			const pattern =
+				/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm;
+			return pattern.test(date);
+		},
+		keyUpInput(event) {
+			let newValue = event.target.value;
+			if (newValue.length === 23) {
+				const partOne = newValue.slice(0, 10);
+				const partTwo = newValue.slice(13);
+				if (this.validation(partOne) && this.validation(partTwo)) {
+					const partOneDate = convertDate(partOne);
+					const partTwoDate = convertDate(partTwo);
+					this.dateField = [partOneDate, partTwoDate];
+					this.save();
+				}
+			}
 		},
 		formatDatePickerHeader,
 	},
