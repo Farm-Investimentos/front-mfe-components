@@ -80,7 +80,7 @@ export default {
 		/**
 		 * v-model binding
 		 */
-		value: { type: [String, Number], default: '' },
+		modelValue: { type: [String, Number], default: '' },
 		/**
 		 * Show icon?
 		 */
@@ -171,7 +171,7 @@ export default {
 	},
 	setup(props, { emit }) {
 		const { rules } = toRefs(props);
-		const innerValue = ref(props.value);
+		const innerValue = ref(props.modelValue);
 		const isTouched = ref(false);
 		const isBlured = ref(false);
 		const isFocus = ref(false);

@@ -7,7 +7,12 @@
 			'farm-listitem--clickable': clickable || to,
 		}"
 	>
-		<slot></slot>
+		<router-link :to="to" v-if="to">
+			<slot></slot>
+		</router-link>
+		<template v-else>
+			<slot></slot>
+		</template>
 	</li>
 </template>
 <script lang="ts">

@@ -105,7 +105,7 @@ export default {
 		/**
 		 * v-model binding
 		 */
-		value: { type: [String, Number, Array], default: '' },
+		modelValue: { type: [String, Number, Array], default: '' },
 		hint: {
 			type: String,
 			default: null,
@@ -260,7 +260,7 @@ export default {
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
 		watch(
-			() => props.value,
+			() => props.modelValue,
 			newValue => {
 				innerValue.value = newValue;
 				errorBucket.value = [];
@@ -276,7 +276,7 @@ export default {
 				}
 				validate(newValue);
 				updateSelectedTextValue();
-				emit('input', newValue);
+				emit('update:modelValue', newValue);
 			}
 		);
 
@@ -295,7 +295,7 @@ export default {
 				isTouched.value = true;
 				isBlured.value = true;
 				validate(innerValue.value);
-				emit('input', innerValue.value);
+				emit('update:modelValue', innerValue.value);
 			}
 		);
 
@@ -325,7 +325,7 @@ export default {
 				innerValue.value = [];
 				return;
 			}
-			emit('input', innerValue.value);
+			emit('update:modelValue', innerValue.value);
 		};
 
 		const onBlur = (event: Event) => {

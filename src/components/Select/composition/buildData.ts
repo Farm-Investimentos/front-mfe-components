@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 
 export default function (props) {
-	const multipleValues = ref(Array.isArray(props.value) ? [...props.value] : []);
-	const innerValue = ref(props.value);
+	const multipleValues = ref(Array.isArray(props.modelValue) ? [...props.modelValue] : []);
+	const innerValue = ref(props.modelValue);
 	const isTouched = ref(false);
 	const isFocus = ref(false);
 	const isBlured = ref(false);
