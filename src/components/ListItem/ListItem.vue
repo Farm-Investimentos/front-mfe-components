@@ -1,17 +1,14 @@
 <template>
-	<li
-		@click="onClick"
-		:class="{
-			'farm-listitem': true,
-			[cssColorWithVariation]: cssColorWithVariation,
-			'farm-listitem--clickable': clickable || to,
-		}"
-	>
+	<li @click="onClick" :class="{
+		'farm-listitem': true,
+		[cssColorWithVariation]: cssColorWithVariation,
+		'farm-listitem--clickable': clickable || to,
+	}">
 		<slot></slot>
 	</li>
 </template>
 <script lang="ts">
-import {  computed, PropType, toRefs } from 'vue';
+import { computed, PropType, toRefs } from 'vue';
 
 export default {
 	name: 'farm-listitem',
@@ -64,7 +61,7 @@ export default {
 		});
 
 		const onClick = () => {
-			emit('click');
+			emit('click:item');
 		};
 
 		return {
