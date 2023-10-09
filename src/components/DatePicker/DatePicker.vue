@@ -2,7 +2,8 @@
 	<farm-contextmenu stay-open v-model="menuField" ref="contextmenu" maxHeight="auto" popup-width="320"
 		:bottom="position === 'bottom'" :top="position === 'top'">
 
-		<VueDatePicker inline auto-apply model-type="yyyy-MM-dd" v-model="dateField" />
+		<VueDatePicker inline auto-apply model-type="yyyy-MM-dd" v-model="dateField" :min-date="minDate" :max-date="maxDate"
+			:allowed-dates="allowedDaysList" />
 
 		<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 			Limpar
@@ -14,7 +15,7 @@
 		<farm-btn class="ml-2" title="Confirmar" :disabled="isDateFieldDisabled" @click="save()">
 			Confirmar <farm-icon>check</farm-icon>
 		</farm-btn>
-		<template v-slot:activator="{ }">{{ fieldRange }}
+		<template v-slot:activator="{ }">
 			<farm-textfield-v2 icon="calendar" v-model="fieldRange" autocomplete="off" ref="inputCalendar"
 				:readonly="readonly" :mask="`${readonly ? '' : '##/##/####'}`" :id="inputId"
 				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]" @keyup="keyUpInput" />
@@ -23,7 +24,7 @@
 </template>
 <script lang="ts">
 const revertDate = (oldDate: string): string => {
-	if(!oldDate) {
+	if (!oldDate) {
 		return '';
 	}
 	const arr = oldDate.split('-');
@@ -45,9 +46,6 @@ import { formatDatePickerHeader } from '../../helpers';
 
 export default {
 	name: 'farm-input-datepicker',
-	components: {
-		//	VDatePicker,
-	},
 	props: {
 		/**
 		 * Input's id
@@ -85,11 +83,15 @@ export default {
 			default: 'bottom',
 		},
 		/**
-		 * Allowed dates to be selected and validated
+		 * Allowed days to be selected and validated
 		 */
-		allowedDates: {
+		allowedDays: {
+			type: Array,
+			default: () => null,
+		},
+		allowedDatesValidator: {
 			type: Function,
-			default: () => true,
+			default: () => true
 		},
 		/**
 		 * Current month/year to show when opened
@@ -111,8 +113,6 @@ export default {
 		},
 	},
 	data() {
-		// const s = this.formatDateRange(this.modelValue);
-		// const s = convertDate(this.modelValue);
 
 		return {
 			internalPickerDate: this.pickerDate,
@@ -158,15 +158,13 @@ export default {
 					return true;
 				}
 
-				return this.allowedDates(dateSelected) || 'Data inválida';
+				return this.allowedDatesValidator(dateSelected) || 'Data inválida';
 			},
 		};
 	},
 	watch: {
 		modelValue(newValue) {
 			this.dateField = newValue;
-			// this.fieldRange = newValue;
-			//			console.log(newValue, this.fieldRange);
 		},
 		fieldRange(newValue) {
 			if (!newValue) {
@@ -242,6 +240,21 @@ export default {
 			}
 			return true;
 		},
+		minDate() {
+			if (this.min) {
+				return new Date(this.min);
+			}
+		},
+		maxDate() {
+			if (this.max) {
+				return new Date(this.max);
+			}
+		},
+		allowedDaysList() {
+			if (this.allowedDays) {
+				return this.allowedDays.map(day => new Date().setDate(day))
+			}
+		}
 	},
 };
 </script>

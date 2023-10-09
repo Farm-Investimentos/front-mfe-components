@@ -41,15 +41,17 @@ export const MinMaxDates = () => ({
 	data() {
 		return {
 			date: '',
+			min: '2022-07-01',
+			max: '2022-12-02',
 		};
 	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker inputId="input-custom-id-2" max="2021-12-02" min="2021-07-01" v-model="date" />
-        max="2021-12-02" min="2021-07-01"
+        <farm-input-datepicker inputId="input-custom-id-2" :max="max" :min="min" v-model="date" />
+        max {{ max }} min {{ min }}
     </div>`,
 });
 
-export const RequiredDates = () => ({
+export const RequiredDate = () => ({
 	data() {
 		return {
 			date: '',
@@ -61,8 +63,13 @@ export const RequiredDates = () => ({
 });
 
 export const Readonly = () => ({
+	data() {
+		return {
+			date: '2021-08-01',
+		};
+	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker :readonly="true"  value="2021-08-01" inputId="input-custom-id-3"/>
+        <farm-input-datepicker :readonly="true" v-model="date" inputId="input-custom-id-3"/>
     </div>`,
 });
 
@@ -81,17 +88,12 @@ export const OnlyAllowedDates = () => ({
 	data() {
 		return {
 			date: '',
+			allowedDays: [5, 10, 15, 20, 25],
 		};
 	},
-	props: {
-		allowedDates: {
-			default: () => (value) => {
-				const day = parseInt(value.split('-')[2], 10);
-				return [5, 10, 15, 20, 25].includes(day);
-			}
-		}
-	},
-	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" :allowed-dates="allowedDates" inputId="input-custom-id-1" v-model="date" /></div>`,
+	template: `<div style='max-width: 320px'>
+		<farm-input-datepicker position="bottom" :allowed-days="allowedDays" inputId="input-custom-id-1" v-model="date" />
+	</div>`,
 });
 
 export const WithInitialMonth = () => ({
