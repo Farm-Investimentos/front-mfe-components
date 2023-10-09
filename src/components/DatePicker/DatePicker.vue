@@ -19,6 +19,7 @@
 			:max-date="maxDate"
 			:allowed-dates="allowedDaysList"
 			:day-names="['S', 'T', 'Q', 'Q', 'S', 'S', 'D']"
+			:start-date="internalPickerDate"
 		/>
 
 		<div class="picker__actions">
@@ -65,27 +66,12 @@
 	</farm-contextmenu>
 </template>
 <script lang="ts">
-const revertDate = (oldDate: string): string => {
-	if (!oldDate) {
-		return '';
-	}
-	const arr = oldDate.split('-');
-	// Concatenate each part in reverse order
-	const newDate = arr[2] + '/' + arr[1] + '/' + arr[0];
-
-	return newDate;
-};
 import { PropType } from 'vue';
-import {
-	defaultFormat as dateDefaultFormatter,
-	convertDate,
-	checkDateValid,
-} from '../../helpers/date';
+import { convertDate, checkDateValid, revertDate } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
-
 export default {
 	name: 'farm-input-datepicker',
 	props: {
@@ -221,7 +207,6 @@ export default {
 	},
 	methods: {
 		save() {
-			// this.inputVal = this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
 			this.fieldRange = revertDate(this.dateField);

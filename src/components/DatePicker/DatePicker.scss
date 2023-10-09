@@ -14,48 +14,5 @@
 	width: 100%;
 }
 
-/*
-.v-picker ::v-deep   {
-	@import './vDatePicker.scss';
-}
-*/
+@import './customDatePicker.scss';
 
-.dp__main {
-	font-family: inherit;
-	justify-content: center;
-
-	:deep(.dp__cell_inner) {
-		font-size: 12px;
-		font-weight: 500;
-		color: var(--farm-neutral-darken);
-
-		&.dp__cell_offset {
-			color: var(--farm-gray-lighten);
-		}
-	}
-
-	:deep(.dp__menu) {
-		border: 0;
-	}
-
-	:deep(.dp--tp-wrap) {
-		display: none;
-	}
-
-	:deep(.dp__active_date) {
-		background-color: var(--farm-primary-base);
-		color: white;
-	}
-
-	:deep(.dp__today) {
-		border: 1px solid var(--farm-primary-base);
-	}
-}
-
-.picker__actions {
-	padding: 16px 8px 0;
-	border-top: 1px solid var(--farm-stroke-base);
-	margin-bottom: 16px;
-	margin-left: -4px;
-	margin-right: -4px;
-}

@@ -13,6 +13,14 @@ export const convertDate = (data) => {
 	return newdate;
 };
 
+export const revertDate = (data: string): string => {
+	if(!data) {
+		return '';
+	}
+	let newdate = data.split("-").reverse().join("/");
+	return newdate;
+};
+
 
 const checkLength = (value, length) => {
 	return parseInt(value.length, 10) === length;
