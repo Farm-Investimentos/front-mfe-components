@@ -171,3 +171,24 @@ export const ResetByMethod = () => ({
 		<farm-btn @click="$refs.checkbox.reset()">reset</farm-btn>
 	</div>`,
 });
+
+export const ChangeEvent = () => ({
+	setup() {
+
+		const select = () => {
+			alert('Updated model value');
+		}
+
+		return {
+			select
+		}
+	},
+	data() {
+		return {
+			isChecked: true,
+		};
+	},
+	template: `<div>
+		<farm-checkbox v-model="isChecked" :value="true" ref="checkbox" @update:modelValue="select($event)" />
+	</div>`,
+});
