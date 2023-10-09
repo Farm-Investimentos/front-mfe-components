@@ -2,19 +2,21 @@
 	<farm-contextmenu stay-open v-model="menuField" ref="contextmenu" maxHeight="auto" popup-width="320"
 		:bottom="position === 'bottom'" :top="position === 'top'">
 
-		<VueDatePicker inline auto-apply model-type="yyyy-MM-dd" v-model="dateField" :min-date="minDate" :max-date="maxDate"
-			:allowed-dates="allowedDaysList" />
+		<VueDatePicker calendar-class-name="dp-custom-calendar" inline auto-apply model-type="yyyy-MM-dd"
+			v-model="dateField" :min-date="minDate" :max-date="maxDate" :allowed-dates="allowedDaysList" />
 
-		<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
-			Limpar
-		</farm-btn>
-		<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
-			Cancelar
-		</farm-btn>
+		<div class="picker__actions">
+			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+				Limpar
+			</farm-btn>
+			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+				Cancelar
+			</farm-btn>
 
-		<farm-btn class="ml-2" title="Confirmar" :disabled="isDateFieldDisabled" @click="save()">
-			Confirmar <farm-icon>check</farm-icon>
-		</farm-btn>
+			<farm-btn class="ml-2" title="Confirmar" :disabled="isDateFieldDisabled" @click="save()">
+				Confirmar <farm-icon>check</farm-icon>
+			</farm-btn>
+		</div>
 		<template v-slot:activator="{ }">
 			<farm-textfield-v2 icon="calendar" v-model="fieldRange" autocomplete="off" ref="inputCalendar"
 				:readonly="readonly" :mask="`${readonly ? '' : '##/##/####'}`" :id="inputId"
