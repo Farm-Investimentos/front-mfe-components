@@ -14,14 +14,11 @@ import 'vuetify/styles';
 
 import { createVuetify } from 'vuetify';
 // import * as vuetifyComponents from 'vuetify/components';
-import { VDataTable } from 'vuetify/labs/VDataTable';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
 const vuetify = createVuetify({
-	components: {
-		VDataTable,
-	},
+	components: {},
 });
 
 import { VueMaskDirective } from 'v-mask';

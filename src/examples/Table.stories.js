@@ -1,6 +1,5 @@
 // import { withDesign } from 'storybook-addon-designs';
 import { VDataTable } from 'vuetify/labs/components';
-import { ref, watch } from 'vue';
 
 const headers = [
 	{
