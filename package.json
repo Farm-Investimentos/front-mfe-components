@@ -22,12 +22,11 @@
     "src/*"
   ],
   "dependencies": {
-    "@storybook/preset-scss": "^1.0.3",
     "core-js": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vue": "3.2.31",
-    "vuetify": "^3.3.15"
+    "vue": "3.3.4",
+    "vuetify": "3.3.20"
   },
   "devDependencies": {
     "@babel/core": "7.17.9",
@@ -37,6 +36,7 @@
     "@storybook/addon-interactions": "^7.0.6",
     "@storybook/addon-links": "^7.0.6",
     "@storybook/cli": "^7.0.6",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/testing-library": "^0.1.0",
     "@storybook/vue3": "^7.0.6",
     "@storybook/vue3-webpack5": "^7.0.6",
