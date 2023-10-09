@@ -230,7 +230,7 @@ export default {
 
 		const click = () => {
 			inputValue.value = !inputValue.value;
-			emit('input', inputValue.value);
+			emit('update:modelValue', inputValue.value);
 		};
 
 		return {

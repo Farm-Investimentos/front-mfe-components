@@ -189,9 +189,9 @@ export default {
 		const showErrorText = computed(() => hasError.value && isTouched.value && isBlured.value);
 
 		watch(
-			() => props.value,
+			() => props.modelValue,
 			() => {
-				innerValue.value = props.value;
+				innerValue.value = props.modelValue;
 				validate(innerValue.value);
 			}
 		);

@@ -24,7 +24,7 @@ export const Primary = () => ({
 	},
 	template: `<div style='max-width: 320px'>
         <farm-input-datepicker inputId="input-custom-id-0" v-model="date" />
-		{{ date }}
+		date: {{ date }}
     </div>`,
 });
 

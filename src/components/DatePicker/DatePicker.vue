@@ -1,59 +1,37 @@
 <template>
-	<farm-contextmenu
-		stay-open
-		v-model="menuField"
-		ref="contextmenu"
-		maxHeight="auto"
-		:bottom="position === 'bottom'"
-		:top="position === 'top'"
-		popup-width="320"
-	>
-		<v-date-picker
-			v-if="menuField"
-			v-model="dateField"
-			no-title
-			scrollable
-			locale="pt-br"
-			class="datepicker"
-			show-adjacent-months
-			:header-date-format="formatDatePickerHeader"
-			:max="max"
-			:min="min"
-			:allowed-dates="allowedDates"
-			:picker-date.sync="internalPickerDate"
-		>
-			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
-				Limpar
-			</farm-btn>
-			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
-				Cancelar
-			</farm-btn>
+	<farm-contextmenu stay-open v-model="menuField" ref="contextmenu" maxHeight="auto" popup-width="320"
+		:bottom="position === 'bottom'" :top="position === 'top'">
 
-			<farm-btn
-				class="ml-2"
-				title="Confirmar"
-				:disabled="isDateFieldDisabled"
-				@click="save()"
-			>
-				Confirmar <farm-icon>check</farm-icon>
-			</farm-btn>
-		</v-date-picker>
-		<template v-slot:activator="{}">
-			<farm-textfield-v2
-				icon="calendar"
-				v-model="fieldRange"
-				autocomplete="off"
-				ref="inputCalendar"
-				:readonly="readonly"
-				:mask="`${readonly ? '' : '##/##/####'}`"
-				:id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
-				@keyup="keyUpInput"
-			/>
+		<VueDatePicker inline auto-apply model-type="yyyy-MM-dd" v-model="dateField" />
+
+		<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+			Limpar
+		</farm-btn>
+		<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+			Cancelar
+		</farm-btn>
+
+		<farm-btn class="ml-2" title="Confirmar" :disabled="isDateFieldDisabled" @click="save()">
+			Confirmar <farm-icon>check</farm-icon>
+		</farm-btn>
+		<template v-slot:activator="{ }">{{ fieldRange }}
+			<farm-textfield-v2 icon="calendar" v-model="fieldRange" autocomplete="off" ref="inputCalendar"
+				:readonly="readonly" :mask="`${readonly ? '' : '##/##/####'}`" :id="inputId"
+				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]" @keyup="keyUpInput" />
 		</template>
 	</farm-contextmenu>
 </template>
 <script lang="ts">
+const revertDate = (oldDate: string): string => {
+	if(!oldDate) {
+		return '';
+	}
+	const arr = oldDate.split('-');
+	// Concatenate each part in reverse order
+	const newDate = arr[2] + '/' + arr[1] + '/' + arr[0];
+
+	return newDate;
+}
 import { PropType } from 'vue';
 import {
 	defaultFormat as dateDefaultFormatter,
@@ -64,10 +42,11 @@ import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
+
 export default {
 	name: 'farm-input-datepicker',
 	components: {
-	//	VDatePicker,
+		//	VDatePicker,
 	},
 	props: {
 		/**
@@ -80,7 +59,7 @@ export default {
 		/**
 		 * v-model bind
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -132,12 +111,14 @@ export default {
 		},
 	},
 	data() {
-		const s = this.formatDateRange(this.value);
+		// const s = this.formatDateRange(this.modelValue);
+		// const s = convertDate(this.modelValue);
+
 		return {
 			internalPickerDate: this.pickerDate,
 			menuField: false,
-			dateField: this.value,
-			fieldRange: s,
+			dateField: this.modelValue,
+			fieldRange: revertDate(this.modelValue),
 			checkDateValid: value => {
 				if (value.length > 0) {
 					const isValid = checkDateValid(value);
@@ -182,9 +163,10 @@ export default {
 		};
 	},
 	watch: {
-		value(newValue) {
+		modelValue(newValue) {
 			this.dateField = newValue;
-			this.fieldRange = this.formatDateRange(newValue);
+			// this.fieldRange = newValue;
+			//			console.log(newValue, this.fieldRange);
 		},
 		fieldRange(newValue) {
 			if (!newValue) {
@@ -192,16 +174,18 @@ export default {
 				this.save();
 			}
 		},
+		menuField(newValue) {
+			if (newValue) {
+				this.dateField = this.modelValue;
+			}
+		},
 	},
 	methods: {
-		formatDateRange(date) {
-			if (!date || date.length === 0) return '';
-			return dateDefaultFormatter(date);
-		},
 		save() {
-			this.formatDateRange(this.dateField);
+			// this.inputVal = this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
+			this.fieldRange = revertDate(this.dateField);
 			this.closeDatepicker();
 		},
 		clear() {
@@ -240,21 +224,21 @@ export default {
 	computed: {
 		inputVal: {
 			get() {
-				return this.value;
+				return this.modelValue;
 			},
 			set(val) {
-				this.$emit('input', val);
+				this.$emit('update:modelValue', val);
 			},
 		},
 		isDisabled(): boolean {
-			if (this.value) {
-				return this.value.length === 0 ? true : false;
+			if (this.modelValue) {
+				return this.modelValue.length === 0;
 			}
 			return true;
 		},
 		isDateFieldDisabled() {
 			if (this.dateField) {
-				return this.dateField.length === 0 ? true : false;
+				return this.dateField.length === 0;
 			}
 			return true;
 		},
