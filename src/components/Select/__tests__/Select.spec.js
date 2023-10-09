@@ -86,7 +86,7 @@ describe('Select component', () => {
 						{ value: 2, text: 'value 2' },
 						{ value: 3, text: 'value 3' },
 					],
-					value: [0],
+					modelValue: [0],
 				});
 
 				component.addLabelToMultiple();
@@ -101,7 +101,7 @@ describe('Select component', () => {
 						{ value: 2, text: 'value 2' },
 						{ value: 3, text: 'value 3' },
 					],
-					value: [0, 1],
+					modelValue: [0, 1],
 				});
 
 				component.addLabelToMultiple();
@@ -117,7 +117,7 @@ describe('Select component', () => {
 						{ value: 2, text: 'value 2' },
 						{ value: 3, text: 'value 3' },
 					],
-					value: [0, 1, 2],
+					modelValue: [0, 1, 2],
 				});
 
 				component.addLabelToMultiple();

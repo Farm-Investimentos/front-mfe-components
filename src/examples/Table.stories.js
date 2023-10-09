@@ -1,5 +1,5 @@
 // import { withDesign } from 'storybook-addon-designs';
-import { VDataTable } from 'vuetify/labs/components';
+// import { VDataTable } from 'vuetify/labs/components';
 import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
 import DataTablePaginator from '../components/DataTablePaginator';
 
@@ -106,7 +106,7 @@ export const TableSampleDataWithCheckbox = () => ({
 });
 
 export const TableSampleLocalPagination = () => ({
-	components: { 'v-data-table': VDataTable, DataTableEmptyWrapper, DataTablePaginator },
+	components: { DataTableEmptyWrapper, DataTablePaginator },
 	data() {
 		return {
 			headers,

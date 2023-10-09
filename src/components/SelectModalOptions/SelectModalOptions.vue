@@ -79,12 +79,12 @@
 </template>
 <script lang="ts">
 
-import { VDataTable } from 'vuetify/labs/VDataTable';
+// import { VDataTable } from 'vuetify/labs/VDataTable';
 
 export default {
 	name: 'farm-select-modal-options',
 	components: {
-		'v-data-table': VDataTable,
+		// 'v-data-table': VDataTable,
 	},
 	props: {
 		/**
