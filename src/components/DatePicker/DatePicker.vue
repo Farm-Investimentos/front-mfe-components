@@ -1,26 +1,66 @@
 <template>
-	<farm-contextmenu stay-open v-model="menuField" ref="contextmenu" maxHeight="auto" popup-width="320"
-		:bottom="position === 'bottom'" :top="position === 'top'">
-
-		<VueDatePicker calendar-class-name="dp-custom-calendar" inline auto-apply model-type="yyyy-MM-dd"
-			v-model="dateField" :min-date="minDate" :max-date="maxDate" :allowed-dates="allowedDaysList" />
+	<farm-contextmenu
+		stay-open
+		v-model="menuField"
+		ref="contextmenu"
+		maxHeight="auto"
+		popup-width="320"
+		:bottom="position === 'bottom'"
+		:top="position === 'top'"
+	>
+		<VueDatePicker
+			calendar-class-name="dp-custom-calendar"
+			inline
+			auto-apply
+			model-type="yyyy-MM-dd"
+			locale="pt-BR"
+			v-model="dateField"
+			:min-date="minDate"
+			:max-date="maxDate"
+			:allowed-dates="allowedDaysList"
+			:day-names="['S', 'T', 'Q', 'Q', 'S', 'S', 'D']"
+		/>
 
 		<div class="picker__actions">
-			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+			<farm-btn
+				plain
+				title="Limpar"
+				color="primary"
+				:disabled="isDisabled"
+				@click="clear"
+			>
 				Limpar
 			</farm-btn>
-			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+			<farm-btn
+				outlined
+				class="btn-cancel"
+				title="Cancelar"
+				@click="closeDatepicker"
+			>
 				Cancelar
 			</farm-btn>
 
-			<farm-btn class="ml-2" title="Confirmar" :disabled="isDateFieldDisabled" @click="save()">
+			<farm-btn
+				class="ml-2"
+				title="Confirmar"
+				:disabled="isDateFieldDisabled"
+				@click="save()"
+			>
 				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
 		</div>
-		<template v-slot:activator="{ }">
-			<farm-textfield-v2 icon="calendar" v-model="fieldRange" autocomplete="off" ref="inputCalendar"
-				:readonly="readonly" :mask="`${readonly ? '' : '##/##/####'}`" :id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]" @keyup="keyUpInput" />
+		<template v-slot:activator="{}">
+			<farm-textfield-v2
+				icon="calendar"
+				v-model="fieldRange"
+				autocomplete="off"
+				ref="inputCalendar"
+				:readonly="readonly"
+				:mask="`${readonly ? '' : '##/##/####'}`"
+				:id="inputId"
+				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
+				@keyup="keyUpInput"
+			/>
 		</template>
 	</farm-contextmenu>
 </template>
@@ -34,7 +74,7 @@ const revertDate = (oldDate: string): string => {
 	const newDate = arr[2] + '/' + arr[1] + '/' + arr[0];
 
 	return newDate;
-}
+};
 import { PropType } from 'vue';
 import {
 	defaultFormat as dateDefaultFormatter,
@@ -93,7 +133,7 @@ export default {
 		},
 		allowedDatesValidator: {
 			type: Function,
-			default: () => true
+			default: () => true,
 		},
 		/**
 		 * Current month/year to show when opened
@@ -115,7 +155,6 @@ export default {
 		},
 	},
 	data() {
-
 		return {
 			internalPickerDate: this.pickerDate,
 			menuField: false,
@@ -254,9 +293,9 @@ export default {
 		},
 		allowedDaysList() {
 			if (this.allowedDays) {
-				return this.allowedDays.map(day => new Date().setDate(day))
+				return this.allowedDays.map(day => new Date().setDate(day));
 			}
-		}
+		},
 	},
 };
 </script>
