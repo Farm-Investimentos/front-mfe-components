@@ -2,7 +2,7 @@ import buildData from '../composition/buildData';
 
 describe('buildData', () => {
 	it('should initialize with empty arrays and false values', () => {
-		const props = { value: [] };
+		const props = { modelValue: [] };
 		const result = buildData(props);
 
 		expect(result.multipleValues.value).toEqual([]);
@@ -18,7 +18,7 @@ describe('buildData', () => {
 	});
 
 	it('should initialize with provided values', () => {
-		const props = { value: 'test' };
+		const props = { modelValue: 'test' };
 		const result = buildData(props);
 
 		expect(result.multipleValues.value).toEqual([]);
