@@ -38,30 +38,27 @@ export default {
 };
 
 export const TableNoData = () => ({
-	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
 		};
 	},
-	template: `<div>
-	
+	template: `
 	<v-data-table
         hide-default-footer
 		id="v-data-table--default"
 		:headers="headers"
 	>
-    <template slot="no-data">
+    <template v-slot:no-data>
         <farm-emptywrapper
             subtitle="Tente filtrar novamente sua pesquisa"
         />
     </template>
-    </v-data-table>
-	</div>`,
+    </v-data-table>`,
 });
 
 export const TableSampleData = () => ({
-	components: { 'v-data-table': VDataTable },
+
 	data() {
 		return {
 			headers,
@@ -79,13 +76,11 @@ export const TableSampleData = () => ({
 		:headers="headers"
         :items="items"
 	>
-    
     </v-data-table>
 	</div>`,
 });
 
 export const TableSampleDataWithCheckbox = () => ({
-	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
@@ -164,7 +159,7 @@ export const TableSampleLocalPagination = () => ({
 });
 
 export const TableSampleDataWithFarmCheckbox = () => ({
-	components: { 'v-data-table': VDataTable },
+
 	data() {
 		return {
 			headers,
@@ -173,12 +168,15 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 				{ id: 2, name: 'name 2' },
 				{ id: 3, name: 'name 3' },
 			],
-			selectedItems: [],
+			selectedItems: [2],
+			item: {
+				value: 2
+			}
 		};
 	},
 	methods: {
 		onSelect({ item }) {
-			console.log(item);
+			console.log(9999999);
 			if (item.id === 2)
 				this.selectedItems = [...this.selectedItems].filter(
 					innerItem => innerItem.value !== 2
@@ -199,7 +197,7 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 		@item-selected="onSelect"
 	>
 		<template v-slot:item.data-table-select="{ isSelected, select, item }">
-			<farm-checkbox :value="item.value" :checked="isItemSelected(item)" @input="select($event)"/>
+			<farm-checkbox :value="item.value" :checked="isItemSelected(item)" @change="select($event)"/>
 		</template>
     </v-data-table>
 	</div>`,
