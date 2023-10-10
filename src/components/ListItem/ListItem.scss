@@ -16,6 +16,11 @@
 		text-decoration: none;
 	}
 
+	.farm-icon,
+	.farm-typography {
+		color: var(--farm-neutral-darken);
+	}
+
 	&:hover,
 	&:focus {
 		border-radius: 5px;
@@ -23,14 +28,26 @@
 		@each $color in $theme-colors-list {
 			&#{'.farm-listitem--' + $color + '-base'} {
 				background-color: rgba(themeColor($color), 0.27);
+				.farm-icon,
+				.farm-typography {
+					color: rgba(themeColor($color), 1);
+				}
 			}
 
 			&#{'.farm-listitem--' + $color + '-lighten'} {
 				background-color: rgba(themeColor($color, 'lighten'), 0.27);
+				.farm-icon,
+				.farm-typography {
+					color: rgba(themeColor($color), 1);
+				}
 			}
 
 			&#{'.farm-listitem--' + $color + '-darken'} {
 				background-color: rgba(themeColor($color, 'darken'), 0.27);
+				.farm-icon,
+				.farm-typography {
+					color: rgba(themeColor($color), 1);
+				}
 			}
 		}
 	}
