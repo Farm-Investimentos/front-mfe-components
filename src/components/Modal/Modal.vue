@@ -44,7 +44,7 @@ export default {
 		/**
 		 * v-model binding
 		 */
-		value: { type: Boolean, required: true, default: false },
+		modelValue: { type: Boolean, required: true, default: false },
 		/**
 		 * Is persistent
 		 */
@@ -71,7 +71,7 @@ export default {
 	setup(props, { emit }) {
 		let hasBeenBoostrapped = false;
 		const { offsetTop, offsetBottom, persistent, size } = toRefs(props);
-		const inputValue = ref(props.value);
+		const inputValue = ref(props.modelValue);
 		const styleObject = reactive({ zIndex: 1 });
 		const styles = {
 			marginTop: offsetTop.value + 'px',
@@ -89,7 +89,7 @@ export default {
 		};
 
 		watch(
-			() => props.value,
+			() => props.modelValue,
 			newValue => {
 				inputValue.value = newValue;
 				if (newValue) {

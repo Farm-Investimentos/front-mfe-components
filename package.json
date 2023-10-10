@@ -82,5 +82,8 @@
   },
   "publishConfig": {
     "@farm-investimentos:registry": "https://registry.npmjs.org"
+  },
+  "engines" : { 
+    "node" : ">=18.0.0 <20.0.0"
   }
 }
