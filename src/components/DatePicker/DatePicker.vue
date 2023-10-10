@@ -4,28 +4,40 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
+		popup-width="320"
 		:bottom="position === 'bottom'"
 		:top="position === 'top'"
-		popup-width="320"
 	>
-		<v-date-picker
-			v-if="menuField"
+		<VueDatePicker
+			calendar-class-name="dp-custom-calendar"
+			inline
+			auto-apply
+			model-type="yyyy-MM-dd"
+			locale="pt-BR"
 			v-model="dateField"
-			no-title
-			scrollable
-			locale="pt-br"
-			class="datepicker"
-			show-adjacent-months
-			:header-date-format="formatDatePickerHeader"
-			:max="max"
-			:min="min"
-			:allowed-dates="allowedDates"
-			:picker-date.sync="internalPickerDate"
-		>
-			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
+			:min-date="minDate"
+			:max-date="maxDate"
+			:allowed-dates="allowedDaysList"
+			:day-names="['S', 'T', 'Q', 'Q', 'S', 'S', 'D']"
+			:start-date="internalPickerDate"
+		/>
+
+		<div class="picker__actions">
+			<farm-btn
+				plain
+				title="Limpar"
+				color="primary"
+				:disabled="isDisabled"
+				@click="clear"
+			>
 				Limpar
 			</farm-btn>
-			<farm-btn outlined class="btn-cancel" title="Cancelar" @click="closeDatepicker">
+			<farm-btn
+				outlined
+				class="btn-cancel"
+				title="Cancelar"
+				@click="closeDatepicker"
+			>
 				Cancelar
 			</farm-btn>
 
@@ -37,7 +49,7 @@
 			>
 				Confirmar <farm-icon>check</farm-icon>
 			</farm-btn>
-		</v-date-picker>
+		</div>
 		<template v-slot:activator="{}">
 			<farm-textfield-v2
 				icon="calendar"
@@ -55,20 +67,13 @@
 </template>
 <script lang="ts">
 import { PropType } from 'vue';
-import {
-	defaultFormat as dateDefaultFormatter,
-	convertDate,
-	checkDateValid,
-} from '../../helpers/date';
+import { convertDate, checkDateValid, revertDate } from '../../helpers/date';
 import { formatDatePickerHeader } from '../../helpers';
 /**
  * Componente de input com datepicker para data
  */
 export default {
 	name: 'farm-input-datepicker',
-	components: {
-	//	VDatePicker,
-	},
 	props: {
 		/**
 		 * Input's id
@@ -80,7 +85,7 @@ export default {
 		/**
 		 * v-model bind
 		 */
-		value: {
+		modelValue: {
 			type: String,
 			default: '',
 		},
@@ -106,9 +111,13 @@ export default {
 			default: 'bottom',
 		},
 		/**
-		 * Allowed dates to be selected and validated
+		 * Allowed days to be selected and validated
 		 */
-		allowedDates: {
+		allowedDays: {
+			type: Array,
+			default: () => null,
+		},
+		allowedDatesValidator: {
 			type: Function,
 			default: () => true,
 		},
@@ -132,12 +141,11 @@ export default {
 		},
 	},
 	data() {
-		const s = this.formatDateRange(this.value);
 		return {
 			internalPickerDate: this.pickerDate,
 			menuField: false,
-			dateField: this.value,
-			fieldRange: s,
+			dateField: this.modelValue,
+			fieldRange: revertDate(this.modelValue),
 			checkDateValid: value => {
 				if (value.length > 0) {
 					const isValid = checkDateValid(value);
@@ -177,14 +185,13 @@ export default {
 					return true;
 				}
 
-				return this.allowedDates(dateSelected) || 'Data inválida';
+				return this.allowedDatesValidator(dateSelected) || 'Data inválida';
 			},
 		};
 	},
 	watch: {
-		value(newValue) {
+		modelValue(newValue) {
 			this.dateField = newValue;
-			this.fieldRange = this.formatDateRange(newValue);
 		},
 		fieldRange(newValue) {
 			if (!newValue) {
@@ -192,16 +199,17 @@ export default {
 				this.save();
 			}
 		},
+		menuField(newValue) {
+			if (newValue) {
+				this.dateField = this.modelValue;
+			}
+		},
 	},
 	methods: {
-		formatDateRange(date) {
-			if (!date || date.length === 0) return '';
-			return dateDefaultFormatter(date);
-		},
 		save() {
-			this.formatDateRange(this.dateField);
 			this.inputVal = this.dateField;
 			this.menuField = false;
+			this.fieldRange = revertDate(this.dateField);
 			this.closeDatepicker();
 		},
 		clear() {
@@ -240,23 +248,38 @@ export default {
 	computed: {
 		inputVal: {
 			get() {
-				return this.value;
+				return this.modelValue;
 			},
 			set(val) {
-				this.$emit('input', val);
+				this.$emit('update:modelValue', val);
 			},
 		},
 		isDisabled(): boolean {
-			if (this.value) {
-				return this.value.length === 0 ? true : false;
+			if (this.modelValue) {
+				return this.modelValue.length === 0;
 			}
 			return true;
 		},
 		isDateFieldDisabled() {
 			if (this.dateField) {
-				return this.dateField.length === 0 ? true : false;
+				return this.dateField.length === 0;
 			}
 			return true;
+		},
+		minDate() {
+			if (this.min) {
+				return new Date(this.min);
+			}
+		},
+		maxDate() {
+			if (this.max) {
+				return new Date(this.max);
+			}
+		},
+		allowedDaysList() {
+			if (this.allowedDays) {
+				return this.allowedDays.map(day => new Date().setDate(day));
+			}
 		},
 	},
 };

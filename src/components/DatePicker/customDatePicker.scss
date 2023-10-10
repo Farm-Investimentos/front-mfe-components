@@ -1,0 +1,61 @@
+.dp__main {
+    font-family: inherit;
+    justify-content: center;
+
+    :deep(.dp__cell_inner) {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--farm-neutral-darken);
+        padding: 0;
+        width: 32px;
+
+        &.dp__cell_offset {
+            color: var(--farm-gray-lighten);
+        }
+
+        &.dp__cell_disabled {
+            color: var(--farm-gray-lighten);
+        }
+    }
+
+    :deep(.dp__menu) {
+        border: 0;
+    }
+
+    :deep(.dp--tp-wrap) {
+        display: none;
+    }
+
+    :deep(.dp__active_date) {
+        background-color: var(--farm-primary-base);
+        color: white;
+    }
+
+    :deep(.dp__today) {
+        border: 1px solid var(--farm-primary-base);
+    }
+
+    :deep(.dp__calendar_header_separator) {
+        display: none;
+    }
+
+    :deep(.dp__calendar_header) {
+        color: var(--farm-neutral-darken);
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 16px;
+    }
+
+    :deep(.dp__calendar_row) {
+        margin: 0;
+    }
+
+}
+
+.picker__actions {
+    padding: 16px 8px 0;
+    border-top: 1px solid var(--farm-stroke-base);
+    margin-bottom: 16px;
+    margin-left: -4px;
+    margin-right: -4px;
+}

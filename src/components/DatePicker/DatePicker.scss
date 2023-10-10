@@ -14,6 +14,5 @@
 	width: 100%;
 }
 
-.v-picker ::v-deep   {
-	@import './vDatePicker.scss';
-}
+@import './customDatePicker.scss';
+

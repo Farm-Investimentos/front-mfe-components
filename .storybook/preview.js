@@ -13,6 +13,9 @@ export const parameters = {
 import 'vuetify/styles';
 
 import { createVuetify } from 'vuetify';
+// import * as vuetifyComponents from 'vuetify/components';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 const vuetify = createVuetify({
 	components: {},
@@ -46,4 +49,5 @@ setup(app => {
 
 	app.directive('mask', vMaskV3);
 	app.use(vuetify);
+	app.component('VueDatePicker', VueDatePicker);
 });

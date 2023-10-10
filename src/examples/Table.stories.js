@@ -1,7 +1,5 @@
 // import { withDesign } from 'storybook-addon-designs';
-// import { VDataTable } from 'vuetify/labs/components';
-import DataTableEmptyWrapper from '../components/DataTableEmptyWrapper';
-import DataTablePaginator from '../components/DataTablePaginator';
+import { VDataTable } from 'vuetify/labs/components';
 
 const headers = [
 	{
@@ -92,7 +90,7 @@ export const TableSampleDataWithCheckbox = () => ({
 			selectedItems: [],
 		};
 	},
-	template: `<div>
+	template: `<div>{{ selectedItems }}
 	<v-data-table
         hide-default-footer
 		id="v-data-table--default"
@@ -106,7 +104,7 @@ export const TableSampleDataWithCheckbox = () => ({
 });
 
 export const TableSampleLocalPagination = () => ({
-	components: { DataTableEmptyWrapper, DataTablePaginator },
+	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
@@ -159,7 +157,7 @@ export const TableSampleLocalPagination = () => ({
 });
 
 export const TableSampleDataWithFarmCheckbox = () => ({
-
+	components: { 'v-data-table': VDataTable },
 	data() {
 		return {
 			headers,
@@ -168,18 +166,14 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 				{ id: 2, name: 'name 2' },
 				{ id: 3, name: 'name 3' },
 			],
-			selectedItems: [2],
-			item: {
-				value: 2
-			}
+			selectedItems: [],
 		};
 	},
 	methods: {
 		onSelect({ item }) {
-			console.log(9999999);
 			if (item.id === 2)
 				this.selectedItems = [...this.selectedItems].filter(
-					innerItem => innerItem.value !== 2
+					innerItem => innerItem.id !== 2
 				);
 		},
 		isItemSelected(item) {
@@ -197,7 +191,7 @@ export const TableSampleDataWithFarmCheckbox = () => ({
 		@item-selected="onSelect"
 	>
 		<template v-slot:item.data-table-select="{ isSelected, select, item }">
-			<farm-checkbox :value="item.value" :checked="isItemSelected(item)" @change="select($event)"/>
+			<farm-checkbox :value="item.id" :checked="isItemSelected(item)" @input="select($event)"/>
 		</template>
     </v-data-table>
 	</div>`,
