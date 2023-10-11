@@ -18,6 +18,7 @@
 		<farm-btn
 			v-if="hasExtraFilters"
 			class="farm-btn__cta"
+			outlined
 			:title="extraFiltersBtnLabel"
 			@click="onFilterClick"
 		>
@@ -102,7 +103,7 @@ export default defineComponent({
 			return `${this.showFilters ? 'Esconder' : 'Ver'} Filtros`;
 		},
 		extraFiltersBtnIcon() {
-			return this.showFilters ? 'filter-off' : 'filter';
+			return this.showFilters ? 'filter-off-outline' : 'filter-outline';
 		},
 	},
 	data() {
