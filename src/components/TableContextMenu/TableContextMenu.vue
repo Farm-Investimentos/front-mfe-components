@@ -23,12 +23,10 @@
 				:hoverColor="item.icon.color || 'primary'"
 				@click="onClick(item.handler)"
 			>
-				<farm-icon v-if="item.icon" size="sm" :color="item.icon.color || 'primary'">
+				<farm-icon v-if="item.icon" size="sm">
 					{{ item.icon.type }}
 				</farm-icon>
-				<farm-caption bold tag="span" :color="item.icon.color || 'primary'">{{
-					item.label
-				}}</farm-caption>
+				<farm-caption bold tag="span">{{ item.label }}</farm-caption>
 			</farm-listitem>
 		</farm-list>
 	</farm-contextmenu>

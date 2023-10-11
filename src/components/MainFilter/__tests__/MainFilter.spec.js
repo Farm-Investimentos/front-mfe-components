@@ -35,11 +35,11 @@ describe('MainFilter component', () => {
 		});
 
 		it('get extraFiltersBtnIcon', async () => {
-			expect(component.extraFiltersBtnIcon).toEqual('filter');
+			expect(component.extraFiltersBtnIcon).toEqual('filter-outline');
 			await wrapper.setProps({
 				showFilters: true,
 			});
-			expect(component.extraFiltersBtnIcon).toEqual('filter-off');
+			expect(component.extraFiltersBtnIcon).toEqual('filter-off-outline');
 		});
 	});
 });
