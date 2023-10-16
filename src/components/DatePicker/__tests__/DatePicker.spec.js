@@ -84,10 +84,12 @@ describe('DatePicker component', () => {
 		});
 
 		it('should allow only dates in year 2077', async () => {
+			const YEAR_TO_TEST = 2077;
+
 			await wrapper.setProps({
-				allowedDates: (value) => new Date(value).getFullYear() === 2077
+				allowedDates: (value) => new Date(value).getFullYear() === YEAR_TO_TEST
 			});
-			expect(component.checkIsInAllowedDates('2077-05-03')).toBe(true);
+			expect(component.checkIsInAllowedDates(`${YEAR_TO_TEST}-05-03`)).toBe(true);
 			expect(component.checkIsInAllowedDates('2023-05-03')).toBe('Data inválida');
 		});
 	});
