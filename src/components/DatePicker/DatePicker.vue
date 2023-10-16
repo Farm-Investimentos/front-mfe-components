@@ -48,7 +48,7 @@
 				:readonly="readonly"
 				:mask="`${readonly ? '' : '##/##/####'}`"
 				:id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
+				:rules="rules"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -152,7 +152,9 @@ export default defineComponent({
 				return true;
 			},
 			checkRequire: value => {
-				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
+				return this.required
+					? !!value || value.length > 0 || value != '' || 'Campo obrigatório'
+					: true;
 			},
 			checkMax: value => {
 				if (!this.required && value.length === 0) {
@@ -229,6 +231,7 @@ export default defineComponent({
 		},
 		keyUpInput(event) {
 			let newValue = event.target.value;
+
 			if (this.validation(newValue) && newValue.length === 10) {
 				const [day, month, year] = newValue.split('/');
 				const formattedDate = `${year}-${month}-${day}`;
@@ -272,6 +275,25 @@ export default defineComponent({
 				return this.dateField.length === 0 ? true : false;
 			}
 			return true;
+		},
+		rules() {
+			const allRules = [
+				this.checkDateValid,
+				this.checkMax,
+				this.checkMin,
+				this.checkRequire,
+				this.checkIsInAllowedDates,
+			];
+
+			if (this.multiple) {
+				if (!this.value.length && this.required) {
+					return allRules.map(rule => rule.bind(''));
+				}
+
+				return this.value.flatMap(date => allRules.map(rule => rule.bind(this, date)));
+			}
+
+			return allRules;
 		},
 	},
 });
