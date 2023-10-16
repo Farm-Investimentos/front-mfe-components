@@ -21,6 +21,7 @@
 			:min="min"
 			:allowed-dates="allowedDates"
 			:picker-date.sync="internalPickerDate"
+			:multiple="multiple"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -82,7 +83,7 @@ export default defineComponent({
 		 * v-model bind
 		 */
 		value: {
-			type: String,
+			type: [String, Array],
 			default: '',
 		},
 		/**
@@ -128,6 +129,10 @@ export default defineComponent({
 			default: false,
 		},
 		readonly: {
+			type: Boolean,
+			default: false,
+		},
+		multiple: {
 			type: Boolean,
 			default: false,
 		},
@@ -189,14 +194,21 @@ export default defineComponent({
 		},
 		fieldRange(newValue) {
 			if (!newValue) {
-				this.dateField = '';
+				this.dateField = this.multiple ? [] : '';
 				this.save();
 			}
 		},
 	},
 	methods: {
-		formatDateRange(date) {
+		formatDateRange(date: string | string[]) {
 			if (!date || date.length === 0) return '';
+
+			if (this.multiple) {
+				const sortedDates = [...date].sort((a, b) => +new Date(a) - +new Date(b));
+				const firstDate = dateDefaultFormatter(sortedDates[0]);
+				return firstDate;
+			}
+
 			return dateDefaultFormatter(date);
 		},
 		save() {
@@ -206,7 +218,7 @@ export default defineComponent({
 			this.closeDatepicker();
 		},
 		clear() {
-			this.dateField = '';
+			this.dateField = this.multiple ? [] : '';
 			this.save();
 			this.$refs.inputCalendar.reset();
 		},
@@ -219,7 +231,9 @@ export default defineComponent({
 			let newValue = event.target.value;
 			if (this.validation(newValue) && newValue.length === 10) {
 				const [day, month, year] = newValue.split('/');
-				this.dateField = `${year}-${month}-${day}`;
+				const formattedDate = `${year}-${month}-${day}`;
+
+				this.dateField = this.multiple ? [formattedDate] : formattedDate;
 				this.save();
 			}
 		},
