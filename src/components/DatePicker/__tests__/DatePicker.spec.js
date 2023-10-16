@@ -4,6 +4,7 @@ import DatePicker from '../DatePicker';
 describe('DatePicker component', () => {
 	let wrapper;
 	let component;
+	const ALL_RULES_LENGTH = 5;
 
 	beforeEach(() => {
 		wrapper = shallowMount(DatePicker, {
@@ -94,8 +95,6 @@ describe('DatePicker component', () => {
 		});
 
 		it('should have 5 rules if is not multiple', async () => {
-			const ALL_RULES_LENGTH = 5;
-
 			await wrapper.setProps({
 				value: ''
 			});
@@ -103,8 +102,6 @@ describe('DatePicker component', () => {
 		});
 
 		it('should have 5 rules if is multiple picker, is required and no value is selected', async () => {
-			const ALL_RULES_LENGTH = 5;
-
 			await wrapper.setProps({
 				multiple: true,
 				required: true,
@@ -114,7 +111,6 @@ describe('DatePicker component', () => {
 		});
 
 		it('should have 10 rules if is multiple picker, is required and 2 dates are selected', async () => {
-			const ALL_RULES_LENGTH = 5;
 			const value = ['2023-05-10', '2032-05-12'];
 
 			await wrapper.setProps({
