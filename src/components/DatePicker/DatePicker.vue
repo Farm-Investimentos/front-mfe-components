@@ -144,7 +144,6 @@ export default defineComponent({
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
-			inputKey: 1,
 			checkDateValid: value => {
 				if (value.length > 0) {
 					const isValid = checkDateValid(value);
