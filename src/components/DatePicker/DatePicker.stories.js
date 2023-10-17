@@ -130,3 +130,20 @@ export const CenterPositioned = () => ({
 		{{ date }}
     </div>`,
 });
+
+export const MultipleDates = () => ({
+	data() {
+		return {
+			date: [],
+		};
+	},
+	computed: {
+		dates() {
+			return this.date.join('  ///  ');
+		}
+	},
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" multiple required />
+		{{ dates }}
+    </div>`,
+});
