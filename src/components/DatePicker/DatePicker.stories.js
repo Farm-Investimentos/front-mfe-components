@@ -143,7 +143,7 @@ export const MultipleDates = () => ({
 		}
 	},
 	template: `<div style='max-width: 320px'>
-        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" multiple />
+        <farm-input-datepicker inputId="input-custom-id-0" v-model="date" multiple required />
 		{{ dates }}
     </div>`,
 });

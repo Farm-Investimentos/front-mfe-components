@@ -144,6 +144,7 @@ export default defineComponent({
 			menuField: false,
 			dateField: this.value,
 			fieldRange: s,
+			inputKey: 1,
 			checkDateValid: value => {
 				if (value.length > 0) {
 					const isValid = checkDateValid(value);
@@ -152,6 +153,8 @@ export default defineComponent({
 				return true;
 			},
 			checkRequire: value => {
+				console.log('value in required', value);
+
 				return this.required
 					? !!value || value.length > 0 || value != '' || 'Campo obrigatório'
 					: true;
@@ -286,11 +289,11 @@ export default defineComponent({
 			];
 
 			if (this.multiple) {
-				if (!this.value.length && this.required) {
-					return allRules.map(rule => rule.bind(''));
+				if (!this.inputVal.length && this.required) {
+					return allRules.map(rule => rule.call(this, ''));
 				}
 
-				return this.value.flatMap(date => allRules.map(rule => rule.bind(this, date)));
+				return this.inputVal.flatMap(date => allRules.map(rule => rule.call(this, date)));
 			}
 
 			return allRules;
