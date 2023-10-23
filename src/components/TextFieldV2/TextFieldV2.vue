@@ -11,6 +11,7 @@
 			'farm-textfield--disabled': disabled,
 			'farm-textfield--hiddendetails': hideDetails,
 			'farm-textfield--uppercase': isUppercase,
+			'farm-textfield--ellipsed': ellipsed,
 		}"
 		:id="customId"
 	>
@@ -167,6 +168,13 @@ export default defineComponent({
 			type: Function,
 			// eslint-disable-next-line
 			default: (event: Event) => {},
+		},
+		/**
+		 * Used for hide too much content inside input
+		 */
+		ellipsed: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props, { emit }) {
