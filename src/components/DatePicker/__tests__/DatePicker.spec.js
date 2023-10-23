@@ -94,6 +94,13 @@ describe('DatePicker component', () => {
 			expect(component.checkIsInAllowedDates('2023-05-03')).toBe('Data inválida');
 		});
 
+		it('should be readonly if is multiple', async () => {
+			await wrapper.setProps({
+				multiple: true
+			});
+			expect(component.isReadonly).toBe(true);
+		});
+
 		it('should have 5 rules if is not multiple', async () => {
 			await wrapper.setProps({
 				value: ''
@@ -131,6 +138,22 @@ describe('DatePicker component', () => {
 		it('closeDatepicker', () => {
 			component.closeDatepicker();
 			expect(component.menuField).toBeFalsy();
+		});
+
+		it('should use formatDateRange to format a date', async () => {
+			const value = '2023-10-10';
+
+			expect(component.formatDateRange(value)).toBe('10/10/2023');
+		});
+
+		it('should use formatDateRange to format multiple dates', async () => {
+			const value = ['2023-10-10', '2023-10-15'];
+
+			await wrapper.setProps({
+				multiple: true,
+			});
+
+			expect(component.formatDateRange(value)).toBe('10/10/2023, 15/10/2023');
 		});
 	});
 });

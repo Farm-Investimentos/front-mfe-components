@@ -45,8 +45,9 @@
 				v-model="fieldRange"
 				autocomplete="off"
 				ref="inputCalendar"
-				:readonly="readonly"
-				:mask="`${readonly ? '' : '##/##/####'}`"
+				:ellipsed="multiple"
+				:readonly="isReadonly"
+				:mask="`${isReadonly ? '' : '##/##/####'}`"
 				:id="inputId"
 				:rules="rules"
 				@keyup="keyUpInput"
@@ -206,9 +207,12 @@ export default defineComponent({
 			if (!date || date.length === 0) return '';
 
 			if (this.multiple) {
-				const sortedDates = [...date].sort((a, b) => +new Date(a) - +new Date(b));
-				const firstDate = dateDefaultFormatter(sortedDates[0]);
-				return firstDate;
+				let dateString = [...date]
+					.sort((a, b) => +new Date(a) - +new Date(b))
+					.map(dateDefaultFormatter)
+					.join(', ');
+
+				return dateString;
 			}
 
 			return dateDefaultFormatter(date);
@@ -294,6 +298,9 @@ export default defineComponent({
 			}
 
 			return allRules;
+		},
+		isReadonly() {
+			return this.readonly || this.multiple;
 		},
 	},
 });
