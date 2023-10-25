@@ -2,7 +2,7 @@ export const defaultFormat = (data, UTCTimeZone = true) => {
 	const options = {
 		timeZone: 'UTC',
 	};
-	return data ? new Date(data).toLocaleDateString('pt-BR', UTCTimeZone ? options : {}) : null;
+	return data ? new Date(`${data} 00:00`).toLocaleDateString('pt-BR', UTCTimeZone ? options : {}) : null;
 };
 
 export const convertDate = (data) => {

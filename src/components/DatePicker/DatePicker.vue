@@ -21,6 +21,7 @@
 			:min="min"
 			:allowed-dates="allowedDates"
 			:picker-date.sync="internalPickerDate"
+			:multiple="multiple"
 		>
 			<farm-btn plain title="Limpar" color="primary" :disabled="isDisabled" @click="clear">
 				Limpar
@@ -44,10 +45,11 @@
 				v-model="fieldRange"
 				autocomplete="off"
 				ref="inputCalendar"
-				:readonly="readonly"
-				:mask="`${readonly ? '' : '##/##/####'}`"
+				:ellipsed="multiple"
+				:readonly="isReadonly"
+				:mask="`${isReadonly ? '' : '##/##/####'}`"
 				:id="inputId"
-				:rules="[checkDateValid, checkMax, checkMin, checkRequire, checkIsInAllowedDates]"
+				:rules="rules"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -82,7 +84,7 @@ export default defineComponent({
 		 * v-model bind
 		 */
 		value: {
-			type: String,
+			type: [String, Array],
 			default: '',
 		},
 		/**
@@ -131,6 +133,10 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		multiple: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -147,7 +153,9 @@ export default defineComponent({
 				return true;
 			},
 			checkRequire: value => {
-				return this.required ? !!value || value != '' || 'Campo obrigatório' : true;
+				return this.required
+					? !!value || value.length > 0 || value != '' || 'Campo obrigatório'
+					: true;
 			},
 			checkMax: value => {
 				if (!this.required && value.length === 0) {
@@ -189,14 +197,24 @@ export default defineComponent({
 		},
 		fieldRange(newValue) {
 			if (!newValue) {
-				this.dateField = '';
+				this.dateField = this.multiple ? [] : '';
 				this.save();
 			}
 		},
 	},
 	methods: {
-		formatDateRange(date) {
+		formatDateRange(date: string | string[]) {
 			if (!date || date.length === 0) return '';
+
+			if (this.multiple) {
+				let dateString = [...date]
+					.sort((a, b) => +new Date(a) - +new Date(b))
+					.map(dateDefaultFormatter)
+					.join(', ');
+
+				return dateString;
+			}
+
 			return dateDefaultFormatter(date);
 		},
 		save() {
@@ -206,7 +224,7 @@ export default defineComponent({
 			this.closeDatepicker();
 		},
 		clear() {
-			this.dateField = '';
+			this.dateField = this.multiple ? [] : '';
 			this.save();
 			this.$refs.inputCalendar.reset();
 		},
@@ -217,9 +235,12 @@ export default defineComponent({
 		},
 		keyUpInput(event) {
 			let newValue = event.target.value;
+
 			if (this.validation(newValue) && newValue.length === 10) {
 				const [day, month, year] = newValue.split('/');
-				this.dateField = `${year}-${month}-${day}`;
+				const formattedDate = `${year}-${month}-${day}`;
+
+				this.dateField = this.multiple ? [formattedDate] : formattedDate;
 				this.save();
 			}
 		},
@@ -258,6 +279,28 @@ export default defineComponent({
 				return this.dateField.length === 0 ? true : false;
 			}
 			return true;
+		},
+		rules() {
+			const allRules = [
+				this.checkDateValid,
+				this.checkMax,
+				this.checkMin,
+				this.checkRequire,
+				this.checkIsInAllowedDates,
+			];
+
+			if (this.multiple) {
+				if (!this.inputVal.length && this.required) {
+					return allRules.map(rule => rule.call(this, ''));
+				}
+
+				return this.inputVal.flatMap(date => allRules.map(rule => rule.call(this, date)));
+			}
+
+			return allRules;
+		},
+		isReadonly() {
+			return this.readonly || this.multiple;
 		},
 	},
 });

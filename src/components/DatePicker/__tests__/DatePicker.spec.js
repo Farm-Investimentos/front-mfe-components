@@ -4,6 +4,7 @@ import DatePicker from '../DatePicker';
 describe('DatePicker component', () => {
 	let wrapper;
 	let component;
+	const ALL_RULES_LENGTH = 5;
 
 	beforeEach(() => {
 		wrapper = shallowMount(DatePicker, {
@@ -84,11 +85,47 @@ describe('DatePicker component', () => {
 		});
 
 		it('should allow only dates in year 2077', async () => {
+			const YEAR_TO_TEST = 2077;
+
 			await wrapper.setProps({
-				allowedDates: (value) => new Date(value).getFullYear() === 2077
+				allowedDates: (value) => new Date(value).getFullYear() === YEAR_TO_TEST
 			});
-			expect(component.checkIsInAllowedDates('2077-05-03')).toBe(true);
+			expect(component.checkIsInAllowedDates(`${YEAR_TO_TEST}-05-03`)).toBe(true);
 			expect(component.checkIsInAllowedDates('2023-05-03')).toBe('Data inválida');
+		});
+
+		it('should be readonly if is multiple', async () => {
+			await wrapper.setProps({
+				multiple: true
+			});
+			expect(component.isReadonly).toBe(true);
+		});
+
+		it('should have 5 rules if is not multiple', async () => {
+			await wrapper.setProps({
+				value: ''
+			});
+			expect(component.rules.length).toBe(ALL_RULES_LENGTH);
+		});
+
+		it('should have 5 rules if is multiple picker, is required and no value is selected', async () => {
+			await wrapper.setProps({
+				multiple: true,
+				required: true,
+				value: []
+			});
+			expect(component.rules.length).toBe(ALL_RULES_LENGTH);
+		});
+
+		it('should have 10 rules if is multiple picker, is required and 2 dates are selected', async () => {
+			const value = ['2023-05-10', '2032-05-12'];
+
+			await wrapper.setProps({
+				multiple: true,
+				required: true,
+				value
+			});
+			expect(component.rules.length).toBe(value.length * ALL_RULES_LENGTH);
 		});
 	});
 
@@ -101,6 +138,22 @@ describe('DatePicker component', () => {
 		it('closeDatepicker', () => {
 			component.closeDatepicker();
 			expect(component.menuField).toBeFalsy();
+		});
+
+		it('should use formatDateRange to format a date', async () => {
+			const value = '2023-10-10';
+
+			expect(component.formatDateRange(value)).toBe('10/10/2023');
+		});
+
+		it('should use formatDateRange to format multiple dates', async () => {
+			const value = ['2023-10-10', '2023-10-15'];
+
+			await wrapper.setProps({
+				multiple: true,
+			});
+
+			expect(component.formatDateRange(value)).toBe('10/10/2023, 15/10/2023');
 		});
 	});
 });

@@ -3,6 +3,12 @@
 .farm-textfield {
 	height: 64px;
 
+	&--ellipsed {
+		input {
+			text-overflow: ellipsis;
+		}
+	}
+
 	&--hiddendetails {
 		height: 40px;
 	}
