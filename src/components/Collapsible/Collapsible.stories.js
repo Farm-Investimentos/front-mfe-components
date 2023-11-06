@@ -150,6 +150,22 @@ export const Dense = () => ({
 		'<farm-collapsible icon="plus" title="With Icon" textChip="chip" dense showChip>collapsible content</farm-collapsible>',
 });
 
+export const Custom = () => ({
+	template: `
+		<farm-collapsible custom>
+		<template #custom>
+			<farm-btn
+				v-bind="attrs"
+				v-on="on"
+			>
+				custom
+			</farm-btn>
+		</template>
+		collapsible content		
+		</farm-collapsible>
+		`,
+});
+
 Primary.storyName = 'Basic';
 Title.storyName = 'Title';
 Icon.storyName = 'Icon';
