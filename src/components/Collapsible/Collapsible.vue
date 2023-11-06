@@ -3,23 +3,24 @@
 		<farm-card-content gutter="md">
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
-					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== ''">
+					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== '' && !custom">
 						<farm-icon size="md" :color="colorIcon">
 							{{ icon }}
 						</farm-icon>
 					</div>
-					<farm-heading type="6" color="black">
+					<farm-heading type="6" color="black" v-if="!custom">
 						{{ title }}
 					</farm-heading>
 					<farm-btn
 						outlined
 						class="ml-6"
-						v-if="hasButton"
+						v-if="hasButton && !custom"
 						:disabled="disabledButton"
 						@click.stop="onClick()"
 					>
 						{{ labelButton }}
 					</farm-btn>
+					<slot name="custom" v-if="custom"></slot>
 				</div>
 				<div class="collapsible__content-right">
 					<div class="collapsible__icon" v-if="showChip">
@@ -174,6 +175,10 @@ export default defineComponent({
 		variation: {
 			type: String,
 			default: 'base',
+		},
+		custom: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
