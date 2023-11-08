@@ -186,6 +186,18 @@ export const CustomHeaderContent = () => ({
 		`,
 });
 
+export const backgroundColor = () => ({
+	template: `
+		<farm-collapsible title="example title" bodyColor>
+		<farm-row extraDecrease style="background-color:#f5f5f5;" class="px-2">
+			<farm-col>
+			<farm-bodytext >collapsible content</farm-bodytext>
+			</farm-col>
+		</farm-row>
+		</farm-collapsible>
+		`,
+});
+
 Primary.storyName = 'Basic';
 Title.storyName = 'Title';
 Icon.storyName = 'Icon';

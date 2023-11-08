@@ -1,6 +1,6 @@
 <template>
 	<farm-card class="collapsible">
-		<farm-card-content gutter="md">
+		<farm-card-content gutter="md" :class="{ 'pb-0': bodyColor }">
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
 					<div
@@ -181,6 +181,11 @@ export default defineComponent({
 			default: 'base',
 		},
 		custom: {
+			type: Boolean,
+			default: false,
+		},
+
+		bodyColor: {
 			type: Boolean,
 			default: false,
 		},
