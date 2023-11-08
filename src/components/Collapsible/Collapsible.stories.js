@@ -166,6 +166,26 @@ export const Custom = () => ({
 		`,
 });
 
+export const CustomHeaderContent = () => ({
+	template: `
+		<farm-collapsible title="example title">
+		<template #header-content>
+			<farm-row>
+				<farm-col> 
+					<farm-caption> example</farm-caption>
+					<farm-caption> example</farm-caption>
+				</farm-col>
+				<farm-col> 
+					<farm-caption> example</farm-caption>
+					<farm-caption> example</farm-caption>
+				</farm-col>
+			</farm-row>
+		</template>
+		collapsible content
+		</farm-collapsible>
+		`,
+});
+
 Primary.storyName = 'Basic';
 Title.storyName = 'Title';
 Icon.storyName = 'Icon';

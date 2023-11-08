@@ -3,7 +3,10 @@
 		<farm-card-content gutter="md">
 			<div class="collapsible__header" @click="onToggleCollapsible(status)">
 				<div class="collapsible__content-title">
-					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== '' && !custom">
+					<div
+						class="collapsible__icon collapsible__icon--main"
+						v-if="icon !== '' && !custom"
+					>
 						<farm-icon size="md" :color="colorIcon">
 							{{ icon }}
 						</farm-icon>
@@ -40,6 +43,7 @@
 					</div>
 				</div>
 			</div>
+			<slot name="header-content"></slot>
 			<transition name="fade">
 				<div class="collapsible__body" v-show="status">
 					<slot></slot>
