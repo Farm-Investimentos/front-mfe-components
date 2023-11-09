@@ -87,6 +87,7 @@ export default defineComponent({
 			window.removeEventListener('keyup', escHandler);
 			inputValue.value = false;
 			emit('input', false);
+			emit('onClose');
 		};
 
 		watch(
