@@ -13,16 +13,24 @@
 		v-if="!readonly && !disabled"
 		:id="customId"
 	>
-		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
+		<farm-contextmenu
+			bottom
+			v-model="isVisible"
+			:stay-open="multiple || clickedDisabledItem"
+			ref="contextmenu"
+		>
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
-					tabindex="0"
 					v-for="(item, index) in items"
+					tabindex="0"
 					clickable
-					hoverColorVariation="lighten"
-					hover-color="primary"
+					hover-color-variation="lighten"
+					:hover-color="item.disabled ? 'neutral' : 'primary'"
 					:key="'contextmenu_item_' + index"
-					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					:class="{
+						'farm-listitem--selected': item[itemValue] === innerValue,
+						'farm-listitem--disabled': item.disabled,
+					}"
 					@click="selectItem(item)"
 				>
 					<farm-checkbox
@@ -90,7 +98,16 @@
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import {
+	computed,
+	onBeforeMount,
+	PropType,
+	ref,
+	toRefs,
+	watch,
+	defineComponent,
+	nextTick,
+} from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -242,6 +259,7 @@ export default defineComponent({
 			keys,
 		} = buildData(props);
 
+		const clickedDisabledItem = ref(false);
 		const listRef = ref();
 
 		const contextmenu = ref(null);
@@ -340,6 +358,17 @@ export default defineComponent({
 
 		const selectItem = item => {
 			inputField.value.focus();
+
+			if (item.disabled) {
+				clickedDisabledItem.value = true;
+
+				// "Schedule" execution to next loop, so the contextMenu won't close immediately if a disabled item is clicked
+				setTimeout(() => {
+					clickedDisabledItem.value = false;
+				});
+				return;
+			}
+
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -457,6 +486,7 @@ export default defineComponent({
 			customId,
 			showErrorText,
 			contextmenu,
+			clickedDisabledItem,
 			validate,
 			reset,
 			selectItem,

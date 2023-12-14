@@ -12,6 +12,19 @@
 		cursor: pointer;
 	}
 
+	&--disabled {
+		opacity: 0.5;
+
+		&:hover,
+		&:focus {
+			background-color: transparent !important;
+
+			.farm-typography {
+				color: var(--farm-neutral-darken) !important;
+			}
+		}
+	}
+
 	> a {
 		text-decoration: none;
 	}
