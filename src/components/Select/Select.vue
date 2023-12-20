@@ -1,71 +1,34 @@
 <template>
-	<div
-		:class="{
-			'farm-textfield': true,
-			'farm-textfield--validatable': rules.length > 0,
-			'farm-textfield--touched': isTouched,
-			'farm-textfield--blured': isBlured,
-			'farm-textfield--error': hasError,
-			'farm-textfield--disabled': disabled,
-			'farm-textfield--focused': isFocus || isVisible,
-			'farm-textfield--hiddendetails': hideDetails,
-		}"
-		v-if="!readonly && !disabled"
-		:id="customId"
-	>
+	<div :class="{
+		'farm-textfield': true,
+		'farm-textfield--validatable': rules.length > 0,
+		'farm-textfield--touched': isTouched,
+		'farm-textfield--blured': isBlured,
+		'farm-textfield--error': hasError,
+		'farm-textfield--disabled': disabled,
+		'farm-textfield--focused': isFocus || isVisible,
+		'farm-textfield--hiddendetails': hideDetails,
+	}" v-if="!readonly && !disabled" :id="customId">
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
-				<farm-listitem
-					tabindex="0"
-					v-for="(item, index) in items"
-					clickable
-					hoverColorVariation="lighten"
-					hover-color="primary"
-					:key="'contextmenu_item_' + index"
-					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
-					@click="selectItem(item)"
-				>
-					<farm-checkbox
-						class="farm-select__checkbox"
-						v-model="checked"
-						value="1"
-						size="sm"
-						v-if="isChecked(item)"
-					/>
-					<farm-checkbox
-						class="farm-select__checkbox"
-						v-model="checked"
-						value="2"
-						size="sm"
-						v-else-if="multiple"
-					/>
+				<farm-listitem tabindex="0" v-for="(item, index) in computedItems" clickable hoverColorVariation="lighten"
+					hover-color="primary" :key="'contextmenu_item_' + index"
+					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }" @click="selectItem(item)">
+					<farm-checkbox class="farm-select__checkbox" v-model="checked" value="1" size="sm"
+						v-if="isChecked(item)" />
+					<farm-checkbox class="farm-select__checkbox" v-model="checked" value="2" size="sm"
+						v-else-if="multiple" />
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 				<farm-listitem v-if="!items || items.length === 0">
 					{{ noDataText }}
 				</farm-listitem>
 			</farm-list>
-			<template v-slot:activator="{}">
-				<div
-					class="farm-textfield--input farm-textfield--input--iconed"
-					@keydown="onKeyDown"
-				>
-					<input
-						v-bind="$attrs"
-						v-model="selectedText"
-						ref="inputField"
-						readonly
-						:id="$props.id"
-						@click="clickInput"
-						@blur="onBlur"
-						@focusin="onFocus(true)"
-						@focusout="onFocus(false)"
-					/>
-					<farm-icon
-						color="gray"
-						:class="{ 'farm-icon--rotate': isVisible }"
-						@click="addFocusToInput"
-					>
+			<template v-slot:activator="{ }">
+				<div class="farm-textfield--input farm-textfield--input--iconed" @keydown="onKeyDown">
+					<input v-bind="$attrs" v-model="selectedText" ref="inputField" readonly :id="$props.id"
+						@click="clickInput" @blur="onBlur" @focusin="onFocus(true)" @focusout="onFocus(false)" />
+					<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
 						menu-down
 					</farm-icon>
 				</div>
@@ -74,15 +37,9 @@
 		<farm-caption v-if="showErrorText" color="error" variation="regular">
 			{{ errorBucket[0] }}
 		</farm-caption>
-		<farm-caption
-			v-if="hint && !showErrorText"
-			class="farm-select__hint-text"
-			:class="{
-				'farm-select__hint-text--show': persistentHint || isFocus,
-			}"
-			color="gray"
-			variation="regular"
-		>
+		<farm-caption v-if="hint && !showErrorText" class="farm-select__hint-text" :class="{
+			'farm-select__hint-text--show': persistentHint || isFocus,
+		}" color="gray" variation="regular">
 			{{ hint }}
 		</farm-caption>
 	</div>
@@ -90,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import { onBeforeMount, PropType, ref, toRefs, watch, defineComponent, computed } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -195,7 +152,7 @@ export default defineComponent({
 		input: {
 			type: Function,
 			// eslint-disable-next-line
-			default: (value: [String, Number, Array<any>]) => {},
+			default: (value: [String, Number, Array<any>]) => { },
 		},
 		/**
 		 * Emitted when the select is changed by user interaction<br />
@@ -204,7 +161,7 @@ export default defineComponent({
 		change: {
 			type: Function,
 			// eslint-disable-next-line
-			default: (value: [String, Number, Array<any>]) => {},
+			default: (value: [String, Number, Array<any>]) => { },
 		},
 		/**
 		 * Emitted when any key is pressed<br />
@@ -213,7 +170,7 @@ export default defineComponent({
 		keyup: {
 			type: Function,
 			// eslint-disable-next-line
-			default: (event: Event) => {},
+			default: (event: Event) => { },
 		},
 		/**
 		 * Emitted when the select is blurred<br />
@@ -222,7 +179,7 @@ export default defineComponent({
 		blur: {
 			type: Function,
 			// eslint-disable-next-line
-			default: (event: Event) => {},
+			default: (event: Event) => { },
 		},
 	},
 	setup(props, { emit }) {
@@ -259,6 +216,16 @@ export default defineComponent({
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
+
+		const computedItems = computed(() => {
+			if (props.multiple) {
+				return [{ [props.itemValue]: 'all', [props.itemText]: 'Todos' }, ...props.items];
+			} else {
+				return props.items;
+			}
+		});
+		const selectAll = ref(false);
+		
 		watch(
 			() => props.value,
 			newValue => {
@@ -338,30 +305,43 @@ export default defineComponent({
 			isFocus.value = focus;
 		};
 
-		const selectItem = item => {
+		const selectItem = (item) => {
 			inputField.value.focus();
+
 			if (multiple.value) {
-				const alreadyAdded = multipleValues.value.findIndex(
-					val => val === item[itemValue.value]
-				);
-				checked.value = '1';
-				if (alreadyAdded !== -1) {
-					multipleValues.value.splice(alreadyAdded, 1);
+				if (item[itemValue.value] === 'all') {
+					selectAll.value = !selectAll.value;
+					if (selectAll.value) {
+						multipleValues.value = computedItems.value
+							.filter((i) => i[itemValue.value] !== 'all')
+							.map((i) => i[itemValue.value]);
+					} else {
+						multipleValues.value = [];
+					}
 				} else {
-					multipleValues.value.push(item[itemValue.value]);
+					const alreadyAdded = multipleValues.value.findIndex(
+						(val) => val === item[itemValue.value]
+					);
+
+					if (alreadyAdded !== -1) {
+						multipleValues.value.splice(alreadyAdded, 1);
+					} else {
+						multipleValues.value.push(item[itemValue.value]);
+					}
 				}
+
 				innerValue.value = [...multipleValues.value];
-
-				return;
-			}
-
-			innerValue.value = item[itemValue.value];
-			isVisible.value = false;
-
-			setTimeout(() => {
 				emit('change', innerValue.value);
-			}, 100);
+			} else {
+				innerValue.value = item[itemValue.value];
+				isVisible.value = false;
+
+				setTimeout(() => {
+					emit('change', innerValue.value);
+				}, 100);
+			}
 		};
+
 
 		const clickInput = () => {
 			isTouched.value = true;
@@ -407,9 +387,8 @@ export default defineComponent({
 					return;
 				}
 
-				selectedText.value = `${labelItem[itemText.value]} (+${
-					innerValue.value.length - 1
-				} ${innerValue.value.length - 1 === 1 ? 'outro' : 'outros'})`;
+				selectedText.value = `${labelItem[itemText.value]} (+${innerValue.value.length - 1
+					} ${innerValue.value.length - 1 === 1 ? 'outro' : 'outros'})`;
 			}
 		};
 
@@ -443,6 +422,7 @@ export default defineComponent({
 		}
 
 		return {
+			computedItems,
 			items,
 			innerValue,
 			selectedText,
