@@ -18,7 +18,7 @@
 				<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
 					<farm-listitem
 						tabindex="0"
-						v-for="(item, index) in showFilteredItems ? filteredItems : items"
+						v-for="(item, index) in showFilteredItems ? filteredItems : computedItems"
 						clickable
 						hoverColorVariation="lighten"
 						hover-color="primary"
@@ -65,7 +65,7 @@
 						</farm-icon>
 					</div>
 				</template>
-			</farm-contextmenu>	
+			</farm-contextmenu>
 			<farm-caption v-if="showErrorText" color="error" variation="regular">
 				{{ errorBucket[0] }}
 			</farm-caption>
@@ -235,7 +235,7 @@ export default defineComponent({
 			filteredItems,
 			inputField,
 		} = useSelectAutoComplete(props);
-		
+
 		const listRef = ref();
 
 		const contextmenu = ref(null);
@@ -245,6 +245,14 @@ export default defineComponent({
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const computedItems = computed(() => {
+			let itemsList = items.value;
+			if (multiple.value) {
+				itemsList = [{ [itemText.value as string]: 'Todos', [itemValue.value as string]: 'all' }, ...itemsList];
+			}
+			return itemsList;
+		});
+
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
@@ -252,9 +260,9 @@ export default defineComponent({
 		const customId = 'farm-select-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
-		
+
 		const searchText = ref('');
-		
+
 		const filterOptions = () => {
 			searchText.value = selectedText.value.toLowerCase();
 			if (!searchText || searchText.value.includes('+')) {
@@ -270,11 +278,11 @@ export default defineComponent({
 				filteredItems.value = [];
 			}
 		};
-			
+
 		const showFilteredItems = computed(() => {
 			return isVisible.value && searchText.value.trim() !== '';
 		});
-		
+
 		watch(
 			() => props.value,
 			newValue => {
@@ -323,13 +331,13 @@ export default defineComponent({
 				validate(innerValue.value);
 			}
 		);
-		
+
 
 		const handleOutsideClick = (event) => {
 			clearSearchAndReturnSelection(event);
 
 		};
-		
+
 		onBeforeMount(() => {
 			validate(innerValue.value);
 			updateSelectedTextValue();
@@ -359,7 +367,7 @@ export default defineComponent({
 			isBlured.value = true;
 			validate(innerValue.value);
 			emit('blur', event);
-			
+
 			setTimeout(() => {
 				if (multiple.value){
 					searchText.value = '';
@@ -367,7 +375,7 @@ export default defineComponent({
 					return;
 				}
 			}, 100);
-			
+
 		};
 
 		const clearSearchAndReturnSelection = (event) => {
@@ -383,12 +391,12 @@ export default defineComponent({
 		};
 
 		const onFocus = (focus: boolean) => {
-			
+
 			isFocus.value = focus;
 		};
 
 		const selectItem = item => {
-			
+
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -414,7 +422,7 @@ export default defineComponent({
 		};
 
 		const clickInput = () => {
-		
+
 			isTouched.value = true;
 			emit('click');
 		};
@@ -470,9 +478,9 @@ export default defineComponent({
 				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
 			);
 		};
-		
+
 		const onInput = () => {
-			isVisible.value = true; 
+			isVisible.value = true;
 		};
 
 		function onKeyUp(event) {
@@ -487,6 +495,7 @@ export default defineComponent({
 
 		return {
 			items,
+			computedItems,
 			innerValue,
 			selectedText,
 			errorBucket,
