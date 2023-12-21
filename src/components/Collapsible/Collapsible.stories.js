@@ -152,11 +152,11 @@ export const Dense = () => ({
 
 export const Custom = () => ({
 	template: `
-		<farm-collapsible custom>
+		<farm-collapsible title="" custom>
 		<template #custom>
 			<farm-btn
-				v-bind="attrs"
-				v-on="on"
+				v-bind="$attrs"
+				v-on="$listeners"
 			>
 				custom
 			</farm-btn>
