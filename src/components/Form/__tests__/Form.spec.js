@@ -23,17 +23,14 @@ describe('Form component', () => {
 		});
 
 		it('should have errors bag after mount form', () => {
-			const errorsBag = getShallowErrorsBag(component.$children);
+			const { errorsBag, errorsBagLength } = getShallowErrorsBag(component.$children);
 
 			expect(component.errorsBag).toEqual(errorsBag);
+			expect(errorsBagLength).toBe(component.$children.length);
 		});
 
 		it('should update errors bag after adding more inputs', async () => {
-			const errorsBag = getShallowErrorsBag(component.$children);
-
-			console.log(wrapper.html());
-
-			// console.log(wrapper.find('#add-dynamic-button').trigger('click'));
+			const { errorsBag } = getShallowErrorsBag(component.$children);
 
 			expect(component.errorsBag).toEqual(errorsBag);
 

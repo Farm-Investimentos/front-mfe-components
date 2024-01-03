@@ -2,12 +2,17 @@ import { shallowMount, mount } from '@vue/test-utils';
 import { ref } from 'vue';
 
 export function getShallowErrorsBag(children) {
-	return children.reduce((accumulator, { _uid }) => {
+	const errorsBag = children.reduce((accumulator, { _uid }) => {
 		return {
 			...accumulator,
 			[_uid]: true,
 		};
 	}, {});
+
+	return {
+		errorsBag,
+		errorsBagLength: Object.keys(errorsBag).length,
+	};
 }
 
 function mountSlot() {
@@ -18,7 +23,7 @@ function mountSlot() {
     <farm-textfield-v2 />
   
     <section id="dynamics">
-      <template v-for="(dynamic, index) in form.dynamics">
+      <template v-for="(dynamic, index) in props?.form?.dynamics">
         <farm-textfield-v2 :key="index" name="dynamic + '-index'" />
       </template>
     </section>
@@ -59,11 +64,11 @@ function mountSlot() {
 export function formWithChildrenFactory(formComponent) {
 	const formSlot = mountSlot();
 	const form = ref({
-		dynamics: [],
+		dynamics: [1, 2],
 	});
 	const isValidForm = ref(false);
 
-	const wrapper2 = {
+	/* const wrapper2 = shallowMount(formComponent, {
 		props: {
 			value: isValidForm,
 		},
@@ -75,13 +80,16 @@ export function formWithChildrenFactory(formComponent) {
 				}),
 			]);
 		},
-	};
+	}); */
 
 	const wrapper = mount(formComponent, {
 		propsData: {
 			value: isValidForm,
 		},
-		slots: {
+		props: {
+			form,
+		},
+		scopedSlots: {
 			default: formSlot,
 		},
 		/* mocks: {
