@@ -38,6 +38,7 @@
 						v-model="checked"
 						value="1"
 						size="sm"
+						:disabled="item.disabled"
 						v-if="isChecked(item)"
 					/>
 					<farm-checkbox
@@ -45,6 +46,7 @@
 						v-model="checked"
 						value="2"
 						size="sm"
+						:disabled="item.disabled"
 						v-else-if="multiple"
 					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
