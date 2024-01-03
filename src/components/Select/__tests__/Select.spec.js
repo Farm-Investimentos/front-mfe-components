@@ -161,6 +161,33 @@ describe('Select component', () => {
 					expect(component.selectedText).toBe('value 3');
 				}, 150);
 			});
+			it('should not select a disabled item if is multiple', async () => {
+				const items = [
+					{ value: 0, text: 'value 0' },
+					{ value: 1, text: 'value 1', disabled: true },
+					{ value: 2, text: 'value 2' },
+					{ value: 3, text: 'value 3', disabled: true },
+				];
+
+				await wrapper.setProps({
+					multiple: true,
+					items,
+					value: [0],
+				});
+
+				expect(component.innerValue).toEqual([0]);
+				expect(component.selectedText).toBe('value 0');
+				component.selectItem(items[2]);
+				setTimeout(() => {
+					expect(component.innerValue).toEqual([0, 2]);
+					expect(component.selectedText).toBe('value 0 (+1 outro)');
+				}, 150);
+				component.selectItem(items[1]);
+				setTimeout(() => {
+					expect(component.innerValue).toEqual([0, 2]);
+					expect(component.selectedText).toBe('value 0 (+1 outro)');
+				}, 150);
+			});
 		});
 
 		describe('onKeyDown', () => {
