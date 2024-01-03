@@ -350,7 +350,9 @@ export default defineComponent({
 		};
 
 		const selectItem = item => {
-			inputField.value.focus();
+			if (inputField.value) {
+				inputField.value.focus();
+			}
 
 			if (item.disabled) {
 				clickedDisabledItem.value = true;
