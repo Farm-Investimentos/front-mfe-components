@@ -162,7 +162,7 @@ export const DisabledKeys = () => ({
 		v-model: {{ v }}
 		<br><br>
 		<farm-btn @click="allowAllOptions">Habilitar todos itens</farm-btn>
-		<farm-btn @click="reset">Resetar</button>
+		<farm-btn @click="reset">Resetar</farm-btn>
 	</div>`,
 });
 
