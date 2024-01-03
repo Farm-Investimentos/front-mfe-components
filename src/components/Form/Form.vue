@@ -83,6 +83,7 @@ export default defineComponent({
 			validationFields.forEach(field => {
 				watchInput(field);
 			});
+			instance.$nextTick(() => {});
 		};
 
 		return {
