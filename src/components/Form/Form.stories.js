@@ -20,9 +20,15 @@ const styles = {
 	vForm: {
 		maxWidth: '480px',
 	},
+	dynamicField: {
+		display: 'flex',
+	},
 	footer: {
 		display: 'flex',
 		justifyContent: 'end',
+	},
+	footerMargin: {
+		marginTop: '16px',
 	},
 };
 
@@ -139,6 +145,79 @@ export const Secondary = () => ({
             </div>
         </farm-form>
     `,
+});
+
+export const WithDynamicFields = () => ({
+	data() {
+		return {
+			form: {
+				document: null,
+				name: null,
+				checkbox: null,
+				birthDate: '',
+				selectId: null,
+				rangeDate: [],
+				dynamics: [],
+			},
+			validForm: true,
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+				checked: value => !!value || 'Deve estar marcado',
+			},
+			items: [
+				{ value: null, text: '' },
+				{ value: 1, text: 'label 1' },
+				{ value: 2, text: 'label 2' },
+			],
+			styles,
+		};
+	},
+	methods: {
+		addDynamic() {
+			const dynamic = {
+				name2: '',
+				selectId2: null,
+			};
+			this.form.dynamics.push({ ...dynamic });
+			this.$refs.form.restart();
+		},
+		removeDynamic(index) {
+			this.form.dynamics.splice(index, 1);
+			this.$refs.form.restart();
+		},
+	},
+	template: `
+	<div>
+		<farm-btn @click="addDynamic">Add field</farm-btn>
+
+		<farm-form v-model="validForm" :style="[styles.vForm]" ref="form">
+			<farm-label :required="true">Nome</farm-label>
+			<farm-textfield-v2 v-model="form.name" :rules="[rules.required]" />
+			
+			<farm-label :required="true">Select</farm-label>
+			<farm-select :rules="[rules.required]" :items="items" v-model="form.selectId"/>
+
+			<div :style="[styles.dynamicField]" v-for="(dynamic, index) in form.dynamics">
+				<div>
+					<farm-label :key="index + 'label'" :required="true">Dynamic</farm-label>
+					<farm-textfield-v2 :key="index" v-model="dynamic.name2" :rules="[rules.required]" />
+				</div>
+
+				<farm-icon @click="removeDynamic(index)">delete</farm-icon>
+			</div>
+
+			Is valid form: {{ validForm }}
+
+			<farm-line />
+			
+			<footer class="footer" :style="[styles.footer, styles.footerMargin]">
+				<farm-btn outlined @click="$refs.form.restart()" class="mr-3">Restart</farm-btn>
+				<farm-btn outlined @click="$refs.form.restartValidation()" class="mr-3">Restart Validation</farm-btn>
+				<farm-btn outlined @click="$refs.form.reset()" class="mr-3">Reset</farm-btn>
+				<farm-btn :disabled="!validForm">Salvar</farm-btn>
+			</footer>
+		</farm-form>
+	</div>`,
 });
 
 export const InitInvalid = () => ({
