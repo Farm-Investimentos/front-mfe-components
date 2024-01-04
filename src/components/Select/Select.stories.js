@@ -10,7 +10,8 @@ export default {
 			description: {
 				component: `Select<br />
 				selector: <em>farm-select</em><br />
-				<span style="color: var(--farm-primary-base);">ready for use</span>
+				<span style="color: var(--farm-primary-base);">ready for use</span><br />
+				<a href="https://github.com/Farm-Investimentos/front-mfe-components/blob/develop/src/components/Select/Select.vue" target="_blank">Github</a>
 				`,
 			},
 		},
@@ -126,6 +127,42 @@ export const Disabled = () => ({
 	template: `<div style="width: 480px">
 		<farm-select v-model="v" :items="items" disabled />
 		v-model: {{ v }}
+	</div>`,
+});
+
+export const DisabledKeys = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 1, text: ' value 1', disabled: true },
+				{ value: 2, text: ' value 2', disabled: true },
+				{ value: 3, text: ' value 3' },
+			],
+		};
+	},
+	methods: {
+		allowAllOptions() {
+			this.items = [
+				{ value: 1, text: ' value 1' },
+				{ value: 2, text: ' value 2' },
+				{ value: 3, text: ' value 3' },
+			];
+		},
+		reset() {
+			this.items = [
+				{ value: 1, text: ' value 1', disabled: true },
+				{ value: 2, text: ' value 2', disabled: true },
+				{ value: 3, text: ' value 3' },
+			];
+		},
+	},
+	template: `<div style="width: 480px">
+		<farm-select v-model="v" :items="items" />
+		v-model: {{ v }}
+		<br><br>
+		<farm-btn @click="allowAllOptions">Habilitar todos itens</farm-btn>
+		<farm-btn @click="reset">Resetar</farm-btn>
 	</div>`,
 });
 
