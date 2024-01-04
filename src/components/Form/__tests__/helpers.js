@@ -42,9 +42,9 @@ function mountSlot() {
 		},
 		template: `
 		<div>
-			<farm-textfield-v2 />
-			<farm-textfield-v2 />
-			<farm-textfield-v2 />
+			<farm-textfield-v2 :rules=[rules.required] />
+			<farm-textfield-v2 :rules=[rules.required] />
+			<farm-textfield-v2 :rules=[rules.required] />
 	
 			section id="dynamics">
 					<farm-textfield-v2 v-for="(dynamic, index) in form?.dynamics" :key="index" :name="'dynamic-' + index" />
@@ -77,6 +77,9 @@ export function formWithChildrenFactory(formComponent) {
 		},
 		mocks: {
 			form,
+			rules: {
+				required: value => !!value || 'Campo obrigatório',
+			},
 			addDynamic() {
 				form.value.dynamics.push({
 					name: '',

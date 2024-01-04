@@ -54,4 +54,23 @@ describe('Form component', () => {
 			expect(component.errorsBag).toStrictEqual(minusOneErrorsBag.value);
 		});
 	});
+
+	describe('isValidForm', () => {
+		let isValidForm;
+
+		beforeEach(() => {
+			const helper = formWithChildrenFactory(Form);
+
+			wrapper = helper.wrapper;
+			component = helper.component;
+			isValidForm = helper.isValidForm;
+		});
+
+		it('should be invalid until all validatable fields are valid', () => {
+			const { errorsBag } = getDeepErrorsBag(component);
+
+			expect(isValidForm.value).toBeFalsy();
+			expect(Object.values(errorsBag.value)).toEqual([false, false, false]);
+		});
+	});
 });
