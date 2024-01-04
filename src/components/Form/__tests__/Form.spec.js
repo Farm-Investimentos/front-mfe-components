@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import Form from '../Form';
-import { formWithChildrenFactory, getShallowErrorsBag } from './helpers';
+import { formWithChildrenFactory, getDeepErrorsBag } from './helpers';
 
 describe('Form component', () => {
 	let wrapper, component;
@@ -23,24 +23,35 @@ describe('Form component', () => {
 		});
 
 		it('should have errors bag after mount form', () => {
-			const { errorsBag, errorsBagLength } = getShallowErrorsBag(component.$children);
+			const { errorsBag, errorsBagLength } = getDeepErrorsBag(component);
 
-			expect(component.errorsBag).toEqual(errorsBag);
-			expect(errorsBagLength).toBe(component.$children.length);
+			expect(component.errorsBag).toStrictEqual(errorsBag.value);
+			expect(Object.keys(component.errorsBag).length).toBe(errorsBagLength);
 		});
 
-		it('should update errors bag after adding more inputs', async () => {
-			const { errorsBag } = getShallowErrorsBag(component.$children);
+		it('should update errors bag after change validatable items', async () => {
+			const { errorsBag, errorsBagLength } = getDeepErrorsBag(component);
 
-			expect(component.errorsBag).toEqual(errorsBag);
+			expect(component.errorsBag).toStrictEqual(errorsBag.value);
+			expect(Object.keys(component.errorsBag).length).toBe(errorsBagLength);
 
-			// console.log(component.addDynamic());
-			// console.log(component.addDynamic());
-			// console.log(component.addDynamic());
+			await component.addDynamic();
+			await component.restart();
 
-			console.log(wrapper.html());
+			const { errorsBag: plusOneErrorsBag, errorsBagLength: plusOneErrorsBagLength } =
+				getDeepErrorsBag(component);
 
-			expect(component.errorsBag).toEqual(errorsBag);
+			expect(Object.keys(component.errorsBag).length).toBe(plusOneErrorsBagLength);
+			expect(component.errorsBag).toStrictEqual(plusOneErrorsBag.value);
+
+			await component.removeDynamic(1);
+			await component.restart();
+
+			const { errorsBag: minusOneErrorsBag, errorsBagLength: minusOneErrorsBagLength } =
+				getDeepErrorsBag(component);
+
+			expect(Object.keys(component.errorsBag).length).toBe(minusOneErrorsBagLength);
+			expect(component.errorsBag).toStrictEqual(minusOneErrorsBag.value);
 		});
 	});
 });

@@ -2,7 +2,7 @@
 	<form class="farm-form"><slot></slot></form>
 </template>
 <script lang="ts">
-import { onMounted, reactive, ref, getCurrentInstance, defineComponent } from 'vue';
+import { onMounted, ref, getCurrentInstance, defineComponent } from 'vue';
 
 type ErrorsBag = Record<number, boolean>;
 
@@ -14,13 +14,13 @@ export default defineComponent({
 	inheritAttrs: true,
 	setup(props, { emit }) {
 		const innerValue = ref(props.value);
-		let errorsBag = reactive({} as ErrorsBag);
+		let errorsBag = ref({} as ErrorsBag);
 		let validationFields = [];
 		const instance = getCurrentInstance().proxy;
 
 		const dispatchError = () => {
-			const keys = Object.keys(errorsBag);
-			const errorsIds = keys.filter(key => !errorsBag[key]);
+			const keys = Object.keys(errorsBag.value);
+			const errorsIds = keys.filter(key => !errorsBag.value[key]);
 			emit('input', errorsIds.length === 0);
 		};
 
@@ -28,7 +28,7 @@ export default defineComponent({
 			field.$watch(
 				'hasError',
 				() => {
-					errorsBag[field._uid] = field.valid;
+					errorsBag.value[field._uid] = field.valid;
 					dispatchError();
 				},
 				{ immediate: true }
@@ -67,7 +67,7 @@ export default defineComponent({
 
 		const restartValidation = () => {
 			validationFields = [];
-			errorsBag = {};
+			errorsBag.value = {};
 			recursiveFormField(instance);
 			validationFields.forEach(field => {
 				watchInput(field);
@@ -78,12 +78,15 @@ export default defineComponent({
 
 		const restart = () => {
 			validationFields = [];
-			errorsBag = {};
-			recursiveFormField(instance);
-			validationFields.forEach(field => {
-				watchInput(field);
+			errorsBag.value = {};
+
+			instance.$nextTick(() => {
+				recursiveFormField(instance);
+
+				validationFields.forEach(field => {
+					watchInput(field);
+				});
 			});
-			instance.$nextTick(() => {});
 		};
 
 		return {

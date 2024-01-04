@@ -1,98 +1,82 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
 
-export function getShallowErrorsBag(children) {
-	const errorsBag = children.reduce((accumulator, { _uid }) => {
-		return {
-			...accumulator,
-			[_uid]: true,
-		};
-	}, {});
+export const errorsBag = ref({});
+
+export function getDeepErrorsBag($node) {
+	const getDeep = $node => {
+		$node.$children.forEach($leaf => {
+			if ($leaf.validate) {
+				errorsBag.value[$leaf._uid] = $leaf.valid;
+			} else if ($leaf.$children.length > 1) {
+				getDeep($leaf);
+			} else if ($leaf.$children[0] && $leaf.$children[0].validate) {
+				errorsBag.value[$leaf.$children[0]._uid] = $leaf.$children[0].valid;
+			} else if ($leaf.validatable) {
+				errorsBag.value[$leaf._uid] = $leaf.valid;
+			} else {
+				getDeep($leaf);
+			}
+		});
+	};
+
+	getDeep($node);
 
 	return {
 		errorsBag,
-		errorsBagLength: Object.keys(errorsBag).length,
+		errorsBagLength: errorsBag.value ? Object.keys(errorsBag.value).length : 0,
 	};
 }
 
+export function resetErrorsBag() {
+	errorsBag.value = {};
+}
+
 function mountSlot() {
-	return `
-  <div>
-    <farm-textfield-v2 />
-    <farm-textfield-v2 />
-    <farm-textfield-v2 />
-  
-    <section id="dynamics">
-      <template v-for="(dynamic, index) in props?.form?.dynamics">
-        <farm-textfield-v2 :key="index" name="dynamic + '-index'" />
-      </template>
-    </section>
-  </div>
-`;
-	/* return {
+	const normalComponent = {
 		props: {
 			form: {
 				type: Object,
 				required: true,
 			},
 		},
-		render(h) {
-			return h(
-				`
-        <div>
-          <farm-textfield-v2 />
-          <farm-textfield-v2 />
-          <farm-textfield-v2 />
-        
-          <section id="dynamics">
-            <template v-for="(dynamic, index) in form.dynamics">
-              <farm-textfield-v2 :key="index" name="dynamic + '-index'" />
-            </template>
-          </section>
-        </div>
-    `,
-				{
-					props: {
-						form: this.form,
-					},
-				}
-			);
-		},
-	}; */
+		template: `
+		<div>
+			<farm-textfield-v2 />
+			<farm-textfield-v2 />
+			<farm-textfield-v2 />
+	
+			section id="dynamics">
+					<farm-textfield-v2 v-for="(dynamic, index) in form?.dynamics" :key="index" :name="'dynamic-' + index" />
+			</section>
+		</div>
+	`,
+	};
+
+	return {
+		normalComponent,
+	};
 }
 
 export function formWithChildrenFactory(formComponent) {
-	const formSlot = mountSlot();
+	resetErrorsBag();
+
+	const { normalComponent } = mountSlot();
+
 	const form = ref({
-		dynamics: [1, 2],
+		dynamics: [],
 	});
 	const isValidForm = ref(false);
-
-	/* const wrapper2 = shallowMount(formComponent, {
-		props: {
-			value: isValidForm,
-		},
-		render: function (createElement) {
-			// `<div><slot :text="message"></slot></div>`
-			return createElement('div', [
-				this.$scopedSlots.default({
-					form,
-				}),
-			]);
-		},
-	}); */
 
 	const wrapper = mount(formComponent, {
 		propsData: {
 			value: isValidForm,
 		},
-		props: {
+		slots: {
+			default: '<normal-component :form="form" />',
+		},
+		mocks: {
 			form,
-		},
-		scopedSlots: {
-			default: formSlot,
-		},
-		/* mocks: {
 			addDynamic() {
 				form.value.dynamics.push({
 					name: '',
@@ -101,9 +85,14 @@ export function formWithChildrenFactory(formComponent) {
 				return form.value.dynamics;
 			},
 			removeDynamic(index) {
-				form.value.splice(index, 1);
+				form.value.dynamics.splice(index, 1);
+
+				return form.value.dynamics;
 			},
-		}, */
+		},
+		stubs: {
+			'normal-component': normalComponent,
+		},
 	});
 
 	return {
