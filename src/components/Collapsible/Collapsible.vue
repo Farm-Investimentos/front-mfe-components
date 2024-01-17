@@ -54,10 +54,11 @@
 			<div
 				v-if="customHeader"
 				class="collapsible__header--custom"
+				:class="plain ? 'collapsible__header--plain' : ''"
 				@click="onToggleCollapsible(status)"
 			>
 				<slot name="header-content"></slot>
-				<div class="collapsible__content-right--custom">
+				<div v-if="!plain" class="collapsible__content-right--custom">
 					<div class="collapsible__icon collapsible__icon--arrow">
 						<farm-icon size="md" color="primary">
 							{{ arrowIcon }}
@@ -125,9 +126,16 @@ export default defineComponent({
 			default: '',
 		},
 		/**
-		 * has butotn
+		 * has button
 		 */
 		hasButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * plain layout
+		 */
+		plain: {
 			type: Boolean,
 			default: false,
 		},
