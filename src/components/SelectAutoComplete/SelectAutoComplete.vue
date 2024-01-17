@@ -28,14 +28,16 @@
 					>
 						<farm-checkbox
 							class="farm-select__checkbox"
-							v-model="checked"
+							:checked="isChecked(item)"
+							@change="selectItem(item)"
 							value="1"
 							size="sm"
 							v-if="isChecked(item)"
 						/>
 						<farm-checkbox
 							class="farm-select__checkbox"
-							v-model="checked"
+							:checked="isChecked(item)"
+							@change="selectItem(item)"
 							value="2"
 							size="sm"
 							v-else-if="multiple"
@@ -84,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent, reactive } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -120,8 +122,8 @@ export default defineComponent({
 		},
 		/**
 		 * Puts input in readonly state
-		 */
-		readonly: {
+		 */		readonly: {
+
 			type: Boolean,
 			default: false,
 		},
@@ -245,13 +247,16 @@ export default defineComponent({
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+
 		const computedItems = computed(() => {
 			let itemsList = items.value;
 			if (multiple.value) {
-				itemsList = [{ [itemText.value as string]: 'Todos', [itemValue.value as string]: 'all' }, ...itemsList];
+				const todosItem = reactive({ [itemText.value as string]: 'Todos', [itemValue.value as number]: -1 });
+				itemsList = [todosItem, ...itemsList];
 			}
 			return itemsList;
 		});
+
 
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
@@ -339,6 +344,7 @@ export default defineComponent({
 		};
 
 		onBeforeMount(() => {
+
 			validate(innerValue.value);
 			updateSelectedTextValue();
 			document.removeEventListener('click', handleOutsideClick);
@@ -396,19 +402,27 @@ export default defineComponent({
 		};
 
 		const selectItem = item => {
-
 			if (multiple.value) {
-				const alreadyAdded = multipleValues.value.findIndex(
-					val => val === item[itemValue.value]
-				);
-				checked.value = '1';
-				if (alreadyAdded !== -1) {
-					multipleValues.value.splice(alreadyAdded, 1);
-				} else {
-					multipleValues.value.push(item[itemValue.value]);
-				}
-				innerValue.value = [...multipleValues.value];
+				if (item[itemValue.value] === -1) {
 
+
+					if (multipleValues.value.length === items.value.length ) {
+						multipleValues.value = [];  // Replace All with None
+					} else {
+						multipleValues.value = items.value.map(i => i[itemValue.value]);
+					}
+					innerValue.value = [...multipleValues.value];
+				} else {
+					const alreadyAdded = multipleValues.value.findIndex(
+						val => val === item[itemValue.value]
+					);
+					if (alreadyAdded !== -1) {
+						multipleValues.value.splice(alreadyAdded, 1);
+					} else {
+						multipleValues.value.push(item[itemValue.value]);
+					}
+					innerValue.value = [...multipleValues.value];
+				}
 				return;
 			}
 
@@ -420,7 +434,6 @@ export default defineComponent({
 				searchText.value = '';
 			}, 100);
 		};
-
 		const clickInput = () => {
 
 			isTouched.value = true;
@@ -433,15 +446,15 @@ export default defineComponent({
 
 		const updateSelectedTextValue = () => {
 			if (
-				!items.value ||
-				items.value.length === 0 ||
+				!computedItems.value ||
+				computedItems.value.length === 0 ||
 				innerValue.value === null ||
 				(multiple.value && multipleValues.value.length === 0)
 			) {
 				selectedText.value = '';
 				return;
 			}
-			const selectedItem = items.value.find(
+			const selectedItem = computedItems.value.find(
 				item => item[itemValue.value] == innerValue.value
 			);
 
@@ -454,7 +467,7 @@ export default defineComponent({
 
 		const addLabelToMultiple = () => {
 			if (multiple.value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
-				const labelItem = items.value.find(
+				const labelItem = computedItems.value.find(
 					item => item[itemValue.value] === innerValue.value[0]
 				);
 
@@ -473,12 +486,12 @@ export default defineComponent({
 		};
 
 		const isChecked = item => {
-			return (
-				multiple.value &&
-				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
-			);
+			if (item[itemValue.value] === -1) {
+				return multipleValues.value.length === items.value.length;
+			} else {
+				return multiple.value && multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1;
+			}
 		};
-
 		const onInput = () => {
 			isVisible.value = true;
 		};
