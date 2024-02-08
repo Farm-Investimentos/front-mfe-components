@@ -4,6 +4,10 @@
 .farm-tooltip {
 	display: inline-block;
 	position: relative;
+
+	&__activator {
+		display: inline-block;
+	}
 }
 
 .farm-tooltip__popup {
@@ -13,7 +17,6 @@
 			background-color: rgba(themeColor($color), 0.95);
 		}
 	}
-
 }
 
 .farm-tooltip__popup {
