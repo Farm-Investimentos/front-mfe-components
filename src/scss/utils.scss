@@ -11,9 +11,8 @@ tr.v-data-table__empty-wrapper {
 	}
 }
 
-
 .mf-Containers.mf-Containers-authenticated {
-	>.mf-Container>div.v-application {
+	> .mf-Container > div.v-application {
 		padding-bottom: 2.625rem;
 	}
 }
@@ -37,8 +36,6 @@ body.body--has-footer {
 	.v-icon.v-icon {
 		font-size: 22px;
 		color: var(--farm-neutral-farken);
-		;
-
 		&.mdi-checkbox-marked,
 		&.mdi-minus-box {
 			color: var(--farm-primary-base);
@@ -47,5 +44,19 @@ body.body--has-footer {
 
 	.v-input--selection-controls__ripple {
 		display: none;
+	}
+}
+
+.collapsible-stories-class-with-line {
+	position: relative;
+	padding-right: 20px;
+	&:after {
+		content: '';
+		position: absolute;
+		height: 80%;
+		width: 1px;
+		border-right: 1px solid var(--farm-stroke-base);
+		right: 10px;
+		top: 5%;
 	}
 }

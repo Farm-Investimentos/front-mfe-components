@@ -29,7 +29,7 @@
 					{{ item.text }}
 
 					<farm-icon
-						v-if="item.sortable && sortClick[$index].show"
+						v-show="item.sortable"
 						v-bind:class="[
 							sortClick[$index][item.value] ? 'farm-icon--desc' : 'farm-icon--asc',
 						]"

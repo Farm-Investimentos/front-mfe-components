@@ -1,23 +1,44 @@
 <template>
-	<div :class="{
-		'farm-textfield': true,
-		'farm-textfield--validatable': rules.length > 0,
-		'farm-textfield--touched': isTouched,
-		'farm-textfield--blured': isBlured,
-		'farm-textfield--error': hasError,
-		'farm-textfield--disabled': disabled,
-		'farm-textfield--focused': isFocus || isVisible,
-		'farm-textfield--hiddendetails': hideDetails,
-	}" v-if="!readonly && !disabled" :id="customId">
+	<div
+		:class="{
+			'farm-textfield': true,
+			'farm-textfield--validatable': rules.length > 0,
+			'farm-textfield--touched': isTouched,
+			'farm-textfield--blured': isBlured,
+			'farm-textfield--error': hasError,
+			'farm-textfield--disabled': disabled,
+			'farm-textfield--focused': isFocus || isVisible,
+			'farm-textfield--hiddendetails': hideDetails,
+		}"
+		v-if="!readonly && !disabled"
+		:id="customId"
+	>
 		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
-				<farm-listitem tabindex="0" v-for="(item, index) in computedItems" clickable hoverColorVariation="lighten"
-					hover-color="primary" :key="'contextmenu_item_' + index"
-					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }" @click="selectItem(item)">
-					<farm-checkbox class="farm-select__checkbox" v-model="checked" value="1" size="sm"
-						v-if="isChecked(item)" />
-					<farm-checkbox class="farm-select__checkbox" v-model="checked" value="2" size="sm"
-						v-else-if="multiple" />
+				<farm-listitem
+					tabindex="0"
+					v-for="(item, index) in items"
+					clickable
+					hoverColorVariation="lighten"
+					hover-color="primary"
+					:key="'contextmenu_item_' + index"
+					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					@click="selectItem(item)"
+				>
+					<farm-checkbox
+						class="farm-select__checkbox"
+						v-model="checked"
+						value="1"
+						size="sm"
+						v-if="isChecked(item)"
+					/>
+					<farm-checkbox
+						class="farm-select__checkbox"
+						v-model="checked"
+						value="2"
+						size="sm"
+						v-else-if="multiple"
+					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
 				<farm-listitem v-if="!items || items.length === 0">
@@ -199,6 +220,7 @@ export default defineComponent({
 			keys,
 		} = buildData(props);
 
+		const clickedDisabledItem = ref(false);
 		const listRef = ref();
 
 		const contextmenu = ref(null);
@@ -305,9 +327,8 @@ export default defineComponent({
 			isFocus.value = focus;
 		};
 
-		const selectItem = (item) => {
+		const selectItem = item => {
 			inputField.value.focus();
-
 			if (multiple.value) {
 				if (item[itemValue.value] === 'all') {
 					selectAll.value = !selectAll.value;
@@ -437,6 +458,7 @@ export default defineComponent({
 			customId,
 			showErrorText,
 			contextmenu,
+			clickedDisabledItem,
 			validate,
 			reset,
 			selectItem,

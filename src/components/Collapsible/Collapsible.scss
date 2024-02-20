@@ -7,6 +7,16 @@
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
+
+		&--custom {
+			position: relative;
+			cursor: pointer;
+		}
+
+		&--plain {
+			cursor: default;
+			pointer-events: none;
+		}
 	}
 
 	&__content-title {
@@ -19,6 +29,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		&--custom {
+			position: absolute;
+			right: 0;
+			top: 3px;
+		}
 	}
 
 	&__icon {
@@ -35,6 +51,10 @@
 		width: 100%;
 		margin-top: 1.5rem;
 	}
+}
+
+.full-width {
+	width: 100%;
 }
 
 .fade-enter-active,

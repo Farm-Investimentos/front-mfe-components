@@ -39,10 +39,10 @@ export const ColorIcons = () => ({
 	<farm-row>
 		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
 			<h4 style="margin:15px">{{ color }}</h4>
-			<farm-collapsible 
+			<farm-collapsible
 				style="margin-top:15px"
-				icon="clipboard" 
-				title="color icon" 
+				icon="clipboard"
+				title="color icon"
 				:colorIcon="color"
 			>
 			</farm-collapsible>
@@ -101,14 +101,14 @@ export const ColorsChips = () => ({
 	<farm-row>
 		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
 			<h4 style="margin:15px">{{ color }}</h4>
-			<farm-collapsible 
+			<farm-collapsible
 				style="margin-top:15px"
 				v-for="variation in variations"
-				icon="plus" 
+				icon="plus"
 				textChip="chip"
-				title="color chip" 
+				title="color chip"
 				:key="color + '_' + variation"
-				:showChip="true" 
+				:showChip="true"
 				:colorChip="color"
 				:variation="variation"
 			>
@@ -128,12 +128,12 @@ export const ColorsOutlinedChips = () => ({
 	<farm-row>
 		<farm-col cols="12" md="4"  v-for="color in colors" :key="'color_' + color">
 			<h4 style="margin:15px">{{ color }}</h4>
-			<farm-collapsible 
+			<farm-collapsible
 				style="margin-top:15px"
 				v-for="variation in variations"
-				icon="plus" 
+				icon="plus"
 				textChip="chip"
-				title="color chip" 
+				title="color chip"
 				:key="color + '_' + variation"
 				:showChip="true"
 				:outlined="true"
@@ -152,16 +152,223 @@ export const Dense = () => ({
 
 export const Custom = () => ({
 	template: `
-		<farm-collapsible custom>
+		<farm-collapsible title="" custom open>
 		<template #custom>
+			<farm-row justify="space-between" align="center">
+			<farm-col md="6">
+			<farm-caption>caption</farm-caption>
+			</farm-col>
+			<farm-col md="6" justify="end"
+			align="end">
 			<farm-btn
-				v-bind="attrs"
-				v-on="on"
+
 			>
 				custom
 			</farm-btn>
+			</farm-col>
+			</farm-row>
 		</template>
-		collapsible content		
+		collapsible content
+		</farm-collapsible>
+		`,
+});
+
+export const CustomHeaderContent = () => ({
+	template: `
+		<farm-collapsible title="" custom-header>
+		<template #header-content>
+			<farm-row>
+				<farm-col md="12">
+					<farm-bodytext color="success">initial text</farm-bodytext>
+				</farm-col>
+			</farm-row>
+
+			<farm-row class="pt-4">
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>text here</farm-caption
+					>
+					123455
+				</farm-col>
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>label here</farm-caption
+					>
+
+					<farm-caption variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold">LABEL HERE</farm-caption>
+
+					<farm-caption		 variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col>
+					<farm-caption variation="semiBold"
+						>Label here (text here)</farm-caption
+					>
+					<farm-caption variation="medium" class="my-1">value here</farm-caption>
+				</farm-col>
+		</farm-row>
+		</template>
+
+		<farm-bodytext >collapsible content</farm-bodytext>
+		</farm-collapsible>
+		`,
+});
+
+export const customBodyContent = () => ({
+	template: `
+		<farm-collapsible title="simple title"  custom-body>
+		<farm-row extraDecrease style="background-color:#f5f5f5;" class="px-4">
+		<farm-col class="collapsible-stories-class-with-line">
+			<farm-caption variation="semiBold"
+				>text here</farm-caption
+			>
+			123455
+		</farm-col>
+		<farm-col class="collapsible-stories-class-with-line">
+			<farm-caption variation="semiBold"
+				>label here</farm-caption
+			>
+
+			<farm-caption variation="medium" class="my-1">R$ 1000</farm-caption>
+		</farm-col>
+
+		<farm-col class="collapsible-stories-class-with-line">
+			<farm-caption variation="semiBold">LABEL HERE</farm-caption>
+
+			<farm-caption		 variation="medium" class="my-1">R$ 1000</farm-caption>
+		</farm-col>
+
+		<farm-col>
+			<farm-caption variation="semiBold"
+				>Label here (text here)</farm-caption
+			>
+			<farm-caption variation="medium" class="my-1">value here</farm-caption>
+		</farm-col>
+		</farm-row>
+		</farm-collapsible>
+		`,
+});
+
+export const CustomHeaderAndBodyContent = () => ({
+	template: `
+		<farm-collapsible title="" custom-header custom-body>
+
+		<template #header-content>
+			<div class="mb-4">
+				<farm-row>
+					<farm-col md="12">
+						<farm-bodytext color="success">initial text</farm-bodytext>
+					</farm-col>
+				</farm-row>
+
+				<farm-row class="pt-4">
+					<farm-col class="collapsible-stories-class-with-line">
+						<farm-caption variation="semiBold"
+							>text here</farm-caption
+						>
+						123455
+					</farm-col>
+					<farm-col class="collapsible-stories-class-with-line">
+						<farm-caption variation="semiBold"
+							>label here</farm-caption
+						>
+
+						<farm-caption variation="medium" class="my-1">R$ 1000</farm-caption>
+					</farm-col>
+
+					<farm-col class="collapsible-stories-class-with-line">
+						<farm-caption variation="semiBold">LABEL HERE</farm-caption>
+
+						<farm-caption		 variation="medium" class="my-1">R$ 1000</farm-caption>
+					</farm-col>
+
+					<farm-col>
+						<farm-caption variation="semiBold"
+							>Label here (text here)</farm-caption
+						>
+						<farm-caption variation="medium" class="my-1">value here</farm-caption>
+					</farm-col>
+				</farm-row>
+			</div>
+		</template>
+
+			<farm-row extraDecrease style="background-color:#f5f5f5;" class="mt-5 px-2">
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>text here</farm-caption
+					>
+					123455
+				</farm-col>
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>label here</farm-caption
+					>
+
+					<farm-caption variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold">LABEL HERE</farm-caption>
+
+					<farm-caption		 variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col>
+					<farm-caption variation="semiBold"
+						>Label here (text here)</farm-caption
+					>
+					<farm-caption variation="medium" class="my-1">value here</farm-caption>
+				</farm-col>
+			</farm-row>
+		</farm-collapsible>
+		`,
+});
+
+export const Plain = () => ({
+	template: `
+		<farm-collapsible title="" custom-header plain>
+		<template #header-content>
+			<farm-row>
+				<farm-col md="12">
+					<farm-bodytext color="success">initial text</farm-bodytext>
+				</farm-col>
+			</farm-row>
+
+			<farm-row class="pt-4">
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>text here</farm-caption
+					>
+					123455
+				</farm-col>
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold"
+						>label here</farm-caption
+					>
+
+					<farm-caption variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col class="collapsible-stories-class-with-line">
+					<farm-caption variation="semiBold">LABEL HERE</farm-caption>
+
+					<farm-caption		 variation="medium" class="my-1">R$ 1000</farm-caption>
+				</farm-col>
+
+				<farm-col>
+					<farm-caption variation="semiBold"
+						>Label here (text here)</farm-caption
+					>
+					<farm-caption variation="medium" class="my-1">value here</farm-caption>
+				</farm-col>
+		</farm-row>
+		</template>
+
+		<farm-bodytext >collapsible content</farm-bodytext>
 		</farm-collapsible>
 		`,
 });

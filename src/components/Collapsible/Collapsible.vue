@@ -1,9 +1,19 @@
 <template>
 	<farm-card class="collapsible">
-		<farm-card-content gutter="md">
-			<div class="collapsible__header" @click="onToggleCollapsible(status)">
-				<div class="collapsible__content-title">
-					<div class="collapsible__icon collapsible__icon--main" v-if="icon !== '' && !custom">
+		<farm-card-content gutter="md" :class="{ 'pb-0': customBody }">
+			<div
+				v-if="!customHeader"
+				class="collapsible__header"
+				@click="onToggleCollapsible(status)"
+			>
+				<div
+					class="collapsible__content-title"
+					:class="{ 'full-width': custom, 'pb-4': customBody }"
+				>
+					<div
+						class="collapsible__icon collapsible__icon--main"
+						v-if="icon !== '' && !custom"
+					>
 						<farm-icon size="md" :color="colorIcon">
 							{{ icon }}
 						</farm-icon>
@@ -40,7 +50,30 @@
 					</div>
 				</div>
 			</div>
-			<transition name="fade">
+
+			<div
+				v-if="customHeader"
+				class="collapsible__header--custom"
+				:class="plain ? 'collapsible__header--plain' : ''"
+				@click="onToggleCollapsible(status)"
+			>
+				<slot name="header-content"></slot>
+				<div v-if="!plain" class="collapsible__content-right--custom">
+					<div class="collapsible__icon collapsible__icon--arrow">
+						<farm-icon size="md" color="primary">
+							{{ arrowIcon }}
+						</farm-icon>
+					</div>
+				</div>
+			</div>
+
+			<transition v-if="customBody" name="fade">
+				<div v-show="status">
+					<slot></slot>
+				</div>
+			</transition>
+
+			<transition v-else name="fade">
 				<div class="collapsible__body" v-show="status">
 					<slot></slot>
 				</div>
@@ -93,9 +126,16 @@ export default defineComponent({
 			default: '',
 		},
 		/**
-		 * has butotn
+		 * has button
 		 */
 		hasButton: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * plain layout
+		 */
+		plain: {
 			type: Boolean,
 			default: false,
 		},
@@ -177,6 +217,14 @@ export default defineComponent({
 			default: 'base',
 		},
 		custom: {
+			type: Boolean,
+			default: false,
+		},
+		customBody: {
+			type: Boolean,
+			default: false,
+		},
+		customHeader: {
 			type: Boolean,
 			default: false,
 		},
