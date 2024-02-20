@@ -1,28 +1,32 @@
 <template>
-	<div
-		:class="{
-			'farm-textfield': true,
-			'farm-textfield--validatable': rules.length > 0,
-			'farm-textfield--touched': isTouched,
-			'farm-textfield--blured': isBlured,
-			'farm-textfield--error': hasError,
-			'farm-textfield--disabled': disabled,
-			'farm-textfield--focused': isFocus || isVisible,
-			'farm-textfield--hiddendetails': hideDetails,
-		}"
-		v-if="!readonly && !disabled"
-		:id="customId"
-	>
-		<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
+	<div :class="{
+		'farm-textfield': true,
+		'farm-textfield--validatable': rules.length > 0,
+		'farm-textfield--touched': isTouched,
+		'farm-textfield--blured': isBlured,
+		'farm-textfield--error': hasError,
+		'farm-textfield--disabled': disabled,
+		'farm-textfield--focused': isFocus || isVisible,
+		'farm-textfield--hiddendetails': hideDetails,
+	}" v-if="!readonly && !disabled" :id="customId">
+		<farm-contextmenu
+			bottom
+			v-model="isVisible"
+			:stay-open="multiple || clickedDisabledItem"
+			ref="contextmenu"
+		>
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
+					v-for="(item, index) in computedItems"
 					tabindex="0"
-					v-for="(item, index) in items"
 					clickable
-					hoverColorVariation="lighten"
-					hover-color="primary"
+					hover-color-variation="lighten"
+					:hover-color="item.disabled ? 'neutral' : 'primary'"
 					:key="'contextmenu_item_' + index"
-					:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+					:class="{
+						'farm-listitem--selected': item[itemValue] === innerValue,
+						'farm-listitem--disabled': item.disabled,
+					}"
 					@click="selectItem(item)"
 				>
 					<farm-checkbox
@@ -30,6 +34,7 @@
 						v-model="checked"
 						value="1"
 						size="sm"
+						:disabled="item.disabled"
 						v-if="isChecked(item)"
 					/>
 					<farm-checkbox
@@ -37,6 +42,7 @@
 						v-model="checked"
 						value="2"
 						size="sm"
+						:disabled="item.disabled"
 						v-else-if="multiple"
 					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
@@ -247,7 +253,7 @@ export default defineComponent({
 			}
 		});
 		const selectAll = ref(false);
-		
+
 		watch(
 			() => props.value,
 			newValue => {
@@ -327,8 +333,21 @@ export default defineComponent({
 			isFocus.value = focus;
 		};
 
-		const selectItem = item => {
-			inputField.value.focus();
+		const selectItem = (item) => {
+			if (inputField.value) {
+				inputField.value.focus();
+			}
+
+			if (item.disabled) {
+				clickedDisabledItem.value = true;
+
+				// "Schedule" execution to next loop, so the contextMenu won't close immediately if a disabled item is clicked
+				setTimeout(() => {
+					clickedDisabledItem.value = false;
+				});
+				return;
+			}
+
 			if (multiple.value) {
 				if (item[itemValue.value] === 'all') {
 					selectAll.value = !selectAll.value;
