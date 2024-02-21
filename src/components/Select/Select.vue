@@ -1,5 +1,7 @@
 <template>
 	<div
+		v-if="!readonly && !disabled"
+		:id="customId"
 		:class="{
 			'farm-textfield': true,
 			'farm-textfield--validatable': rules.length > 0,
@@ -10,8 +12,6 @@
 			'farm-textfield--focused': isFocus || isVisible,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
-		v-if="!readonly && !disabled"
-		:id="customId"
 	>
 		<farm-contextmenu
 			bottom
@@ -21,7 +21,7 @@
 		>
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
-					v-for="(item, index) in items"
+					v-for="(item, index) in computedItems"
 					tabindex="0"
 					clickable
 					hover-color-variation="lighten"
@@ -34,20 +34,23 @@
 					@click="selectItem(item)"
 				>
 					<farm-checkbox
-						class="farm-select__checkbox"
+						v-if="isChecked(item)"
 						v-model="checked"
+						class="farm-select__checkbox"
 						value="1"
 						size="sm"
+						:checked="isChecked(item)"
 						:disabled="item.disabled"
-						v-if="isChecked(item)"
 					/>
 					<farm-checkbox
-						class="farm-select__checkbox"
+						v-else-if="multiple"
 						v-model="checked"
+						class="farm-select__checkbox"
 						value="2"
 						size="sm"
+						:checked="isChecked(item)"
 						:disabled="item.disabled"
-						v-else-if="multiple"
+						@change="selectItem(item)"
 					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
@@ -55,7 +58,7 @@
 					{{ noDataText }}
 				</farm-listitem>
 			</farm-list>
-			<template v-slot:activator="{}">
+			<template #activator="{}">
 				<div
 					class="farm-textfield--input farm-textfield--input--iconed"
 					@keydown="onKeyDown"
@@ -100,7 +103,7 @@
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import { onBeforeMount, PropType, ref, toRefs, watch, defineComponent, computed } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -270,6 +273,15 @@ export default defineComponent({
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
+		const computedItems = computed(() => {
+			let itemsList = items.value;
+			if (multiple.value) {
+				const todosItem = { [itemText.value as string]: 'Todos', [itemValue.value]: 'all' };
+				itemsList = [todosItem, ...itemsList];
+			}
+			return itemsList;
+		});
+
 		watch(
 			() => props.value,
 			newValue => {
@@ -365,26 +377,37 @@ export default defineComponent({
 			}
 
 			if (multiple.value) {
-				const alreadyAdded = multipleValues.value.findIndex(
-					val => val === item[itemValue.value]
-				);
-				checked.value = '1';
-				if (alreadyAdded !== -1) {
-					multipleValues.value.splice(alreadyAdded, 1);
+				if (item[itemValue.value] === 'all') {
+					if (multipleValues.value.length === items.value.length) {
+						multipleValues.value = []; // Replace All with None
+					} else {
+						multipleValues.value = computedItems.value
+							.filter(i => !i.disabled && i[itemValue.value] !== 'all')
+							.map(i => i[itemValue.value]);
+					}
+					innerValue.value = [...multipleValues.value];
 				} else {
-					multipleValues.value.push(item[itemValue.value]);
+					const alreadyAdded = multipleValues.value.findIndex(
+						val => val === item[itemValue.value]
+					);
+
+					if (alreadyAdded !== -1) {
+						multipleValues.value.splice(alreadyAdded, 1);
+					} else {
+						multipleValues.value.push(item[itemValue.value]);
+					}
 				}
+
 				innerValue.value = [...multipleValues.value];
-
-				return;
-			}
-
-			innerValue.value = item[itemValue.value];
-			isVisible.value = false;
-
-			setTimeout(() => {
 				emit('change', innerValue.value);
-			}, 100);
+			} else {
+				innerValue.value = item[itemValue.value];
+				isVisible.value = false;
+
+				setTimeout(() => {
+					emit('change', innerValue.value);
+				}, 100);
+			}
 		};
 
 		const clickInput = () => {
@@ -438,10 +461,14 @@ export default defineComponent({
 		};
 
 		const isChecked = item => {
-			return (
-				multiple.value &&
-				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
-			);
+			if (item[itemValue.value] === 'all') {
+				return multipleValues.value.length === items.value.length;
+			} else {
+				return (
+					multiple.value &&
+					multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
+				);
+			}
 		};
 
 		function onKeyDown(e) {
@@ -467,6 +494,7 @@ export default defineComponent({
 		}
 
 		return {
+			computedItems,
 			items,
 			innerValue,
 			selectedText,
