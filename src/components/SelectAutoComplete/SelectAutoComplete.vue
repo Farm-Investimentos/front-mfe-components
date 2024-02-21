@@ -251,7 +251,7 @@ export default defineComponent({
 		const computedItems = computed(() => {
 			let itemsList = items.value;
 			if (multiple.value) {
-				const todosItem = reactive({ [itemText.value as string]: 'Todos', [itemValue.value as number]: -1 });
+				const todosItem = reactive({ [itemText.value as string]: 'Todos', [itemValue.value]: 'all' });
 				itemsList = [todosItem, ...itemsList];
 			}
 			return itemsList;
@@ -403,10 +403,8 @@ export default defineComponent({
 
 		const selectItem = item => {
 			if (multiple.value) {
-				if (item[itemValue.value] === -1) {
-
-
-					if (multipleValues.value.length === items.value.length ) {
+				if (item[itemValue.value] === 'all') {
+					if (multipleValues.value.length === items.value.length) {
 						multipleValues.value = [];  // Replace All with None
 					} else {
 						multipleValues.value = items.value.map(i => i[itemValue.value]);
@@ -486,7 +484,7 @@ export default defineComponent({
 		};
 
 		const isChecked = item => {
-			if (item[itemValue.value] === -1) {
+			if (item[itemValue.value] === 'all') {
 				return multipleValues.value.length === items.value.length;
 			} else {
 				return multiple.value && multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1;
