@@ -127,4 +127,73 @@ describe('SelectAutoComplet component', () => {
 			});
 		});
 	});
+	describe('Select All functionality', () => {
+		it('shows "Select All" option only when multiple is true', async () => {
+			const items = [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			];
+
+			await wrapper.setProps({
+				multiple: true,
+				items,
+			});
+
+			expect(component.computedItems[0][component.itemValue]).toBe('all');
+		});
+		it('selects all items when "Select All" is clicked', async () => {
+			const items = [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			];
+
+			await wrapper.setProps({
+				multiple: true,
+				items,
+			});
+
+			component.selectItem(component.computedItems[0]);
+			expect(component.innerValue).toEqual(items.map(item => item.value));
+		});
+		it('deselects all items when "Select All" is clicked again', async () => {
+			const items = [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			];
+
+			await wrapper.setProps({
+				multiple: true,
+				items,
+			});
+
+			component.selectItem(component.computedItems[0]);
+			component.selectItem(component.computedItems[0]);
+			expect(component.innerValue).toEqual([]);
+		});
+		it('correctly updates the bound value when all items are selected', async () => {
+			const items = [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			];
+
+			await wrapper.setProps({
+				multiple: true,
+				items,
+			});
+
+			component.selectItem(component.computedItems[0]);
+			await wrapper.vm.$nextTick();
+			expect(wrapper.emitted('input')[0]).toEqual([[0, 1, 2, 3]]);
+		});
+
+
+	});
 });
