@@ -353,8 +353,8 @@ export default defineComponent({
 					selectAll.value = !selectAll.value;
 					if (selectAll.value) {
 						multipleValues.value = computedItems.value
-							.filter((i) => i[itemValue.value] !== 'all')
-							.map((i) => i[itemValue.value]);
+							.filter(i => !i.disabled && i[itemValue.value] !== 'all')
+							.map(i => i[itemValue.value]);
 					} else {
 						multipleValues.value = [];
 					}
