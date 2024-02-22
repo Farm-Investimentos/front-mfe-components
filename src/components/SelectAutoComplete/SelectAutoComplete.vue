@@ -18,33 +18,37 @@
 				<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
 					<farm-listitem
 						tabindex="0"
-						v-for="(item, index) in showFilteredItems ? filteredItems : computedItems"
+						v-for="(item, index) in showFilteredItems ? filteredItems : items"
 						clickable
 						hoverColorVariation="lighten"
 						hover-color="primary"
 						:key="'contextmenu_item_' + index"
 						:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
-						@click='selectItem(item)'
+						@click="selectItem(item)"
 					>
 						<farm-checkbox
 							class="farm-select__checkbox"
-							:checked="isChecked(item)"
-							@change="selectItem(item)"
+							v-model="checked"
 							value="1"
 							size="sm"
 							v-if="isChecked(item)"
 						/>
 						<farm-checkbox
 							class="farm-select__checkbox"
-							:checked="isChecked(item)"
-							@change="selectItem(item)"
+							v-model="checked"
 							value="2"
 							size="sm"
 							v-else-if="multiple"
 						/>
 						<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 					</farm-listitem>
-					<farm-listitem v-if=" (!items || items.length === 0) || (showFilteredItems && filteredItems.length === 0)">
+					<farm-listitem
+						v-if="
+							!items ||
+							items.length === 0 ||
+							(showFilteredItems && filteredItems.length === 0)
+						"
+					>
 						{{ noDataText }}
 					</farm-listitem>
 				</farm-list>
@@ -62,7 +66,11 @@
 							@keyup="onKeyUp"
 							autocomplete="off"
 						/>
-						<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
+						<farm-icon
+							color="gray"
+							:class="{ 'farm-icon--rotate': isVisible }"
+							@click="addFocusToInput"
+						>
 							menu-down
 						</farm-icon>
 					</div>
@@ -81,12 +89,26 @@
 				{{ hint }}
 			</farm-caption>
 		</div>
-		<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
+		<farm-textfield-v2
+			v-else
+			v-model="selectedText"
+			:disabled="disabled"
+			:readonly="readonly"
+		/>
 	</div>
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent, reactive } from 'vue';
+import {
+	computed,
+	onBeforeMount,
+	onMounted,
+	PropType,
+	ref,
+	toRefs,
+	watch,
+	defineComponent,
+} from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -122,8 +144,8 @@ export default defineComponent({
 		},
 		/**
 		 * Puts input in readonly state
-		 */		readonly: {
-
+		 */
+		readonly: {
 			type: Boolean,
 			default: false,
 		},
@@ -247,17 +269,6 @@ export default defineComponent({
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
-
-		const computedItems = computed(() => {
-			let itemsList = items.value;
-			if (multiple.value) {
-				const todosItem = reactive({ [itemText.value as string]: 'Todos', [itemValue.value]: 'all' });
-				itemsList = [todosItem, ...itemsList];
-			}
-			return itemsList;
-		});
-
-
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
@@ -275,8 +286,8 @@ export default defineComponent({
 				return;
 			}
 
-			filteredItems.value = items.value.filter(
-				(item) => item[itemText.value].toLowerCase().includes(searchText.value)
+			filteredItems.value = items.value.filter(item =>
+				item[itemText.value].toLowerCase().includes(searchText.value)
 			);
 
 			if (filteredItems.value.length === 0 && searchText.value.trim() !== '') {
@@ -337,14 +348,11 @@ export default defineComponent({
 			}
 		);
 
-
-		const handleOutsideClick = (event) => {
+		const handleOutsideClick = event => {
 			clearSearchAndReturnSelection(event);
-
 		};
 
 		onBeforeMount(() => {
-
 			validate(innerValue.value);
 			updateSelectedTextValue();
 			document.removeEventListener('click', handleOutsideClick);
@@ -375,16 +383,15 @@ export default defineComponent({
 			emit('blur', event);
 
 			setTimeout(() => {
-				if (multiple.value){
+				if (multiple.value) {
 					searchText.value = '';
 					addLabelToMultiple();
 					return;
 				}
 			}, 100);
-
 		};
 
-		const clearSearchAndReturnSelection = (event) => {
+		const clearSearchAndReturnSelection = event => {
 			if (!event.srcElement.className.includes('farm-listitem')) {
 				if (innerValue.value !== null) {
 					if (!selectedText.value) {
@@ -397,30 +404,22 @@ export default defineComponent({
 		};
 
 		const onFocus = (focus: boolean) => {
-
 			isFocus.value = focus;
 		};
 
 		const selectItem = item => {
 			if (multiple.value) {
-				if (item[itemValue.value] === 'all') {
-					if (multipleValues.value.length === items.value.length) {
-						multipleValues.value = [];  // Replace All with None
-					} else {
-						multipleValues.value = items.value.map(i => i[itemValue.value]);
-					}
-					innerValue.value = [...multipleValues.value];
+				const alreadyAdded = multipleValues.value.findIndex(
+					val => val === item[itemValue.value]
+				);
+				checked.value = '1';
+				if (alreadyAdded !== -1) {
+					multipleValues.value.splice(alreadyAdded, 1);
 				} else {
-					const alreadyAdded = multipleValues.value.findIndex(
-						val => val === item[itemValue.value]
-					);
-					if (alreadyAdded !== -1) {
-						multipleValues.value.splice(alreadyAdded, 1);
-					} else {
-						multipleValues.value.push(item[itemValue.value]);
-					}
-					innerValue.value = [...multipleValues.value];
+					multipleValues.value.push(item[itemValue.value]);
 				}
+				innerValue.value = [...multipleValues.value];
+
 				return;
 			}
 
@@ -432,8 +431,8 @@ export default defineComponent({
 				searchText.value = '';
 			}, 100);
 		};
-		const clickInput = () => {
 
+		const clickInput = () => {
 			isTouched.value = true;
 			emit('click');
 		};
@@ -444,15 +443,15 @@ export default defineComponent({
 
 		const updateSelectedTextValue = () => {
 			if (
-				!computedItems.value ||
-				computedItems.value.length === 0 ||
+				!items.value ||
+				items.value.length === 0 ||
 				innerValue.value === null ||
 				(multiple.value && multipleValues.value.length === 0)
 			) {
 				selectedText.value = '';
 				return;
 			}
-			const selectedItem = computedItems.value.find(
+			const selectedItem = items.value.find(
 				item => item[itemValue.value] == innerValue.value
 			);
 
@@ -465,7 +464,7 @@ export default defineComponent({
 
 		const addLabelToMultiple = () => {
 			if (multiple.value && Array.isArray(innerValue.value) && innerValue.value.length > 0) {
-				const labelItem = computedItems.value.find(
+				const labelItem = items.value.find(
 					item => item[itemValue.value] === innerValue.value[0]
 				);
 
@@ -484,12 +483,12 @@ export default defineComponent({
 		};
 
 		const isChecked = item => {
-			if (item[itemValue.value] === 'all') {
-				return multipleValues.value.length === items.value.length;
-			} else {
-				return multiple.value && multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1;
-			}
+			return (
+				multiple.value &&
+				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
+			);
 		};
+
 		const onInput = () => {
 			isVisible.value = true;
 		};
@@ -506,7 +505,6 @@ export default defineComponent({
 
 		return {
 			items,
-			computedItems,
 			innerValue,
 			selectedText,
 			errorBucket,
@@ -542,7 +540,7 @@ export default defineComponent({
 			filteredItems,
 			showFilteredItems,
 			searchText,
-			handleOutsideClick
+			handleOutsideClick,
 		};
 	},
 });
