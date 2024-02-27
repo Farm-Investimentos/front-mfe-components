@@ -38,3 +38,12 @@ export const CustomColor = () => ({
 		<farm-btn-export color="info" :optionsList="[{ key: 1, label: 'XLS teste'}, { key: 2, label: 'CSV teste novo'}]" />
 	</div>`,
 });
+
+export const CustomLabel = () => ({
+	data() {
+		return {
+			label: 'Exportar Histórico',
+		};
+	},
+	template: '<farm-btn-export :label="label" />',
+});
