@@ -24,7 +24,7 @@
 						hover-color="primary"
 						:key="'contextmenu_item_' + index"
 						:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
-						@click='selectItem(item)'
+						@click="selectItem(item)"
 					>
 						<farm-checkbox
 							class="farm-select__checkbox"
@@ -42,7 +42,13 @@
 						/>
 						<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 					</farm-listitem>
-					<farm-listitem v-if=" (!items || items.length === 0) || (showFilteredItems && filteredItems.length === 0)">
+					<farm-listitem
+						v-if="
+							!items ||
+							items.length === 0 ||
+							(showFilteredItems && filteredItems.length === 0)
+						"
+					>
 						{{ noDataText }}
 					</farm-listitem>
 				</farm-list>
@@ -60,12 +66,16 @@
 							@keyup="onKeyUp"
 							autocomplete="off"
 						/>
-						<farm-icon color="gray" :class="{ 'farm-icon--rotate': isVisible }" @click="addFocusToInput">
+						<farm-icon
+							color="gray"
+							:class="{ 'farm-icon--rotate': isVisible }"
+							@click="addFocusToInput"
+						>
 							menu-down
 						</farm-icon>
 					</div>
 				</template>
-			</farm-contextmenu>	
+			</farm-contextmenu>
 			<farm-caption v-if="showErrorText" color="error" variation="regular">
 				{{ errorBucket[0] }}
 			</farm-caption>
@@ -79,12 +89,26 @@
 				{{ hint }}
 			</farm-caption>
 		</div>
-		<farm-textfield-v2 v-else v-model="selectedText" :disabled="disabled" :readonly="readonly" />
+		<farm-textfield-v2
+			v-else
+			v-model="selectedText"
+			:disabled="disabled"
+			:readonly="readonly"
+		/>
 	</div>
 </template>
 
 <script lang="ts">
-import { computed, onBeforeMount, onMounted, PropType, ref, toRefs, watch, defineComponent } from 'vue';
+import {
+	computed,
+	onBeforeMount,
+	onMounted,
+	PropType,
+	ref,
+	toRefs,
+	watch,
+	defineComponent,
+} from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -235,7 +259,7 @@ export default defineComponent({
 			filteredItems,
 			inputField,
 		} = useSelectAutoComplete(props);
-		
+
 		const listRef = ref();
 
 		const contextmenu = ref(null);
@@ -252,9 +276,9 @@ export default defineComponent({
 		const customId = 'farm-select-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
-		
+
 		const searchText = ref('');
-		
+
 		const filterOptions = () => {
 			searchText.value = selectedText.value.toLowerCase();
 			if (!searchText || searchText.value.includes('+')) {
@@ -262,19 +286,19 @@ export default defineComponent({
 				return;
 			}
 
-			filteredItems.value = items.value.filter(
-				(item) => item[itemText.value].toLowerCase().includes(searchText.value)
+			filteredItems.value = items.value.filter(item =>
+				item[itemText.value].toLowerCase().includes(searchText.value)
 			);
 
 			if (filteredItems.value.length === 0 && searchText.value.trim() !== '') {
 				filteredItems.value = [];
 			}
 		};
-			
+
 		const showFilteredItems = computed(() => {
 			return isVisible.value && searchText.value.trim() !== '';
 		});
-		
+
 		watch(
 			() => props.value,
 			newValue => {
@@ -323,13 +347,11 @@ export default defineComponent({
 				validate(innerValue.value);
 			}
 		);
-		
 
-		const handleOutsideClick = (event) => {
+		const handleOutsideClick = event => {
 			clearSearchAndReturnSelection(event);
-
 		};
-		
+
 		onBeforeMount(() => {
 			validate(innerValue.value);
 			updateSelectedTextValue();
@@ -359,18 +381,17 @@ export default defineComponent({
 			isBlured.value = true;
 			validate(innerValue.value);
 			emit('blur', event);
-			
+
 			setTimeout(() => {
-				if (multiple.value){
+				if (multiple.value) {
 					searchText.value = '';
 					addLabelToMultiple();
 					return;
 				}
 			}, 100);
-			
 		};
 
-		const clearSearchAndReturnSelection = (event) => {
+		const clearSearchAndReturnSelection = event => {
 			if (!event.srcElement.className.includes('farm-listitem')) {
 				if (innerValue.value !== null) {
 					if (!selectedText.value) {
@@ -383,12 +404,10 @@ export default defineComponent({
 		};
 
 		const onFocus = (focus: boolean) => {
-			
 			isFocus.value = focus;
 		};
 
 		const selectItem = item => {
-			
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -414,7 +433,6 @@ export default defineComponent({
 		};
 
 		const clickInput = () => {
-		
 			isTouched.value = true;
 			emit('click');
 		};
@@ -470,9 +488,9 @@ export default defineComponent({
 				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
 			);
 		};
-		
+
 		const onInput = () => {
-			isVisible.value = true; 
+			isVisible.value = true;
 		};
 
 		function onKeyUp(event) {
@@ -522,7 +540,7 @@ export default defineComponent({
 			filteredItems,
 			showFilteredItems,
 			searchText,
-			handleOutsideClick
+			handleOutsideClick,
 		};
 	},
 });

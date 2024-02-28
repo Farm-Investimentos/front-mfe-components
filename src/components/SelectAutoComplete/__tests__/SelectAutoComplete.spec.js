@@ -14,7 +14,6 @@ describe('SelectAutoComplet component', () => {
 		expect(wrapper).toBeDefined();
 	});
 
-	
 	describe('mount component', () => {
 		it('renders correctly', () => {
 			expect(wrapper.element).toMatchSnapshot();
