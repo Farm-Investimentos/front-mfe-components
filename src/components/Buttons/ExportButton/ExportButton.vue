@@ -3,20 +3,20 @@
 		v-if="optionsList.length == 0 || disabled"
 		class="farm-btn--responsive"
 		outlined
-		title="Exportar"
+		:title="label"
 		:color="$attrs.color"
 		:disabled="disabled"
 		@click="onClick"
 	>
 		<farm-icon v-if="optionsList.length == 0" class="mr-2"> file-export-outline </farm-icon>
-		Exportar
+		{{ label }}
 		<farm-icon v-if="optionsList.length != 0" class="ml-2"> chevron-down </farm-icon>
 	</farm-btn>
 
 	<farm-contextmenu v-else v-model="value" :bottom="true">
 		<template v-slot:activator="{}">
-			<farm-btn outlined title="Exportar" :color="$attrs.color" @click="toggleValue">
-				Exportar
+			<farm-btn outlined :title="label" :color="$attrs.color" @click="toggleValue">
+				{{ label }}
 				<farm-icon class="ml-2"> chevron-{{ value ? 'up' : 'down' }} </farm-icon>
 			</farm-btn>
 		</template>
@@ -62,6 +62,13 @@ export default defineComponent({
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Label
+		 */
+		label: {
+			type: String,
+			default: 'Exportar',
 		},
 	},
 	data() {
