@@ -1,7 +1,7 @@
 <template>
 	<span :class="{ 'farm-tooltip': true }" ref="parent">
-		<span @mouseover="onOver" @mouseout="onOut" ref="activator">
-			<slot name="activator"></slot>
+		<span class="farm-tooltip__activator" ref="activator" @mouseover="onOver" @mouseout="onOut">
+			<slot name="activator" />
 		</span>
 
 		<span
@@ -15,7 +15,7 @@
 			:style="styles"
 			@mouseout="onOut"
 		>
-			<slot></slot>
+			<slot />
 		</span>
 	</span>
 </template>

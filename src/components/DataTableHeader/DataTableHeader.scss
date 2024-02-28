@@ -8,7 +8,7 @@
 		position: absolute;
 		right: -20px;
 		top: -1px;
-		transition: transform 0.8s ease-in-out;
+		transition: transform 0.5s ease-in-out;
 
 		&.farm-icon--asc {
 			transform: rotateX(180deg);
@@ -18,15 +18,14 @@
 
 th.sortable {
 	cursor: pointer;
+
 	.farm-icon::before {
 		transition: all 0.3s linear;
 	}
-	
+
 	&:not(.active) {
-		&:hover {
-			.farm-icon::before {
-				color: var(--farm-bw-black-10) !important;
-			}
+		.farm-icon::before {
+			color: var(--farm-bw-black-10) !important;
 		}
 	}
 }

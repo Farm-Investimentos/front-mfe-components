@@ -12,6 +12,11 @@
 			position: relative;
 			cursor: pointer;
 		}
+
+		&--plain {
+			cursor: default;
+			pointer-events: none;
+		}
 	}
 
 	&__content-title {
