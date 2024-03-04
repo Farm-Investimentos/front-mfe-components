@@ -62,6 +62,10 @@
 		@include loggerMessage(var(--farm-info-base));
 	}
 
+	&.logger__item--warning {
+		@include loggerMessage(var(--farm-warning-base));
+	}
+
 	&--horizontal {
 		flex-direction: column;
 		height: auto;
