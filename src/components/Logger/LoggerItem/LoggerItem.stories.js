@@ -74,6 +74,20 @@ export const Info = () => ({
 	template: `<farm-logger-item :item="item" />`,
 });
 
+export const Warning = () => ({
+	data() {
+		return {
+			item: {
+				message: 'Recusado entre as pré elegíveis',
+				userName: 'Cleyton Rasta',
+				formattedDate: '13/06/2022  20:40',
+				status: 'warning',
+			},
+		};
+	},
+	template: `<farm-logger-item :item="item" />`,
+});
+
 export const ExtraMessage = () => ({
 	data() {
 		return {
@@ -133,6 +147,17 @@ export const Details = () => ({
 					userName: 'Cleyton Rasta',
 					formattedDate: '13/06/2022  20:40',
 					status: 'info',
+					details() {
+						alert('Ver Detalhes');
+					},
+				},
+
+				{
+					icon: 'book',
+					message: 'Warning',
+					userName: 'Cleyton Rasta',
+					formattedDate: '13/06/2022  20:40',
+					status: 'warning',
 					details() {
 						alert('Ver Detalhes');
 					},
