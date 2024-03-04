@@ -21,12 +21,33 @@
 		>
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
-					v-for="(item, index) in computedItems"
+					v-if="hasAllOption"
 					tabindex="0"
 					clickable
 					hover-color-variation="lighten"
-					:hover-color="item.disabled ? 'neutral' : 'primary'"
+					:hover-color="hasAllDisabled ? 'neutral' : 'primary'"
+					:class="{
+						'farm-listitem--selected': innerValue === 'all',
+						'farm-listitem--disabled': hasAllDisabled,
+					}"
+					@click="selectAll"
+				>
+					<farm-checkbox
+						v-model="hasAllSelected"
+						class="farm-select__checkbox"
+						value="all"
+						size="sm"
+						:disabled="hasAllDisabled"
+					/>
+					<farm-caption bold tag="span">Todos</farm-caption>
+				</farm-listitem>
+				<farm-listitem
+					v-for="(item, index) in items"
+					tabindex="0"
+					clickable
+					hover-color-variation="lighten"
 					:key="'contextmenu_item_' + index"
+					:hover-color="item.disabled ? 'neutral' : 'primary'"
 					:class="{
 						'farm-listitem--selected': item[itemValue] === innerValue,
 						'farm-listitem--disabled': item.disabled,
@@ -39,7 +60,6 @@
 						class="farm-select__checkbox"
 						value="1"
 						size="sm"
-						:checked="isChecked(item)"
 						:disabled="item.disabled"
 					/>
 					<farm-checkbox
@@ -48,9 +68,7 @@
 						class="farm-select__checkbox"
 						value="2"
 						size="sm"
-						:checked="isChecked(item)"
 						:disabled="item.disabled"
-						@change="selectItem(item)"
 					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
@@ -103,7 +121,7 @@
 </template>
 
 <script lang="ts">
-import { onBeforeMount, PropType, ref, toRefs, watch, defineComponent, computed } from 'vue';
+import { computed, onBeforeMount, PropType, ref, toRefs, watch, defineComponent } from 'vue';
 import validateFormStateBuilder from '../../composition/validateFormStateBuilder';
 import validateFormFieldBuilder from '../../composition/validateFormFieldBuilder';
 import validateFormMethodBuilder from '../../composition/validateFormMethodBuilder';
@@ -202,6 +220,13 @@ export default defineComponent({
 			default: '',
 		},
 		/**
+		 * Set "All" as first option to select all other values<br />
+		 */
+		hasAllOption: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * The updated bound model<br />
 		 * _event_
 		 */
@@ -259,28 +284,43 @@ export default defineComponent({
 		const listRef = ref();
 
 		const contextmenu = ref(null);
+		const isAllSelected = ref(false);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const enabledItems = computed(() => items.value.filter(item => !item.disabled));
+		const disabledItems = computed(() => items.value.filter(item => item.disabled));
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const hasAllSelected = computed({
+			get() {
+				if (
+					!multiple.value ||
+					!Array.isArray(items.value) ||
+					!Array.isArray(innerValue.value)
+				) {
+					return false;
+				}
+
+				if (innerValue.value.length === enabledItems.value.length) {
+					return 'all';
+				}
+
+				return false;
+			},
+			set() {
+				emit('input', innerValue.value);
+			},
+		});
+		const hasAllDisabled = computed(() => items.value.length == disabledItems.value.length);
 
 		const customId = 'farm-select-' + (props.id || randomId(2));
 
 		const showErrorText = computed(() => hasError.value && isTouched.value);
-
-		const computedItems = computed(() => {
-			let itemsList = items.value;
-			if (multiple.value) {
-				const todosItem = { [itemText.value as string]: 'Todos', [itemValue.value]: 'all' };
-				itemsList = [todosItem, ...itemsList];
-			}
-			return itemsList;
-		});
 
 		watch(
 			() => props.value,
@@ -294,6 +334,7 @@ export default defineComponent({
 				) {
 					multipleValues.value = [];
 				}
+
 				if (Array.isArray(newValue) && newValue.length > 0) {
 					multipleValues.value = [...newValue];
 				}
@@ -377,37 +418,36 @@ export default defineComponent({
 			}
 
 			if (multiple.value) {
-				if (item[itemValue.value] === 'all') {
-					if (multipleValues.value.length === items.value.length) {
-						multipleValues.value = []; // Replace All with None
-					} else {
-						multipleValues.value = computedItems.value
-							.filter(i => !i.disabled && i[itemValue.value] !== 'all')
-							.map(i => i[itemValue.value]);
-					}
-					innerValue.value = [...multipleValues.value];
+				const alreadyAdded = multipleValues.value.findIndex(
+					val => val === item[itemValue.value]
+				);
+				checked.value = '1';
+				if (alreadyAdded !== -1) {
+					multipleValues.value.splice(alreadyAdded, 1);
 				} else {
-					const alreadyAdded = multipleValues.value.findIndex(
-						val => val === item[itemValue.value]
-					);
-
-					if (alreadyAdded !== -1) {
-						multipleValues.value.splice(alreadyAdded, 1);
-					} else {
-						multipleValues.value.push(item[itemValue.value]);
-					}
+					multipleValues.value.push(item[itemValue.value]);
 				}
-
 				innerValue.value = [...multipleValues.value];
-				emit('change', innerValue.value);
-			} else {
-				innerValue.value = item[itemValue.value];
-				isVisible.value = false;
 
-				setTimeout(() => {
-					emit('change', innerValue.value);
-				}, 100);
+				return;
 			}
+
+			innerValue.value = item[itemValue.value];
+			isVisible.value = false;
+
+			setTimeout(() => {
+				emit('change', innerValue.value);
+			}, 100);
+		};
+		const selectAll = () => {
+			if (multipleValues.value.length === enabledItems.value.length) {
+				multipleValues.value = [];
+			} else {
+				multipleValues.value = enabledItems.value.map(item => item[itemValue.value]);
+			}
+
+			checked.value = '1';
+			innerValue.value = [...multipleValues.value];
 		};
 
 		const clickInput = () => {
@@ -461,14 +501,10 @@ export default defineComponent({
 		};
 
 		const isChecked = item => {
-			if (item[itemValue.value] === 'all') {
-				return multipleValues.value.length === items.value.length;
-			} else {
-				return (
-					multiple.value &&
-					multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
-				);
-			}
+			return (
+				multiple.value &&
+				multipleValues.value.findIndex(val => val === item[itemValue.value]) !== -1
+			);
 		};
 
 		function onKeyDown(e) {
@@ -494,7 +530,6 @@ export default defineComponent({
 		}
 
 		return {
-			computedItems,
 			items,
 			innerValue,
 			selectedText,
@@ -502,9 +537,12 @@ export default defineComponent({
 			valid,
 			validatable,
 			hasError,
+			hasAllSelected,
+			hasAllDisabled,
 			isTouched,
 			isBlured,
 			isFocus,
+			isAllSelected,
 			isVisible,
 			customId,
 			showErrorText,
@@ -513,6 +551,7 @@ export default defineComponent({
 			validate,
 			reset,
 			selectItem,
+			selectAll,
 			onBlur,
 			onFocus,
 			clickInput,
