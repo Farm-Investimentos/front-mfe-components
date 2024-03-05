@@ -1,17 +1,16 @@
 import { shallowMount } from '@vue/test-utils';
 import Select from '../Select';
 
-/* jest.spyOn(global, 'setTimeout').mockImplementation(fn => {
-	fn();
-	return setTimeout(() => 1, 0);
-}); */
-
 describe('Select component', () => {
 	let wrapper;
 	let component;
 
 	beforeEach(() => {
-		wrapper = shallowMount(Select);
+		wrapper = shallowMount(Select, {
+			propsData: {
+				id: 'my-custom-id',
+			},
+		});
 		component = wrapper.vm;
 	});
 
@@ -145,21 +144,15 @@ describe('Select component', () => {
 
 				expect(component.innerValue).toBe(1);
 				expect(component.selectedText).toBe('value 1');
+
 				component.selectItem(items[2]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(2);
-					expect(component.selectedText).toBe('value 2');
-				}, 150);
+				expect(component.innerValue).toBe(2);
+
 				component.selectItem(items[0]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(2);
-					expect(component.selectedText).toBe('value 2');
-				}, 150);
+				expect(component.innerValue).toBe(2);
+
 				component.selectItem(items[3]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(3);
-					expect(component.selectedText).toBe('value 3');
-				}, 150);
+				expect(component.innerValue).toBe(3);
 			});
 			it('should not select a disabled item if is multiple', async () => {
 				const items = [
@@ -177,16 +170,67 @@ describe('Select component', () => {
 
 				expect(component.innerValue).toEqual([0]);
 				expect(component.selectedText).toBe('value 0');
+
 				component.selectItem(items[2]);
-				setTimeout(() => {
-					expect(component.innerValue).toEqual([0, 2]);
-					expect(component.selectedText).toBe('value 0 (+1 outro)');
-				}, 150);
+				expect(component.innerValue).toEqual([0, 2]);
+
 				component.selectItem(items[1]);
-				setTimeout(() => {
-					expect(component.innerValue).toEqual([0, 2]);
-					expect(component.selectedText).toBe('value 0 (+1 outro)');
-				}, 150);
+				expect(component.innerValue).toEqual([0, 2]);
+
+				component.selectItem(items[0]);
+				expect(component.innerValue).toEqual([2]);
+
+				component.selectItem(items[0]);
+				expect(component.innerValue).toEqual([2, 0]);
+			});
+		});
+
+		describe('multiple with all option', () => {
+			it('should check all options', async () => {
+				const items = [
+					{ value: 0, text: 'value 0' },
+					{ value: 1, text: 'value 1' },
+					{ value: 2, text: 'value 2' },
+					{ value: 3, text: 'value 3' },
+				];
+
+				await wrapper.setProps({
+					items,
+					value: null,
+					multiple: true,
+				});
+
+				expect(component.hasAllSelected).toBe(false);
+				expect(component.multipleValues).toEqual([]);
+
+				component.selectAll();
+
+				expect(component.hasAllSelected).toBe('all');
+				expect(component.multipleValues).toEqual(items.map(item => item.value));
+			});
+			it('should check all options but disabled', async () => {
+				const items = [
+					{ value: 0, text: 'value 0' },
+					{ value: 1, text: 'value 1', disabled: true },
+					{ value: 2, text: 'value 2' },
+					{ value: 3, text: 'value 3', disabled: true },
+				];
+
+				await wrapper.setProps({
+					items,
+					value: null,
+					multiple: true,
+				});
+
+				expect(component.hasAllSelected).toBe(false);
+				expect(component.multipleValues).toEqual([]);
+
+				component.selectAll();
+
+				expect(component.hasAllSelected).toBe('all');
+				expect(component.multipleValues).toEqual(
+					items.filter(item => !item.disabled).map(item => item.value)
+				);
 			});
 		});
 
