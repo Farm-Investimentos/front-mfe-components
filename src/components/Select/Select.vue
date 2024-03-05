@@ -284,7 +284,6 @@ export default defineComponent({
 		const listRef = ref();
 
 		const contextmenu = ref(null);
-		const isAllSelected = ref(false);
 
 		const { errorBucket, valid, validatable } = validateFormStateBuilder();
 
@@ -547,7 +546,6 @@ export default defineComponent({
 			isTouched,
 			isBlured,
 			isFocus,
-			isAllSelected,
 			isVisible,
 			customId,
 			showErrorText,
