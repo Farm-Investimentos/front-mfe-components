@@ -14,7 +14,12 @@
 			v-if="!readonly && !disabled"
 			:id="customId"
 		>
-			<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
+			<farm-contextmenu
+				bottom
+				v-model="isVisible"
+				:stay-open="multiple || clickedDisabledItem"
+				ref="contextmenu"
+			>
 				<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
 					<farm-listitem
 						v-if="hasAllOption"
@@ -317,6 +322,8 @@ export default defineComponent({
 
 		const hasAllDisabled = computed(() => items.value.length == disabledItems.value.length);
 
+		const clickedDisabledItem = ref(false);
+
 		const hasAllSelected = computed({
 			get() {
 				if (
@@ -616,6 +623,7 @@ export default defineComponent({
 			isChecked,
 			multipleValues,
 			addLabelToMultiple,
+			clickedDisabledItem,
 			inputField,
 			onKeyUp,
 			addFocusToInput,
