@@ -440,6 +440,10 @@ export default defineComponent({
 			}, 100);
 		};
 		const selectAll = () => {
+			if (hasAllDisabled.value) {
+				return;
+			}
+
 			if (multipleValues.value.length === enabledItems.value.length) {
 				multipleValues.value = [];
 			} else {
@@ -448,6 +452,7 @@ export default defineComponent({
 
 			checked.value = '1';
 			innerValue.value = [...multipleValues.value];
+			validate(innerValue.value);
 		};
 
 		const clickInput = () => {
