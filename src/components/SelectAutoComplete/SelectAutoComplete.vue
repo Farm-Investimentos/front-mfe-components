@@ -17,13 +17,37 @@
 			<farm-contextmenu bottom v-model="isVisible" :stay-open="multiple" ref="contextmenu">
 				<farm-list v-if="!readonly" ref="listRef" @keyup="onKeyUp">
 					<farm-listitem
+						v-if="hasAllOption"
+						tabindex="0"
+						clickable
+						hover-color-variation="lighten"
+						:hover-color="hasAllDisabled ? 'neutral' : 'primary'"
+						:class="{
+							'farm-listitem--selected': innerValue === 'all',
+							'farm-listitem--disabled': hasAllDisabled,
+						}"
+						@click="selectAll"
+					>
+						<farm-checkbox
+							v-model="hasAllSelected"
+							class="farm-select__checkbox"
+							value="all"
+							size="sm"
+							:disabled="hasAllDisabled"
+						/>
+						<farm-caption bold tag="span">Todos</farm-caption>
+					</farm-listitem>
+					<farm-listitem
 						tabindex="0"
 						v-for="(item, index) in showFilteredItems ? filteredItems : items"
 						clickable
 						hoverColorVariation="lighten"
-						hover-color="primary"
+						:hover-color="item.disabled ? 'neutral' : 'primary'"
 						:key="'contextmenu_item_' + index"
-						:class="{ 'farm-listitem--selected': item[itemValue] === innerValue }"
+						:class="{
+							'farm-listitem--selected': item[itemValue] === innerValue,
+							'farm-listitem--disabled': item.disabled,
+						}"
 						@click="selectItem(item)"
 					>
 						<farm-checkbox
@@ -32,6 +56,7 @@
 							value="1"
 							size="sm"
 							v-if="isChecked(item)"
+							:disabled="item.disabled"
 						/>
 						<farm-checkbox
 							class="farm-select__checkbox"
@@ -39,6 +64,7 @@
 							value="2"
 							size="sm"
 							v-else-if="multiple"
+							:disabled="item.disabled"
 						/>
 						<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 					</farm-listitem>
@@ -161,7 +187,7 @@ export default defineComponent({
 		 * This can be changed using the item-text ad item-value
 		 */
 		items: {
-			type: Array,
+			type: Array as PropType<Array<Function>>,
 			default: () => [],
 		},
 		/**
@@ -242,6 +268,13 @@ export default defineComponent({
 			// eslint-disable-next-line
 			default: (event: Event) => {},
 		},
+		/**
+		 * Set "All" as first option to select all other values<br />
+		 */
+		hasAllOption: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const { rules, items, itemText, itemValue, disabled, multiple } = toRefs(props);
@@ -269,6 +302,9 @@ export default defineComponent({
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const enabledItems = computed(() => items.value.filter(item => !item.disabled));
+		const disabledItems = computed(() => items.value.filter(item => item.disabled));
+
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
@@ -278,6 +314,41 @@ export default defineComponent({
 		const showErrorText = computed(() => hasError.value && isTouched.value);
 
 		const searchText = ref('');
+
+		const hasAllDisabled = computed(() => items.value.length == disabledItems.value.length);
+
+		const hasAllSelected = computed({
+			get() {
+				if (
+					!multiple.value ||
+					!Array.isArray(items.value) ||
+					!Array.isArray(innerValue.value)
+				) {
+					return false;
+				}
+				if (innerValue.value.length === enabledItems.value.length) {
+					return 'all';
+				}
+				return false;
+			},
+			set() {
+				emit('input', innerValue.value);
+			},
+		});
+
+		const selectAll = () => {
+			if (hasAllDisabled.value) {
+				return;
+			}
+			if (multipleValues.value.length === enabledItems.value.length) {
+				multipleValues.value = [];
+			} else {
+				multipleValues.value = enabledItems.value.map(item => item[itemValue.value]);
+			}
+			checked.value = '1';
+			innerValue.value = [...multipleValues.value];
+			validate(innerValue.value);
+		};
 
 		const filterOptions = () => {
 			searchText.value = selectedText.value.toLowerCase();
@@ -408,6 +479,20 @@ export default defineComponent({
 		};
 
 		const selectItem = item => {
+			if (inputField.value) {
+				inputField.value.focus();
+			}
+
+			if (item.disabled) {
+				clickedDisabledItem.value = true;
+
+				// "Schedule" execution to next loop, so the contextMenu won't close immediately if a disabled item is clicked
+				setTimeout(() => {
+					clickedDisabledItem.value = false;
+				});
+				return;
+			}
+
 			if (multiple.value) {
 				const alreadyAdded = multipleValues.value.findIndex(
 					val => val === item[itemValue.value]
@@ -541,6 +626,9 @@ export default defineComponent({
 			showFilteredItems,
 			searchText,
 			handleOutsideClick,
+			hasAllDisabled,
+			hasAllSelected,
+			selectAll,
 		};
 	},
 });
