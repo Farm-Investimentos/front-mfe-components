@@ -144,21 +144,15 @@ describe('Select component', () => {
 
 				expect(component.innerValue).toBe(1);
 				expect(component.selectedText).toBe('value 1');
+
 				component.selectItem(items[2]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(2);
-					expect(component.selectedText).toBe('value 2');
-				}, 150);
+				expect(component.innerValue).toBe(2);
+
 				component.selectItem(items[0]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(2);
-					expect(component.selectedText).toBe('value 2');
-				}, 150);
+				expect(component.innerValue).toBe(2);
+
 				component.selectItem(items[3]);
-				setTimeout(() => {
-					expect(component.innerValue).toBe(3);
-					expect(component.selectedText).toBe('value 3');
-				}, 150);
+				expect(component.innerValue).toBe(3);
 			});
 			it('should not select a disabled item if is multiple', async () => {
 				const items = [
@@ -176,16 +170,18 @@ describe('Select component', () => {
 
 				expect(component.innerValue).toEqual([0]);
 				expect(component.selectedText).toBe('value 0');
+
 				component.selectItem(items[2]);
-				setTimeout(() => {
-					expect(component.innerValue).toEqual([0, 2]);
-					expect(component.selectedText).toBe('value 0 (+1 outro)');
-				}, 150);
+				expect(component.innerValue).toEqual([0, 2]);
+
 				component.selectItem(items[1]);
-				setTimeout(() => {
-					expect(component.innerValue).toEqual([0, 2]);
-					expect(component.selectedText).toBe('value 0 (+1 outro)');
-				}, 150);
+				expect(component.innerValue).toEqual([0, 2]);
+
+				component.selectItem(items[0]);
+				expect(component.innerValue).toEqual([2]);
+
+				component.selectItem(items[0]);
+				expect(component.innerValue).toEqual([2, 0]);
 			});
 		});
 
