@@ -1,5 +1,7 @@
 <template>
 	<div
+		v-if="!readonly && !disabled"
+		:id="customId"
 		:class="{
 			'farm-textfield': true,
 			'farm-textfield--validatable': rules.length > 0,
@@ -10,8 +12,6 @@
 			'farm-textfield--focused': isFocus || isVisible,
 			'farm-textfield--hiddendetails': hideDetails,
 		}"
-		v-if="!readonly && !disabled"
-		:id="customId"
 	>
 		<farm-contextmenu
 			bottom
@@ -21,12 +21,33 @@
 		>
 			<farm-list v-if="!readonly" ref="listRef" @keydown="onKeyDown">
 				<farm-listitem
+					v-if="hasAllOption"
+					tabindex="0"
+					clickable
+					hover-color-variation="lighten"
+					:hover-color="hasAllDisabled ? 'neutral' : 'primary'"
+					:class="{
+						'farm-listitem--selected': innerValue === 'all',
+						'farm-listitem--disabled': hasAllDisabled,
+					}"
+					@click="selectAll"
+				>
+					<farm-checkbox
+						v-model="hasAllSelected"
+						class="farm-select__checkbox"
+						value="all"
+						size="sm"
+						:disabled="hasAllDisabled"
+					/>
+					<farm-caption bold tag="span">Todos</farm-caption>
+				</farm-listitem>
+				<farm-listitem
 					v-for="(item, index) in items"
 					tabindex="0"
 					clickable
 					hover-color-variation="lighten"
-					:hover-color="item.disabled ? 'neutral' : 'primary'"
 					:key="'contextmenu_item_' + index"
+					:hover-color="item.disabled ? 'neutral' : 'primary'"
 					:class="{
 						'farm-listitem--selected': item[itemValue] === innerValue,
 						'farm-listitem--disabled': item.disabled,
@@ -34,20 +55,20 @@
 					@click="selectItem(item)"
 				>
 					<farm-checkbox
-						class="farm-select__checkbox"
+						v-if="isChecked(item)"
 						v-model="checked"
+						class="farm-select__checkbox"
 						value="1"
 						size="sm"
 						:disabled="item.disabled"
-						v-if="isChecked(item)"
 					/>
 					<farm-checkbox
-						class="farm-select__checkbox"
+						v-else-if="multiple"
 						v-model="checked"
+						class="farm-select__checkbox"
 						value="2"
 						size="sm"
 						:disabled="item.disabled"
-						v-else-if="multiple"
 					/>
 					<farm-caption bold tag="span">{{ item[itemText] }}</farm-caption>
 				</farm-listitem>
@@ -55,7 +76,7 @@
 					{{ noDataText }}
 				</farm-listitem>
 			</farm-list>
-			<template v-slot:activator="{}">
+			<template #activator="{}">
 				<div
 					class="farm-textfield--input farm-textfield--input--iconed"
 					@keydown="onKeyDown"
@@ -199,6 +220,13 @@ export default defineComponent({
 			default: '',
 		},
 		/**
+		 * Set "All" as first option to select all other values<br />
+		 */
+		hasAllOption: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * The updated bound model<br />
 		 * _event_
 		 */
@@ -262,9 +290,32 @@ export default defineComponent({
 		let fieldValidator = validateFormFieldBuilder(rules.value);
 		let validate = validateFormMethodBuilder(errorBucket, valid, fieldValidator);
 
+		const enabledItems = computed(() => items.value.filter(item => !item.disabled));
+		const disabledItems = computed(() => items.value.filter(item => item.disabled));
 		const hasError = computed(() => {
 			return errorBucket.value.length > 0;
 		});
+		const hasAllSelected = computed({
+			get() {
+				if (
+					!multiple.value ||
+					!Array.isArray(items.value) ||
+					!Array.isArray(innerValue.value)
+				) {
+					return false;
+				}
+
+				if (innerValue.value.length === enabledItems.value.length) {
+					return 'all';
+				}
+
+				return false;
+			},
+			set() {
+				emit('input', innerValue.value);
+			},
+		});
+		const hasAllDisabled = computed(() => items.value.length == disabledItems.value.length);
 
 		const customId = 'farm-select-' + (props.id || randomId(2));
 
@@ -282,6 +333,7 @@ export default defineComponent({
 				) {
 					multipleValues.value = [];
 				}
+
 				if (Array.isArray(newValue) && newValue.length > 0) {
 					multipleValues.value = [...newValue];
 				}
@@ -386,6 +438,21 @@ export default defineComponent({
 				emit('change', innerValue.value);
 			}, 100);
 		};
+		const selectAll = () => {
+			if (hasAllDisabled.value) {
+				return;
+			}
+
+			if (multipleValues.value.length === enabledItems.value.length) {
+				multipleValues.value = [];
+			} else {
+				multipleValues.value = enabledItems.value.map(item => item[itemValue.value]);
+			}
+
+			checked.value = '1';
+			innerValue.value = [...multipleValues.value];
+			validate(innerValue.value);
+		};
 
 		const clickInput = () => {
 			isTouched.value = true;
@@ -474,6 +541,8 @@ export default defineComponent({
 			valid,
 			validatable,
 			hasError,
+			hasAllSelected,
+			hasAllDisabled,
 			isTouched,
 			isBlured,
 			isFocus,
@@ -485,6 +554,7 @@ export default defineComponent({
 			validate,
 			reset,
 			selectItem,
+			selectAll,
 			onBlur,
 			onFocus,
 			clickInput,
