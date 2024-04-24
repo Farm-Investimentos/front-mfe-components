@@ -201,6 +201,9 @@ export default defineComponent({
 				this.save();
 			}
 		},
+		pickerDate(newValue) {
+			this.internalPickerDate = newValue;
+		},
 	},
 	methods: {
 		formatDateRange(date: string | string[]) {
