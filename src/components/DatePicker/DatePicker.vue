@@ -6,6 +6,7 @@
 		maxHeight="auto"
 		:bottom="position === 'bottom'"
 		:top="position === 'top'"
+		:fixedCentered="position === 'fixed-centered'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -105,7 +106,7 @@ export default defineComponent({
 		 * Min date (ISO format)
 		 */
 		position: {
-			type: String as PropType<'top' | 'bottom' | 'center'>,
+			type: String as PropType<'top' | 'bottom' | 'center' | 'fixed-centered'>,
 			default: 'bottom',
 		},
 		/**
