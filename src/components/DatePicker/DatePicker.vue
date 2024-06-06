@@ -51,6 +51,7 @@
 				:mask="`${isReadonly ? '' : '##/##/####'}`"
 				:id="inputId"
 				:rules="rules"
+				:disabled="disabled"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -135,6 +136,13 @@ export default defineComponent({
 			default: false,
 		},
 		multiple: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Disabled field
+		 */
+		disabled: {
 			type: Boolean,
 			default: false,
 		},
