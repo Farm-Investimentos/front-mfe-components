@@ -81,3 +81,15 @@ export const Reset = () => ({
 		</farm-btn>
 	</div>`,
 });
+
+export const disabled = () => ({
+	data() {
+		return {
+			date: ['2023-08-01', '2023-08-05'],
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<RangeDatePicker disabled inputId="input-custom-id" :value="date" />
+		date: {{ date }}
+	</div>`,
+});

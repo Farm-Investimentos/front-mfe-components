@@ -49,6 +49,7 @@
 				:id="inputId"
 				:mask="`${readonly ? [''] : ['##/##/####' + ' a ' + '##/##/####']}`"
 				:rules="[checkDateValid, checkRequire]"
+				:disabled="disabled"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -112,6 +113,13 @@ export default defineComponent({
 		 * Readonly field
 		 */
 		readonly: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Disabled field
+		 */
+		disabled: {
 			type: Boolean,
 			default: false,
 		},
