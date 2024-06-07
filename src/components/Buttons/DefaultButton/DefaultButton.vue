@@ -1,6 +1,6 @@
 <template>
 	<button
-		v-if="!to"
+		v-if="!to || disabled"
 		v-on="$listeners"
 		v-bind="$attrs"
 		:disabled="disabled"
