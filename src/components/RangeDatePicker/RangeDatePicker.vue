@@ -43,7 +43,6 @@
 		<template v-slot:activator>
 			<farm-textfield-v2
 				v-model="fieldRange"
-				v-bind="$attrs"
 				icon="calendar"
 				ref="inputCalendar"
 				:readonly="readonly"

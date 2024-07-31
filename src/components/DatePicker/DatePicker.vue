@@ -50,6 +50,8 @@
 				:readonly="isReadonly"
 				:mask="`${isReadonly ? '' : '##/##/####'}`"
 				:id="inputId"
+				:hint="hint"
+				:persistentHint="persistentHint"
 				:rules="rules"
 				:disabled="disabled"
 				@keyup="keyUpInput"
@@ -143,6 +145,17 @@ export default defineComponent({
 		 * Disabled field
 		 */
 		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		hint: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Always show hint text
+		 */
+		persistentHint: {
 			type: Boolean,
 			default: false,
 		},
