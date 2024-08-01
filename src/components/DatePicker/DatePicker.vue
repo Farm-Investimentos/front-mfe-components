@@ -117,7 +117,7 @@ export default defineComponent({
 		/**
 		 * Text message error
 		 */
-		minxText: {
+		minText: {
 			type: String,
 			default: 'A data está fora do período permitido',
 		},
@@ -214,7 +214,7 @@ export default defineComponent({
 					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
-					return this.minxText;
+					return this.minText;
 				}
 				return true;
 			},
