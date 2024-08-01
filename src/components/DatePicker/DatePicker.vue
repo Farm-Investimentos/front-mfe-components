@@ -98,6 +98,15 @@ export default defineComponent({
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Text message error
+		 */
+		maxText: {
+			type: String,
+			default: 'A data está fora do período permitido',
+		},
+
 		/**
 		 * Min date (ISO format)
 		 */
@@ -105,6 +114,14 @@ export default defineComponent({
 			type: String,
 			default: null,
 		},
+		/**
+		 * Text message error
+		 */
+		minxText: {
+			type: String,
+			default: 'A data está fora do período permitido',
+		},
+
 		/**
 		 * Min date (ISO format)
 		 */
@@ -184,7 +201,7 @@ export default defineComponent({
 					return true;
 				}
 				return this.max && new Date(convertDate(value)) > new Date(this.max)
-					? 'A data está fora do período permitido'
+					? this.maxText
 					: true;
 			},
 			checkMin: value => {
@@ -197,7 +214,7 @@ export default defineComponent({
 					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
-					return 'A data está fora do período permitido';
+					return this.minxText;
 				}
 				return true;
 			},
