@@ -5,13 +5,11 @@
 			'farm-emptywrapper--bordered': bordered,
 		}"
 	>
-		<farm-icon size="xl" color="gray">magnify</farm-icon>
+		<farm-icon size="xl" color="gray">{{ icon }}</farm-icon>
 		<farm-bodytext type="2" variation="bold" color="black" color-variation="40">
 			{{ title }}
 		</farm-bodytext>
-		<farm-caption v-if="subtitle" variation="regular" color-variation="30">
-			{{ subtitle }}
-		</farm-caption>
+		<farm-caption v-html="subtitle" v-if="subtitle" variation="regular" color-variation="30" />
 	</div>
 </template>
 <script lang="ts">
@@ -42,6 +40,10 @@ export default defineComponent({
 			type: Boolean,
 			default: true,
 		},
+		icon: {
+			type: String,
+			default: 'magnify',
+		}
 	},
 });
 </script>
