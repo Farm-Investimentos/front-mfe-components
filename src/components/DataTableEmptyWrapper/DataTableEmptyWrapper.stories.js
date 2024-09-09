@@ -28,3 +28,11 @@ export const CustomTitles = () => ({
 export const NoBorder = () => ({
 	template: '<farm-emptywrapper :bordered="false" />',
 });
+
+export const Icon = () => ({
+	template: '<farm-emptywrapper icon="alert" :bordered="false" />',
+});
+
+export const CustomHTML = () => ({
+	template: `<farm-emptywrapper subtitle="Para finalizar ou alterar a parametrização <b style='color: #4f8406;'>clique aqui</b>" icon="alert-outline" :bordered="false" />`,
+});
