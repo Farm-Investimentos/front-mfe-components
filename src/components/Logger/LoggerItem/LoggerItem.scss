@@ -69,7 +69,7 @@
 	&--horizontal {
 		flex-direction: column;
 		height: auto;
-		width: 158px;
+		max-width: 230px;
 
 		> div {
 			align-items: center;
