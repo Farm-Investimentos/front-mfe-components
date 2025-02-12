@@ -1,4 +1,4 @@
-<template>
+	<template>
 	<farm-contextmenu
 		stay-open
 		v-model="menuField"
@@ -48,7 +48,7 @@
 				:readonly="readonly"
 				:id="inputId"
 				:mask="`${readonly ? [''] : ['##/##/####' + ' a ' + '##/##/####']}`"
-				:rules="[checkDateValid, checkRequire]"
+				:rules="[checkDateValid, checkRequire, ...(validateInput ? [checkMinMax] : [])]"
 				:disabled="disabled"
 				@keyup="keyUpInput"
 			/>
@@ -123,6 +123,20 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Habilita a validação de min/max no input
+		 */
+		validateInput: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Mensagem de erro customizada para data fora do período permitido
+		 */
+		outOfRangeMessage: {
+			type: String,
+			default: 'A data selecionada deve ser entre {min} e {max}',
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -139,6 +153,31 @@ export default defineComponent({
 					const checkPartTwo = checkDateValid(value.slice(13));
 					return checkPartOne && checkPartTwo ? true : 'Data inválida';
 				}
+				return true;
+			},
+			checkMinMax: value => {
+				if (!this.validateInput || !value || value.length === 0) return true;
+				if (!this.min || !this.max) {
+					if (process.env.NODE_ENV === 'development') {
+						console.warn('[RangeDatePicker] Para usar validateInput é necessário definir as props min e max');
+					}
+					return true;
+				}
+
+				const [startDate, endDate] = value.split(' a ').map(date => {
+					const [day, month, year] = date.split('/');
+					return new Date(year, month - 1, day);
+				});
+
+				const minDate = new Date(this.min);
+				const maxDate = new Date(this.max);
+
+				if (startDate < minDate || endDate > maxDate) {
+					return this.outOfRangeMessage
+						.replace('{min}', dateDefaultFormatter(this.min))
+						.replace('{max}', dateDefaultFormatter(this.max));
+				}
+
 				return true;
 			},
 		};
