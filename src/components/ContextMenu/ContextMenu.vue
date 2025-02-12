@@ -9,6 +9,7 @@
 			:class="{
 				'farm-contextmenu__popup': true,
 				'farm-contextmenu__popup--visible': inputValue,
+				'farm-contextmenu__popup--fixed': fixedCentered,
 			}"
 			:style="styles"
 		>
@@ -65,6 +66,13 @@ export default defineComponent({
 		popupWidth: {
 			type: [Number, String],
 			default: null,
+		},
+		/**
+		 * Should be in the center of the screen
+		 */
+		fixedCentered: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props, { emit }) {

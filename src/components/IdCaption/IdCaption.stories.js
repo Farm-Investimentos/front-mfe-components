@@ -23,11 +23,11 @@ export default {
 };
 
 export const Primary = () => ({
-    methods: {
-        onLinkClick() {
-            alert('onLinkClick');
-        }
-    },
+	methods: {
+		onLinkClick() {
+			alert('onLinkClick');
+		},
+	},
 	template: `
     <farm-idcaption 
     icon="account-box-outline"
@@ -50,6 +50,24 @@ export const Linkless = () => ({
     <farm-idcaption 
     icon="account-box-outline"
     copyText="texto a copiar"
+    >
+        <template v-slot:title>
+            Upper Line Text
+        </template>
+        <template v-slot:subtitle>
+            Lower:Line Text
+        </template>
+    </farm-idcaption>
+    
+    `,
+});
+
+export const CopyBtnHidden = () => ({
+	template: `
+    <farm-idcaption 
+    icon="account-box-outline"
+    copyText="texto a copiar"
+    hide-copy-btn
     >
         <template v-slot:title>
             Upper Line Text

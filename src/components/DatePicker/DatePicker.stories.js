@@ -85,11 +85,11 @@ export const OnlyAllowedDates = () => ({
 	},
 	props: {
 		allowedDates: {
-			default: () => (value) => {
+			default: () => value => {
 				const day = parseInt(value.split('-')[2], 10);
 				return [5, 10, 15, 20, 25].includes(day);
-			}
-		}
+			},
+		},
 	},
 	template: `<div style='max-width: 320px'><farm-input-datepicker position="bottom" :allowed-dates="allowedDates" inputId="input-custom-id-1" v-model="date" /></div>`,
 });
@@ -98,7 +98,7 @@ export const WithInitialMonth = () => ({
 	data() {
 		return {
 			date: '',
-			pickerDate: '2023-01'
+			pickerDate: '2023-01',
 		};
 	},
 	template: `<div style='max-width: 320px'>
@@ -140,10 +140,16 @@ export const MultipleDates = () => ({
 	computed: {
 		dates() {
 			return this.date.join('  ///  ');
-		}
+		},
 	},
 	template: `<div style='max-width: 320px'>
         <farm-input-datepicker inputId="input-custom-id-0" v-model="date" multiple />
 		{{ dates }}
+    </div>`,
+});
+
+export const Disabled = () => ({
+	template: `<div style='max-width: 320px'>
+        <farm-input-datepicker :disabled="true"  value="2021-08-01" inputId="input-custom-id-3"/>
     </div>`,
 });

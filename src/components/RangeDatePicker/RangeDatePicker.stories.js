@@ -81,3 +81,56 @@ export const Reset = () => ({
 		</farm-btn>
 	</div>`,
 });
+
+export const disabled = () => ({
+	data() {
+		return {
+			date: ['2023-08-01', '2023-08-05'],
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<RangeDatePicker disabled inputId="input-custom-id" :value="date" />
+		date: {{ date }}
+	</div>`,
+});
+
+export const ValidacaoInputPadrao = () => ({
+	data() {
+		return {
+			date: null,
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<farm-label>Selecione uma data entre 01/01/2024 e 31/12/2024</farm-label>
+		<RangeDatePicker
+			inputId="input-custom-id"
+			v-model="date"
+			min="2024-01-01"
+			max="2024-12-31"
+			validateInput
+			required
+		/>
+		date: {{ date }}
+	</div>`,
+});
+
+export const ValidacaoInputCustomizada = () => ({
+	data() {
+		return {
+			date: null,
+		};
+	},
+	template: `<div style='max-width: 320px'>
+		<farm-label>Selecione uma data do primeiro semestre de 2024</farm-label>
+		<RangeDatePicker
+			inputId="input-custom-id"
+			v-model="date"
+			min="2024-01-01"
+			max="2024-06-30"
+			validateInput
+			required
+			outOfRangeMessage="Por favor, selecione datas dentro do primeiro semestre de 2024 ({min} até {max})"
+		/>
+		date: {{ date }}
+	</div>`,
+});

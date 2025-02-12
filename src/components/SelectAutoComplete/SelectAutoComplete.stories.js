@@ -326,3 +326,39 @@ export const ChangeEvent = () => ({
 
 	</div>`,
 });
+
+export const MultipleWithAllOption = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1' },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3' },
+			],
+		};
+	},
+	template: `<div style="width: 400px">
+		<farm-select-auto-complete v-model="v" :items="items" multiple has-all-option />
+		v-model: {{ v }}
+	</div>`,
+});
+
+export const MultipleWithAllOptionAndDisabledItems = () => ({
+	data() {
+		return {
+			v: null,
+			items: [
+				{ value: 0, text: 'value 0' },
+				{ value: 1, text: 'value 1', disabled: true },
+				{ value: 2, text: 'value 2' },
+				{ value: 3, text: 'value 3', disabled: true },
+			],
+		};
+	},
+	template: `<div style="width: 400px">
+		<farm-select-auto-complete v-model="v" :items="items" multiple has-all-option />
+		v-model: {{ v }}
+	</div>`,
+});

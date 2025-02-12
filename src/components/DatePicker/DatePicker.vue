@@ -6,6 +6,7 @@
 		maxHeight="auto"
 		:bottom="position === 'bottom'"
 		:top="position === 'top'"
+		:fixedCentered="position === 'fixed-centered'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -49,7 +50,10 @@
 				:readonly="isReadonly"
 				:mask="`${isReadonly ? '' : '##/##/####'}`"
 				:id="inputId"
+				:hint="hint"
+				:persistentHint="persistentHint"
 				:rules="rules"
+				:disabled="disabled"
 				@keyup="keyUpInput"
 			/>
 		</template>
@@ -94,6 +98,15 @@ export default defineComponent({
 			type: String,
 			default: null,
 		},
+
+		/**
+		 * Text message error
+		 */
+		maxText: {
+			type: String,
+			default: 'A data está fora do período permitido',
+		},
+
 		/**
 		 * Min date (ISO format)
 		 */
@@ -102,10 +115,18 @@ export default defineComponent({
 			default: null,
 		},
 		/**
+		 * Text message error
+		 */
+		minText: {
+			type: String,
+			default: 'A data está fora do período permitido',
+		},
+
+		/**
 		 * Min date (ISO format)
 		 */
 		position: {
-			type: String as PropType<'top' | 'bottom' | 'center'>,
+			type: String as PropType<'top' | 'bottom' | 'center' | 'fixed-centered'>,
 			default: 'bottom',
 		},
 		/**
@@ -137,6 +158,24 @@ export default defineComponent({
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Disabled field
+		 */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+		hint: {
+			type: String,
+			default: null,
+		},
+		/**
+		 * Always show hint text
+		 */
+		persistentHint: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		const s = this.formatDateRange(this.value);
@@ -162,7 +201,7 @@ export default defineComponent({
 					return true;
 				}
 				return this.max && new Date(convertDate(value)) > new Date(this.max)
-					? 'A data está fora do período permitido'
+					? this.maxText
 					: true;
 			},
 			checkMin: value => {
@@ -175,7 +214,7 @@ export default defineComponent({
 					if (dateSelected.getTime() >= dateMin.getTime()) {
 						return true;
 					}
-					return 'A data está fora do período permitido';
+					return this.minText;
 				}
 				return true;
 			},
@@ -200,6 +239,9 @@ export default defineComponent({
 				this.dateField = this.multiple ? [] : '';
 				this.save();
 			}
+		},
+		pickerDate(newValue) {
+			this.internalPickerDate = newValue;
 		},
 	},
 	methods: {
