@@ -61,7 +61,6 @@ export default [
 	'alpha',
 	'alphabetical',
 	'altimeter',
-
 	'ambulance',
 	'amplifier',
 	'anchor',
@@ -182,6 +181,7 @@ export default [
 	'arrow-up-drop-circle-outline',
 	'arrow-up-thick',
 	'artist',
+	'assessment',
 	'assistant',
 	'asterisk',
 	'at',
@@ -1954,6 +1954,7 @@ export default [
 	'rowing',
 	'rss',
 	'rss-box',
+	'rule',
 	'ruler',
 	'run',
 	'run-fast',

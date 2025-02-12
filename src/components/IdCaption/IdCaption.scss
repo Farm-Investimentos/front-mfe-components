@@ -14,7 +14,6 @@
 	}
 
 	&__body {
-
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -26,7 +25,6 @@
 		}
 
 		.farm-typography {
-
 			margin-bottom: 0;
 			display: flex;
 			flex: none;
@@ -34,7 +32,7 @@
 			align-items: center;
 			height: 18px;
 
-			>span {
+			> span {
 				max-width: 100%;
 				@include ellipsis;
 			}
@@ -47,5 +45,11 @@
 
 	&.farm-idcaption--noheight {
 		min-height: auto;
+	}
+
+	.farm-idcaption--hide-copy-btn {
+		.farm-tooltip:has(.mdi-content-copy) {
+			display: none;
+		}
 	}
 }

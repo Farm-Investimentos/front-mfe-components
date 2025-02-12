@@ -41,7 +41,7 @@
 					<slot name="subtitle"></slot>
 				</span>
 				<farm-copytoclipboard
-					v-if="copyText"
+					v-if="copyText && !hideCopyBtn"
 					sizeIcon="16px"
 					:toCopy="copyText"
 					:successMessage="successMessage"
@@ -127,6 +127,13 @@ export default defineComponent({
 			default: 'Conteúdo copiado para a área de trabalho',
 		},
 		/**
+		 * Hides copy button
+		 */
+		hideCopyBtn: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * Tooltip color
 		 */
 		tooltipColor: {
@@ -154,11 +161,11 @@ export default defineComponent({
 		},
 	},
 
-	setup(_, { slots }) {
+	setup({ hideCopyBtn }, { slots }) {
 		const hasTitle = computed(() => slots.title);
 		const hasSubtitle = computed(() => slots.subtitle);
 
-		return { hasSubtitle, hasTitle };
+		return { hasSubtitle, hasTitle, hideCopyBtn };
 	},
 });
 </script>
