@@ -164,15 +164,19 @@ export default defineComponent({
 					return true;
 				}
 
-				const [startDate, endDate] = value.split(' a ').map(date => {
-					const [day, month, year] = date.split('/');
-					return new Date(year, month - 1, day);
-				});
+				const [startDateStr, endDateStr] = value.split(' a ');
+				
+				// Convertendo para o formato yyyy-mm-dd para comparação
+				const [startDay, startMonth, startYear] = startDateStr.split('/');
+				const [endDay, endMonth, endYear] = endDateStr.split('/');
+				
+				const startDateFormatted = `${startYear}-${startMonth.padStart(2, '0')}-${startDay.padStart(2, '0')}`;
+				const endDateFormatted = `${endYear}-${endMonth.padStart(2, '0')}-${endDay.padStart(2, '0')}`;
 
-				const minDate = new Date(this.min);
-				const maxDate = new Date(this.max);
+				// Comparação direta de strings no formato yyyy-mm-dd
+				const isValid = startDateFormatted >= this.min && endDateFormatted <= this.max;
 
-				if (startDate < minDate || endDate > maxDate) {
+				if (!isValid) {
 					return this.outOfRangeMessage
 						.replace('{min}', dateDefaultFormatter(this.min))
 						.replace('{max}', dateDefaultFormatter(this.max));
