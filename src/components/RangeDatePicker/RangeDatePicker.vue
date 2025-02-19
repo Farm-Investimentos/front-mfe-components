@@ -166,15 +166,13 @@ export default defineComponent({
 
 				const [startDateStr, endDateStr] = value.split(' a ');
 				
-				// Convertendo para o formato yyyy-mm-dd para comparação
-				const [startDay, startMonth, startYear] = startDateStr.split('/');
-				const [endDay, endMonth, endYear] = endDateStr.split('/');
-				
-				const startDateFormatted = `${startYear}-${startMonth.padStart(2, '0')}-${startDay.padStart(2, '0')}`;
-				const endDateFormatted = `${endYear}-${endMonth.padStart(2, '0')}-${endDay.padStart(2, '0')}`;
+				const startDate = new Date(convertDate(startDateStr));
+				const endDate = new Date(convertDate(endDateStr));
+				const minDate = new Date(this.min);
+				const maxDate = new Date(this.max);
 
-				// Comparação direta de strings no formato yyyy-mm-dd
-				const isValid = startDateFormatted >= this.min && endDateFormatted <= this.max;
+				const isValid = startDate.getTime() >= minDate.getTime() && 
+							   endDate.getTime() <= maxDate.getTime();
 
 				if (!isValid) {
 					return this.outOfRangeMessage
