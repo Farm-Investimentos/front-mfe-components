@@ -104,4 +104,49 @@ describe('RangeDatePicker component', () => {
 			expect(component.fieldRange).toEqual('27/02/2023 a 28/02/2023');
 		});
 	});
+
+	describe('range validation', () => {
+		beforeEach(async () => {
+			await wrapper.setProps({
+				min: '2023-02-01',
+				max: '2023-02-28',
+				validateInput: true
+			});
+		});
+
+		it('should return true when date range is within min and max', () => {
+			const result = component.checkMinMax('15/02/2023 a 20/02/2023');
+			expect(result).toBe(true);
+		});
+
+		it('should return error message when start date is before min date', () => {
+			const result = component.checkMinMax('31/01/2023 a 15/02/2023');
+			expect(result).toBe('A data selecionada deve ser entre 01/02/2023 e 28/02/2023');
+		});
+
+		it('should return error message when end date is after max date', () => {
+			const result = component.checkMinMax('15/02/2023 a 01/03/2023');
+			expect(result).toBe('A data selecionada deve ser entre 01/02/2023 e 28/02/2023');
+		});
+
+		it('should return true when validateInput is false', async () => {
+			await wrapper.setProps({ validateInput: false });
+			const result = component.checkMinMax('31/01/2023 a 01/03/2023');
+			expect(result).toBe(true);
+		});
+
+		it('should return true when value is empty', () => {
+			const result = component.checkMinMax('');
+			expect(result).toBe(true);
+		});
+
+		it('should return true when min and max are not set', async () => {
+			await wrapper.setProps({
+				min: null,
+				max: null
+			});
+			const result = component.checkMinMax('15/02/2023 a 20/02/2023');
+			expect(result).toBe(true);
+		});
+	});
 });

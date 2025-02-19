@@ -101,12 +101,12 @@ export const ValidacaoInputPadrao = () => ({
 		};
 	},
 	template: `<div style='max-width: 320px'>
-		<farm-label>Selecione uma data entre 01/01/2024 e 31/12/2024</farm-label>
+		<farm-label>Selecione uma data entre 01/01/2025 e 31/12/2025</farm-label>
 		<RangeDatePicker
 			inputId="input-custom-id"
 			v-model="date"
-			min="2024-01-01"
-			max="2024-12-31"
+			min="2025-01-01"
+			max="2025-12-31"
 			validateInput
 			required
 		/>
@@ -121,15 +121,15 @@ export const ValidacaoInputCustomizada = () => ({
 		};
 	},
 	template: `<div style='max-width: 320px'>
-		<farm-label>Selecione uma data do primeiro semestre de 2024</farm-label>
+		<farm-label>Selecione uma data do primeiro semestre de 2025</farm-label>
 		<RangeDatePicker
 			inputId="input-custom-id"
 			v-model="date"
-			min="2024-01-01"
-			max="2024-06-30"
+			min="2025-01-01"
+			max="2025-06-30"
 			validateInput
 			required
-			outOfRangeMessage="Por favor, selecione datas dentro do primeiro semestre de 2024 ({min} até {max})"
+			outOfRangeMessage="Por favor, selecione datas dentro do primeiro semestre de 2025 ({min} até {max})"
 		/>
 		date: {{ date }}
 	</div>`,
