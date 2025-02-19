@@ -171,8 +171,7 @@ export default defineComponent({
 				const minDate = new Date(this.min);
 				const maxDate = new Date(this.max);
 
-				const isValid = startDate.getTime() >= minDate.getTime() && 
-							   endDate.getTime() <= maxDate.getTime();
+				const isValid = startDate.getTime() >= minDate.getTime() && endDate.getTime() <= maxDate.getTime();
 
 				if (!isValid) {
 					return this.outOfRangeMessage
