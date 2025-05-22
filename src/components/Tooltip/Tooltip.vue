@@ -101,54 +101,45 @@ export default defineComponent({
 
 			const [verticalPosition, horizontalAlignment] = props.position.split('-');
 
+			// Definir posição horizontal base do tooltip baseado no alinhamento
+			switch (horizontalAlignment) {
+				case 'left':
+					// Alinhar à esquerda e deslocar para a esquerda pelo tamanho da seta
+					left = parentBoundingClientRect.left + window.scrollX - 8;
+					break;
+				case 'right':
+					// Alinhar à direita e deslocar para a direita pelo tamanho da seta
+					left =
+						parentBoundingClientRect.left +
+						window.scrollX +
+						activatorWidth -
+						popupWidth +
+						8;
+					break;
+				case 'center':
+				default:
+					left =
+						parentBoundingClientRect.left +
+						window.scrollX +
+						activatorWidth / 2 -
+						popupWidth / 2;
+					break;
+			}
+
+			// Definir posição vertical base do tooltip
 			if (verticalPosition === 'top') {
-				// Tooltip appears above the element
+				// Tooltip acima do elemento
 				top = parentBoundingClientRect.top + window.scrollY - popupHeight - 8;
-
-				switch (horizontalAlignment) {
-					case 'left':
-						left = parentBoundingClientRect.left + window.scrollX;
-						break;
-					case 'right':
-						left =
-							parentBoundingClientRect.left +
-							window.scrollX +
-							activatorWidth -
-							popupWidth;
-						break;
-					case 'center':
-					default:
-						left =
-							parentBoundingClientRect.left +
-							window.scrollX +
-							activatorWidth / 2 -
-							popupWidth / 2;
-						break;
-				}
 			} else {
-				// Tooltip appears below the element
+				// Tooltip abaixo do elemento
 				top = parentBoundingClientRect.top + window.scrollY + activatorHeight + 8;
+			}
 
-				switch (horizontalAlignment) {
-					case 'left':
-						left = parentBoundingClientRect.left + window.scrollX;
-						break;
-					case 'right':
-						left =
-							parentBoundingClientRect.left +
-							window.scrollX +
-							activatorWidth -
-							popupWidth;
-						break;
-					case 'center':
-					default:
-						left =
-							parentBoundingClientRect.left +
-							window.scrollX +
-							activatorWidth / 2 -
-							popupWidth / 2;
-						break;
-				}
+			// Garantir que o tooltip não saia da tela
+			if (left < window.scrollX) {
+				left = window.scrollX + 5;
+			} else if (left + popupWidth > window.innerWidth + window.scrollX) {
+				left = window.innerWidth + window.scrollX - popupWidth - 5;
 			}
 
 			return { left, top };

@@ -1,7 +1,8 @@
 @import '../../configurations/variables';
 
-$arrow-size: 8px;
+$arrow-size: 6px;
 $tooltip-color: #333333;
+$arrow-margin: 12px;
 
 .farm-tooltip {
 	display: inline-block;
@@ -48,55 +49,42 @@ $tooltip-color: #333333;
 	}
 
 	// Top positions - arrow at bottom
-	&--top-center .farm-tooltip__arrow {
-		border-width: $arrow-size $arrow-size 0 $arrow-size;
-		border-color: $tooltip-color transparent transparent transparent;
-		bottom: -$arrow-size;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 99999;
-	}
-
-	&--top-left .farm-tooltip__arrow {
-		border-width: $arrow-size $arrow-size 0 $arrow-size;
-		border-color: $tooltip-color transparent transparent transparent;
-		bottom: -$arrow-size;
-		left: 16px;
-		z-index: 99999;
-	}
-
+	&--top-center .farm-tooltip__arrow,
+	&--top-left .farm-tooltip__arrow,
 	&--top-right .farm-tooltip__arrow {
 		border-width: $arrow-size $arrow-size 0 $arrow-size;
 		border-color: $tooltip-color transparent transparent transparent;
 		bottom: -$arrow-size;
-		right: 16px;
 		z-index: 99999;
 	}
 
 	// Bottom positions - arrow at top
-	&--bottom-left .farm-tooltip__arrow {
-		border-width: 0 $arrow-size $arrow-size $arrow-size;
-		border-color: transparent transparent $tooltip-color transparent;
-		top: -$arrow-size;
-		left: 16px;
-		z-index: 99999;
-	}
-
+	&--bottom-center .farm-tooltip__arrow,
+	&--bottom-left .farm-tooltip__arrow,
 	&--bottom-right .farm-tooltip__arrow {
 		border-width: 0 $arrow-size $arrow-size $arrow-size;
 		border-color: transparent transparent $tooltip-color transparent;
 		top: -$arrow-size;
-		right: 16px;
 		z-index: 99999;
 	}
 
+	// Left alignment - arrow at left
+	&--top-left .farm-tooltip__arrow,
+	&--bottom-left .farm-tooltip__arrow {
+		left: $arrow-margin;
+	}
+
+	// Right alignment - arrow at right
+	&--top-right .farm-tooltip__arrow,
+	&--bottom-right .farm-tooltip__arrow {
+		right: $arrow-margin;
+	}
+
+	// Center alignment - arrow at center
+	&--top-center .farm-tooltip__arrow,
 	&--bottom-center .farm-tooltip__arrow {
-		border-width: 0 $arrow-size $arrow-size $arrow-size;
-		border-color: transparent transparent $tooltip-color transparent;
-		top: -$arrow-size;
 		left: 50%;
 		transform: translateX(-50%);
-		z-index: 99999;
 	}
 
 	.farm-tooltip__close {
