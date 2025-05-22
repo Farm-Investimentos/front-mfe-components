@@ -8,7 +8,6 @@
 			ref="popup"
 			:class="{
 				'farm-tooltip__popup': true,
-				['farm-tooltip--' + color]: true,
 				'farm-tooltip__popup--visible':
 					(!externalControl && showOver) || (externalControl && toggleComponent),
 				'farm-tooltip__popup--fluid': fluid,
@@ -38,26 +37,6 @@ export type TooltipPosition =
 export default defineComponent({
 	name: 'farm-tooltip',
 	props: {
-		/*
-		 * Tooltip color
-		 */
-		color: {
-			type: String as PropType<
-				| 'primary'
-				| 'secondary'
-				| 'secondary-green'
-				| 'secondary-golden'
-				| 'neutral'
-				| 'info'
-				| 'success'
-				| 'error'
-				| 'warning'
-				| 'extra-1'
-				| 'extra-2'
-				| 'gray'
-			>,
-			default: 'gray',
-		},
 		/**
 		 * Control visibility
 		 * v-model bind
