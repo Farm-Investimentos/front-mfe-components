@@ -24,17 +24,17 @@ export default {
 
 export const Tooltips = () => ({
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
-        <farm-tooltip>
-            <span>
-			    Este é um tooltip simples
-			</span>
-            <template v-slot:activator>
-                <span style="display: flex; align-items: center;">
-                    Passe o mouse sobre o ícone 
-                    <farm-icon size="sm" color="gray" style="margin-left: 8px; cursor: help;">help-circle</farm-icon>
+        <span style="display: flex; align-items: center;">
+            Passe o mouse sobre o ícone
+            <farm-tooltip>
+                <span>
+                    Este é um tooltip simples
                 </span>
-            </template>
-        </farm-tooltip>
+                <template v-slot:activator>
+                    <farm-icon size="sm" color="gray" style="margin-left: 8px; cursor: help;">help-circle</farm-icon>
+                </template>
+            </farm-tooltip>
+        </span>
 	</div>`,
 });
 
@@ -58,45 +58,46 @@ export const Visibility = () => ({
 		};
 	},
 	template: `<div style="padding-left: 80px; padding-top: 82px;">
-        <farm-tooltip v-model="show">
-            some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-			some <em>sample</em> text<br />
-            <template v-slot:activator>
-				<div style="display: flex; align-items: center;">
-					<span style="margin-right: 8px;">Clique no ícone para alternar</span>
-					<farm-icon @click="show = !show" size="md" color="gray" style="cursor: pointer;">info-circle</farm-icon>
-				</div>
-            </template>
-        </farm-tooltip>
+        <div style="display: flex; align-items: center;">
+            <span>Clique no ícone para alternar</span>
+            <farm-icon @click="show = !show" size="md" color="gray" style="margin-left: 8px; cursor: pointer;">info-circle</farm-icon>
+            <farm-tooltip v-model="show">
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                some <em>sample</em> text<br />
+                <template v-slot:activator>
+                    <span style="width: 1px; height: 1px; opacity: 0;"></span>
+                </template>
+            </farm-tooltip>
+        </div>
 	</div>`,
 });
 
 export const InsideCard = () => ({
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
         <farm-card style="padding: 32px">
-			<div style="display: flex; align-items: center;">
-				<span style="margin-right: 8px;">Informação importante</span>
+			<span style="display: flex; align-items: center;">
+				Informação importante
 				<farm-tooltip>
 					this is the tooltip!
 					<template v-slot:activator>
-						<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+						<farm-icon size="sm" color="gray" style="margin-left: 8px; cursor: help;">help-circle</farm-icon>
 					</template>
 				</farm-tooltip>
-			</div>
+			</span>
 		</farm-card>
 	</div>`,
 });
 
 export const FluidTooltip = () => ({
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
-		<div style="display: flex; align-items: center;">
+		<span style="display: flex; align-items: center;">
 			<span style="margin-right: 8px;">Tooltip com largura fluida</span>
 			<farm-tooltip fluid>
 				This is a fluid tooltip that will grow based on its content.
@@ -105,7 +106,7 @@ export const FluidTooltip = () => ({
 					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
 				</template>
 			</farm-tooltip>
-		</div>
+		</span>
 	</div>`,
 });
 
@@ -179,7 +180,7 @@ export const TooltipPositions = () => ({
 
 export const FluidWithPosition = () => ({
 	template: `<div style="padding: 200px;">
-		<div style="display: flex; align-items: center;">
+		<span style="display: flex; align-items: center;">
 			<span style="margin-right: 8px;">Tooltip fluido com posição</span>
 			<farm-tooltip fluid position="bottom-left">
 				This is a fluid tooltip with Bottom-Left position.
@@ -188,7 +189,7 @@ export const FluidWithPosition = () => ({
 					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
 				</template>
 			</farm-tooltip>
-		</div>
+		</span>
 	</div>`,
 });
 
