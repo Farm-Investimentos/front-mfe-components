@@ -11,6 +11,15 @@ export default {
 				component: `Tooltip<br />
 				selector: <em>farm-tooltip</em><br />
 				<span style="color: var(--farm-primary-base);">ready for use</span>
+				<br /><br />
+				<h3>Observações importantes:</h3>
+				<ul>
+					<li><strong>Não adicione margin ao elemento ativador (activator)</strong> - Isso pode confundir o watcher de mostrar o tooltip e impedir que a seta seja posicionada corretamente</li>
+					<li>Prefira adicionar margin no elemento pai ou em elementos irmãos do tooltip</li>
+					<li>O posicionamento da seta é calculado com base na posição do elemento ativador</li>
+					<li>O botão de fechar (X) é exibido automaticamente apenas em tooltips controlados por v-model</li>
+					<li>A seta só é exibida quando uma posição é definida explicitamente (propriedade position). Se nenhuma posição for definida, o tooltip não terá seta</li>
+				</ul>
 				`,
 			},
 		},
@@ -51,43 +60,15 @@ export const Iconed = () => ({
 	</div>`,
 });
 
-export const Visibility = () => ({
-	data() {
-		return {
-			show: false,
-		};
-	},
-	template: `<div style="padding-left: 80px; padding-top: 82px;">
-        <div style="display: flex; align-items: center;">
-            <span>Clique no ícone para alternar</span>
-            <farm-icon @click="show = !show" size="md" color="gray" style="margin-left: 8px; cursor: pointer;">info-circle</farm-icon>
-            <farm-tooltip v-model="show">
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                some <em>sample</em> text<br />
-                <template v-slot:activator>
-                    <span style="width: 1px; height: 1px; opacity: 0;"></span>
-                </template>
-            </farm-tooltip>
-        </div>
-	</div>`,
-});
-
 export const InsideCard = () => ({
 	template: `<div style="padding-left: 80px; padding-top: 80px;">
         <farm-card style="padding: 32px">
 			<span style="display: flex; align-items: center;">
-				Informação importante
+				<span style="margin-right: 8px;">Informação importante</span>
 				<farm-tooltip>
 					this is the tooltip!
 					<template v-slot:activator>
-						<farm-icon size="sm" color="gray" style="margin-left: 8px; cursor: help;">help-circle</farm-icon>
+						<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
 					</template>
 				</farm-tooltip>
 			</span>
@@ -193,66 +174,27 @@ export const FluidWithPosition = () => ({
 	</div>`,
 });
 
-export const SimplePositions = () => ({
-	template: `<div style="padding: 150px; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 80px; text-align: center;">
-		<div>
-			<p style="margin-bottom: 10px;">Top Left</p>
-			<farm-tooltip position="top-left">
-				<div style="padding: 10px;">Top Left</div>
+export const ControlledTooltips = () => ({
+	data() {
+		return {
+			showTooltip1: false,
+			showTooltip2: false,
+			showTooltip3: false,
+		};
+	},
+	template: `<div style="padding: 80px; display: flex; flex-direction: column; gap: 30px;">
+
+		<div style="display: flex; align-items: center;">
+			<span style="margin-right: 8px;">Clique para alternar:</span>
+			<farm-tooltip v-model="showTooltip2" position="top-right">
+				Tooltip ativado por clique no ícone.
+				<br><br>
+				Observe o botão X no canto para fechar.
 				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
+					<farm-icon @click="showTooltip2 = !showTooltip2" size="md" color="blue" style="cursor: pointer;">help-circle</farm-icon>
 				</template>
 			</farm-tooltip>
 		</div>
 
-		<div>
-			<p style="margin-bottom: 10px;">Top Center</p>
-			<farm-tooltip position="top-center">
-				<div style="padding: 10px;">Top Center</div>
-				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-			</farm-tooltip>
-		</div>
-
-		<div>
-			<p style="margin-bottom: 10px;">Top Right</p>
-			<farm-tooltip position="top-right">
-				<div style="padding: 10px;">Top Right</div>
-				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-			</farm-tooltip>
-		</div>
-
-		<div>
-			<p style="margin-bottom: 10px;">Bottom Left</p>
-			<farm-tooltip position="bottom-left">
-				<div style="padding: 10px;">Bottom Left</div>
-				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-			</farm-tooltip>
-		</div>
-
-		<div>
-			<p style="margin-bottom: 10px;">Bottom Center</p>
-			<farm-tooltip position="bottom-center">
-				<div style="padding: 10px;">Bottom Center</div>
-				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-			</farm-tooltip>
-		</div>
-
-		<div>
-			<p style="margin-bottom: 10px;">Bottom Right</p>
-			<farm-tooltip position="bottom-right">
-				<div style="padding: 10px;">Bottom Right</div>
-				<template v-slot:activator>
-					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-			</farm-tooltip>
-		</div>
 	</div>`,
 });

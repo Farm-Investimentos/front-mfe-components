@@ -17,8 +17,8 @@
 			@mouseout="onOut"
 		>
 			<slot />
-			<span v-if="fluid" class="farm-tooltip__close" @click="onClose">×</span>
-			<span class="farm-tooltip__arrow"></span>
+			<span v-if="externalControl" class="farm-tooltip__close" @click="onClose">×</span>
+			<span v-if="hasPosition" class="farm-tooltip__arrow"></span>
 		</span>
 	</span>
 </template>
@@ -57,7 +57,7 @@ export default defineComponent({
 		 */
 		position: {
 			type: String as PropType<TooltipPosition>,
-			default: 'top-center',
+			default: undefined,
 			validator: (value: string) => {
 				return [
 					'top-left',
@@ -83,6 +83,7 @@ export default defineComponent({
 
 		const toggleComponent = computed(() => props.value);
 		const externalControl = computed(() => props.value !== undefined);
+		const hasPosition = computed(() => !!props.position);
 
 		let hasBeenBoostrapped = false;
 
@@ -99,40 +100,53 @@ export default defineComponent({
 			let left = 0;
 			let top = 0;
 
-			const [verticalPosition, horizontalAlignment] = props.position.split('-');
+			// Posição padrão se não houver position definida
+			if (!props.position) {
+				// Centralizar horizontalmente por padrão
+				left =
+					parentBoundingClientRect.left +
+					window.scrollX +
+					activatorWidth / 2 -
+					popupWidth / 2;
 
-			// Definir posição horizontal base do tooltip baseado no alinhamento
-			switch (horizontalAlignment) {
-				case 'left':
-					// Alinhar à esquerda e deslocar para a esquerda pelo tamanho da seta
-					left = parentBoundingClientRect.left + window.scrollX - 8;
-					break;
-				case 'right':
-					// Alinhar à direita e deslocar para a direita pelo tamanho da seta
-					left =
-						parentBoundingClientRect.left +
-						window.scrollX +
-						activatorWidth -
-						popupWidth +
-						8;
-					break;
-				case 'center':
-				default:
-					left =
-						parentBoundingClientRect.left +
-						window.scrollX +
-						activatorWidth / 2 -
-						popupWidth / 2;
-					break;
-			}
-
-			// Definir posição vertical base do tooltip
-			if (verticalPosition === 'top') {
-				// Tooltip acima do elemento
+				// Posicionar acima do ativador
 				top = parentBoundingClientRect.top + window.scrollY - popupHeight - 8;
 			} else {
-				// Tooltip abaixo do elemento
-				top = parentBoundingClientRect.top + window.scrollY + activatorHeight + 8;
+				const [verticalPosition, horizontalAlignment] = props.position.split('-');
+
+				// Definir posição horizontal base do tooltip baseado no alinhamento
+				switch (horizontalAlignment) {
+					case 'left':
+						// Alinhar à esquerda e deslocar para a esquerda pelo tamanho da seta
+						left = parentBoundingClientRect.left + window.scrollX - 8;
+						break;
+					case 'right':
+						// Alinhar à direita e deslocar para a direita pelo tamanho da seta
+						left =
+							parentBoundingClientRect.left +
+							window.scrollX +
+							activatorWidth -
+							popupWidth +
+							8;
+						break;
+					case 'center':
+					default:
+						left =
+							parentBoundingClientRect.left +
+							window.scrollX +
+							activatorWidth / 2 -
+							popupWidth / 2;
+						break;
+				}
+
+				// Definir posição vertical base do tooltip
+				if (verticalPosition === 'top') {
+					// Tooltip acima do elemento
+					top = parentBoundingClientRect.top + window.scrollY - popupHeight - 8;
+				} else {
+					// Tooltip abaixo do elemento
+					top = parentBoundingClientRect.top + window.scrollY + activatorHeight + 8;
+				}
 			}
 
 			// Garantir que o tooltip não saia da tela
@@ -184,6 +198,7 @@ export default defineComponent({
 			showOver,
 			toggleComponent,
 			externalControl,
+			hasPosition,
 			styles,
 			onOver,
 			onOut,
