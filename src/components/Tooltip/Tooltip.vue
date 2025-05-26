@@ -12,18 +12,26 @@
 					(!externalControl && showOver) || (externalControl && toggleComponent),
 				'farm-tooltip__popup--fluid': fluid,
 				[`farm-tooltip__popup--${position}`]: position,
+				'farm-tooltip__popup--has-title': hasTitle,
 			}"
 			:style="styles"
 			@mouseout="onOut"
 		>
-			<slot />
-			<span v-if="externalControl" class="farm-tooltip__close" @click="onClose">×</span>
+			<div v-if="hasTitle" class="farm-tooltip__header">
+				<div class="farm-tooltip__title">
+					<slot name="title"></slot>
+				</div>
+				<span v-if="externalControl" class="farm-tooltip__close" @click="onClose">×</span>
+			</div>
+			<div class="farm-tooltip__content">
+				<slot />
+			</div>
 			<span v-if="hasPosition" class="farm-tooltip__arrow"></span>
 		</span>
 	</span>
 </template>
 <script lang="ts">
-import { PropType, ref, computed, reactive, onBeforeUnmount, defineComponent } from 'vue';
+import { PropType, ref, computed, reactive, onBeforeUnmount, defineComponent, useSlots } from 'vue';
 import { calculateMainZindex } from '../../helpers';
 
 export type TooltipPosition =
@@ -80,10 +88,12 @@ export default defineComponent({
 			top: '0',
 			zIndex: 1,
 		});
+		const slots = useSlots();
 
 		const toggleComponent = computed(() => props.value);
 		const externalControl = computed(() => props.value !== undefined);
 		const hasPosition = computed(() => !!props.position);
+		const hasTitle = computed(() => !!slots.title);
 
 		let hasBeenBoostrapped = false;
 
@@ -199,6 +209,7 @@ export default defineComponent({
 			toggleComponent,
 			externalControl,
 			hasPosition,
+			hasTitle,
 			styles,
 			onOver,
 			onOut,

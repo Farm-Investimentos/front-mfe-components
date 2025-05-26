@@ -19,6 +19,7 @@ export default {
 					<li>O posicionamento da seta é calculado com base na posição do elemento ativador</li>
 					<li>O botão de fechar (X) é exibido automaticamente apenas em tooltips controlados por v-model</li>
 					<li>A seta só é exibida quando uma posição é definida explicitamente (propriedade position). Se nenhuma posição for definida, o tooltip não terá seta</li>
+					<li>É possível adicionar um título ao tooltip através do slot "title". Quando usado em um tooltip controlado, o botão de fechar será alinhado com o título</li>
 				</ul>
 				`,
 			},
@@ -44,19 +45,6 @@ export const Tooltips = () => ({
                 </template>
             </farm-tooltip>
         </span>
-	</div>`,
-});
-
-export const Iconed = () => ({
-	template: `<div style="padding-left: 80px; padding-top: 80px;">
-        <farm-tooltip>
-            some <em>sample</em> text
-            <br />with line break
-            <br />and a long text that does not fit
-            <template v-slot:activator>
-                <farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-            </template>
-        </farm-tooltip>
 	</div>`,
 });
 
@@ -174,27 +162,44 @@ export const FluidWithPosition = () => ({
 	</div>`,
 });
 
-export const ControlledTooltips = () => ({
-	data() {
-		return {
-			showTooltip1: false,
-			showTooltip2: false,
-			showTooltip3: false,
-		};
-	},
-	template: `<div style="padding: 80px; display: flex; flex-direction: column; gap: 30px;">
-
-		<div style="display: flex; align-items: center;">
-			<span style="margin-right: 8px;">Clique para alternar:</span>
-			<farm-tooltip v-model="showTooltip2" position="top-right">
-				Tooltip ativado por clique no ícone.
-				<br><br>
-				Observe o botão X no canto para fechar.
+export const TooltipWithTitle = () => ({
+	template: `<div style="padding-left: 80px; padding-top: 80px;">
+		<span style="display: flex; align-items: center;">
+			<span style="margin-right: 8px;">Tooltip com título</span>
+			<farm-tooltip fluid position="top-left">
+				<template v-slot:title>
+					<farm-icon size="sm" color="white">alert</farm-icon>
+					<span class="ml-10">Informação Importante</span>
+				</template>
+				Este tooltip possui um título que aparece na parte superior.
 				<template v-slot:activator>
-					<farm-icon @click="showTooltip2 = !showTooltip2" size="md" color="blue" style="cursor: pointer;">help-circle</farm-icon>
+					<farm-icon size="md" color="gray" style="cursor: help;">help-circle</farm-icon>
 				</template>
 			</farm-tooltip>
-		</div>
+		</span>
+	</div>`,
+});
 
+export const ControlledTooltipWithTitle = () => ({
+	data() {
+		return {
+			showTooltip: false,
+		};
+	},
+	template: `<div style="padding: 80px;">
+		<span style="display: flex; align-items: center;">
+			<span style="margin-right: 8px;">Clique para abrir:</span>
+			<farm-tooltip fluid v-model="showTooltip" position="top-right">
+				<template v-slot:title>
+					Título do Tooltip
+				</template>
+				Este é um tooltip controlado com título.
+				<br><br>
+				Observe como o botão de fechar está alinhado com o título.
+				<template v-slot:activator>
+					<farm-icon @click="showTooltip = !showTooltip" size="md" color="blue" style="cursor: pointer;">help-circle</farm-icon>
+				</template>
+			</farm-tooltip>
+		</span>
 	</div>`,
 });
