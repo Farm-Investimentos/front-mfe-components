@@ -92,3 +92,4 @@ export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
+export * from './components/GanttChart';
