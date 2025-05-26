@@ -46,15 +46,14 @@ export default defineComponent({
 	name: 'farm-tooltip',
 	props: {
 		/**
-		 * Control visibility
-		 * v-model bind
+		 * Control visibility with v-model
 		 */
 		value: {
 			type: Boolean,
 			default: undefined,
 		},
 		/**
-		 * Fluid width (grow based on content)
+		 * Fluid width (grows based on content)
 		 */
 		fluid: {
 			type: Boolean,
@@ -110,28 +109,22 @@ export default defineComponent({
 			let left = 0;
 			let top = 0;
 
-			// Posição padrão se não houver position definida
 			if (!props.position) {
-				// Centralizar horizontalmente por padrão
 				left =
 					parentBoundingClientRect.left +
 					window.scrollX +
 					activatorWidth / 2 -
 					popupWidth / 2;
 
-				// Posicionar acima do ativador
 				top = parentBoundingClientRect.top + window.scrollY - popupHeight - 8;
 			} else {
 				const [verticalPosition, horizontalAlignment] = props.position.split('-');
 
-				// Definir posição horizontal base do tooltip baseado no alinhamento
 				switch (horizontalAlignment) {
 					case 'left':
-						// Alinhar à esquerda e deslocar para a esquerda pelo tamanho da seta
 						left = parentBoundingClientRect.left + window.scrollX - 8;
 						break;
 					case 'right':
-						// Alinhar à direita e deslocar para a direita pelo tamanho da seta
 						left =
 							parentBoundingClientRect.left +
 							window.scrollX +
@@ -149,17 +142,13 @@ export default defineComponent({
 						break;
 				}
 
-				// Definir posição vertical base do tooltip
 				if (verticalPosition === 'top') {
-					// Tooltip acima do elemento
 					top = parentBoundingClientRect.top + window.scrollY - popupHeight - 8;
 				} else {
-					// Tooltip abaixo do elemento
 					top = parentBoundingClientRect.top + window.scrollY + activatorHeight + 8;
 				}
 			}
 
-			// Garantir que o tooltip não saia da tela
 			if (left < window.scrollX) {
 				left = window.scrollX + 5;
 			} else if (left + popupWidth > window.innerWidth + window.scrollX) {
