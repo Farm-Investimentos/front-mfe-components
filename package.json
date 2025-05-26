@@ -23,6 +23,7 @@
 	],
 	"dependencies": {
 		"core-js": "^3.6.5",
+		"moment": "^2.30.1",
 		"vue": "2.7.10",
 		"vuetify": "^2.4.5"
 	},
