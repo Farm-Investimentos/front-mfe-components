@@ -141,6 +141,10 @@ const isCurrentMonth = (date: Date) => {
 	return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
 };
 
+const getDaysInMonth = (year: number, month: number) => {
+	return new Date(year, month + 1, 0).getDate();
+};
+
 const getColumnForDate = (date: Date | string, startDate: Date) => {
 	// Ensure we have Date objects
 	const targetDate = date instanceof Date ? date : new Date(date);
@@ -267,12 +271,11 @@ export default defineComponent({
 
 		// Get CSS Grid style for a bar
 		const getBarGridStyle = (bar: GanttBar) => {
-			// Ensure we have valid dates
-			const startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
-			const endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
+			const barStartDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
+			let barEndDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
 
 			// Validate dates
-			if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+			if (isNaN(barStartDate.getTime()) || isNaN(barEndDate.getTime())) {
 				return {
 					gridColumn: '1 / 2',
 					backgroundColor: bar.color || getBarColor(bar.type),
@@ -280,16 +283,83 @@ export default defineComponent({
 				};
 			}
 
-			const startColumn = getColumnForDate(startDate, props.startDate) + 1;
-			const endColumn = getColumnForDate(endDate, props.startDate) + 2; // +2 because grid-column-end is exclusive
+			if (barEndDate < barStartDate) {
+				// console.warn('GanttBar end date is before start date. Fixing automatically.');
+				barEndDate = new Date(barStartDate.getTime()); // Ensure end is not before start
+			}
+
+			const startMonth = barStartDate.getMonth();
+			const startYear = barStartDate.getFullYear();
+			const startDay = barStartDate.getDate();
+
+			const endMonth = barEndDate.getMonth();
+			const endYear = barEndDate.getFullYear();
+			const endDay = barEndDate.getDate();
+
+			const daysInStartMonth = getDaysInMonth(startYear, startMonth);
+			const daysInEndMonth = getDaysInMonth(endYear, endMonth);
+
+			const startColumnIndex = getColumnForDate(barStartDate, props.startDate);
+			const endColumnIndex = getColumnForDate(barEndDate, props.startDate);
+
+			const gridColumnStartValue = Math.max(1, startColumnIndex + 1);
+			// +2 because grid-column-end is exclusive. We want the bar to visually end at the end of the endDay.
+			const gridColumnEndValue = Math.min(monthColumns.value.length + 1, endColumnIndex + 2);
+
+			const numCssGridColumnsSpanned = gridColumnEndValue - gridColumnStartValue;
+
+			let marginLeftStyle = '0%';
+			let widthStyle = '100%';
+
+			// Calculate the actual number of visual months the bar spans
+			// This is different from numCssGridColumnsSpanned if the bar starts/ends outside the chart range
+			const visualStartCol = getColumnForDate(barStartDate, props.startDate);
+			const visualEndCol = getColumnForDate(barEndDate, props.startDate);
+			const numVisualMonthsSpanned = visualEndCol - visualStartCol + 1;
+
+			if (numVisualMonthsSpanned === 1) {
+				// Bar is within a single month column visually
+				const barStartFractionInMonth = (startDay - 1) / daysInStartMonth;
+				// Ensure endDay is not greater than daysInStartMonth (e.g. if bar ends next month but visually in this one due to chart bounds)
+				const effectiveEndDay = (startYear === endYear && startMonth === endMonth) ? endDay : daysInStartMonth;
+				const barEndFractionInMonth = effectiveEndDay / daysInStartMonth;
+				
+				marginLeftStyle = `calc(${barStartFractionInMonth * 100}%)`;
+				widthStyle = `calc(${(barEndFractionInMonth - barStartFractionInMonth) * 100}%)`;
+
+			} else if (numVisualMonthsSpanned > 1) {
+				// Bar spans multiple month columns visually
+				const fractionBeforeBarInStartMonth = (startDay - 1) / daysInStartMonth;
+				const fractionOfBarInStartMonth = (daysInStartMonth - (startDay - 1)) / daysInStartMonth;
+				const fractionOfBarInEndMonth = endDay / daysInEndMonth;
+
+				const numFullIntermediateMonths = Math.max(0, numVisualMonthsSpanned - 2);
+
+				// marginLeft is relative to the total span of the CSS grid columns assigned to the bar.
+				// It's the proportion of the first visual column that's empty, scaled by (1 / numCssGridColumnsSpanned).
+				if (numCssGridColumnsSpanned > 0) {
+					marginLeftStyle = `calc((${fractionBeforeBarInStartMonth} / ${numCssGridColumnsSpanned}) * 100%)`;
+
+					// width is also relative to the total CSS grid span.
+					// It's the sum of (fraction of bar in start month + full intermediate months + fraction of bar in end month),
+					// scaled by (1 / numCssGridColumnsSpanned).
+					const totalEffectiveVisualColumnsOccupiedByBar = fractionOfBarInStartMonth + numFullIntermediateMonths + fractionOfBarInEndMonth;
+					widthStyle = `calc((${totalEffectiveVisualColumnsOccupiedByBar} / ${numCssGridColumnsSpanned}) * 100%)`;
+				} else {
+					// This case should ideally not happen if gridColumnStart/End are calculated correctly
+					// but as a fallback, make it take full width of its (likely single) column
+					marginLeftStyle = '0%';
+					widthStyle = '100%';
+				}
+			}
 
 			return {
-				gridColumn: `${Math.max(1, startColumn)} / ${Math.min(
-					monthColumns.value.length + 1,
-					endColumn
-				)}`,
-				backgroundColor: bar.color || getBarColor(bar.type),
-				gridRow: `${(bar.rowPosition || 0) + 1}`,
+				'grid-column-start': gridColumnStartValue,
+				'grid-column-end': gridColumnEndValue,
+				'background-color': bar.color || getBarColor(bar.type),
+				'grid-row': `${(bar.rowPosition || 0) + 1}`,
+				'margin-left': marginLeftStyle,
+				'width': widthStyle,
 			};
 		};
 
