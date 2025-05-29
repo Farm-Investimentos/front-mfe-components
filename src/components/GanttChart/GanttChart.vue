@@ -47,7 +47,7 @@
 						:style="getBarGridStyle(bar)"
 						@click="$emit('bar-click', bar)"
 					>
-						<farm-typography size="md" :weight="500" color="white" class="mb-0">
+						<farm-typography size="md" :weight="500" color="white" class="mb-0" ellipsis>
 							{{ bar.label }}
 						</farm-typography>
 					</div>
@@ -217,16 +217,27 @@ export default defineComponent({
 			default: () => [],
 		},
 		/**
-		 * Bar types and their colors
+		 * Bar types and their colors (using library theme colors blended with white)
+		 *
+		 * Maps bar types to theme color names from the library.
+		 * Available theme colors: 'primary', 'secondary', 'info', 'success', 'warning', 'error',
+		 * 'neutral', 'extra-1', 'extra-2', 'gray', 'secondary-green', 'secondary-golden'
+		 *
+		 * Colors are blended with white background (73% original + 27% white) to match Figma design.
+		 * This creates opaque colors that don't show background elements through them.
+		 * Example: { myType: 'primary', anotherType: 'warning' }
+		 * This will use #8BB455 and #FFB84D respectively (blended colors).
+		 *
+		 * For custom colors, use the 'color' property directly on bars.
 		 */
 		barTypes: {
 			type: Object as PropType<Record<string, string>>,
 			default: () => ({
-				campaign: '#5DADE2', // Azul - Vigência da Campanha
-				product: '#7AC74F', // Verde - Vigência do Produto Comercial
-				disbursement: '#F5B041', // Laranja - Período de Desembolso
-				maturity: '#EC7063', // Vermelho - Intervalo Vencimento
-				default: '#5DADE2', // Default color
+				campaign: 'info', // Azul blended (#7BC4F7) - Vigência da Campanha
+				product: 'primary', // Verde blended (#8BB455) - Vigência do Produto Comercial
+				disbursement: 'warning', // Laranja blended (#FFB84D) - Período de Desembolso
+				maturity: 'error', // Vermelho blended (#F7857F) - Intervalo Vencimento
+				default: 'info', // Default color
 			}),
 		},
 		/**
@@ -270,10 +281,27 @@ export default defineComponent({
 			return column >= 0 && column < monthColumns.value.length ? column : -1;
 		});
 
-		// Get bar color
+		// Get bar color using library theme colors blended with white (73% opacity effect)
 		const getBarColor = (type?: string) => {
-			if (!type) return props.barTypes.default;
-			return props.barTypes[type] || props.barTypes.default;
+			const colorType = type ? (props.barTypes[type] || props.barTypes.default) : props.barTypes.default;
+
+			// Colors blended with white background (73% original + 27% white) - matching Figma approach
+			const colorMap: Record<string, string> = {
+				'info': '#7BC4F7',      // #2196F3 blended with white at 73%
+				'primary': '#8BB455',   // #4F8406 blended with white at 73%
+				'warning': '#FFB84D',   // #FF9800 blended with white at 73%
+				'error': '#F7857F',     // #F44336 blended with white at 73%
+				'success': '#81C784',   // #4CAF50 blended with white at 73%
+				'secondary': '#EDD5A3', // #E2C076 blended with white at 73%
+				'neutral': '#EEEEEE',   // #E0E0E0 blended with white at 73%
+				'extra-1': '#B968C7',   // #8E24AA blended with white at 73%
+				'extra-2': '#F2849F',   // #EC407A blended with white at 73%
+				'gray': '#ADADAD',      // #858585 blended with white at 73%
+				'secondary-green': '#6F7C79', // #3E4E4B blended with white at 73%
+				'secondary-golden': '#EDD5A3', // #E2C076 blended with white at 73%
+			};
+
+			return colorMap[colorType] || `var(--farm-${colorType}-base)`;
 		};
 
 		// Get CSS Grid style for a bar
@@ -330,7 +358,7 @@ export default defineComponent({
 				// Ensure endDay is not greater than daysInStartMonth (e.g. if bar ends next month but visually in this one due to chart bounds)
 				const effectiveEndDay = (startYear === endYear && startMonth === endMonth) ? endDay : daysInStartMonth;
 				const barEndFractionInMonth = effectiveEndDay / daysInStartMonth;
-				
+
 				marginLeftStyle = `calc(${barStartFractionInMonth * 100}%)`;
 				widthStyle = `calc(${(barEndFractionInMonth - barStartFractionInMonth) * 100}%)`;
 

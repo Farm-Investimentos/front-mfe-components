@@ -291,3 +291,170 @@ export const WithTodayLine = () => ({
     />
   </div>`,
 });
+
+export const LibraryThemeColors = () => ({
+  data() {
+    return {
+      startDate: new Date(2025, 0, 1), // 1 de Janeiro de 2025
+      endDate: new Date(2025, 11, 31), // 31 de Dezembro de 2025
+
+      groups: [
+        {
+          label: 'Demonstração das Cores da Biblioteca',
+          bars: [
+            {
+              id: 1,
+              label: 'Info (Azul)',
+              start: new Date(2025, 0, 1),
+              end: new Date(2025, 2, 31),
+              type: 'campaign', // Usa cor info
+            },
+            {
+              id: 2,
+              label: 'Primary (Verde)',
+              start: new Date(2025, 3, 1),
+              end: new Date(2025, 5, 30),
+              type: 'product', // Usa cor primary
+            },
+            {
+              id: 3,
+              label: 'Warning (Laranja)',
+              start: new Date(2025, 6, 1),
+              end: new Date(2025, 8, 30),
+              type: 'disbursement', // Usa cor warning
+            },
+            {
+              id: 4,
+              label: 'Error (Vermelho)',
+              start: new Date(2025, 9, 1),
+              end: new Date(2025, 11, 31),
+              type: 'maturity', // Usa cor error
+            },
+          ],
+        },
+        {
+          label: 'Cores Extras da Biblioteca',
+          bars: [
+            {
+              id: 5,
+              label: 'Success (Verde Claro)',
+              start: new Date(2025, 1, 1),
+              end: new Date(2025, 3, 31),
+              color: '#81C784', // Success blended with white
+            },
+            {
+              id: 6,
+              label: 'Secondary (Dourado)',
+              start: new Date(2025, 4, 1),
+              end: new Date(2025, 6, 30),
+              color: '#EDD5A3', // Secondary blended with white
+            },
+            {
+              id: 7,
+              label: 'Extra-1 (Roxo)',
+              start: new Date(2025, 7, 1),
+              end: new Date(2025, 9, 30),
+              color: '#B968C7', // Extra-1 blended with white
+            },
+            {
+              id: 8,
+              label: 'Extra-2 (Rosa)',
+              start: new Date(2025, 10, 1),
+              end: new Date(2025, 11, 31),
+              color: '#F2849F', // Extra-2 blended with white
+            },
+          ],
+        },
+      ],
+
+      legendItems: [
+        { label: 'Info/Campaign (#2196F3BA - 73% opacity)', type: 'campaign' },
+        { label: 'Primary/Product (#4F8406BA - 73% opacity)', type: 'product' },
+        { label: 'Warning/Disbursement (#FF9800BA - 73% opacity)', type: 'disbursement' },
+        { label: 'Error/Maturity (#F44336BA - 73% opacity)', type: 'maturity' },
+        { label: 'Success (#4CAF50BA - 73% opacity)', color: '#4CAF50BA' },
+        { label: 'Secondary (#E2C076BA - 73% opacity)', color: '#E2C076BA' },
+        { label: 'Extra-1 (#8E24AABA - 73% opacity)', color: '#8E24AABA' },
+        { label: 'Extra-2 (#EC407ABA - 73% opacity)', color: '#EC407ABA' },
+      ],
+    };
+  },
+  template: `<div style="width: 100%; height: 400px; padding: 20px;">
+    <farm-gantt-chart
+      :groups="groups"
+      :startDate="startDate"
+      :endDate="endDate"
+      :legendItems="legendItems"
+    />
+  </div>`,
+});
+
+export const CustomBarTypes = () => ({
+  data() {
+    return {
+      startDate: new Date(2025, 0, 1),
+      endDate: new Date(2025, 6, 1),
+
+      // Exemplo de como customizar os tipos de barra para usar outras cores da biblioteca
+      customBarTypes: {
+        planning: 'secondary', // Usa cor secondary (dourado)
+        development: 'success', // Usa cor success (verde claro)
+        testing: 'extra-1', // Usa cor extra-1 (roxo)
+        deployment: 'extra-2', // Usa cor extra-2 (rosa)
+        default: 'neutral', // Usa cor neutral como padrão
+      },
+
+      groups: [
+        {
+          label: 'Projeto com Cores Customizadas',
+          bars: [
+            {
+              id: 1,
+              label: 'Planejamento',
+              start: new Date(2025, 0, 1),
+              end: new Date(2025, 1, 15),
+              type: 'planning',
+            },
+            {
+              id: 2,
+              label: 'Desenvolvimento',
+              start: new Date(2025, 1, 1),
+              end: new Date(2025, 3, 30),
+              type: 'development',
+            },
+            {
+              id: 3,
+              label: 'Testes',
+              start: new Date(2025, 3, 15),
+              end: new Date(2025, 4, 31),
+              type: 'testing',
+            },
+            {
+              id: 4,
+              label: 'Deploy',
+              start: new Date(2025, 5, 1),
+              end: new Date(2025, 5, 30),
+              type: 'deployment',
+            },
+          ],
+        },
+      ],
+
+      legendItems: [
+        { label: 'Planejamento', type: 'planning' },
+        { label: 'Desenvolvimento', type: 'development' },
+        { label: 'Testes', type: 'testing' },
+        { label: 'Deploy', type: 'deployment' },
+      ],
+    };
+  },
+  template: `<div style="width: 100%; height: 300px; padding: 20px;">
+    <farm-gantt-chart
+      :groups="groups"
+      :startDate="startDate"
+      :endDate="endDate"
+      :legendItems="legendItems"
+      :barTypes="customBarTypes"
+    />
+  </div>`,
+});
