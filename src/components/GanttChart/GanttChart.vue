@@ -58,7 +58,9 @@
 		<!-- Legend -->
 		<div class="farm-gantt-chart__legend" v-if="showLegend && legendItems.length > 0">
 			<div class="farm-gantt-chart__legend-title">
-				<farm-typography :weight="500">Legenda:</farm-typography>
+				<farm-typography size="md" :weight="700" color="black" color-variation="50">
+					Legenda:
+				</farm-typography>
 			</div>
 			<div
 				v-for="(item, index) in legendItems"
@@ -70,7 +72,7 @@
 					:style="{ backgroundColor: item.color || getBarColor(item.type) }"
 				></div>
 				<div class="farm-gantt-chart__legend-label">
-					<farm-typography size="sm" color="black" color-variation="50">
+					<farm-typography size="md" color="black" color-variation="50">
 						{{ item.label }}
 					</farm-typography>
 				</div>
