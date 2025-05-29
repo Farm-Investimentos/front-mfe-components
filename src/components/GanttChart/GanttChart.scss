@@ -1,16 +1,21 @@
+@import '../../configurations/mixins';
+@import '../../configurations/variables';
+@import '../../configurations/functions';
+@import '../../configurations/_theme-colors';
+
 .farm-gantt-chart {
   width: 100%;
   height: 100%;
   min-height: 500px;
   position: relative;
-  overflow-x: auto; /* Add horizontal scroll to the main container */
-/* Add vertical scroll when content exceeds container height */
+  overflow-x: auto;
+  overflow-y: auto;
 
   &__header {
     display: flex;
-    width: fit-content; /* Allow header to expzand with timeline */
+    width: fit-content; /* Allow header to expand with timeline */
     min-width: 100%; /* Ensure header is at least as wide as the container */
-    margin-bottom: 10px;
+    margin-bottom: gutter('sm');
     position: relative;
     z-index: 2;
   }
@@ -48,7 +53,7 @@
       top: 100%;
       width: 1px;
       height: calc(var(--gantt-content-height, 300px) + 30px);
-      border-left: 1px dashed #e0e0e0;
+      border-left: 1px dashed var(--farm-stroke-base);
       pointer-events: none;
       z-index: 1;
     }
@@ -72,20 +77,20 @@
   &__group {
     display: flex;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: gutter('lg');
     min-height: 60px;
     position: relative;
-    border-bottom: 1px dashed #e0e0e0;
-    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--farm-stroke-base);
+    padding-bottom: gutter('sm');
   }
 
   &__group-label {
     width: 120px;
     min-width: 120px;
     flex-shrink: 0;
-    padding: 10px 10px 10px 0;
+    padding: gutter('sm') gutter('sm') gutter('sm') 0;
     font-weight: 500;
-    color: #333;
+    color: var(--farm-text-base);
     align-self: center;
   }
 
@@ -97,7 +102,7 @@
     gap: 0;
     grid-auto-rows: 35px;
     align-content: start;
-    padding: 5px 0;
+    padding: gutter('xs') 0;
   }
 
 
@@ -108,51 +113,49 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     color: white;
-    font-size: 12px;
-    padding: 0 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: fontSize('sm');
+    padding: 0 gutter('sm');
+    @include ellipsis;
     cursor: pointer;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     transition: box-shadow 0.2s ease, transform 0.2s ease;
-    margin: 2px;
+    margin: gutter('xs') / 2;
 
     &:hover {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       transform: translateY(-2px);
     }
 
-    // Bar types
+    // Bar types using library theme colors blended with white (matching Figma approach)
     &--campaign {
-      background-color: #5DADE2; // Azul - Vigência da Campanha
+      background-color: #7BC4F7; // Info blended with white (73% + 27% white) - Vigência da Campanha
     }
 
     &--product {
-      background-color: #7AC74F; // Verde - Vigência do Produto Comercial
+      background-color: #8BB455; // Primary blended with white (73% + 27% white) - Vigência do Produto Comercial
     }
 
     &--disbursement {
-      background-color: #F5B041; // Laranja - Período de Desembolso
+      background-color: #FFB84D; // Warning blended with white (73% + 27% white) - Período de Desembolso
     }
 
     &--maturity {
-      background-color: #EC7063; // Vermelho - Intervalo Vencimento
+      background-color: #F7857F; // Error blended with white (73% + 27% white) - Intervalo Vencimento
     }
   }
 
   &__legend {
     display: flex;
     align-items: center;
-    margin-top: 20px;
-    padding-top: 10px;
+    margin-top: gutter('lg');
+    padding-top: gutter('sm');
     flex-wrap: wrap;
   }
 
   &__legend-title {
-    margin-right: 16px;
+    margin-right: gutter('md');
     display: flex;
     align-items: center;
   }
@@ -160,15 +163,15 @@
   &__legend-item {
     display: flex;
     align-items: center;
-    margin-right: 20px;
-    margin-bottom: 5px;
+    margin-right: gutter('lg');
+    margin-bottom: gutter('xs');
   }
 
   &__legend-color {
-    width: 16px;
-    height: 16px;
+    width: gutter('md');
+    height: gutter('md');
     border-radius: 3px;
-    margin-right: 8px;
+    margin-right: gutter('sm');
     flex-shrink: 0;
   }
 
