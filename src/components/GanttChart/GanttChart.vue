@@ -47,7 +47,7 @@
 						:style="getBarGridStyle(bar)"
 						@click="$emit('bar-click', bar)"
 					>
-						<farm-typography size="sm" :weight="500" color="white">
+						<farm-typography size="md" :weight="500" color="white" class="mb-0">
 							{{ bar.label }}
 						</farm-typography>
 					</div>
@@ -236,6 +236,13 @@ export default defineComponent({
 			type: Boolean,
 			default: true,
 		},
+		/**
+		 * Minimum width for each month column in pixels.
+		 */
+		minMonthWidth: {
+			type: Number,
+			default: 80, // Default minimum width of 80px
+		},
 	},
 	emits: ['bar-click'],
 	setup(props) {
@@ -251,7 +258,7 @@ export default defineComponent({
 
 		// CSS Grid template for timeline
 		const timelineGridStyle = computed(() => ({
-			gridTemplateColumns: `repeat(${monthColumns.value.length}, 1fr)`,
+			gridTemplateColumns: `repeat(${monthColumns.value.length}, ${props.minMonthWidth}px)`,
 		}));
 
 		// Get today's column position
