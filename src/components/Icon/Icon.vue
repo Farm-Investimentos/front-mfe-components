@@ -55,16 +55,27 @@ export default defineComponent({
 
 	computed: {
 		classes() {
-			const obj = {};
+			const isCustomIcon = this.icon.startsWith('custom-');
+
 			return {
 				'farm-icon': true,
 				['farm-icon--' + this.color]: true,
-				mdi: true,
-				['mdi-' + this.icon]: true,
+				// MDI classes for standard icons
+				...(isCustomIcon
+					? {}
+					: {
+							mdi: true,
+							['mdi-' + this.icon]: true,
+					  }),
+				// Custom icon class
+				...(isCustomIcon
+					? {
+							[this.icon]: true,
+					  }
+					: {}),
 				'farm-icon--lighten': this.variation === 'lighten',
 				'farm-icon--darken': this.variation === 'darken',
 				['farm-icon--black-' + this.variation]: this.color === 'black',
-				...obj,
 			};
 		},
 		fontSize() {
@@ -95,4 +106,5 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @import 'Icon.scss';
+@import '../../assets/icons/custom-icons.scss';
 </style>
