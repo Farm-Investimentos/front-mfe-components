@@ -1041,7 +1041,7 @@ export default [
 	'football',
 	'football-australian',
 	'football-helmet',
-	'forklift',
+	'fotlift',
 	'format-align-bottom',
 	'format-align-center',
 	'format-align-justify',
@@ -2555,4 +2555,5 @@ export default [
 	'youtube-tv',
 	'zip-box',
 	'zip-disk',
+	'money-off',
 ];
