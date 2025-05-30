@@ -1,0 +1,28 @@
+// Money Off Icon - Custom SVG
+// Icon for representing disabled payments, free services, or budget limits
+
+.farm-icon {
+	&.custom-money-off:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background-color: currentColor;
+		mask: url('../../assets/icons/money-off/money-off.svg') no-repeat center;
+		mask-size: contain;
+		-webkit-mask: url('../../assets/icons/money-off/money-off.svg') no-repeat center;
+		-webkit-mask-size: contain;
+	}
+
+	// Alternative approach using background-image (simpler but less flexible for theming)
+	// &.custom-money-off:before {
+	// 	content: '';
+	// 	display: inline-block;
+	// 	width: 1em;
+	// 	height: 1em;
+	// 	background-image: url('../../assets/icons/money-off/money-off.svg');
+	// 	background-size: contain;
+	// 	background-repeat: no-repeat;
+	// 	background-position: center;
+	// }
+}

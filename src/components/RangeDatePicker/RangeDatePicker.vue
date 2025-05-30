@@ -164,15 +164,16 @@ export default defineComponent({
 					return true;
 				}
 
-				const [startDate, endDate] = value.split(' a ').map(date => {
-					const [day, month, year] = date.split('/');
-					return new Date(year, month - 1, day);
-				});
-
+				const [startDateStr, endDateStr] = value.split(' a ');
+				
+				const startDate = new Date(convertDate(startDateStr));
+				const endDate = new Date(convertDate(endDateStr));
 				const minDate = new Date(this.min);
 				const maxDate = new Date(this.max);
 
-				if (startDate < minDate || endDate > maxDate) {
+				const isValid = startDate.getTime() >= minDate.getTime() && endDate.getTime() <= maxDate.getTime();
+
+				if (!isValid) {
 					return this.outOfRangeMessage
 						.replace('{min}', dateDefaultFormatter(this.min))
 						.replace('{max}', dateDefaultFormatter(this.max));
