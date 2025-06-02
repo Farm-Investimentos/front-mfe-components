@@ -109,7 +109,7 @@ export const Primary = () => ({
       alert(`Clicou em: ${bar.label}`);
     }
   },
-  template: `<div style="width: 100%; height: 400px; padding: 20px;">
+  template: `<div style="width: 100%; height: 600px; padding: 20px;">
     <farm-gantt-chart
       :groups="groups"
       :startDate="startDate"
