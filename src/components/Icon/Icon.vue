@@ -61,18 +61,9 @@ export default defineComponent({
 				'farm-icon': true,
 				['farm-icon--' + this.color]: true,
 				// MDI classes for standard icons
-				...(isCustomIcon
-					? {}
-					: {
-							mdi: true,
-							['mdi-' + this.icon]: true,
-					  }),
+				...(isCustomIcon ? {} : { mdi: true, ['mdi-' + this.icon]: true }),
 				// Custom icon class
-				...(isCustomIcon
-					? {
-							[this.icon]: true,
-					  }
-					: {}),
+				...(isCustomIcon ? { [this.icon]: true } : {}),
 				'farm-icon--lighten': this.variation === 'lighten',
 				'farm-icon--darken': this.variation === 'darken',
 				['farm-icon--black-' + this.variation]: this.color === 'black',
