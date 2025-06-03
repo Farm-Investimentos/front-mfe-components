@@ -1041,7 +1041,7 @@ export default [
 	'football',
 	'football-australian',
 	'football-helmet',
-	'fotlift',
+	'forklift',
 	'format-align-bottom',
 	'format-align-center',
 	'format-align-justify',
