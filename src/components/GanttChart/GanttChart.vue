@@ -1,7 +1,7 @@
 <template>
 	<div class="farm-gantt-chart" :style="componentStyle">
 		<div class="farm-gantt-chart__header">
-			<div class="farm-gantt-chart__row-label-space" v-if="showRowLabels"></div>
+			<div class="farm-gantt-chart__row-label-space"/>
 			<div class="farm-gantt-chart__timeline" :style="timelineGridStyle">
 				<div
 					v-for="(month, index) in monthColumns"
@@ -30,7 +30,7 @@
 				class="farm-gantt-chart__group"
 			>
 				<!-- Group label -->
-				<div class="farm-gantt-chart__group-label" v-if="showRowLabels">
+				<div class="farm-gantt-chart__group-label">
 					<farm-typography :weight="500">
 						{{ group.label }}
 					</farm-typography>
@@ -56,7 +56,7 @@
 		</div>
 
 		<!-- Legend -->
-		<div class="farm-gantt-chart__legend" v-if="showLegend && legendItems.length > 0">
+		<div class="farm-gantt-chart__legend" v-if="legendItems.length > 0">
 			<div class="farm-gantt-chart__legend-title">
 				<farm-typography size="md" :weight="700" color="black" color-variation="50">
 					Legenda:
@@ -191,27 +191,6 @@ export default defineComponent({
 			default: () => new Date(new Date().getFullYear() + 1, 0, 0), // December 31st of current year
 		},
 		/**
-		 * Whether to show the grid
-		 */
-		grid: {
-			type: Boolean,
-			default: true,
-		},
-		/**
-		 * Whether to show row labels
-		 */
-		showRowLabels: {
-			type: Boolean,
-			default: true,
-		},
-		/**
-		 * Whether to show the legend
-		 */
-		showLegend: {
-			type: Boolean,
-			default: true,
-		},
-		/**
 		 * Legend items
 		 */
 		legendItems: {
@@ -242,20 +221,6 @@ export default defineComponent({
 				default: 'info', // Default color
 			}),
 		},
-		/**
-		 * Whether to show a line indicating today's date
-		 */
-		showTodayLine: {
-			type: Boolean,
-			default: true,
-		},
-		/**
-		 * Minimum width for each month column in pixels.
-		 */
-		minMonthWidth: {
-			type: Number,
-			default: 80, // Default minimum width of 80px
-		},
 	},
 	emits: ['bar-click'],
 	setup(props) {
@@ -271,12 +236,11 @@ export default defineComponent({
 
 		// CSS Grid template for timeline
 		const timelineGridStyle = computed(() => ({
-			gridTemplateColumns: `repeat(${monthColumns.value.length}, ${props.minMonthWidth}px)`,
+			gridTemplateColumns: `repeat(${monthColumns.value.length}, 80px)`,
 		}));
 
 		// Get today's column position
 		const todayColumn = computed(() => {
-			if (!props.showTodayLine) return -1;
 			const today = new Date();
 			const column = getColumnForDate(today, props.startDate);
 			// Only show if today is within the chart range

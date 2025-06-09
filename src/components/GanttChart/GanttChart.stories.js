@@ -8,7 +8,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Gantt Chart<br />
+        component: `Gantt Chart - Componente simplificado sempre exibindo grid, labels, legenda e linha de hoje<br />
         selector: <em>farm-gantt-chart</em><br />
         <span style="color: var(--farm-primary-base);">ready for use</span>
         `,
@@ -185,7 +185,7 @@ export const CustomColors = () => ({
   </div>`,
 });
 
-export const NoGrid = () => ({
+export const MinimalSetup = () => ({
   data() {
     return {
       startDate: new Date(2025, 0, 1),
@@ -233,15 +233,14 @@ export const NoGrid = () => ({
       :startDate="startDate"
       :endDate="endDate"
       :legendItems="legendItems"
-      :grid="false"
     />
   </div>`,
 });
 
-export const WithTodayLine = () => ({
+export const CurrentTimelineExample = () => ({
   data() {
     return {
-      // Usando datas atuais para mostrar a linha de hoje
+      // Usando datas atuais para mostrar a linha de hoje (agora sempre visível)
       startDate: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1),
       endDate: new Date(new Date().getFullYear(), new Date().getMonth() + 2, 0),
 
@@ -287,7 +286,6 @@ export const WithTodayLine = () => ({
       :startDate="startDate"
       :endDate="endDate"
       :legendItems="legendItems"
-      :showTodayLine="true"
     />
   </div>`,
 });
