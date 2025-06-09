@@ -8,7 +8,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Gantt Chart - Componente simplificado sempre exibindo grid, labels, legenda e linha de hoje<br />
+        component: `Gantt Chart - Componente com API simplificada que calcula automaticamente datas e legenda<br />
         selector: <em>farm-gantt-chart</em><br />
         <span style="color: var(--farm-primary-base);">ready for use</span>
         `,
@@ -21,87 +21,77 @@ export default {
 export const Primary = () => ({
   data() {
     return {
-      // Datas para o exemplo
-      startDate: new Date(2025, 0, 1), // 1 de Janeiro de 2025
-      endDate: new Date(2026, 0, 1), // 1 de Janeiro de 2026
-
-      // Grupos e barras
-      groups: [
-        {
-          label: 'Campanha Safrinha 25',
-          bars: [
-            {
-              id: 1,
-              label: 'Vigência da Campanha',
-              start: new Date(2025, 0, 1), // Jan 2025
-              end: new Date(2025, 5, 15), // Meados de Jun 2025
-              type: 'campaign',
-            },
-            {
-              id: 2,
-              label: 'Vigência do Produto Comercial',
-              start: new Date(2025, 0, 15), // Jan 2025
-              end: new Date(2025, 4, 15), // Meados de Mai 2025
-              type: 'product',
-            },
-            {
-              id: 3,
-              label: 'Período de Desembolso',
-              start: new Date(2025, 2, 1), // Mar 2025
-              end: new Date(2025, 4, 30), // Fim de Mai 2025
-              type: 'disbursement',
-            },
-            {
-              id: 4,
-              label: 'Intervalo Vencimento',
-              start: new Date(2025, 3, 1), // Abr 2025
-              end: new Date(2025, 4, 15), // Meados de Mai 2025
-              type: 'maturity',
-            },
-          ],
-        },
-        {
-          label: 'Campanha Safra 25',
-          bars: [
-            {
-              id: 5,
-              label: 'Vigência da Campanha',
-              start: new Date(2025, 4, 1), // Mai 2025
-              end: new Date(2025, 11, 31), // Dez 2025
-              type: 'campaign',
-            },
-            {
-              id: 6,
-              label: 'Vigência do Produto Comercial',
-              start: new Date(2025, 4, 15), // Meados de Mai 2025
-              end: new Date(2025, 10, 15), // Meados de Nov 2025
-              type: 'product',
-            },
-            {
-              id: 7,
-              label: 'Período de Desembolso',
-              start: new Date(2025, 5, 1), // Jun 2025
-              end: new Date(2025, 7, 30), // Fim de Ago 2025
-              type: 'disbursement',
-            },
-            {
-              id: 8,
-              label: 'Intervalo Vencimento',
-              start: new Date(2025, 6, 1), // Jul 2025
-              end: new Date(2025, 11, 15), // Meados de Dez 2025
-              type: 'maturity',
-            },
-          ],
-        },
-      ],
-
-      // Itens da legenda
-      legendItems: [
-        { label: 'Vigência da Campanha', type: 'campaign' },
-        { label: 'Vigência do Produto Comercial', type: 'product' },
-        { label: 'Período de Desembolso', type: 'disbursement' },
-        { label: 'Intervalo Vencimento', type: 'maturity' },
-      ],
+      // Nova API simplificada - apenas os dados essenciais
+      ganttData: {
+        groups: [
+          {
+            title: 'Campanha Safrinha 25',
+            bars: [
+              {
+                id: 1,
+                label: 'Vigência da Campanha',
+                start: new Date(2025, 0, 1), // Jan 2025
+                end: new Date(2025, 5, 15), // Meados de Jun 2025
+                color: '#7BC4F7', // Azul - cor direta
+              },
+              {
+                id: 2,
+                label: 'Vigência do Produto Comercial',
+                start: new Date(2025, 0, 15), // Jan 2025
+                end: new Date(2025, 4, 15), // Meados de Mai 2025
+                color: '#8BB455', // Verde - cor direta
+              },
+              {
+                id: 3,
+                label: 'Período de Desembolso',
+                start: new Date(2025, 2, 1), // Mar 2025
+                end: new Date(2025, 4, 30), // Fim de Mai 2025
+                color: '#FFB84D', // Laranja - cor direta
+              },
+              {
+                id: 4,
+                label: 'Intervalo Vencimento',
+                start: new Date(2025, 3, 1), // Abr 2025
+                end: new Date(2025, 4, 15), // Meados de Mai 2025
+                color: '#F7857F', // Vermelho - cor direta
+              },
+            ],
+          },
+          {
+            title: 'Campanha Safra 25',
+            bars: [
+              {
+                id: 5,
+                label: 'Vigência da Campanha',
+                start: new Date(2025, 4, 1), // Mai 2025
+                end: new Date(2025, 11, 31), // Dez 2025
+                color: '#7BC4F7', // Azul - cor direta
+              },
+              {
+                id: 6,
+                label: 'Vigência do Produto Comercial',
+                start: new Date(2025, 4, 15), // Meados de Mai 2025
+                end: new Date(2025, 10, 15), // Meados de Nov 2025
+                color: '#8BB455', // Verde - cor direta
+              },
+              {
+                id: 7,
+                label: 'Período de Desembolso',
+                start: new Date(2025, 5, 1), // Jun 2025
+                end: new Date(2025, 7, 30), // Fim de Ago 2025
+                color: '#FFB84D', // Laranja - cor direta
+              },
+              {
+                id: 8,
+                label: 'Intervalo Vencimento',
+                start: new Date(2025, 6, 1), // Jul 2025
+                end: new Date(2025, 11, 15), // Meados de Dez 2025
+                color: '#F7857F', // Vermelho - cor direta
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -111,10 +101,7 @@ export const Primary = () => ({
   },
   template: `<div style="width: 100%; height: 600px; padding: 20px;">
     <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
+      :data="ganttData"
       @bar-click="handleBarClick"
     />
   </div>`,
@@ -123,336 +110,269 @@ export const Primary = () => ({
 export const CustomColors = () => ({
   data() {
     return {
-      startDate: new Date(2025, 0, 1), // 1 de Janeiro de 2025
-      endDate: new Date(2025, 6, 1), // 1 de Julho de 2025
-
-      groups: [
-        {
-          label: 'Projeto A',
-          bars: [
-            {
-              id: 1,
-              label: 'Fase 1',
-              start: new Date(2025, 0, 15),
-              end: new Date(2025, 2, 15),
-              color: '#8E44AD', // Roxo personalizado
-            },
-            {
-              id: 2,
-              label: 'Fase 2',
-              start: new Date(2025, 2, 1),
-              end: new Date(2025, 4, 1),
-              color: '#16A085', // Verde personalizado
-            },
-          ],
-        },
-        {
-          label: 'Projeto B',
-          bars: [
-            {
-              id: 3,
-              label: 'Fase 1',
-              start: new Date(2025, 1, 1),
-              end: new Date(2025, 3, 1),
-              color: '#D35400', // Laranja personalizado
-            },
-            {
-              id: 4,
-              label: 'Fase 2',
-              start: new Date(2025, 3, 15),
-              end: new Date(2025, 5, 15),
-              color: '#2980B9', // Azul personalizado
-            },
-          ],
-        },
-      ],
-
-      legendItems: [
-        { label: 'Fase 1 - Projeto A', color: '#8E44AD' },
-        { label: 'Fase 2 - Projeto A', color: '#16A085' },
-        { label: 'Fase 1 - Projeto B', color: '#D35400' },
-        { label: 'Fase 2 - Projeto B', color: '#2980B9' },
-      ],
+      ganttData: {
+        groups: [
+          {
+            title: 'Projeto A',
+            bars: [
+              {
+                id: 1,
+                label: 'Fase 1',
+                start: new Date(2025, 0, 15),
+                end: new Date(2025, 2, 15),
+                color: '#8E44AD', // Roxo personalizado
+              },
+              {
+                id: 2,
+                label: 'Fase 2',
+                start: new Date(2025, 2, 1),
+                end: new Date(2025, 4, 1),
+                color: '#16A085', // Verde personalizado
+              },
+            ],
+          },
+          {
+            title: 'Projeto B',
+            bars: [
+              {
+                id: 3,
+                label: 'Fase 1',
+                start: new Date(2025, 1, 1),
+                end: new Date(2025, 3, 1),
+                color: '#D35400', // Laranja personalizado
+              },
+              {
+                id: 4,
+                label: 'Fase 2',
+                start: new Date(2025, 3, 15),
+                end: new Date(2025, 5, 15),
+                color: '#2980B9', // Azul personalizado
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   template: `<div style="width: 100%; height: 300px; padding: 20px;">
-    <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
-    />
+    <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
 
 export const MinimalSetup = () => ({
   data() {
     return {
-      startDate: new Date(2025, 0, 1),
-      endDate: new Date(2025, 11, 31),
-
-      groups: [
-        {
-          label: 'Projeto X',
-          bars: [
-            {
-              id: 1,
-              label: 'Planejamento',
-              start: new Date(2025, 0, 1),
-              end: new Date(2025, 1, 28),
-              type: 'campaign',
-            },
-            {
-              id: 2,
-              label: 'Execução',
-              start: new Date(2025, 2, 1),
-              end: new Date(2025, 8, 30),
-              type: 'product',
-            },
-            {
-              id: 3,
-              label: 'Finalização',
-              start: new Date(2025, 9, 1),
-              end: new Date(2025, 11, 31),
-              type: 'maturity',
-            },
-          ],
-        },
-      ],
-
-      legendItems: [
-        { label: 'Planejamento', type: 'campaign' },
-        { label: 'Execução', type: 'product' },
-        { label: 'Finalização', type: 'maturity' },
-      ],
+      ganttData: {
+        groups: [
+          {
+            title: 'Projeto X',
+            bars: [
+              {
+                id: 1,
+                label: 'Planejamento',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 1, 28),
+                color: '#7BC4F7', // Azul
+              },
+              {
+                id: 2,
+                label: 'Execução',
+                start: new Date(2025, 2, 1),
+                end: new Date(2025, 8, 30),
+                color: '#8BB455', // Verde
+              },
+              {
+                id: 3,
+                label: 'Finalização',
+                start: new Date(2025, 9, 1),
+                end: new Date(2025, 11, 31),
+                color: '#F7857F', // Vermelho
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   template: `<div style="width: 100%; height: 200px; padding: 20px;">
-    <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
-    />
+    <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
 
 export const CurrentTimelineExample = () => ({
   data() {
     return {
-      // Usando datas atuais para mostrar a linha de hoje (agora sempre visível)
-      startDate: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1),
-      endDate: new Date(new Date().getFullYear(), new Date().getMonth() + 2, 0),
-
-      groups: [
-        {
-          label: 'Projeto Atual',
-          bars: [
-            {
-              id: 1,
-              label: 'Fase Inicial',
-              start: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 5),
-              end: new Date(new Date().getFullYear(), new Date().getMonth(), 10),
-              type: 'campaign',
-            },
-            {
-              id: 2,
-              label: 'Fase Intermediária',
-              start: new Date(new Date().getFullYear(), new Date().getMonth(), 5),
-              end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 15),
-              type: 'product',
-            },
-            {
-              id: 3,
-              label: 'Fase Final',
-              start: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 10),
-              end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 28),
-              type: 'maturity',
-            },
-          ],
-        },
-      ],
-
-      legendItems: [
-        { label: 'Fase Inicial', type: 'campaign' },
-        { label: 'Fase Intermediária', type: 'product' },
-        { label: 'Fase Final', type: 'maturity' },
-      ],
+      ganttData: {
+        groups: [
+          {
+            title: 'Projeto Atual',
+            bars: [
+              {
+                id: 1,
+                label: 'Fase Inicial',
+                start: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 5),
+                end: new Date(new Date().getFullYear(), new Date().getMonth(), 10),
+                color: '#7BC4F7', // Azul
+              },
+              {
+                id: 2,
+                label: 'Fase Intermediária',
+                start: new Date(new Date().getFullYear(), new Date().getMonth(), 5),
+                end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 15),
+                color: '#8BB455', // Verde
+              },
+              {
+                id: 3,
+                label: 'Fase Final',
+                start: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 10),
+                end: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 28),
+                color: '#F7857F', // Vermelho
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   template: `<div style="width: 100%; height: 200px; padding: 20px;">
-    <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
-    />
+    <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
 
 export const LibraryThemeColors = () => ({
   data() {
     return {
-      startDate: new Date(2025, 0, 1), // 1 de Janeiro de 2025
-      endDate: new Date(2025, 11, 31), // 31 de Dezembro de 2025
-
-      groups: [
-        {
-          label: 'Demonstração das Cores da Biblioteca',
-          bars: [
-            {
-              id: 1,
-              label: 'Info (Azul)',
-              start: new Date(2025, 0, 1),
-              end: new Date(2025, 2, 31),
-              type: 'campaign', // Usa cor info
-            },
-            {
-              id: 2,
-              label: 'Primary (Verde)',
-              start: new Date(2025, 3, 1),
-              end: new Date(2025, 5, 30),
-              type: 'product', // Usa cor primary
-            },
-            {
-              id: 3,
-              label: 'Warning (Laranja)',
-              start: new Date(2025, 6, 1),
-              end: new Date(2025, 8, 30),
-              type: 'disbursement', // Usa cor warning
-            },
-            {
-              id: 4,
-              label: 'Error (Vermelho)',
-              start: new Date(2025, 9, 1),
-              end: new Date(2025, 11, 31),
-              type: 'maturity', // Usa cor error
-            },
-          ],
-        },
-        {
-          label: 'Cores Extras da Biblioteca',
-          bars: [
-            {
-              id: 5,
-              label: 'Success (Verde Claro)',
-              start: new Date(2025, 1, 1),
-              end: new Date(2025, 3, 31),
-              color: '#81C784', // Success blended with white
-            },
-            {
-              id: 6,
-              label: 'Secondary (Dourado)',
-              start: new Date(2025, 4, 1),
-              end: new Date(2025, 6, 30),
-              color: '#EDD5A3', // Secondary blended with white
-            },
-            {
-              id: 7,
-              label: 'Extra-1 (Roxo)',
-              start: new Date(2025, 7, 1),
-              end: new Date(2025, 9, 30),
-              color: '#B968C7', // Extra-1 blended with white
-            },
-            {
-              id: 8,
-              label: 'Extra-2 (Rosa)',
-              start: new Date(2025, 10, 1),
-              end: new Date(2025, 11, 31),
-              color: '#F2849F', // Extra-2 blended with white
-            },
-          ],
-        },
-      ],
-
-      legendItems: [
-        { label: 'Info/Campaign (#2196F3BA - 73% opacity)', type: 'campaign' },
-        { label: 'Primary/Product (#4F8406BA - 73% opacity)', type: 'product' },
-        { label: 'Warning/Disbursement (#FF9800BA - 73% opacity)', type: 'disbursement' },
-        { label: 'Error/Maturity (#F44336BA - 73% opacity)', type: 'maturity' },
-        { label: 'Success (#4CAF50BA - 73% opacity)', color: '#4CAF50BA' },
-        { label: 'Secondary (#E2C076BA - 73% opacity)', color: '#E2C076BA' },
-        { label: 'Extra-1 (#8E24AABA - 73% opacity)', color: '#8E24AABA' },
-        { label: 'Extra-2 (#EC407ABA - 73% opacity)', color: '#EC407ABA' },
-      ],
+      ganttData: {
+        groups: [
+          {
+            title: 'Demonstração das Cores da Biblioteca',
+            bars: [
+              {
+                id: 1,
+                label: 'Info (Azul)',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 2, 31),
+                color: '#7BC4F7', // Info
+              },
+              {
+                id: 2,
+                label: 'Primary (Verde)',
+                start: new Date(2025, 3, 1),
+                end: new Date(2025, 5, 30),
+                color: '#8BB455', // Primary
+              },
+              {
+                id: 3,
+                label: 'Warning (Laranja)',
+                start: new Date(2025, 6, 1),
+                end: new Date(2025, 8, 30),
+                color: '#FFB84D', // Warning
+              },
+              {
+                id: 4,
+                label: 'Error (Vermelho)',
+                start: new Date(2025, 9, 1),
+                end: new Date(2025, 11, 31),
+                color: '#F7857F', // Error
+              },
+            ],
+          },
+          {
+            title: 'Cores Extras da Biblioteca',
+            bars: [
+              {
+                id: 5,
+                label: 'Success (Verde Claro)',
+                start: new Date(2025, 1, 1),
+                end: new Date(2025, 3, 31),
+                color: '#81C784', // Success
+              },
+              {
+                id: 6,
+                label: 'Secondary (Dourado)',
+                start: new Date(2025, 4, 1),
+                end: new Date(2025, 6, 30),
+                color: '#EDD5A3', // Secondary
+              },
+              {
+                id: 7,
+                label: 'Extra-1 (Roxo)',
+                start: new Date(2025, 7, 1),
+                end: new Date(2025, 9, 30),
+                color: '#B968C7', // Extra-1
+              },
+              {
+                id: 8,
+                label: 'Extra-2 (Rosa)',
+                start: new Date(2025, 10, 1),
+                end: new Date(2025, 11, 31),
+                color: '#F2849F', // Extra-2
+              },
+            ],
+          },
+        ],
+      },
     };
   },
   template: `<div style="width: 100%; height: 400px; padding: 20px;">
-    <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
-    />
+    <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
 
-export const CustomBarTypes = () => ({
+export const AutomaticFeatures = () => ({
   data() {
     return {
-      startDate: new Date(2025, 0, 1),
-      endDate: new Date(2025, 6, 1),
-
-      // Exemplo de como customizar os tipos de barra para usar outras cores da biblioteca
-      customBarTypes: {
-        planning: 'secondary', // Usa cor secondary (dourado)
-        development: 'success', // Usa cor success (verde claro)
-        testing: 'extra-1', // Usa cor extra-1 (roxo)
-        deployment: 'extra-2', // Usa cor extra-2 (rosa)
-        default: 'neutral', // Usa cor neutral como padrão
+      ganttData: {
+        groups: [
+          {
+            title: 'Projeto com Cálculos Automáticos',
+            bars: [
+              {
+                id: 1,
+                label: 'Design',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 1, 15),
+                color: '#8E44AD', // Roxo
+              },
+              {
+                id: 2,
+                label: 'Desenvolvimento Frontend',
+                start: new Date(2025, 1, 1),
+                end: new Date(2025, 3, 30),
+                color: '#16A085', // Verde escuro
+              },
+              {
+                id: 3,
+                label: 'Desenvolvimento Backend',
+                start: new Date(2025, 2, 15),
+                end: new Date(2025, 4, 31),
+                color: '#D35400', // Laranja
+              },
+              {
+                id: 4,
+                label: 'Testes',
+                start: new Date(2025, 4, 15),
+                end: new Date(2025, 5, 30),
+                color: '#2980B9', // Azul
+              },
+              {
+                id: 5,
+                label: 'Deploy',
+                start: new Date(2025, 6, 1),
+                end: new Date(2025, 6, 15),
+                color: '#E74C3C', // Vermelho
+              },
+            ],
+          },
+        ],
       },
-
-      groups: [
-        {
-          label: 'Projeto com Cores Customizadas',
-          bars: [
-            {
-              id: 1,
-              label: 'Planejamento',
-              start: new Date(2025, 0, 1),
-              end: new Date(2025, 1, 15),
-              type: 'planning',
-            },
-            {
-              id: 2,
-              label: 'Desenvolvimento',
-              start: new Date(2025, 1, 1),
-              end: new Date(2025, 3, 30),
-              type: 'development',
-            },
-            {
-              id: 3,
-              label: 'Testes',
-              start: new Date(2025, 3, 15),
-              end: new Date(2025, 4, 31),
-              type: 'testing',
-            },
-            {
-              id: 4,
-              label: 'Deploy',
-              start: new Date(2025, 5, 1),
-              end: new Date(2025, 5, 30),
-              type: 'deployment',
-            },
-          ],
-        },
-      ],
-
-      legendItems: [
-        { label: 'Planejamento', type: 'planning' },
-        { label: 'Desenvolvimento', type: 'development' },
-        { label: 'Testes', type: 'testing' },
-        { label: 'Deploy', type: 'deployment' },
-      ],
     };
   },
   template: `<div style="width: 100%; height: 300px; padding: 20px;">
-    <farm-gantt-chart
-      :groups="groups"
-      :startDate="startDate"
-      :endDate="endDate"
-      :legendItems="legendItems"
-      :barTypes="customBarTypes"
-    />
+    <h3>API Simplificada - Demonstração</h3>
+    <p>✅ <strong>Datas calculadas automaticamente:</strong> Janeiro 2025 até Junho 2025 (baseado nas barras)</p>
+    <p>✅ <strong>Legenda gerada automaticamente:</strong> baseada nas cores e labels únicos</p>
+    <p>✅ <strong>Zero configuração manual:</strong> apenas dados essenciais</p>
+    <farm-gantt-chart :data="ganttData" />
   </div>`,
 });

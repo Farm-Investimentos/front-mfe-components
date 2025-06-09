@@ -6,22 +6,22 @@ describe('GanttChart component', () => {
 	let component;
 
 	const defaultProps = {
-		groups: [
-			{
-				label: 'Test Group',
-				bars: [
-					{
-						id: 1,
-						label: 'Test Bar',
-						start: new Date(2025, 0, 1),
-						end: new Date(2025, 1, 1),
-						type: 'campaign',
-					},
-				],
-			},
-		],
-		startDate: new Date(2025, 0, 1),
-		endDate: new Date(2025, 11, 31),
+		data: {
+			groups: [
+				{
+					title: 'Test Group',
+					bars: [
+						{
+							id: 1,
+							label: 'Test Bar',
+							start: new Date(2025, 0, 1),
+							end: new Date(2025, 1, 1),
+							color: '#7BC4F7',
+						},
+					],
+				},
+			],
+		},
 	};
 
 	beforeEach(() => {
@@ -48,30 +48,153 @@ describe('GanttChart component', () => {
 			const monthHeaders = wrapper.findAll('.farm-gantt-chart__month-header');
 			expect(monthHeaders.length).toBeGreaterThan(0);
 		});
+
+		it('displays group titles correctly', () => {
+			const groupLabel = wrapper.find('.farm-gantt-chart__group-label');
+			expect(groupLabel.text()).toContain('Test Group');
+		});
 	});
 
 	describe('Props', () => {
-		it('accepts groups prop', () => {
-			expect(component.groups).toEqual(defaultProps.groups);
+		it('accepts data prop with new structure', () => {
+			expect(component.data).toEqual(defaultProps.data);
 		});
 
-		it('accepts startDate prop', () => {
-			expect(component.startDate).toEqual(defaultProps.startDate);
+		it('validates required data prop structure', () => {
+			expect(component.data.groups).toBeDefined();
+			expect(Array.isArray(component.data.groups)).toBe(true);
 		});
 
-		it('accepts endDate prop', () => {
-			expect(component.endDate).toEqual(defaultProps.endDate);
+		it('validates group structure', () => {
+			const group = component.data.groups[0];
+			expect(group.title).toBeDefined();
+			expect(group.bars).toBeDefined();
+			expect(Array.isArray(group.bars)).toBe(true);
 		});
 
-		it('has default values for optional props', () => {
-			const wrapperWithDefaults = shallowMount(GanttChart, {
-				propsData: {
-					groups: [],
-				},
+		it('validates bar structure', () => {
+			const bar = component.data.groups[0].bars[0];
+			expect(bar.id).toBeDefined();
+			expect(bar.label).toBeDefined();
+			expect(bar.start).toBeDefined();
+			expect(bar.end).toBeDefined();
+			expect(bar.color).toBeDefined();
+		});
+	});
+
+	describe('Automatic Calculations', () => {
+		describe('Date Range Calculation', () => {
+			it('should calculate date range automatically from bars', () => {
+				const testData = {
+					groups: [
+						{
+							title: 'Group 1',
+							bars: [
+								{
+									id: 1,
+									label: 'Early Bar',
+									start: new Date(2025, 0, 15), // Jan 15, 2025
+									end: new Date(2025, 2, 10), // Mar 10, 2025
+									color: '#7BC4F7',
+								},
+								{
+									id: 2,
+									label: 'Late Bar',
+									start: new Date(2025, 4, 5), // May 5, 2025
+									end: new Date(2025, 6, 20), // Jul 20, 2025
+									color: '#8BB455',
+								},
+							],
+						},
+					],
+				};
+
+				const testWrapper = shallowMount(GanttChart, {
+					propsData: { data: testData },
+				});
+
+				// Should calculate from January 1st to July 31st (full months)
+				const monthColumns = testWrapper.vm.monthColumns;
+				expect(monthColumns.length).toBe(7); // Jan to Jul = 7 months
+				expect(monthColumns[0].label).toContain('Jan');
+				expect(monthColumns[monthColumns.length - 1].label).toContain('Jul');
 			});
-			// Props grid, showRowLabels, showLegend, showTodayLine e minMonthWidth foram removidas
-			// O componente agora sempre exibe esses elementos por padrão com valores fixos
-			expect(wrapperWithDefaults.vm.barTypes).toBeDefined();
+
+			it('should handle single month range', () => {
+				const testData = {
+					groups: [
+						{
+							title: 'Single Month Group',
+							bars: [
+								{
+									id: 1,
+									label: 'Single Month Bar',
+									start: new Date(2025, 3, 5), // Apr 5, 2025
+									end: new Date(2025, 3, 25), // Apr 25, 2025
+									color: '#7BC4F7',
+								},
+							],
+						},
+					],
+				};
+
+				const testWrapper = shallowMount(GanttChart, {
+					propsData: { data: testData },
+				});
+
+				const monthColumns = testWrapper.vm.monthColumns;
+				expect(monthColumns.length).toBe(1);
+				expect(monthColumns[0].label).toContain('Abr');
+			});
+		});
+
+		describe('Legend Generation', () => {
+			it('should generate legend automatically from unique colors and labels', () => {
+				const testData = {
+					groups: [
+						{
+							title: 'Group 1',
+							bars: [
+								{
+									id: 1,
+									label: 'Design',
+									start: new Date(2025, 0, 1),
+									end: new Date(2025, 1, 1),
+									color: '#8E44AD',
+								},
+								{
+									id: 2,
+									label: 'Development',
+									start: new Date(2025, 1, 1),
+									end: new Date(2025, 2, 1),
+									color: '#16A085',
+								},
+								{
+									id: 3,
+									label: 'Design', // Same label, same color - should not duplicate
+									start: new Date(2025, 2, 1),
+									end: new Date(2025, 3, 1),
+									color: '#8E44AD',
+								},
+							],
+						},
+					],
+				};
+
+				const testWrapper = shallowMount(GanttChart, {
+					propsData: { data: testData },
+				});
+
+				const legend = testWrapper.vm.autoGeneratedLegend;
+				expect(legend).toHaveLength(2); // Only unique combinations
+				expect(legend.some(item => item.label === 'Design' && item.color === '#8E44AD')).toBe(true);
+				expect(legend.some(item => item.label === 'Development' && item.color === '#16A085')).toBe(true);
+			});
+
+			it('should display generated legend in template', () => {
+				const legendItems = wrapper.findAll('.farm-gantt-chart__legend-item');
+				expect(legendItems.length).toBeGreaterThan(0);
+			});
 		});
 	});
 
@@ -84,12 +207,14 @@ describe('GanttChart component', () => {
 						start: new Date(2025, 0, 1),
 						end: new Date(2025, 1, 1),
 						label: 'Bar 1',
+						color: '#7BC4F7',
 					},
 					{
 						id: 2,
 						start: new Date(2025, 0, 15),
 						end: new Date(2025, 1, 15),
 						label: 'Bar 2',
+						color: '#8BB455',
 					},
 				];
 				const positionedBars = component.getPositionedBars(bars);
@@ -102,17 +227,52 @@ describe('GanttChart component', () => {
 				const positionedBars = component.getPositionedBars([]);
 				expect(positionedBars).toEqual([]);
 			});
+
+			it('should handle invalid dates gracefully', () => {
+				const bars = [
+					{
+						id: 1,
+						start: 'invalid-date',
+						end: 'invalid-date',
+						label: 'Invalid Bar',
+						color: '#7BC4F7',
+					},
+				];
+				const positionedBars = component.getPositionedBars(bars);
+				expect(positionedBars).toHaveLength(1);
+				expect(positionedBars[0].rowPosition).toBeDefined();
+			});
 		});
 
-		describe('getBarColor', () => {
-			it('should return correct color for bar type', () => {
-				const color = component.getBarColor('campaign');
-				expect(color).toBe('#7BC4F7');
+		describe('getBarGridStyle', () => {
+			it('should return correct grid style for bars', () => {
+				const bar = {
+					id: 1,
+					start: new Date(2025, 0, 1),
+					end: new Date(2025, 1, 1),
+					label: 'Test Bar',
+					color: '#7BC4F7',
+					rowPosition: 0,
+				};
+				const style = component.getBarGridStyle(bar);
+				expect(style['background-color']).toBe('#7BC4F7');
+				expect(style['grid-row']).toBe('1');
+				expect(style['grid-column-start']).toBeDefined();
+				expect(style['grid-column-end']).toBeDefined();
 			});
 
-			it('should return default color for unknown type', () => {
-				const color = component.getBarColor('unknown');
-				expect(color).toBe('#7BC4F7'); // default is 'info' which maps to campaign color
+			it('should handle invalid dates in bar style calculation', () => {
+				const bar = {
+					id: 1,
+					start: 'invalid',
+					end: 'invalid',
+					label: 'Invalid Bar',
+					color: '#FF0000',
+					rowPosition: 0,
+				};
+				const style = component.getBarGridStyle(bar);
+				expect(style['background-color']).toBe('#FF0000');
+				expect(style.gridColumn).toBe('1 / 2');
 			});
 		});
 	});
@@ -123,6 +283,13 @@ describe('GanttChart component', () => {
 			if (bar.exists()) {
 				await bar.trigger('click');
 				expect(wrapper.emitted('bar-click')).toBeTruthy();
+				expect(wrapper.emitted('bar-click')[0][0]).toEqual(
+					expect.objectContaining({
+						id: 1,
+						label: 'Test Bar',
+						color: '#7BC4F7',
+					})
+				);
 			}
 		});
 	});
@@ -137,6 +304,68 @@ describe('GanttChart component', () => {
 		it('should generate timeline grid style', () => {
 			expect(component.timelineGridStyle).toBeDefined();
 			expect(component.timelineGridStyle.gridTemplateColumns).toBeDefined();
+		});
+
+		it('should calculate component style with height', () => {
+			expect(component.componentStyle).toBeDefined();
+			expect(component.componentStyle['--gantt-content-height']).toBeDefined();
+		});
+	});
+
+	describe('Backward Compatibility Considerations', () => {
+		it('should handle string dates correctly', () => {
+			const testData = {
+				groups: [
+					{
+						title: 'String Dates Group',
+						bars: [
+							{
+								id: 1,
+								label: 'String Date Bar',
+								start: '2025-01-15',
+								end: '2025-03-15',
+								color: '#7BC4F7',
+							},
+						],
+					},
+				],
+			};
+
+			const testWrapper = shallowMount(GanttChart, {
+				propsData: { data: testData },
+			});
+
+			expect(testWrapper.vm.monthColumns.length).toBeGreaterThan(0);
+		});
+
+		it('should handle additional bar properties', () => {
+			const testData = {
+				groups: [
+					{
+						title: 'Extended Bar Group',
+						bars: [
+							{
+								id: 1,
+								label: 'Extended Bar',
+								start: new Date(2025, 0, 1),
+								end: new Date(2025, 1, 1),
+								color: '#7BC4F7',
+								customProperty: 'custom value',
+								description: 'This is a description',
+							},
+						],
+					},
+				],
+			};
+
+			const testWrapper = shallowMount(GanttChart, {
+				propsData: { data: testData },
+			});
+
+			const bar = testWrapper.find('.farm-gantt-chart__bar');
+			if (bar.exists()) {
+				expect(testWrapper.vm.data.groups[0].bars[0].customProperty).toBe('custom value');
+			}
 		});
 	});
 });

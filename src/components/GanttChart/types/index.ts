@@ -1,27 +1,30 @@
 /**
- * Type definitions for GanttChart component
+ * Type definitions for GanttChart component - Nova estrutura simplificada
  */
 
-export interface GanttBar {
-	id: string | number;
-	start: Date | string;
-	end: Date | string;
-	label?: string;
-	color?: string;
-	type?: string;
-	rowPosition?: number;
-	[key: string]: any;
+// Nova estrutura de dados simplificada
+export interface GanttData {
+	groups: GanttGroup[];
 }
 
 export interface GanttGroup {
-	label: string;
+	title: string; // obrigatório (era "label" antes)
 	bars: GanttBar[];
+}
+
+export interface GanttBar {
+	id: string | number;
+	label: string; // obrigatório
+	start: Date | string; // obrigatório
+	end: Date | string; // obrigatório
+	color: string; // obrigatório - cor direta hex/rgb
+	rowPosition?: number;
+	[key: string]: any; // propriedades extras
 }
 
 export interface LegendItem {
 	label: string;
-	color?: string;
-	type?: string;
+	color: string;
 }
 
 export interface MonthColumn {
@@ -39,9 +42,15 @@ export interface BarGridStyle {
 	'width': string;
 }
 
+export interface DateRange {
+	start: Date;
+	end: Date;
+}
+
+// Tipos legados mantidos para compatibilidade (remover em versões futuras)
 export type BarType = 'campaign' | 'product' | 'disbursement' | 'maturity' | 'default';
 
-export type ThemeColor = 
+export type ThemeColor =
 	| 'primary'
 	| 'secondary'
 	| 'info'
