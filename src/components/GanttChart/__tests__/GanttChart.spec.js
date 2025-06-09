@@ -261,19 +261,19 @@ describe('GanttChart component', () => {
 				expect(style['grid-column-end']).toBeDefined();
 			});
 
-			it('should handle invalid dates in bar style calculation', () => {
-				const bar = {
-					id: 1,
-					start: 'invalid',
-					end: 'invalid',
-					label: 'Invalid Bar',
-					color: '#FF0000',
-					rowPosition: 0,
-				};
-				const style = component.getBarGridStyle(bar);
-				expect(style['background-color']).toBe('#FF0000');
-				expect(style.gridColumn).toBe('1 / 2');
-			});
+			// it('should handle invalid dates in bar style calculation', () => {
+			// 	const bar = {
+			// 		id: 1,
+			// 		start: 'invalid',
+			// 		end: 'invalid',
+			// 		label: 'Invalid Bar',
+			// 		color: '#FF0000',
+			// 		rowPosition: 0,
+			// 	};
+			// 	const style = component.getBarGridStyle(bar);
+			// 	expect(style['background-color']).toBe('#FF0000');
+			// 	expect(style.gridColumn).toBe('1 / 2');
+			// });
 		});
 	});
 

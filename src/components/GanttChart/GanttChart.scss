@@ -167,6 +167,8 @@
     margin-bottom: gutter('xs');
     position: relative;
     padding: 0 12px;
+    flex-shrink: 0; /* Prevent items from shrinking */
+    white-space: nowrap; /* Prevent text from wrapping */
 
     &:not(:last-child)::after {
       content: '';
