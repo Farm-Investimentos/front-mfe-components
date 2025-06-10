@@ -83,6 +83,7 @@
 <script lang="ts">
 import { defineComponent, PropType, computed } from 'vue';
 import type { GanttData, GanttBar } from './types';
+import { isValid } from 'date-fns';
 import {
 	getMonthsBetween,
 	formatMonth,
@@ -111,10 +112,10 @@ export default defineComponent({
 					const startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
 					const endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
 					
-					if (!isNaN(startDate.getTime())) {
+					if (isValid(startDate)) {
 						allDates.push(startDate);
 					}
-					if (!isNaN(endDate.getTime())) {
+					if (isValid(endDate)) {
 						allDates.push(endDate);
 					}
 				});
@@ -183,14 +184,104 @@ export default defineComponent({
 			return column >= 0 && column < monthColumns.value.length ? column : -1;
 		});
 
-		// Get CSS Grid style for a bar
-		const getBarGridStyle = (bar: GanttBar) => {
-			const barStartDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
-			let barEndDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
-			const { start: chartStartDate } = autoCalculatedDateRange.value;
+		/**
+		 * Normalize and validate bar dates
+		 */
+		const normalizeBarDates = (bar: GanttBar) => {
+			const startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
+			let endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
 
 			// Validate dates
-			if (isNaN(barStartDate.getTime()) || isNaN(barEndDate.getTime())) {
+			if (!isValid(startDate) || !isValid(endDate)) {
+				return null;
+			}
+
+			// Ensure end is not before start
+			if (endDate < startDate) {
+				endDate = new Date(startDate.getTime());
+			}
+
+			return { startDate, endDate };
+		};
+
+		/**
+		 * Calculate month fractions for positioning within a single month
+		 */
+		const calculateSingleMonthPositioning = (startDate: Date, endDate: Date) => {
+			const startDay = startDate.getDate();
+			const startMonth = startDate.getMonth();
+			const startYear = startDate.getFullYear();
+			const endDay = endDate.getDate();
+			const endMonth = endDate.getMonth();
+			const endYear = endDate.getFullYear();
+
+			const daysInMonth = getDaysInMonth(startYear, startMonth);
+
+			// Calculate start position as fraction of month
+			const startFraction = (startDay - 1) / daysInMonth;
+
+			// Calculate end position - if bar ends in same month, use actual end day
+			// otherwise, use end of start month
+			const effectiveEndDay = (startYear === endYear && startMonth === endMonth)
+				? endDay
+				: daysInMonth;
+			const endFraction = effectiveEndDay / daysInMonth;
+
+			return {
+				marginLeft: `calc(${startFraction * 100}%)`,
+				width: `calc(${(endFraction - startFraction) * 100}%)`
+			};
+		};
+
+		/**
+		 * Calculate positioning for bars spanning multiple months
+		 */
+		const calculateMultiMonthPositioning = (
+			startDate: Date,
+			endDate: Date,
+			visualMonthsSpanned: number,
+			gridColumnsSpanned: number
+		) => {
+			const startDay = startDate.getDate();
+			const endDay = endDate.getDate();
+			const startMonth = startDate.getMonth();
+			const startYear = startDate.getFullYear();
+			const endMonth = endDate.getMonth();
+			const endYear = endDate.getFullYear();
+
+			const daysInStartMonth = getDaysInMonth(startYear, startMonth);
+			const daysInEndMonth = getDaysInMonth(endYear, endMonth);
+
+			// Calculate fractions for start month, full intermediate months, and end month
+			const fractionBeforeBar = (startDay - 1) / daysInStartMonth;
+			const fractionInStartMonth = (daysInStartMonth - (startDay - 1)) / daysInStartMonth;
+			const fractionInEndMonth = endDay / daysInEndMonth;
+			const fullIntermediateMonths = Math.max(0, visualMonthsSpanned - 2);
+
+			// Avoid division by zero
+			if (gridColumnsSpanned <= 0) {
+				return { marginLeft: '0%', width: '100%' };
+			}
+
+			// Calculate total bar coverage across all months
+			const totalBarCoverage = fractionInStartMonth + fullIntermediateMonths + fractionInEndMonth;
+
+			return {
+				marginLeft: `calc((${fractionBeforeBar} / ${gridColumnsSpanned}) * 100%)`,
+				width: `calc((${totalBarCoverage} / ${gridColumnsSpanned}) * 100%)`
+			};
+		};
+
+		/**
+		 * Get CSS Grid style for a bar - refactored for clarity
+		 */
+		const getBarGridStyle = (bar: GanttBar) => {
+			const { start: chartStartDate } = autoCalculatedDateRange.value;
+
+			// Step 1: Normalize and validate dates
+			const dates = normalizeBarDates(bar);
+			if (!dates) {
+				// Return fallback style for invalid dates
 				return {
 					gridColumn: '1 / 2',
 					backgroundColor: bar.color,
@@ -198,72 +289,43 @@ export default defineComponent({
 				};
 			}
 
-			if (barEndDate < barStartDate) {
-				barEndDate = new Date(barStartDate.getTime()); // Ensure end is not before start
-			}
+			const { startDate, endDate } = dates;
 
-			const startMonth = barStartDate.getMonth();
-			const startYear = barStartDate.getFullYear();
-			const startDay = barStartDate.getDate();
+			// Step 2: Calculate grid column positions
+			const startColumnIndex = getColumnForDate(startDate, chartStartDate);
+			const endColumnIndex = getColumnForDate(endDate, chartStartDate);
+			
+			const gridColumnStart = Math.max(1, startColumnIndex + 1);
+			const gridColumnEnd = Math.min(monthColumns.value.length + 1, endColumnIndex + 2);
+			const gridColumnsSpanned = gridColumnEnd - gridColumnStart;
 
-			const endMonth = barEndDate.getMonth();
-			const endYear = barEndDate.getFullYear();
-			const endDay = barEndDate.getDate();
+			// Step 3: Calculate visual month span for proportional positioning
+			const visualStartCol = getColumnForDate(startDate, chartStartDate);
+			const visualEndCol = getColumnForDate(endDate, chartStartDate);
+			const visualMonthsSpanned = visualEndCol - visualStartCol + 1;
 
-			const daysInStartMonth = getDaysInMonth(startYear, startMonth);
-			const daysInEndMonth = getDaysInMonth(endYear, endMonth);
-
-			const startColumnIndex = getColumnForDate(barStartDate, chartStartDate);
-			const endColumnIndex = getColumnForDate(barEndDate, chartStartDate);
-
-			const gridColumnStartValue = Math.max(1, startColumnIndex + 1);
-			const gridColumnEndValue = Math.min(monthColumns.value.length + 1, endColumnIndex + 2);
-
-			const numCssGridColumnsSpanned = gridColumnEndValue - gridColumnStartValue;
-
-			let marginLeftStyle = '0%';
-			let widthStyle = '100%';
-
-			// Calculate the actual number of visual months the bar spans
-			const visualStartCol = getColumnForDate(barStartDate, chartStartDate);
-			const visualEndCol = getColumnForDate(barEndDate, chartStartDate);
-			const numVisualMonthsSpanned = visualEndCol - visualStartCol + 1;
-
-			if (numVisualMonthsSpanned === 1) {
-				// Bar is within a single month column visually
-				const barStartFractionInMonth = (startDay - 1) / daysInStartMonth;
-				const effectiveEndDay = (startYear === endYear && startMonth === endMonth) ? endDay : daysInStartMonth;
-				const barEndFractionInMonth = effectiveEndDay / daysInStartMonth;
-
-				marginLeftStyle = `calc(${barStartFractionInMonth * 100}%)`;
-				widthStyle = `calc(${(barEndFractionInMonth - barStartFractionInMonth) * 100}%)`;
-
-			} else if (numVisualMonthsSpanned > 1) {
-				// Bar spans multiple month columns visually
-				const fractionBeforeBarInStartMonth = (startDay - 1) / daysInStartMonth;
-				const fractionOfBarInStartMonth = (daysInStartMonth - (startDay - 1)) / daysInStartMonth;
-				const fractionOfBarInEndMonth = endDay / daysInEndMonth;
-
-				const numFullIntermediateMonths = Math.max(0, numVisualMonthsSpanned - 2);
-
-				if (numCssGridColumnsSpanned > 0) {
-					marginLeftStyle = `calc((${fractionBeforeBarInStartMonth} / ${numCssGridColumnsSpanned}) * 100%)`;
-
-					const totalEffectiveVisualColumnsOccupiedByBar = fractionOfBarInStartMonth + numFullIntermediateMonths + fractionOfBarInEndMonth;
-					widthStyle = `calc((${totalEffectiveVisualColumnsOccupiedByBar} / ${numCssGridColumnsSpanned}) * 100%)`;
-				} else {
-					marginLeftStyle = '0%';
-					widthStyle = '100%';
-				}
+			// Step 4: Calculate proportional positioning based on month span
+			let positioning;
+			if (visualMonthsSpanned === 1) {
+				// Bar fits within a single month - calculate precise positioning within that month
+				positioning = calculateSingleMonthPositioning(startDate, endDate);
+			} else {
+				// Bar spans multiple months - calculate proportional positioning across months
+				positioning = calculateMultiMonthPositioning(
+					startDate,
+					endDate,
+					visualMonthsSpanned,
+					gridColumnsSpanned
+				);
 			}
 
 			return {
-				'grid-column-start': gridColumnStartValue,
-				'grid-column-end': gridColumnEndValue,
+				'grid-column-start': gridColumnStart,
+				'grid-column-end': gridColumnEnd,
 				'background-color': bar.color,
 				'grid-row': `${(bar.rowPosition || 0) + 1}`,
-				'margin-left': marginLeftStyle,
-				'width': widthStyle,
+				'margin-left': positioning.marginLeft,
+				'width': positioning.width,
 			};
 		};
 
@@ -289,8 +351,8 @@ export default defineComponent({
 				const endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
 
 				// Validate dates and use fallback if invalid
-				const barStart = isNaN(startDate.getTime()) ? Date.now() : startDate.getTime();
-				const barEnd = isNaN(endDate.getTime()) ? Date.now() + 86400000 : endDate.getTime(); // +1 day fallback
+				const barStart = isValid(startDate) ? startDate.getTime() : Date.now();
+				const barEnd = isValid(endDate) ? endDate.getTime() : Date.now() + 86400000; // +1 day fallback
 
 				// Find the first available row
 				let rowPosition = 0;

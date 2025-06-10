@@ -1,57 +1,53 @@
 /**
  * Date utility functions for GanttChart component
+ * Refactored to use date-fns 2.29.3
  */
+
+import {
+	eachMonthOfInterval,
+	startOfMonth,
+	format,
+	isSameMonth,
+	getDaysInMonth as dateFnsGetDaysInMonth,
+	differenceInMonths,
+	parseISO,
+	isValid
+} from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 /**
  * Get all months between two dates
  */
 export const getMonthsBetween = (startDate: Date, endDate: Date): Date[] => {
-	const months = [];
-	const current = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
-	const end = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
-
-	while (current <= end) {
-		months.push(new Date(current));
-		current.setMonth(current.getMonth() + 1);
-	}
-
-	return months;
+	return eachMonthOfInterval({
+		start: startOfMonth(startDate),
+		end: startOfMonth(endDate)
+	});
 };
 
 /**
  * Format month in Brazilian Portuguese
  */
 export const formatMonth = (date: Date): string => {
-	const monthNames = [
-		'Jan',
-		'Fev',
-		'Mar',
-		'Abr',
-		'Mai',
-		'Jun',
-		'Jul',
-		'Ago',
-		'Set',
-		'Out',
-		'Nov',
-		'Dez',
-	];
-	return `${monthNames[date.getMonth()]}/${date.getFullYear()}`;
+	const formatted = format(date, 'MMM/yyyy', { locale: ptBR });
+	// Capitalize first letter to match original format (Jan/2025, Fev/2025, etc.)
+	return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 };
 
 /**
  * Check if date is current month
  */
 export const isCurrentMonth = (date: Date): boolean => {
-	const now = new Date();
-	return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear();
+	return isSameMonth(date, new Date());
 };
 
 /**
  * Get number of days in a month
  */
 export const getDaysInMonth = (year: number, month: number): number => {
-	return new Date(year, month + 1, 0).getDate();
+	// date-fns expects a Date object, so we create one for the specified year/month
+	// Note: month parameter is 0-based (0 = January) to match original function signature
+	return dateFnsGetDaysInMonth(new Date(year, month));
 };
 
 /**
@@ -63,15 +59,28 @@ export const getColumnForDate = (date: Date | string, startDate: Date): number =
 	const startDateObj = startDate instanceof Date ? startDate : new Date(startDate);
 
 	// Validate dates
-	if (isNaN(targetDate.getTime()) || isNaN(startDateObj.getTime())) {
+	if (!isValid(targetDate) || !isValid(startDateObj)) {
 		return 0;
 	}
 
-	const targetMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 1);
-	const startMonth = new Date(startDateObj.getFullYear(), startDateObj.getMonth(), 1);
+	const targetMonth = startOfMonth(targetDate);
+	const startMonth = startOfMonth(startDateObj);
 
-	const yearDiff = targetMonth.getFullYear() - startMonth.getFullYear();
-	const monthDiff = targetMonth.getMonth() - startMonth.getMonth();
+	return differenceInMonths(targetMonth, startMonth);
+};
 
-	return yearDiff * 12 + monthDiff;
+/**
+ * Parse ISO date string (YYYY-MM-DD) to Date object
+ */
+export const parseIsoDate = (iso: string): Date => {
+	if (!iso || typeof iso !== 'string') {
+		return new Date(NaN);
+	}
+
+	try {
+		const parsedDate = parseISO(iso);
+		return isValid(parsedDate) ? parsedDate : new Date(NaN);
+	} catch {
+		return new Date(NaN);
+	}
 };
