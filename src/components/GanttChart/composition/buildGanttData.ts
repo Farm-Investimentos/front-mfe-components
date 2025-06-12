@@ -31,7 +31,7 @@ export default function buildGanttData(props) {
 		const maxDate = new Date(Math.max(...allDates.map(d => d.getTime())));
 
 		minDate.setDate(1); 
-		maxDate.setMonth(maxDate.getMonth() + 1, 0); 
+		const maxDate = endOfMonth(maxDate); 
 
 		return { start: minDate, end: maxDate };
 	});
