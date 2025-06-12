@@ -1,0 +1,246 @@
+@import '../../configurations/mixins';
+@import '../../configurations/variables';
+@import '../../configurations/functions';
+@import '../../configurations/_theme-colors';
+@import '../Tooltip/Tooltip.scss';
+
+.farm-gantt-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: auto;
+
+  &__header {
+    display: flex;
+    width: fit-content; /* Allow header to expand with timeline */
+    min-width: 100%; /* Ensure header is at least as wide as the container */
+    margin-bottom: gutter('sm');
+    position: relative;
+    z-index: 2;
+  }
+
+  &__row-label-space {
+    width: 180px;
+    min-width: 180px;
+    flex-shrink: 0;
+  }
+
+  &__timeline {
+    display: grid;
+    flex-grow: 1;
+    gap: 0;
+    min-height: 40px;
+  }
+
+  &__month-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Keep label to the start */
+    padding-right: 8px;
+    height: fit-content;
+    position: relative;
+    min-width: 0; /* Allow month header to shrink if text is too long, relying on parent scroll */
+
+    .farm-typography {
+      white-space: nowrap; /* Prevent label text from wrapping */
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 1px;
+      height: calc(var(--gantt-content-height, 300px) + 30px);
+      border-left: 1px dashed var(--farm-stroke-base);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &--current {
+      &::after {
+        border-left-color: var(--farm-primary-base);
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    width: fit-content; /* Allow content to expand with timeline */
+    min-width: 100%; /* Ensure content is at least as wide as the container */
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; // Remove this to allow content to scroll with parent */
+  }
+
+  &__group {
+    display: flex;
+    width: 100%;
+    margin-bottom: gutter('lg');
+    min-height: 60px;
+    position: relative;
+    border-bottom: 1px dashed var(--farm-stroke-base);
+    padding-bottom: gutter('sm');
+  }
+
+  &__group-label {
+    width: 180px;
+    min-width: 180px;
+    flex-shrink: 0;
+    padding: gutter('sm') gutter('sm') gutter('sm') 0;
+    font-weight: 500;
+    color: var(--farm-text-base);
+    align-self: center;
+    overflow-wrap: break-word;
+  }
+
+  &__group-timeline {
+    flex-grow: 1;
+    display: grid;
+    position: relative;
+    min-height: 60px;
+    gap: 0;
+    grid-auto-rows: 35px;
+    align-content: start;
+    padding: gutter('xs') 0;
+  }
+
+
+
+  &__bar {
+    height: 30px;
+    z-index: 2;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: white;
+    font-size: fontSize('sm');
+    padding: 0 gutter('sm');
+    @include ellipsis;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    margin: gutter('xs') / 2;
+
+    &:hover {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      transform: translateY(-2px);
+    }
+
+    // Bar types using library theme colors blended with white (matching Figma approach)
+    &--campaign {
+      background-color: #7BC4F7; // Info blended with white (73% + 27% white) - Vigência da Campanha
+    }
+
+    &--product {
+      background-color: #8BB455; // Primary blended with white (73% + 27% white) - Vigência do Produto Comercial
+    }
+
+    &--disbursement {
+      background-color: #FFB84D; // Warning blended with white (73% + 27% white) - Período de Desembolso
+    }
+
+    &--maturity {
+      background-color: #F7857F; // Error blended with white (73% + 27% white) - Intervalo Vencimento
+    }
+  }
+
+  &__legend {
+    display: flex;
+    align-items: center;
+    margin-top: gutter('lg');
+    padding-top: gutter('sm');
+    flex-wrap: wrap;
+  }
+
+  &__legend-title {
+    margin-right: gutter('md');
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: gutter('xs');
+    position: relative;
+    padding: 0 12px;
+    flex-shrink: 0; /* Prevent items from shrinking */
+    white-space: nowrap; /* Prevent text from wrapping */
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 12px;
+      width: 1px;
+      background-color: var(--farm-stroke-base);
+    }
+  }
+
+  &__legend-color {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: gutter('sm');
+    flex-shrink: 0;
+  }
+
+  &__legend-label {
+    display: flex;
+    align-items: center;
+  }
+
+  // NEW: Tooltip container styles - specific to GanttChart positioning
+  &__tooltip-container {
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+  }
+
+  &__tooltip {
+    // Reutiliza estilos base do farm-tooltip__popup mas com customizações específicas
+    @extend .farm-tooltip__popup;
+    @extend .farm-tooltip__popup--visible;
+    @extend .farm-tooltip__popup--fluid;
+    
+    // Customizações específicas para GanttChart
+    pointer-events: auto;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Shadow mais forte para destacar sobre o chart
+
+    // NEW: Structured tooltip data styling - específico para dados estruturados
+    .tooltip-data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .tooltip-label {
+      font-weight: 500;
+      margin-right: 8px;
+      color: #f5f5f5;
+      opacity: 0.9;
+    }
+    
+    .tooltip-value {
+      font-weight: 600;
+      color: #ffffff;
+      text-align: right;
+      flex-shrink: 0;
+    }
+  }
+}

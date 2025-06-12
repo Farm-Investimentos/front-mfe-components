@@ -20,7 +20,7 @@ import DefaultButton from './components/Buttons/DefaultButton';
 import Collapsible from './components/Collapsible';
 import IdCaption from './components/IdCaption';
 import ResourceMetaInfo from './components/ResourceMetaInfo';
-
+import GanttChart from './components/GanttChart';
 export {
 	DataTableEmptyWrapper,
 	DataTablePaginator,
@@ -92,3 +92,4 @@ export * from './components/layout/Container';
 export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
+export * from './components/GanttChart';
