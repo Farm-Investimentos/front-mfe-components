@@ -84,3 +84,23 @@ export const parseIsoDate = (iso: string): Date => {
 		return new Date(NaN);
 	}
 };
+
+/**
+ * Format date range for tooltip display
+ * Used in GanttChart tooltip fallback
+ */
+export const formatDateRange = (start: Date | string, end: Date | string): string => {
+	const startDate = typeof start === 'string' ? new Date(start) : start;
+	const endDate = typeof end === 'string' ? new Date(end) : end;
+	
+	// Validate dates
+	if (!isValid(startDate) || !isValid(endDate)) {
+		return 'Data inválida';
+	}
+	
+	const formatDate = (date: Date) => {
+		return format(date, 'dd/MM/yyyy', { locale: ptBR });
+	};
+	
+	return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+};

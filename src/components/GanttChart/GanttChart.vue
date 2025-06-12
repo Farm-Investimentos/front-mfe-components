@@ -80,20 +80,55 @@
 			</div>
 		</div>
 
-		<!-- Scoped Tooltip Container -->
+		<!-- Enhanced Tooltip Container with Priority System -->
 		<div
 			v-if="tooltipState.visible"
 			class="farm-gantt-chart__tooltip-container"
 			:style="tooltipPositionStyle"
 		>
-			<div class="farm-gantt-chart__tooltip farm-tooltip__popup farm-tooltip__popup--visible farm-tooltip__popup--fluid">
+			<!-- Priority 1: Slot-based tooltip (highest priority) -->
+			<div v-if="$slots.tooltip" class="farm-gantt-chart__tooltip">
+				<slot
+					name="tooltip"
+					:bar="tooltipState.barData"
+					:tooltipData="tooltipState.barData && tooltipState.barData.tooltipData"
+				/>
+			</div>
+			
+			<!-- Priority 2: Structured tooltipData (medium priority) -->
+			<div
+				v-else-if="tooltipState.barData && tooltipState.barData.tooltipData"
+				class="farm-gantt-chart__tooltip farm-tooltip__popup farm-tooltip__popup--visible"
+			>
 				<div class="farm-tooltip__header">
 					<div class="farm-tooltip__title">
 						<strong>{{ tooltipState.title }}</strong>
 					</div>
 				</div>
 				<div class="farm-tooltip__content">
-					{{ tooltipState.content }}
+					<div
+						v-for="(value, key) in tooltipState.barData.tooltipData"
+						:key="key"
+						class="tooltip-data-row"
+					>
+						<span class="tooltip-label">{{ key }}:</span>
+						<span class="tooltip-value">{{ value }}</span>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Priority 3: Basic fallback (lowest priority) -->
+			<div
+				v-else
+				class="farm-gantt-chart__tooltip farm-tooltip__popup farm-tooltip__popup--visible"
+			>
+				<div class="farm-tooltip__header">
+					<div class="farm-tooltip__title">
+						<strong>{{ tooltipState.title }}</strong>
+					</div>
+				</div>
+				<div class="farm-tooltip__content">
+					<p>{{ tooltipState.barData ? formatDateRange(tooltipState.barData.start, tooltipState.barData.end) : '' }}</p>
 				</div>
 			</div>
 		</div>
@@ -102,18 +137,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed, reactive, ref } from 'vue';
-import type { GanttData } from './types';
-import { getMonthsBetween, formatMonth, isCurrentMonth, getColumnForDate } from './utils/dateUtils';
+import type { GanttData, TooltipState, GanttBar } from './types';
+import { getMonthsBetween, formatMonth, isCurrentMonth, getColumnForDate, formatDateRange } from './utils/dateUtils';
 import { buildGanttData, buildBarPositioning } from './composition';
-
-interface TooltipState {
-	visible: boolean;
-	x: number;
-	y: number;
-	title: string;
-	content: string;
-	barData: any | null;
-}
 
 export default defineComponent({
 	name: 'farm-gantt-chart',
@@ -125,14 +151,13 @@ export default defineComponent({
 	},
 	emits: [],
 	setup(props) {
-		// NEW: Tooltip state management
+		// NEW: Enhanced tooltip state management
 		const tooltipState = reactive<TooltipState>({
 			visible: false,
 			x: 0,
 			y: 0,
 			title: '',
-			content: 'Placeholder content - será implementado posteriormente',
-			barData: null
+			barData: null // Now stores complete bar object
 		});
 
 		const chartContainer = ref<HTMLElement>();
@@ -194,15 +219,15 @@ export default defineComponent({
 			};
 		});
 
-		// NEW: Mouse event handlers
-		const onBarMouseEnter = (bar: any, event: MouseEvent) => {
+		// NEW: Enhanced mouse event handlers with proper typing
+		const onBarMouseEnter = (bar: GanttBar, event: MouseEvent) => {
 			tooltipState.visible = true;
 			tooltipState.title = bar.label;
-			tooltipState.barData = bar;
+			tooltipState.barData = bar; // Store complete bar object
 			updateTooltipPosition(event);
 		};
 
-		const onBarMouseMove = (bar: any, event: MouseEvent) => {
+		const onBarMouseMove = (bar: GanttBar, event: MouseEvent) => {
 			if (tooltipState.visible) {
 				updateTooltipPosition(event);
 			}
@@ -272,6 +297,7 @@ export default defineComponent({
 			onBarMouseEnter,
 			onBarMouseMove,
 			onBarMouseLeave,
+			formatDateRange, // Importada do dateUtils
 		};
 	},
 });

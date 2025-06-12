@@ -2,6 +2,7 @@
 @import '../../configurations/variables';
 @import '../../configurations/functions';
 @import '../../configurations/_theme-colors';
+@import '../Tooltip/Tooltip.scss';
 
 .farm-gantt-chart {
   width: 100%;
@@ -195,7 +196,7 @@
     align-items: center;
   }
 
-  // NEW: Tooltip container styles
+  // NEW: Tooltip container styles - specific to GanttChart positioning
   &__tooltip-container {
     position: absolute;
     z-index: 999;
@@ -205,35 +206,40 @@
   }
 
   &__tooltip {
+    // Reutiliza estilos base do farm-tooltip__popup mas com customizações específicas
+    @extend .farm-tooltip__popup;
+    @extend .farm-tooltip__popup--visible;
+    @extend .farm-tooltip__popup--fluid;
+    
+    // Customizações específicas para GanttChart
     pointer-events: auto;
     position: relative;
-    
-    // Import existing tooltip styles with scoped positioning
-    background-color: #333333;
-    color: #f5f5f5;
-    border-radius: 5px;
-    font-family: 'Manrope', sans-serif !important;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 16px;
-    width: auto;
-    max-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    
-    .farm-tooltip__header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Shadow mais forte para destacar sobre o chart
+
+    // NEW: Structured tooltip data styling - específico para dados estruturados
+    .tooltip-data-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
     
-    .farm-tooltip__title {
-      font-weight: 600;
-      font-size: 13px;
-    }
-    
-    .farm-tooltip__content {
+    .tooltip-label {
       font-weight: 500;
+      margin-right: 8px;
+      color: #f5f5f5;
+      opacity: 0.9;
+    }
+    
+    .tooltip-value {
+      font-weight: 600;
+      color: #ffffff;
+      text-align: right;
+      flex-shrink: 0;
     }
   }
 }

@@ -19,6 +19,10 @@ export interface GanttBar {
 	end: Date | string; // obrigatório
 	color: string; // obrigatório - cor direta hex/rgb
 	rowPosition?: number;
+	
+	// NEW: Tooltip system support
+	tooltipData?: TooltipData;
+	
 	[key: string]: any; // propriedades extras
 }
 
@@ -63,3 +67,17 @@ export type ThemeColor =
 	| 'gray'
 	| 'secondary-green'
 	| 'secondary-golden';
+
+// NEW: Tooltip data interface
+export interface TooltipData {
+	[key: string]: string | number | null | undefined;
+}
+
+// NEW: Enhanced tooltip state
+export interface TooltipState {
+	visible: boolean;
+	x: number;
+	y: number;
+	title: string;
+	barData: GanttBar | null;
+}

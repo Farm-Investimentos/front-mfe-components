@@ -376,3 +376,143 @@ export const AutomaticFeatures = () => ({
     <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
+
+// NEW: Story demonstrating structured tooltipData approach
+export const WithTooltipData = () => ({
+  data() {
+    return {
+      ganttData: {
+        groups: [
+          {
+            title: 'Campanha Safrinha 25',
+            bars: [
+              {
+                id: 1,
+                label: 'Vigência da Campanha',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 5, 15),
+                color: '#7BC4F7',
+                tooltipData: {
+                  'Taxa': '1,75%',
+                  'Vigência Campanha': '01/01/2025 a 15/06/2025',
+                  'Vigência Produto Comercial': '15/01/2025 a 15/05/2025',
+                  'Desembolso Operação': '01/03/2025 a 30/05/2025',
+                  'Vencimento': '01/04/2025 a 15/05/2025'
+                }
+              },
+              {
+                id: 2,
+                label: 'Produto Comercial',
+                start: new Date(2025, 0, 15),
+                end: new Date(2025, 4, 15),
+                color: '#8BB455',
+                tooltipData: {
+                  'Taxa': '2,25%',
+                  'Vigência Campanha': '15/01/2025 a 15/05/2025',
+                  'Status': 'Aprovado'
+                }
+              }
+            ]
+          }
+        ]
+      }
+    };
+  },
+  template: `
+    <div style="width: 100%; height: 400px; padding: 20px;">
+      <h3>Tooltip with Structured Data</h3>
+      <p>✨ Hover over the bars to see structured key-value tooltips</p>
+      <farm-gantt-chart :data="ganttData" />
+    </div>
+  `,
+});
+
+// NEW: Story demonstrating custom slot approach
+export const WithCustomTooltip = () => ({
+  data() {
+    return {
+      ganttData: {
+        groups: [
+          {
+            title: 'Custom Tooltip Demo',
+            bars: [
+              {
+                id: 1,
+                label: 'Complex Project Phase',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 3, 15),
+                color: '#8BB455',
+                tooltipData: {
+                  'Budget': '$125,000',
+                  'Team Size': '8 people'
+                },
+                manager: 'João Silva',
+                riskLevel: 'Medium',
+                completionRate: 0.65
+              },
+              {
+                id: 2,
+                label: 'Marketing Campaign',
+                start: new Date(2025, 1, 15),
+                end: new Date(2025, 4, 30),
+                color: '#FFB84D',
+                tooltipData: {
+                  'Investment': '$85,000',
+                  'Target Audience': '25-45 years'
+                },
+                manager: 'Maria Santos',
+                riskLevel: 'Low',
+                completionRate: 0.45
+              }
+            ]
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    formatProgress(rate) {
+      return `${Math.round(rate * 100)}%`;
+    }
+  },
+  template: `
+    <div style="width: 100%; height: 400px; padding: 20px;">
+      <h3>Custom Slot Tooltip</h3>
+      <p>🎨 Hover over the bars to see custom styled tooltips with additional data</p>
+      <farm-gantt-chart :data="ganttData">
+        <template #tooltip="{ bar, tooltipData }">
+          <div style="padding: 12px;">
+            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+              <strong style="color: white;">{{ bar.label }}</strong>
+              <span style="margin-left: auto; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px; font-size: 11px;">
+                ID: {{ bar.id }}
+              </span>
+            </div>
+            
+            <div v-if="tooltipData" style="margin-bottom: 8px;">
+              <div v-for="(value, key) in tooltipData" :key="key" style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="opacity: 0.9;">{{ key }}:</span>
+                <span style="font-weight: 600;">{{ value }}</span>
+              </div>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; margin-top: 8px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="opacity: 0.9;">Manager:</span>
+                <span style="font-weight: 600;">{{ bar.manager }}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="opacity: 0.9;">Risk Level:</span>
+                <span style="font-weight: 600; color: #FFB84D;">{{ bar.riskLevel }}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="opacity: 0.9;">Progress:</span>
+                <span style="font-weight: 600; color: #8BB455;">{{ formatProgress(bar.completionRate) }}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </farm-gantt-chart>
+    </div>
+  `,
+});
