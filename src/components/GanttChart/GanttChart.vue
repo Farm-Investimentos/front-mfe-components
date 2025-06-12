@@ -102,7 +102,7 @@
 			>
 				<div class="farm-tooltip__header">
 					<div class="farm-tooltip__title">
-						<strong>{{ tooltipState.title }}</strong>
+						{{ tooltipState.title }}
 					</div>
 				</div>
 				<div class="farm-tooltip__content">

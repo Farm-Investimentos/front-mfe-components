@@ -22,8 +22,8 @@
   }
 
   &__row-label-space {
-    width: 120px;
-    min-width: 120px;
+    width: 180px;
+    min-width: 180px;
     flex-shrink: 0;
   }
 
@@ -86,13 +86,14 @@
   }
 
   &__group-label {
-    width: 120px;
-    min-width: 120px;
+    width: 180px;
+    min-width: 180px;
     flex-shrink: 0;
     padding: gutter('sm') gutter('sm') gutter('sm') 0;
     font-weight: 500;
     color: var(--farm-text-base);
     align-self: center;
+    overflow-wrap: break-word;
   }
 
   &__group-timeline {
