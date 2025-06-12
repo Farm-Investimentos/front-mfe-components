@@ -1,6 +1,5 @@
 /**
  * Date utility functions for GanttChart component
- * Refactored to use date-fns 2.29.3
  */
 
 import {
@@ -30,7 +29,6 @@ export const getMonthsBetween = (startDate: Date, endDate: Date): Date[] => {
  */
 export const formatMonth = (date: Date): string => {
 	const formatted = format(date, 'MMM/yyyy', { locale: ptBR });
-	// Capitalize first letter to match original format (Jan/2025, Fev/2025, etc.)
 	return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 };
 
@@ -45,8 +43,6 @@ export const isCurrentMonth = (date: Date): boolean => {
  * Get number of days in a month
  */
 export const getDaysInMonth = (year: number, month: number): number => {
-	// date-fns expects a Date object, so we create one for the specified year/month
-	// Note: month parameter is 0-based (0 = January) to match original function signature
 	return dateFnsGetDaysInMonth(new Date(year, month));
 };
 
@@ -54,11 +50,9 @@ export const getDaysInMonth = (year: number, month: number): number => {
  * Get column index for a date relative to start date
  */
 export const getColumnForDate = (date: Date | string, startDate: Date): number => {
-	// Ensure we have Date objects
 	const targetDate = date instanceof Date ? date : new Date(date);
 	const startDateObj = startDate instanceof Date ? startDate : new Date(startDate);
 
-	// Validate dates
 	if (!isValid(targetDate) || !isValid(startDateObj)) {
 		return 0;
 	}
@@ -87,13 +81,11 @@ export const parseIsoDate = (iso: string): Date => {
 
 /**
  * Format date range for tooltip display
- * Used in GanttChart tooltip fallback
  */
 export const formatDateRange = (start: Date | string, end: Date | string): string => {
 	const startDate = typeof start === 'string' ? new Date(start) : start;
 	const endDate = typeof end === 'string' ? new Date(end) : end;
 	
-	// Validate dates
 	if (!isValid(startDate) || !isValid(endDate)) {
 		return 'Data inválida';
 	}

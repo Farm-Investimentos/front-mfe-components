@@ -1,29 +1,22 @@
-/**
- * Type definitions for GanttChart component - Nova estrutura simplificada
- */
-
-// Nova estrutura de dados simplificada
 export interface GanttData {
 	groups: GanttGroup[];
 }
 
 export interface GanttGroup {
-	title: string; // obrigatório (era "label" antes)
+	title: string; 
 	bars: GanttBar[];
 }
 
 export interface GanttBar {
 	id: string | number;
-	label: string; // obrigatório
-	start: Date | string; // obrigatório
-	end: Date | string; // obrigatório
-	color: string; // obrigatório - cor direta hex/rgb
+	label: string; 	
+	start: Date | string; 
+	end: Date | string; 
+	color: string; 
 	rowPosition?: number;
-	
-	// NEW: Tooltip system support
 	tooltipData?: TooltipData;
 	
-	[key: string]: any; // propriedades extras
+	[key: string]: any;
 }
 
 export interface LegendItem {
@@ -51,22 +44,6 @@ export interface DateRange {
 	end: Date;
 }
 
-// Tipos legados mantidos para compatibilidade (remover em versões futuras)
-export type BarType = 'campaign' | 'product' | 'disbursement' | 'maturity' | 'default';
-
-export type ThemeColor =
-	| 'primary'
-	| 'secondary'
-	| 'info'
-	| 'success'
-	| 'warning'
-	| 'error'
-	| 'neutral'
-	| 'extra-1'
-	| 'extra-2'
-	| 'gray'
-	| 'secondary-green'
-	| 'secondary-golden';
 
 // NEW: Tooltip data interface
 export interface TooltipData {
