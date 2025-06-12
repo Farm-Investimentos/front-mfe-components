@@ -7,7 +7,7 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 	 * Normalize and validate bar dates
 	 */
 	const normalizeBarDates = (bar: GanttBar) => {
-		const startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
+		let startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
 		let endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
 
 		// Validate dates
@@ -17,7 +17,9 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		// Ensure end is not before start
 		if (endDate < startDate) {
-			endDate = new Date(startDate.getTime());
+			const temp = startDate;
+			startDate = endDate;
+			endDate = temp;
 		}
 
 		return { startDate, endDate };
@@ -41,14 +43,13 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		// Calculate end position - if bar ends in same month, use actual end day
 		// otherwise, use end of start month
-		const effectiveEndDay = (startYear === endYear && startMonth === endMonth)
-			? endDay
-			: daysInMonth;
+		const effectiveEndDay =
+			startYear === endYear && startMonth === endMonth ? endDay : daysInMonth;
 		const endFraction = effectiveEndDay / daysInMonth;
 
 		return {
 			marginLeft: `calc(${startFraction * 100}%)`,
-			width: `calc(${(endFraction - startFraction) * 100}%)`
+			width: `calc(${(endFraction - startFraction) * 100}%)`,
 		};
 	};
 
@@ -87,7 +88,7 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		return {
 			marginLeft: `calc((${fractionBeforeBar} / ${gridColumnsSpanned}) * 100%)`,
-			width: `calc((${totalBarCoverage} / ${gridColumnsSpanned}) * 100%)`
+			width: `calc((${totalBarCoverage} / ${gridColumnsSpanned}) * 100%)`,
 		};
 	};
 
@@ -101,9 +102,11 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 		const dates = normalizeBarDates(bar);
 		if (!dates) {
 			// Return fallback style for invalid dates
+			// Fallback para datas inválidas também precisa de cor padrão
+			const backgroundColor = bar.color || 'var(--farm-primary-base)';
 			return {
 				gridColumn: '1 / 2',
-				backgroundColor: bar.color,
+				backgroundColor: backgroundColor,
 				gridRow: `${(bar.rowPosition || 0) + 1}`,
 			};
 		}
@@ -113,7 +116,7 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 		// Step 2: Calculate grid column positions
 		const startColumnIndex = getColumnForDate(startDate, chartStartDate);
 		const endColumnIndex = getColumnForDate(endDate, chartStartDate);
-		
+
 		const gridColumnStart = Math.max(1, startColumnIndex + 1);
 		const gridColumnEnd = Math.min(monthColumns.value.length + 1, endColumnIndex + 2);
 		const gridColumnsSpanned = gridColumnEnd - gridColumnStart;
@@ -138,13 +141,16 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 			);
 		}
 
+		// Adicionar fallback para cor
+		const backgroundColor = bar.color || 'var(--farm-primary-base)';
+
 		return {
 			'grid-column-start': gridColumnStart,
 			'grid-column-end': gridColumnEnd,
-			'background-color': bar.color,
+			'background-color': backgroundColor,
 			'grid-row': `${(bar.rowPosition || 0) + 1}`,
 			'margin-left': positioning.marginLeft,
-			'width': positioning.width,
+			width: positioning.width,
 		};
 	};
 
@@ -194,6 +200,6 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 		calculateSingleMonthPositioning,
 		calculateMultiMonthPositioning,
 		getBarGridStyle,
-		getPositionedBars
+		getPositionedBars,
 	};
 }

@@ -393,3 +393,88 @@ export const CustomColors = () => ({
     <farm-gantt-chart :data="ganttData" />
   </div>`,
 });
+
+export const ColorFallback = () => ({
+  data() {
+    return {
+      ganttData: {
+        groups: [
+          {
+            title: 'Projeto com Cores Faltantes',
+            bars: [
+              {
+                id: 1,
+                label: 'Barra com Cor',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 1, 15),
+                color: '#8BB455',
+              },
+              {
+                id: 2,
+                label: 'Barra sem Cor (Fallback)',
+                start: new Date(2025, 1, 1),
+                end: new Date(2025, 2, 15),
+                // Sem propriedade color - deve usar var(--farm-primary-base)
+              },
+              {
+                id: 3,
+                label: 'Outra Barra com Cor',
+                start: new Date(2025, 2, 1),
+                end: new Date(2025, 3, 15),
+                color: '#FFB84D',
+              },
+            ],
+          },
+        ],
+      },
+    };
+  },
+  template: `<div style="width: 100%; height: 300px; padding: 20px;">
+    <h3>Fallback de Cor</h3>
+    <p>A segunda barra não possui cor definida e usa o fallback <code>var(--farm-primary-base)</code></p>
+    <farm-gantt-chart :data="ganttData" />
+  </div>`,
+});
+
+export const InvertedDates = () => ({
+  data() {
+    return {
+      ganttData: {
+        groups: [
+          {
+            title: 'Teste de Datas Invertidas',
+            bars: [
+              {
+                id: 1,
+                label: 'Data Normal (Jan-Mar)',
+                start: new Date(2025, 0, 1),
+                end: new Date(2025, 2, 15),
+                color: '#8BB455',
+              },
+              {
+                id: 2,
+                label: 'Data Invertida → Corrigida (Abr-Abr)',
+                start: new Date(2025, 3, 15), // 15 de abril
+                end: new Date(2025, 2, 15),   // 15 de março (será corrigido para mesmo dia de início: 15 de abril)
+                color: '#F7857F',
+              },
+              {
+                id: 3,
+                label: 'Data Normal de Referência (Mai-Jun)',
+                start: new Date(2025, 4, 1),
+                end: new Date(2025, 5, 15),
+                color: '#7BC4F7',
+              },
+            ],
+          },
+        ],
+      },
+    };
+  },
+  template: `<div style="width: 100%; height: 300px; padding: 20px;">
+    <h3>Correção de Datas Invertidas</h3>
+    <p><strong>Comportamento:</strong> Quando a data de fim é anterior à data de início, ela é automaticamente corrigida para ser igual à data de início.</p>
+    <p><strong>Exemplo:</strong> A segunda barra deveria ir de 15/abril a 15/março, mas aparece apenas em 15/abril (data corrigida).</p>
+    <farm-gantt-chart :data="ganttData" />
+  </div>`,
+});

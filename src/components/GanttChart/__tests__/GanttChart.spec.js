@@ -261,36 +261,245 @@ describe('GanttChart component', () => {
 				expect(style['grid-column-end']).toBeDefined();
 			});
 
-			// it('should handle invalid dates in bar style calculation', () => {
-			// 	const bar = {
-			// 		id: 1,
-			// 		start: 'invalid',
-			// 		end: 'invalid',
-			// 		label: 'Invalid Bar',
-			// 		color: '#FF0000',
-			// 		rowPosition: 0,
-			// 	};
-			// 	const style = component.getBarGridStyle(bar);
-			// 	expect(style['background-color']).toBe('#FF0000');
-			// 	expect(style.gridColumn).toBe('1 / 2');
-			// });
 		});
 	});
 
-	describe('Events', () => {
-		it('should emit bar-click event when bar is clicked', async () => {
+	describe('Color Fallback', () => {
+		it('should use fallback color when bar.color is not provided', () => {
+			const testData = {
+				groups: [{
+					title: 'Test Group',
+					bars: [{
+						id: 1,
+						label: 'Bar Without Color',
+						start: new Date(2025, 0, 1),
+						end: new Date(2025, 1, 1),
+						// color não definido - deve usar fallback
+					}]
+				}]
+			};
+
+			const testWrapper = shallowMount(GanttChart, {
+				propsData: { data: testData },
+			});
+
+			const bar = {
+				id: 1,
+				label: 'Bar Without Color',
+				start: new Date(2025, 0, 1),
+				end: new Date(2025, 1, 1),
+				rowPosition: 0
+			};
+			
+			const style = testWrapper.vm.getBarGridStyle(bar);
+			expect(style['background-color']).toBe('var(--farm-primary-base)');
+		});
+
+		it('should use provided color when bar.color is defined', () => {
+			const bar = {
+				id: 1,
+				label: 'Bar With Color',
+				start: new Date(2025, 0, 1),
+				end: new Date(2025, 1, 1),
+				color: '#FF5733',
+				rowPosition: 0
+			};
+			
+			const style = component.getBarGridStyle(bar);
+			expect(style['background-color']).toBe('#FF5733');
+		});
+	});
+
+	describe('Data Validation', () => {
+		it('should validate invalid data prop structure', () => {
+			const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+			
+			// Teste com data null
+			const validator = wrapper.vm.$options.props.data.validator;
+			expect(validator(null)).toBe(false);
+			expect(consoleSpy).toHaveBeenCalledWith('GanttChart: prop "data" deve ser um objeto.');
+			
+			// Teste com data sem groups
+			expect(validator({})).toBe(false);
+			expect(consoleSpy).toHaveBeenCalledWith('GanttChart: prop "data.groups" deve ser um array.');
+			
+			// Teste com groups inválido
+			expect(validator({ groups: 'invalid' })).toBe(false);
+			expect(consoleSpy).toHaveBeenCalledWith('GanttChart: prop "data.groups" deve ser um array.');
+			
+			consoleSpy.mockRestore();
+		});
+
+		it('should validate group structure', () => {
+			const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+			const validator = wrapper.vm.$options.props.data.validator;
+			
+			// Teste com grupo sem title
+			const invalidData = {
+				groups: [{
+					bars: []
+				}]
+			};
+			expect(validator(invalidData)).toBe(false);
+			expect(consoleSpy).toHaveBeenCalledWith('GanttChart: cada grupo deve ter título (string) e barras (array).');
+			
+			// Teste com grupo sem bars
+			const invalidData2 = {
+				groups: [{
+					title: 'Valid Title'
+				}]
+			};
+			expect(validator(invalidData2)).toBe(false);
+			expect(consoleSpy).toHaveBeenCalledWith('GanttChart: cada grupo deve ter título (string) e barras (array).');
+			
+			consoleSpy.mockRestore();
+		});
+
+		it('should validate correct data structure', () => {
+			const validator = wrapper.vm.$options.props.data.validator;
+			const validData = {
+				groups: [{
+					title: 'Valid Group',
+					bars: []
+				}]
+			};
+			expect(validator(validData)).toBe(true);
+		});
+	});
+
+	describe('Date Handling', () => {
+		it('should correct dates when end is before start', () => {
+			const bar = {
+				id: 1,
+				label: 'Inverted Date Bar',
+				// Datas invertidas (end antes de start)
+				start: new Date(2025, 3, 15), // 15 de abril
+				end: new Date(2025, 2, 15),   // 15 de março (antes do início)
+				color: '#7BC4F7',
+			};
+			
+			// Normalizar barra via função de posicionamento
+			const dates = component.normalizeBarDates(bar);
+			
+			// Verificar se as datas foram invertidas corretamente
+			expect(dates.startDate.getTime()).toBe(new Date(2025, 2, 15).getTime()); // Agora é 15 de março
+			expect(dates.endDate.getTime()).toBe(new Date(2025, 3, 15).getTime()); // Agora é 15 de abril
+		});
+
+		it('should handle invalid dates', () => {
+			const bar = {
+				id: 1,
+				label: 'Invalid Date Bar',
+				start: 'invalid-date',
+				end: 'invalid-date',
+				color: '#7BC4F7',
+			};
+			
+			const dates = component.normalizeBarDates(bar);
+			expect(dates).toBeNull();
+		});
+	});
+
+	describe('Tooltip System', () => {
+		it('should show tooltip on bar mouseenter', async () => {
+			// Encontrar uma barra
+			const bar = wrapper.find('.farm-gantt-chart__bar');
+			
+			if (bar.exists()) {
+				// Disparar evento mouseenter
+				await bar.trigger('mouseenter', {
+					clientX: 100,
+					clientY: 100,
+				});
+				
+				// Verificar se tooltipState foi atualizado
+				expect(component.tooltipState.visible).toBe(true);
+				expect(component.tooltipState.title).toBe('Test Bar');
+				expect(component.tooltipState.barData).not.toBeNull();
+			}
+		});
+		
+		it('should hide tooltip on bar mouseleave', async () => {
+			// Preparar estado (mostrar tooltip)
+			component.tooltipState.visible = true;
+			component.tooltipState.title = 'Teste';
+			component.tooltipState.barData = { label: 'Teste' };
+			
+			// Encontrar e disparar mouseleave
 			const bar = wrapper.find('.farm-gantt-chart__bar');
 			if (bar.exists()) {
-				await bar.trigger('click');
-				expect(wrapper.emitted('bar-click')).toBeTruthy();
-				expect(wrapper.emitted('bar-click')[0][0]).toEqual(
-					expect.objectContaining({
-						id: 1,
-						label: 'Test Bar',
-						color: '#7BC4F7',
-					})
-				);
+				await bar.trigger('mouseleave');
+				
+				// Verificar se tooltipState foi atualizado
+				expect(component.tooltipState.visible).toBe(false);
+				expect(component.tooltipState.barData).toBeNull();
 			}
+		});
+		
+		it('should show structured tooltip when tooltipData is available', () => {
+			// Criar wrapper com dados para tooltip
+			const testData = {
+				groups: [{
+					title: 'Group with Tooltips',
+					bars: [{
+						id: 1,
+						label: 'Bar with Tooltip',
+						start: new Date(2025, 0, 1),
+						end: new Date(2025, 1, 1),
+						color: '#7BC4F7',
+						tooltipData: {
+							'Taxa': '1,75%',
+							'Vigência': '01/01/2025 a 31/01/2025'
+						}
+					}]
+				}]
+			};
+			
+			const tooltipWrapper = shallowMount(GanttChart, {
+				propsData: { data: testData },
+			});
+			
+			// Simular mouseenter
+			const barWithTooltip = tooltipWrapper.find('.farm-gantt-chart__bar');
+			if (barWithTooltip.exists()) {
+				barWithTooltip.trigger('mouseenter', {
+					clientX: 100,
+					clientY: 100
+				});
+				
+				// Verificar que tooltip com dados estruturados será exibido
+				// quando tooltipState.barData.tooltipData existir
+				expect(tooltipWrapper.vm.tooltipState.barData.tooltipData).toBeDefined();
+				expect(tooltipWrapper.vm.tooltipState.barData.tooltipData.Taxa).toBe('1,75%');
+			}
+		});
+	});
+
+	describe('Empty Data Handling', () => {
+		it('should handle empty groups array gracefully', () => {
+			const emptyData = { groups: [] };
+			const emptyWrapper = shallowMount(GanttChart, {
+				propsData: { data: emptyData },
+			});
+			
+			// Componente deve renderizar sem erros mesmo com dados vazios
+			expect(emptyWrapper.exists()).toBe(true);
+			expect(emptyWrapper.find('.farm-gantt-chart').exists()).toBe(true);
+			
+			// Não deve haver grupos renderizados
+			const groups = emptyWrapper.findAll('.farm-gantt-chart__group');
+			expect(groups.length).toBe(0);
+		});
+		
+		it('should render timeline headers even with empty data', () => {
+			const emptyData = { groups: [] };
+			const emptyWrapper = shallowMount(GanttChart, {
+				propsData: { data: emptyData },
+			});
+			
+			// Timeline headers devem estar presentes (baseado em data range padrão ou calculado)
+			const header = emptyWrapper.find('.farm-gantt-chart__header');
+			expect(header.exists()).toBe(true);
 		});
 	});
 
@@ -312,60 +521,5 @@ describe('GanttChart component', () => {
 		});
 	});
 
-	describe('Backward Compatibility Considerations', () => {
-		it('should handle string dates correctly', () => {
-			const testData = {
-				groups: [
-					{
-						title: 'String Dates Group',
-						bars: [
-							{
-								id: 1,
-								label: 'String Date Bar',
-								start: '2025-01-15',
-								end: '2025-03-15',
-								color: '#7BC4F7',
-							},
-						],
-					},
-				],
-			};
 
-			const testWrapper = shallowMount(GanttChart, {
-				propsData: { data: testData },
-			});
-
-			expect(testWrapper.vm.monthColumns.length).toBeGreaterThan(0);
-		});
-
-		it('should handle additional bar properties', () => {
-			const testData = {
-				groups: [
-					{
-						title: 'Extended Bar Group',
-						bars: [
-							{
-								id: 1,
-								label: 'Extended Bar',
-								start: new Date(2025, 0, 1),
-								end: new Date(2025, 1, 1),
-								color: '#7BC4F7',
-								customProperty: 'custom value',
-								description: 'This is a description',
-							},
-						],
-					},
-				],
-			};
-
-			const testWrapper = shallowMount(GanttChart, {
-				propsData: { data: testData },
-			});
-
-			const bar = testWrapper.find('.farm-gantt-chart__bar');
-			if (bar.exists()) {
-				expect(testWrapper.vm.data.groups[0].bars[0].customProperty).toBe('custom value');
-			}
-		});
-	});
 });

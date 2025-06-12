@@ -25,7 +25,7 @@
 		<!-- Gantt Chart Content --> 
 		<div class="farm-gantt-chart__content">
 			<div
-				v-for="(group, groupIndex) in data.groups"
+				v-for="(group, groupIndex) in (data && data.groups) || []"
 				:key="'group-' + groupIndex"
 				class="farm-gantt-chart__group"
 			>
@@ -54,6 +54,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 
 		<!-- Legend -->
@@ -147,6 +148,31 @@ export default defineComponent({
 		data: {
 			type: Object as PropType<GanttData>,
 			required: true,
+			validator: (value: any): boolean => {
+				// Validação básica da estrutura
+				if (!value || typeof value !== 'object') {
+					console.warn('GanttChart: prop "data" deve ser um objeto.');
+					return false;
+				}
+				
+				if (!Array.isArray(value.groups)) {
+					console.warn('GanttChart: prop "data.groups" deve ser um array.');
+					return false;
+				}
+				
+				// Verificar se cada grupo tem a estrutura mínima necessária
+				return value.groups.every((group: any) => {
+					const hasValidTitle = typeof group.title === 'string';
+					const hasValidBars = Array.isArray(group.bars);
+					
+					if (!hasValidTitle || !hasValidBars) {
+						console.warn('GanttChart: cada grupo deve ter título (string) e barras (array).');
+						return false;
+					}
+					
+					return true;
+				});
+			}
 		},
 	},
 	emits: [],
@@ -187,7 +213,7 @@ export default defineComponent({
 		});
 
 		// SECTION: Bar Positioning & Styling
-		const { getBarGridStyle, getPositionedBars } = buildBarPositioning(
+		const { getBarGridStyle, getPositionedBars, normalizeBarDates } = buildBarPositioning(
 			autoCalculatedDateRange,
 			monthColumns
 		);
@@ -289,6 +315,7 @@ export default defineComponent({
 			legendStyle,
 			getBarGridStyle,
 			getPositionedBars,
+			normalizeBarDates, // Expor para testes
 			componentStyle,
 			// NEW: Tooltip-related returns
 			tooltipState,
