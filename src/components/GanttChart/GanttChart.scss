@@ -194,4 +194,46 @@
     display: flex;
     align-items: center;
   }
+
+  // NEW: Tooltip container styles
+  &__tooltip-container {
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+  }
+
+  &__tooltip {
+    pointer-events: auto;
+    position: relative;
+    
+    // Import existing tooltip styles with scoped positioning
+    background-color: #333333;
+    color: #f5f5f5;
+    border-radius: 5px;
+    font-family: 'Manrope', sans-serif !important;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 16px;
+    width: auto;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    .farm-tooltip__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .farm-tooltip__title {
+      font-weight: 600;
+      font-size: 13px;
+    }
+    
+    .farm-tooltip__content {
+      font-weight: 500;
+    }
+  }
 }
