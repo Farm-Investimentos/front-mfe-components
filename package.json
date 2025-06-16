@@ -1,6 +1,6 @@
 {
 	"name": "@farm-investimentos/front-mfe-components",
-	"version": "15.12.0",
+	"version": "15.13.0",
 	"author": "farm investimentos",
 	"private": false,
 	"main": "./dist/front-mfe-components.common.js",
@@ -23,6 +23,7 @@
 	],
 	"dependencies": {
 		"core-js": "^3.6.5",
+		"date-fns": "2.29.3",
 		"vue": "2.7.10",
 		"vuetify": "^2.4.5"
 	},
