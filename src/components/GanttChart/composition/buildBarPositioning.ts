@@ -128,26 +128,9 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		const positionedBars = JSON.parse(JSON.stringify(bars));
 
-		positionedBars.sort((a: GanttBar, b: GanttBar) => {
-			return new Date(a.start).getTime() - new Date(b.start).getTime();
-		});
-
-		const occupiedUntil: number[] = [];
-
-		positionedBars.forEach((bar: GanttBar) => {
-			const startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
-			const endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
-
-			const barStart = isValid(startDate) ? startDate.getTime() : Date.now();
-			const barEnd = isValid(endDate) ? endDate.getTime() : Date.now() + 86400000; // +1 day fallback
-
-			let rowPosition = 0;
-			while (occupiedUntil[rowPosition] && occupiedUntil[rowPosition] > barStart) {
-				rowPosition++;
-			}
-
-			bar.rowPosition = rowPosition;
-			occupiedUntil[rowPosition] = barEnd;
+		// Assign each bar to its own unique row position in the original order
+		positionedBars.forEach((bar: GanttBar, index: number) => {
+			bar.rowPosition = index;
 		});
 
 		return positionedBars;

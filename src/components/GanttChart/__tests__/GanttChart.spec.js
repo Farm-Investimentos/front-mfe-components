@@ -200,7 +200,7 @@ describe('GanttChart component', () => {
 
 	describe('Methods', () => {
 		describe('getPositionedBars', () => {
-			it('should position bars correctly', () => {
+			it('should position bars correctly with each bar in its own row', () => {
 				const bars = [
 					{
 						id: 1,
@@ -219,8 +219,44 @@ describe('GanttChart component', () => {
 				];
 				const positionedBars = component.getPositionedBars(bars);
 				expect(positionedBars).toHaveLength(2);
-				expect(positionedBars[0].rowPosition).toBeDefined();
-				expect(positionedBars[1].rowPosition).toBeDefined();
+				// Each bar should have its own unique row position
+				expect(positionedBars[0].rowPosition).toBe(0);
+				expect(positionedBars[1].rowPosition).toBe(1);
+			});
+
+			it('should maintain original order and position bars in separate rows', () => {
+				const bars = [
+					{
+						id: 3,
+						start: new Date(2025, 2, 1), // Latest date but first in array
+						end: new Date(2025, 2, 15),
+						label: 'Latest Bar',
+						color: '#FFB84D',
+					},
+					{
+						id: 1,
+						start: new Date(2025, 0, 1), // Earliest date but second in array
+						end: new Date(2025, 0, 15),
+						label: 'Early Bar',
+						color: '#7BC4F7',
+					},
+					{
+						id: 2,
+						start: new Date(2025, 1, 1), // Middle date but third in array
+						end: new Date(2025, 1, 15),
+						label: 'Middle Bar',
+						color: '#8BB455',
+					},
+				];
+				const positionedBars = component.getPositionedBars(bars);
+				expect(positionedBars).toHaveLength(3);
+				// Bars should maintain original order, not be sorted by date
+				expect(positionedBars[0].id).toBe(3); // Latest date stays first
+				expect(positionedBars[1].id).toBe(1); // Earliest date stays second
+				expect(positionedBars[2].id).toBe(2); // Middle date stays third
+				expect(positionedBars[0].rowPosition).toBe(0);
+				expect(positionedBars[1].rowPosition).toBe(1);
+				expect(positionedBars[2].rowPosition).toBe(2);
 			});
 
 			it('should handle empty bars array', () => {
