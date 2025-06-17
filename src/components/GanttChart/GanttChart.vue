@@ -231,7 +231,7 @@ export default defineComponent({
 
 		const onBarMouseEnter = (bar: GanttBar, event: MouseEvent) => {
 			tooltipState.visible = true;
-			tooltipState.title = bar.label;
+			tooltipState.title = bar.tooltipTitle || bar.label;
 			tooltipState.barData = bar;
 			updateTooltipPosition(event);
 		};
