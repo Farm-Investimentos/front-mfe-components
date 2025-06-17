@@ -6,16 +6,15 @@
 
 .farm-gantt-chart {
   width: 100%;
-  height: 100%;
   min-height: 500px;
   position: relative;
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: visible;
 
   &__header {
     display: flex;
-    width: fit-content; /* Allow header to expand with timeline */
-    min-width: 100%; /* Ensure header is at least as wide as the container */
+    width: fit-content;
+    min-width: 100%;
     margin-bottom: gutter('sm');
     position: relative;
     z-index: 2;
@@ -37,14 +36,14 @@
   &__month-header {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Keep label to the start */
+    justify-content: flex-start;
     padding-right: 8px;
     height: fit-content;
     position: relative;
-    min-width: 0; /* Allow month header to shrink if text is too long, relying on parent scroll */
+    min-width: 0;
 
     .farm-typography {
-      white-space: nowrap; /* Prevent label text from wrapping */
+      white-space: nowrap;
     }
 
     &::after {
@@ -68,11 +67,10 @@
 
   &__content {
     position: relative;
-    width: fit-content; /* Allow content to expand with timeline */
-    min-width: 100%; /* Ensure content is at least as wide as the container */
+    width: fit-content;
+    min-width: 100%;
     display: flex;
     flex-direction: column;
-    /* overflow: hidden; // Remove this to allow content to scroll with parent */
   }
 
   &__group {
@@ -130,22 +128,6 @@
       transform: translateY(-2px);
     }
 
-    // Bar types using library theme colors blended with white (matching Figma approach)
-    &--campaign {
-      background-color: #7BC4F7; // Info blended with white (73% + 27% white) - Vigência da Campanha
-    }
-
-    &--product {
-      background-color: #8BB455; // Primary blended with white (73% + 27% white) - Vigência do Produto Comercial
-    }
-
-    &--disbursement {
-      background-color: #FFB84D; // Warning blended with white (73% + 27% white) - Período de Desembolso
-    }
-
-    &--maturity {
-      background-color: #F7857F; // Error blended with white (73% + 27% white) - Intervalo Vencimento
-    }
   }
 
   &__legend {
@@ -169,8 +151,8 @@
     margin-bottom: gutter('xs');
     position: relative;
     padding: 0 12px;
-    flex-shrink: 0; /* Prevent items from shrinking */
-    white-space: nowrap; /* Prevent text from wrapping */
+    flex-shrink: 0;
+    white-space: nowrap;
 
     &:not(:last-child)::after {
       content: '';
@@ -197,7 +179,6 @@
     align-items: center;
   }
 
-  // NEW: Tooltip container styles - specific to GanttChart positioning
   &__tooltip-container {
     position: absolute;
     z-index: 999;
@@ -207,40 +188,36 @@
   }
 
   &__tooltip {
-    // Reutiliza estilos base do farm-tooltip__popup mas com customizações específicas
     @extend .farm-tooltip__popup;
     @extend .farm-tooltip__popup--visible;
     @extend .farm-tooltip__popup--fluid;
-    
-    // Customizações específicas para GanttChart
+
     pointer-events: auto;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Shadow mais forte para destacar sobre o chart
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    width: auto !important;
+    max-width: 400px !important;
 
-    // NEW: Structured tooltip data styling - específico para dados estruturados
+    .farm-tooltip__content {
+      white-space: nowrap;
+    }
+
     .tooltip-data-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       margin-bottom: 4px;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
     }
-    
-    .tooltip-label {
+
+    .tooltip-text {
       font-weight: 500;
-      margin-right: 8px;
-      color: #f5f5f5;
-      opacity: 0.9;
-    }
-    
-    .tooltip-value {
-      font-weight: 600;
       color: #ffffff;
-      text-align: right;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
   }
 }

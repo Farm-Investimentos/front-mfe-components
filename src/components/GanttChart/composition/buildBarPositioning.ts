@@ -128,7 +128,6 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		const positionedBars = JSON.parse(JSON.stringify(bars));
 
-		// Assign each bar to its own unique row position in the original order
 		positionedBars.forEach((bar: GanttBar, index: number) => {
 			bar.rowPosition = index;
 		});
