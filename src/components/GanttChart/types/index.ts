@@ -3,19 +3,20 @@ export interface GanttData {
 }
 
 export interface GanttGroup {
-	title: string; 
+	title: string;
+	subtitle?: string;
 	bars: GanttBar[];
 }
 
 export interface GanttBar {
 	id: string | number;
-	label: string; 	
-	start: Date | string; 
-	end: Date | string; 
-	color: string; 
+	label: string;
+	start: Date | string;
+	end: Date | string;
+	color: string;
 	rowPosition?: number;
 	tooltipData?: TooltipData;
-	
+
 	[key: string]: any;
 }
 
