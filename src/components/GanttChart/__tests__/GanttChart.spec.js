@@ -113,11 +113,11 @@ describe('GanttChart component', () => {
 					propsData: { data: testData },
 				});
 
-				// Should calculate from January 1st to July 31st (full months)
+				// Should calculate from January 1st to August 31st (full months + 1 extra month)
 				const monthColumns = testWrapper.vm.monthColumns;
-				expect(monthColumns.length).toBe(7); // Jan to Jul = 7 months
+				expect(monthColumns.length).toBe(8); // Jan to Aug = 8 months (Jul + 1 extra)
 				expect(monthColumns[0].label).toContain('Jan');
-				expect(monthColumns[monthColumns.length - 1].label).toContain('Jul');
+				expect(monthColumns[monthColumns.length - 1].label).toContain('Ago');
 			});
 
 			it('should handle single month range', () => {
@@ -143,8 +143,9 @@ describe('GanttChart component', () => {
 				});
 
 				const monthColumns = testWrapper.vm.monthColumns;
-				expect(monthColumns.length).toBe(1);
+				expect(monthColumns.length).toBe(2); // Apr + 1 extra month (May)
 				expect(monthColumns[0].label).toContain('Abr');
+				expect(monthColumns[1].label).toContain('Mai');
 			});
 		});
 

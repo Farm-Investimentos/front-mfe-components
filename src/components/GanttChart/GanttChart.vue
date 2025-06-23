@@ -227,9 +227,9 @@ export default defineComponent({
 
 		const legendStyle = computed(() => {
 			const timelineWidth = monthColumns.value.length * 80;
-			const totalWidth = 120 + timelineWidth;
+			const totalWidth = 180 + timelineWidth; 
 			return {
-				width: `${totalWidth}px`,
+				minWidth: `${totalWidth}px`, 
 			};
 		});
 
