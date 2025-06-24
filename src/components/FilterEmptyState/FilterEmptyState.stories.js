@@ -39,8 +39,18 @@ export default {
 			control: { type: 'text' },
 			description: 'Texto alternativo da imagem para estado não encontrado',
 		},
-		title: { table: { disable: true } },
-		subtitle: { table: { disable: true } },
+		title: {
+			control: { type: 'text' },
+			description: 'Título personalizado',
+		},
+		subtitle: {
+			control: { type: 'text' },
+			description: 'Subtítulo personalizado',
+		},
+	},
+	args: {
+		isEmpty: true,
+		isNotFound: false,
 	},
 };
 
@@ -50,7 +60,7 @@ export const EmptyStateImage = args => ({
 	setup() {
 		return { args };
 	},
-	template: '<farm-filter-empty-state v-bind="args" :isEmpty="true" />',
+	template: '<farm-filter-empty-state v-bind="args" />',
 });
 EmptyStateImage.storyName = 'Empty state image';
 EmptyStateImage.args = {
@@ -64,7 +74,7 @@ export const NotFoundStateImage = args => ({
 	setup() {
 		return { args };
 	},
-	template: '<farm-filter-empty-state v-bind="args" :isNotFound="true" />',
+	template: '<farm-filter-empty-state v-bind="args" />',
 });
 NotFoundStateImage.storyName = 'Not found state image';
 NotFoundStateImage.args = {
@@ -79,7 +89,7 @@ export const CustomTitlesAndSubtitles = args => ({
 		return { args };
 	},
 	template: `
-		<farm-filter-empty-state v-bind="args" :isEmpty="true">
+		<farm-filter-empty-state v-bind="args">
 			<template #title>
 				<span style="color: #4f8406;">Título customizado via slot</span>
 			</template>
