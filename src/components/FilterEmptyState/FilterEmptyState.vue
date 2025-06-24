@@ -91,7 +91,7 @@ export default defineComponent({
 		 */
 		isEmptyImage: {
 			type: String as PropType<FilterEmptyStateProps['isEmptyImage']>,
-			default: '../../assets/imgs/empty-data.svg',
+			default: require('../../assets/imgs/empty-data.svg'),
 		},
 		/**
 		 * Alt text for empty state image
@@ -105,7 +105,7 @@ export default defineComponent({
 		 */
 		isNotFoundImage: {
 			type: String as PropType<FilterEmptyStateProps['isNotFoundImage']>,
-			default: '../../assets/imgs/empty-not-found.svg',
+			default: require('../../assets/imgs/empty-not-found.svg'),
 		},
 		/**
 		 * Alt text for not found state image

@@ -48,6 +48,10 @@ export default {
 			description: 'Subtítulo personalizado',
 		},
 	},
+	args: {
+		isEmpty: true,
+		isNotFound: false,
+	},
 };
 
 // Empty state image
