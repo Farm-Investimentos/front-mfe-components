@@ -41,6 +41,7 @@ export {
 	Collapsible,
 	IdCaption,
 	ResourceMetaInfo,
+	GanttChart,
 };
 
 export * from './components/AlertBox';

@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { isValid, endOfMonth } from 'date-fns';
+import { isValid, endOfMonth, addMonths } from 'date-fns';
 
 export default function buildGanttData(props) {
 	const autoCalculatedDateRange = computed(() => {
@@ -23,7 +23,7 @@ export default function buildGanttData(props) {
 			const now = new Date();
 			return {
 				start: new Date(now.getFullYear(), 0, 1),
-				end: new Date(now.getFullYear(), 11, 31)
+				end: endOfMonth(addMonths(new Date(now.getFullYear(), 11, 31), 1))
 			};
 		}
 
@@ -31,7 +31,7 @@ export default function buildGanttData(props) {
 		const maxDate = new Date(Math.max(...allDates.map(d => d.getTime())));
 
 		minDate.setDate(1);
-		const adjustedMaxDate = endOfMonth(maxDate);
+		const adjustedMaxDate = endOfMonth(addMonths(maxDate, 1));
 
 		return { start: minDate, end: adjustedMaxDate };
 	});
