@@ -32,9 +32,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
-export interface FilterEmptyStateProps {
+export type FilterEmptyStateProps = {
 	/**
 	 * Indicates if the state is empty (no data)
 	 */
@@ -67,7 +67,7 @@ export interface FilterEmptyStateProps {
 	 * Subtitle to be displayed
 	 */
 	subtitle?: string;
-}
+};
 
 export default defineComponent({
 	name: 'farm-filter-empty-state',
@@ -76,56 +76,56 @@ export default defineComponent({
 		 * Indicates if the state is empty (no data)
 		 */
 		isEmpty: {
-			type: Boolean,
+			type: Boolean as PropType<FilterEmptyStateProps['isEmpty']>,
 			default: false,
 		},
 		/**
 		 * Indicates if the state is not found (no results from filter)
 		 */
 		isNotFound: {
-			type: Boolean,
+			type: Boolean as PropType<FilterEmptyStateProps['isNotFound']>,
 			default: false,
 		},
 		/**
 		 * Custom image URL for empty state
 		 */
 		isEmptyImage: {
-			type: String,
-			default: require('../../assets/imgs/empty-data.svg'),
+			type: String as PropType<FilterEmptyStateProps['isEmptyImage']>,
+			default: '../../assets/imgs/empty-data.svg',
 		},
 		/**
 		 * Alt text for empty state image
 		 */
 		isEmptyImageAlt: {
-			type: String,
+			type: String as PropType<FilterEmptyStateProps['isEmptyImageAlt']>,
 			default: 'Imagem referente a dados vazios',
 		},
 		/**
 		 * Custom image URL for not found state
 		 */
 		isNotFoundImage: {
-			type: String,
-			default: require('../../assets/imgs/empty-not-found.svg'),
+			type: String as PropType<FilterEmptyStateProps['isNotFoundImage']>,
+			default: '../../assets/imgs/empty-not-found.svg',
 		},
 		/**
 		 * Alt text for not found state image
 		 */
 		isNotFoundImageAlt: {
-			type: String,
-			default: 'Imagem referente a não encontrado',
+			type: String as PropType<FilterEmptyStateProps['isNotFoundImageAlt']>,
+			default: 'Imagem referente a filtro vazio',
 		},
 		/**
 		 * Title to be displayed
 		 */
 		title: {
-			type: String,
+			type: String as PropType<FilterEmptyStateProps['title']>,
 			default: '',
 		},
 		/**
 		 * Subtitle to be displayed
 		 */
 		subtitle: {
-			type: String,
+			type: String as PropType<FilterEmptyStateProps['subtitle']>,
 			default: '',
 		},
 	},
