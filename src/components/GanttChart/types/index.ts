@@ -45,13 +45,10 @@ export interface DateRange {
 	end: Date;
 }
 
-
-// NEW: Tooltip data interface
 export interface TooltipData {
 	[key: string]: string | number | null | undefined;
 }
 
-// NEW: Enhanced tooltip state
 export interface TooltipState {
 	visible: boolean;
 	x: number;
