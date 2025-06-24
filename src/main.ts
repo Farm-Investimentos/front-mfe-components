@@ -44,6 +44,7 @@ export {
 	IdCaption,
 	ResourceMetaInfo,
 	FilterEmptyState,
+	GanttChart,
 };
 
 export * from './components/AlertBox';
