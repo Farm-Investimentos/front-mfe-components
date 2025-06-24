@@ -1,0 +1,17 @@
+.filter-empty-state {
+	&__image {
+		max-width: 200px;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+	.filter-empty-state {
+		&__image {
+			max-width: 150px;
+		}
+	}
+}
