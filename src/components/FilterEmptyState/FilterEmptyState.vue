@@ -91,7 +91,7 @@ export default defineComponent({
 		 */
 		isEmptyImage: {
 			type: String,
-			default: () => require('../../assets/imgs/empty-data.svg'),
+			default: require('../../assets/imgs/empty-data.svg'),
 		},
 		/**
 		 * Alt text for empty state image
@@ -105,14 +105,14 @@ export default defineComponent({
 		 */
 		isNotFoundImage: {
 			type: String,
-			default: () => require('../../assets/imgs/empty-not-found.svg'),
+			default: require('../../assets/imgs/empty-not-found.svg'),
 		},
 		/**
 		 * Alt text for not found state image
 		 */
 		isNotFoundImageAlt: {
 			type: String,
-			default: 'Imagem referente a filtro vazio',
+			default: 'Imagem referente a não encontrado',
 		},
 		/**
 		 * Title to be displayed
