@@ -125,6 +125,6 @@ describe('FilterEmptyState', () => {
 
 		const img = wrapper.find('.filter-empty-state__image');
 		expect(img.exists()).toBe(true);
-		expect(img.attributes('src')).toContain('empty-not-found.svg');
+		expect(img.attributes('alt')).toBe('Imagem referente a filtro vazio');
 	});
 });
