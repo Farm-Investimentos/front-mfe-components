@@ -2,15 +2,15 @@
 	<farm-box>
 		<farm-row justify="center" class="mb-4">
 			<img
-				v-if="isEmpty"
-				:src="isEmptyImage"
-				:alt="isEmptyImageAlt"
+				v-if="isNotFound"
+				:src="isNotFoundImage"
+				:alt="isNotFoundImageAlt"
 				class="filter-empty-state__image"
 			/>
 			<img
-				v-else-if="isNotFound"
-				:src="isNotFoundImage"
-				:alt="isNotFoundImageAlt"
+				v-else
+				:src="isEmptyImage"
+				:alt="isEmptyImageAlt"
 				class="filter-empty-state__image"
 			/>
 		</farm-row>
@@ -33,6 +33,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+
+const emptyDataImage: string = require('../../assets/imgs/empty-data.svg');
+const emptyNotFoundImage: string = require('../../assets/imgs/empty-not-found.svg');
 
 export type FilterEmptyStateProps = {
 	/**
@@ -77,7 +80,7 @@ export default defineComponent({
 		 */
 		isEmpty: {
 			type: Boolean as PropType<FilterEmptyStateProps['isEmpty']>,
-			default: false,
+			default: true,
 		},
 		/**
 		 * Indicates if the state is not found (no results from filter)
@@ -91,7 +94,7 @@ export default defineComponent({
 		 */
 		isEmptyImage: {
 			type: String as PropType<FilterEmptyStateProps['isEmptyImage']>,
-			default: require('../../assets/imgs/empty-data.svg'),
+			default: emptyDataImage,
 		},
 		/**
 		 * Alt text for empty state image
@@ -105,7 +108,7 @@ export default defineComponent({
 		 */
 		isNotFoundImage: {
 			type: String as PropType<FilterEmptyStateProps['isNotFoundImage']>,
-			default: require('../../assets/imgs/empty-not-found.svg'),
+			default: emptyNotFoundImage,
 		},
 		/**
 		 * Alt text for not found state image

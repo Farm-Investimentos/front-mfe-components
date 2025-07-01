@@ -88,13 +88,21 @@ describe('FilterEmptyState', () => {
 			stubs: globalStubs,
 		});
 
-		expect(wrapper.props('isEmpty')).toBe(false);
+		expect(wrapper.props('isEmpty')).toBe(true);
 		expect(wrapper.props('isNotFound')).toBe(false);
 		expect(wrapper.props('title')).toBe('');
 		expect(wrapper.props('subtitle')).toBe('');
 	});
 
-	it('does not show image when neither isEmpty nor isNotFound is true', () => {
+	it('shows empty image by default when no props are provided', () => {
+		const wrapper = mount(FilterEmptyState, {
+			stubs: globalStubs,
+		});
+
+		expect(wrapper.find('.filter-empty-state__image').exists()).toBe(true);
+	});
+
+	it('shows empty image when isEmpty is false and isNotFound is false', () => {
 		const wrapper = mount(FilterEmptyState, {
 			propsData: {
 				isEmpty: false,
@@ -103,6 +111,20 @@ describe('FilterEmptyState', () => {
 			stubs: globalStubs,
 		});
 
-		expect(wrapper.find('.filter-empty-state__image').exists()).toBe(false);
+		expect(wrapper.find('.filter-empty-state__image').exists()).toBe(true);
+	});
+
+	it('prioritizes isNotFound over isEmpty', () => {
+		const wrapper = mount(FilterEmptyState, {
+			propsData: {
+				isEmpty: true,
+				isNotFound: true,
+			},
+			stubs: globalStubs,
+		});
+
+		const img = wrapper.find('.filter-empty-state__image');
+		expect(img.exists()).toBe(true);
+		expect(img.attributes('alt')).toBe('Imagem referente a filtro vazio');
 	});
 });
