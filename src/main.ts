@@ -12,6 +12,7 @@ import DatePicker from './components/DatePicker';
 import ManagersList from './components/ManagersList';
 import PromptUserToConfirm from './components/PromptUserToConfirm';
 import ModalPromptUser from './components/ModalPromptUser';
+import FilterEmptyState from './components/FilterEmptyState';
 
 import TableContextMenu from './components/TableContextMenu';
 import IconBox from './components/IconBox';
@@ -21,6 +22,7 @@ import Collapsible from './components/Collapsible';
 import IdCaption from './components/IdCaption';
 import ResourceMetaInfo from './components/ResourceMetaInfo';
 import GanttChart from './components/GanttChart';
+
 export {
 	DataTableEmptyWrapper,
 	DataTablePaginator,
@@ -41,6 +43,8 @@ export {
 	Collapsible,
 	IdCaption,
 	ResourceMetaInfo,
+	FilterEmptyState,
+	GanttChart,
 };
 
 export * from './components/AlertBox';
@@ -93,3 +97,4 @@ export * from './components/layout/ContainerFooter';
 export * from './components/layout/Row';
 export * from './components/layout/Line';
 export * from './components/GanttChart';
+export * from './components/FilterEmptyState';

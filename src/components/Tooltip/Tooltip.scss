@@ -70,7 +70,7 @@ $arrow-margin: 12px;
 	&--top-right .farm-tooltip__arrow {
 		border-width: $arrow-size $arrow-size 0 $arrow-size;
 		border-color: $tooltip-color transparent transparent transparent;
-		bottom: -$arrow-size;
+		bottom: -$arrow-size + 1px;
 		z-index: 99999;
 	}
 
@@ -80,7 +80,7 @@ $arrow-margin: 12px;
 	&--bottom-right .farm-tooltip__arrow {
 		border-width: 0 $arrow-size $arrow-size $arrow-size;
 		border-color: transparent transparent $tooltip-color transparent;
-		top: -$arrow-size;
+		top: -$arrow-size + 1px;
 		z-index: 99999;
 	}
 

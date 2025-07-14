@@ -1,8 +1,12 @@
 import { isValid } from 'date-fns';
-import type { GanttBar } from '../types';
+import { Ref } from 'vue';
+import type { GanttBar, DateRange, MonthColumn } from '../types';
 import { getColumnForDate, getDaysInMonth } from '../utils/dateUtils';
 
-export default function buildBarPositioning(dateRange, monthColumns) {
+export default function buildBarPositioning(
+	dateRange: Ref<DateRange>,
+	monthColumns: Ref<MonthColumn[]>
+) {
 	const normalizeBarDates = (bar: GanttBar) => {
 		let startDate = bar.start instanceof Date ? bar.start : new Date(bar.start);
 		let endDate = bar.end instanceof Date ? bar.end : new Date(bar.end);
@@ -128,7 +132,6 @@ export default function buildBarPositioning(dateRange, monthColumns) {
 
 		const positionedBars = JSON.parse(JSON.stringify(bars));
 
-		// Assign each bar to its own unique row position in the original order
 		positionedBars.forEach((bar: GanttBar, index: number) => {
 			bar.rowPosition = index;
 		});
