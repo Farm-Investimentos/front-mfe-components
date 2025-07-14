@@ -1,6 +1,12 @@
 <template>
 	<span :class="{ 'farm-tooltip': true }" ref="parent">
-		<span class="farm-tooltip__activator" ref="activator" @mouseover="onOver" @mouseout="onOut">
+		<span
+			class="farm-tooltip__activator"
+			ref="activator"
+			@mouseover="onOver"
+			@mouseout="onOut"
+			@mouseleave="onOut"
+		>
 			<slot name="activator" />
 		</span>
 
@@ -16,6 +22,7 @@
 			}"
 			:style="styles"
 			@mouseout="onOut"
+			@mouseleave="onOut"
 		>
 			<div v-if="hasTitle" class="farm-tooltip__header">
 				<div class="farm-tooltip__title">
@@ -88,6 +95,7 @@ export default defineComponent({
 			zIndex: 1,
 		});
 		const slots = useSlots();
+		let hideTimeout: number | null = null;
 
 		const toggleComponent = computed(() => props.value);
 		const externalControl = computed(() => props.value !== undefined);
@@ -159,6 +167,12 @@ export default defineComponent({
 		};
 
 		const onOver = () => {
+			// Limpa qualquer timeout de hide
+			if (hideTimeout) {
+				clearTimeout(hideTimeout);
+				hideTimeout = null;
+			}
+
 			showOver.value = true;
 
 			if (!hasBeenBoostrapped) {
@@ -174,7 +188,23 @@ export default defineComponent({
 		};
 
 		const onOut = (event: MouseEvent) => {
-			showOver.value = parent.value.contains(event.relatedTarget);
+			// Limpa qualquer timeout anterior
+			if (hideTimeout) {
+				clearTimeout(hideTimeout);
+				hideTimeout = null;
+			}
+
+			// Verifica se o relatedTarget está contido no parent
+			const isRelatedTargetInParent =
+				event.relatedTarget && parent.value.contains(event.relatedTarget);
+
+			if (!isRelatedTargetInParent) {
+				// Se não está no parent, agenda o hide com um pequeno delay para evitar flickering
+				hideTimeout = window.setTimeout(() => {
+					showOver.value = false;
+					hideTimeout = null;
+				}, 50);
+			}
 		};
 
 		const onClose = () => {
@@ -185,6 +215,12 @@ export default defineComponent({
 		};
 
 		onBeforeUnmount(() => {
+			// Limpa o timeout se existir
+			if (hideTimeout) {
+				clearTimeout(hideTimeout);
+				hideTimeout = null;
+			}
+
 			if (hasBeenBoostrapped) {
 				document.querySelector('body').removeChild(popup.value);
 			}
