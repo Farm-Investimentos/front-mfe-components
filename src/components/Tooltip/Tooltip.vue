@@ -107,6 +107,7 @@ export default defineComponent({
 		let hasBeenBoostrapped = false;
 		let scrollListener = null;
 		let isInsideModal = false;
+		let modalScrollElements = [];
 
 		const calculatePosition = () => {
 			const parentBoundingClientRect = parent.value.getBoundingClientRect();
@@ -231,7 +232,43 @@ export default defineComponent({
 						styles.left = `${left}px`;
 						styles.top = `${top}px`;
 					};
+					
+					// Escutar scroll da window E do modal
 					window.addEventListener('scroll', scrollListener, true);
+					
+					// Encontrar o modal e escutar seu scroll interno também
+					const modalElement = parent.value.closest('.farm-modal');
+					if (modalElement) {
+						// Função para detectar elementos scrolláveis
+						const isScrollable = (element) => {
+							const style = window.getComputedStyle(element);
+							return (
+								style.overflow === 'auto' ||
+								style.overflow === 'scroll' ||
+								style.overflowY === 'auto' ||
+								style.overflowY === 'scroll' ||
+								style.overflowX === 'auto' ||
+								style.overflowX === 'scroll'
+							);
+						};
+						
+						// Buscar todos os elementos dentro do modal
+						const allElements = modalElement.querySelectorAll('*');
+						const scrollableElements = Array.from(allElements).filter(isScrollable);
+						
+						// Adicionar elementos específicos do modal que podem ter scroll
+						const modalSpecificElements = modalElement.querySelectorAll(
+							'.farm-modal--content, .farm-modal--content > div, [data-simplebar], .simplebar-content-wrapper'
+						);
+						
+						// Combinar e remover duplicatas
+						const elementsToWatch = [...new Set([...scrollableElements, ...modalSpecificElements, modalElement])];
+						
+						elementsToWatch.forEach(element => {
+							element.addEventListener('scroll', scrollListener, true);
+							modalScrollElements.push(element);
+						});
+					}
 				} else {
 					// Comportamento original para tooltips fora de modais
 					popup.value.style.position = 'absolute';
@@ -262,9 +299,16 @@ export default defineComponent({
 				hideTimeout = window.setTimeout(() => {
 					showOver.value = false;
 					
-					// Remover listener de scroll quando tooltip for escondido
+					// Remover listeners de scroll quando tooltip for escondido
 					if (scrollListener) {
 						window.removeEventListener('scroll', scrollListener, true);
+						
+						// Remover listeners dos elementos de scroll do modal
+						modalScrollElements.forEach(element => {
+							element.removeEventListener('scroll', scrollListener, true);
+						});
+						modalScrollElements = [];
+						
 						scrollListener = null;
 					}
 					
@@ -287,9 +331,16 @@ export default defineComponent({
 				hideTimeout = null;
 			}
 
-			// Limpar listener de scroll se existir
+			// Limpar listeners de scroll se existirem
 			if (scrollListener) {
 				window.removeEventListener('scroll', scrollListener, true);
+				
+				// Remover listeners dos elementos de scroll do modal
+				modalScrollElements.forEach(element => {
+					element.removeEventListener('scroll', scrollListener, true);
+				});
+				modalScrollElements = [];
+				
 				scrollListener = null;
 			}
 
