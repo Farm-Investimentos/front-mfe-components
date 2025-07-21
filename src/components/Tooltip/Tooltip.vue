@@ -28,7 +28,9 @@
 				<div class="farm-tooltip__title">
 					<slot name="title"></slot>
 				</div>
-				<span v-if="externalControl" class="farm-tooltip__close" @click="onClose">×</span>
+				<span v-if="externalControl" class="farm-tooltip__close" @click="onClose">×
+					
+				</span>
 			</div>
 			<div class="farm-tooltip__content">
 				<slot />
