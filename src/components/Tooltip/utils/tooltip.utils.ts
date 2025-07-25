@@ -12,6 +12,8 @@ export interface TooltipRect {
 	bottom: number;
 }
 
+const ARROW_OFFSET = 24;
+
 export function calculateTooltipPosition(
 	activatorRect: TooltipRect,
 	tooltipRect: TooltipRect,
@@ -31,10 +33,11 @@ export function calculateTooltipPosition(
 
 	switch (horizontalAlign) {
 		case 'left':
-			left = activatorRect.left + activatorRect.width / 2 - 24;
+			left = activatorRect.left + activatorRect.width / 2 - ARROW_OFFSET;
 			break;
 		case 'right':
-			left = activatorRect.left + activatorRect.width / 2 - (tooltipRect.width - 24);
+			left =
+				activatorRect.left + activatorRect.width / 2 - (tooltipRect.width - ARROW_OFFSET);
 			break;
 		case 'center':
 		default:

@@ -193,16 +193,18 @@ export function calculateTooltipPosition(
 
 | Posição         | Seta             | Comportamento                  |
 | --------------- | ---------------- | ------------------------------ |
-| `top-left`      | 18px da esquerda | Aponta para centro do ativador |
+| `top-left`      | 24px da esquerda | Aponta para centro do ativador |
 | `top-center`    | Centro           | Aponta para centro do ativador |
-| `top-right`     | 18px da direita  | Aponta para centro do ativador |
-| `bottom-left`   | 18px da esquerda | Aponta para centro do ativador |
+| `top-right`     | 24px da direita  | Aponta para centro do ativador |
+| `bottom-left`   | 24px da esquerda | Aponta para centro do ativador |
 | `bottom-center` | Centro           | Aponta para centro do ativador |
-| `bottom-right`  | 18px da direita  | Aponta para centro do ativador |
+| `bottom-right`  | 24px da direita  | Aponta para centro do ativador |
 
 ### Lógica da Seta
 
 ```typescript
+const ARROW_OFFSET = 24;
+
 const arrowStyles = computed(() => {
 	const [verticalPos, horizontalAlign] = normalizedPlacement.value.split('-');
 
@@ -214,7 +216,6 @@ const arrowStyles = computed(() => {
 		zIndex: '10000',
 	};
 
-	// Posição vertical
 	if (verticalPos === 'top') {
 		styles.bottom = '-6px';
 		styles.borderWidth = '6px 6px 0 6px';
@@ -225,11 +226,10 @@ const arrowStyles = computed(() => {
 		styles.borderColor = 'transparent transparent #333333 transparent';
 	}
 
-	// Posição horizontal
 	if (horizontalAlign === 'left') {
-		styles.left = '18px';
+		styles.left = `${ARROW_OFFSET}px`;
 	} else if (horizontalAlign === 'right') {
-		styles.right = '18px';
+		styles.right = `${ARROW_OFFSET}px`;
 	} else {
 		styles.left = '50%';
 		styles.transform = 'translateX(-50%)';

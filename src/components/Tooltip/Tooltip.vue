@@ -37,6 +37,8 @@ import {
 } from './types/tooltip.types';
 import { calculateTooltipPosition, moveToBody, moveToContainer } from './utils/tooltip.utils';
 
+const ARROW_OFFSET = 18;
+
 export default defineComponent({
 	name: 'farm-tooltip',
 	props: {
@@ -169,9 +171,9 @@ export default defineComponent({
 			}
 
 			if (horizontalAlign === 'left') {
-				styles.left = '18px';
+				styles.left = `${ARROW_OFFSET}px`;
 			} else if (horizontalAlign === 'right') {
-				styles.right = '18px';
+				styles.right = `${ARROW_OFFSET}px`;
 			} else {
 				styles.left = '50%';
 				styles.transform = 'translateX(-50%)';

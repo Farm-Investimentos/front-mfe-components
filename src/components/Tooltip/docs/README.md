@@ -261,7 +261,7 @@ O tooltip usa classes CSS que podem ser customizadas:
 
 A seta é posicionada automaticamente para apontar para o centro do ativador:
 
--   **`left/right`**: Seta a 18px da borda, aponta para centro do ativador
+-   **`left/right`**: Seta a 24px da borda, aponta para centro do ativador
 -   **`center`**: Seta no centro do tooltip, aponta para centro do ativador
 
 ## 🐛 Troubleshooting
