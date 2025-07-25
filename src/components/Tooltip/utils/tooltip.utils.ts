@@ -45,14 +45,13 @@ export function calculateTooltipPosition(
 			break;
 	}
 
-	const margin = 8;
-	if (left < margin) left = margin;
-	if (left + tooltipRect.width > window.innerWidth - margin) {
-		left = window.innerWidth - tooltipRect.width - margin;
+	if (left < offset) left = offset;
+	if (left + tooltipRect.width > window.innerWidth - offset) {
+		left = window.innerWidth - tooltipRect.width - offset;
 	}
-	if (top < margin) top = margin;
-	if (top + tooltipRect.height > window.innerHeight - margin) {
-		top = window.innerHeight - tooltipRect.height - margin;
+	if (top < offset) top = offset;
+	if (top + tooltipRect.height > window.innerHeight - offset) {
+		top = window.innerHeight - tooltipRect.height - offset;
 	}
 
 	return { left, top };
