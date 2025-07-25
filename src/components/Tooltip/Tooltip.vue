@@ -102,6 +102,7 @@ export default defineComponent({
 		const containerRef = ref<HTMLElement | null>(null);
 		const activatorRef = ref<HTMLElement | null>(null);
 		const tooltipRef = ref<HTMLElement | null>(null);
+		const scrollableElementsRef = ref<Element[] | null>(null);
 
 		const isVisible = ref(false);
 
@@ -241,12 +242,20 @@ export default defineComponent({
 			tooltipRef.value.style.top = `${position.top}px`;
 		};
 
+		const getScrollableElements = () => {
+			if (!scrollableElementsRef.value) {
+				const nodeList = document.querySelectorAll(
+					'.farm-modal, .modal-content, [style*="overflow-y: auto"], [style*="overflow-y: scroll"]'
+				);
+				scrollableElementsRef.value = Array.from(nodeList);
+			}
+			return scrollableElementsRef.value;
+		};
+
 		const addScrollListener = () => {
 			window.addEventListener('scroll', updatePosition, { passive: true });
 
-			const scrollableElements = document.querySelectorAll(
-				'.farm-modal, .modal-content, [style*="overflow-y: auto"], [style*="overflow-y: scroll"]'
-			);
+			const scrollableElements = getScrollableElements();
 			scrollableElements.forEach(element => {
 				element.addEventListener('scroll', updatePosition, { passive: true });
 			});
@@ -255,9 +264,7 @@ export default defineComponent({
 		const removeScrollListener = () => {
 			window.removeEventListener('scroll', updatePosition);
 
-			const scrollableElements = document.querySelectorAll(
-				'.farm-modal, .modal-content, [style*="overflow-y: auto"], [style*="overflow-y: scroll"]'
-			);
+			const scrollableElements = getScrollableElements();
 			scrollableElements.forEach(element => {
 				element.removeEventListener('scroll', updatePosition);
 			});
