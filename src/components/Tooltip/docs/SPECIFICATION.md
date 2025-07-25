@@ -64,7 +64,7 @@ Scroll Detection → Position Update → Viewport Check → Auto Hide (if needed
 
 ```typescript
 interface TooltipProps {
-	// Controle de visibilidade (Vue 2.7 style)
+	// Visibility control (Vue 2.7 style)
 	value?: boolean; // v-model
 	trigger?: TooltipTrigger; // 'hover' | 'click' | 'manual'
 

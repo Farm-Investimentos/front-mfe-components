@@ -13,7 +13,7 @@ export type TooltipVariant = 'dark' | 'light';
 export type TooltipSize = 'sm' | 'md' | 'lg';
 
 export interface TooltipProps {
-	// Controle de visibilidade (Vue 2.7 style)
+	// Visibility control (Vue 2.7 style)
 	value?: boolean; // v-model
 	trigger?: TooltipTrigger;
 
