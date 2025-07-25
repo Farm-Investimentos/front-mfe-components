@@ -31,10 +31,10 @@ export function calculateTooltipPosition(
 
 	switch (horizontalAlign) {
 		case 'left':
-			left = activatorRect.left + activatorRect.width / 2 - 18;
+			left = activatorRect.left + activatorRect.width / 2 - 24;
 			break;
 		case 'right':
-			left = activatorRect.left + activatorRect.width / 2 - (tooltipRect.width - 18);
+			left = activatorRect.left + activatorRect.width / 2 - (tooltipRect.width - 24);
 			break;
 		case 'center':
 		default:

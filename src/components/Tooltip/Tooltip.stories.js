@@ -115,7 +115,7 @@ export const ControlledTooltip = () => ({
 	template: `
 		<div style="padding: 80px;">
 			<span style="display: flex; align-items: center;">
-				<span style="margin-right: 8px;">Click to open:</span>
+				<span >Click to open:</span>
 				<farm-tooltip v-model="showTooltip" placement="top-right">
 					<template v-slot:activator>
 						<farm-icon @click="showTooltip = !showTooltip" size="md" color="blue" style="cursor: pointer;">help-circle</farm-icon>
