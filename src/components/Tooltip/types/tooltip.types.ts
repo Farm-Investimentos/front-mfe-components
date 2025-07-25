@@ -17,7 +17,7 @@ export interface TooltipProps {
 	value?: boolean; // v-model
 	trigger?: TooltipTrigger;
 
-	// Posicionamento (todas as 6 posições necessárias)
+	// Placement (all 6 positions are supported)
 	placement?: TooltipPlacement;
 	offset?: number;
 
