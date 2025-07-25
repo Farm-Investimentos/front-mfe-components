@@ -159,7 +159,7 @@ export const WithModal = () => ({
 				@click="showModal = true" 
 				style="background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;"
 			>
-				🔍 Abrir Modal com Tooltip
+				Abrir Modal com Tooltip
 			</button>
 			
 			<farm-modal v-model="showModal" size="md">
