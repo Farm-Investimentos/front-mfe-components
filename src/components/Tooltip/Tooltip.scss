@@ -37,7 +37,7 @@
 	font-weight: 500;
 	padding: 16px;
 	position: fixed; /* SEMPRE fixed agora */
-	z-index: 9999;
+	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
 	transform: translateZ(0);
 	pointer-events: auto;
 
@@ -96,7 +96,7 @@
 	font-weight: 500;
 	padding: 16px;
 	position: fixed;
-	z-index: 9999;
+	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
 	transform: translateZ(0);
 	pointer-events: auto;
 
@@ -144,7 +144,7 @@
 		width: 0;
 		height: 0;
 		border-style: solid;
-		z-index: 10000;
+		z-index: 10005; /* z-index ainda maior para a seta */
 		pointer-events: none;
 	}
 }
