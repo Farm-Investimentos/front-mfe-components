@@ -1,5 +1,8 @@
 import Tooltip from './Tooltip.vue';
 import Modal from '../Modal/Modal.vue';
+import DefaultButton from '../Buttons/DefaultButton/DefaultButton.vue';
+import Typography from '../Typography/Typography.vue';
+import Icon from '../Icon/Icon.vue';
 
 export default {
 	title: 'Display/Tooltip',
@@ -147,7 +150,7 @@ export const FluidTooltip = () => ({
 });
 
 export const WithModal = () => ({
-	components: { Tooltip, Modal },
+	components: { Tooltip, Modal, DefaultButton, Typography, Icon },
 	data() {
 		return {
 			showModal: false,
@@ -155,127 +158,212 @@ export const WithModal = () => ({
 	},
 	template: `
 		<div>
-			<button 
-				@click="showModal = true" 
-				style="background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;"
-			>
-				Abrir Modal com Tooltip
-			</button>
+			<farm-btn color="primary" @click="showModal = true">
+				Abrir Modal com Tooltips
+			</farm-btn>
 			
 			<farm-modal v-model="showModal" size="md">
 				<template v-slot:header>
-					<h3>Modal com Tooltip e Scroll</h3>
-				</template>
-				<template v-slot:content>
-					<div style="height: 400px; overflow-y: auto; padding: 20px;">
-						<p>Conteúdo inicial do modal...</p>
-						
-						<div style="margin: 50px 0;">
-							<span style="display: flex; align-items: center;">
-								<span style="margin-right: 8px;">Tooltip no Modal:</span>
-								<farm-tooltip placement="top-left">
-									<template v-slot:activator>
-										<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-									</template>
-									<template v-slot:title>Tooltip no Modal</template>
-									Este tooltip está dentro de um modal com scroll!
-								</farm-tooltip>
-							</span>
-						</div>
-						
-						<p>Mais conteúdo para gerar scroll...</p>
-						<p>Linha 1</p>
-						<p>Linha 2</p>
-						<p>Linha 3</p>
-						<p>Linha 4</p>
-						<p>Linha 5</p>
-						<p>Linha 6</p>
-						<p>Linha 7</p>
-						<p>Linha 8</p>
-						<p>Linha 9</p>
-						<p>Linha 10</p>
-						
-						<div style="margin: 50px 0;">
-							<span style="display: flex; align-items: center;">
-								<span style="margin-right: 8px;">Outro Tooltip:</span>
-								<farm-tooltip placement="bottom-right">
-									<template v-slot:activator>
-										<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-									</template>
-									<template v-slot:title>Outro Tooltip</template>
-									Este tooltip está no final do conteúdo com scroll!
-								</farm-tooltip>
-							</span>
-						</div>
-						
-						<p>Linha 11</p>
-						<p>Linha 12</p>
-						<p>Linha 13</p>
-						<p>Linha 14</p>
-						<p>Linha 15</p>
-						<p>Linha 16</p>
-						<p>Linha 17</p>
-						<p>Linha 18</p>
-						<p>Linha 19</p>
-						<p>Linha 20</p>
-						<p>Fim do conteúdo!</p>
+					<div style="padding: 20px; border-bottom: 1px solid #e0e0e0; background: white;">
+						<farm-typography tag="h2" size="xl" color="black" weight="600" style="margin: 0;">
+							Formulário de Investimento
+						</farm-typography>
+						<farm-typography size="sm" color="gray" style="margin-top: 4px;">
+							Preencha as informações para processar seu investimento
+						</farm-typography>
 					</div>
 				</template>
+				
+				<template v-slot:content>
+					<div style="max-height: 50vh; overflow-y: auto; padding: 0;">
+						<div style="padding: 24px;">
+							<!-- Seção 1: Dados Pessoais -->
+							<div style="margin-bottom: 32px;">
+								<farm-typography tag="h3" size="lg" color="black" weight="600" style="margin-bottom: 16px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+									Dados Pessoais
+								</farm-typography>
+								
+								<div style="display: grid; gap: 16px;" class="mt-12">
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Nome completo</farm-typography>
+										<farm-tooltip placement="top-center">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Digite seu nome completo exatamente como aparece no documento de identidade.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">CPF</farm-typography>
+										<farm-tooltip placement="bottom-right">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											CPF é obrigatório para investimentos. Será validado automaticamente.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Email corporativo</farm-typography>
+										<farm-tooltip placement="top-left" :fluid="true">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Use apenas emails corporativos (@empresa.com). Emails pessoais não são aceitos para investimentos corporativos.
+										</farm-tooltip>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Seção 2: Informações de Investimento -->
+							<div style="margin-bottom: 32px;">
+								<farm-typography tag="h3" size="lg" color="black" weight="600" style="margin-bottom: 16px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+									Informações de Investimento
+								</farm-typography>
+								
+								<div style="display: grid; gap: 16px;">
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Valor do investimento</farm-typography>
+										<farm-tooltip placement="bottom-center">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											O valor mínimo para investimento é R$ 1.000,00. Valores acima de R$ 100.000,00 requerem aprovação adicional.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Tipo de investimento</farm-typography>
+										<farm-tooltip placement="top-right" :fluid="true">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											CDB, LCI, LCA, Tesouro Direto, Fundos de Investimento. Cada tipo possui características específicas de rentabilidade e liquidez.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Prazo de vencimento</farm-typography>
+										<farm-tooltip placement="bottom-left">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Selecione uma data futura. O prazo mínimo é de 30 dias para CDB e 90 dias para fundos.
+										</farm-tooltip>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Seção 3: Documentação -->
+							<div style="margin-bottom: 32px;">
+								<farm-typography tag="h3" size="lg" color="black" weight="600" style="margin-bottom: 16px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+									Documentação
+								</farm-typography>
+								
+								<div style="display: grid; gap: 16px;">
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Upload de documentos</farm-typography>
+										<farm-tooltip placement="bottom-right" :fluid="true">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Formatos aceitos: PDF, JPG, PNG. Tamanho máximo: 5MB por arquivo. 
+											Documentos: RG, CPF, Comprovante de residência (até 3 meses), Comprovante de renda.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Termo de aceite</farm-typography>
+										<farm-tooltip placement="top-center">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Leia e aceite os termos de tratamento de dados pessoais conforme LGPD.
+										</farm-tooltip>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Seção 4: Configurações Adicionais -->
+							<div style="margin-bottom: 32px;">
+								<farm-typography tag="h3" size="lg" color="black" weight="600" style="margin-bottom: 16px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+									Configurações Adicionais
+								</farm-typography>
+								
+								<div style="display: grid; gap: 16px;">
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Perfil de risco</farm-typography>
+										<farm-tooltip placement="top-center" :fluid="true">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Conservador: baixo risco, Moderado: risco médio, Arrojado: alto risco. Seu perfil determina os produtos disponíveis.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Reinvestimento automático</farm-typography>
+										<farm-tooltip placement="bottom-left">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Ative para reinvestir automaticamente os rendimentos no mesmo produto.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Notificações por email</farm-typography>
+										<farm-tooltip placement="top-right">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Receba avisos sobre vencimentos, rendimentos e oportunidades de investimento.
+										</farm-tooltip>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Seção 5: Informações Legais -->
+							<div style="margin-bottom: 32px;">
+								<farm-typography tag="h3" size="lg" color="black" weight="600" style="margin-bottom: 16px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+									Informações Legais
+								</farm-typography>
+								
+								<div style="display: grid; gap: 16px;">
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Declaração de origem</farm-typography>
+										<farm-tooltip placement="bottom-center" :fluid="true">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Conforme regulamentação do Banco Central, é obrigatório declarar a origem dos recursos para investimentos acima de R$ 10.000,00.
+										</farm-tooltip>
+									</div>
+									
+									<div style="display: flex; align-items: center; gap: 8px;">
+										<farm-typography weight="500">Compliance</farm-typography>
+										<farm-tooltip placement="top-left">
+											<template v-slot:activator>
+												<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
+											</template>
+											Todas as operações são monitoradas para garantir conformidade com as regulamentações vigentes.
+										</farm-tooltip>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</template>
+				
 				<template v-slot:footer>
-					<button @click="showModal = false" style="background: #6c757d; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
-						Fechar Modal
-					</button>
+					<div style="padding: 20px; border-top: 1px solid #e0e0e0; background: white; display: flex; justify-content: flex-end;">
+						<farm-btn color="primary" outlined @click="showModal = false">
+							Fechar
+						</farm-btn>
+					</div>
 				</template>
 			</farm-modal>
-		</div>
-	`,
-});
-
-export const MultipleTooltips = () => ({
-	components: { Tooltip },
-	template: `
-		<div style="display: flex; gap: 20px; padding: 50px;">
-			<farm-tooltip placement="top-left">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Top-Left
-			</farm-tooltip>
-			
-			<farm-tooltip placement="top-center">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Top-Center
-			</farm-tooltip>
-			
-			<farm-tooltip placement="top-right">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Top-Right
-			</farm-tooltip>
-			
-			<farm-tooltip placement="bottom-left">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Bottom-Left
-			</farm-tooltip>
-			
-			<farm-tooltip placement="bottom-center">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Bottom-Center
-			</farm-tooltip>
-			
-			<farm-tooltip placement="bottom-right">
-				<template v-slot:activator>
-					<farm-icon size="sm" color="gray" style="cursor: help;">help-circle</farm-icon>
-				</template>
-				Tooltip Bottom-Right
-			</farm-tooltip>
 		</div>
 	`,
 });
