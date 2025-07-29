@@ -1,44 +1,63 @@
-@import '../../configurations/variables';
+/* 
+ * CSS simplificado para Tooltip - Abordagem simples e direta
+ * SEMPRE usa position: fixed via JavaScript
+ */
 
-$arrow-size: 6px;
-$tooltip-color: #333333;
-$arrow-margin: 12px;
+/* Container principal */
+.tooltip-container {
+	display: inline-block;
+	position: relative;
+}
 
+/* Activator */
+.tooltip-activator {
+	display: inline-block;
+}
+
+/* 
+ * COMPATIBILIDADE: Classes antigas mantidas para outros componentes
+ * que fazem @extend .farm-tooltip__popup
+ */
 .farm-tooltip {
 	display: inline-block;
 	position: relative;
+}
 
-	&__activator {
-		display: inline-block;
-	}
+.farm-tooltip__activator {
+	display: inline-block;
 }
 
 .farm-tooltip__popup {
-	background-color: $tooltip-color;
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0.3s linear, opacity 0.3s linear;
-	position: absolute;
-	width: 160px;
+	/* Estilos base mantidos para compatibilidade */
+	background-color: #333333;
 	color: #f5f5f5;
 	border-radius: 5px;
-	font-family: 'Manrope', sans-serif !important;
+	font-family: 'Manrope', sans-serif;
 	font-size: 12px;
-	font-weight: 500px;
+	font-weight: 500;
 	padding: 16px;
-	display: block;
-	z-index: 9999;
+	position: fixed; /* SEMPRE fixed agora */
+	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
+	transform: translateZ(0);
+	pointer-events: auto;
+
+	/* Estados */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s linear, visibility 0.3s linear;
+
+	/* Variantes */
+	&--visible {
+		opacity: 1;
+		visibility: visible;
+	}
 
 	&--fluid {
 		width: auto;
 		max-width: 300px;
 	}
 
-	&--visible {
-		opacity: 1;
-		visibility: visible;
-	}
-
+	/* Header */
 	.farm-tooltip__header {
 		display: flex;
 		justify-content: space-between;
@@ -56,55 +75,60 @@ $arrow-margin: 12px;
 		font-weight: 500;
 	}
 
-	.farm-tooltip__arrow {
-		position: absolute;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		z-index: 10000;
-	}
-
-	// Top positions - arrow at bottom
-	&--top-center .farm-tooltip__arrow,
-	&--top-left .farm-tooltip__arrow,
-	&--top-right .farm-tooltip__arrow {
-		border-width: $arrow-size $arrow-size 0 $arrow-size;
-		border-color: $tooltip-color transparent transparent transparent;
-		bottom: -$arrow-size + 1px;
-		z-index: 99999;
-	}
-
-	// Bottom positions - arrow at top
-	&--bottom-center .farm-tooltip__arrow,
-	&--bottom-left .farm-tooltip__arrow,
-	&--bottom-right .farm-tooltip__arrow {
-		border-width: 0 $arrow-size $arrow-size $arrow-size;
-		border-color: transparent transparent $tooltip-color transparent;
-		top: -$arrow-size + 1px;
-		z-index: 99999;
-	}
-
-	// Left alignment - arrow at left
-	&--top-left .farm-tooltip__arrow,
-	&--bottom-left .farm-tooltip__arrow {
-		left: $arrow-margin;
-	}
-
-	// Right alignment - arrow at right
-	&--top-right .farm-tooltip__arrow,
-	&--bottom-right .farm-tooltip__arrow {
-		right: $arrow-margin;
-	}
-
-	// Center alignment - arrow at center
-	&--top-center .farm-tooltip__arrow,
-	&--bottom-center .farm-tooltip__arrow {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
 	.farm-tooltip__close {
-		position: relative;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 16px;
+		color: #f5f5f5;
+	}
+}
+
+/* Estilos globais para tooltip criado dinamicamente */
+.tooltip-popup {
+	background-color: #333333;
+	color: #f5f5f5;
+	border-radius: 5px;
+	font-family: 'Manrope', sans-serif;
+	font-size: 12px;
+	font-weight: 500;
+	padding: 16px;
+	position: fixed;
+	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
+	transform: translateZ(0);
+	pointer-events: auto;
+
+	/* Estados */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s linear, visibility 0.3s linear;
+
+	&--visible {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	/* Header */
+	.tooltip-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	.tooltip-title {
+		font-weight: 600;
+		font-size: 13px;
+		margin-right: 16px;
+	}
+
+	.tooltip-content {
+		font-weight: 500;
+	}
+
+	.tooltip-close {
 		width: 16px;
 		height: 16px;
 		line-height: 16px;
@@ -114,9 +138,13 @@ $arrow-margin: 12px;
 		color: #f5f5f5;
 	}
 
-	&:not(.farm-tooltip__popup--has-title) .farm-tooltip__close {
+	/* Seta presa ao tooltip */
+	.tooltip-arrow {
 		position: absolute;
-		top: 8px;
-		right: 8px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		z-index: 10005; /* z-index ainda maior para a seta */
+		pointer-events: none;
 	}
 }
