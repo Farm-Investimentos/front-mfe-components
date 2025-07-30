@@ -104,6 +104,46 @@ export default defineComponent({
 		const tooltipRef = ref<HTMLElement | null>(null);
 		const scrollableElementsRef = ref<Element[] | null>(null);
 
+		const Z_INDEX_OFFSET = 1000;
+		const DEFAULT_Z_INDEX = 10001;
+
+		let modalCache: { modals: Element[]; timestamp: number } | null = null;
+
+		const getTooltipZIndex = () => {
+			const now = Date.now();
+			let modals: Element[];
+
+			if (modalCache && now - modalCache.timestamp < 500) {
+				modals = modalCache.modals;
+			} else {
+				modals = Array.from(document.querySelectorAll('.farm-modal'));
+				modalCache = { modals, timestamp: now };
+			}
+
+			let maxModalZIndex = 0;
+
+			modals.forEach(modal => {
+				const htmlModal = modal as HTMLElement;
+
+				let zIndex = parseInt(htmlModal.style.zIndex, 10);
+
+				if (Number.isNaN(zIndex)) {
+					const computedZIndex = window.getComputedStyle(htmlModal).zIndex;
+					if (computedZIndex === 'auto') {
+						zIndex = 0;
+					} else {
+						zIndex = parseInt(computedZIndex, 10) || 0;
+					}
+				}
+
+				if (zIndex > maxModalZIndex) {
+					maxModalZIndex = zIndex;
+				}
+			});
+
+			return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : DEFAULT_Z_INDEX;
+		};
+
 		const isVisible = ref(false);
 
 		const isControlled = computed(() => props.value !== undefined);
@@ -136,7 +176,7 @@ export default defineComponent({
 		const tooltipStyles = computed(() => {
 			const styles: Record<string, string> = {
 				position: 'fixed',
-				zIndex: '9999',
+				zIndex: String(getTooltipZIndex()),
 			};
 
 			if (normalizedMaxWidth.value) {
@@ -158,7 +198,7 @@ export default defineComponent({
 				width: '0',
 				height: '0',
 				borderStyle: 'solid',
-				zIndex: '10000',
+				zIndex: 'inherit',
 			};
 
 			if (verticalPos === 'top') {
