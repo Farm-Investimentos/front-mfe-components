@@ -135,10 +135,12 @@ export default defineComponent({
 
 		const tooltipStyles = computed(() => {
 			const getTooltipZIndex = () => {
-				const modals = document.querySelectorAll('.farm-modal');
+				if (!cachedModals.value) {
+					cachedModals.value = document.querySelectorAll('.farm-modal');
+				}
 				let maxModalZIndex = 0;
 
-				modals.forEach(modal => {
+				cachedModals.value.forEach(modal => {
 					const zIndex = parseInt(window.getComputedStyle(modal).zIndex) || 0;
 					if (zIndex > maxModalZIndex) {
 						maxModalZIndex = zIndex;
