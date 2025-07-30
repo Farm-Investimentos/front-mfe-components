@@ -134,9 +134,23 @@ export default defineComponent({
 		}));
 
 		const tooltipStyles = computed(() => {
+			const getTooltipZIndex = () => {
+				const modals = document.querySelectorAll('.farm-modal');
+				let maxModalZIndex = 0;
+
+				modals.forEach(modal => {
+					const zIndex = parseInt(window.getComputedStyle(modal).zIndex) || 0;
+					if (zIndex > maxModalZIndex) {
+						maxModalZIndex = zIndex;
+					}
+				});
+
+				return maxModalZIndex > 0 ? maxModalZIndex + 1000 : 10001;
+			};
+
 			const styles: Record<string, string> = {
 				position: 'fixed',
-				zIndex: '9999',
+				zIndex: String(getTooltipZIndex()),
 			};
 
 			if (normalizedMaxWidth.value) {
@@ -158,7 +172,7 @@ export default defineComponent({
 				width: '0',
 				height: '0',
 				borderStyle: 'solid',
-				zIndex: '10000',
+				zIndex: 'inherit',
 			};
 
 			if (verticalPos === 'top') {

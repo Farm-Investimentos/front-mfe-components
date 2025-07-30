@@ -36,8 +36,8 @@
 	font-size: 12px;
 	font-weight: 500;
 	padding: 16px;
-	position: fixed; /* SEMPRE fixed agora */
-	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
+	position: fixed;
+	z-index: 10001;
 	transform: translateZ(0);
 	pointer-events: auto;
 
@@ -96,7 +96,7 @@
 	font-weight: 500;
 	padding: 16px;
 	position: fixed;
-	z-index: 10004; /* z-index alto para aparecer sobre modais (modal usa z-index 102, header/footer 103) */
+	z-index: 10001;
 	transform: translateZ(0);
 	pointer-events: auto;
 
@@ -138,13 +138,12 @@
 		color: #f5f5f5;
 	}
 
-	/* Seta presa ao tooltip */
 	.tooltip-arrow {
 		position: absolute;
 		width: 0;
 		height: 0;
 		border-style: solid;
-		z-index: 10005; /* z-index ainda maior para a seta */
+		z-index: inherit;
 		pointer-events: none;
 	}
 }
