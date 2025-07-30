@@ -105,6 +105,10 @@ export default defineComponent({
 		const scrollableElementsRef = ref<Element[] | null>(null);
 
 		const Z_INDEX_OFFSET = 1000;
+		const DEFAULT_Z_INDEX = 10001;
+
+		// Cache para performance - invalida a cada 500ms para detectar novos modais
+		let modalCache: { modals: Element[]; timestamp: number } | null = null;
 
 		const isVisible = ref(false);
 
@@ -137,17 +141,23 @@ export default defineComponent({
 
 		const tooltipStyles = computed(() => {
 			const getTooltipZIndex = () => {
-				// Sempre busca modais fresh para evitar cache desatualizado
-				const modals = document.querySelectorAll('.farm-modal');
+				const now = Date.now();
+				let modals: Element[];
+
+				if (modalCache && now - modalCache.timestamp < 500) {
+					modals = modalCache.modals;
+				} else {
+					modals = Array.from(document.querySelectorAll('.farm-modal'));
+					modalCache = { modals, timestamp: now };
+				}
+
 				let maxModalZIndex = 0;
 
 				modals.forEach(modal => {
 					const htmlModal = modal as HTMLElement;
 
-					// Tenta pegar z-index inline primeiro (mais rápido)
 					let zIndex = parseInt(htmlModal.style.zIndex, 10);
 
-					// Se não tem inline ou é inválido, pega computed style
 					if (Number.isNaN(zIndex)) {
 						const computedZIndex = window.getComputedStyle(htmlModal).zIndex;
 						if (computedZIndex === 'auto') {
@@ -162,7 +172,7 @@ export default defineComponent({
 					}
 				});
 
-				return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : 10001;
+				return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : DEFAULT_Z_INDEX;
 			};
 
 			const styles: Record<string, string> = {
