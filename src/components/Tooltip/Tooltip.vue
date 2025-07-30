@@ -150,7 +150,7 @@ export default defineComponent({
 					}
 				});
 
-				return maxModalZIndex > 0 ? maxModalZIndex + 1000 : 10001;
+				return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : 10001;
 			};
 
 			const styles: Record<string, string> = {
