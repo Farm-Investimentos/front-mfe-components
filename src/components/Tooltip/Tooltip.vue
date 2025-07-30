@@ -145,9 +145,9 @@ export default defineComponent({
 
 				cachedModals.value.forEach(modal => {
 					const htmlModal = modal as HTMLElement;
-					let zIndex = parseInt(htmlModal.style.zIndex) || 0;
-					if (!zIndex) {
-						zIndex = parseInt(window.getComputedStyle(htmlModal).zIndex) || 0;
+					let zIndex = parseInt(htmlModal.style.zIndex, 10) || 0;
+					if (Number.isNaN(zIndex) || zIndex === 0) {
+						zIndex = parseInt(window.getComputedStyle(htmlModal).zIndex, 10) || 0;
 					}
 					if (zIndex > maxModalZIndex) {
 						maxModalZIndex = zIndex;
