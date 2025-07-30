@@ -107,8 +107,42 @@ export default defineComponent({
 		const Z_INDEX_OFFSET = 1000;
 		const DEFAULT_Z_INDEX = 10001;
 
-		// Cache para performance - invalida a cada 500ms para detectar novos modais
 		let modalCache: { modals: Element[]; timestamp: number } | null = null;
+
+		const getTooltipZIndex = () => {
+			const now = Date.now();
+			let modals: Element[];
+
+			if (modalCache && now - modalCache.timestamp < 500) {
+				modals = modalCache.modals;
+			} else {
+				modals = Array.from(document.querySelectorAll('.farm-modal'));
+				modalCache = { modals, timestamp: now };
+			}
+
+			let maxModalZIndex = 0;
+
+			modals.forEach(modal => {
+				const htmlModal = modal as HTMLElement;
+
+				let zIndex = parseInt(htmlModal.style.zIndex, 10);
+
+				if (Number.isNaN(zIndex)) {
+					const computedZIndex = window.getComputedStyle(htmlModal).zIndex;
+					if (computedZIndex === 'auto') {
+						zIndex = 0;
+					} else {
+						zIndex = parseInt(computedZIndex, 10) || 0;
+					}
+				}
+
+				if (zIndex > maxModalZIndex) {
+					maxModalZIndex = zIndex;
+				}
+			});
+
+			return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : DEFAULT_Z_INDEX;
+		};
 
 		const isVisible = ref(false);
 
@@ -140,41 +174,6 @@ export default defineComponent({
 		}));
 
 		const tooltipStyles = computed(() => {
-			const getTooltipZIndex = () => {
-				const now = Date.now();
-				let modals: Element[];
-
-				if (modalCache && now - modalCache.timestamp < 500) {
-					modals = modalCache.modals;
-				} else {
-					modals = Array.from(document.querySelectorAll('.farm-modal'));
-					modalCache = { modals, timestamp: now };
-				}
-
-				let maxModalZIndex = 0;
-
-				modals.forEach(modal => {
-					const htmlModal = modal as HTMLElement;
-
-					let zIndex = parseInt(htmlModal.style.zIndex, 10);
-
-					if (Number.isNaN(zIndex)) {
-						const computedZIndex = window.getComputedStyle(htmlModal).zIndex;
-						if (computedZIndex === 'auto') {
-							zIndex = 0;
-						} else {
-							zIndex = parseInt(computedZIndex, 10) || 0;
-						}
-					}
-
-					if (zIndex > maxModalZIndex) {
-						maxModalZIndex = zIndex;
-					}
-				});
-
-				return maxModalZIndex > 0 ? maxModalZIndex + Z_INDEX_OFFSET : DEFAULT_Z_INDEX;
-			};
-
 			const styles: Record<string, string> = {
 				position: 'fixed',
 				zIndex: String(getTooltipZIndex()),
