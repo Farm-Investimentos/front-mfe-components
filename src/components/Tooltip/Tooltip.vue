@@ -141,7 +141,10 @@ export default defineComponent({
 				let maxModalZIndex = 0;
 
 				cachedModals.value.forEach(modal => {
-					const zIndex = parseInt(window.getComputedStyle(modal).zIndex) || 0;
+					let zIndex = parseInt(modal.style.zIndex) || 0; // Check inline style first
+					if (!zIndex) {
+						zIndex = parseInt(window.getComputedStyle(modal).zIndex) || 0; // Fallback to computed style
+					}
 					if (zIndex > maxModalZIndex) {
 						maxModalZIndex = zIndex;
 					}
