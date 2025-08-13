@@ -1,6 +1,7 @@
 export interface TooltipPosition {
-	left: number;
-	top: number;
+    left: number;
+    top: number;
+    placementUsed: string; // ex.: 'top-left', 'bottom-center'
 }
 
 export interface TooltipRect {
@@ -20,16 +21,19 @@ export function calculateTooltipPosition(
 	placement: string,
 	offset: number = 8
 ): TooltipPosition {
-	const [verticalPos, horizontalAlign] = placement.split('-');
+    const parts = placement.split('-');
+    let verticalPos = parts[0];
+    const horizontalAlign = parts[1];
 
 	let left = 0;
 	let top = 0;
 
-	if (verticalPos === 'top') {
-		top = activatorRect.top - tooltipRect.height - offset;
-	} else {
-		top = activatorRect.bottom + offset;
-	}
+    const computeTop = (vert: string) =>
+        vert === 'top'
+            ? activatorRect.top - tooltipRect.height - offset
+            : activatorRect.bottom + offset;
+
+    top = computeTop(verticalPos);
 
 	switch (horizontalAlign) {
 		case 'left':
@@ -45,16 +49,26 @@ export function calculateTooltipPosition(
 			break;
 	}
 
-	if (left < offset) left = offset;
-	if (left + tooltipRect.width > window.innerWidth - offset) {
-		left = window.innerWidth - tooltipRect.width - offset;
-	}
-	if (top < offset) top = offset;
-	if (top + tooltipRect.height > window.innerHeight - offset) {
-		top = window.innerHeight - tooltipRect.height - offset;
-	}
+    // Flip vertical if not enough space
+    const tooHigh = top < offset;
+    const tooLow = top + tooltipRect.height > window.innerHeight - offset;
+    if ((verticalPos === 'top' && tooHigh) || (verticalPos === 'bottom' && tooLow)) {
+        verticalPos = verticalPos === 'top' ? 'bottom' : 'top';
+        top = computeTop(verticalPos);
+    }
 
-	return { left, top };
+    // Clamp within viewport horizontally and vertically
+    if (left < offset) left = offset;
+    if (left + tooltipRect.width > window.innerWidth - offset) {
+        left = window.innerWidth - tooltipRect.width - offset;
+    }
+    if (top < offset) top = offset;
+    if (top + tooltipRect.height > window.innerHeight - offset) {
+        top = window.innerHeight - tooltipRect.height - offset;
+    }
+
+    const placementUsed = `${verticalPos}-${horizontalAlign || 'center'}`;
+    return { left, top, placementUsed };
 }
 
 export function moveToBody(element: HTMLElement): void {
