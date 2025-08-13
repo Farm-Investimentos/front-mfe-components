@@ -96,6 +96,10 @@ export default defineComponent({
 			type: String,
 			default: undefined,
 		},
+		hideOnScroll: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	emits: ['input', 'show', 'hide'],
 	setup(props, { emit, slots }) {
@@ -292,21 +296,36 @@ export default defineComponent({
 			return scrollableElementsRef.value;
 		};
 
+
+		const onAnyScroll = () => {
+			if (props.disabled || isControlled.value) return;
+			if (props.hideOnScroll) {
+				hide();
+				return;
+			}
+			updatePosition();
+		};
+
 		const addScrollListener = () => {
-			window.addEventListener('scroll', updatePosition, { passive: true });
+			window.addEventListener('scroll', onAnyScroll, { passive: true });
+			// Opcionalmente também reagir a wheel/touchmove para UX mais fluida
+			window.addEventListener('wheel', onAnyScroll, { passive: true });
+			window.addEventListener('touchmove', onAnyScroll, { passive: true });
 
 			const scrollableElements = getScrollableElements();
 			scrollableElements.forEach(element => {
-				element.addEventListener('scroll', updatePosition, { passive: true });
+				element.addEventListener('scroll', onAnyScroll, { passive: true });
 			});
 		};
 
 		const removeScrollListener = () => {
-			window.removeEventListener('scroll', updatePosition);
+			window.removeEventListener('scroll', onAnyScroll);
+			window.removeEventListener('wheel', onAnyScroll);
+			window.removeEventListener('touchmove', onAnyScroll);
 
 			const scrollableElements = getScrollableElements();
 			scrollableElements.forEach(element => {
-				element.removeEventListener('scroll', updatePosition);
+				element.removeEventListener('scroll', onAnyScroll);
 			});
 		};
 
