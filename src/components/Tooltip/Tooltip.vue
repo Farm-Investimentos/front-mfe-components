@@ -3,14 +3,13 @@
 		<div
 			ref="activatorRef"
 			class="tooltip-activator"
-			@mouseover="show"
-			@mouseout="hide"
-			@mouseleave="hide"
+			@mouseenter="onActivatorEnter"
+			@mouseleave="onActivatorLeave"
 		>
 			<slot name="activator" />
 		</div>
 
-		<div v-if="isVisible" ref="tooltipRef" :class="tooltipClasses" :style="tooltipStyles">
+		<div v-if="isVisible" ref="tooltipRef" :class="tooltipClasses" :style="tooltipStyles" @mouseenter="onTooltipEnter" @mouseleave="onTooltipLeave">
 			<div v-if="hasTitle || showCloseButton" class="tooltip-header">
 				<div v-if="hasTitle" class="tooltip-title">
 					<slot name="title" />
@@ -96,6 +95,10 @@ export default defineComponent({
 			type: String,
 			default: undefined,
 		},
+		anchorTo: {
+			type: String as PropType<'auto' | 'viewport' | 'modal'>,
+			default: 'auto',
+		},
 		hideOnScroll: {
 			type: Boolean,
 			default: true,
@@ -106,6 +109,8 @@ export default defineComponent({
 		const containerRef = ref<HTMLElement | null>(null);
 		const activatorRef = ref<HTMLElement | null>(null);
 		const tooltipRef = ref<HTMLElement | null>(null);
+		const anchorElRef = ref<HTMLElement | null>(null);
+		const anchoredToModal = ref(false);
 		const scrollableElementsRef = ref<Element[] | null>(null);
 
 		const Z_INDEX_OFFSET = 1000;
@@ -161,6 +166,12 @@ export default defineComponent({
 			return props.placement;
 		});
 
+		// Placement realmente utilizado (pode sofrer flip em runtime)
+		const currentPlacement = ref(normalizedPlacement.value);
+		watch(normalizedPlacement, (val) => {
+			currentPlacement.value = val;
+		});
+
 		const normalizedMaxWidth = computed(() => {
 			if (props.fluid) {
 				return '300px';
@@ -174,12 +185,12 @@ export default defineComponent({
 			[`tooltip-popup--${props.variant}`]: true,
 			[`tooltip-popup--${props.size}`]: true,
 			'tooltip-popup--has-title': hasTitle.value,
-			[`tooltip-popup--${normalizedPlacement.value}`]: true,
+			[`tooltip-popup--${currentPlacement.value}`]: true,
 		}));
 
 		const tooltipStyles = computed(() => {
 			const styles: Record<string, string> = {
-				position: 'fixed',
+				position: anchoredToModal.value ? 'absolute' : 'fixed',
 				zIndex: String(getTooltipZIndex()),
 			};
 
@@ -195,7 +206,7 @@ export default defineComponent({
 		});
 
 		const arrowStyles = computed(() => {
-			const [verticalPos, horizontalAlign] = normalizedPlacement.value.split('-');
+			const [verticalPos, horizontalAlign] = currentPlacement.value.split('-');
 
 			const styles: Record<string, string> = {
 				position: 'absolute',
@@ -235,20 +246,67 @@ export default defineComponent({
 
 			nextTick(() => {
 				if (tooltipRef.value && activatorRef.value) {
-					moveToBody(tooltipRef.value);
+					// Resolver onde ancorar o tooltip
+					let anchorEl: HTMLElement | null = null;
+					if (props.anchorTo === 'viewport') {
+						anchorEl = document.body;
+					} else if (props.anchorTo === 'modal' || props.anchorTo === 'auto') {
+						const modalEl = activatorRef.value.closest('.farm-modal') as HTMLElement | null;
+						anchorEl = modalEl || document.body;
+					}
+
+					anchorElRef.value = anchorEl;
+					anchoredToModal.value = !!anchorEl && anchorEl !== document.body;
+					if (anchoredToModal.value && anchorElRef.value && tooltipRef.value) {
+						anchorElRef.value.appendChild(tooltipRef.value);
+					} else {
+						moveToBody(tooltipRef.value);
+					}
 					updatePosition();
 					addScrollListener();
 				}
 			});
 		};
 
-		const hide = () => {
+    const hide = () => {
 			if (props.disabled || isControlled.value) return;
 
 			isVisible.value = false;
 			emit('hide');
 			removeScrollListener();
 		};
+
+    // Hover management to avoid flicker when moving from activator to tooltip
+    let hoverInside = false;
+    let hideTimeout: number | null = null;
+
+    const clearHideTimeout = () => {
+      if (hideTimeout) {
+        window.clearTimeout(hideTimeout);
+        hideTimeout = null;
+      }
+    };
+
+    const onActivatorEnter = () => {
+      clearHideTimeout();
+      show();
+    };
+
+    const onActivatorLeave = () => {
+      hideTimeout = window.setTimeout(() => {
+        if (!hoverInside) hide();
+      }, (Array.isArray(props.delay) ? (props.delay[1] || 50) : 50) as number);
+    };
+
+    const onTooltipEnter = () => {
+      hoverInside = true;
+      clearHideTimeout();
+    };
+
+    const onTooltipLeave = () => {
+      hoverInside = false;
+      hide();
+    };
 
 		const close = () => {
 			if (isControlled.value) {
@@ -278,12 +336,25 @@ export default defineComponent({
 			const position = calculateTooltipPosition(
 				activatorRect,
 				tooltipRect,
-				normalizedPlacement.value,
+				currentPlacement.value,
 				props.offset
 			);
 
-			tooltipRef.value.style.left = `${position.left}px`;
-			tooltipRef.value.style.top = `${position.top}px`;
+			// Atualiza placement efetivo (com flip) para setinha/classes
+			currentPlacement.value = position.placementUsed as TooltipPlacement;
+
+			if (anchoredToModal.value && anchorElRef.value) {
+				const containerRect = anchorElRef.value.getBoundingClientRect();
+				const scrollLeft = anchorElRef.value.scrollLeft || 0;
+				const scrollTop = anchorElRef.value.scrollTop || 0;
+				const left = position.left - containerRect.left + scrollLeft;
+				const top = position.top - containerRect.top + scrollTop;
+				tooltipRef.value.style.left = `${left}px`;
+				tooltipRef.value.style.top = `${top}px`;
+			} else {
+				tooltipRef.value.style.left = `${position.left}px`;
+				tooltipRef.value.style.top = `${position.top}px`;
+			}
 		};
 
 		const getScrollableElements = () => {
@@ -372,8 +443,12 @@ export default defineComponent({
 			tooltipClasses,
 			tooltipStyles,
 			arrowStyles,
-			show,
-			hide,
+        show,
+        hide,
+        onActivatorEnter,
+        onActivatorLeave,
+        onTooltipEnter,
+        onTooltipLeave,
 			close,
 		};
 	},
