@@ -86,7 +86,7 @@ export const OnRightSide = () => ({
 			],
 		};
 	},
-	template: `<div style="padding-left: 80px; display: flex; justify-content: end;">
+	template: `<div style="padding-left: 80px; display: flex; justify-content: flex-end;">
 		<farm-context-menu ref="multi" :items="items" />
 	</div>`,
 });
