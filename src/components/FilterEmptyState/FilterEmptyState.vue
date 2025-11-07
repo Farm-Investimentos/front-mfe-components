@@ -1,18 +1,21 @@
 <template>
 	<farm-box>
 		<farm-row justify="center" class="mb-4">
+			<!-- Custom image via prop -->
 			<img
-				v-if="isNotFound"
-				:src="isNotFoundImage"
+				v-if="hasCustomImage"
+				:src="currentImageSrc"
+				:alt="currentImageAlt"
+				class="filter-empty-state__image"
+			/>
+			<!-- SVG component for not found state -->
+			<EmptyNotFoundSvg
+				v-else-if="isNotFound"
 				:alt="isNotFoundImageAlt"
 				class="filter-empty-state__image"
 			/>
-			<img
-				v-else
-				:src="isEmptyImage"
-				:alt="isEmptyImageAlt"
-				class="filter-empty-state__image"
-			/>
+			<!-- SVG component for empty state -->
+			<EmptyDataSvg v-else :alt="isEmptyImageAlt" class="filter-empty-state__image" />
 		</farm-row>
 		<farm-row justify="center">
 			<farm-bodytext variation="bold" color="gray" :type="2">
@@ -32,10 +35,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-
-const emptyDataImage: string = require('../../assets/imgs/empty-data.svg');
-const emptyNotFoundImage: string = require('../../assets/imgs/empty-not-found.svg');
+import { defineComponent, PropType, computed } from 'vue';
+import EmptyDataSvg from './EmptyDataSvg.vue';
+import EmptyNotFoundSvg from './EmptyNotFoundSvg.vue';
 
 export type FilterEmptyStateProps = {
 	/**
@@ -74,6 +76,10 @@ export type FilterEmptyStateProps = {
 
 export default defineComponent({
 	name: 'farm-filter-empty-state',
+	components: {
+		EmptyDataSvg,
+		EmptyNotFoundSvg,
+	},
 	props: {
 		/**
 		 * Indicates if the state is empty (no data)
@@ -94,7 +100,7 @@ export default defineComponent({
 		 */
 		isEmptyImage: {
 			type: String as PropType<FilterEmptyStateProps['isEmptyImage']>,
-			default: emptyDataImage,
+			default: '',
 		},
 		/**
 		 * Alt text for empty state image
@@ -108,7 +114,7 @@ export default defineComponent({
 		 */
 		isNotFoundImage: {
 			type: String as PropType<FilterEmptyStateProps['isNotFoundImage']>,
-			default: emptyNotFoundImage,
+			default: '',
 		},
 		/**
 		 * Alt text for not found state image
@@ -131,6 +137,28 @@ export default defineComponent({
 			type: String as PropType<FilterEmptyStateProps['subtitle']>,
 			default: '',
 		},
+	},
+	setup(props) {
+		// Check if user provided custom images
+		const hasCustomImage = computed(() => {
+			return props.isNotFound ? !!props.isNotFoundImage : !!props.isEmptyImage;
+		});
+
+		// Get the current image source (for custom images)
+		const currentImageSrc = computed(() => {
+			return props.isNotFound ? props.isNotFoundImage : props.isEmptyImage;
+		});
+
+		// Get the current image alt text
+		const currentImageAlt = computed(() => {
+			return props.isNotFound ? props.isNotFoundImageAlt : props.isEmptyImageAlt;
+		});
+
+		return {
+			hasCustomImage,
+			currentImageSrc,
+			currentImageAlt,
+		};
 	},
 });
 </script>
