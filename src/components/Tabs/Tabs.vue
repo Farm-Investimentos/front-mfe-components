@@ -1,44 +1,66 @@
 <template>
-	<div class="farm-tabs">
-		<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
-			<div
-				v-for="(tab, index) in tabs"
-				class="tabs__tab"
-				:key="index"
-				:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
-				@click="changeTab(tab, index)"
-			>
+	<div class="farm-tabs-wrapper">
+		<button 
+			class="farm-tabs-nav farm-tabs-nav--left" 
+			@click="scrollLeft"
+			@mouseenter="hoverLeft = true"
+			@mouseleave="hoverLeft = false"
+			v-show="canScrollLeft || hoverLeft"
+		>
+			<farm-icon color="primary" size="24px">chevron-left</farm-icon>
+		</button>
+		
+		<div class="farm-tabs" ref="tabsContainer">
+			<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
 				<div
-					v-if="showCounter"
-					class="
-						mr-2
-						rounded-circle
-						d-inline-flex
-						align-center
-						justify-center
-						white--text
-					"
-					:class="{ 'is-selected': isSelected(index) }"
+					v-for="(tab, index) in tabs"
+					class="tabs__tab"
+					:key="index"
+					:class="{ hideCounter: !showCounter, 'tabs__tab--selected': isSelected(index) }"
+					@click="changeTab(tab, index)"
 				>
+					<div
+						v-if="showCounter"
+						class="
+							mr-2
+							rounded-circle
+							d-inline-flex
+							align-center
+							justify-center
+							white--text
+						"
+						:class="{ 'is-selected': isSelected(index) }"
+					>
+						<farm-subtitle
+							color="white"
+							tag="span"
+							:type="2"
+							:color-variation="isSelected(index) ? 'base' : 'darken'"
+						>
+							{{ index + 1 }}
+						</farm-subtitle>
+					</div>
 					<farm-subtitle
-						color="white"
 						tag="span"
 						:type="2"
+						:color="isSelected(index) ? 'primary' : 'gray'"
 						:color-variation="isSelected(index) ? 'base' : 'darken'"
 					>
-						{{ index + 1 }}
+						{{ forceUppercase ? tab.name.toUpperCase() : tab.name }}
 					</farm-subtitle>
 				</div>
-				<farm-subtitle
-					tag="span"
-					:type="2"
-					:color="isSelected(index) ? 'primary' : 'gray'"
-					:color-variation="isSelected(index) ? 'base' : 'darken'"
-				>
-					{{ forceUppercase ? tab.name.toUpperCase() : tab.name }}
-				</farm-subtitle>
 			</div>
 		</div>
+		
+		<button 
+			class="farm-tabs-nav farm-tabs-nav--right" 
+			@click="scrollRight"
+			@mouseenter="hoverRight = true"
+			@mouseleave="hoverRight = false"
+			v-show="canScrollRight || hoverRight"
+		>
+			<farm-icon color="primary" size="24px">chevron-right</farm-icon>
+		</button>
 	</div>
 </template>
 
@@ -50,6 +72,10 @@ export default defineComponent({
 	data() {
 		return {
 			selected: 0,
+			canScrollLeft: false,
+			canScrollRight: false,
+			hoverLeft: false,
+			hoverRight: false,
 		};
 	},
 	props: {
@@ -98,6 +124,29 @@ export default defineComponent({
 			this.selected = index;
 			this.$emit('update', this.tabs[index]);
 		},
+		scrollLeft() {
+			const container = this.$refs.tabsContainer as HTMLElement;
+			if (container) {
+				container.scrollBy({ left: -200, behavior: 'smooth' });
+				setTimeout(() => this.updateScrollButtons(), 100);
+			}
+		},
+		scrollRight() {
+			const container = this.$refs.tabsContainer as HTMLElement;
+			if (container) {
+				container.scrollBy({ left: 200, behavior: 'smooth' });
+				setTimeout(() => this.updateScrollButtons(), 100);
+			}
+		},
+		updateScrollButtons() {
+			const container = this.$refs.tabsContainer as HTMLElement;
+			if (container) {
+				const { scrollLeft, scrollWidth, clientWidth } = container;
+				
+				this.canScrollLeft = scrollLeft > 0;
+				this.canScrollRight = scrollLeft < scrollWidth - clientWidth - 1;
+			}
+		},
 		next() {
 			if (this.tabs.length - 1 > this.selected + 1)
 				return this.$emit('update', this.tabs[this.selected]);
@@ -122,6 +171,23 @@ export default defineComponent({
 	},
 	created() {
 		this.selected = this.initialSelect;
+	},
+	mounted() {
+		this.updateScrollButtons();
+		window.addEventListener('resize', this.updateScrollButtons);
+		
+		const container = this.$refs.tabsContainer as HTMLElement;
+		if (container) {
+			container.addEventListener('scroll', this.updateScrollButtons);
+		}
+	},
+	beforeUnmount() {
+		window.removeEventListener('resize', this.updateScrollButtons);
+		
+		const container = this.$refs.tabsContainer as HTMLElement;
+		if (container) {
+			container.removeEventListener('scroll', this.updateScrollButtons);
+		}
 	},
 });
 </script>
