@@ -1,7 +1,7 @@
 <template>
 	<div class="farm-tabs-wrapper">
-		<button 
-			class="farm-tabs-nav farm-tabs-nav--left" 
+		<button
+			class="farm-tabs-nav farm-tabs-nav--left"
 			@click="scrollLeft"
 			@mouseenter="hoverLeft = true"
 			@mouseleave="hoverLeft = false"
@@ -9,7 +9,7 @@
 		>
 			<farm-icon color="primary" size="24px">chevron-left</farm-icon>
 		</button>
-		
+
 		<div class="farm-tabs" ref="tabsContainer">
 			<div class="tabs" :class="{ 'tabs--disabled': !allowUserChange }">
 				<div
@@ -51,9 +51,9 @@
 				</div>
 			</div>
 		</div>
-		
-		<button 
-			class="farm-tabs-nav farm-tabs-nav--right" 
+
+		<button
+			class="farm-tabs-nav farm-tabs-nav--right"
 			@click="scrollRight"
 			@mouseenter="hoverRight = true"
 			@mouseleave="hoverRight = false"
@@ -142,7 +142,7 @@ export default defineComponent({
 			const container = this.$refs.tabsContainer as HTMLElement;
 			if (container) {
 				const { scrollLeft, scrollWidth, clientWidth } = container;
-				
+
 				this.canScrollLeft = scrollLeft > 0;
 				this.canScrollRight = scrollLeft < scrollWidth - clientWidth - 1;
 			}
@@ -173,9 +173,11 @@ export default defineComponent({
 		this.selected = this.initialSelect;
 	},
 	mounted() {
-		this.updateScrollButtons();
+		this.$nextTick(() => {
+			this.updateScrollButtons();
+		});
 		window.addEventListener('resize', this.updateScrollButtons);
-		
+
 		const container = this.$refs.tabsContainer as HTMLElement;
 		if (container) {
 			container.addEventListener('scroll', this.updateScrollButtons);
@@ -183,7 +185,7 @@ export default defineComponent({
 	},
 	beforeUnmount() {
 		window.removeEventListener('resize', this.updateScrollButtons);
-		
+
 		const container = this.$refs.tabsContainer as HTMLElement;
 		if (container) {
 			container.removeEventListener('scroll', this.updateScrollButtons);
