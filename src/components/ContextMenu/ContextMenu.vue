@@ -18,7 +18,7 @@
 	</div>
 </template>
 <script lang="ts">
-import { ref, watch, reactive, onBeforeUnmount, onMounted, toRefs, defineComponent, nextTick } from 'vue';
+import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent, nextTick } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
 const CLOSE_ALL_CONTEXT_MENUS_EVENT = 'farm-contextmenu:close-all';
@@ -122,9 +122,7 @@ export default defineComponent({
 			}
 		};
 
-		onMounted(() => {
-			window.addEventListener(CLOSE_ALL_CONTEXT_MENUS_EVENT, closeAllHandler as any);
-		});
+		window.addEventListener(CLOSE_ALL_CONTEXT_MENUS_EVENT, closeAllHandler as any);
 
 		watch(
 			() => props.value,
