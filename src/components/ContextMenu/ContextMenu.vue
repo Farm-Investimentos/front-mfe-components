@@ -21,6 +21,8 @@
 import { ref, watch, reactive, onBeforeUnmount, toRefs, defineComponent, nextTick } from 'vue';
 import { calculateMainZindex, isChildOfFixedElement } from '../../helpers';
 
+const CLOSE_ALL_CONTEXT_MENUS_EVENT = 'farm-contextmenu:close-all';
+
 export default defineComponent({
 	name: 'farm-contextmenu',
 	props: {
@@ -89,6 +91,7 @@ export default defineComponent({
 		} as any);
 
 		const inputValue = ref(props.value);
+		const instanceContextId = Math.random().toString(36).substring(7);
 
 		let hasBeenBoostrapped = false;
 
@@ -111,6 +114,15 @@ export default defineComponent({
 		const resizeWindowHandler = () => {
 			calculatePosition();
 		};
+
+		const closeAllHandler = (event: CustomEvent) => {
+			if (event.detail?.exceptId !== instanceContextId && inputValue.value) {
+				inputValue.value = false;
+				emit('input', false);
+			}
+		};
+
+		window.addEventListener(CLOSE_ALL_CONTEXT_MENUS_EVENT, closeAllHandler as any);
 
 		watch(
 			() => props.value,
@@ -234,10 +246,20 @@ export default defineComponent({
 				window.removeEventListener('click', outClick);
 				document.querySelector('body').removeChild(popup.value);
 			}
+			window.removeEventListener(CLOSE_ALL_CONTEXT_MENUS_EVENT, closeAllHandler as any);
 		});
 
 		const click = () => {
-			inputValue.value = !inputValue.value;
+			const willOpen = !inputValue.value;
+
+			if (willOpen) {
+				const closeEvent = new CustomEvent(CLOSE_ALL_CONTEXT_MENUS_EVENT, {
+					detail: { exceptId: instanceContextId }
+				});
+				window.dispatchEvent(closeEvent);
+			}
+
+			inputValue.value = willOpen;
 			emit('input', inputValue.value);
 		};
 
