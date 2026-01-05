@@ -1,9 +1,8 @@
-// Custom Icons Main SCSS
-// This file imports all individual custom icon styles
-
-// Import individual icon styles
+// Import all custom icon styles
+@import './currency-exchange/currency-exchange.scss';
 @import './money-off/money-off.scss';
-
-// Add new icon imports here as they are created
-// @import './your-icon/your-icon.scss';
-// @import './another-icon/another-icon.scss';
+@import './receipt-outline/receipt-outline.scss';
+@import './price-check/price-check.scss';
+@import './bar-chart/bar-chart.scss';
+@import './wallet/wallet.scss';
+@import './clipboard/clipboard.scss';

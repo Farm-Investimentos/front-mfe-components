@@ -1,0 +1,14 @@
+.farm-icon {
+	&.custom-clipboard:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background-color: currentColor;
+		mask: url('../../assets/icons/clipboard/clipboard.svg') no-repeat center;
+		mask-size: contain;
+		-webkit-mask: url('../../assets/icons/clipboard/clipboard.svg') no-repeat
+			center;
+		-webkit-mask-size: contain;
+	}
+}
