@@ -1,0 +1,14 @@
+.farm-icon {
+	&.custom-currency-exchange:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background-color: currentColor;
+		mask: url('../../assets/icons/currency-exchange/currency-exchange.svg') no-repeat center;
+		mask-size: contain;
+		-webkit-mask: url('../../assets/icons/currency-exchange/currency-exchange.svg') no-repeat
+			center;
+		-webkit-mask-size: contain;
+	}
+}
