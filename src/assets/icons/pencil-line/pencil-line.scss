@@ -1,0 +1,16 @@
+// Money Off Icon - Custom SVG
+// Icon for representing disabled payments, free services, or budget limits
+
+.farm-icon {
+	&.custom-pencil-line:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background-color: currentColor;
+		mask: url('../../assets/icons/pencil-line/pencil-line.svg') no-repeat center;
+		mask-size: contain;
+		-webkit-mask: url('../../assets/icons/pencil-line/pencil-line.svg') no-repeat center;
+		-webkit-mask-size: contain;
+	}
+}
