@@ -6,6 +6,8 @@ export const customIconsList = [
 	'custom-bar-chart',
 	'custom-wallet',
 	'custom-clipboard',
+	'custom-assignment-check',
+	'custom-pencil-line',
 ];
 
 export default customIconsList;
