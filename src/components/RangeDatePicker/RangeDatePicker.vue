@@ -140,12 +140,12 @@ export default defineComponent({
 			default: 'A data selecionada deve ser entre {min} e {max}',
 		},
 		/**
-		 * Posição do datepicker (top, bottom, center, fixed-centered)
+		 * Posição do datepicker (top, bottom, fixed-centered)
 		 */
 		position: {
 			type: String,
 			default: 'bottom',
-			validator: value => ['top', 'bottom', 'center', 'fixed-centered'].includes(value),
+			validator: value => ['top', 'bottom', 'fixed-centered'].includes(value),
 		},
 	},
 	data() {
