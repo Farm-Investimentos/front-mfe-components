@@ -116,7 +116,7 @@ export default defineComponent({
 		};
 
 		const closeAllHandler = (event: CustomEvent) => {
-			if (event.detail?.exceptId !== instanceContextId && inputValue.value) {
+			if (event.detail && event.detail.exceptId !== instanceContextId && inputValue.value) {
 				inputValue.value = false;
 				emit('input', false);
 			}
