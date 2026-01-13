@@ -1,0 +1,14 @@
+.farm-icon {
+	&.custom-chart-timeline:before {
+		content: '';
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background-color: currentColor;
+		mask: url('../../assets/icons/chart-timeline/chart-timeline.svg') no-repeat center;
+		mask-size: contain;
+		-webkit-mask: url('../../assets/icons/chart-timeline/chart-timeline.svg') no-repeat
+			center;
+		-webkit-mask-size: contain;
+	}
+}
