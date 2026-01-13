@@ -11,7 +11,7 @@
 			v-if="icon"
 			:icon="icon"
 			:color="iconBoxColor"
-			variation="darken"
+			:variation="iconBoxVariation"
 			size="md"
 		/>
 		<div
@@ -84,6 +84,13 @@ export default defineComponent({
 				| 'gray'
 			>,
 			default: 'secondary-golden',
+		},
+		/**
+		 * IconBox Variation
+		 */
+		iconBoxVariation: {
+			type: String as PropType<'lighten' | 'base' | 'darken'>,
+			default: 'darken',
 		},
 		/**
 		 * Buttons Color (change from link and copy to clipboard)

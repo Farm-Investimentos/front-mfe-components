@@ -8,6 +8,7 @@ export const customIconsList = [
 	'custom-clipboard',
 	'custom-assignment-check',
 	'custom-pencil-line',
+	'custom-chart-timeline',
 ];
 
 export default customIconsList;
