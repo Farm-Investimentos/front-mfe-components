@@ -40,14 +40,17 @@
 							{{ index + 1 }}
 						</farm-subtitle>
 					</div>
-					<farm-subtitle
-						tag="span"
-						:type="2"
-						:color="isSelected(index) ? 'primary' : 'gray'"
-						:color-variation="isSelected(index) ? 'base' : 'darken'"
-					>
-						{{ forceUppercase ? tab.name.toUpperCase() : tab.name }}
-					</farm-subtitle>
+					<div class="tabs__label">
+						<farm-subtitle
+							tag="span"
+							:type="2"
+							:color="isSelected(index) ? 'primary' : 'gray'"
+							:color-variation="isSelected(index) ? 'base' : 'darken'"
+						>
+							{{ forceUppercase ? tab.name.toUpperCase() : tab.name }}
+						</farm-subtitle>
+						<span v-if="hasNotification(tab)" class="tabs__notification" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -118,6 +121,9 @@ export default defineComponent({
 	methods: {
 		isSelected(index) {
 			return index === this.selected;
+		},
+		hasNotification(tab) {
+			return Boolean(tab && (tab.notification || tab.notificacao));
 		},
 		changeTab(_, index) {
 			if (!this.allowUserChange) return;

@@ -98,6 +98,20 @@
 		}
 	}
 
+	&__label {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	&__notification {
+		background-color: var(--farm-warning-base);
+		border-radius: 50%;
+		display: inline-block;
+		height: 6px;
+		margin-left: 8px;
+		width: 6px;
+	}
+
 	&--disabled {
 		.tabs__tab {
 			cursor: default;
