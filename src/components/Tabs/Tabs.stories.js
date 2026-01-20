@@ -91,10 +91,36 @@ export const TabScroll = () => ({
 		},
 	},
 	template: `<div>
-				<farm-tabs :tabs="tabs" :showCounter="true" @update="updateValue" /> 
+				<farm-tabs :tabs="tabs" :showCounter="true" @update="updateValue" />
 				<div class="mt-4 pa-4" style="background-color: #f5f5f5; border-radius: 8px;">
 					<h3>Conteúdo da Tab: {{v}}</h3>
 					<p class="mt-2">Este é o conteúdo da tab selecionada.</p>
+				</div>
+			</div>`,
+});
+
+export const WithNotification = () => ({
+	data() {
+		return {
+			v: 'Dados Gerais',
+			tabs: [
+				{name: 'Dados Gerais', path: 'dados', notification: false},
+				{name: 'Beneficiários', path: 'beneficiarios', notification: true},
+				{name: 'Documentos', path: 'documentos', notification: true},
+				{name: 'Revisão', path: 'revisao', notification: false},
+			],
+		};
+	},
+	methods: {
+		updateValue(value) {
+			this.v = value.name;
+		},
+	},
+	template: `<div>
+				<farm-tabs :tabs="tabs" :showCounter="false" @update="updateValue" />
+				<div class="mt-4 pa-4" style="background-color: #f5f5f5; border-radius: 8px;">
+					<h3>Conteúdo da Tab: {{v}}</h3>
+					<p class="mt-2">As tabs "Beneficiários" e "Documentos" possuem notificação (bullet laranja) indicando que precisam ser salvas.</p>
 				</div>
 			</div>`,
 });
