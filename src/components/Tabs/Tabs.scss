@@ -1,11 +1,71 @@
 @import '../../configurations/theme-colors';
 
+.farm-tabs-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.farm-tabs-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: none;
+	background-color: white;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	padding: 0;
+
+	.farm-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&:hover {
+		background-color: var(--farm-primary-base);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+		.farm-icon {
+			color: white !important;
+		}
+	}
+
+	&--left {
+		left: 8px;
+	}
+
+	&--right {
+		right: 8px;
+	}
+}
+
 .farm-tabs {
 	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-behavior: smooth;
+	
+	scrollbar-width: none; // Firefox
+	-ms-overflow-style: none; // IE/Edge
+	
+	&::-webkit-scrollbar {
+		display: none; // Chrome/Safari/Opera
+	}
 }
 .tabs {
 	display: flex;
 	margin-bottom: -1px;
+	min-width: min-content;
 
 	&__tab {
 		border-bottom: 1px solid var(--farm-primary-lighten);
@@ -14,6 +74,7 @@
 		padding: 18px 24px 14px;
 		height: 54px;
 		transition: all 0.5s ease;
+		white-space: nowrap;
 		&:hover {
 			background-color: transparentize(themeColor('primary', 'base'), 0.86);
 
@@ -35,6 +96,20 @@
 				font-weight: 500;
 			}
 		}
+	}
+
+	&__label {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	&__notification {
+		background-color: var(--farm-warning-base);
+		border-radius: 50%;
+		display: inline-block;
+		height: 6px;
+		margin-left: 8px;
+		width: 6px;
 	}
 
 	&--disabled {

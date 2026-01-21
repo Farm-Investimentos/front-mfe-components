@@ -105,15 +105,13 @@
     padding: gutter('xs') 0;
   }
 
-
-
   &__bar {
     height: 30px;
     z-index: 2;
     border-radius: 4px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     color: white;
     font-size: fontSize('sm');
     padding: 0 gutter('sm');

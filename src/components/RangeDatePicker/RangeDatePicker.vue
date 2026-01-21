@@ -4,7 +4,9 @@
 		v-model="menuField"
 		ref="contextmenu"
 		maxHeight="auto"
-		bottom
+		:bottom="position === 'bottom'"
+		:top="position === 'top'"
+		:fixedCentered="position === 'fixed-centered'"
 		popup-width="320"
 	>
 		<v-date-picker
@@ -136,6 +138,14 @@ export default defineComponent({
 		outOfRangeMessage: {
 			type: String,
 			default: 'A data selecionada deve ser entre {min} e {max}',
+		},
+		/**
+		 * Posição do datepicker (top, bottom, fixed-centered)
+		 */
+		position: {
+			type: String,
+			default: 'bottom',
+			validator: value => ['top', 'bottom', 'fixed-centered'].includes(value),
 		},
 	},
 	data() {

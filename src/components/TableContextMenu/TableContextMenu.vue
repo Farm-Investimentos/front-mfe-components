@@ -1,7 +1,8 @@
 <template>
 	<farm-contextmenu
 		:class="{ 'farm-context-menu': true, 'farm-context-menu--disabled': disabled }"
-		v-model="value"
+		:value="value"
+		@input="value = $event"
 	>
 		<template v-slot:activator>
 			<farm-btn
@@ -9,7 +10,6 @@
 				title="Ver opções"
 				color="secondary-green"
 				:disabled="disabled"
-				@click="toggleValue"
 			>
 				<farm-icon size="md">dots-horizontal</farm-icon>
 			</farm-btn>
@@ -70,14 +70,10 @@ export default defineComponent({
 		};
 	},
 	methods: {
-		onClick(handler) {
+		onClick(handler: string) {
 			if (handler !== undefined) {
 				this.$emit(handler);
 			}
-		},
-		toggleValue(event: MouseEvent) {
-			this.value = !this.value;
-			event.stopPropagation();
 		},
 	},
 });
