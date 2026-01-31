@@ -25,7 +25,7 @@
 
 6. Com a versão já atualizada, é necessário publicar o pacote. Para isso, abra um *Pull Request* da branch **develop** para a branch **main**.
 
-Esse processo é automatizado por um workflow. Na aba **Actions**, procure pelo action **PR develop to main** e execute-o.
+Esse processo é automatizado por um workflow. Na aba **Actions**, localize o workflow **PR develop to main**. Em **Use workflow from**, mantenha a branch **develop** selecionada e clique em **Run workflow**.
 
   
 
@@ -39,4 +39,4 @@ Quando o workflow finalizar, a nova versão do pacote estará disponível. Basta
 
   
 
-9. Acesse a aba **Actions**, execute o workflow **PR main to docs** e aguarde a finalização do processo.
+9. Para atualizar a documentação, execute o workflow **PR main to docs**. Na aba **Actions**, localize o workflow **PR main to docs**. Em **Use workflow from**, mantenha a branch **develop** selecionada e clique em **Run workflow**. Aguarde a finalização do processo.
