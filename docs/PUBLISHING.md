@@ -39,4 +39,4 @@ Quando o workflow finalizar, a nova versão do pacote estará disponível. Basta
 
   
 
-9. Acesse a aba **Actions**, execute o workflow **PR main to docs** e aguarde a finalização do processo.
+9. Acesse a aba **Actions**, execute o workflow **PR main to docs**. Esse workflow irá abrir automaticamente um Pull Request da branch **main** para a branch **docs**. Revise esse Pull Request e faça o *merge* na branch **docs**; a publicação da documentação será disparada automaticamente pelo workflow **publish docs** ao receber o *push* nessa branch.
