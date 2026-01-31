@@ -23,9 +23,9 @@
 
   
 
-6. Com a versão já atualizada, é necessário publicar o pacote. Para isso, abra um *Pull Request* da branch **develop** para a branch **main**.
+6. Com a versão já atualizada, é necessário publicar o pacote. Esse processo é automatizado por um workflow que cria um *Pull Request* da branch **develop** para a branch **main**.
 
-Esse processo é automatizado por um workflow. Na aba **Actions**, procure pelo action **PR develop to main** e execute-o.
+Na aba **Actions**, procure pelo workflow **PR develop to main** e execute-o.
 
   
 
