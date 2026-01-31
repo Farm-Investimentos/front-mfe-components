@@ -39,8 +39,7 @@ Para instruções detalhadas sobre como publicar uma versão no npm e atualizar 
 
 Pacote publicado em [npm](https://www.npmjs.com/package/@farm-investimentos/front-mfe-components).
 
-- Atualize a versão no `package.json`
-- Faça push para a branch `main`
+O processo de publicação é realizado via workflows do GitHub, conforme descrito em [PUBLISHING.md](docs/PUBLISHING.md).
 
 #### Documentação (Storybook)
 
