@@ -1,35 +1,48 @@
 # front-mfe-components
 [![codecov](https://codecov.io/gh/Farm-Investimentos/front-mfe-components/branch/develop/graph/badge.svg?token=9ERJ107152)](https://codecov.io/gh/Farm-Investimentos/front-mfe-components)
 
-## Project setup
+## Configuração do projeto
+
+Instale as dependências:
+
 ```
 npm install
 ```
 
-## Compiles and hot-reloads for development
+## Desenvolvimento
+
+Inicia o Storybook em modo desenvolvimento (com hot-reload):
+
 ```
 npm run storybook
 ```
 
-## Compiles and minifies for production
+## Build para produção
+
+Gera o build estático do Storybook:
+
 ```
 npm run build-storybook
 ```
-or
+
+Ou gera o build dos componentes:
+
 ```
 npm run build:components
 ```
 
 ### Pipelines
 
+Para instruções detalhadas sobre como publicar uma versão no npm e atualizar a documentação do Storybook, veja [PUBLISHING.md](docs/PUBLISHING.md).
+
 #### NPM
 
-Hosted at [https://www.npmjs.com/package/@farm-investimentos/front-mfe-components](https://www.npmjs.com/package/@farm-investimentos/front-mfe-components)
-- increase version on package.json
-- push to `main` branch
+Pacote publicado em [npm](https://www.npmjs.com/package/@farm-investimentos/front-mfe-components).
 
-#### Live doc
+O processo de publicação é realizado via workflows do GitHub, conforme descrito em [PUBLISHING.md](docs/PUBLISHING.md).
 
-- push to `docs` branch
-- live at [http://front-farm-storybook.s3-website-us-east-1.amazonaws.com/index.html](http://front-farm-storybook.s3-website-us-east-1.amazonaws.com/index.html).
+#### Documentação (Storybook)
+
+- Faça push para a branch `docs`
+- A documentação fica disponível em [front-farm-storybook](http://front-farm-storybook.s3-website-us-east-1.amazonaws.com/index.html)
 
